@@ -1,6 +1,9 @@
 from __future__ import annotations
 
 from typing import Any
+import urllib.parse
+
+import requests
 
 import dataclasses
 import pypgstac.hydration
@@ -10,7 +13,23 @@ import shapely.wkb
 @dataclasses.dataclass
 class CollectionConfig:
     collection: str
-    render_config: str
+
+    def __post_init__(self):
+        self._render_config: str | None = None
+
+    @property
+    def render_config(self) -> str:
+        if self._render_config is None:
+            r = requests.get(f"https://planetarycomputer.microsoft.com/api/data/v1/mosaic/info?collection={self.collection}")
+            r.raise_for_status()
+            options = r.json()["renderOptions"][0]["options"].split("&")
+
+            d = {}
+            for k, v in [x.split("=") for x in options]:
+                d[k] = v
+            self._render_config = urllib.parse.urlencode(d)
+
+        return self._render_config
 
     def inject_links(self, item):
         item["links"] = [

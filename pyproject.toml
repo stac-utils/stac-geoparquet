@@ -14,12 +14,14 @@ dependencies = [
     "pystac",
     "geopandas",
     "pandas",
+    "pyarrow",
     "shapely"
 ]
 
 [project.optional-dependencies]
 pgstac = [
-    "pypgstac"
+    "pypgstac",
+    "psycopg[binary,pool]"
 ]
 
 test = [
