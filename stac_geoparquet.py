@@ -24,6 +24,7 @@ class ItemLike(TypedDict):
     type: str
     stac_version: str
     stac_extensions: list[str]
+    id: str
     geometry: dict[str, Any] | None
     bbox: list[float] | None
     properties: dict[str, Any]
@@ -65,6 +66,12 @@ def to_geodataframe(items: Sequence[ItemLike]) -> geopandas.GeoDataFrame:
     for column in ["datetime", "start_datetime", "end_datetime"]:
         if column in gdf.columns:
             gdf[column] = pd.to_datetime(gdf[column])
+
+
+    columns = ["type", "stac_version", "stac_extensions", "id", "geometry", "bbox", "links", "assets", "collection"]
+    gdf = pd.concat([gdf[columns], gdf.drop(columns=columns)], axis="columns")
+    for k in ["type", "stac_version", "id", "collection"]:
+        gdf[k] = gdf[k].astype("string")
 
     return gdf
 

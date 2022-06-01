@@ -1,3 +1,7 @@
+from __future__ import annotations
+
+from typing import Any
+
 import dataclasses
 import pypgstac.hydration
 import shapely.wkb
@@ -54,13 +58,17 @@ class CollectionConfig:
         }
 
 
-def make_pgstac_items(records, base_item, cfg):
+def make_pgstac_items(records: list[tuple], base_item: dict[str, Any], cfg: CollectionConfig | None):
     columns = ["id", "geometry", "collection", "datetime", "end_datetime", "content"]
 
     items = []
 
     for record in records:
         item = dict(zip(columns, record))
+        # datetime is in the content too
+        item.pop("datetime")
+        item.pop("end_datetime")
+
         geom = shapely.wkb.loads(item["geometry"], hex=True)
 
         item["geometry"] = geom.__geo_interface__
@@ -73,17 +81,9 @@ def make_pgstac_items(records, base_item, cfg):
 
         pypgstac.hydration.hydrate(base_item, item)
 
-        item.pop("datetime")  # ?
-        item.pop("end_datetime")
-
         cfg.inject_links(item)
         cfg.inject_assets(item)
 
         items.append(item)
 
     return items
-
-
-# with db.connect():
-#     base_item = db.query_one("select * from collection_base_item('naip');")
-#     records = list(db.query("select * from pgstac.items where collection = 'naip' limit 100;"))
