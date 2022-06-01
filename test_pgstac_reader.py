@@ -90,10 +90,7 @@ def test_naip_item():
     result = pgstac_reader.make_pgstac_items(records, base_item)[0]
     # shapely uses tuples instead of lists
     result = json.loads(json.dumps(result))
-    # The API doesn't return deterministic link order
-    # result["links"] = sorted(result["links"], key=lambda x: x["href"])
 
     expected = requests.get("https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip/items/pa_m_4108053_se_17_1_20150725_20151201").json()
-    # expected["links"] = sorted(expected["links"], key=lambda x: x["href"])
 
     assert result == expected
