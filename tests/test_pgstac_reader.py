@@ -3,7 +3,7 @@ import json
 
 import requests
 
-import pgstac_reader
+import stac_geoparquet.pgstac_reader
 
 
 def test_naip_item():
@@ -87,8 +87,8 @@ def test_naip_item():
         )
     ]
 
-    cfg = pgstac_reader.CollectionConfig(collection="naip", render_config="assets=image&asset_bidx=image%7C1%2C2%2C3")
-    result = pgstac_reader.make_pgstac_items(records, base_item, cfg)[0]
+    cfg = stac_geoparquet.pgstac_reader.CollectionConfig(collection="naip", render_config="assets=image&asset_bidx=image%7C1%2C2%2C3")
+    result = stac_geoparquet.pgstac_reader.make_pgstac_items(records, base_item, cfg)[0]
     # shapely uses tuples instead of lists
     result = json.loads(json.dumps(result))
 

@@ -1,14 +1,3 @@
-"""
-General questions:
-
-1. How do we get the STAC items?
-    - From the API?
-    - Direct connection to the DB?
-        - How do we handle dynamic things like rehydration, links?
-2. Per dataset questions:
-    - How do we partition the data (spatially, temporally?)
-    - Does it require dynamic updates?
-"""
 from __future__ import annotations
 from collections import namedtuple
 
