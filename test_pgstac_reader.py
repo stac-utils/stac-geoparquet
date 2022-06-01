@@ -87,7 +87,8 @@ def test_naip_item():
         )
     ]
 
-    result = pgstac_reader.make_pgstac_items(records, base_item)[0]
+    cfg = pgstac_reader.CollectionConfig(collection="naip", render_config="assets=image&asset_bidx=image%7C1%2C2%2C3")
+    result = pgstac_reader.make_pgstac_items(records, base_item, cfg)[0]
     # shapely uses tuples instead of lists
     result = json.loads(json.dumps(result))
 

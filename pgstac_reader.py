@@ -54,11 +54,10 @@ class CollectionConfig:
         }
 
 
-def make_pgstac_items(records, base_item):
+def make_pgstac_items(records, base_item, cfg):
     columns = ["id", "geometry", "collection", "datetime", "end_datetime", "content"]
 
     items = []
-    cfg = CollectionConfig(collection="naip", render_config="assets=image&asset_bidx=image%7C1%2C2%2C3")
 
     for record in records:
         item = dict(zip(columns, record))
