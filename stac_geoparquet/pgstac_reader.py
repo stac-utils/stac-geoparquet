@@ -12,6 +12,10 @@ import shapely.wkb
 
 @dataclasses.dataclass
 class CollectionConfig:
+    """
+    Additional collection-based configuration to inject, matching the dynamic properties from the API.
+    """
+
     collection: str
 
     def __post_init__(self):
@@ -20,7 +24,9 @@ class CollectionConfig:
     @property
     def render_config(self) -> str:
         if self._render_config is None:
-            r = requests.get(f"https://planetarycomputer.microsoft.com/api/data/v1/mosaic/info?collection={self.collection}")
+            r = requests.get(
+                f"https://planetarycomputer.microsoft.com/api/data/v1/mosaic/info?collection={self.collection}"
+            )
             r.raise_for_status()
             options = r.json()["renderOptions"][0]["options"].split("&")
 
@@ -60,7 +66,7 @@ class CollectionConfig:
                 "type": "text/html",
             },
         ]
- 
+
     def inject_assets(self, item):
         item["assets"]["tilejson"] = {
             "href": f"https://planetarycomputer.microsoft.com/api/data/v1/item/tilejson.json?collection={self.collection}&item={item['id']}&{self.render_config}",
@@ -77,7 +83,22 @@ class CollectionConfig:
         }
 
 
-def make_pgstac_items(records: list[tuple], base_item: dict[str, Any], cfg: CollectionConfig | None):
+def make_pgstac_items(
+    records: list[tuple], base_item: dict[str, Any], cfg: CollectionConfig | None
+):
+    """
+    Make STAC items out of pgstac records.
+
+    Parameters
+    ----------
+    records: list[tuple]
+        The dehydrated records from pgstac.items table.
+    base_item: dict[str, Any]
+        The base item from the ``collection_base_item`` pgstac function for this collection.
+        Used for rehydration
+    cfg: CollectionConfig
+        The :class:`CollectionConfig` used for injecting dynamic properties.
+    """
     columns = ["id", "geometry", "collection", "datetime", "end_datetime", "content"]
 
     items = []

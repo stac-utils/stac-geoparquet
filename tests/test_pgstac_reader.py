@@ -92,7 +92,9 @@ def test_naip_item():
     # shapely uses tuples instead of lists
     result = json.loads(json.dumps(result))
 
-    expected = requests.get("https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip/items/pa_m_4108053_se_17_1_20150725_20151201").json()
+    expected = requests.get(
+        "https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip/items/pa_m_4108053_se_17_1_20150725_20151201"
+    ).json()
 
     assert result == expected
     assert result["properties"]["datetime"]

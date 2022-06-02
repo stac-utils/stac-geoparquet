@@ -1,3 +1,6 @@
+"""
+Generate geoparquet from a sequence of STAC items.
+"""
 from __future__ import annotations
 from collections import namedtuple
 
@@ -37,7 +40,6 @@ def to_geodataframe(items: Sequence[ItemLike]) -> geopandas.GeoDataFrame:
     -------
     The converted GeoDataFrame.
     """
-    # lift properties up to the top level.
     items2 = []
     for item in items:
         item2 = {k: v for k, v in item.items() if k != "properties"}
@@ -46,18 +48,25 @@ def to_geodataframe(items: Sequence[ItemLike]) -> geopandas.GeoDataFrame:
                 raise ValueError("k", k)
             item2[k] = v
         items2.append(item2)
-        
-    geometry = [
-        shapely.geometry.shape(x["geometry"]) for x in items2
-    ]
+
+    geometry = [shapely.geometry.shape(x["geometry"]) for x in items2]
     gdf = geopandas.GeoDataFrame(items2, geometry=geometry, crs="WGS84")
 
     for column in ["datetime", "start_datetime", "end_datetime"]:
         if column in gdf.columns:
             gdf[column] = pd.to_datetime(gdf[column])
 
-
-    columns = ["type", "stac_version", "stac_extensions", "id", "geometry", "bbox", "links", "assets", "collection"]
+    columns = [
+        "type",
+        "stac_version",
+        "stac_extensions",
+        "id",
+        "geometry",
+        "bbox",
+        "links",
+        "assets",
+        "collection",
+    ]
     gdf = pd.concat([gdf[columns], gdf.drop(columns=columns)], axis="columns")
     for k in ["type", "stac_version", "id", "collection"]:
         gdf[k] = gdf[k].astype("string")
@@ -65,15 +74,27 @@ def to_geodataframe(items: Sequence[ItemLike]) -> geopandas.GeoDataFrame:
     return gdf
 
 
-def to_item_dict(row: namedtuple):
+def to_dict(row: namedtuple):
+    """
+    Create a dictionary representing a STAC item from a row of the GeoDataFrame.
+
+    Parameters
+    ----------
+    row: namedtuple
+    """
     keys = {
-        "type", "stac_version", "id", "geometry", "bbox", "links", "assets", "collection",
+        "type",
+        "stac_version",
+        "id",
+        "geometry",
+        "bbox",
+        "links",
+        "assets",
+        "collection",
     }
     item = row._asdict()
     item["datetime"] = item["datetime"].isoformat()
-    out = {
-        "properties": {}
-    }
+    out = {"properties": {}}
     for k, v in item.items():
         if k in keys:
             out[k] = v
@@ -83,4 +104,4 @@ def to_item_dict(row: namedtuple):
 
 
 def to_item_collection(df):
-    return pystac.ItemCollection([to_item_dict(row) for row in df.itertuples(index=False)])
+    return pystac.ItemCollection([to_dict(row) for row in df.itertuples(index=False)])

@@ -32,3 +32,10 @@ test = [
 
 [project.urls]
 Home = "https://github.com/TomAugspurger/stac_geoparquet"
+
+
+[tool.pytest.inioptions]
+minversion = "6.0"
+filterwarnings = [
+    "ignore:.*distutils Version.*:DeprecationWarning"
+]
