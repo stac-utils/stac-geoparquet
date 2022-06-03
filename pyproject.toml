@@ -23,7 +23,11 @@ pgstac = [
     "pypgstac",
     "psycopg[binary,pool]"
 ]
-
+pc = [
+    "adlfs",
+    "pypgstac",
+    "psycopg[binary,pool]"
+]
 test = [
     "pytest",
     "requests",

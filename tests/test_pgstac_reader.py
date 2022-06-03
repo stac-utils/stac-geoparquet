@@ -87,8 +87,8 @@ def test_naip_item():
         )
     ]
 
-    cfg = stac_geoparquet.pgstac_reader.CollectionConfig(collection="naip")
-    result = stac_geoparquet.pgstac_reader.make_pgstac_items(records, base_item, cfg)[0]
+    cfg = stac_geoparquet.pgstac_reader.CollectionConfig(collection_id="naip")
+    result = cfg.make_pgstac_items(records, base_item)[0]
     # shapely uses tuples instead of lists
     result = json.loads(json.dumps(result))
 
