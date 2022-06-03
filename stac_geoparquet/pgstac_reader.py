@@ -205,7 +205,7 @@ class CollectionConfig:
             ]
             queries = [base_query + where for where in extra_wheres]
             output_paths = [
-                f"{output_path}/part-{i}_{a.isoformat()}_{b.isoformat()}.parquet"
+                f"{output_path}/part-{i:0{len(str(N-1))}}_{a.isoformat()}_{b.isoformat()}.parquet"
                 for i, (a, b) in enumerate(endpoints)
             ]
 
