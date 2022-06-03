@@ -178,6 +178,7 @@ class CollectionConfig:
         output_path: str,
         storage_options: dict[str, Any],
         rewrite=False,
+        skip_empty_partitions=False,
     ) -> list[str | None]:
         base_query = textwrap.dedent(
             f"""\
@@ -230,6 +231,7 @@ class CollectionConfig:
                         part_path,
                         storage_options=storage_options,
                         rewrite=rewrite,
+                        skip_empty_partitions=skip_empty_partitions,
                     )
                 )
 
