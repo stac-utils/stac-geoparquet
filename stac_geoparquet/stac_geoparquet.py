@@ -58,7 +58,7 @@ def to_geodataframe(items: Sequence[ItemLike]) -> geopandas.GeoDataFrame:
         item_geom = item["geometry"]
         if item_geom["type"] == "MultiPolygon":
             item_geom = dict(item_geom)
-            item_geom["coordinates"] = [x for x in item_geom["coordinates"] if x]
+            item_geom["coordinates"] = [x for x in item_geom["coordinates"] if any(x)]
         geometry.append(shapely.geometry.shape(item_geom))
 
     gdf = geopandas.GeoDataFrame(items2, geometry=geometry, crs="WGS84")
