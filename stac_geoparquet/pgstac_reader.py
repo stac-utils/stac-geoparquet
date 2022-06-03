@@ -3,18 +3,21 @@ import textwrap
 
 import datetime
 import logging
+import time
 from typing import Any
 import urllib.parse
 import itertools
-import pandas as pd
 
 import fsspec
 import requests
+import pandas as pd
 import pystac
 import dataclasses
+import pyarrow.fs
+import pypgstac.db
 import pypgstac.hydration
 import shapely.wkb
-
+import tqdm
 from stac_geoparquet import to_geodataframe
 
 
@@ -130,13 +133,12 @@ class CollectionConfig:
         query: str,
         output_protocol: str,
         output_path: str,
-        to_parquet_options: dict[str, Any] | None = None,
+        storage_options: dict[str, Any] | None = None,
         rewrite=False,
     ) -> str:
-        to_parquet_options = to_parquet_options or {}
-
-        fs = fsspec.filesystem(output_protocol, **to_parquet_options.get("storage_options", {}))
-        if fs.exists(output_path) and not rewrite:
+        storage_options = storage_options or {}
+        az_fs = fsspec.filesystem(output_protocol, **storage_options)
+        if az_fs.exists(output_path) and not rewrite:
             logger.info("Path %s already exists.", output_path)
             return output_path
 
@@ -151,7 +153,9 @@ class CollectionConfig:
 
         items = self.make_pgstac_items(records, base_item)
         df = to_geodataframe(items)
-        df.to_parquet(output_path, **to_parquet_options)
+        filesystem = pyarrow.fs.PyFileSystem(pyarrow.fs.FSSpecHandler(az_fs))
+        df.to_parquet(output_path, index=False, filesystem=filesystem)
+        return output_path
 
     def export_collection(
         self,
@@ -169,18 +173,17 @@ class CollectionConfig:
         )
         if output_protocol:
             output_path = f"{output_protocol}://{output_path}"
-            to_parquet_options = dict(storage_options=storage_options)
-        else:
-            to_parquet_options = {}
 
         if not self.partition_frequency:
+            logger.info("Exporting single-partition collection %s", self.collection_id)
+            logger.debug("query=%s", base_query)
             results = [
                 self.export_partition(
                     conninfo,
                     base_query,
                     output_protocol,
                     output_path,
-                    to_parquet_options=to_parquet_options,
+                    storage_options=storage_options,
                 )
             ]
 
@@ -196,17 +199,17 @@ class CollectionConfig:
             ]
 
             N = len(endpoints)
+            logger.info("Exporting %d partitions for collection %s", N, self.collection_id)
 
             results = []
-            for i, (query, part_path) in enumerate(zip(queries, output_paths), 1):
-                logger.info("Processing query %d/%d", i, N)
+            for (query, part_path) in tqdm.tqdm(zip(queries, output_paths), total=N):
                 results.append(
                     self.export_partition(
                         conninfo,
                         query,
                         output_protocol,
                         part_path,
-                        to_parquet_options,
+                        storage_options=storage_options,
                     )
                 )
 

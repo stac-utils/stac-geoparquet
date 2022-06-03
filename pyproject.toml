@@ -21,12 +21,13 @@ dependencies = [
 [project.optional-dependencies]
 pgstac = [
     "pypgstac",
-    "psycopg[binary,pool]"
+    "psycopg[binary,pool]",
+    "tqdm",
 ]
 pc = [
     "adlfs",
     "pypgstac",
-    "psycopg[binary,pool]"
+    "psycopg[binary,pool]",
 ]
 test = [
     "pytest",
