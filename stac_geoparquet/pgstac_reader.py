@@ -145,7 +145,8 @@ class CollectionConfig:
         output_path: str,
         storage_options: dict[str, Any] | None = None,
         rewrite=False,
-    ) -> str:
+        skip_empty_partitions=False,
+    ) -> str | None:
         storage_options = storage_options or {}
         az_fs = fsspec.filesystem(output_protocol, **storage_options)
         if az_fs.exists(output_path) and not rewrite:
@@ -161,6 +162,9 @@ class CollectionConfig:
             )
             records = list(db.query(query))
 
+        if skip_empty_partitions and len(records) == 0:
+            return None
+
         items = self.make_pgstac_items(records, base_item)
         df = to_geodataframe(items)
         filesystem = pyarrow.fs.PyFileSystem(pyarrow.fs.FSSpecHandler(az_fs))
@@ -174,7 +178,7 @@ class CollectionConfig:
         output_path: str,
         storage_options: dict[str, Any],
         rewrite=False,
-    ) -> list[str]:
+    ) -> list[str | None]:
         base_query = textwrap.dedent(
             f"""\
         select *
