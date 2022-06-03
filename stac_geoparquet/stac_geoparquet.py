@@ -49,7 +49,18 @@ def to_geodataframe(items: Sequence[ItemLike]) -> geopandas.GeoDataFrame:
             item2[k] = v
         items2.append(item2)
 
-    geometry = [shapely.geometry.shape(x["geometry"]) for x in items2]
+    # Filter out missing geoms in MultiPolygons
+    # https://github.com/shapely/shapely/issues/1407
+    # geometry = [shapely.geometry.shape(x["geometry"]) for x in items2]
+
+    geometry = []
+    for item in items2:
+        item_geom = item["geometry"]
+        if item_geom["type"] == "MultiPolygon":
+            item_geom = dict(item_geom)
+            item_geom["coordinates"] = [x for x in item_geom["coordinates"] if x]
+        geometry.append(shapely.geometry.shape(item_geom))
+
     gdf = geopandas.GeoDataFrame(items2, geometry=geometry, crs="WGS84")
 
     for column in ["datetime", "start_datetime", "end_datetime"]:

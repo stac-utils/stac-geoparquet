@@ -3,7 +3,7 @@ import shapely.geometry
 import pandas as pd
 import pandas.testing
 import geopandas
-
+import requests
 import pytest
 
 
@@ -218,3 +218,8 @@ def test_to_geodataframe():
 
     pandas.testing.assert_frame_equal(result, expected)
 
+
+
+def test_s1_grd():
+    item = requests.get("https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-1-grd/items/S1A_EW_GRDM_1SSH_20150129T081916_20150129T081938_004383_005598").json()  # noqa: E501
+    stac_geoparquet.to_geodataframe([item])
