@@ -37,6 +37,7 @@ class CollectionConfig:
     """
     Additional collection-based configuration to inject, matching the dynamic properties from the API.
     """
+
     collection_id: str
     partition_frequency: str | None = None
     stac_api: str = "https://planetarycomputer.microsoft.com/api/stac/v1"
@@ -201,16 +202,19 @@ class CollectionConfig:
         else:
             endpoints = self.generate_endpoints()
             extra_wheres = [
-                f"and datetime >= '{a.isoformat()}' and datetime < '{b.isoformat()}'" for a, b in endpoints
+                f"and datetime >= '{a.isoformat()}' and datetime < '{b.isoformat()}'"
+                for a, b in endpoints
             ]
             queries = [base_query + where for where in extra_wheres]
             N = len(endpoints)
             output_paths = [
-                f"{output_path}/part-{i:0{len(str(N-1))}}_{a.isoformat()}_{b.isoformat()}.parquet"
+                f"{output_path}/part-{i:0{len(str(N + 1))}}_{a.isoformat()}_{b.isoformat()}.parquet"
                 for i, (a, b) in enumerate(endpoints)
             ]
 
-            logger.info("Exporting %d partitions for collection %s", N, self.collection_id)
+            logger.info(
+                "Exporting %d partitions for collection %s", N, self.collection_id
+            )
 
             results = []
             for (query, part_path) in tqdm.tqdm(zip(queries, output_paths), total=N):
