@@ -139,7 +139,7 @@ class CollectionConfig:
         storage_options = storage_options or {}
         az_fs = fsspec.filesystem(output_protocol, **storage_options)
         if az_fs.exists(output_path) and not rewrite:
-            logger.info("Path %s already exists.", output_path)
+            logger.debug("Path %s already exists.", output_path)
             return output_path
 
         db = pypgstac.db.PgstacDB(conninfo)
@@ -163,6 +163,7 @@ class CollectionConfig:
         output_protocol: str,
         output_path: str,
         storage_options: dict[str, Any],
+        rewrite=False,
     ) -> list[str]:
         base_query = textwrap.dedent(
             f"""\
@@ -184,6 +185,7 @@ class CollectionConfig:
                     output_protocol,
                     output_path,
                     storage_options=storage_options,
+                    rewrite=rewrite,
                 )
             ]
 
@@ -210,6 +212,7 @@ class CollectionConfig:
                         output_protocol,
                         part_path,
                         storage_options=storage_options,
+                        rewrite=rewrite,
                     )
                 )
 
