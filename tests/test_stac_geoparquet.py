@@ -215,12 +215,92 @@ def test_to_geodataframe():
     for k in ["type", "stac_version", "id", "collection"]:
         expected[k] = expected[k].astype("string")
 
-
     pandas.testing.assert_frame_equal(result, expected)
-
 
 
 def test_s1_grd():
     # item = requests.get("https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-1-grd/items/S1A_EW_GRDM_1SSH_20150129T081916_20150129T081938_004383_005598").json()  # noqa: E501
-    item = requests.get("https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-1-grd/items/S1A_EW_GRDM_1SSH_20150129T081916_20150129T081938_004383_005598").json()
+    item = requests.get(
+        "https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-1-grd/items/S1A_EW_GRDM_1SSH_20150129T081916_20150129T081938_004383_005598"
+    ).json()
     stac_geoparquet.to_geodataframe([item])
+
+
+@pytest.mark.parametrize(
+    "collection_id",
+    [
+        "3dep-lidar-classification",
+        "3dep-lidar-copc",
+        "3dep-lidar-dsm",
+        "3dep-lidar-dtm",
+        "3dep-lidar-dtm-native",
+        "3dep-lidar-hag",
+        "3dep-lidar-intensity",
+        "3dep-lidar-pointsourceid",
+        "3dep-lidar-returns",
+        "3dep-seamless",
+        "alos-dem",
+        "alos-fnf-mosaic",
+        "alos-palsar-mosaic",
+        "aster-l1t",
+        "chloris-biomass",
+        "cil-gdpcir-cc-by",
+        "cil-gdpcir-cc-by-sa",
+        "cil-gdpcir-cc0",
+        "cop-dem-glo-30",
+        "cop-dem-glo-90",
+        "eclipse",
+        "ecmwf-forecast",
+        "era5-pds",
+        "esa-worldcover",
+        "fia",
+        "gap",
+        "gbif",
+        # "gnatsgo-rasters",
+        # "gnatsgo-tables",
+        "goes-cmi",
+        "hrea",
+        "io-lulc",
+        "io-lulc-9-class",
+        "jrc-gsw",
+        "landsat-c2-l1",
+        "landsat-c2-l2",
+        "mobi",
+        "modis-09A1-061",
+        "modis-09Q1-061",
+        "modis-10A1-061",
+        "modis-10A2-061",
+        "modis-11A1-061",
+        "modis-11A2-061",
+        "modis-13A1-061",
+        "modis-13Q1-061",
+        "modis-14A1-061",
+        "modis-14A2-061",
+        "modis-15A2H-061",
+        "modis-15A3H-061",
+        "modis-16A3GF-061",
+        "modis-17A2H-061",
+        "modis-17A2HGF-061",
+        "modis-17A3HGF-061",
+        "modis-21A2-061",
+        "modis-43A4-061",
+        "modis-64A1-061",
+        "mtbs",
+        "naip",
+        "nasa-nex-gddp-cmip6",
+        "nasadem",
+        "noaa-c-cap",
+        "nrcan-landcover",
+        "planet-nicfi-analytic",
+        "planet-nicfi-visual",
+        "sentinel-1-grd",
+        "sentinel-1-rtc",
+        "sentinel-2-l2a",
+        "us-census",
+    ],
+)
+def test_smoke(collection_id):
+    items = requests.get(
+        f"https://planetarycomputer.microsoft.com/api/stac/v1/collections/{collection_id}/items?limit=1"
+    ).json()["features"]
+    stac_geoparquet.to_geodataframe(items)
