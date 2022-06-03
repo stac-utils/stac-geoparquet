@@ -8,6 +8,7 @@ import urllib.parse
 import itertools
 import pandas as pd
 
+import fsspec
 import requests
 import pystac
 import dataclasses
@@ -130,8 +131,15 @@ class CollectionConfig:
         output_protocol: str,
         output_path: str,
         to_parquet_options: dict[str, Any] | None = None,
+        rewrite=False,
     ) -> str:
         to_parquet_options = to_parquet_options or {}
+
+        fs = fsspec.filesystem(output_protocol, **to_parquet_options.get("storage_options", {}))
+        if fs.exists(output_path) and not rewrite:
+            logger.info("Path %s already exists.", output_path)
+            return output_path
+
         db = pypgstac.db.PgstacDB(conninfo)
         with db.connect():
             # logger.debug("Reading base item")
