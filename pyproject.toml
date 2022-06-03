@@ -23,6 +23,7 @@ pgstac = [
     "pypgstac",
     "psycopg[binary,pool]",
     "tqdm",
+    "python-dateutil",
 ]
 pc = [
     "adlfs",

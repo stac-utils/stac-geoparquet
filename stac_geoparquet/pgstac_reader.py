@@ -12,6 +12,7 @@ import fsspec
 import requests
 import pandas as pd
 import pystac
+import dateutil.tz
 import dataclasses
 import pyarrow.fs
 import pypgstac.db
@@ -120,6 +121,14 @@ class CollectionConfig:
             raise ValueError("Set partition_frequency")
 
         start_datetime, end_datetime = self.collection.extent.temporal.intervals[0]
+
+        # https://github.com/dateutil/dateutil/issues/349
+        if start_datetime.tzinfo == dateutil.tz.tz.tzlocal():
+            start_datetime = start_datetime.astimezone(datetime.timezone.utc)
+
+        if end_datetime and end_datetime.tzinfo == dateutil.tz.tz.tzlocal():
+            end_datetime = end_datetime.astimezone(datetime.timezone.utc)
+
         if end_datetime is None:
             end_datetime = pd.Timestamp.utcnow()
 
