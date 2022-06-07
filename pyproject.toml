@@ -29,6 +29,7 @@ pc = [
     "adlfs",
     "pypgstac",
     "psycopg[binary,pool]",
+    "tqdm",
 ]
 test = [
     "pytest",
@@ -39,6 +40,8 @@ test = [
 [project.urls]
 Home = "https://github.com/TomAugspurger/stac_geoparquet"
 
+[project.scripts]
+pc-geoparquet = "stac_geoparquet.cli:main"
 
 [tool.pytest.inioptions]
 minversion = "6.0"
