@@ -117,7 +117,7 @@ class CollectionConfig:
             "type": "image/png",
         }
 
-    def generate_endpoints(self) -> list[tuple[datetime.datetime, datetime.datetime]]:
+    def generate_endpoints(self, since: datetime.datetime | None = None) -> list[tuple[datetime.datetime, datetime.datetime]]:
         if self.partition_frequency is None:
             raise ValueError("Set partition_frequency")
 
@@ -134,6 +134,10 @@ class CollectionConfig:
             end_datetime = pd.Timestamp.utcnow()
 
         idx = pd.date_range(start_datetime, end_datetime, freq=self.partition_frequency)
+
+        if since:
+            idx = idx[idx >= since]
+
         pairs = _pairwise(idx)
         return list(pairs)
 
