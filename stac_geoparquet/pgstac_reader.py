@@ -117,7 +117,9 @@ class CollectionConfig:
             "type": "image/png",
         }
 
-    def generate_endpoints(self, since: datetime.datetime | None = None) -> list[tuple[datetime.datetime, datetime.datetime]]:
+    def generate_endpoints(
+        self, since: datetime.datetime | None = None
+    ) -> list[tuple[datetime.datetime, datetime.datetime]]:
         if self.partition_frequency is None:
             raise ValueError("Set partition_frequency")
 
