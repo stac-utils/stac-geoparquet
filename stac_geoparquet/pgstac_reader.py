@@ -154,7 +154,7 @@ class CollectionConfig:
             return output_path
 
         db = pypgstac.db.PgstacDB(conninfo)
-        with db.connect():
+        with db:
             # logger.debug("Reading base item")
             # TODO: proper escaping
             base_item = db.query_one(
