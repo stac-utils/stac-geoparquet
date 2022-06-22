@@ -72,7 +72,7 @@ PARTITION_FREQUENCIES = {
     "planet-nicfi-visual": "AS",
     "sentinel-1-grd": "MS",
     "sentinel-1-rtc": "MS",
-    "sentinel-2-l2a": "MS",
+    "sentinel-2-l2a": "W-MON",
     "us-census": None,
 }
 
