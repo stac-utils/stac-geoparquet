@@ -30,6 +30,7 @@ pc = [
     "pypgstac",
     "psycopg[binary,pool]",
     "tqdm",
+    "azure-data-tables",
 ]
 test = [
     "pytest",

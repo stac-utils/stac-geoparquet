@@ -2,7 +2,6 @@
 Generate geoparquet from a sequence of STAC items.
 """
 from __future__ import annotations
-from collections import namedtuple
 
 from typing import Sequence, Any, TypedDict
 
@@ -10,6 +9,8 @@ import pystac
 import geopandas
 import pandas as pd
 import shapely.geometry
+
+from stac_geoparquet.utils import fix_empty_multipolygon
 
 
 class ItemLike(TypedDict):
@@ -55,11 +56,7 @@ def to_geodataframe(items: Sequence[ItemLike]) -> geopandas.GeoDataFrame:
 
     geometry = []
     for item in items2:
-        item_geom = item["geometry"]
-        if item_geom["type"] == "MultiPolygon":
-            item_geom = dict(item_geom)
-            item_geom["coordinates"] = [x for x in item_geom["coordinates"] if any(x)]
-        geometry.append(shapely.geometry.shape(item_geom))
+        geometry.append(fix_empty_multipolygon(item["geometry"]))
 
     gdf = geopandas.GeoDataFrame(items2, geometry=geometry, crs="WGS84")
 
@@ -85,7 +82,7 @@ def to_geodataframe(items: Sequence[ItemLike]) -> geopandas.GeoDataFrame:
     return gdf
 
 
-def to_dict(row: namedtuple):
+def to_dict(record: dict) -> dict:
     """
     Create a dictionary representing a STAC item from a row of the GeoDataFrame.
 
@@ -93,7 +90,8 @@ def to_dict(row: namedtuple):
     ----------
     row: namedtuple
     """
-    keys = {
+    properties = {}
+    top_level_keys = {
         "type",
         "stac_version",
         "id",
@@ -102,17 +100,32 @@ def to_dict(row: namedtuple):
         "links",
         "assets",
         "collection",
+        "stac_extensions",
     }
-    item = row._asdict()
-    item["datetime"] = item["datetime"].isoformat()
-    out = {"properties": {}}
-    for k, v in item.items():
-        if k in keys:
-            out[k] = v
+    item = {}
+    for k, v in record.items():
+
+        if k in top_level_keys:
+            item[k] = v
         else:
-            out["properties"][k] = v
-    return out
+            properties[k] = v
+
+    item["geometry"] = shapely.geometry.mapping(item["geometry"])
+    item["properties"] = properties
+
+    return item
 
 
 def to_item_collection(df):
-    return pystac.ItemCollection([to_dict(row) for row in df.itertuples(index=False)])
+    df2 = df.copy()
+    datelike = df2.select_dtypes(
+        include=["datetime64[ns, UTC]", "datetime64[ns]"]
+    ).columns
+    for k in datelike:
+        df2[k] = (
+            df2[k].dt.strftime("%Y-%m-%dT%H:%M:%S.%fZ").fillna("").replace({"": None})
+        )
+
+    return pystac.ItemCollection(
+        [to_dict(record) for record in df2.to_dict(orient="records")]
+    )

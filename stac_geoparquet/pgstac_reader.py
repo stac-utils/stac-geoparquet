@@ -3,13 +3,10 @@ import textwrap
 
 import datetime
 import logging
-import time
 from typing import Any
-import urllib.parse
 import itertools
 
 import fsspec
-import requests
 import pandas as pd
 import pystac
 import dateutil.tz
@@ -35,16 +32,17 @@ def _pairwise(iterable):
 @dataclasses.dataclass
 class CollectionConfig:
     """
-    Additional collection-based configuration to inject, matching the dynamic properties from the API.
+    Additional collection-based configuration to inject, matching the
+    dynamic properties from the API.
     """
 
     collection_id: str
     partition_frequency: str | None = None
     stac_api: str = "https://planetarycomputer.microsoft.com/api/stac/v1"
     should_inject_dynamic_properties: bool = True
+    render_config: str | None = None
 
     def __post_init__(self):
-        self._render_config: str | None = None
         self._collection: pystac.Collection | None = None
 
     @property
@@ -55,34 +53,17 @@ class CollectionConfig:
             )
         return self._collection
 
-    @property
-    def render_config(self) -> str:
-        if self._render_config is None:
-            r = requests.get(
-                f"https://planetarycomputer.microsoft.com/api/data/v1/mosaic/info?collection={self.collection_id}"
-            )
-
-            r.raise_for_status()
-            options = r.json()["renderOptions"][0]["options"].split("&")
-
-            d = {}
-            for k, v in [x.split("=") for x in options]:
-                d[k] = v
-            self._render_config = urllib.parse.urlencode(d)
-
-        return self._render_config
-
     def inject_links(self, item):
         item["links"] = [
             {
                 "rel": "collection",
                 "type": "application/json",
-                "href": f"https://planetarycomputer.microsoft.com/api/stac/v1/collections/{self.collection_id}",
+                "href": f"https://planetarycomputer.microsoft.com/api/stac/v1/collections/{self.collection_id}",  # noqa: E501
             },
             {
                 "rel": "parent",
                 "type": "application/json",
-                "href": f"https://planetarycomputer.microsoft.com/api/stac/v1/collections/{self.collection_id}",
+                "href": f"https://planetarycomputer.microsoft.com/api/stac/v1/collections/{self.collection_id}",  # noqa: E501
             },
             {
                 "rel": "root",
@@ -92,11 +73,11 @@ class CollectionConfig:
             {
                 "rel": "self",
                 "type": "application/geo+json",
-                "href": f"https://planetarycomputer.microsoft.com/api/stac/v1/collections/{self.collection_id}/items/{item['id']}",
+                "href": f"https://planetarycomputer.microsoft.com/api/stac/v1/collections/{self.collection_id}/items/{item['id']}",  # noqa: E501
             },
             {
                 "rel": "preview",
-                "href": f"https://planetarycomputer.microsoft.com/api/data/v1/item/map?collection={self.collection_id}&item={item['id']}",
+                "href": f"https://planetarycomputer.microsoft.com/api/data/v1/item/map?collection={self.collection_id}&item={item['id']}",  # noqa: E501
                 "title": "Map of item",
                 "type": "text/html",
             },
@@ -104,13 +85,13 @@ class CollectionConfig:
 
     def inject_assets(self, item):
         item["assets"]["tilejson"] = {
-            "href": f"https://planetarycomputer.microsoft.com/api/data/v1/item/tilejson.json?collection={self.collection_id}&item={item['id']}&{self.render_config}",
+            "href": f"https://planetarycomputer.microsoft.com/api/data/v1/item/tilejson.json?collection={self.collection_id}&item={item['id']}&{self.render_config}",  # noqa: E501
             "roles": ["tiles"],
             "title": "TileJSON with default rendering",
             "type": "application/json",
         }
         item["assets"]["rendered_preview"] = {
-            "href": f"https://planetarycomputer.microsoft.com/api/data/v1/item/preview.png?collection={self.collection_id}&item={item['id']}&{self.render_config}",
+            "href": f"https://planetarycomputer.microsoft.com/api/data/v1/item/preview.png?collection={self.collection_id}&item={item['id']}&{self.render_config}",  # noqa: E501
             "rel": "preview",
             "roles": ["overview"],
             "title": "Rendered preview",

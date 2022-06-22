@@ -1,10 +1,11 @@
 import datetime
 import json
+import pystac
 
-import requests
 import pandas as pd
 
 import stac_geoparquet.pgstac_reader
+from stac_geoparquet.utils import assert_equal
 
 
 def test_naip_item():
@@ -51,13 +52,13 @@ def test_naip_item():
             {
                 "assets": {
                     "image": {
-                        "href": "https://naipeuwest.blob.core.windows.net/naip/v002/pa/2015/pa_100cm_2015/41080/m_4108053_se_17_1_20150725.tif"
+                        "href": "https://naipeuwest.blob.core.windows.net/naip/v002/pa/2015/pa_100cm_2015/41080/m_4108053_se_17_1_20150725.tif"  # noqa: E501
                     },
                     "metadata": {
-                        "href": "https://naipeuwest.blob.core.windows.net/naip/v002/pa/2015/pa_fgdc_2015/41080/m_4108053_se_17_1_20150725.txt"
+                        "href": "https://naipeuwest.blob.core.windows.net/naip/v002/pa/2015/pa_fgdc_2015/41080/m_4108053_se_17_1_20150725.txt"  # noqa: E501
                     },
                     "thumbnail": {
-                        "href": "https://naipeuwest.blob.core.windows.net/naip/v002/pa/2015/pa_100cm_2015/41080/m_4108053_se_17_1_20150725.200.jpg"
+                        "href": "https://naipeuwest.blob.core.windows.net/naip/v002/pa/2015/pa_100cm_2015/41080/m_4108053_se_17_1_20150725.200.jpg"  # noqa: E501
                     },
                 },
                 "properties": {
@@ -88,27 +89,28 @@ def test_naip_item():
         )
     ]
 
-    cfg = stac_geoparquet.pgstac_reader.CollectionConfig(collection_id="naip")
+    cfg = stac_geoparquet.pgstac_reader.CollectionConfig(
+        collection_id="naip", render_config="assets=image&asset_bidx=image%7C1%2C2%2C3"
+    )
     result = cfg.make_pgstac_items(records, base_item)[0]
     # shapely uses tuples instead of lists
-    result = json.loads(json.dumps(result))
+    result = pystac.read_dict(json.loads(json.dumps(result)))
 
-    expected = requests.get(
-        "https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip/items/pa_m_4108053_se_17_1_20150725_20151201"
-    ).json()
+    expected = pystac.read_file(
+        "https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip/items/pa_m_4108053_se_17_1_20150725_20151201"  # noqa: E501
+    )
 
-    assert result == expected
-    assert result["properties"]["datetime"]
-
+    assert_equal(result, expected)
 
 
 def test_generate_endpoints():
-    cfg = stac_geoparquet.pgstac_reader.CollectionConfig(collection_id="naip", partition_frequency="AS")
+    cfg = stac_geoparquet.pgstac_reader.CollectionConfig(
+        collection_id="naip", partition_frequency="AS"
+    )
     endpoints = cfg.generate_endpoints()
-    assert endpoints[0][0] == pd.Timestamp('2010-01-01 00:00:00+0000', tz='utc')
-    assert endpoints[-1][1] == pd.Timestamp('2020-01-01 00:00:00+0000', tz='utc')
+    assert endpoints[0][0] == pd.Timestamp("2010-01-01 00:00:00+0000", tz="utc")
+    assert endpoints[-1][1] == pd.Timestamp("2020-01-01 00:00:00+0000", tz="utc")
 
-    endpoints = cfg.generate_endpoints(since=pd.Timestamp("2018-01-01", tz='utc'))
-    assert endpoints[0][0] == pd.Timestamp('2018-01-01 00:00:00+0000', tz='utc')
-    assert endpoints[-1][1] == pd.Timestamp('2020-01-01 00:00:00+0000', tz='utc')
-
+    endpoints = cfg.generate_endpoints(since=pd.Timestamp("2018-01-01", tz="utc"))
+    assert endpoints[0][0] == pd.Timestamp("2018-01-01 00:00:00+0000", tz="utc")
+    assert endpoints[-1][1] == pd.Timestamp("2020-01-01 00:00:00+0000", tz="utc")
