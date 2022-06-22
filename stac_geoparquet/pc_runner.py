@@ -124,7 +124,7 @@ def get_configs(table_client):
         "https://planetarycomputer.microsoft.com/api/stac/v1/collections"
     )
 
-    configs = {**table_configs, **api_configs}
+    configs = {**api_configs, **table_configs}
 
     for k, v in configs.items():
         v.partition_frequency = PARTITION_FREQUENCIES.get(k)
