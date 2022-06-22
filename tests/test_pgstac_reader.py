@@ -1,11 +1,16 @@
 import datetime
 import json
-import pystac
+import pathlib
 
+import pystac
+import dateutil
 import pandas as pd
 
 import stac_geoparquet.pgstac_reader
 from stac_geoparquet.utils import assert_equal
+
+
+HERE = pathlib.Path(__file__).parent
 
 
 def test_naip_item():
@@ -94,12 +99,33 @@ def test_naip_item():
     )
     result = cfg.make_pgstac_items(records, base_item)[0]
     # shapely uses tuples instead of lists
-    result = pystac.read_dict(json.loads(json.dumps(result)))
+    result = pystac.read_dict(result)
 
     expected = pystac.read_file(
         "https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip/items/pa_m_4108053_se_17_1_20150725_20151201"  # noqa: E501
     )
 
+    assert_equal(result, expected)
+
+
+def test_sentinel2_l2a():
+    record = json.loads(HERE.joinpath("record_sentinel2_l2a.json").read_text())
+    base_item = json.loads(HERE.joinpath("base_sentinel2_l2a.json").read_text())
+    record[3] = dateutil.parser.parse(record[3])
+    record[4] = dateutil.parser.parse(record[4])
+
+    config = stac_geoparquet.pgstac_reader.CollectionConfig(
+        collection_id="sentinel-2-l2a",
+        partition_frequency=None,
+        stac_api="https://planetarycomputer.microsoft.com/api/stac/v1",
+        should_inject_dynamic_properties=True,
+        render_config="assets=visual&asset_bidx=visual%7C1%2C2%2C3&nodata=0",
+    )
+    result = pystac.read_dict(config.make_pgstac_items([record], base_item)[0])
+    expected = pystac.read_file(
+        "https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-2-l2a/items/S2A_MSIL2A_20150704T101006_R022_T35XQA_20210411T133707"  # noqa: E501
+    )
+    expected.remove_links(rel=pystac.RelType.LICENSE)
     assert_equal(result, expected)
 
 

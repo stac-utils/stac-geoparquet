@@ -258,8 +258,11 @@ class CollectionConfig:
             geom = shapely.wkb.loads(item["geometry"], hex=True)
 
             item["geometry"] = geom.__geo_interface__
-            item["bbox"] = list(geom.bounds)
             content = item.pop("content")
+            if "bbox" in content:
+                item["bbox"] = content["bbox"]
+            else:
+                item["bbox"] = list(geom.bounds)
 
             item["assets"] = content["assets"]
             item["stac_extensions"] = content["stac_extensions"]
