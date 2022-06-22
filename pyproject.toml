@@ -35,6 +35,7 @@ pc = [
 test = [
     "pytest",
     "requests",
+    "pre-commit"
 ]
 
 
@@ -49,3 +50,18 @@ minversion = "6.0"
 filterwarnings = [
     "ignore:.*distutils Version.*:DeprecationWarning",
 ]
+
+[tool.mypy]
+
+[[tool.mypy.overrides]]
+module = [
+    "shapely.*",
+    "geopandas.*",
+    "pandas.*",
+    "fsspec.*",
+    "tqdm.*",
+    "pypgstac.*",
+    "pyarrow.*"
+]
+
+ignore_missing_imports = true

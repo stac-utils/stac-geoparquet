@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 import functools
-from typing import Any, Union
+from typing import Any
 
 import shapely.geometry
 import pystac
@@ -13,7 +15,7 @@ def assert_equal(result: Any, expected: Any) -> bool:
 @assert_equal.register(pystac.ItemCollection)
 def assert_equal_ic(
     result: pystac.ItemCollection, expected: pystac.ItemCollection
-) -> bool:
+) -> None:
     assert type(result) == type(expected)
     assert len(result) == len(expected)
     assert result.extra_fields == expected.extra_fields
@@ -22,7 +24,7 @@ def assert_equal_ic(
 
 
 @assert_equal.register(pystac.Item)
-def assert_equal_item(result: pystac.Item, expected: pystac.Item) -> bool:
+def assert_equal_item(result: pystac.Item, expected: pystac.Item) -> None:
     assert type(result) == type(expected)
     assert result.id == expected.id
     assert shapely.geometry.shape(result.geometry) == shapely.geometry.shape(
@@ -49,13 +51,15 @@ def assert_equal_item(result: pystac.Item, expected: pystac.Item) -> bool:
 @assert_equal.register(pystac.Link)
 @assert_equal.register(pystac.Asset)
 def assert_link_equal(
-    result: Union[pystac.Link, pystac.Asset], expected: Union[pystac.Link, pystac.Asset]
-) -> bool:
+    result: pystac.Link | pystac.Asset, expected: pystac.Link | pystac.Asset
+) -> None:
     assert type(result) == type(expected)
     assert result.to_dict() == expected.to_dict()
 
 
-def fix_empty_multipolygon(item_geometry):
+def fix_empty_multipolygon(
+    item_geometry: dict[str, Any]
+) -> shapely.geometry.base.BaseGeometry:
     # Filter out missing geoms in MultiPolygons
     # https://github.com/shapely/shapely/issues/1407
     # geometry = [shapely.geometry.shape(x["geometry"]) for x in items2]

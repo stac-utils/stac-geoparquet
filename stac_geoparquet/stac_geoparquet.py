@@ -3,7 +3,7 @@ Generate geoparquet from a sequence of STAC items.
 """
 from __future__ import annotations
 
-from typing import Sequence, Any, TypedDict
+from typing import Sequence, Any
 
 import pystac
 import geopandas
@@ -13,20 +13,7 @@ import shapely.geometry
 from stac_geoparquet.utils import fix_empty_multipolygon
 
 
-class ItemLike(TypedDict):
-    type: str
-    stac_version: str
-    stac_extensions: list[str]
-    id: str
-    geometry: dict[str, Any] | None
-    bbox: list[float] | None
-    properties: dict[str, Any]
-    links: list[dict[str, Any]]
-    assets: dict[str, Any]
-    collection: str | None
-
-
-def to_geodataframe(items: Sequence[ItemLike]) -> geopandas.GeoDataFrame:
+def to_geodataframe(items: Sequence[dict[str, Any]]) -> geopandas.GeoDataFrame:
     """
     Convert a sequence of STAC items to a :class:`geopandas.GeoDataFrame`.
 
@@ -55,8 +42,11 @@ def to_geodataframe(items: Sequence[ItemLike]) -> geopandas.GeoDataFrame:
     # geometry = [shapely.geometry.shape(x["geometry"]) for x in items2]
 
     geometry = []
-    for item in items2:
-        geometry.append(fix_empty_multipolygon(item["geometry"]))
+    for item2 in items2:
+        item_geometry = item2["geometry"]
+        if item_geometry:
+            item_geometry = fix_empty_multipolygon(item_geometry)  # type: ignore
+        geometry.append(item_geometry)
 
     gdf = geopandas.GeoDataFrame(items2, geometry=geometry, crs="WGS84")
 
@@ -116,7 +106,7 @@ def to_dict(record: dict) -> dict:
     return item
 
 
-def to_item_collection(df):
+def to_item_collection(df: geopandas.GeoDataFrame) -> pystac.ItemCollection:
     df2 = df.copy()
     datelike = df2.select_dtypes(
         include=["datetime64[ns, UTC]", "datetime64[ns]"]

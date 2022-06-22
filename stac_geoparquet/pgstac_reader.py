@@ -4,6 +4,7 @@ import textwrap
 import datetime
 import logging
 from typing import Any
+import collections.abc
 import itertools
 
 import fsspec
@@ -22,7 +23,9 @@ from stac_geoparquet import to_geodataframe
 logger = logging.getLogger(__name__)
 
 
-def _pairwise(iterable):
+def _pairwise(
+    iterable: collections.abc.Iterable,
+) -> Any:
     # pairwise('ABCDEFG') --> AB BC CD DE EF FG
     a, b = itertools.tee(iterable)
     next(b, None)
@@ -46,14 +49,15 @@ class CollectionConfig:
         self._collection: pystac.Collection | None = None
 
     @property
-    def collection(self):
+    def collection(self) -> pystac.Collection:
         if self._collection is None:
             self._collection = pystac.read_file(
                 f"{self.stac_api}/collections/{self.collection_id}"
-            )
+            )  # type: ignore
+        assert self._collection is not None
         return self._collection
 
-    def inject_links(self, item):
+    def inject_links(self, item: dict[str, Any]) -> None:
         item["links"] = [
             {
                 "rel": "collection",
@@ -83,7 +87,7 @@ class CollectionConfig:
             },
         ]
 
-    def inject_assets(self, item):
+    def inject_assets(self, item: dict[str, Any]) -> None:
         item["assets"]["tilejson"] = {
             "href": f"https://planetarycomputer.microsoft.com/api/data/v1/item/tilejson.json?collection={self.collection_id}&item={item['id']}&{self.render_config}",  # noqa: E501
             "roles": ["tiles"],
@@ -107,7 +111,7 @@ class CollectionConfig:
         start_datetime, end_datetime = self.collection.extent.temporal.intervals[0]
 
         # https://github.com/dateutil/dateutil/issues/349
-        if start_datetime.tzinfo == dateutil.tz.tz.tzlocal():
+        if start_datetime and start_datetime.tzinfo == dateutil.tz.tz.tzlocal():
             start_datetime = start_datetime.astimezone(datetime.timezone.utc)
 
         if end_datetime and end_datetime.tzinfo == dateutil.tz.tz.tzlocal():
@@ -224,7 +228,13 @@ class CollectionConfig:
 
         return results
 
-    def make_pgstac_items(self, records, base_item):
+    def make_pgstac_items(
+        self,
+        records: list[
+            tuple[str, str, str, datetime.datetime, datetime.datetime, dict[str, Any]]
+        ],
+        base_item: dict[str, Any],
+    ) -> list[dict[str, Any]]:
         """
         Make STAC items out of pgstac records.
 
@@ -259,6 +269,7 @@ class CollectionConfig:
 
             item["geometry"] = geom.__geo_interface__
             content = item.pop("content")
+            assert isinstance(content, dict)
             if "bbox" in content:
                 item["bbox"] = content["bbox"]
             else:
