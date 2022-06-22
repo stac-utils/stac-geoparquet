@@ -44,8 +44,8 @@ Home = "https://github.com/TomAugspurger/stac_geoparquet"
 [project.scripts]
 pc-geoparquet = "stac_geoparquet.cli:main"
 
-[tool.pytest.inioptions]
+[tool.pytest.ini_options]
 minversion = "6.0"
 filterwarnings = [
-    "ignore:.*distutils Version.*:DeprecationWarning"
+    "ignore:.*distutils Version.*:DeprecationWarning",
 ]
