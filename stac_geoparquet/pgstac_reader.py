@@ -162,6 +162,44 @@ class CollectionConfig:
         df.to_parquet(output_path, index=False, filesystem=filesystem)
         return output_path
 
+    def export_partition_for_endpoints(
+        self,
+        endpoints: tuple[datetime.datetime, datetime.datetime],
+        total: int,
+        conninfo: str,
+        output_protocol: str,
+        output_path: str,
+        storage_options: dict[str, Any],
+        rewrite=False,
+        skip_empty_partitions=False,
+    ) -> str | None:
+        """
+        Export results for a pair of endpoints.
+        """
+        a, b = endpoints
+        base_query = textwrap.dedent(
+            f"""\
+        select *
+        from pgstac.items
+        where collection = '{self.collection_id}'
+        """
+        )
+
+        query = (
+            base_query
+            + f"and datetime >= '{a.isoformat()}' and datetime < '{b.isoformat()}'"
+        )
+        output_path = f"{output_path}/part-{total:0{len(str(total + 1))}}_{a.isoformat()}_{b.isoformat()}.parquet"
+        return self.export_partition(
+            conninfo,
+            query,
+            output_protocol=output_protocol,
+            output_path=output_path,
+            storage_options=storage_options,
+            rewrite=rewrite,
+            skip_empty_partitions=skip_empty_partitions,
+        )
+
     def export_collection(
         self,
         conninfo: str,
@@ -197,29 +235,20 @@ class CollectionConfig:
 
         else:
             endpoints = self.generate_endpoints()
-            extra_wheres = [
-                f"and datetime >= '{a.isoformat()}' and datetime < '{b.isoformat()}'"
-                for a, b in endpoints
-            ]
-            queries = [base_query + where for where in extra_wheres]
-            N = len(endpoints)
-            output_paths = [
-                f"{output_path}/part-{i:0{len(str(N + 1))}}_{a.isoformat()}_{b.isoformat()}.parquet"
-                for i, (a, b) in enumerate(endpoints)
-            ]
-
+            total = len(endpoints)
             logger.info(
-                "Exporting %d partitions for collection %s", N, self.collection_id
+                "Exporting %d partitions for collection %s", total, self.collection_id
             )
 
             results = []
-            for (query, part_path) in tqdm.tqdm(zip(queries, output_paths), total=N):
+            for endpoint in tqdm.tqdm(endpoints, total=total):
                 results.append(
-                    self.export_partition(
+                    self.export_partition_for_endpoints(
+                        endpoint,
+                        total,
                         conninfo,
-                        query,
-                        output_protocol,
-                        part_path,
+                        output_protocol=output_protocol,
+                        output_path=output_path,
                         storage_options=storage_options,
                         rewrite=rewrite,
                         skip_empty_partitions=skip_empty_partitions,
