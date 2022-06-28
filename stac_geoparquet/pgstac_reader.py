@@ -152,6 +152,12 @@ class CollectionConfig:
             base_item = db.query_one(
                 f"select * from collection_base_item('{self.collection_id}');"
             )
+            # query2 = f"""
+            # BEGIN;
+            # SET LOCAL statement_timeout = 60000
+            # {query};
+            # COMMIT;
+            # """
             records = list(db.query(query))
 
         if skip_empty_partitions and len(records) == 0:
@@ -245,7 +251,7 @@ class CollectionConfig:
             )
 
             results = []
-            for endpoint in tqdm.tqdm(endpoints, total=total):
+            for i, endpoint in tqdm.tqdm(enumerate(endpoints), total=total):
                 results.append(
                     self.export_partition_for_endpoints(
                         endpoints=endpoint,
@@ -255,6 +261,7 @@ class CollectionConfig:
                         storage_options=storage_options,
                         rewrite=rewrite,
                         skip_empty_partitions=skip_empty_partitions,
+                        part_number=i,
                         total=total,
                     )
                 )
