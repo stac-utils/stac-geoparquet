@@ -5,6 +5,7 @@ import pathlib
 import pystac
 import dateutil
 import pandas as pd
+import pytest
 
 import stac_geoparquet.pgstac_reader
 from stac_geoparquet.utils import assert_equal
@@ -140,3 +141,37 @@ def test_generate_endpoints():
     endpoints = cfg.generate_endpoints(since=pd.Timestamp("2018-01-01", tz="utc"))
     assert endpoints[0][0] == pd.Timestamp("2018-01-01 00:00:00+0000", tz="utc")
     assert endpoints[-1][1] == pd.Timestamp("2020-01-01 00:00:00+0000", tz="utc")
+
+
+@pytest.mark.parametrize(
+    "part_number, total, start_datetime, end_datetime, expected",
+    [
+        (
+            None,
+            None,
+            pd.Timestamp("2017-05-15 00:16:52+0000", tz="UTC"),
+            pd.Timestamp("2017-05-22 00:16:52+0000", tz="UTC"),
+            "items/part-6c6824fb552381663cc7c7a113560cc7_2017-05-15T00:16:52+00:00_2017-05-22T00:16:52+00:00.parquet",
+        ),
+        (
+            1,
+            2,
+            pd.Timestamp("2017-05-15 00:16:52+0000", tz="UTC"),
+            pd.Timestamp("2017-05-22 00:16:52+0000", tz="UTC"),
+            "items/part-01_2017-05-15T00:16:52+00:00_2017-05-22T00:16:52+00:00.parquet",
+        ),
+        (
+            1,
+            10,
+            pd.Timestamp("2017-05-15 00:16:52+0000", tz="UTC"),
+            pd.Timestamp("2017-05-22 00:16:52+0000", tz="UTC"),
+            "items/part-001_2017-05-15T00:16:52+00:00_2017-05-22T00:16:52+00:00.parquet",
+        ),
+    ],
+)
+def test_build_output_path(part_number, total, start_datetime, end_datetime, expected):
+    base_output_path = "items/"
+    result = stac_geoparquet.pgstac_reader._build_output_path(
+        base_output_path, part_number, total, start_datetime, end_datetime
+    )
+    assert result == expected

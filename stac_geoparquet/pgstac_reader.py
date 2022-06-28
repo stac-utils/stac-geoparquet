@@ -1,5 +1,6 @@
 from __future__ import annotations
 import textwrap
+import hashlib
 
 import datetime
 import logging
@@ -154,6 +155,7 @@ class CollectionConfig:
             records = list(db.query(query))
 
         if skip_empty_partitions and len(records) == 0:
+            logger.debug("No records found for query %s.", query)
             return None
 
         items = self.make_pgstac_items(records, base_item)
@@ -165,11 +167,12 @@ class CollectionConfig:
     def export_partition_for_endpoints(
         self,
         endpoints: tuple[datetime.datetime, datetime.datetime],
-        total: int,
         conninfo: str,
         output_protocol: str,
         output_path: str,
         storage_options: dict[str, Any],
+        part_number: int | None = None,
+        total: int | None = None,
         rewrite=False,
         skip_empty_partitions=False,
     ) -> str | None:
@@ -189,12 +192,13 @@ class CollectionConfig:
             base_query
             + f"and datetime >= '{a.isoformat()}' and datetime < '{b.isoformat()}'"
         )
-        output_path = f"{output_path}/part-{total:0{len(str(total + 1))}}_{a.isoformat()}_{b.isoformat()}.parquet"
+
+        partition_path = _build_output_path(output_path, part_number, total, a, b)
         return self.export_partition(
             conninfo,
             query,
             output_protocol=output_protocol,
-            output_path=output_path,
+            output_path=partition_path,
             storage_options=storage_options,
             rewrite=rewrite,
             skip_empty_partitions=skip_empty_partitions,
@@ -244,14 +248,14 @@ class CollectionConfig:
             for endpoint in tqdm.tqdm(endpoints, total=total):
                 results.append(
                     self.export_partition_for_endpoints(
-                        endpoint,
-                        total,
-                        conninfo,
+                        endpoints=endpoint,
+                        conninfo=conninfo,
                         output_protocol=output_protocol,
                         output_path=output_path,
                         storage_options=storage_options,
                         rewrite=rewrite,
                         skip_empty_partitions=skip_empty_partitions,
+                        total=total,
                     )
                 )
 
@@ -317,3 +321,28 @@ class CollectionConfig:
             items.append(item)
 
         return items
+
+
+def _build_output_path(
+    base_output_path: str,
+    part_number: int | None,
+    total: int | None,
+    start_datetime: datetime.datetime,
+    end_datetime: datetime.datetime,
+) -> str:
+    a, b = start_datetime, end_datetime
+    base_output_path = base_output_path.rstrip("/")
+
+    if part_number is not None and total is not None:
+        output_path = (
+            f"{base_output_path}/part-{part_number:0{len(str(total * 10))}}_"
+            f"{a.isoformat()}_{b.isoformat()}.parquet"
+        )
+    else:
+        token = hashlib.md5(
+            "".join([a.isoformat(), b.isoformat()]).encode()
+        ).hexdigest()
+        output_path = (
+            f"{base_output_path}/part-{token}_{a.isoformat()}_{b.isoformat()}.parquet"
+        )
+    return output_path
