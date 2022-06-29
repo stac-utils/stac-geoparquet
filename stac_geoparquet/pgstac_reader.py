@@ -17,7 +17,7 @@ import pyarrow.fs
 import pypgstac.db
 import pypgstac.hydration
 import shapely.wkb
-import tqdm
+import tqdm.auto
 from stac_geoparquet import to_geodataframe
 
 
@@ -154,7 +154,7 @@ class CollectionConfig:
             )
             query2 = f"""
             BEGIN;
-            SET LOCAL statement_timeout = 120000
+            SET LOCAL statement_timeout = 120000;
             {query};
             COMMIT;
             """
@@ -251,7 +251,7 @@ class CollectionConfig:
             )
 
             results = []
-            for i, endpoint in tqdm.tqdm(enumerate(endpoints), total=total):
+            for i, endpoint in tqdm.auto.tqdm(enumerate(endpoints), total=total):
                 results.append(
                     self.export_partition_for_endpoints(
                         endpoints=endpoint,
