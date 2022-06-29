@@ -152,13 +152,13 @@ class CollectionConfig:
             base_item = db.query_one(
                 f"select * from collection_base_item('{self.collection_id}');"
             )
-            # query2 = f"""
-            # BEGIN;
-            # SET LOCAL statement_timeout = 60000
-            # {query};
-            # COMMIT;
-            # """
-            records = list(db.query(query))
+            query2 = f"""
+            BEGIN;
+            SET LOCAL statement_timeout = 120000
+            {query};
+            COMMIT;
+            """
+            records = list(db.query(query2))
 
         if skip_empty_partitions and len(records) == 0:
             logger.debug("No records found for query %s.", query)
