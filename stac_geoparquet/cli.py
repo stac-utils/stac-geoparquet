@@ -43,6 +43,7 @@ def parse_args(args=None):
         "--storage-options-credential",
         default=os.environ.get("STAC_GEOPARQUET_STORAGE_OPTIONS_CREDENTIAL"),
     )
+    parser.add_argument("--extra-skip", help="Extra collections to skip", nargs="*")
     return parser.parse_args(args)
 
 
@@ -91,6 +92,11 @@ def main(args=None):
     import azure.data.tables
 
     args = parse_args(args)
+
+    skip = set(SKIP)
+    if args.extra_skip:
+        skip |= set(args.extra_skip)
+
     setup_logging()
 
     table_client = azure.data.tables.TableClient(
@@ -99,7 +105,8 @@ def main(args=None):
         credential=azure.core.credentials.AzureSasCredential(args.table_credential),
     )
     configs = pc_runner.get_configs(table_client)
-    configs = {k: v for k, v in configs.items() if k not in SKIP}
+
+    configs = {k: v for k, v in configs.items() if k not in skip}
     storage_options = {
         "account_name": args.storage_options_account_name,
         "credential": args.storage_options_credential,
