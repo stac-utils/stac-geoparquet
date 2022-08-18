@@ -43,7 +43,7 @@ def parse_args(args=None):
         "--storage-options-credential",
         default=os.environ.get("STAC_GEOPARQUET_STORAGE_OPTIONS_CREDENTIAL"),
     )
-    parser.add_argument("--extra-skip", help="Extra collections to skip", nargs="*")
+    parser.add_argument("--extra-skip", help="Extra collections to skip")
     return parser.parse_args(args)
 
 
@@ -95,7 +95,7 @@ def main(args=None):
 
     skip = set(SKIP)
     if args.extra_skip:
-        skip |= set(args.extra_skip)
+        skip |= set(args.extra_skip.split())
 
     setup_logging()
 
