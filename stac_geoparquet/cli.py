@@ -1,26 +1,18 @@
 import argparse
+import logging
 import sys
-import json
 import os
 from stac_geoparquet import pc_runner
+
+logger = logging.getLogger("stac_geoparquet.pgstac_reader")
 
 
 def parse_args(args=None):
     parser = argparse.ArgumentParser()
-    parser.add_argument("collection", help="STAC collection ID")
     parser.add_argument(
         "--output-protocol",
         help="fsspec protocol for writing (e.g. 'abfs').",
         default=None,
-    )
-    parser.add_argument(
-        "--output-path", help="fsspec protocol for writing", default="output.parquet"
-    )
-    parser.add_argument(
-        "--storage-options",
-        type=json.loads,
-        default="{}",
-        help="fsspec storage options for writing.",
     )
     parser.add_argument(
         "-c",
@@ -28,33 +20,118 @@ def parse_args(args=None):
         default=os.environ.get("STAC_GEOPARQUET_CONNECTION_INFO"),
     )
 
-    return parser.parse_args()
+    parser.add_argument(
+        "--table-credential",
+        default=os.environ.get("STAC_GEOPARQUET_TABLE_CREDENTIAL"),
+        help="Azure data tables client SAS credential for reading.",
+    )
+    parser.add_argument(
+        "--table-name",
+        help="Azure data tables name with the collection config.",
+        default=os.environ.get("STAC_GEOPARQUET_TABLE_NAME"),
+    )
+    parser.add_argument(
+        "--table-account-url",
+        help="Azure data tables account URL name with the collection config.",
+        default=os.environ.get("STAC_GEOPARQUET_TABLE_ACCOUNT_URL"),
+    )
+    parser.add_argument(
+        "--storage-options-account-name",
+        default=os.environ.get("STAC_GEOPARQUET_STORAGE_OPTIONS_ACCOUNT_NAME"),
+    )
+    parser.add_argument(
+        "--storage-options-credential",
+        default=os.environ.get("STAC_GEOPARQUET_STORAGE_OPTIONS_CREDENTIAL"),
+    )
+    return parser.parse_args(args)
 
 
 def setup_logging():
     import logging
     import warnings
+    import rich.logging
 
     warnings.filterwarnings("ignore", message=".*initial implementation of Parquet.*")
-
-    logger = logging.getLogger("stac_geoparquet.pgstac_reader")
     logger.setLevel(logging.INFO)
+    handler = rich.logging.RichHandler()
+    handler.setLevel(logging.INFO)
+    logger.addHandler(handler)
+
+
+SKIP = {
+    "daymet-daily-na",
+    "daymet-daily-pr",
+    "daymet-daily-hi",
+    "daymet-monthly-na",
+    "daymet-monthly-pr",
+    "daymet-monthly-hi",
+    "daymet-annual-na",
+    "daymet-annual-pr",
+    "daymet-annual-hi",
+    "terraclimate",
+    "gridmet",
+    "landsat-8-c2-l2",
+    "gpm-imerg-hhr",
+    "deltares-floods",
+    "goes-mcmip",
+    # errors
+    "cil-gdpcir-cc0",
+    "3dep-lidar-intensity",
+    "cil-gdpcir-cc-by",
+    "ecmwf-forecast",
+    "3dep-lidar-copc",
+    "era5-pds",
+    "3dep-lidar-classification",
+    "3dep-lidar-dtm-native",
+    "cil-gdpcir-cc-by-sa",
+}
 
 
 def main(args=None):
-    from tqdm.contrib.logging import logging_redirect_tqdm
+    import azure.data.tables
 
     args = parse_args(args)
     setup_logging()
 
-    config = pc_runner.CONFIGS[args.collection]
-    with logging_redirect_tqdm():
+    table_client = azure.data.tables.TableClient(
+        args.table_account_url,
+        args.table_name,
+        credential=azure.core.credentials.AzureSasCredential(args.table_credential),
+    )
+    configs = pc_runner.get_configs(table_client)
+    configs = {k: v for k, v in configs.items() if k not in SKIP}
+    storage_options = {
+        "account_name": args.storage_options_account_name,
+        "credential": args.storage_options_credential,
+    }
+
+    def f(config):
         config.export_collection(
             args.connection_info,
-            output_protocol="az",
-            output_path=args.output_path,
-            storage_options=args.storage_options,
+            args.output_protocol,
+            f"items/{config.collection_id}.parquet",
+            storage_options,
+            skip_empty_partitions=True,
         )
+
+    N = len(configs)
+    success = []
+    failure = []
+
+    for i, config in enumerate(configs.values(), 1):
+        logger.info(f"processing {config.collection_id} [{i}/{N}]")
+        try:
+            f(config)
+        except Exception as e:
+            failure.append((config.collection_id, e))
+        else:
+            success.append(config.collection_id)
+
+    if failure:
+        for line in failure:
+            logger.warning("Failed processing %s", line)
+
+    return len(failure)
 
 
 if __name__ == "__main__":

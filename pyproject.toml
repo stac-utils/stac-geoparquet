@@ -61,7 +61,8 @@ module = [
     "fsspec.*",
     "tqdm.*",
     "pypgstac.*",
-    "pyarrow.*"
+    "pyarrow.*",
+    "rich.*",
 ]
 
 ignore_missing_imports = true
