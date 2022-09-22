@@ -20,6 +20,7 @@ dependencies = [
 
 [project.optional-dependencies]
 pgstac = [
+    "fsspec",
     "pypgstac",
     "psycopg[binary,pool]",
     "tqdm",
