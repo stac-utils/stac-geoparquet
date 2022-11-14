@@ -113,7 +113,16 @@ def generate_configs_from_api(url):
     r.raise_for_status()
 
     for collection in r.json()["collections"]:
-        configs[collection["id"]] = CollectionConfig(collection["id"])
+        partition_frequency = (
+            collection["assets"]
+            .get("geoparquet-items", {})
+            .get("msft:partition_info", {})
+            .get("partition_frequency", None)
+        )
+
+        configs[collection["id"]] = CollectionConfig(
+            collection["id"], partition_frequency=partition_frequency
+        )
 
     return configs
 
