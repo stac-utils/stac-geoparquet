@@ -131,12 +131,9 @@ def main(args=None):
             f(config)
         except Exception as e:
             failure.append((config.collection_id, e))
+            logger.exception("Failed processing")
         else:
             success.append(config.collection_id)
-
-    if failure:
-        for line in failure:
-            logger.warning("Failed processing %s", line)
 
     return len(failure)
 
