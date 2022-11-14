@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import json
 
 import azure.data.tables
@@ -127,6 +129,21 @@ def generate_configs_from_api(url):
     return configs
 
 
+def merge_configs(
+    table_configs: dict[str, CollectionConfig], api_configs: dict[str, CollectionConfig]
+):
+    # what a mess. Get partitioning config from the API, render from the table.
+    configs = {}
+    for k in table_configs.keys() | api_configs.keys():
+        table_config = table_configs.get(k)
+        api_config = api_configs.get(k)
+        config = table_config or api_config
+        assert config
+        if api_config:
+            config.partition_frequency = api_config.partition_frequency
+        configs[k] = config
+
+
 def get_configs(table_client):
     table_configs = generate_configs_from_storage_table(table_client)
     api_configs = generate_configs_from_api(
@@ -136,6 +153,7 @@ def get_configs(table_client):
     configs = {**api_configs, **table_configs}
 
     for k, v in configs.items():
-        v.partition_frequency = PARTITION_FREQUENCIES.get(k)
+        if v.partition_frequency is None:
+            v.partition_frequency = PARTITION_FREQUENCIES.get(k)
 
     return configs
