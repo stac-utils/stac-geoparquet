@@ -131,7 +131,7 @@ def main(args=None):
             f(config)
         except Exception as e:
             failure.append((config.collection_id, e))
-            logger.exception("Failed processing")
+            logger.exception(f"Failed processing {config.collection_id}")
         else:
             success.append(config.collection_id)
 
