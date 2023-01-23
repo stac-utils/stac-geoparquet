@@ -121,6 +121,12 @@ class CollectionConfig:
         if end_datetime is None:
             end_datetime = pd.Timestamp.utcnow()
 
+        # we need to ensure that the `end_datetime` is past the end of the last partition
+        # to avoid missing out on the last partition of data.
+        offset = pd.tseries.frequencies.to_offset(self.partition_frequency)
+        if not offset.is_on_offset(end_datetime):
+            end_datetime = end_datetime + offset
+
         idx = pd.date_range(start_datetime, end_datetime, freq=self.partition_frequency)
 
         if since:
