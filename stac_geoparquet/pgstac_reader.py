@@ -124,6 +124,10 @@ class CollectionConfig:
         # we need to ensure that the `end_datetime` is past the end of the last partition
         # to avoid missing out on the last partition of data.
         offset = pd.tseries.frequencies.to_offset(self.partition_frequency)
+
+        if not offset.is_on_offset(start_datetime):
+            start_datetime = start_datetime - offset
+
         if not offset.is_on_offset(end_datetime):
             end_datetime = end_datetime + offset
 
