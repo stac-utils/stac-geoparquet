@@ -324,9 +324,11 @@ def test_s1_grd():
     ],
 )
 def test_smoke(collection_id):
-    items = requests.get(
+    r = requests.get(
         f"https://planetarycomputer.microsoft.com/api/stac/v1/collections/{collection_id}/items?limit=1"
-    ).json()["features"]
+    )
+    r.raise_for_status()
+    items = r.json()["features"]
     df = stac_geoparquet.to_geodataframe(items)
 
     result = to_item_collection(df)
