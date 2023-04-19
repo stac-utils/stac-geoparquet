@@ -96,7 +96,8 @@ def test_naip_item():
     ]
 
     cfg = stac_geoparquet.pgstac_reader.CollectionConfig(
-        collection_id="naip", render_config="assets=image&asset_bidx=image%7C1%2C2%2C3"
+        collection_id="naip",
+        render_config="assets=image&asset_bidx=image%7C1%2C2%2C3&format=png",
     )
     result = cfg.make_pgstac_items(records, base_item)[0]
     # shapely uses tuples instead of lists
@@ -120,7 +121,7 @@ def test_sentinel2_l2a():
         partition_frequency=None,
         stac_api="https://planetarycomputer.microsoft.com/api/stac/v1",
         should_inject_dynamic_properties=True,
-        render_config="assets=visual&asset_bidx=visual%7C1%2C2%2C3&nodata=0",
+        render_config="assets=visual&asset_bidx=visual%7C1%2C2%2C3&nodata=0&format=png",
     )
     result = pystac.read_dict(config.make_pgstac_items([record], base_item)[0])
     expected = pystac.read_file(
