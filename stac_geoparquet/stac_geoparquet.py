@@ -8,9 +8,20 @@ from typing import Sequence, Any
 import pystac
 import geopandas
 import pandas as pd
+import numpy as np
 import shapely.geometry
 
 from stac_geoparquet.utils import fix_empty_multipolygon
+
+
+def _fix_array(v):
+    if isinstance(v, np.ndarray):
+        v = v.tolist()
+
+    elif isinstance(v, dict):
+        v = {k: _fix_array(v2) for k, v2 in v.items()}
+
+    return v
 
 
 def to_geodataframe(items: Sequence[dict[str, Any]]) -> geopandas.GeoDataFrame:
@@ -94,6 +105,7 @@ def to_dict(record: dict) -> dict:
     }
     item = {}
     for k, v in record.items():
+        v = _fix_array(v)
 
         if k in top_level_keys:
             item[k] = v
@@ -107,6 +119,20 @@ def to_dict(record: dict) -> dict:
 
 
 def to_item_collection(df: geopandas.GeoDataFrame) -> pystac.ItemCollection:
+    """
+    Convert a GeoDataFrame of STAC items to an :class:`pystac.ItemCollection`.
+
+    Parameters
+    ----------
+    df : geopandas.GeoDataFrame
+        A GeoDataFrame with a schema similar to that exported by stac-geoparquet.
+
+    Returns
+    -------
+    item_collection : pystac.ItemCollection
+        The converted ItemCollection. There will be one record / feature per
+        row in the in the GeoDataFrame.
+    """
     df2 = df.copy()
     datelike = df2.select_dtypes(
         include=["datetime64[ns, UTC]", "datetime64[ns]"]
@@ -116,6 +142,5 @@ def to_item_collection(df: geopandas.GeoDataFrame) -> pystac.ItemCollection:
             df2[k].dt.strftime("%Y-%m-%dT%H:%M:%S.%fZ").fillna("").replace({"": None})
         )
 
-    return pystac.ItemCollection(
-        [to_dict(record) for record in df2.to_dict(orient="records")]
-    )
+    records = [to_dict(record) for record in df2.to_dict(orient="records")]
+    return pystac.ItemCollection(records)

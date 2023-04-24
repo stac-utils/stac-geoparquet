@@ -9,6 +9,7 @@ import pytest
 
 import stac_geoparquet.pgstac_reader
 from stac_geoparquet.utils import assert_equal
+from stac_geoparquet._compat import PYSTAC_1_7_0
 
 
 HERE = pathlib.Path(__file__).parent
@@ -96,7 +97,8 @@ def test_naip_item():
     ]
 
     cfg = stac_geoparquet.pgstac_reader.CollectionConfig(
-        collection_id="naip", render_config="assets=image&asset_bidx=image%7C1%2C2%2C3"
+        collection_id="naip",
+        render_config="assets=image&asset_bidx=image%7C1%2C2%2C3&format=png",
     )
     result = cfg.make_pgstac_items(records, base_item)[0]
     # shapely uses tuples instead of lists
@@ -105,6 +107,11 @@ def test_naip_item():
     expected = pystac.read_file(
         "https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip/items/pa_m_4108053_se_17_1_20150725_20151201"  # noqa: E501
     )
+
+    if PYSTAC_1_7_0:
+        # https://github.com/stac-utils/pystac/issues/1102
+        expected.remove_links(rel=pystac.RelType.SELF)
+        result.remove_links(rel=pystac.RelType.SELF)
 
     assert_equal(result, expected)
 
@@ -120,12 +127,17 @@ def test_sentinel2_l2a():
         partition_frequency=None,
         stac_api="https://planetarycomputer.microsoft.com/api/stac/v1",
         should_inject_dynamic_properties=True,
-        render_config="assets=visual&asset_bidx=visual%7C1%2C2%2C3&nodata=0",
+        render_config="assets=visual&asset_bidx=visual%7C1%2C2%2C3&nodata=0&format=png",
     )
     result = pystac.read_dict(config.make_pgstac_items([record], base_item)[0])
     expected = pystac.read_file(
         "https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-2-l2a/items/S2A_MSIL2A_20150704T101006_R022_T35XQA_20210411T133707"  # noqa: E501
     )
+    if PYSTAC_1_7_0:
+        # https://github.com/stac-utils/pystac/issues/1102
+        expected.remove_links(rel=pystac.RelType.SELF)
+        result.remove_links(rel=pystac.RelType.SELF)
+
     expected.remove_links(rel=pystac.RelType.LICENSE)
     assert_equal(result, expected)
 
