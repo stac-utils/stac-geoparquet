@@ -55,6 +55,8 @@ filterwarnings = [
 
 [tool.mypy]
 
+python_version = "3.10"
+
 [[tool.mypy.overrides]]
 module = [
     "shapely.*",
