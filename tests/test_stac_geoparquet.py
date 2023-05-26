@@ -1,3 +1,6 @@
+import json
+import pathlib
+
 import stac_geoparquet
 import shapely.geometry
 import pandas as pd
@@ -9,6 +12,8 @@ import pytest
 
 from stac_geoparquet.stac_geoparquet import to_item_collection
 from stac_geoparquet.utils import assert_equal, fix_empty_multipolygon
+
+HERE = pathlib.Path(__file__).parent
 
 
 def test_assert_equal():
@@ -334,3 +339,20 @@ def test_smoke(collection_id):
     result = to_item_collection(df)
     expected = pystac.ItemCollection(items)
     assert_equal(result, expected)
+
+
+def test_mixed_date_format():
+    a = json.loads((HERE / "sentinel-2-item.json").read_text())
+    b = json.loads((HERE / "sentinel-2-item.json").read_text())
+    a["properties"]["datetime"] = "2000-12-10T22:04:58Z"
+    b["properties"]["datetime"] = "2000-12-10T22:04:57.998000Z"
+    a["geometry"] = {"type": "Point", "coordinates": [0, 0]}
+    b["geometry"] = {"type": "Point", "coordinates": [0, 0]}
+
+    result = stac_geoparquet.to_geodataframe([a, b])
+    expected = [
+        pd.Timestamp("2000-12-10 22:04:58+0000", tz="UTC"),
+        pd.Timestamp("2000-12-10 22:04:57.998000+0000", tz="UTC"),
+    ]
+
+    assert result["datetime"].tolist() == expected

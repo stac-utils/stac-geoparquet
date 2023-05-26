@@ -63,7 +63,7 @@ def to_geodataframe(items: Sequence[dict[str, Any]]) -> geopandas.GeoDataFrame:
 
     for column in ["datetime", "start_datetime", "end_datetime"]:
         if column in gdf.columns:
-            gdf[column] = pd.to_datetime(gdf[column])
+            gdf[column] = pd.to_datetime(gdf[column], format="ISO8601")
 
     columns = [
         "type",
