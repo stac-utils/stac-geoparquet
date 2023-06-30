@@ -42,7 +42,7 @@ test = [
 
 
 [project.urls]
-Home = "https://github.com/TomAugspurger/stac_geoparquet"
+Home = "https://github.com/TomAugspurger/stac-geoparquet"
 
 [project.scripts]
 pc-geoparquet = "stac_geoparquet.cli:main"
