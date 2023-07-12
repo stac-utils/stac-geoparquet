@@ -21,7 +21,7 @@ def test_assert_equal():
         "https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-2-l2a/items/S2B_MSIL2A_20220612T182919_R027_T24XWR_20220613T123251"  # noqa: E501
     )
     b = pystac.read_file(
-        "https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-8-c2-l2/items/LC08_L2SP_202033_20220327_02_T1"  # noqa: E501
+        "https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-c2-l2/items/LC08_L2SP_202033_20220327_02_T1"  # noqa: E501
     )
     with pytest.raises(AssertionError):
         assert_equal(a, b)
@@ -233,7 +233,8 @@ def test_to_geodataframe():
         }
     )
     for k in ["type", "stac_version", "id", "collection"]:
-        expected[k] = expected[k].astype("string")
+        if k in expected:
+            expected[k] = expected[k].astype("string")
 
     pandas.testing.assert_frame_equal(result, expected)
 
@@ -247,6 +248,12 @@ def test_s1_grd():
     item = requests.get(
         "https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-1-grd/items/S1A_EW_GRDM_1SSH_20150129T081916_20150129T081938_004383_005598"  # noqa: E501
     ).json()
+
+    # pystac migrates EO extension to latest version, but PC is still on 1.0.0
+    for i, ext in enumerate(item["stac_extensions"]):
+        if ext == "https://stac-extensions.github.io/eo/v1.0.0/schema.json":
+            item["stac_extensions"][i] = "https://stac-extensions.github.io/eo/v1.1.0/schema.json"
+    
     item["geometry"] = fix_empty_multipolygon(item["geometry"]).__geo_interface__
     df = stac_geoparquet.to_geodataframe([item])
 
