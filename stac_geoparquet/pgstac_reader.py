@@ -321,7 +321,8 @@ class CollectionConfig:
                 item["bbox"] = list(geom.bounds)
 
             item["assets"] = content["assets"]
-            item["stac_extensions"] = content["stac_extensions"]
+            if "stac_extensions" in content:
+                item["stac_extensions"] = content["stac_extensions"]
             item["properties"] = content["properties"]
 
             pypgstac.hydration.hydrate(base_item, item)

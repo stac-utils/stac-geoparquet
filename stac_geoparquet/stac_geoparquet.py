@@ -76,9 +76,15 @@ def to_geodataframe(items: Sequence[dict[str, Any]]) -> geopandas.GeoDataFrame:
         "assets",
         "collection",
     ]
+    opt_columns = ["stac_extensions", "collection"]
+    for col in opt_columns:
+        if col not in gdf.columns:
+            columns.remove(col)
+    
     gdf = pd.concat([gdf[columns], gdf.drop(columns=columns)], axis="columns")
     for k in ["type", "stac_version", "id", "collection"]:
-        gdf[k] = gdf[k].astype("string")
+        if k in gdf:
+            gdf[k] = gdf[k].astype("string")
 
     return gdf
 
