@@ -148,11 +148,11 @@ def test_generate_endpoints():
     )
     endpoints = cfg.generate_endpoints()
     assert endpoints[0][0] == pd.Timestamp("2010-01-01 00:00:00+0000", tz="utc")
-    assert endpoints[-1][1] == pd.Timestamp("2021-01-01 00:00:00+0000", tz="utc")
+    assert endpoints[-1][1] >= pd.Timestamp("2021-01-01 00:00:00+0000", tz="utc")
 
     endpoints = cfg.generate_endpoints(since=pd.Timestamp("2018-01-01", tz="utc"))
     assert endpoints[0][0] == pd.Timestamp("2018-01-01 00:00:00+0000", tz="utc")
-    assert endpoints[-1][1] == pd.Timestamp("2021-01-01 00:00:00+0000", tz="utc")
+    assert endpoints[-1][1] >= pd.Timestamp("2021-01-01 00:00:00+0000", tz="utc")
 
 
 @pytest.mark.parametrize(

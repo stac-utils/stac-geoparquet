@@ -37,7 +37,9 @@ pc = [
 test = [
     "pytest",
     "requests",
-    "pre-commit"
+    "pre-commit",
+    "stac-geoparquet[pgstac]",
+    "stac-geoparquet[pc]",
 ]
 
 

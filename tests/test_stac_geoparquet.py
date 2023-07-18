@@ -252,8 +252,10 @@ def test_s1_grd():
     # pystac migrates EO extension to latest version, but PC is still on 1.0.0
     for i, ext in enumerate(item["stac_extensions"]):
         if ext == "https://stac-extensions.github.io/eo/v1.0.0/schema.json":
-            item["stac_extensions"][i] = "https://stac-extensions.github.io/eo/v1.1.0/schema.json"
-    
+            item["stac_extensions"][
+                i
+            ] = "https://stac-extensions.github.io/eo/v1.1.0/schema.json"
+
     item["geometry"] = fix_empty_multipolygon(item["geometry"]).__geo_interface__
     df = stac_geoparquet.to_geodataframe([item])
 
