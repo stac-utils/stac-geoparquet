@@ -80,7 +80,7 @@ def to_geodataframe(items: Sequence[dict[str, Any]]) -> geopandas.GeoDataFrame:
     for col in opt_columns:
         if col not in gdf.columns:
             columns.remove(col)
-    
+
     gdf = pd.concat([gdf[columns], gdf.drop(columns=columns)], axis="columns")
     for k in ["type", "stac_version", "id", "collection"]:
         if k in gdf:
