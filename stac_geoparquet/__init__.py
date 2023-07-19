@@ -1,5 +1,5 @@
 """stac-geoparquet"""
-__version__ = "0.3.1"
+__version__ = "0.3.2"
 
 from .stac_geoparquet import to_geodataframe, to_dict, to_item_collection
 
