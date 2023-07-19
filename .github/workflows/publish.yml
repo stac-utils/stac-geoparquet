@@ -9,7 +9,7 @@ jobs:
   release:
     name: release
     runs-on: ubuntu-latest
-    if: ${{ github.repository }} == 'TomAugspurger/stac-geoparquet'
+    if: ${{ github.repository }} == 'stac-utils/stac-geoparquet'
     steps:
       - uses: actions/checkout@v2
 
