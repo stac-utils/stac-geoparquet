@@ -11,7 +11,13 @@ import pandas as pd
 import numpy as np
 import shapely.geometry
 
+from urllib.parse import urlparse
+
 from stac_geoparquet.utils import fix_empty_multipolygon
+
+STAC_ITEM_TYPES = ["application/json", "application/geo+json"]
+
+SELF_LINK_COLUMN = "self_link"
 
 
 def _fix_array(v):
@@ -24,7 +30,9 @@ def _fix_array(v):
     return v
 
 
-def to_geodataframe(items: Sequence[dict[str, Any]]) -> geopandas.GeoDataFrame:
+def to_geodataframe(
+    items: Sequence[dict[str, Any]], add_self_link: bool = False
+) -> geopandas.GeoDataFrame:
     """
     Convert a sequence of STAC items to a :class:`geopandas.GeoDataFrame`.
 
@@ -34,6 +42,7 @@ def to_geodataframe(items: Sequence[dict[str, Any]]) -> geopandas.GeoDataFrame:
     Parameters
     ----------
     items: A sequence of STAC items.
+    add_self_link: Add the absolute link (if available) to the source STAC Item as a separate column named "self_link"
 
     Returns
     -------
@@ -46,6 +55,17 @@ def to_geodataframe(items: Sequence[dict[str, Any]]) -> geopandas.GeoDataFrame:
             if k in item2:
                 raise ValueError("k", k)
             item2[k] = v
+        if add_self_link:
+            self_href = None
+            for link in item["links"]:
+                if (
+                    link["rel"] == "self"
+                    and (not link["type"] or link["type"] in STAC_ITEM_TYPES)
+                    and urlparse(link["href"]).netloc
+                ):
+                    self_href = link["href"]
+                    break
+            item2[SELF_LINK_COLUMN] = self_href
         items2.append(item2)
 
     # Filter out missing geoms in MultiPolygons
@@ -61,7 +81,16 @@ def to_geodataframe(items: Sequence[dict[str, Any]]) -> geopandas.GeoDataFrame:
 
     gdf = geopandas.GeoDataFrame(items2, geometry=geometry, crs="WGS84")
 
-    for column in ["datetime", "start_datetime", "end_datetime"]:
+    for column in [
+        "datetime",  # common metadata
+        "start_datetime",
+        "end_datetime",
+        "created",
+        "updated",
+        "expires",  # timestamps extension
+        "published",
+        "unpublished",
+    ]:
         if column in gdf.columns:
             gdf[column] = pd.to_datetime(gdf[column], format="ISO8601")
 
@@ -82,7 +111,7 @@ def to_geodataframe(items: Sequence[dict[str, Any]]) -> geopandas.GeoDataFrame:
             columns.remove(col)
 
     gdf = pd.concat([gdf[columns], gdf.drop(columns=columns)], axis="columns")
-    for k in ["type", "stac_version", "id", "collection"]:
+    for k in ["type", "stac_version", "id", "collection", SELF_LINK_COLUMN]:
         if k in gdf:
             gdf[k] = gdf[k].astype("string")
 
@@ -113,7 +142,9 @@ def to_dict(record: dict) -> dict:
     for k, v in record.items():
         v = _fix_array(v)
 
-        if k in top_level_keys:
+        if k == SELF_LINK_COLUMN:
+            continue
+        elif k in top_level_keys:
             item[k] = v
         else:
             properties[k] = v
