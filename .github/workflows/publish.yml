@@ -14,7 +14,7 @@ jobs:
     permissions:
       id-token: write
     steps:
-      # retrieve your distributions here
+      - uses: actions/checkout@v2
       - name: Set up Python 3.x
         uses: actions/setup-python@v2
         with:
