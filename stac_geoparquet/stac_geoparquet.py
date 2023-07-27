@@ -18,6 +18,7 @@ from stac_geoparquet.utils import fix_empty_multipolygon
 STAC_ITEM_TYPES = ["application/json", "application/geo+json"]
 
 SELF_LINK_COLUMN = "self_link"
+BROWSER_LINK_COLUMN = "browser_link"
 
 
 def _fix_array(v):
@@ -31,7 +32,9 @@ def _fix_array(v):
 
 
 def to_geodataframe(
-    items: Sequence[dict[str, Any]], add_self_link: bool = False
+    items: Sequence[dict[str, Any]],
+    add_self_link: bool = False,
+    add_browser_link: bool = False,
 ) -> geopandas.GeoDataFrame:
     """
     Convert a sequence of STAC items to a :class:`geopandas.GeoDataFrame`.
@@ -43,6 +46,8 @@ def to_geodataframe(
     ----------
     items: A sequence of STAC items.
     add_self_link: Add the absolute link (if available) to the source STAC Item as a separate column named "self_link"
+    add_browser_link: Add an absolute link to an alternate HTML representation of the source STAC Item (if available)
+    as a separate column named "browser_link"
 
     Returns
     -------
@@ -55,6 +60,7 @@ def to_geodataframe(
             if k in item2:
                 raise ValueError("k", k)
             item2[k] = v
+
         if add_self_link:
             self_href = None
             for link in item["links"]:
@@ -66,6 +72,19 @@ def to_geodataframe(
                     self_href = link["href"]
                     break
             item2[SELF_LINK_COLUMN] = self_href
+
+        if add_browser_link:
+            browser_href = None
+            for link in item["links"]:
+                if (
+                    link["rel"] == "alternate"
+                    and link["type"] == "text/html"
+                    and urlparse(link["href"]).netloc
+                ):
+                    browser_href = link["href"]
+                    break
+            item2[BROWSER_LINK_COLUMN] = browser_href
+
         items2.append(item2)
 
     # Filter out missing geoms in MultiPolygons
@@ -111,7 +130,15 @@ def to_geodataframe(
             columns.remove(col)
 
     gdf = pd.concat([gdf[columns], gdf.drop(columns=columns)], axis="columns")
-    for k in ["type", "stac_version", "id", "collection", SELF_LINK_COLUMN]:
+    string_columns = [
+        "type",
+        "stac_version",
+        "id",
+        "collection",
+        SELF_LINK_COLUMN,
+        BROWSER_LINK_COLUMN,
+    ]
+    for k in string_columns:
         if k in gdf:
             gdf[k] = gdf[k].astype("string")
 
@@ -142,7 +169,7 @@ def to_dict(record: dict) -> dict:
     for k, v in record.items():
         v = _fix_array(v)
 
-        if k == SELF_LINK_COLUMN:
+        if k == SELF_LINK_COLUMN or k == BROWSER_LINK_COLUMN:
             continue
         elif k in top_level_keys:
             item[k] = v
