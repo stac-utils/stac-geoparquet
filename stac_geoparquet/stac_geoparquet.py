@@ -45,9 +45,10 @@ def to_geodataframe(
     Parameters
     ----------
     items: A sequence of STAC items.
-    add_self_link: Add the absolute link (if available) to the source STAC Item as a separate column named "self_link"
-    add_browser_link: Add an absolute link to an alternate HTML representation of the source STAC Item (if available)
-    as a separate column named "browser_link"
+    add_self_link: Add the absolute link (if available) to the source STAC Item as a separate column named "self_link".
+    add_browser_link: Add the absolute link to an HTML representation of the source STAC Item as a separate column
+       named "browser_link".
+       The links must be absolute, have the relation type "alternate", and the media type "text/html".
 
     Returns
     -------
