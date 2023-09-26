@@ -10,6 +10,9 @@ from tempfile import NamedTemporaryFile
 import json
 import pyarrow.json
 import shapely.geometry
+import ciso8601
+
+dir(ciso8601)
 
 
 def _stac_ndjson_to_arrow(path: Union[str, IO[bytes]]) -> pa.Table:
@@ -69,8 +72,55 @@ def convert_geometry_to_wkb(table: pa.Table) -> pa.Table:
     return table.drop("geometry").append_column("geometry", pa.array(wkb_geoms))
 
 
+def convert_timestamps(table: pa.Table) -> pa.Table:
+    allowed_column_names = {
+        "datetime",  # common metadata
+        "start_datetime",
+        "end_datetime",
+        "created",
+        "updated",
+        "expires",  # timestamps extension
+        "published",
+        "unpublished",
+    }
+    for column_name in allowed_column_names:
+        try:
+            column = table[column_name]
+        except KeyError:
+            continue
+
+        table = table.drop(column_name).append_column(
+            column_name, _convert_timestamp_column(column)
+        )
+
+    return table
+
+
+def _convert_timestamp_column(column: pa.ChunkedArray) -> pa.Table:
+    chunks = []
+    for chunk in column.chunks:
+        parsed_chunk = []
+        for item in chunk:
+            if not item.is_valid:
+                parsed_chunk.append(None)
+            else:
+                parsed_chunk.append(ciso8601.parse_rfc3339(item.as_py()))
+
+        pyarrow_chunk = pa.array(parsed_chunk)
+        chunks.append(pyarrow_chunk)
+
+    return pa.chunked_array(chunks)
+
+
 # path = "/Users/kyle/tmp/sentinel-stac/combined.jsonl"
 # table = _stac_ndjson_to_arrow(path)
-# table2 = bring_properties_to_top_level(table)
+# table = bring_properties_to_top_level(table)
+# table = convert_geometry_to_wkb(table)
+# table = convert_timestamps(table)
 
-# table2["geometry"]
+
+# table["created"][0]
+
+# # table2 = bring_properties_to_top_level(table)
+
+# # table2["geometry"]
