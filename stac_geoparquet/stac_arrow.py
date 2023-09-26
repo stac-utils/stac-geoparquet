@@ -1,18 +1,33 @@
-from typing import IO, Sequence, Any, Union
-
-import pystac
-import geopandas
-import pyarrow.compute
-import pandas as pd
-import numpy as np
-import pyarrow as pa
-from tempfile import NamedTemporaryFile
 import json
-import pyarrow.json
-import shapely.geometry
-import ciso8601
+from tempfile import NamedTemporaryFile
+from typing import IO, Any, Sequence, Union
 
-dir(ciso8601)
+import ciso8601
+import geopandas
+import numpy as np
+import pandas as pd
+import pyarrow as pa
+import pyarrow.compute
+import pyarrow.json
+import pystac
+import shapely.geometry
+
+
+def parse_stac_items_to_arrow(items: Sequence[dict[str, Any]]):
+    inferred_arrow_table = _stac_items_to_arrow(items)
+    return _updates_for_inferred_arrow_table(inferred_arrow_table)
+
+
+def parse_stac_ndjson_to_arrow(path: Union[str, IO[bytes]]):
+    inferred_arrow_table = _stac_ndjson_to_arrow(path)
+    return _updates_for_inferred_arrow_table(inferred_arrow_table)
+
+
+def _updates_for_inferred_arrow_table(table: pa.Table) -> pa.Table:
+    table = _bring_properties_to_top_level(table)
+    table = _convert_geometry_to_wkb(table)
+    table = _convert_timestamp_columns(table)
+    return table
 
 
 def _stac_ndjson_to_arrow(path: Union[str, IO[bytes]]) -> pa.Table:
@@ -49,7 +64,7 @@ def _stac_items_to_arrow(items: Sequence[dict[str, Any]]) -> pa.Table:
         return _stac_ndjson_to_arrow(f)
 
 
-def bring_properties_to_top_level(table: pa.Table) -> pa.Table:
+def _bring_properties_to_top_level(table: pa.Table) -> pa.Table:
     properties_field = table.schema.field("properties")
     properties_column = table["properties"]
 
@@ -63,7 +78,7 @@ def bring_properties_to_top_level(table: pa.Table) -> pa.Table:
     return table
 
 
-def convert_geometry_to_wkb(table: pa.Table) -> pa.Table:
+def _convert_geometry_to_wkb(table: pa.Table) -> pa.Table:
     """Convert the geometry column in the table to WKB"""
     geoms = shapely.from_geojson(
         [json.dumps(item) for item in table["geometry"].to_pylist()]
@@ -72,7 +87,7 @@ def convert_geometry_to_wkb(table: pa.Table) -> pa.Table:
     return table.drop("geometry").append_column("geometry", pa.array(wkb_geoms))
 
 
-def convert_timestamps(table: pa.Table) -> pa.Table:
+def _convert_timestamp_columns(table: pa.Table) -> pa.Table:
     allowed_column_names = {
         "datetime",  # common metadata
         "start_datetime",
@@ -112,15 +127,12 @@ def _convert_timestamp_column(column: pa.ChunkedArray) -> pa.Table:
     return pa.chunked_array(chunks)
 
 
-# path = "/Users/kyle/tmp/sentinel-stac/combined.jsonl"
-# table = _stac_ndjson_to_arrow(path)
-# table = bring_properties_to_top_level(table)
-# table = convert_geometry_to_wkb(table)
-# table = convert_timestamps(table)
+path = "/Users/kyle/tmp/sentinel-stac/combined.jsonl"
+table = _stac_ndjson_to_arrow(path)
 
 
 # table["created"][0]
 
-# # table2 = bring_properties_to_top_level(table)
+# # table2 = _bring_properties_to_top_level(table)
 
 # # table2["geometry"]
