@@ -14,15 +14,15 @@ most of the fields should be the same in STAC and in GeoParquet.
 
 | Field           | GeoParquet Type    | Required | Details                                            |
 | --------------- | ----------------   | ---------|--------------------------------------------------- |
-| type			  | String			   | Optional | This is just needed for GeoJSON, so it is optional and not recommended to include in GeoParquet |
+| type            | String             | Optional | This is just needed for GeoJSON, so it is optional and not recommended to include in GeoParquet |
 | stac_extensions | List of Strings    | Required | This column is required, but can be blank if no STAC extensions were used |
 | id              | String             | Required | Required, should be unique |
-| geometry 		  | Binary (WKB)       | Required | For GeoParquet 1.0 this must be well-known Binary. |
-| bbox 			  | List of Decimals   | Required | Can be 4 or 6 decimals, so won't be a fixed size list. |
+| geometry        | Binary (WKB)       | Required | For GeoParquet 1.0 this must be well-known Binary. |
+| bbox 		      | List of Decimals   | Required | Can be 4 or 6 decimals, so won't be a fixed size list. |
 | properties      | per field          | Required | Each property should use the relevant Parquet type, and be pulled out of the properties object to be a top-level Parquet field |
 | links           | List of structs    | Required | Each struct in the array should have Strings of `href`, `rel` and `type` |
-| assets		  | A struct of assets | Required | Each struct has each full asset key and object as a sub-struct, it's a direct mapping from the JSON to Parquet |
-| collection	  | String             | Required | The ID of the collection this Item is a part of |
+| assets          | A struct of assets | Required | Each struct has each full asset key and object as a sub-struct, it's a direct mapping from the JSON to Parquet |
+| collection      | String             | Required | The ID of the collection this Item is a part of |
 
 
 * Must be valid GeoParquet, with proper metadata. Ideally the geometry types are defined and as narrow as possible.
