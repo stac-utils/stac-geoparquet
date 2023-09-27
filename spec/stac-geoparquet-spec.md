@@ -8,7 +8,7 @@ library, but aims to provide guidance for anyone putting STAC data into GeoParqu
 
 ## Guidelines
 
-Generally most all the fields in a STAC Item should be mapped to a row in GeoParquet. We embrace Parquet structures where possible, mapping
+Generally most all the fields in a STAC Item should be mapped to a column in GeoParquet. We embrace Parquet structures where possible, mapping
 from JSON into nested structures. We do pull the properties to the top level, so that it is easier to query and use them. The names of the
 most of the fields should be the same in STAC and in GeoParquet.
 
