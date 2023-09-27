@@ -15,7 +15,7 @@ most of the fields should be the same in STAC and in GeoParquet.
 | Field           | GeoParquet Type    | Required | Details                                            |
 | --------------- | ------------------ | ---------|--------------------------------------------------- |
 | type            | String             | Optional | This is just needed for GeoJSON, so it is optional and not recommended to include in GeoParquet |
-| stac_extensions | List of Strings    | Required | This column is required, but can be blank if no STAC extensions were used |
+| stac_extensions | List of Strings    | Required | This column is required, but can be empty if no STAC extensions were used |
 | id              | String             | Required | Required, should be unique |
 | geometry        | Binary (WKB)       | Required | For GeoParquet 1.0 this must be well-known Binary. |
 | bbox 	          | List of Decimals   | Required | Can be 4 or 6 decimals, so won't be a fixed size list. |
