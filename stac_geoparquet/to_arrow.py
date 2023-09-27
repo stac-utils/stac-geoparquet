@@ -9,7 +9,6 @@ import ciso8601
 import pyarrow as pa
 import pyarrow.compute as pc
 from pyarrow.json import read_json
-import pystac
 import shapely.geometry
 
 
@@ -113,7 +112,7 @@ def _convert_timestamp_columns(table: pa.Table) -> pa.Table:
     return table
 
 
-def _convert_timestamp_column(column: pa.ChunkedArray) -> pa.Table:
+def _convert_timestamp_column(column: pa.ChunkedArray) -> pa.ChunkedArray:
     """Convert an individual timestamp column from string to a Timestamp type"""
     chunks = []
     for chunk in column.chunks:
