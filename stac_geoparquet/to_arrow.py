@@ -1,14 +1,14 @@
+"""Convert STAC data into Arrow tables
+"""
+
 import json
 from tempfile import NamedTemporaryFile
 from typing import IO, Any, Sequence, Union
 
 import ciso8601
-import geopandas
-import numpy as np
-import pandas as pd
 import pyarrow as pa
-import pyarrow.compute
-import pyarrow.json
+import pyarrow.compute as pc
+from pyarrow.json import read_json
 import pystac
 import shapely.geometry
 
@@ -40,7 +40,7 @@ def _stac_ndjson_to_arrow(path: Union[str, IO[bytes]]) -> pa.Table:
     Returns:
         pyarrow table matching on-disk schema
     """
-    table = pa.json.read_json(path)
+    table = read_json(path)
     return table
 
 
@@ -65,13 +65,14 @@ def _stac_items_to_arrow(items: Sequence[dict[str, Any]]) -> pa.Table:
 
 
 def _bring_properties_to_top_level(table: pa.Table) -> pa.Table:
+    """Bring all the fields inside of the nested "properties" struct to the top level"""
     properties_field = table.schema.field("properties")
     properties_column = table["properties"]
 
     for field_idx in range(properties_field.type.num_fields):
         inner_prop_field = properties_field.type.field(field_idx)
         table = table.append_column(
-            inner_prop_field, pa.compute.struct_field(properties_column, field_idx)
+            inner_prop_field, pc.struct_field(properties_column, field_idx)
         )
 
     table = table.drop("properties")
@@ -88,6 +89,7 @@ def _convert_geometry_to_wkb(table: pa.Table) -> pa.Table:
 
 
 def _convert_timestamp_columns(table: pa.Table) -> pa.Table:
+    """Convert all timestamp columns from a string to an Arrow Timestamp data type"""
     allowed_column_names = {
         "datetime",  # common metadata
         "start_datetime",
@@ -112,6 +114,7 @@ def _convert_timestamp_columns(table: pa.Table) -> pa.Table:
 
 
 def _convert_timestamp_column(column: pa.ChunkedArray) -> pa.Table:
+    """Convert an individual timestamp column from string to a Timestamp type"""
     chunks = []
     for chunk in column.chunks:
         parsed_chunk = []
@@ -125,14 +128,3 @@ def _convert_timestamp_column(column: pa.ChunkedArray) -> pa.Table:
         chunks.append(pyarrow_chunk)
 
     return pa.chunked_array(chunks)
-
-
-path = "/Users/kyle/tmp/sentinel-stac/combined.jsonl"
-table = _stac_ndjson_to_arrow(path)
-
-
-# table["created"][0]
-
-# # table2 = _bring_properties_to_top_level(table)
-
-# # table2["geometry"]
