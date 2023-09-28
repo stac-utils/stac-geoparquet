@@ -43,7 +43,7 @@ def _undo_stac_table_transformations(table: pa.Table) -> pa.Table:
     Note that this function does _not_ undo the GeoJSON -> WKB geometry transformation,
     as that is easier to do when converting each item in the table to a dict.
     """
-    table = _convert_timestamp_columns_to_string(table)["created"]
+    table = _convert_timestamp_columns_to_string(table)
     table = _lower_properties_from_top_level(table)
     return table
 

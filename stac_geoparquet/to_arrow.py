@@ -18,8 +18,8 @@ def parse_stac_items_to_arrow(items: Sequence[dict[str, Any]]):
 
 
 def parse_stac_ndjson_to_arrow(path: Union[str, IO[bytes]]):
-    inferred_arrow_table = _stac_ndjson_to_arrow(path)
-    return _updates_for_inferred_arrow_table(inferred_arrow_table)
+    table = _stac_ndjson_to_arrow(path)
+    return _updates_for_inferred_arrow_table(table)
 
 
 def _updates_for_inferred_arrow_table(table: pa.Table) -> pa.Table:
@@ -55,6 +55,7 @@ def _stac_items_to_arrow(items: Sequence[dict[str, Any]]) -> pa.Table:
     Returns:
         _description_
     """
+    # TODO:!! Can just call pa.array() on the list of python dicts!!
     with NamedTemporaryFile("w+b", suffix=".json") as f:
         for item in items:
             f.write(json.dumps(item, separators=(",", ":")).encode("utf-8"))
@@ -102,12 +103,20 @@ def _convert_timestamp_columns(table: pa.Table) -> pa.Table:
     for column_name in allowed_column_names:
         try:
             column = table[column_name]
+            column.type
         except KeyError:
             continue
 
-        table = table.drop(column_name).append_column(
-            column_name, _convert_timestamp_column(column)
-        )
+        if pa.types.is_timestamp(column.type):
+            continue
+        elif pa.types.is_string(column.type):
+            table = table.drop(column_name).append_column(
+                column_name, _convert_timestamp_column(column)
+            )
+        else:
+            raise ValueError(
+                f"Inferred time column '{column_name}' was expected to be a string or timestamp data type but got {column.type}"
+            )
 
     return table
 
