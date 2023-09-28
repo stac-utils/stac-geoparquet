@@ -16,18 +16,39 @@ most of the fields should be the same in STAC and in GeoParquet.
 | --------------- | ------------------ | ---------|--------------------------------------------------- |
 | type            | String             | Optional | This is just needed for GeoJSON, so it is optional and not recommended to include in GeoParquet |
 | stac_extensions | List of Strings    | Required | This column is required, but can be empty if no STAC extensions were used |
-| id              | String             | Required | Required, should be unique |
+| id              | String             | Required | Required, should be unique within each collection |
 | geometry        | Binary (WKB)       | Required | For GeoParquet 1.0 this must be well-known Binary. |
-| bbox 	          | List of Decimals   | Required | Can be 4 or 6 decimals, so won't be a fixed size list. |
+| bbox 	          | Struct of Floats   | Required | Can be a 4 or 6 value struct, depending on dimension of the data |
 | properties      | per field          | Required | Each property should use the relevant Parquet type, and be pulled out of the properties object to be a top-level Parquet field |
-| links           | List of structs    | Required | Each struct in the array should have Strings of `href`, `rel` and `type` |
-| assets          | A struct of assets | Required | Each struct has each full asset key and object as a sub-struct, it's a direct mapping from the JSON to Parquet |
+| links           | List of Link structs | Required | See [Link Struct](#link-struct) for more info |
+| assets          | An Assets struct   | Required | See [Asset Struct](#asset-struct) for more info |
 | collection      | String             | Required | The ID of the collection this Item is a part of |
 
 
 * Must be valid GeoParquet, with proper metadata. Ideally the geometry types are defined and as narrow as possible.
 * Strongly recommend to only have one GeoParquet per STAC 'Collection'. Not doing this will lead to an expanded GeoParquet schema (the union of all the schemas of the collection) with lots of empty data
-* Any field in 'properties' should be moved up to be a top-level field in the GeoParquet.
+* Any field in 'properties' should be moved up to be a top-level field in the GeoParquet. 
+* STAC GeoParquet does not support properties that are named such that they collide with a top-level key.
+* datetime columns should be stored as a native timestamp, not as a string
+* The Collection JSON should be included in the Parquet metadata (TODO: flesh this out more)
+
+### Link Struct
+
+Each Link Struct has 2 required fields and 2 optional ones:
+
+| Field Name | Type   | Description |
+| ---------- | ------ | ----------- |
+| href       | string | **REQUIRED.** The actual link in the format of an URL. Relative and absolute links are both allowed. |
+| rel        | string | **REQUIRED.** Relationship between the current document and the linked document. See chapter "Relation types" for more information. |
+| type       | string | [Media type](../catalog-spec/catalog-spec.md#media-types) of the referenced entity. |
+| title      | string | A human readable title to be used in rendered displays of the link. |
+
+
+### Asset Struct
+
+TODO: Explain this more, and how it works best if it's just one collection.
+
+Each struct has each full asset key and object as a sub-struct, it's a direct mapping from the JSON to Parquet
 
 ## Mapping to other geospatial data formats
 
