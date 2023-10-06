@@ -1,6 +1,7 @@
 """Convert STAC data into Arrow tables
 """
 
+from collections import defaultdict
 import json
 from tempfile import NamedTemporaryFile
 from typing import IO, Any, Sequence, Union
@@ -55,13 +56,18 @@ def _stac_items_to_arrow(items: Sequence[dict[str, Any]]) -> pa.Table:
     Returns:
         _description_
     """
-    # TODO:!! Can just call pa.array() on the list of python dicts!!
-    with NamedTemporaryFile("w+b", suffix=".json") as f:
-        for item in items:
-            f.write(json.dumps(item, separators=(",", ":")).encode("utf-8"))
-            f.write("\n".encode("utf-8"))
+    # TODO: Handle STAC items with different schemas
+    # This will fail if any of the items is missing a field since the arrays
+    # will be different lengths.
+    d = defaultdict(list)
 
-        return _stac_ndjson_to_arrow(f)
+    for item in items:
+        for k, v in item.items():
+            d[k].append(v)
+
+    arrays = {k: pa.array(v) for k, v in d.items()}
+    t = pa.table(arrays)
+    return t
 
 
 def _bring_properties_to_top_level(table: pa.Table) -> pa.Table:
