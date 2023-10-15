@@ -6,6 +6,12 @@ This document specifies how to map a set of [STAC Items](https://github.com/radi
 [GeoParquet](https://geoparquet.org). It is directly inspired by the [STAC GeoParquet](https://github.com/stac-utils/stac-geoparquet)
 library, but aims to provide guidance for anyone putting STAC data into GeoParquet. 
 
+## Use cases
+
+* Provide a STAC GeoParquet that mirrors a static Collection as a way to query the whole dataset instead of reading every specific GeoJSON file.
+* As an output format for STAC API responses that is more efficient than paging through thousands of pages of GeoJSON.
+* Provide efficient access to specific fields of a STAC item, thanks to Parquet's columnar format.
+
 ## Guidelines
 
 Each row in the Parquet Dataset represents a single STAC item. Most all the fields in a STAC Item should be mapped to a column in GeoParquet. We embrace Parquet structures where possible, mapping
@@ -29,7 +35,7 @@ most of the fields should be the same in STAC and in GeoParquet.
 * Any field in 'properties' of the STAC item should be moved up to be a top-level field in the GeoParquet. 
 * STAC GeoParquet does not support properties that are named such that they collide with a top-level key.
 * datetime columns should be stored as a [native timestamp][timestamp], not as a string
-* The Collection JSON should be included in the Parquet metadata (TODO: flesh this out more)
+* The Collection JSON should be included in the Parquet metadata. See [Collection JSON](#collection-json) below.
 
 ### Link Struct
 
@@ -62,14 +68,16 @@ To take advantage of Parquet's columnar nature and compression, the assets shoul
 
 See [Asset Object][asset] for more.
 
+## Collection JSON
+
+To make a stac-geoparquet file a fully self-contained representation, you can
+include the Collection JSON in the Parquet metadata. If present in the [Parquet
+file metadata][parquet-metadata], the key must be `stac:collection` and the
+value must be a JSON string with the Collection JSON.
+
 ## Mapping to other geospatial data formats
 
 The principles here can likely be used to map into other geospatial data formats (GeoPackage, FlatGeobuf, etc), but we embrace Parquet's nested 'structs' for some of the mappings, so other formats will need to do something different. The obvious thing to do is to dump JSON into those fields, but that's outside the scope of this document, and we recommend creating a general document for that.
-
-## Use cases
-
-* Provide a STAC GeoParquet that mirrors a static Collection as a way to query the whole dataset instead of reading every specific GeoJSON file.
-* As an output format for STAC API responses that is more efficient than paging through thousands of pages of GeoJSON.
 
 [media-type]: https://github.com/radiantearth/stac-spec/blob/master/item-spec/item-spec.md#asset-media-type
 [asset]: https://github.com/radiantearth/stac-spec/blob/master/item-spec/item-spec.md#asset-object
@@ -77,3 +85,4 @@ The principles here can likely be used to map into other geospatial data formats
 [link]: https://github.com/radiantearth/stac-spec/blob/master/item-spec/item-spec.md#link-object
 [common-media-types]: https://github.com/radiantearth/stac-spec/blob/master/best-practices.md#common-media-types-in-stac
 [timestamp]: https://github.com/apache/parquet-format/blob/master/LogicalTypes.md#timestamp
+[parquet-metadata]: https://github.com/apache/parquet-format#metadata
