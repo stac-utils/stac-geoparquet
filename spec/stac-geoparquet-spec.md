@@ -27,7 +27,7 @@ most of the fields should be the same in STAC and in GeoParquet.
 | bbox               | Struct of Floats     | Required | Can be a 4 or 6 value struct, depending on dimension of the data                                                               |
 | links              | List of Link structs | Required | See [Link Struct](#link-struct) for more info                                                                                  |
 | assets             | An Assets struct     | Required | See [Asset Struct](#asset-struct) for more info                                                                                |
-| collection         | String               | Required | The ID of the collection this Item is a part of                                                                                |
+| collection         | String               | Optional | The ID of the collection this Item is a part of. See notes below on 'Collection' and 'Collection JSON' in the Parquet metadata |
 | *property columns* | *varies*             | -        | Each property should use the relevant Parquet type, and be pulled out of the properties object to be a top-level Parquet field |
 
 * Must be valid GeoParquet, with proper metadata. Ideally the geometry types are defined and as narrow as possible.
