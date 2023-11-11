@@ -50,3 +50,8 @@ We also provide `stac_geoparquet.to_dict` and `stac_geoparquet.to_item_collectio
 - Rehydrating the dehydrated items
 - Partitioning by time
 - Injecting dynamic links and assets from a STAC API
+
+## CLI
+
+A command line tool is available as a stactools package.
+Check the stactools package [geoparquet-items](https://github.com/stactools-packages/geoparquet-items) for details.
