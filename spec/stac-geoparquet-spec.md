@@ -68,12 +68,31 @@ To take advantage of Parquet's columnar nature and compression, the assets shoul
 
 See [Asset Object][asset] for more.
 
-## Collection JSON
+## Including a STAC Collection JSON in a STAC Geoparquet Collection
 
 To make a stac-geoparquet file a fully self-contained representation, you can
 include the Collection JSON in the Parquet metadata. If present in the [Parquet
 file metadata][parquet-metadata], the key must be `stac:collection` and the
 value must be a JSON string with the Collection JSON.
+
+## Referencing a STAC Geoparquet Collections in a STAC Collection JSON
+
+A common use case of stac-geoparquet is to create a mirror of a STAC collection. To refer to this mirror in the original collection, use an [Asset Object](https://github.com/radiantearth/stac-spec/blob/master/collection-spec/collection-spec.md#asset-object) at the collection level of the STAC JSON that includes the `application/vnd.apache.parquet` MIME type and `collection-mirror` Role type to describe the function of the Geoparquet STAC Collection Asset.
+
+For example:
+
+| Field Name  | Type      | Value |
+| ----------- | --------- | ----------- |
+| href        | string    | s3://example/uti/to/file.geoparquet |
+| title       | string    | An example STAC geoparquet. |
+| description | string    | Example description. |
+| type        | string    | application/vnd.apache.parquet |
+| roles       | \[string] | [collection-mirror]* |
+
+*Note the IANA has not approved the new MIME type `application/vnd.apache.parquet` yet, it's been (submitted for approval)[https://issues.apache.org/jira/browse/PARQUET-1889].
+
+The description should ideally include details about the spatial partitioning method.
+
 
 ## Mapping to other geospatial data formats
 
