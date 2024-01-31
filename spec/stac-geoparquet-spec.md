@@ -81,13 +81,13 @@ A common use case of stac-geoparquet is to create a mirror of a STAC collection.
 
 For example:
 
-| Field Name  | Type      | Value |
-| ----------- | --------- | ----------- |
+| Field Name  | Type      | Value                               |
+|-------------|-----------|-------------------------------------|
 | href        | string    | s3://example/uti/to/file.geoparquet |
-| title       | string    | An example STAC geoparquet. |
-| description | string    | Example description. |
-| type        | string    | application/vnd.apache.parquet |
-| roles       | \[string] | [collection-mirror]* |
+| title       | string    | An example STAC geoparquet.         |
+| description | string    | Example description.                |
+| type        | string    | application/vnd.apache.parquet      |
+| roles       | \[string] | [collection-mirror]*                |
 
 *Note the IANA has not approved the new MIME type `application/vnd.apache.parquet` yet, it's been (submitted for approval)[https://issues.apache.org/jira/browse/PARQUET-1889].
 
