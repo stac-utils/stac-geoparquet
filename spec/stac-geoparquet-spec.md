@@ -4,7 +4,7 @@
 
 This document specifies how to map a set of [STAC Items](https://github.com/radiantearth/stac-spec/tree/v1.0.0/item-spec) into
 [GeoParquet](https://geoparquet.org). It is directly inspired by the [STAC GeoParquet](https://github.com/stac-utils/stac-geoparquet)
-library, but aims to provide guidance for anyone putting STAC data into GeoParquet. 
+library, but aims to provide guidance for anyone putting STAC data into GeoParquet.
 
 ## Use cases
 
@@ -32,7 +32,7 @@ most of the fields should be the same in STAC and in GeoParquet.
 
 * Must be valid GeoParquet, with proper metadata. Ideally the geometry types are defined and as narrow as possible.
 * Strongly recommend to only have one GeoParquet per STAC 'Collection'. Not doing this will lead to an expanded GeoParquet schema (the union of all the schemas of the collection) with lots of empty data
-* Any field in 'properties' of the STAC item should be moved up to be a top-level field in the GeoParquet. 
+* Any field in 'properties' of the STAC item should be moved up to be a top-level field in the GeoParquet.
 * STAC GeoParquet does not support properties that are named such that they collide with a top-level key.
 * datetime columns should be stored as a [native timestamp][timestamp], not as a string
 * The Collection JSON should be included in the Parquet metadata. See [Collection JSON](#collection-json) below.
@@ -68,12 +68,31 @@ To take advantage of Parquet's columnar nature and compression, the assets shoul
 
 See [Asset Object][asset] for more.
 
-## Collection JSON
+## Including a STAC Collection JSON in a STAC Geoparquet Collection
 
 To make a stac-geoparquet file a fully self-contained representation, you can
 include the Collection JSON in the Parquet metadata. If present in the [Parquet
 file metadata][parquet-metadata], the key must be `stac:collection` and the
 value must be a JSON string with the Collection JSON.
+
+## Referencing a STAC Geoparquet Collections in a STAC Collection JSON
+
+A common use case of stac-geoparquet is to create a mirror of a STAC collection. To refer to this mirror in the original collection, use an [Asset Object](https://github.com/radiantearth/stac-spec/blob/master/collection-spec/collection-spec.md#asset-object) at the collection level of the STAC JSON that includes the `application/vnd.apache.parquet` Media type and `collection-mirror` Role type to describe the function of the Geoparquet STAC Collection Asset.
+
+For example:
+
+| Field Name  | Type      | Value                               |
+|-------------|-----------|-------------------------------------|
+| href        | string    | s3://example/uti/to/file.geoparquet |
+| title       | string    | An example STAC geoparquet.         |
+| description | string    | Example description.                |
+| type        | string    | application/vnd.apache.parquet      |
+| roles       | \[string] | [collection-mirror]*                |
+
+*Note the IANA has not approved the new Media type `application/vnd.apache.parquet` yet, it's been (submitted for approval)[https://issues.apache.org/jira/browse/PARQUET-1889].
+
+The description should ideally include details about the spatial partitioning method.
+
 
 ## Mapping to other geospatial data formats
 
