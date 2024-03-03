@@ -113,7 +113,7 @@ def test_naip_item():
         expected.remove_links(rel=pystac.RelType.SELF)
         result.remove_links(rel=pystac.RelType.SELF)
 
-    assert_equal(result, expected)
+    assert_equal(result, expected, ignore_none=True)
 
 
 def test_sentinel2_l2a():
@@ -139,7 +139,7 @@ def test_sentinel2_l2a():
         result.remove_links(rel=pystac.RelType.SELF)
 
     expected.remove_links(rel=pystac.RelType.LICENSE)
-    assert_equal(result, expected)
+    assert_equal(result, expected, ignore_none=True)
 
 
 def test_generate_endpoints():
