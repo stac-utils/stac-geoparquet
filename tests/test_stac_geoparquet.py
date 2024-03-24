@@ -227,7 +227,7 @@ EXPECTED_GDF = geopandas.GeoDataFrame(
         ],
         "collection": ["naip"],
         "gsd": [0.6],
-        "datetime": pd.to_datetime(["2019-08-28 00:00:00+0000"]),
+        "datetime": pd.to_datetime(["2019-08-28 00:00:00+0000"]).as_unit("us"),
         "naip:year": ["2019"],
         "proj:bbox": [[592596.0, 4663966.8, 598495.8, 4671633.0]],
         "proj:epsg": [26915],

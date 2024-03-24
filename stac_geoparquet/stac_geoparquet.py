@@ -38,6 +38,7 @@ def to_geodataframe(
     items: Sequence[dict[str, Any]],
     add_self_link: bool = False,
     dtype_backend: DTYPE_BACKEND | None = None,
+    datetime_precision: str = "us",
 ) -> geopandas.GeoDataFrame:
     """
     Convert a sequence of STAC items to a :class:`geopandas.GeoDataFrame`.
@@ -85,6 +86,10 @@ def to_geodataframe(
         With ``dtype_backend="pyarrow"``, this will be a pyarrow struct
         with fields ``{"href": "a.tif", "title", None}``. pyarrow will
         infer that the struct field ``asset.title`` is nullable.
+
+    datetime_precision: str, default "us"
+        The precision to use for the datetime columns. For example,
+        "us" is microsecond and "ns" is nanosecond.
 
     Returns
     -------
@@ -150,9 +155,8 @@ def to_geodataframe(
     if dtype_backend == "pyarrow":
         for k, v in items2.items():
             if k in DATETIME_COLUMNS:
-                items2[k] = pd.arrays.ArrowExtensionArray(
-                    pa.array(pd.to_datetime(v, format="ISO8601"))
-                )
+                dt = pd.to_datetime(v, format="ISO8601").as_unit(datetime_precision)
+                items2[k] = pd.arrays.ArrowExtensionArray(pa.array(dt))
 
             elif k != "geometry":
                 items2[k] = pd.arrays.ArrowExtensionArray(pa.array(v))
@@ -160,7 +164,9 @@ def to_geodataframe(
     elif dtype_backend == "numpy_nullable":
         for k, v in items2.items():
             if k in DATETIME_COLUMNS:
-                items2[k] = pd.to_datetime(v, format="ISO8601")
+                items2[k] = pd.to_datetime(v, format="ISO8601").as_unit(
+                    datetime_precision
+                )
 
             if k in {"type", "stac_version", "id", "collection", SELF_LINK_COLUMN}:
                 items2[k] = pd.array(v, dtype="string")
