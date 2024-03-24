@@ -116,3 +116,34 @@ def test_to_dict(naip):
         "type": "Feature",
     }
     assert result[0].to_dict() == expected
+
+
+def test_to_dict_optional_asset():
+    items = [
+        {
+            "id": "a",
+            "geometry": None,
+            "bbox": None,
+            "links": [],
+            "type": "Feature",
+            "stac_version": "1.0.0",
+            "properties": {"datetime": "2021-01-01T00:00:00Z"},
+            "assets": {"a": {"href": "a.txt"}, "b": {"href": "b.txt"}},
+        },
+        {
+            "id": "b",
+            "geometry": None,
+            "bbox": None,
+            "links": [],
+            "type": "Feature",
+            "stac_version": "1.0.0",
+            "properties": {"datetime": "2021-01-01T00:00:00Z"},
+            "assets": {"a": {"href": "a.txt"}},
+        },
+    ]
+    df = stac_geoparquet.to_geodataframe(items, dtype_backend="pyarrow")
+    result = stac_geoparquet.to_item_collection(df)
+    assert result[0].assets["a"].to_dict() == {"href": "a.txt"}
+    assert result[0].assets["b"].to_dict() == {"href": "b.txt"}
+    assert result[1].assets["a"].to_dict() == {"href": "a.txt"}
+    assert "b" not in result[1].assets
