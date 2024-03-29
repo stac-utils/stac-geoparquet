@@ -227,7 +227,7 @@ EXPECTED_GDF = geopandas.GeoDataFrame(
         ],
         "collection": ["naip"],
         "gsd": [0.6],
-        "datetime": pd.to_datetime(["2019-08-28 00:00:00+0000"]).as_unit("us"),
+        "datetime": pd.to_datetime(["2019-08-28 00:00:00+0000"]).as_unit("ns"),
         "naip:year": ["2019"],
         "proj:bbox": [[592596.0, 4663966.8, 598495.8, 4671633.0]],
         "proj:epsg": [26915],
@@ -404,3 +404,18 @@ def test_mixed_date_format():
     ]
 
     assert result["datetime"].tolist() == expected
+
+
+@pytest.mark.parametrize("datetime_precision", ["us", "ns"])
+def test_datetime_precision(datetime_precision):
+    item = json.loads((HERE / "sentinel-2-item.json").read_text())
+    item["properties"]["datetime"] = "2000-12-10T22:00:00.123456Z"
+    df = stac_geoparquet.to_geodataframe(
+        [item], dtype_backend="pyarrow", datetime_precision=datetime_precision
+    )
+    result = df["datetime"].iloc[0]
+    expected = pd.Timestamp("2000-12-10 22:00:00.123456+0000", tz="UTC").as_unit(
+        datetime_precision
+    )
+    assert result == expected
+    assert result.unit == datetime_precision

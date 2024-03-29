@@ -38,7 +38,7 @@ def to_geodataframe(
     items: Sequence[dict[str, Any]],
     add_self_link: bool = False,
     dtype_backend: DTYPE_BACKEND | None = None,
-    datetime_precision: str = "us",
+    datetime_precision: str = "ns",
 ) -> geopandas.GeoDataFrame:
     """
     Convert a sequence of STAC items to a :class:`geopandas.GeoDataFrame`.
@@ -87,7 +87,7 @@ def to_geodataframe(
         with fields ``{"href": "a.tif", "title", None}``. pyarrow will
         infer that the struct field ``asset.title`` is nullable.
 
-    datetime_precision: str, default "us"
+    datetime_precision: str, default "ns"
         The precision to use for the datetime columns. For example,
         "us" is microsecond and "ns" is nanosecond.
 
