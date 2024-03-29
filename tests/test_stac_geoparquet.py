@@ -5,6 +5,7 @@ import stac_geoparquet
 import shapely.geometry
 import pandas as pd
 import pandas.testing
+import pyarrow as pa
 import pystac
 import geopandas
 import requests
@@ -63,9 +64,9 @@ ITEM = {
             "roles": ["data"],
             "title": "RGBIR COG tile",
             "eo:bands": [
-                {"name": "Red", "common_name": "red"},
-                {"name": "Green", "common_name": "green"},
-                {"name": "Blue", "common_name": "blue"},
+                {"name": "Red", "common_name": "red", "description": "Red"},
+                {"name": "Green", "common_name": "green", "description": "Green"},
+                {"name": "Blue", "common_name": "blue", "description": "Blue"},
                 {"name": "NIR", "common_name": "nir", "description": "near-infrared"},
             ],
         },
@@ -125,111 +126,131 @@ ITEM = {
     "stac_version": "1.0.0",
 }
 
-EXPECTED_GDF = {
-    "type": {0: "Feature"},
-    "stac_version": {0: "1.0.0"},
-    "stac_extensions": {
-        0: [
-            "https://stac-extensions.github.io/eo/v1.0.0/schema.json",
-            "https://stac-extensions.github.io/projection/v1.0.0/schema.json",
-        ]
-    },
-    "id": {0: "ia_m_4209150_sw_15_060_20190828_20191105"},
-    "geometry": {0: shapely.geometry.shape(ITEM["geometry"])},
-    "bbox": {0: [-91.879788, 42.121621, -91.807132, 42.191372]},
-    "links": {
-        0: [
+
+EXPECTED_GDF = geopandas.GeoDataFrame(
+    {
+        "type": ["Feature"],
+        "stac_version": ["1.0.0"],
+        "stac_extensions": [
+            [
+                "https://stac-extensions.github.io/eo/v1.0.0/schema.json",
+                "https://stac-extensions.github.io/projection/v1.0.0/schema.json",
+            ]
+        ],
+        "id": ["ia_m_4209150_sw_15_060_20190828_20191105"],
+        "geometry": geopandas.array.from_shapely(
+            [shapely.geometry.shape(ITEM["geometry"])]
+        ),
+        "bbox": [[-91.879788, 42.121621, -91.807132, 42.191372]],
+        "links": [
+            [
+                {
+                    "rel": "collection",
+                    "type": "application/json",
+                    "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip",
+                },
+                {
+                    "rel": "parent",
+                    "type": "application/json",
+                    "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip",
+                },
+                {
+                    "rel": "root",
+                    "type": "application/json",
+                    "href": "https://planetarycomputer.microsoft.com/api/stac/v1/",
+                },
+                {
+                    "rel": "self",
+                    "type": "application/geo+json",
+                    "href": ITEM_SELF_HREF,
+                },
+                {
+                    "rel": "preview",
+                    "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/map?collection=naip&item=ia_m_4209150_sw_15_060_20190828_20191105",  # noqa: E501
+                    "title": "Map of item",
+                    "type": "text/html",
+                },
+            ]
+        ],
+        "assets": [
             {
-                "rel": "collection",
-                "type": "application/json",
-                "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip",
-            },
-            {
-                "rel": "parent",
-                "type": "application/json",
-                "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip",
-            },
-            {
-                "rel": "root",
-                "type": "application/json",
-                "href": "https://planetarycomputer.microsoft.com/api/stac/v1/",
-            },
-            {
-                "rel": "self",
-                "type": "application/geo+json",
-                "href": ITEM_SELF_HREF,
-            },
-            {
-                "rel": "preview",
-                "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/map?collection=naip&item=ia_m_4209150_sw_15_060_20190828_20191105",  # noqa: E501
-                "title": "Map of item",
-                "type": "text/html",
-            },
-        ]
-    },
-    "assets": {
-        0: {
-            "image": {
-                "href": "https://naipeuwest.blob.core.windows.net/naip/v002/ia/2019/ia_60cm_2019/42091/m_4209150_sw_15_060_20190828.tif",  # noqa: E501
-                "type": "image/tiff; application=geotiff; profile=cloud-optimized",
-                "roles": ["data"],
-                "title": "RGBIR COG tile",
-                "eo:bands": [
-                    {"name": "Red", "common_name": "red"},
-                    {"name": "Green", "common_name": "green"},
-                    {"name": "Blue", "common_name": "blue"},
-                    {
-                        "name": "NIR",
-                        "common_name": "nir",
-                        "description": "near-infrared",
-                    },
-                ],
-            },
-            "metadata": {
-                "href": "https://naipeuwest.blob.core.windows.net/naip/v002/ia/2019/ia_fgdc_2019/42091/m_4209150_sw_15_060_20190828.txt",  # noqa: E501
-                "type": "text/plain",
-                "roles": ["metadata"],
-                "title": "FGDC Metdata",
-            },
-            "thumbnail": {
-                "href": "https://naipeuwest.blob.core.windows.net/naip/v002/ia/2019/ia_60cm_2019/42091/m_4209150_sw_15_060_20190828.200.jpg",  # noqa: E501
-                "type": "image/jpeg",
-                "roles": ["thumbnail"],
-                "title": "Thumbnail",
-            },
-            "tilejson": {
-                "title": "TileJSON with default rendering",
-                "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/tilejson.json?collection=naip&item=ia_m_4209150_sw_15_060_20190828_20191105&assets=image&asset_bidx=image%7C1%2C2%2C3",  # noqa: E501
-                "type": "application/json",
-                "roles": ["tiles"],
-            },
-            "rendered_preview": {
-                "title": "Rendered preview",
-                "rel": "preview",
-                "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/preview.png?collection=naip&item=ia_m_4209150_sw_15_060_20190828_20191105&assets=image&asset_bidx=image%7C1%2C2%2C3",  # noqa: E501
-                "roles": ["overview"],
-                "type": "image/png",
-            },
-        }
-    },
-    "collection": {0: "naip"},
-    "gsd": {0: 0.6},
-    "datetime": {0: pd.Timestamp("2019-08-28 00:00:00+0000", tz="UTC")},
-    "naip:year": {0: "2019"},
-    "proj:bbox": {0: [592596.0, 4663966.8, 598495.8, 4671633.0]},
-    "proj:epsg": {0: 26915},
-    "naip:state": {0: "ia"},
-    "proj:shape": {0: [12777, 9833]},
-    "proj:transform": {0: [0.6, 0.0, 592596.0, 0.0, -0.6, 4671633.0, 0.0, 0.0, 1.0]},
-}
+                "image": {
+                    "href": "https://naipeuwest.blob.core.windows.net/naip/v002/ia/2019/ia_60cm_2019/42091/m_4209150_sw_15_060_20190828.tif",  # noqa: E501
+                    "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+                    "roles": ["data"],
+                    "title": "RGBIR COG tile",
+                    "eo:bands": [
+                        {"name": "Red", "common_name": "red", "description": "Red"},
+                        {
+                            "name": "Green",
+                            "common_name": "green",
+                            "description": "Green",
+                        },
+                        {
+                            "name": "Blue",
+                            "common_name": "blue",
+                            "description": "Blue",
+                        },
+                        {
+                            "name": "NIR",
+                            "common_name": "nir",
+                            "description": "near-infrared",
+                        },
+                    ],
+                },
+                "metadata": {
+                    "href": "https://naipeuwest.blob.core.windows.net/naip/v002/ia/2019/ia_fgdc_2019/42091/m_4209150_sw_15_060_20190828.txt",  # noqa: E501
+                    "type": "text/plain",
+                    "roles": ["metadata"],
+                    "title": "FGDC Metdata",
+                },
+                "thumbnail": {
+                    "href": "https://naipeuwest.blob.core.windows.net/naip/v002/ia/2019/ia_60cm_2019/42091/m_4209150_sw_15_060_20190828.200.jpg",  # noqa: E501
+                    "type": "image/jpeg",
+                    "roles": ["thumbnail"],
+                    "title": "Thumbnail",
+                },
+                "tilejson": {
+                    "title": "TileJSON with default rendering",
+                    "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/tilejson.json?collection=naip&item=ia_m_4209150_sw_15_060_20190828_20191105&assets=image&asset_bidx=image%7C1%2C2%2C3",  # noqa: E501
+                    "type": "application/json",
+                    "roles": ["tiles"],
+                },
+                "rendered_preview": {
+                    "title": "Rendered preview",
+                    "rel": "preview",
+                    "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/preview.png?collection=naip&item=ia_m_4209150_sw_15_060_20190828_20191105&assets=image&asset_bidx=image%7C1%2C2%2C3",  # noqa: E501
+                    "roles": ["overview"],
+                    "type": "image/png",
+                },
+            }
+        ],
+        "collection": ["naip"],
+        "gsd": [0.6],
+        "datetime": pd.to_datetime(["2019-08-28 00:00:00+0000"]).as_unit("ns"),
+        "naip:year": ["2019"],
+        "proj:bbox": [[592596.0, 4663966.8, 598495.8, 4671633.0]],
+        "proj:epsg": [26915],
+        "naip:state": ["ia"],
+        "proj:shape": [[12777, 9833]],
+        "proj:transform": [[0.6, 0.0, 592596.0, 0.0, -0.6, 4671633.0, 0.0, 0.0, 1.0]],
+    }
+)
 
 
-def test_to_geodataframe():
-    result = stac_geoparquet.to_geodataframe([ITEM])
-    expected = geopandas.GeoDataFrame(EXPECTED_GDF)
-    for k in ["type", "stac_version", "id", "collection"]:
-        if k in expected:
-            expected[k] = expected[k].astype("string")
+@pytest.mark.parametrize("dtype_backend", ["numpy_nullable", "pyarrow"])
+def test_to_geodataframe(dtype_backend):
+    result = stac_geoparquet.to_geodataframe([ITEM], dtype_backend=dtype_backend)
+    expected = EXPECTED_GDF.copy()
+
+    if dtype_backend == "numpy_nullable":
+        for k in ["type", "stac_version", "id", "collection"]:
+            expected[k] = expected[k].astype(pd.StringDtype())
+
+    else:
+        for k, v in EXPECTED_GDF.items():
+            if k != "geometry":
+                expected[k] = pd.arrays.ArrowExtensionArray(pa.array(v))
 
     pandas.testing.assert_frame_equal(result, expected)
 
@@ -238,14 +259,21 @@ def test_to_geodataframe():
     assert_equal(ic1, ic2)
 
 
+def test_dtype_backend_warns():
+    with pytest.warns(FutureWarning, match="dtype_backend"):
+        stac_geoparquet.to_geodataframe([ITEM])
+
+
 def test_to_geodataframe_with_self_link():
-    result = stac_geoparquet.to_geodataframe([ITEM], add_self_link=True)
-    gdf = EXPECTED_GDF.copy()
-    gdf["self_link"] = {0: ITEM_SELF_HREF}
-    expected = geopandas.GeoDataFrame(gdf)
-    for k in ["type", "stac_version", "id", "collection", "self_link"]:
-        if k in expected:
-            expected[k] = expected[k].astype("string")
+    result = stac_geoparquet.to_geodataframe(
+        [ITEM], add_self_link=True, dtype_backend="pyarrow"
+    )
+    expected = EXPECTED_GDF.copy()
+    expected["self_link"] = pd.arrays.ArrowExtensionArray(pa.array([ITEM_SELF_HREF]))
+
+    for k, v in EXPECTED_GDF.items():
+        if k != "geometry":
+            expected[k] = pd.arrays.ArrowExtensionArray(pa.array(v))
 
     pandas.testing.assert_frame_equal(result, expected)
 
@@ -269,7 +297,7 @@ def test_s1_grd():
             item["stac_extensions"][i] = EO_V11
 
     item["geometry"] = fix_empty_multipolygon(item["geometry"]).__geo_interface__
-    df = stac_geoparquet.to_geodataframe([item])
+    df = stac_geoparquet.to_geodataframe([item], dtype_backend="pyarrow")
 
     result = to_item_collection(df)[0]
     assert_equal(result, pystac.read_dict(item))
@@ -354,11 +382,11 @@ def test_smoke(collection_id):
     )
     r.raise_for_status()
     items = r.json()["features"]
-    df = stac_geoparquet.to_geodataframe(items)
+    df = stac_geoparquet.to_geodataframe(items, dtype_backend="pyarrow")
 
     result = to_item_collection(df)
     expected = pystac.ItemCollection(items)
-    assert_equal(result, expected)
+    assert_equal(result, expected, ignore_none=True)
 
 
 def test_mixed_date_format():
@@ -369,10 +397,25 @@ def test_mixed_date_format():
     a["geometry"] = {"type": "Point", "coordinates": [0, 0]}
     b["geometry"] = {"type": "Point", "coordinates": [0, 0]}
 
-    result = stac_geoparquet.to_geodataframe([a, b])
+    result = stac_geoparquet.to_geodataframe([a, b], dtype_backend="pyarrow")
     expected = [
         pd.Timestamp("2000-12-10 22:04:58+0000", tz="UTC"),
         pd.Timestamp("2000-12-10 22:04:57.998000+0000", tz="UTC"),
     ]
 
     assert result["datetime"].tolist() == expected
+
+
+@pytest.mark.parametrize("datetime_precision", ["us", "ns"])
+def test_datetime_precision(datetime_precision):
+    item = json.loads((HERE / "sentinel-2-item.json").read_text())
+    item["properties"]["datetime"] = "2000-12-10T22:00:00.123456Z"
+    df = stac_geoparquet.to_geodataframe(
+        [item], dtype_backend="pyarrow", datetime_precision=datetime_precision
+    )
+    result = df["datetime"].iloc[0]
+    expected = pd.Timestamp("2000-12-10 22:00:00.123456+0000", tz="UTC").as_unit(
+        datetime_precision
+    )
+    assert result == expected
+    assert result.unit == datetime_precision
