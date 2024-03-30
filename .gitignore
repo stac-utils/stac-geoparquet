@@ -2,3 +2,4 @@ __pycache__
 .venv
 dist
 .direnv
+stac_geoparquet/_version.py
