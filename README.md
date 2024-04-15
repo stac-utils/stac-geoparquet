@@ -1,10 +1,10 @@
 # STAC-geoparquet
 
-Convert STAC items to geoparquet.
+Convert STAC items to GeoParquet.
 
 ## Purpose
 
-This library helps convert [STAC Items](https://github.com/radiantearth/stac-spec/blob/master/overview.md#item-overview) to [geoparquet](https://github.com/opengeospatial/geoparquet). It might be useful for you if you host a large number of STAC items through a [STAC API](https://github.com/radiantearth/stac-api-spec), but want to provide a bulk API for users who need to access *many* items.
+This library helps convert [STAC Items](https://github.com/radiantearth/stac-spec/blob/master/overview.md#item-overview) to [GeoParquet](https://github.com/opengeospatial/geoparquet). While STAC Items are commonly distributed as individual JSON files on object storage or through a [STAC API](https://github.com/radiantearth/stac-api-spec), STAC GeoParquet allows users to access a large number of STAC items in bulk without making repeated HTTP requests.
 
 ## Usage
 
