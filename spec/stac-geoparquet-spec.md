@@ -18,17 +18,17 @@ Each row in the Parquet Dataset represents a single STAC item. Most all the fiel
 from JSON into nested structures. We do pull the properties to the top level, so that it is easier to query and use them. The names of
 most of the fields should be the same in STAC and in GeoParquet.
 
-| Field              | GeoParquet Type      | Required | Details                                                                                                                        |
-|--------------------|----------------------|----------|--------------------------------------------------------------------------------------------------------------------------------|
-| type               | String               | Optional | This is just needed for GeoJSON, so it is optional and not recommended to include in GeoParquet                                |
-| stac_extensions    | List of Strings      | Required | This column is required, but can be empty if no STAC extensions were used                                                      |
-| id                 | String               | Required | Required, should be unique within each collection                                                                              |
-| geometry           | Binary (WKB)         | Required | For GeoParquet 1.0 this must be well-known Binary                                                                              |
-| bbox               | Struct of Floats     | Required | Can be a 4 or 6 value struct, depending on dimension of the data                                                               |
-| links              | List of Link structs | Required | See [Link Struct](#link-struct) for more info                                                                                  |
-| assets             | An Assets struct     | Required | See [Asset Struct](#asset-struct) for more info                                                                                |
-| collection         | String               | Optional | The ID of the collection this Item is a part of. See notes below on 'Collection' and 'Collection JSON' in the Parquet metadata |
-| *property columns* | *varies*             | -        | Each property should use the relevant Parquet type, and be pulled out of the properties object to be a top-level Parquet field |
+| Field              | GeoParquet Type      | Required | Details                                                                                                                                                                                                                                                 |
+|--------------------|----------------------|----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| type               | String               | Optional | This is just needed for GeoJSON, so it is optional and not recommended to include in GeoParquet                                                                                                                                                         |
+| stac_extensions    | List of Strings      | Required | This column is required, but can be empty if no STAC extensions were used                                                                                                                                                                               |
+| id                 | String               | Required | Required, should be unique within each collection                                                                                                                                                                                                       |
+| geometry           | Binary (WKB)         | Required | For GeoParquet 1.0 this must be well-known Binary                                                                                                                                                                                                       |
+| bbox               | Struct of Floats     | Required | Can be a 4 or 6 value struct, depending on dimension of the data. It must conform to the ["Bounding Box Columns"](https://github.com/opengeospatial/geoparquet/blob/main/format-specs/geoparquet.md#bounding-box-columns) definition of GeoParquet 1.1. |
+| links              | List of Link structs | Required | See [Link Struct](#link-struct) for more info                                                                                                                                                                                                           |
+| assets             | An Assets struct     | Required | See [Asset Struct](#asset-struct) for more info                                                                                                                                                                                                         |
+| collection         | String               | Optional | The ID of the collection this Item is a part of. See notes below on 'Collection' and 'Collection JSON' in the Parquet metadata                                                                                                                          |
+| _property columns_ | _varies_             | -        | Each property should use the relevant Parquet type, and be pulled out of the properties object to be a top-level Parquet field                                                                                                                          |
 
 * Must be valid GeoParquet, with proper metadata. Ideally the geometry types are defined and as narrow as possible.
 * Strongly recommend to only have one GeoParquet per STAC 'Collection'. Not doing this will lead to an expanded GeoParquet schema (the union of all the schemas of the collection) with lots of empty data
@@ -87,9 +87,9 @@ For example:
 | title       | string    | An example STAC geoparquet.         |
 | description | string    | Example description.                |
 | type        | string    | application/vnd.apache.parquet      |
-| roles       | \[string] | [collection-mirror]*                |
+| roles       | \[string] | [collection-mirror]\*                |
 
-*Note the IANA has not approved the new Media type `application/vnd.apache.parquet` yet, it's been (submitted for approval)[https://issues.apache.org/jira/browse/PARQUET-1889].
+\*Note the IANA has not approved the new Media type `application/vnd.apache.parquet` yet, it's been (submitted for approval)[https://issues.apache.org/jira/browse/PARQUET-1889].
 
 The description should ideally include details about the spatial partitioning method.
 
