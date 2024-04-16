@@ -4,9 +4,9 @@ build-backend = "hatchling.build"
 
 [project]
 name = "stac_geoparquet"
-authors = [{name = "Tom Augspurger", email = "taugspurger@microsoft.com"}]
+authors = [{ name = "Tom Augspurger", email = "taugspurger@microsoft.com" }]
 readme = "README.md"
-license = {file = "LICENSE"}
+license = { file = "LICENSE" }
 classifiers = ["License :: OSI Approved :: MIT License"]
 dynamic = ["version", "description"]
 requires-python = ">=3.8"
@@ -34,13 +34,7 @@ pgstac = [
     "tqdm",
     "python-dateutil",
 ]
-pc = [
-    "adlfs",
-    "pypgstac",
-    "psycopg[binary,pool]",
-    "tqdm",
-    "azure-data-tables",
-]
+pc = ["adlfs", "pypgstac", "psycopg[binary,pool]", "tqdm", "azure-data-tables"]
 test = [
     "pytest",
     "requests",
@@ -58,9 +52,7 @@ pc-geoparquet = "stac_geoparquet.cli:main"
 
 [tool.pytest.ini_options]
 minversion = "6.0"
-filterwarnings = [
-    "ignore:.*distutils Version.*:DeprecationWarning",
-]
+filterwarnings = ["ignore:.*distutils Version.*:DeprecationWarning"]
 
 [tool.mypy]
 
@@ -68,14 +60,15 @@ python_version = "3.10"
 
 [[tool.mypy.overrides]]
 module = [
-    "shapely.*",
+    "ciso8601.*",
+    "fsspec.*",
     "geopandas.*",
     "pandas.*",
-    "fsspec.*",
-    "tqdm.*",
-    "pypgstac.*",
     "pyarrow.*",
+    "pypgstac.*",
     "rich.*",
+    "shapely.*",
+    "tqdm.*",
 ]
 
 ignore_missing_imports = true

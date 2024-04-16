@@ -1,6 +1,7 @@
 """Convert STAC data into Arrow tables"""
 
 import json
+from datetime import datetime
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Sequence, Union
 
@@ -65,11 +66,13 @@ def parse_stac_ndjson_to_arrow(
     chunk_size: int = 8192,
     schema: Optional[pa.Schema] = None,
 ):
+    # Define outside of if/else to make mypy happy
+    items: List[dict] = []
+
     # If the schema was not provided, then we need to load all data into memory at once
     # to perform schema resolution.
     if schema is None:
         with open(path) as f:
-            items = []
             for line in f:
                 items.append(json.loads(line))
 
@@ -79,8 +82,6 @@ def parse_stac_ndjson_to_arrow(
     # into an Arrow RecordBatch at a time. This is much more memory efficient.
     with open(path) as f:
         batches: List[pa.RecordBatch] = []
-        items: List[dict] = []
-
         for line in f:
             items.append(json.loads(line))
 
@@ -200,7 +201,7 @@ def _convert_timestamp_column(column: pa.ChunkedArray) -> pa.ChunkedArray:
     """Convert an individual timestamp column from string to a Timestamp type"""
     chunks = []
     for chunk in column.chunks:
-        parsed_chunk = []
+        parsed_chunk: List[Optional[datetime]] = []
         for item in chunk:
             if not item.is_valid:
                 parsed_chunk.append(None)
