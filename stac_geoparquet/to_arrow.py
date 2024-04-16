@@ -1,11 +1,13 @@
 """Convert STAC data into Arrow tables"""
 
 import json
+from copy import deepcopy
 from datetime import datetime
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Sequence, Union
 
 import ciso8601
+import numpy as np
 import pyarrow as pa
 import pyarrow.compute as pc
 import shapely
@@ -55,7 +57,7 @@ def parse_stac_items_to_arrow(
         # else it would be possible for a STAC item late in the collection (after the
         # first chunk) to have a different schema and not match the schema inferred for
         # the first chunk.
-        stac_table = pa.Table.from_batches(_stac_items_to_arrow(items))
+        stac_table = pa.Table.from_batches([_stac_items_to_arrow(items)])
 
     return _process_arrow_table(stac_table)
 
@@ -101,6 +103,7 @@ def parse_stac_ndjson_to_arrow(
 def _process_arrow_table(table: pa.Table) -> pa.Table:
     table = _bring_properties_to_top_level(table)
     table = _convert_timestamp_columns(table)
+    table = _convert_bbox_to_struct(table)
     return table
 
 
@@ -129,8 +132,14 @@ def _stac_items_to_arrow(
     # Otherwise, pyarrow will try to parse coordinates into a native geometry type and
     # if you have multiple geometry types pyarrow will error with
     # `ArrowInvalid: cannot mix list and non-list, non-null values`
+    wkb_items = []
     for item in items:
-        item["geometry"] = shapely.to_wkb(shapely.geometry.shape(item["geometry"]))
+        wkb_item = deepcopy(item)
+        # Note: this mutates the existing items. Should we
+        wkb_item["geometry"] = shapely.to_wkb(
+            shapely.geometry.shape(wkb_item["geometry"])
+        )
+        wkb_items.append(wkb_item)
 
     if schema is not None:
         array = pa.array(items, type=pa.struct(schema))
@@ -212,3 +221,63 @@ def _convert_timestamp_column(column: pa.ChunkedArray) -> pa.ChunkedArray:
         chunks.append(pyarrow_chunk)
 
     return pa.chunked_array(chunks)
+
+
+def _convert_bbox_to_struct(table: pa.Table, *, downcast: bool = True) -> pa.Table:
+    """Convert bbox column to a struct representation
+
+    Since the bbox in JSON is stored as an array, pyarrow automatically converts the
+    bbox column to a ListArray. But according to GeoParquet 1.1, we should save the bbox
+    column as a StructArray, which allows for Parquet statistics to infer any spatial
+    partitioning in the dataset.
+
+    Args:
+        table: _description_
+        downcast: if True, will use float32 coordinates for the bounding boxes instead of float64. Float rounding is applied to ensure the float32 bounding box strictly contains the original float64 box. This is recommended when possible to minimize file size.
+
+    Returns:
+        New table
+    """
+    bbox_col_idx = table.schema.get_field_index("bbox")
+    bbox_col = table.column(bbox_col_idx)
+
+    new_chunks = []
+    for chunk in bbox_col.chunks:
+        assert (
+            pa.types.is_list(chunk.type)
+            or pa.types.is_large_list(chunk.type)
+            or pa.types.is_fixed_size_list(chunk.type)
+        )
+        coords = chunk.flatten().to_numpy().reshape(-1, 4)
+        xmin = coords[:, 0]
+        ymin = coords[:, 1]
+        xmax = coords[:, 2]
+        ymax = coords[:, 3]
+
+        if downcast:
+            coords = coords.astype(np.float32)
+
+            # Round min values down to the next float32 value
+            # Round max values up to the next float32 value
+            xmin = np.nextafter(xmin, -np.Infinity)
+            ymin = np.nextafter(ymin, -np.Infinity)
+            xmax = np.nextafter(xmax, np.Infinity)
+            ymax = np.nextafter(ymax, np.Infinity)
+
+        struct_arr = pa.StructArray.from_arrays(
+            [
+                xmin,
+                ymin,
+                xmax,
+                ymax,
+            ],
+            names=[
+                "xmin",
+                "ymin",
+                "xmax",
+                "ymax",
+            ],
+        )
+        new_chunks.append(struct_arr)
+
+    return table.set_column(bbox_col_idx, "bbox", new_chunks)
