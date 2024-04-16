@@ -1,73 +1,137 @@
-"""Convert STAC data into Arrow tables
-"""
+"""Convert STAC data into Arrow tables"""
 
-from collections import defaultdict
 import json
-from tempfile import NamedTemporaryFile
-from typing import IO, Any, Sequence, Union
+from pathlib import Path
+from typing import Any, Dict, List, Optional, Sequence, Union
 
 import ciso8601
 import pyarrow as pa
 import pyarrow.compute as pc
-from pyarrow.json import read_json
+import shapely
 import shapely.geometry
 
 
-def parse_stac_items_to_arrow(items: Sequence[dict[str, Any]]):
-    inferred_arrow_table = _stac_items_to_arrow(items)
-    return _updates_for_inferred_arrow_table(inferred_arrow_table)
+def _chunks(lst: Sequence[Dict[str, Any]], n: int):
+    """Yield successive n-sized chunks from lst."""
+    for i in range(0, len(lst), n):
+        yield lst[i : i + n]
 
 
-def parse_stac_ndjson_to_arrow(path: Union[str, IO[bytes]]):
-    table = _stac_ndjson_to_arrow(path)
-    return _updates_for_inferred_arrow_table(table)
+def parse_stac_items_to_arrow(
+    items: Sequence[Dict[str, Any]],
+    *,
+    chunk_size: int = 8192,
+    schema: Optional[pa.Schema] = None,
+) -> pa.Table:
+    """Parse a collection of STAC Items to a :class:`pyarrow.Table`.
+
+    The objects under `properties` are moved up to the top-level of the
+    Table, similar to :meth:`geopandas.GeoDataFrame.from_features`.
+
+    Args:
+        items: the STAC Items to convert
+        chunk_size: The chunk size to use for Arrow record batches. This only takes effect if `schema` is not None. When `schema` is None, the input will be parsed into a single contiguous record batch. Defaults to 8192.
+        schema: The schema of the input data. If provided, can improve memory use; otherwise all items need to be parsed into a single array for schema inference. Defaults to None.
+
+    Returns:
+        a pyarrow Table with the STAC-GeoParquet representation of items.
+    """
+
+    if schema is not None:
+        # If schema is provided, then for better memory usage we parse input STAC items
+        # to Arrow batches in chunks.
+        batches = []
+        for chunk in _chunks(items, chunk_size):
+            batches.append(_stac_items_to_arrow(chunk, schema=schema))
+
+        stac_table = pa.Table.from_batches(batches, schema=schema)
+    else:
+        # If schema is _not_ provided, then we must convert to Arrow all at once, or
+        # else it would be possible for a STAC item late in the collection (after the
+        # first chunk) to have a different schema and not match the schema inferred for
+        # the first chunk.
+        stac_table = pa.Table.from_batches(_stac_items_to_arrow(items))
+
+    return _process_arrow_table(stac_table)
 
 
-def _updates_for_inferred_arrow_table(table: pa.Table) -> pa.Table:
+def parse_stac_ndjson_to_arrow(
+    path: Union[str, Path],
+    *,
+    chunk_size: int = 8192,
+    schema: Optional[pa.Schema] = None,
+):
+    # If the schema was not provided, then we need to load all data into memory at once
+    # to perform schema resolution.
+    if schema is None:
+        with open(path) as f:
+            items = []
+            for line in f:
+                items.append(json.loads(line))
+
+        return parse_stac_items_to_arrow(items, chunk_size=chunk_size, schema=schema)
+
+    # Otherwise, we can stream over the input, converting each batch of `chunk_size`
+    # into an Arrow RecordBatch at a time. This is much more memory efficient.
+    with open(path) as f:
+        batches: List[pa.RecordBatch] = []
+        items: List[dict] = []
+
+        for line in f:
+            items.append(json.loads(line))
+
+            if len(items) >= chunk_size:
+                batches.append(_stac_items_to_arrow(items, schema=schema))
+                items = []
+
+    # Don't forget the last chunk in case the total number of items is not a multiple of
+    # chunk_size.
+    if len(items) > 0:
+        batches.append(_stac_items_to_arrow(items, schema=schema))
+
+    stac_table = pa.Table.from_batches(batches, schema=schema)
+    return _process_arrow_table(stac_table)
+
+
+def _process_arrow_table(table: pa.Table) -> pa.Table:
     table = _bring_properties_to_top_level(table)
-    table = _convert_geometry_to_wkb(table)
     table = _convert_timestamp_columns(table)
     return table
 
 
-def _stac_ndjson_to_arrow(path: Union[str, IO[bytes]]) -> pa.Table:
-    """Parse a newline-delimited JSON file to Arrow
-
-    Args:
-        path: The path or opened file object (in binary mode) with newline-delimited
-            JSON data.
-
-    Returns:
-        pyarrow table matching on-disk schema
-    """
-    table = read_json(path)
-    return table
-
-
-def _stac_items_to_arrow(items: Sequence[dict[str, Any]]) -> pa.Table:
+def _stac_items_to_arrow(
+    items: Sequence[Dict[str, Any]], *, schema: Optional[pa.Schema] = None
+) -> pa.RecordBatch:
     """Convert dicts representing STAC Items to Arrow
 
-    First writes a tempfile with newline-delimited JSON data, then uses the pyarrow JSON
-    parser to load into memory.
+    This converts GeoJSON geometries to WKB before Arrow conversion to allow multiple
+    geometry types.
+
+    All items will be parsed into a single RecordBatch, meaning that each internal array
+    is fully contiguous in memory for the length of `items`.
 
     Args:
-        items: _description_
+        items: STAC Items to convert to Arrow
+
+    Kwargs:
+        schema: An optional schema that describes the format of the data. Note that this must represent the geometry column as binary type.
 
     Returns:
-        _description_
+        Arrow RecordBatch with items in Arrow
     """
-    # TODO: Handle STAC items with different schemas
-    # This will fail if any of the items is missing a field since the arrays
-    # will be different lengths.
-    d = defaultdict(list)
-
+    # Preprocess GeoJSON to WKB in each STAC item
+    # Otherwise, pyarrow will try to parse coordinates into a native geometry type and
+    # if you have multiple geometry types pyarrow will error with
+    # `ArrowInvalid: cannot mix list and non-list, non-null values`
     for item in items:
-        for k, v in item.items():
-            d[k].append(v)
+        item["geometry"] = shapely.to_wkb(shapely.geometry.shape(item["geometry"]))
 
-    arrays = {k: pa.array(v) for k, v in d.items()}
-    t = pa.table(arrays)
-    return t
+    if schema is not None:
+        array = pa.array(items, type=pa.struct(schema))
+    else:
+        array = pa.array(items)
+
+    return pa.RecordBatch.from_struct_array(array)
 
 
 def _bring_properties_to_top_level(table: pa.Table) -> pa.Table:
@@ -109,7 +173,6 @@ def _convert_timestamp_columns(table: pa.Table) -> pa.Table:
     for column_name in allowed_column_names:
         try:
             column = table[column_name]
-            column.type
         except KeyError:
             continue
 
