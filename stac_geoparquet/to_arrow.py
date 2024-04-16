@@ -233,7 +233,10 @@ def _convert_bbox_to_struct(table: pa.Table, *, downcast: bool = True) -> pa.Tab
 
     Args:
         table: _description_
-        downcast: if True, will use float32 coordinates for the bounding boxes instead of float64. Float rounding is applied to ensure the float32 bounding box strictly contains the original float64 box. This is recommended when possible to minimize file size.
+        downcast: if True, will use float32 coordinates for the bounding boxes instead
+            of float64. Float rounding is applied to ensure the float32 bounding box
+            strictly contains the original float64 box. This is recommended when
+            possible to minimize file size.
 
     Returns:
         New table
