@@ -1,8 +1,9 @@
-"""Convert STAC Items in Arrow Table format to JSON Lines or """
+"""Convert STAC Items in Arrow Table format to JSON Lines or Python dicts."""
 
 import json
 from typing import Iterable, List
 
+import numpy as np
 import pyarrow as pa
 import pyarrow.compute as pc
 import shapely
@@ -45,6 +46,7 @@ def _undo_stac_table_transformations(table: pa.Table) -> pa.Table:
     """
     table = _convert_timestamp_columns_to_string(table)
     table = _lower_properties_from_top_level(table)
+    table = _convert_bbox_to_array(table)
     return table
 
 
@@ -107,3 +109,31 @@ def _lower_properties_from_top_level(table: pa.Table) -> pa.Table:
     return table.drop_columns(properties_column_names).append_column(
         "properties", pa.chunked_array(properties_array_chunks)
     )
+
+
+def _convert_bbox_to_array(table: pa.Table) -> pa.Table:
+    """Convert the struct bbox column back to a list column for writing to JSON"""
+
+    bbox_col_idx = table.schema.get_field_index("bbox")
+    bbox_col = table.column(bbox_col_idx)
+
+    new_chunks = []
+    for chunk in bbox_col.chunks:
+        assert pa.types.is_struct(chunk.type)
+        xmin = chunk.field(0).to_numpy()
+        ymin = chunk.field(1).to_numpy()
+        xmax = chunk.field(2).to_numpy()
+        ymax = chunk.field(3).to_numpy()
+        coords = np.column_stack(
+            [
+                xmin,
+                ymin,
+                xmax,
+                ymax,
+            ]
+        )
+
+        list_arr = pa.FixedSizeListArray.from_arrays(coords.flatten("C"), 4)
+        new_chunks.append(list_arr)
+
+    return table.set_column(bbox_col_idx, "bbox", new_chunks)
