@@ -137,7 +137,7 @@ def _stac_items_to_arrow(
         wkb_item = deepcopy(item)
         # Note: this mutates the existing items. Should we
         wkb_item["geometry"] = shapely.to_wkb(
-            shapely.geometry.shape(wkb_item["geometry"])
+            shapely.geometry.shape(wkb_item["geometry"]), flavor="iso"
         )
         wkb_items.append(wkb_item)
 
