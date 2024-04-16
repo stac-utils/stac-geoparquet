@@ -30,8 +30,12 @@ def parse_stac_items_to_arrow(
 
     Args:
         items: the STAC Items to convert
-        chunk_size: The chunk size to use for Arrow record batches. This only takes effect if `schema` is not None. When `schema` is None, the input will be parsed into a single contiguous record batch. Defaults to 8192.
-        schema: The schema of the input data. If provided, can improve memory use; otherwise all items need to be parsed into a single array for schema inference. Defaults to None.
+        chunk_size: The chunk size to use for Arrow record batches. This only takes
+            effect if `schema` is not None. When `schema` is None, the input will be
+            parsed into a single contiguous record batch. Defaults to 8192.
+        schema: The schema of the input data. If provided, can improve memory use;
+            otherwise all items need to be parsed into a single array for schema
+            inference. Defaults to None.
 
     Returns:
         a pyarrow Table with the STAC-GeoParquet representation of items.
@@ -114,7 +118,8 @@ def _stac_items_to_arrow(
         items: STAC Items to convert to Arrow
 
     Kwargs:
-        schema: An optional schema that describes the format of the data. Note that this must represent the geometry column as binary type.
+        schema: An optional schema that describes the format of the data. Note that this
+            must represent the geometry column as binary type.
 
     Returns:
         Arrow RecordBatch with items in Arrow
@@ -184,7 +189,8 @@ def _convert_timestamp_columns(table: pa.Table) -> pa.Table:
             )
         else:
             raise ValueError(
-                f"Inferred time column '{column_name}' was expected to be a string or timestamp data type but got {column.type}"
+                f"Inferred time column '{column_name}' was expected to be a string or"
+                f" timestamp data type but got {column.type}"
             )
 
     return table
