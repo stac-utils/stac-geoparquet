@@ -142,10 +142,9 @@ def _stac_items_to_arrow(
         wkb_items.append(wkb_item)
 
     if schema is not None:
-        array = pa.array(items, type=pa.struct(schema))
+        array = pa.array(wkb_items, type=pa.struct(schema))
     else:
-        array = pa.array(items)
-
+        array = pa.array(wkb_items)
     return pa.RecordBatch.from_struct_array(array)
 
 
