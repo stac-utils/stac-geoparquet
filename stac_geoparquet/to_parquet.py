@@ -38,7 +38,7 @@ def to_parquet(table: pa.Table, where, **kwargs):
         "primary_column": "geometry",
     }
 
-    metadata = table.schema.metadata
+    metadata = table.schema.metadata or {}
     metadata.update({b"geo": json.dumps(geo_meta).encode("utf-8")})
     table = table.replace_schema_metadata(metadata)
 
