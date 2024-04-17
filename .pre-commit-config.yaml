@@ -1,25 +1,25 @@
 repos:
   - repo: https://github.com/asottile/pyupgrade
-    rev: v2.31.0
+    rev: v3.15.2
     hooks:
       - id: pyupgrade
         args:
           - --py38-plus
-  -   repo: https://github.com/psf/black
-      rev: 22.3.0
-      hooks:
+  - repo: https://github.com/psf/black
+    rev: 24.4.0
+    hooks:
       - id: black
         language_version: python3
         exclude: versioneer.py
         args:
           - --target-version=py38
-  -   repo: https://github.com/pycqa/flake8
-      rev: 3.9.2
-      hooks:
+  - repo: https://github.com/pycqa/flake8
+    rev: 7.0.0
+    hooks:
       - id: flake8
         language_version: python3
   - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.2.0
+    rev: v1.9.0
     hooks:
       - id: mypy
         # Override default --ignore-missing-imports
@@ -34,4 +34,3 @@ repos:
           - pystac
           - azure-data-tables
           - pytest
-
