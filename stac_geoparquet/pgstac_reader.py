@@ -157,6 +157,7 @@ class CollectionConfig:
 
         db = pypgstac.db.PgstacDB(conninfo)
         with db:
+            assert db.connection is not None
             db.connection.execute("set statement_timeout = 300000;")
             # logger.debug("Reading base item")
             # TODO: proper escaping
@@ -169,7 +170,7 @@ class CollectionConfig:
             logger.debug("No records found for query %s.", query)
             return None
 
-        items = self.make_pgstac_items(records, base_item)
+        items = self.make_pgstac_items(records, base_item)  # type: ignore[arg-type]
         df = to_geodataframe(items)
         filesystem = pyarrow.fs.PyFileSystem(pyarrow.fs.FSSpecHandler(az_fs))
         df.to_parquet(output_path, index=False, filesystem=filesystem)
