@@ -46,7 +46,7 @@ class CollectionConfig:
     should_inject_dynamic_properties: bool = True
     render_config: str | None = None
 
-    def __post_init__(self):
+    def __post_init__(self) -> None:
         self._collection: pystac.Collection | None = None
 
     @property
@@ -146,8 +146,8 @@ class CollectionConfig:
         output_protocol: str,
         output_path: str,
         storage_options: dict[str, Any] | None = None,
-        rewrite=False,
-        skip_empty_partitions=False,
+        rewrite: bool = False,
+        skip_empty_partitions: bool = False,
     ) -> str | None:
         storage_options = storage_options or {}
         az_fs = fsspec.filesystem(output_protocol, **storage_options)
@@ -184,8 +184,8 @@ class CollectionConfig:
         storage_options: dict[str, Any],
         part_number: int | None = None,
         total: int | None = None,
-        rewrite=False,
-        skip_empty_partitions=False,
+        rewrite: bool = False,
+        skip_empty_partitions: bool = False,
     ) -> str | None:
         """
         Export results for a pair of endpoints.
@@ -221,8 +221,8 @@ class CollectionConfig:
         output_protocol: str,
         output_path: str,
         storage_options: dict[str, Any],
-        rewrite=False,
-        skip_empty_partitions=False,
+        rewrite: bool = False,
+        skip_empty_partitions: bool = False,
     ) -> list[str | None]:
         base_query = textwrap.dedent(
             f"""\

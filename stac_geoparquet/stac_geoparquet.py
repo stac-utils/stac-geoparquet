@@ -5,7 +5,7 @@ Generate geoparquet from a sequence of STAC items.
 from __future__ import annotations
 import collections
 
-from typing import Sequence, Any, Literal
+from typing import Sequence, Any, Literal, TypeVar
 import warnings
 
 import pystac
@@ -24,12 +24,15 @@ DTYPE_BACKEND = Literal["numpy_nullable", "pyarrow"]
 SELF_LINK_COLUMN = "self_link"
 
 
-def _fix_array(v):
+T = TypeVar("T")
+
+
+def _fix_array(v: T) -> T:
     if isinstance(v, np.ndarray):
         v = v.tolist()
 
     elif isinstance(v, dict):
-        v = {k: _fix_array(v2) for k, v2 in v.items()}
+        v = {k: _fix_array(v2) for k, v2 in v.items()}  # type: ignore[assignment]
 
     return v
 
