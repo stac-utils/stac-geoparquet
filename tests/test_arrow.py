@@ -39,7 +39,10 @@ def assert_json_value_equal(
     Raises:
         AssertionError: If the two values are not equal
     """
-    if isinstance(result, (list, tuple)) and isinstance(expected, (list, tuple)):
+    if isinstance(result, list) and isinstance(expected, list):
+        assert_sequence_equal(result, expected, key_name=key_name, precision=precision)
+
+    elif isinstance(result, tuple) and isinstance(expected, tuple):
         assert_sequence_equal(result, expected, key_name=key_name, precision=precision)
 
     elif isinstance(result, (int, float)) and isinstance(expected, (int, float)):
