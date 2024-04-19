@@ -1,4 +1,5 @@
 import json
+import math
 from pathlib import Path
 from typing import Any, Dict, Sequence, Union
 
@@ -84,6 +85,10 @@ def assert_number_equal(
     key_name: str,
 ) -> None:
     """Compare two JSON numbers"""
+    # Allow NaN equality
+    if math.isnan(result) and math.isnan(expected):
+        return
+
     assert abs(result - expected) <= precision, (
         f"Number at {key_name} not within precision. "
         f"{result=}, {expected=}, {precision=}."
