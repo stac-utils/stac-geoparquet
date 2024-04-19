@@ -22,6 +22,13 @@ def assert_json_value_equal(
 ) -> None:
     """Assert that the JSON value in `result` and `expected` are equal for our purposes.
 
+    We allow these variations between result and expected:
+
+    - We allow numbers to vary up to `precision`.
+    - We consider `key: None` and a missing key to be equivalent.
+    - We allow RFC3339 date strings with varying precision levels, as long as they
+      represent the same parsed datetime.
+
     Args:
         result: The result to assert against.
         expected: The expected item to compare against.
