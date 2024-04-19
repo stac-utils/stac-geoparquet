@@ -1,6 +1,6 @@
 import json
 
-import pystac_client
+import pystac_client  # type: ignore
 
 
 def download(collection: str):
