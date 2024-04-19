@@ -123,10 +123,10 @@ def _convert_bbox_to_array(table: pa.Table) -> pa.Table:
         assert pa.types.is_struct(chunk.type)
 
         if bbox_col.type.num_fields == 4:
-            xmin = chunk.field(0).to_numpy()
-            ymin = chunk.field(1).to_numpy()
-            xmax = chunk.field(2).to_numpy()
-            ymax = chunk.field(3).to_numpy()
+            xmin = chunk.field("xmin").to_numpy()
+            ymin = chunk.field("ymin").to_numpy()
+            xmax = chunk.field("xmax").to_numpy()
+            ymax = chunk.field("ymax").to_numpy()
             coords = np.column_stack(
                 [
                     xmin,
@@ -139,12 +139,12 @@ def _convert_bbox_to_array(table: pa.Table) -> pa.Table:
             list_arr = pa.FixedSizeListArray.from_arrays(coords.flatten("C"), 4)
 
         elif bbox_col.type.num_fields == 6:
-            xmin = chunk.field(0).to_numpy()
-            ymin = chunk.field(1).to_numpy()
-            zmin = chunk.field(2).to_numpy()
-            xmax = chunk.field(3).to_numpy()
-            ymax = chunk.field(4).to_numpy()
-            zmax = chunk.field(5).to_numpy()
+            xmin = chunk.field("xmin").to_numpy()
+            ymin = chunk.field("ymin").to_numpy()
+            zmin = chunk.field("zmin").to_numpy()
+            xmax = chunk.field("xmax").to_numpy()
+            ymax = chunk.field("ymax").to_numpy()
+            zmax = chunk.field("zmax").to_numpy()
             coords = np.column_stack(
                 [
                     xmin,
