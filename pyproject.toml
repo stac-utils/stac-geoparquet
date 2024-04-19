@@ -41,6 +41,9 @@ test = [
     "pre-commit",
     "stac-geoparquet[pgstac]",
     "stac-geoparquet[pc]",
+    "types-python-dateutil",
+    "types-requests",
+    "mypy",
 ]
 
 
@@ -72,3 +75,7 @@ module = [
 ]
 
 ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = "stac_geoparquet.*"
+disallow_untyped_defs = true

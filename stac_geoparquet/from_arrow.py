@@ -1,7 +1,8 @@
 """Convert STAC Items in Arrow Table format to JSON Lines or Python dicts."""
 
+import os
 import json
-from typing import Iterable, List
+from typing import Iterable, List, Union
 
 import numpy as np
 import pyarrow as pa
@@ -9,7 +10,7 @@ import pyarrow.compute as pc
 import shapely
 
 
-def stac_table_to_ndjson(table: pa.Table, dest: str):
+def stac_table_to_ndjson(table: pa.Table, dest: Union[str, os.PathLike[str]]) -> None:
     """Write a STAC Table to a newline-delimited JSON file."""
     with open(dest, "w") as f:
         for item_dict in stac_table_to_items(table):

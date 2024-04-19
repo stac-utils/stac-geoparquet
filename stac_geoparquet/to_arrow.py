@@ -4,7 +4,7 @@ import json
 from copy import deepcopy
 from datetime import datetime
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Sequence, Union
+from typing import Any, Dict, List, Optional, Sequence, Union, Generator
 
 import ciso8601
 import numpy as np
@@ -14,7 +14,9 @@ import shapely
 import shapely.geometry
 
 
-def _chunks(lst: Sequence[Dict[str, Any]], n: int):
+def _chunks(
+    lst: Sequence[Dict[str, Any]], n: int
+) -> Generator[Sequence[Dict[str, Any]], None, None]:
     """Yield successive n-sized chunks from lst."""
     for i in range(0, len(lst), n):
         yield lst[i : i + n]
@@ -70,7 +72,7 @@ def parse_stac_ndjson_to_arrow(
     chunk_size: int = 8192,
     schema: Optional[pa.Schema] = None,
     downcast: bool = True,
-):
+) -> pa.Table:
     # Define outside of if/else to make mypy happy
     items: List[dict] = []
 
