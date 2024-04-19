@@ -7,7 +7,7 @@ from pyproj import CRS
 WGS84_CRS_JSON = CRS.from_epsg(4326).to_json_dict()
 
 
-def to_parquet(table: pa.Table, where, **kwargs):
+def to_parquet(table: pa.Table, where, **kwargs) -> None:
     """Write an Arrow table with STAC data to GeoParquet
 
     This writes metadata compliant with GeoParquet 1.1.
