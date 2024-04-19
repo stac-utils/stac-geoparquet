@@ -69,6 +69,7 @@ module = [
     "pandas.*",
     "pyarrow.*",
     "pypgstac.*",
+    "pyproj.*",
     "rich.*",
     "shapely.*",
     "tqdm.*",
