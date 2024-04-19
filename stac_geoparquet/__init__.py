@@ -1,4 +1,5 @@
 """stac-geoparquet"""
+
 from .stac_geoparquet import to_geodataframe, to_dict, to_item_collection
 from ._version import __version__
 
