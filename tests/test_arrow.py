@@ -2,6 +2,7 @@ import json
 from pathlib import Path
 from typing import Any, Dict, Sequence, Union
 
+import pytest
 from ciso8601 import parse_rfc3339
 
 from stac_geoparquet.from_arrow import stac_table_to_items
@@ -17,7 +18,7 @@ def assert_json_value_equal(
     expected: JsonValue,
     *,
     key_name: str = "root",
-    precision: float = 0.000001,
+    precision: float = 0.0001,
 ) -> None:
     """Assert that the JSON value in `result` and `expected` are equal for our purposes.
 
@@ -165,23 +166,38 @@ def assert_dict_equal(
         )
 
 
-def test_naip_round_trip():
-    with open(HERE / "data" / "naip-pc.json") as f:
+TEST_COLLECTIONS = [
+    "3dep-lidar-copc",
+    "3dep-lidar-dsm",
+    "cop-dem-glo-30",
+    "io-lulc-annual-v02",
+    "io-lulc",
+    "landsat-c2-l1",
+    "landsat-c2-l2",
+    "naip",
+    "planet-nicfi-analytic",
+    "sentinel-1-rtc",
+    "sentinel-2-l2a",
+    "us-census",
+]
+
+
+@pytest.mark.parametrize(
+    "collection_id",
+    TEST_COLLECTIONS,
+)
+def test_round_trip(collection_id: str):
+    with open(HERE / "data" / f"{collection_id}-pc.json") as f:
         items = json.load(f)
 
-    table = parse_stac_items_to_arrow(items)
+    table = parse_stac_items_to_arrow(items, downcast=True)
     items_result = list(stac_table_to_items(table))
 
     for result, expected in zip(items_result, items):
-        assert_json_value_equal(result, expected)
+        assert_json_value_equal(result, expected, precision=0.001)
 
-
-def test_3dep_lidar_round_trip():
-    with open(HERE / "data" / "3dep-lidar-dsm-pc.json") as f:
-        items = json.load(f)
-
-    table = parse_stac_items_to_arrow(items)
+    table = parse_stac_items_to_arrow(items, downcast=False)
     items_result = list(stac_table_to_items(table))
 
     for result, expected in zip(items_result, items):
-        assert_json_value_equal(result, expected)
+        assert_json_value_equal(result, expected, precision=0)

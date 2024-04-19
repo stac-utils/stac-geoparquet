@@ -1,0 +1,2018 @@
+[
+  {
+    "id": "60W-2020",
+    "bbox": [
+      -180.0,
+      62.09090772,
+      180.0,
+      72.09958113
+    ],
+    "type": "Feature",
+    "links": [
+      {
+        "rel": "collection",
+        "type": "application/json",
+        "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc"
+      },
+      {
+        "rel": "parent",
+        "type": "application/json",
+        "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc"
+      },
+      {
+        "rel": "root",
+        "type": "application/json",
+        "href": "https://planetarycomputer.microsoft.com/api/stac/v1/"
+      },
+      {
+        "rel": "self",
+        "type": "application/geo+json",
+        "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc/items/60W-2020"
+      },
+      {
+        "rel": "preview",
+        "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/map?collection=io-lulc&item=60W-2020",
+        "title": "Map of item",
+        "type": "text/html"
+      }
+    ],
+    "assets": {
+      "data": {
+        "href": "https://ai4edataeuwest.blob.core.windows.net/io-lulc/io-lulc-model-001-v01-composite-v03-supercell-v02-clip-v01/60W_20200101-20210101.tif",
+        "file:size": 126064760,
+        "raster:bands": [
+          {
+            "nodata": 0,
+            "spatial_resolution": 10
+          }
+        ],
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "data"
+        ],
+        "file:values": [
+          {
+            "values": [
+              0
+            ],
+            "summary": "No Data"
+          },
+          {
+            "values": [
+              1
+            ],
+            "summary": "Water"
+          },
+          {
+            "values": [
+              2
+            ],
+            "summary": "Trees"
+          },
+          {
+            "values": [
+              3
+            ],
+            "summary": "Grass"
+          },
+          {
+            "values": [
+              4
+            ],
+            "summary": "Flooded vegetation"
+          },
+          {
+            "values": [
+              5
+            ],
+            "summary": "Crops"
+          },
+          {
+            "values": [
+              6
+            ],
+            "summary": "Scrub/shrub"
+          },
+          {
+            "values": [
+              7
+            ],
+            "summary": "Built area"
+          },
+          {
+            "values": [
+              8
+            ],
+            "summary": "Bare ground"
+          },
+          {
+            "values": [
+              9
+            ],
+            "summary": "Snow/ice"
+          },
+          {
+            "values": [
+              10
+            ],
+            "summary": "Clouds"
+          }
+        ]
+      },
+      "tilejson": {
+        "title": "TileJSON with default rendering",
+        "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/tilejson.json?collection=io-lulc&item=60W-2020&assets=data&colormap_name=io-lulc&format=png",
+        "type": "application/json",
+        "roles": [
+          "tiles"
+        ]
+      },
+      "rendered_preview": {
+        "title": "Rendered preview",
+        "rel": "preview",
+        "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/preview.png?collection=io-lulc&item=60W-2020&assets=data&colormap_name=io-lulc&format=png",
+        "roles": [
+          "overview"
+        ],
+        "type": "image/png"
+      }
+    },
+    "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+        [
+          [
+            [
+              180,
+              63.0936231
+            ],
+            [
+              180,
+              63.0058371
+            ],
+            [
+              180,
+              63.0057861
+            ],
+            [
+              180,
+              62.1076299
+            ],
+            [
+              180,
+              62.1074598
+            ],
+            [
+              179.9959083,
+              62.1075476
+            ],
+            [
+              179.1685297,
+              62.0909077
+            ],
+            [
+              179.1640064,
+              62.1254104
+            ],
+            [
+              178.9176451,
+              62.1307003
+            ],
+            [
+              178.9185406,
+              62.1443386
+            ],
+            [
+              177.0838684,
+              62.1581601
+            ],
+            [
+              175.1654329,
+              62.1460307
+            ],
+            [
+              174.9949354,
+              62.1425894
+            ],
+            [
+              174.9892843,
+              62.1011804
+            ],
+            [
+              173.9963672,
+              62.1224345
+            ],
+            [
+              173.1789084,
+              62.1059351
+            ],
+            [
+              173.1744516,
+              62.1400282
+            ],
+            [
+              173.0027117,
+              62.1437045
+            ],
+            [
+              171.0118991,
+              62.1587023
+            ],
+            [
+              171.0122649,
+              63.0564608
+            ],
+            [
+              171.0122639,
+              63.0564608
+            ],
+            [
+              171.0122781,
+              63.08896
+            ],
+            [
+              171.0122923,
+              63.1237746
+            ],
+            [
+              171.0122933,
+              63.1237746
+            ],
+            [
+              171.0126559,
+              63.9535662
+            ],
+            [
+              171.0126548,
+              63.9535662
+            ],
+            [
+              171.0126701,
+              63.9862807
+            ],
+            [
+              171.0126855,
+              64.02141
+            ],
+            [
+              171.0126866,
+              64.02141
+            ],
+            [
+              171.0130761,
+              64.8510982
+            ],
+            [
+              171.0130749,
+              64.8510982
+            ],
+            [
+              171.0130913,
+              64.8835052
+            ],
+            [
+              171.0131077,
+              64.9183952
+            ],
+            [
+              171.013109,
+              64.9183952
+            ],
+            [
+              171.0135287,
+              65.7485209
+            ],
+            [
+              171.0135274,
+              65.7485209
+            ],
+            [
+              171.013545,
+              65.7808775
+            ],
+            [
+              171.0135627,
+              65.8158098
+            ],
+            [
+              171.0135641,
+              65.8158098
+            ],
+            [
+              171.0140169,
+              66.6452991
+            ],
+            [
+              171.0140155,
+              66.6452991
+            ],
+            [
+              171.0140347,
+              66.6778607
+            ],
+            [
+              171.014054,
+              66.7131184
+            ],
+            [
+              171.0140556,
+              66.7131184
+            ],
+            [
+              171.0145458,
+              67.5425123
+            ],
+            [
+              171.0145441,
+              67.5425123
+            ],
+            [
+              171.0145648,
+              67.5747575
+            ],
+            [
+              171.0145855,
+              67.6097858
+            ],
+            [
+              171.0145873,
+              67.6097857
+            ],
+            [
+              171.01512,
+              68.4396253
+            ],
+            [
+              171.0151181,
+              68.4396254
+            ],
+            [
+              171.0151406,
+              68.4718086
+            ],
+            [
+              171.0151631,
+              68.5068914
+            ],
+            [
+              171.0151652,
+              68.5068914
+            ],
+            [
+              171.015744,
+              69.3347086
+            ],
+            [
+              168.4775897,
+              69.3177431
+            ],
+            [
+              168.3639664,
+              70.2457737
+            ],
+            [
+              168.2388824,
+              71.1767737
+            ],
+            [
+              171.0172336,
+              71.1955589
+            ],
+            [
+              171.0172349,
+              71.1971035
+            ],
+            [
+              171.1214725,
+              71.1962637
+            ],
+            [
+              171.2257207,
+              71.1969686
+            ],
+            [
+              171.2257037,
+              71.1954239
+            ],
+            [
+              174.0034915,
+              71.173044
+            ],
+            [
+              173.8723861,
+              70.2759172
+            ],
+            [
+              174.3616412,
+              70.2647652
+            ],
+            [
+              174.3596606,
+              70.2809418
+            ],
+            [
+              176.9994683,
+              70.2986945
+            ],
+            [
+              176.9994451,
+              71.156821
+            ],
+            [
+              176.999417,
+              72.0995811
+            ],
+            [
+              180,
+              72.0750579
+            ],
+            [
+              180,
+              72.0738701
+            ],
+            [
+              180,
+              71.1784448
+            ],
+            [
+              180,
+              71.1754686
+            ],
+            [
+              180,
+              71.0907693
+            ],
+            [
+              180,
+              71.0876286
+            ],
+            [
+              180,
+              70.8418254
+            ],
+            [
+              180,
+              70.2771719
+            ],
+            [
+              180,
+              70.1893407
+            ],
+            [
+              180,
+              69.3794923
+            ],
+            [
+              180,
+              69.2911287
+            ],
+            [
+              180,
+              68.4813295
+            ],
+            [
+              180,
+              68.393509
+            ],
+            [
+              180,
+              67.4953847
+            ],
+            [
+              179.5317054,
+              67.4855428
+            ],
+            [
+              179.4481263,
+              66.6741043
+            ],
+            [
+              180,
+              66.6856338
+            ],
+            [
+              180,
+              65.7875304
+            ],
+            [
+              180,
+              65.6997132
+            ],
+            [
+              180,
+              64.8894184
+            ],
+            [
+              180,
+              64.8015997
+            ],
+            [
+              180,
+              63.991917
+            ],
+            [
+              180,
+              63.9918248
+            ],
+            [
+              180,
+              63.9034647
+            ],
+            [
+              180,
+              63.0936619
+            ],
+            [
+              180,
+              63.0936231
+            ]
+          ]
+        ],
+        [
+          [
+            [
+              -178.9069634,
+              64.9119354
+            ],
+            [
+              -178.9067247,
+              64.9119403
+            ],
+            [
+              -178.9036209,
+              64.8664529
+            ],
+            [
+              -178.9005182,
+              64.8242332
+            ],
+            [
+              -178.9007398,
+              64.8242287
+            ],
+            [
+              -178.8395302,
+              63.927176
+            ],
+            [
+              -180,
+              63.9034647
+            ],
+            [
+              -180,
+              64.8015997
+            ],
+            [
+              -180,
+              64.8894184
+            ],
+            [
+              -180,
+              65.6997132
+            ],
+            [
+              -180,
+              65.7875304
+            ],
+            [
+              -180,
+              66.6856338
+            ],
+            [
+              -179.0443004,
+              66.7055998
+            ],
+            [
+              -178.9731432,
+              65.808836
+            ],
+            [
+              -178.9728768,
+              65.8088416
+            ],
+            [
+              -178.9695299,
+              65.7633001
+            ],
+            [
+              -178.9661852,
+              65.7211484
+            ],
+            [
+              -178.9664318,
+              65.7211433
+            ],
+            [
+              -178.9069634,
+              64.9119354
+            ]
+          ]
+        ],
+        [
+          [
+            [
+              -179.2059172,
+              68.498135
+            ],
+            [
+              -179.2055369,
+              68.498143
+            ],
+            [
+              -179.201271,
+              68.4524107
+            ],
+            [
+              -179.1970115,
+              68.4104926
+            ],
+            [
+              -179.1973602,
+              68.4104852
+            ],
+            [
+              -179.1137372,
+              67.5140109
+            ],
+            [
+              -180,
+              67.4953847
+            ],
+            [
+              -180,
+              68.393509
+            ],
+            [
+              -180,
+              68.4813295
+            ],
+            [
+              -180,
+              69.3794923
+            ],
+            [
+              -179.2969963,
+              69.3944609
+            ],
+            [
+              -179.2059172,
+              68.498135
+            ]
+          ]
+        ],
+        [
+          [
+            [
+              -179.5071918,
+              71.1860816
+            ],
+            [
+              -179.5066219,
+              71.1860939
+            ],
+            [
+              -179.5010173,
+              71.1401126
+            ],
+            [
+              -179.4954266,
+              71.0984892
+            ],
+            [
+              -179.4959426,
+              71.0984781
+            ],
+            [
+              -179.3867299,
+              70.2024674
+            ],
+            [
+              -180,
+              70.1893407
+            ],
+            [
+              -180,
+              70.8418254
+            ],
+            [
+              -180,
+              71.0876286
+            ],
+            [
+              -180,
+              71.0907693
+            ],
+            [
+              -180,
+              71.1754686
+            ],
+            [
+              -180,
+              71.1784448
+            ],
+            [
+              -180,
+              72.0738701
+            ],
+            [
+              -180,
+              72.0750579
+            ],
+            [
+              -179.9601734,
+              72.0747324
+            ],
+            [
+              -179.6275206,
+              72.0819347
+            ],
+            [
+              -179.5071918,
+              71.1860816
+            ]
+          ]
+        ]
+      ]
+    },
+    "collection": "io-lulc",
+    "properties": {
+      "datetime": "2020-06-01T00:00:00Z",
+      "proj:bbox": [
+        165009.12291184242,
+        6887083.263884108,
+        683229.1229118424,
+        7957743.263884108
+      ],
+      "proj:epsg": 32660,
+      "io:tile_id": "60W",
+      "label:type": "raster",
+      "proj:shape": [
+        107066,
+        51822
+      ],
+      "end_datetime": "2021-01-01T00:00:00Z",
+      "label:classes": [
+        {
+          "name": "",
+          "classes": [
+            "nodata",
+            "water",
+            "trees",
+            "grass",
+            "flooded veg",
+            "crops",
+            "scrub",
+            "built area",
+            "bare",
+            "snow/ice",
+            "clouds"
+          ]
+        }
+      ],
+      "proj:transform": [
+        10.0,
+        0.0,
+        165009.12291184242,
+        0.0,
+        -10.0,
+        7957743.263884108
+      ],
+      "start_datetime": "2020-01-01T00:00:00Z",
+      "io:supercell_id": "60W",
+      "label:properties": null,
+      "label:description": "lulc"
+    },
+    "stac_extensions": [
+      "https://stac-extensions.github.io/projection/v1.0.0/schema.json",
+      "https://stac-extensions.github.io/label/v1.0.0/schema.json",
+      "https://stac-extensions.github.io/file/v2.0.0/schema.json",
+      "https://stac-extensions.github.io/raster/v1.0.0/schema.json"
+    ],
+    "stac_version": "1.0.0"
+  },
+  {
+    "id": "60V-2020",
+    "bbox": [
+      -180.0,
+      59.45132955,
+      180.0,
+      65.81580983
+    ],
+    "type": "Feature",
+    "links": [
+      {
+        "rel": "collection",
+        "type": "application/json",
+        "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc"
+      },
+      {
+        "rel": "parent",
+        "type": "application/json",
+        "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc"
+      },
+      {
+        "rel": "root",
+        "type": "application/json",
+        "href": "https://planetarycomputer.microsoft.com/api/stac/v1/"
+      },
+      {
+        "rel": "self",
+        "type": "application/geo+json",
+        "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc/items/60V-2020"
+      },
+      {
+        "rel": "preview",
+        "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/map?collection=io-lulc&item=60V-2020",
+        "title": "Map of item",
+        "type": "text/html"
+      }
+    ],
+    "assets": {
+      "data": {
+        "href": "https://ai4edataeuwest.blob.core.windows.net/io-lulc/io-lulc-model-001-v01-composite-v03-supercell-v02-clip-v01/60V_20200101-20210101.tif",
+        "file:size": 57606025,
+        "raster:bands": [
+          {
+            "nodata": 0,
+            "spatial_resolution": 10
+          }
+        ],
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "data"
+        ],
+        "file:values": [
+          {
+            "values": [
+              0
+            ],
+            "summary": "No Data"
+          },
+          {
+            "values": [
+              1
+            ],
+            "summary": "Water"
+          },
+          {
+            "values": [
+              2
+            ],
+            "summary": "Trees"
+          },
+          {
+            "values": [
+              3
+            ],
+            "summary": "Grass"
+          },
+          {
+            "values": [
+              4
+            ],
+            "summary": "Flooded vegetation"
+          },
+          {
+            "values": [
+              5
+            ],
+            "summary": "Crops"
+          },
+          {
+            "values": [
+              6
+            ],
+            "summary": "Scrub/shrub"
+          },
+          {
+            "values": [
+              7
+            ],
+            "summary": "Built area"
+          },
+          {
+            "values": [
+              8
+            ],
+            "summary": "Bare ground"
+          },
+          {
+            "values": [
+              9
+            ],
+            "summary": "Snow/ice"
+          },
+          {
+            "values": [
+              10
+            ],
+            "summary": "Clouds"
+          }
+        ]
+      },
+      "tilejson": {
+        "title": "TileJSON with default rendering",
+        "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/tilejson.json?collection=io-lulc&item=60V-2020&assets=data&colormap_name=io-lulc&format=png",
+        "type": "application/json",
+        "roles": [
+          "tiles"
+        ]
+      },
+      "rendered_preview": {
+        "title": "Rendered preview",
+        "rel": "preview",
+        "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/preview.png?collection=io-lulc&item=60V-2020&assets=data&colormap_name=io-lulc&format=png",
+        "roles": [
+          "overview"
+        ],
+        "type": "image/png"
+      }
+    },
+    "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+        [
+          [
+            [
+              172.9597058,
+              60.3480098
+            ],
+            [
+              172.9074461,
+              59.4513295
+            ],
+            [
+              171.0109395,
+              59.4652519
+            ],
+            [
+              171.0112398,
+              60.3633695
+            ],
+            [
+              171.011239,
+              60.3633695
+            ],
+            [
+              171.0112507,
+              60.395989
+            ],
+            [
+              171.0112623,
+              60.4307099
+            ],
+            [
+              171.011263,
+              60.4307099
+            ],
+            [
+              171.0115589,
+              61.2608264
+            ],
+            [
+              171.0115582,
+              61.2608264
+            ],
+            [
+              171.0115707,
+              61.2936688
+            ],
+            [
+              171.0115831,
+              61.3286964
+            ],
+            [
+              171.011584,
+              61.3286964
+            ],
+            [
+              171.0119,
+              62.1587023
+            ],
+            [
+              171.0118991,
+              62.1587023
+            ],
+            [
+              171.0119124,
+              62.1912437
+            ],
+            [
+              171.0119256,
+              62.2260247
+            ],
+            [
+              171.0119266,
+              62.2260247
+            ],
+            [
+              171.0122649,
+              63.0564608
+            ],
+            [
+              171.0122639,
+              63.0564608
+            ],
+            [
+              171.0122781,
+              63.08896
+            ],
+            [
+              171.0122923,
+              63.1237746
+            ],
+            [
+              171.0122933,
+              63.1237746
+            ],
+            [
+              171.0126559,
+              63.9535662
+            ],
+            [
+              171.0126548,
+              63.9535662
+            ],
+            [
+              171.0126701,
+              63.9862807
+            ],
+            [
+              171.0126855,
+              64.02141
+            ],
+            [
+              171.0126866,
+              64.02141
+            ],
+            [
+              171.0130761,
+              64.8510982
+            ],
+            [
+              171.0130749,
+              64.8510982
+            ],
+            [
+              171.0130913,
+              64.8835052
+            ],
+            [
+              171.0131077,
+              64.9183952
+            ],
+            [
+              171.013109,
+              64.9183952
+            ],
+            [
+              171.0135627,
+              65.8158098
+            ],
+            [
+              173.2004417,
+              65.7988215
+            ],
+            [
+              173.2005378,
+              65.7999924
+            ],
+            [
+              173.2824015,
+              65.7981848
+            ],
+            [
+              173.364364,
+              65.7975481
+            ],
+            [
+              173.3642608,
+              65.7963774
+            ],
+            [
+              174.8294964,
+              65.7640242
+            ],
+            [
+              174.8265514,
+              65.8003797
+            ],
+            [
+              177.0135621,
+              65.8146378
+            ],
+            [
+              177.0135627,
+              65.8158098
+            ],
+            [
+              177.0955927,
+              65.8151726
+            ],
+            [
+              177.1776269,
+              65.8157074
+            ],
+            [
+              177.1776191,
+              65.8145354
+            ],
+            [
+              179.364364,
+              65.7975481
+            ],
+            [
+              179.3623154,
+              65.7742995
+            ],
+            [
+              180,
+              65.7875304
+            ],
+            [
+              180,
+              64.8894184
+            ],
+            [
+              180,
+              64.8015997
+            ],
+            [
+              180,
+              63.991917
+            ],
+            [
+              180,
+              63.9918248
+            ],
+            [
+              180,
+              63.9034647
+            ],
+            [
+              180,
+              63.0936619
+            ],
+            [
+              180,
+              63.0936231
+            ],
+            [
+              180,
+              63.0058371
+            ],
+            [
+              180,
+              63.0057861
+            ],
+            [
+              180,
+              62.1954591
+            ],
+            [
+              180,
+              62.1953001
+            ],
+            [
+              180,
+              62.1076299
+            ],
+            [
+              180,
+              62.1074598
+            ],
+            [
+              180,
+              61.2093738
+            ],
+            [
+              180,
+              61.2090943
+            ],
+            [
+              179.9932209,
+              61.2092386
+            ],
+            [
+              179.2779445,
+              61.1949732
+            ],
+            [
+              179.274321,
+              61.2245462
+            ],
+            [
+              178.8627658,
+              61.2333094
+            ],
+            [
+              178.8636052,
+              61.2469895
+            ],
+            [
+              177.0814652,
+              61.2603041
+            ],
+            [
+              175.2882857,
+              61.2490605
+            ],
+            [
+              175.3355838,
+              60.3529596
+            ],
+            [
+              174.77244,
+              60.3417852
+            ],
+            [
+              174.768637,
+              60.3099431
+            ],
+            [
+              173.9916904,
+              60.326293
+            ],
+            [
+              173.3903049,
+              60.3143598
+            ],
+            [
+              173.387485,
+              60.3390077
+            ],
+            [
+              172.9597058,
+              60.3480098
+            ]
+          ]
+        ],
+        [
+          [
+            [
+              -178.9069634,
+              64.9119354
+            ],
+            [
+              -178.9067247,
+              64.9119403
+            ],
+            [
+              -178.9036209,
+              64.8664529
+            ],
+            [
+              -178.9005182,
+              64.8242332
+            ],
+            [
+              -178.9007398,
+              64.8242287
+            ],
+            [
+              -178.8395302,
+              63.927176
+            ],
+            [
+              -180,
+              63.9034647
+            ],
+            [
+              -180,
+              64.8015997
+            ],
+            [
+              -180,
+              64.8894184
+            ],
+            [
+              -180,
+              65.7875304
+            ],
+            [
+              -178.9728768,
+              65.8088416
+            ],
+            [
+              -178.9069634,
+              64.9119354
+            ]
+          ]
+        ]
+      ]
+    },
+    "collection": "io-lulc",
+    "properties": {
+      "datetime": "2020-06-01T00:00:00Z",
+      "proj:bbox": [
+        170362.52736796637,
+        6711531.790395261,
+        676942.5273679664,
+        7312421.790395261
+      ],
+      "proj:epsg": 32660,
+      "io:tile_id": "60V",
+      "label:type": "raster",
+      "proj:shape": [
+        60089,
+        50658
+      ],
+      "end_datetime": "2021-01-01T00:00:00Z",
+      "label:classes": [
+        {
+          "name": "",
+          "classes": [
+            "nodata",
+            "water",
+            "trees",
+            "grass",
+            "flooded veg",
+            "crops",
+            "scrub",
+            "built area",
+            "bare",
+            "snow/ice",
+            "clouds"
+          ]
+        }
+      ],
+      "proj:transform": [
+        10.0,
+        0.0,
+        170362.52736796637,
+        0.0,
+        -10.0,
+        7312421.790395261
+      ],
+      "start_datetime": "2020-01-01T00:00:00Z",
+      "io:supercell_id": "60V",
+      "label:properties": null,
+      "label:description": "lulc"
+    },
+    "stac_extensions": [
+      "https://stac-extensions.github.io/projection/v1.0.0/schema.json",
+      "https://stac-extensions.github.io/label/v1.0.0/schema.json",
+      "https://stac-extensions.github.io/file/v2.0.0/schema.json",
+      "https://stac-extensions.github.io/raster/v1.0.0/schema.json"
+    ],
+    "stac_version": "1.0.0"
+  },
+  {
+    "id": "60U-2020",
+    "bbox": [
+      171.0090875,
+      50.46857177,
+      178.6201665,
+      54.1423516
+    ],
+    "type": "Feature",
+    "links": [
+      {
+        "rel": "collection",
+        "type": "application/json",
+        "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc"
+      },
+      {
+        "rel": "parent",
+        "type": "application/json",
+        "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc"
+      },
+      {
+        "rel": "root",
+        "type": "application/json",
+        "href": "https://planetarycomputer.microsoft.com/api/stac/v1/"
+      },
+      {
+        "rel": "self",
+        "type": "application/geo+json",
+        "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc/items/60U-2020"
+      },
+      {
+        "rel": "preview",
+        "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/map?collection=io-lulc&item=60U-2020",
+        "title": "Map of item",
+        "type": "text/html"
+      }
+    ],
+    "assets": {
+      "data": {
+        "href": "https://ai4edataeuwest.blob.core.windows.net/io-lulc/io-lulc-model-001-v01-composite-v03-supercell-v02-clip-v01/60U_20200101-20210101.tif",
+        "file:size": 3200415,
+        "raster:bands": [
+          {
+            "nodata": 0,
+            "spatial_resolution": 10
+          }
+        ],
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "data"
+        ],
+        "file:values": [
+          {
+            "values": [
+              0
+            ],
+            "summary": "No Data"
+          },
+          {
+            "values": [
+              1
+            ],
+            "summary": "Water"
+          },
+          {
+            "values": [
+              2
+            ],
+            "summary": "Trees"
+          },
+          {
+            "values": [
+              3
+            ],
+            "summary": "Grass"
+          },
+          {
+            "values": [
+              4
+            ],
+            "summary": "Flooded vegetation"
+          },
+          {
+            "values": [
+              5
+            ],
+            "summary": "Crops"
+          },
+          {
+            "values": [
+              6
+            ],
+            "summary": "Scrub/shrub"
+          },
+          {
+            "values": [
+              7
+            ],
+            "summary": "Built area"
+          },
+          {
+            "values": [
+              8
+            ],
+            "summary": "Bare ground"
+          },
+          {
+            "values": [
+              9
+            ],
+            "summary": "Snow/ice"
+          },
+          {
+            "values": [
+              10
+            ],
+            "summary": "Clouds"
+          }
+        ]
+      },
+      "tilejson": {
+        "title": "TileJSON with default rendering",
+        "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/tilejson.json?collection=io-lulc&item=60U-2020&assets=data&colormap_name=io-lulc&format=png",
+        "type": "application/json",
+        "roles": [
+          "tiles"
+        ]
+      },
+      "rendered_preview": {
+        "title": "Rendered preview",
+        "rel": "preview",
+        "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/preview.png?collection=io-lulc&item=60U-2020&assets=data&colormap_name=io-lulc&format=png",
+        "roles": [
+          "overview"
+        ],
+        "type": "image/png"
+      }
+    },
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [
+            178.5546209,
+            51.4006011
+          ],
+          [
+            178.5238168,
+            50.4685718
+          ],
+          [
+            177.0087382,
+            50.4785471
+          ],
+          [
+            177.0089085,
+            51.3773274
+          ],
+          [
+            175.6263235,
+            51.3695907
+          ],
+          [
+            174.1374672,
+            51.3430064
+          ],
+          [
+            174.0801884,
+            52.2362304
+          ],
+          [
+            174.0487866,
+            52.2372225
+          ],
+          [
+            173.9887079,
+            51.3398526
+          ],
+          [
+            172.4457728,
+            51.3690685
+          ],
+          [
+            172.4748775,
+            52.2673973
+          ],
+          [
+            171.0090875,
+            52.2772903
+          ],
+          [
+            171.0092766,
+            53.1759154
+          ],
+          [
+            171.0092763,
+            53.1759154
+          ],
+          [
+            171.0092836,
+            53.2090495
+          ],
+          [
+            171.0092909,
+            53.2438731
+          ],
+          [
+            171.0092914,
+            53.2438731
+          ],
+          [
+            171.0094909,
+            54.1423516
+          ],
+          [
+            172.5402542,
+            54.1317688
+          ],
+          [
+            172.5402805,
+            54.1324983
+          ],
+          [
+            172.5976425,
+            54.131372
+          ],
+          [
+            172.6550158,
+            54.1309754
+          ],
+          [
+            172.6549875,
+            54.130246
+          ],
+          [
+            174.183776,
+            54.1002274
+          ],
+          [
+            174.1173598,
+            53.2083517
+          ],
+          [
+            175.5107507,
+            53.2338587
+          ],
+          [
+            175.5107267,
+            53.2345699
+          ],
+          [
+            175.5673464,
+            53.2348948
+          ],
+          [
+            175.6239581,
+            53.2359311
+          ],
+          [
+            175.6239803,
+            53.2352196
+          ],
+          [
+            177.0092908,
+            53.2431666
+          ],
+          [
+            177.0092909,
+            53.2438731
+          ],
+          [
+            177.0654859,
+            53.243489
+          ],
+          [
+            177.1216813,
+            53.2438114
+          ],
+          [
+            177.1216794,
+            53.2431049
+          ],
+          [
+            178.6201665,
+            53.2328624
+          ],
+          [
+            178.5859145,
+            52.2995413
+          ],
+          [
+            178.5546209,
+            51.4006011
+          ]
+        ]
+      ]
+    },
+    "collection": "io-lulc",
+    "properties": {
+      "datetime": "2020-06-01T00:00:00Z",
+      "proj:bbox": [
+        186554.85147020232,
+        5712384.68704876,
+        608384.8514702023,
+        5892994.68704876
+      ],
+      "proj:epsg": 32660,
+      "io:tile_id": "60U",
+      "label:type": "raster",
+      "proj:shape": [
+        18061,
+        42183
+      ],
+      "end_datetime": "2021-01-01T00:00:00Z",
+      "label:classes": [
+        {
+          "name": "",
+          "classes": [
+            "nodata",
+            "water",
+            "trees",
+            "grass",
+            "flooded veg",
+            "crops",
+            "scrub",
+            "built area",
+            "bare",
+            "snow/ice",
+            "clouds"
+          ]
+        }
+      ],
+      "proj:transform": [
+        10.0,
+        0.0,
+        186554.85147020232,
+        0.0,
+        -10.0,
+        5892994.68704876
+      ],
+      "start_datetime": "2020-01-01T00:00:00Z",
+      "io:supercell_id": "60U",
+      "label:properties": null,
+      "label:description": "lulc"
+    },
+    "stac_extensions": [
+      "https://stac-extensions.github.io/projection/v1.0.0/schema.json",
+      "https://stac-extensions.github.io/label/v1.0.0/schema.json",
+      "https://stac-extensions.github.io/file/v2.0.0/schema.json",
+      "https://stac-extensions.github.io/raster/v1.0.0/schema.json"
+    ],
+    "stac_version": "1.0.0"
+  },
+  {
+    "id": "60N-2020",
+    "bbox": [
+      172.80244219,
+      -0.97811055,
+      175.27606454,
+      1.80312947
+    ],
+    "type": "Feature",
+    "links": [
+      {
+        "rel": "collection",
+        "type": "application/json",
+        "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc"
+      },
+      {
+        "rel": "parent",
+        "type": "application/json",
+        "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc"
+      },
+      {
+        "rel": "root",
+        "type": "application/json",
+        "href": "https://planetarycomputer.microsoft.com/api/stac/v1/"
+      },
+      {
+        "rel": "self",
+        "type": "application/geo+json",
+        "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc/items/60N-2020"
+      },
+      {
+        "rel": "preview",
+        "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/map?collection=io-lulc&item=60N-2020",
+        "title": "Map of item",
+        "type": "text/html"
+      }
+    ],
+    "assets": {
+      "data": {
+        "href": "https://ai4edataeuwest.blob.core.windows.net/io-lulc/io-lulc-model-001-v01-composite-v03-supercell-v02-clip-v01/60N_20200101-20210101.tif",
+        "file:size": 153333,
+        "raster:bands": [
+          {
+            "nodata": 0,
+            "spatial_resolution": 10
+          }
+        ],
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "data"
+        ],
+        "file:values": [
+          {
+            "values": [
+              0
+            ],
+            "summary": "No Data"
+          },
+          {
+            "values": [
+              1
+            ],
+            "summary": "Water"
+          },
+          {
+            "values": [
+              2
+            ],
+            "summary": "Trees"
+          },
+          {
+            "values": [
+              3
+            ],
+            "summary": "Grass"
+          },
+          {
+            "values": [
+              4
+            ],
+            "summary": "Flooded vegetation"
+          },
+          {
+            "values": [
+              5
+            ],
+            "summary": "Crops"
+          },
+          {
+            "values": [
+              6
+            ],
+            "summary": "Scrub/shrub"
+          },
+          {
+            "values": [
+              7
+            ],
+            "summary": "Built area"
+          },
+          {
+            "values": [
+              8
+            ],
+            "summary": "Bare ground"
+          },
+          {
+            "values": [
+              9
+            ],
+            "summary": "Snow/ice"
+          },
+          {
+            "values": [
+              10
+            ],
+            "summary": "Clouds"
+          }
+        ]
+      },
+      "tilejson": {
+        "title": "TileJSON with default rendering",
+        "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/tilejson.json?collection=io-lulc&item=60N-2020&assets=data&colormap_name=io-lulc&format=png",
+        "type": "application/json",
+        "roles": [
+          "tiles"
+        ]
+      },
+      "rendered_preview": {
+        "title": "Rendered preview",
+        "rel": "preview",
+        "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/preview.png?collection=io-lulc&item=60N-2020&assets=data&colormap_name=io-lulc&format=png",
+        "roles": [
+          "overview"
+        ],
+        "type": "image/png"
+      }
+    },
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [
+            174.6653656,
+            -0.0057852
+          ],
+          [
+            175.2760645,
+            -0.0057876
+          ],
+          [
+            175.2758149,
+            -0.9781106
+          ],
+          [
+            174.3101533,
+            -0.9774713
+          ],
+          [
+            174.3101535,
+            -0.9768807
+          ],
+          [
+            173.7683126,
+            -0.977398
+          ],
+          [
+            173.7683126,
+            -0.977407
+          ],
+          [
+            173.7346682,
+            -0.9774301
+          ],
+          [
+            173.7009795,
+            -0.9774623
+          ],
+          [
+            173.7009795,
+            -0.9774532
+          ],
+          [
+            172.8027032,
+            -0.978069
+          ],
+          [
+            172.8024604,
+            -0.0736084
+          ],
+          [
+            172.8024437,
+            -0.0736084
+          ],
+          [
+            172.8024513,
+            -0.0396973
+          ],
+          [
+            172.8024422,
+            -0.0057874
+          ],
+          [
+            172.8024589,
+            -0.0057874
+          ],
+          [
+            172.8026472,
+            0.8308525
+          ],
+          [
+            172.8026305,
+            0.8308525
+          ],
+          [
+            172.8026549,
+            0.864749
+          ],
+          [
+            172.8026625,
+            0.8986734
+          ],
+          [
+            172.8026793,
+            0.8986734
+          ],
+          [
+            172.8033294,
+            1.8031295
+          ],
+          [
+            173.7692734,
+            1.8019088
+          ],
+          [
+            173.7682759,
+            0.8980568
+          ],
+          [
+            174.6657788,
+            0.8972696
+          ],
+          [
+            174.6653656,
+            -0.0057852
+          ]
+        ]
+      ]
+    },
+    "collection": "io-lulc",
+    "properties": {
+      "datetime": "2020-06-01T00:00:00Z",
+      "proj:bbox": [
+        132640.77068444708,
+        6494.300692202189,
+        171090.77068444708,
+        65904.30069220219
+      ],
+      "proj:epsg": 32660,
+      "io:tile_id": "60N",
+      "label:type": "raster",
+      "proj:shape": [
+        5941,
+        3845
+      ],
+      "end_datetime": "2021-01-01T00:00:00Z",
+      "label:classes": [
+        {
+          "name": "",
+          "classes": [
+            "nodata",
+            "water",
+            "trees",
+            "grass",
+            "flooded veg",
+            "crops",
+            "scrub",
+            "built area",
+            "bare",
+            "snow/ice",
+            "clouds"
+          ]
+        }
+      ],
+      "proj:transform": [
+        10.0,
+        0.0,
+        132640.77068444708,
+        0.0,
+        -10.0,
+        65904.30069220219
+      ],
+      "start_datetime": "2020-01-01T00:00:00Z",
+      "io:supercell_id": "60N",
+      "label:properties": null,
+      "label:description": "lulc"
+    },
+    "stac_extensions": [
+      "https://stac-extensions.github.io/projection/v1.0.0/schema.json",
+      "https://stac-extensions.github.io/label/v1.0.0/schema.json",
+      "https://stac-extensions.github.io/file/v2.0.0/schema.json",
+      "https://stac-extensions.github.io/raster/v1.0.0/schema.json"
+    ],
+    "stac_version": "1.0.0"
+  }
+]

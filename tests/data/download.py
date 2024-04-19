@@ -15,8 +15,18 @@ def download(collection: str):
 
 
 def main():
-    download("naip")
+    download("3dep-lidar-copc")
     download("3dep-lidar-dsm")
+    download("cop-dem-glo-30")
+    download("io-lulc-annual-v02")
+    download("io-lulc")
+    download("landsat-c2-l1")
+    download("landsat-c2-l2")
+    download("naip")
+    download("planet-nicfi-analytic")
+    download("sentinel-1-rtc")
+    download("sentinel-2-l2a")
+    download("us-census")
 
 
 if __name__ == "__main__":

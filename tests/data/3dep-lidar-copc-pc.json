@@ -1,0 +1,1490 @@
+[
+  {
+    "id": "USGS_LPC_UT_StatewideSouth_2020_A20_12SUH7021",
+    "bbox": [
+      -112.48332701,
+      38.12750163,
+      2475.74,
+      -112.48220744,
+      38.13247722,
+      2754.14
+    ],
+    "type": "Feature",
+    "links": [
+      {
+        "rel": "collection",
+        "type": "application/json",
+        "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-copc"
+      },
+      {
+        "rel": "parent",
+        "type": "application/json",
+        "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-copc"
+      },
+      {
+        "rel": "root",
+        "type": "application/json",
+        "href": "https://planetarycomputer.microsoft.com/api/stac/v1/"
+      },
+      {
+        "rel": "self",
+        "type": "application/geo+json",
+        "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-copc/items/USGS_LPC_UT_StatewideSouth_2020_A20_12SUH7021"
+      },
+      {
+        "rel": "alternate",
+        "href": "https://rockyweb.usgs.gov/vdelivery/Datasets/Staged/Elevation/LPC/Projects/UT_StatewideSouth_2020_A20/UT_StatewideSouth_1_2020/metadata/",
+        "type": "application/xml",
+        "title": "USGS Metadata"
+      }
+    ],
+    "assets": {
+      "data": {
+        "href": "https://usgslidareuwest.blob.core.windows.net/usgs-3dep-copc/usgs-copc/UT_StatewideSouth_1_2020/copc/USGS_LPC_UT_StatewideSouth_2020_A20_12SUH7021.copc.laz",
+        "type": "application/vnd.laszip+copc",
+        "roles": [
+          "data"
+        ],
+        "title": "COPC data"
+      },
+      "thumbnail": {
+        "href": "https://usgslidareuwest.blob.core.windows.net/usgs-3dep-copc/usgs-copc/UT_StatewideSouth_1_2020/copc/thumbnails/USGS_LPC_UT_StatewideSouth_2020_A20_12SUH7021-thumbnail.png",
+        "type": "image/png",
+        "roles": [
+          "thumbnail"
+        ],
+        "title": "3DEP Lidar COPC"
+      }
+    },
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [
+            -112.4820566,
+            38.1261015
+          ],
+          [
+            -112.4816283,
+            38.1331311
+          ],
+          [
+            -112.4833551,
+            38.1338897
+          ],
+          [
+            -112.4832919,
+            38.1307687
+          ],
+          [
+            -112.4855415,
+            38.1291793
+          ],
+          [
+            -112.4820566,
+            38.1261015
+          ]
+        ]
+      ]
+    },
+    "collection": "3dep-lidar-copc",
+    "properties": {
+      "pc:type": "lidar",
+      "datetime": null,
+      "group_id": "3dep-lidar",
+      "pc:count": 376166,
+      "proj:bbox": [
+        370000,
+        4221000,
+        2475.74,
+        370089.35,
+        4221550.82,
+        2754.14
+      ],
+      "proj:epsg": null,
+      "pc:schemas": [
+        {
+          "name": "X",
+          "size": 8,
+          "type": "floating"
+        },
+        {
+          "name": "Y",
+          "size": 8,
+          "type": "floating"
+        },
+        {
+          "name": "Z",
+          "size": 8,
+          "type": "floating"
+        },
+        {
+          "name": "Intensity",
+          "size": 2,
+          "type": "unsigned"
+        },
+        {
+          "name": "ReturnNumber",
+          "size": 1,
+          "type": "unsigned"
+        },
+        {
+          "name": "NumberOfReturns",
+          "size": 1,
+          "type": "unsigned"
+        },
+        {
+          "name": "ScanDirectionFlag",
+          "size": 1,
+          "type": "unsigned"
+        },
+        {
+          "name": "EdgeOfFlightLine",
+          "size": 1,
+          "type": "unsigned"
+        },
+        {
+          "name": "Classification",
+          "size": 1,
+          "type": "unsigned"
+        },
+        {
+          "name": "ScanAngleRank",
+          "size": 4,
+          "type": "floating"
+        },
+        {
+          "name": "UserData",
+          "size": 1,
+          "type": "unsigned"
+        },
+        {
+          "name": "PointSourceId",
+          "size": 2,
+          "type": "unsigned"
+        },
+        {
+          "name": "GpsTime",
+          "size": 8,
+          "type": "floating"
+        },
+        {
+          "name": "ScanChannel",
+          "size": 1,
+          "type": "unsigned"
+        },
+        {
+          "name": "ClassFlags",
+          "size": 1,
+          "type": "unsigned"
+        }
+      ],
+      "pc:encoding": "application/vnd.laszip+copc",
+      "3dep:usgs_id": "UT_StatewideSouth_1_2020",
+      "end_datetime": "2020-12-31T00:00:00Z",
+      "proj:geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              370100.06999998,
+              4220842.99967697
+            ],
+            [
+              370150.06999996,
+              4221622.42254038
+            ],
+            [
+              370000.07,
+              4221709.02508076
+            ],
+            [
+              370000.07,
+              4221362.61491924
+            ],
+            [
+              369800.07000005,
+              4221189.40983849
+            ],
+            [
+              370100.06999998,
+              4220842.99967697
+            ]
+          ]
+        ]
+      },
+      "proj:projjson": {
+        "name": "NAD83 / UTM zone 12N + NAVD88 height",
+        "type": "CompoundCRS",
+        "$schema": "https://proj.org/schemas/v0.4/projjson.schema.json",
+        "components": [
+          {
+            "id": {
+              "code": 26912,
+              "authority": "EPSG"
+            },
+            "name": "NAD83 / UTM zone 12N",
+            "type": "ProjectedCRS",
+            "base_crs": {
+              "id": {
+                "code": 4269,
+                "authority": "EPSG"
+              },
+              "name": "NAD83",
+              "datum": {
+                "name": "North American Datum 1983",
+                "type": "GeodeticReferenceFrame",
+                "ellipsoid": {
+                  "name": "GRS 1980",
+                  "semi_major_axis": 6378137,
+                  "inverse_flattening": 298.257222101
+                }
+              },
+              "coordinate_system": {
+                "axis": [
+                  {
+                    "name": "Geodetic latitude",
+                    "unit": "degree",
+                    "direction": "north",
+                    "abbreviation": "Lat"
+                  },
+                  {
+                    "name": "Geodetic longitude",
+                    "unit": "degree",
+                    "direction": "east",
+                    "abbreviation": "Lon"
+                  }
+                ],
+                "subtype": "ellipsoidal"
+              }
+            },
+            "conversion": {
+              "name": "UTM zone 12N",
+              "method": {
+                "id": {
+                  "code": 9807,
+                  "authority": "EPSG"
+                },
+                "name": "Transverse Mercator"
+              },
+              "parameters": [
+                {
+                  "id": {
+                    "code": 8801,
+                    "authority": "EPSG"
+                  },
+                  "name": "Latitude of natural origin",
+                  "unit": "degree",
+                  "value": 0
+                },
+                {
+                  "id": {
+                    "code": 8802,
+                    "authority": "EPSG"
+                  },
+                  "name": "Longitude of natural origin",
+                  "unit": "degree",
+                  "value": -111
+                },
+                {
+                  "id": {
+                    "code": 8805,
+                    "authority": "EPSG"
+                  },
+                  "name": "Scale factor at natural origin",
+                  "unit": "unity",
+                  "value": 0.9996
+                },
+                {
+                  "id": {
+                    "code": 8806,
+                    "authority": "EPSG"
+                  },
+                  "name": "False easting",
+                  "unit": "metre",
+                  "value": 500000
+                },
+                {
+                  "id": {
+                    "code": 8807,
+                    "authority": "EPSG"
+                  },
+                  "name": "False northing",
+                  "unit": "metre",
+                  "value": 0
+                }
+              ]
+            },
+            "coordinate_system": {
+              "axis": [
+                {
+                  "name": "Easting",
+                  "unit": "metre",
+                  "direction": "east",
+                  "abbreviation": ""
+                },
+                {
+                  "name": "Northing",
+                  "unit": "metre",
+                  "direction": "north",
+                  "abbreviation": ""
+                }
+              ],
+              "subtype": "Cartesian"
+            }
+          },
+          {
+            "id": {
+              "code": 5703,
+              "authority": "EPSG"
+            },
+            "name": "NAVD88 height",
+            "type": "VerticalCRS",
+            "datum": {
+              "name": "North American Vertical Datum 1988",
+              "type": "VerticalReferenceFrame"
+            },
+            "coordinate_system": {
+              "axis": [
+                {
+                  "name": "Gravity-related height",
+                  "unit": "metre",
+                  "direction": "up",
+                  "abbreviation": ""
+                }
+              ],
+              "subtype": "vertical"
+            }
+          }
+        ]
+      },
+      "start_datetime": "2020-01-01T00:00:00Z"
+    },
+    "stac_extensions": [
+      "https://stac-extensions.github.io/projection/v1.0.0/schema.json",
+      "https://stac-extensions.github.io/pointcloud/v1.0.0/schema.json",
+      "https://stac-extensions.github.io/file/v2.1.0/schema.json"
+    ],
+    "stac_version": "1.0.0"
+  },
+  {
+    "id": "USGS_LPC_UT_StatewideSouth_2020_A20_12SUH7020",
+    "bbox": [
+      -112.48322655,
+      38.11849192,
+      2327.76,
+      -112.48017545,
+      38.12753774,
+      2747.3
+    ],
+    "type": "Feature",
+    "links": [
+      {
+        "rel": "collection",
+        "type": "application/json",
+        "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-copc"
+      },
+      {
+        "rel": "parent",
+        "type": "application/json",
+        "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-copc"
+      },
+      {
+        "rel": "root",
+        "type": "application/json",
+        "href": "https://planetarycomputer.microsoft.com/api/stac/v1/"
+      },
+      {
+        "rel": "self",
+        "type": "application/geo+json",
+        "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-copc/items/USGS_LPC_UT_StatewideSouth_2020_A20_12SUH7020"
+      },
+      {
+        "rel": "alternate",
+        "href": "https://rockyweb.usgs.gov/vdelivery/Datasets/Staged/Elevation/LPC/Projects/UT_StatewideSouth_2020_A20/UT_StatewideSouth_1_2020/metadata/",
+        "type": "application/xml",
+        "title": "USGS Metadata"
+      }
+    ],
+    "assets": {
+      "data": {
+        "href": "https://usgslidareuwest.blob.core.windows.net/usgs-3dep-copc/usgs-copc/UT_StatewideSouth_1_2020/copc/USGS_LPC_UT_StatewideSouth_2020_A20_12SUH7020.copc.laz",
+        "type": "application/vnd.laszip+copc",
+        "roles": [
+          "data"
+        ],
+        "title": "COPC data"
+      },
+      "thumbnail": {
+        "href": "https://usgslidareuwest.blob.core.windows.net/usgs-3dep-copc/usgs-copc/UT_StatewideSouth_1_2020/copc/thumbnails/USGS_LPC_UT_StatewideSouth_2020_A20_12SUH7020-thumbnail.png",
+        "type": "image/png",
+        "roles": [
+          "thumbnail"
+        ],
+        "title": "3DEP Lidar COPC"
+      }
+    },
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [
+            -112.4798503,
+            38.1164684
+          ],
+          [
+            -112.4794533,
+            38.1250585
+          ],
+          [
+            -112.4829381,
+            38.1281364
+          ],
+          [
+            -112.4851877,
+            38.126547
+          ],
+          [
+            -112.4850296,
+            38.1187444
+          ],
+          [
+            -112.4798503,
+            38.1164684
+          ]
+        ]
+      ]
+    },
+    "collection": "3dep-lidar-copc",
+    "properties": {
+      "pc:type": "lidar",
+      "datetime": null,
+      "group_id": "3dep-lidar",
+      "pc:count": 3061526,
+      "proj:bbox": [
+        370000,
+        4220000,
+        2327.76,
+        370251.55,
+        4220999.99,
+        2747.3
+      ],
+      "proj:epsg": null,
+      "pc:schemas": [
+        {
+          "name": "X",
+          "size": 8,
+          "type": "floating"
+        },
+        {
+          "name": "Y",
+          "size": 8,
+          "type": "floating"
+        },
+        {
+          "name": "Z",
+          "size": 8,
+          "type": "floating"
+        },
+        {
+          "name": "Intensity",
+          "size": 2,
+          "type": "unsigned"
+        },
+        {
+          "name": "ReturnNumber",
+          "size": 1,
+          "type": "unsigned"
+        },
+        {
+          "name": "NumberOfReturns",
+          "size": 1,
+          "type": "unsigned"
+        },
+        {
+          "name": "ScanDirectionFlag",
+          "size": 1,
+          "type": "unsigned"
+        },
+        {
+          "name": "EdgeOfFlightLine",
+          "size": 1,
+          "type": "unsigned"
+        },
+        {
+          "name": "Classification",
+          "size": 1,
+          "type": "unsigned"
+        },
+        {
+          "name": "ScanAngleRank",
+          "size": 4,
+          "type": "floating"
+        },
+        {
+          "name": "UserData",
+          "size": 1,
+          "type": "unsigned"
+        },
+        {
+          "name": "PointSourceId",
+          "size": 2,
+          "type": "unsigned"
+        },
+        {
+          "name": "GpsTime",
+          "size": 8,
+          "type": "floating"
+        },
+        {
+          "name": "ScanChannel",
+          "size": 1,
+          "type": "unsigned"
+        },
+        {
+          "name": "ClassFlags",
+          "size": 1,
+          "type": "unsigned"
+        }
+      ],
+      "pc:encoding": "application/vnd.laszip+copc",
+      "3dep:usgs_id": "UT_StatewideSouth_1_2020",
+      "end_datetime": "2020-12-31T00:00:00Z",
+      "proj:geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              370276.40999998,
+              4219770.98967697
+            ],
+            [
+              370326.40999996,
+              4220723.61762114
+            ],
+            [
+              370026.41000004,
+              4221070.02778265
+            ],
+            [
+              369826.41000009,
+              4220896.82270189
+            ],
+            [
+              369826.41000009,
+              4220030.79729811
+            ],
+            [
+              370276.40999998,
+              4219770.98967697
+            ]
+          ]
+        ]
+      },
+      "proj:projjson": {
+        "name": "NAD83 / UTM zone 12N + NAVD88 height",
+        "type": "CompoundCRS",
+        "$schema": "https://proj.org/schemas/v0.4/projjson.schema.json",
+        "components": [
+          {
+            "id": {
+              "code": 26912,
+              "authority": "EPSG"
+            },
+            "name": "NAD83 / UTM zone 12N",
+            "type": "ProjectedCRS",
+            "base_crs": {
+              "id": {
+                "code": 4269,
+                "authority": "EPSG"
+              },
+              "name": "NAD83",
+              "datum": {
+                "name": "North American Datum 1983",
+                "type": "GeodeticReferenceFrame",
+                "ellipsoid": {
+                  "name": "GRS 1980",
+                  "semi_major_axis": 6378137,
+                  "inverse_flattening": 298.257222101
+                }
+              },
+              "coordinate_system": {
+                "axis": [
+                  {
+                    "name": "Geodetic latitude",
+                    "unit": "degree",
+                    "direction": "north",
+                    "abbreviation": "Lat"
+                  },
+                  {
+                    "name": "Geodetic longitude",
+                    "unit": "degree",
+                    "direction": "east",
+                    "abbreviation": "Lon"
+                  }
+                ],
+                "subtype": "ellipsoidal"
+              }
+            },
+            "conversion": {
+              "name": "UTM zone 12N",
+              "method": {
+                "id": {
+                  "code": 9807,
+                  "authority": "EPSG"
+                },
+                "name": "Transverse Mercator"
+              },
+              "parameters": [
+                {
+                  "id": {
+                    "code": 8801,
+                    "authority": "EPSG"
+                  },
+                  "name": "Latitude of natural origin",
+                  "unit": "degree",
+                  "value": 0
+                },
+                {
+                  "id": {
+                    "code": 8802,
+                    "authority": "EPSG"
+                  },
+                  "name": "Longitude of natural origin",
+                  "unit": "degree",
+                  "value": -111
+                },
+                {
+                  "id": {
+                    "code": 8805,
+                    "authority": "EPSG"
+                  },
+                  "name": "Scale factor at natural origin",
+                  "unit": "unity",
+                  "value": 0.9996
+                },
+                {
+                  "id": {
+                    "code": 8806,
+                    "authority": "EPSG"
+                  },
+                  "name": "False easting",
+                  "unit": "metre",
+                  "value": 500000
+                },
+                {
+                  "id": {
+                    "code": 8807,
+                    "authority": "EPSG"
+                  },
+                  "name": "False northing",
+                  "unit": "metre",
+                  "value": 0
+                }
+              ]
+            },
+            "coordinate_system": {
+              "axis": [
+                {
+                  "name": "Easting",
+                  "unit": "metre",
+                  "direction": "east",
+                  "abbreviation": ""
+                },
+                {
+                  "name": "Northing",
+                  "unit": "metre",
+                  "direction": "north",
+                  "abbreviation": ""
+                }
+              ],
+              "subtype": "Cartesian"
+            }
+          },
+          {
+            "id": {
+              "code": 5703,
+              "authority": "EPSG"
+            },
+            "name": "NAVD88 height",
+            "type": "VerticalCRS",
+            "datum": {
+              "name": "North American Vertical Datum 1988",
+              "type": "VerticalReferenceFrame"
+            },
+            "coordinate_system": {
+              "axis": [
+                {
+                  "name": "Gravity-related height",
+                  "unit": "metre",
+                  "direction": "up",
+                  "abbreviation": ""
+                }
+              ],
+              "subtype": "vertical"
+            }
+          }
+        ]
+      },
+      "start_datetime": "2020-01-01T00:00:00Z"
+    },
+    "stac_extensions": [
+      "https://stac-extensions.github.io/projection/v1.0.0/schema.json",
+      "https://stac-extensions.github.io/pointcloud/v1.0.0/schema.json",
+      "https://stac-extensions.github.io/file/v2.1.0/schema.json"
+    ],
+    "stac_version": "1.0.0"
+  },
+  {
+    "id": "USGS_LPC_UT_StatewideSouth_2020_A20_12SUH7019",
+    "bbox": [
+      -112.48304424,
+      38.11009369,
+      2380.13,
+      -112.47856273,
+      38.1185462,
+      2705.97
+    ],
+    "type": "Feature",
+    "links": [
+      {
+        "rel": "collection",
+        "type": "application/json",
+        "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-copc"
+      },
+      {
+        "rel": "parent",
+        "type": "application/json",
+        "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-copc"
+      },
+      {
+        "rel": "root",
+        "type": "application/json",
+        "href": "https://planetarycomputer.microsoft.com/api/stac/v1/"
+      },
+      {
+        "rel": "self",
+        "type": "application/geo+json",
+        "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-copc/items/USGS_LPC_UT_StatewideSouth_2020_A20_12SUH7019"
+      },
+      {
+        "rel": "alternate",
+        "href": "https://rockyweb.usgs.gov/vdelivery/Datasets/Staged/Elevation/LPC/Projects/UT_StatewideSouth_2020_A20/UT_StatewideSouth_1_2020/metadata/",
+        "type": "application/xml",
+        "title": "USGS Metadata"
+      }
+    ],
+    "assets": {
+      "data": {
+        "href": "https://usgslidareuwest.blob.core.windows.net/usgs-3dep-copc/usgs-copc/UT_StatewideSouth_1_2020/copc/USGS_LPC_UT_StatewideSouth_2020_A20_12SUH7019.copc.laz",
+        "type": "application/vnd.laszip+copc",
+        "roles": [
+          "data"
+        ],
+        "title": "COPC data"
+      },
+      "thumbnail": {
+        "href": "https://usgslidareuwest.blob.core.windows.net/usgs-3dep-copc/usgs-copc/UT_StatewideSouth_1_2020/copc/thumbnails/USGS_LPC_UT_StatewideSouth_2020_A20_12SUH7019-thumbnail.png",
+        "type": "image/png",
+        "roles": [
+          "thumbnail"
+        ],
+        "title": "3DEP Lidar COPC"
+      }
+    },
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [
+            -112.4799856,
+            38.1083277
+          ],
+          [
+            -112.4777365,
+            38.1099169
+          ],
+          [
+            -112.4779252,
+            38.1192801
+          ],
+          [
+            -112.4830731,
+            38.1199957
+          ],
+          [
+            -112.4852908,
+            38.1168458
+          ],
+          [
+            -112.4852275,
+            38.1137248
+          ],
+          [
+            -112.4829152,
+            38.1121931
+          ],
+          [
+            -112.4851643,
+            38.1106037
+          ],
+          [
+            -112.4799856,
+            38.1083277
+          ]
+        ]
+      ]
+    },
+    "collection": "3dep-lidar-copc",
+    "properties": {
+      "pc:type": "lidar",
+      "datetime": null,
+      "group_id": "3dep-lidar",
+      "pc:count": 4519987,
+      "proj:bbox": [
+        370000,
+        4219067.87,
+        2380.13,
+        370378.11,
+        4219999.99,
+        2705.97
+      ],
+      "proj:epsg": null,
+      "pc:schemas": [
+        {
+          "name": "X",
+          "size": 8,
+          "type": "floating"
+        },
+        {
+          "name": "Y",
+          "size": 8,
+          "type": "floating"
+        },
+        {
+          "name": "Z",
+          "size": 8,
+          "type": "floating"
+        },
+        {
+          "name": "Intensity",
+          "size": 2,
+          "type": "unsigned"
+        },
+        {
+          "name": "ReturnNumber",
+          "size": 1,
+          "type": "unsigned"
+        },
+        {
+          "name": "NumberOfReturns",
+          "size": 1,
+          "type": "unsigned"
+        },
+        {
+          "name": "ScanDirectionFlag",
+          "size": 1,
+          "type": "unsigned"
+        },
+        {
+          "name": "EdgeOfFlightLine",
+          "size": 1,
+          "type": "unsigned"
+        },
+        {
+          "name": "Classification",
+          "size": 1,
+          "type": "unsigned"
+        },
+        {
+          "name": "ScanAngleRank",
+          "size": 4,
+          "type": "floating"
+        },
+        {
+          "name": "UserData",
+          "size": 1,
+          "type": "unsigned"
+        },
+        {
+          "name": "PointSourceId",
+          "size": 2,
+          "type": "unsigned"
+        },
+        {
+          "name": "GpsTime",
+          "size": 8,
+          "type": "floating"
+        },
+        {
+          "name": "ScanChannel",
+          "size": 1,
+          "type": "unsigned"
+        },
+        {
+          "name": "ClassFlags",
+          "size": 1,
+          "type": "unsigned"
+        }
+      ],
+      "pc:encoding": "application/vnd.laszip+copc",
+      "3dep:usgs_id": "UT_StatewideSouth_1_2020",
+      "end_datetime": "2020-12-31T00:00:00Z",
+      "proj:geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              370250.13999994,
+              4218867.86713659
+            ],
+            [
+              370450.13999989,
+              4219041.07221735
+            ],
+            [
+              370450.13999989,
+              4220080.30270189
+            ],
+            [
+              370000.14,
+              4220166.90524227
+            ],
+            [
+              369800.14000005,
+              4219820.49508076
+            ],
+            [
+              369800.14000005,
+              4219474.08491924
+            ],
+            [
+              370000.14,
+              4219300.87983849
+            ],
+            [
+              369800.14000005,
+              4219127.67475773
+            ],
+            [
+              370250.13999994,
+              4218867.86713659
+            ]
+          ]
+        ]
+      },
+      "proj:projjson": {
+        "name": "NAD83 / UTM zone 12N + NAVD88 height",
+        "type": "CompoundCRS",
+        "$schema": "https://proj.org/schemas/v0.4/projjson.schema.json",
+        "components": [
+          {
+            "id": {
+              "code": 26912,
+              "authority": "EPSG"
+            },
+            "name": "NAD83 / UTM zone 12N",
+            "type": "ProjectedCRS",
+            "base_crs": {
+              "id": {
+                "code": 4269,
+                "authority": "EPSG"
+              },
+              "name": "NAD83",
+              "datum": {
+                "name": "North American Datum 1983",
+                "type": "GeodeticReferenceFrame",
+                "ellipsoid": {
+                  "name": "GRS 1980",
+                  "semi_major_axis": 6378137,
+                  "inverse_flattening": 298.257222101
+                }
+              },
+              "coordinate_system": {
+                "axis": [
+                  {
+                    "name": "Geodetic latitude",
+                    "unit": "degree",
+                    "direction": "north",
+                    "abbreviation": "Lat"
+                  },
+                  {
+                    "name": "Geodetic longitude",
+                    "unit": "degree",
+                    "direction": "east",
+                    "abbreviation": "Lon"
+                  }
+                ],
+                "subtype": "ellipsoidal"
+              }
+            },
+            "conversion": {
+              "name": "UTM zone 12N",
+              "method": {
+                "id": {
+                  "code": 9807,
+                  "authority": "EPSG"
+                },
+                "name": "Transverse Mercator"
+              },
+              "parameters": [
+                {
+                  "id": {
+                    "code": 8801,
+                    "authority": "EPSG"
+                  },
+                  "name": "Latitude of natural origin",
+                  "unit": "degree",
+                  "value": 0
+                },
+                {
+                  "id": {
+                    "code": 8802,
+                    "authority": "EPSG"
+                  },
+                  "name": "Longitude of natural origin",
+                  "unit": "degree",
+                  "value": -111
+                },
+                {
+                  "id": {
+                    "code": 8805,
+                    "authority": "EPSG"
+                  },
+                  "name": "Scale factor at natural origin",
+                  "unit": "unity",
+                  "value": 0.9996
+                },
+                {
+                  "id": {
+                    "code": 8806,
+                    "authority": "EPSG"
+                  },
+                  "name": "False easting",
+                  "unit": "metre",
+                  "value": 500000
+                },
+                {
+                  "id": {
+                    "code": 8807,
+                    "authority": "EPSG"
+                  },
+                  "name": "False northing",
+                  "unit": "metre",
+                  "value": 0
+                }
+              ]
+            },
+            "coordinate_system": {
+              "axis": [
+                {
+                  "name": "Easting",
+                  "unit": "metre",
+                  "direction": "east",
+                  "abbreviation": ""
+                },
+                {
+                  "name": "Northing",
+                  "unit": "metre",
+                  "direction": "north",
+                  "abbreviation": ""
+                }
+              ],
+              "subtype": "Cartesian"
+            }
+          },
+          {
+            "id": {
+              "code": 5703,
+              "authority": "EPSG"
+            },
+            "name": "NAVD88 height",
+            "type": "VerticalCRS",
+            "datum": {
+              "name": "North American Vertical Datum 1988",
+              "type": "VerticalReferenceFrame"
+            },
+            "coordinate_system": {
+              "axis": [
+                {
+                  "name": "Gravity-related height",
+                  "unit": "metre",
+                  "direction": "up",
+                  "abbreviation": ""
+                }
+              ],
+              "subtype": "vertical"
+            }
+          }
+        ]
+      },
+      "start_datetime": "2020-01-01T00:00:00Z"
+    },
+    "stac_extensions": [
+      "https://stac-extensions.github.io/projection/v1.0.0/schema.json",
+      "https://stac-extensions.github.io/pointcloud/v1.0.0/schema.json",
+      "https://stac-extensions.github.io/file/v2.1.0/schema.json"
+    ],
+    "stac_version": "1.0.0"
+  },
+  {
+    "id": "USGS_LPC_UT_StatewideSouth_2020_A20_12SUH7015",
+    "bbox": [
+      -112.48217939,
+      38.07344315,
+      2315.35,
+      -112.48167627,
+      38.07570326,
+      2411.78
+    ],
+    "type": "Feature",
+    "links": [
+      {
+        "rel": "collection",
+        "type": "application/json",
+        "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-copc"
+      },
+      {
+        "rel": "parent",
+        "type": "application/json",
+        "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-copc"
+      },
+      {
+        "rel": "root",
+        "type": "application/json",
+        "href": "https://planetarycomputer.microsoft.com/api/stac/v1/"
+      },
+      {
+        "rel": "self",
+        "type": "application/geo+json",
+        "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-copc/items/USGS_LPC_UT_StatewideSouth_2020_A20_12SUH7015"
+      },
+      {
+        "rel": "alternate",
+        "href": "https://rockyweb.usgs.gov/vdelivery/Datasets/Staged/Elevation/LPC/Projects/UT_StatewideSouth_2020_A20/UT_StatewideSouth_1_2020/metadata/",
+        "type": "application/xml",
+        "title": "USGS Metadata"
+      }
+    ],
+    "assets": {
+      "data": {
+        "href": "https://usgslidareuwest.blob.core.windows.net/usgs-3dep-copc/usgs-copc/UT_StatewideSouth_1_2020/copc/USGS_LPC_UT_StatewideSouth_2020_A20_12SUH7015.copc.laz",
+        "type": "application/vnd.laszip+copc",
+        "roles": [
+          "data"
+        ],
+        "title": "COPC data"
+      },
+      "thumbnail": {
+        "href": "https://usgslidareuwest.blob.core.windows.net/usgs-3dep-copc/usgs-copc/UT_StatewideSouth_1_2020/copc/thumbnails/USGS_LPC_UT_StatewideSouth_2020_A20_12SUH7015-thumbnail.png",
+        "type": "image/png",
+        "roles": [
+          "thumbnail"
+        ],
+        "title": "3DEP Lidar COPC"
+      }
+    },
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [
+            -112.4809624,
+            38.0719061
+          ],
+          [
+            -112.4804712,
+            38.0758146
+          ],
+          [
+            -112.4821966,
+            38.0765733
+          ],
+          [
+            -112.4844131,
+            38.0734235
+          ],
+          [
+            -112.4809624,
+            38.0719061
+          ]
+        ]
+      ]
+    },
+    "collection": "3dep-lidar-copc",
+    "properties": {
+      "pc:type": "lidar",
+      "datetime": null,
+      "group_id": "3dep-lidar",
+      "pc:count": 46812,
+      "proj:bbox": [
+        370000,
+        4215000,
+        2315.35,
+        370040.15,
+        4215250.21,
+        2411.78
+      ],
+      "proj:epsg": null,
+      "pc:schemas": [
+        {
+          "name": "X",
+          "size": 8,
+          "type": "floating"
+        },
+        {
+          "name": "Y",
+          "size": 8,
+          "type": "floating"
+        },
+        {
+          "name": "Z",
+          "size": 8,
+          "type": "floating"
+        },
+        {
+          "name": "Intensity",
+          "size": 2,
+          "type": "unsigned"
+        },
+        {
+          "name": "ReturnNumber",
+          "size": 1,
+          "type": "unsigned"
+        },
+        {
+          "name": "NumberOfReturns",
+          "size": 1,
+          "type": "unsigned"
+        },
+        {
+          "name": "ScanDirectionFlag",
+          "size": 1,
+          "type": "unsigned"
+        },
+        {
+          "name": "EdgeOfFlightLine",
+          "size": 1,
+          "type": "unsigned"
+        },
+        {
+          "name": "Classification",
+          "size": 1,
+          "type": "unsigned"
+        },
+        {
+          "name": "ScanAngleRank",
+          "size": 4,
+          "type": "floating"
+        },
+        {
+          "name": "UserData",
+          "size": 1,
+          "type": "unsigned"
+        },
+        {
+          "name": "PointSourceId",
+          "size": 2,
+          "type": "unsigned"
+        },
+        {
+          "name": "GpsTime",
+          "size": 8,
+          "type": "floating"
+        },
+        {
+          "name": "ScanChannel",
+          "size": 1,
+          "type": "unsigned"
+        },
+        {
+          "name": "ClassFlags",
+          "size": 1,
+          "type": "unsigned"
+        }
+      ],
+      "pc:encoding": "application/vnd.laszip+copc",
+      "3dep:usgs_id": "UT_StatewideSouth_1_2020",
+      "end_datetime": "2020-12-31T00:00:00Z",
+      "proj:geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              370100.03999998,
+              4214827.80491924
+            ],
+            [
+              370150.03999996,
+              4215260.81762114
+            ],
+            [
+              370000.04,
+              4215347.42016151
+            ],
+            [
+              369800.04000005,
+              4215001.01
+            ],
+            [
+              370100.03999998,
+              4214827.80491924
+            ]
+          ]
+        ]
+      },
+      "proj:projjson": {
+        "name": "NAD83 / UTM zone 12N + NAVD88 height",
+        "type": "CompoundCRS",
+        "$schema": "https://proj.org/schemas/v0.4/projjson.schema.json",
+        "components": [
+          {
+            "id": {
+              "code": 26912,
+              "authority": "EPSG"
+            },
+            "name": "NAD83 / UTM zone 12N",
+            "type": "ProjectedCRS",
+            "base_crs": {
+              "id": {
+                "code": 4269,
+                "authority": "EPSG"
+              },
+              "name": "NAD83",
+              "datum": {
+                "name": "North American Datum 1983",
+                "type": "GeodeticReferenceFrame",
+                "ellipsoid": {
+                  "name": "GRS 1980",
+                  "semi_major_axis": 6378137,
+                  "inverse_flattening": 298.257222101
+                }
+              },
+              "coordinate_system": {
+                "axis": [
+                  {
+                    "name": "Geodetic latitude",
+                    "unit": "degree",
+                    "direction": "north",
+                    "abbreviation": "Lat"
+                  },
+                  {
+                    "name": "Geodetic longitude",
+                    "unit": "degree",
+                    "direction": "east",
+                    "abbreviation": "Lon"
+                  }
+                ],
+                "subtype": "ellipsoidal"
+              }
+            },
+            "conversion": {
+              "name": "UTM zone 12N",
+              "method": {
+                "id": {
+                  "code": 9807,
+                  "authority": "EPSG"
+                },
+                "name": "Transverse Mercator"
+              },
+              "parameters": [
+                {
+                  "id": {
+                    "code": 8801,
+                    "authority": "EPSG"
+                  },
+                  "name": "Latitude of natural origin",
+                  "unit": "degree",
+                  "value": 0
+                },
+                {
+                  "id": {
+                    "code": 8802,
+                    "authority": "EPSG"
+                  },
+                  "name": "Longitude of natural origin",
+                  "unit": "degree",
+                  "value": -111
+                },
+                {
+                  "id": {
+                    "code": 8805,
+                    "authority": "EPSG"
+                  },
+                  "name": "Scale factor at natural origin",
+                  "unit": "unity",
+                  "value": 0.9996
+                },
+                {
+                  "id": {
+                    "code": 8806,
+                    "authority": "EPSG"
+                  },
+                  "name": "False easting",
+                  "unit": "metre",
+                  "value": 500000
+                },
+                {
+                  "id": {
+                    "code": 8807,
+                    "authority": "EPSG"
+                  },
+                  "name": "False northing",
+                  "unit": "metre",
+                  "value": 0
+                }
+              ]
+            },
+            "coordinate_system": {
+              "axis": [
+                {
+                  "name": "Easting",
+                  "unit": "metre",
+                  "direction": "east",
+                  "abbreviation": ""
+                },
+                {
+                  "name": "Northing",
+                  "unit": "metre",
+                  "direction": "north",
+                  "abbreviation": ""
+                }
+              ],
+              "subtype": "Cartesian"
+            }
+          },
+          {
+            "id": {
+              "code": 5703,
+              "authority": "EPSG"
+            },
+            "name": "NAVD88 height",
+            "type": "VerticalCRS",
+            "datum": {
+              "name": "North American Vertical Datum 1988",
+              "type": "VerticalReferenceFrame"
+            },
+            "coordinate_system": {
+              "axis": [
+                {
+                  "name": "Gravity-related height",
+                  "unit": "metre",
+                  "direction": "up",
+                  "abbreviation": ""
+                }
+              ],
+              "subtype": "vertical"
+            }
+          }
+        ]
+      },
+      "start_datetime": "2020-01-01T00:00:00Z"
+    },
+    "stac_extensions": [
+      "https://stac-extensions.github.io/projection/v1.0.0/schema.json",
+      "https://stac-extensions.github.io/pointcloud/v1.0.0/schema.json",
+      "https://stac-extensions.github.io/file/v2.1.0/schema.json"
+    ],
+    "stac_version": "1.0.0"
+  }
+]
