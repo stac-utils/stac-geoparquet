@@ -24,7 +24,7 @@ DTYPE_BACKEND = Literal["numpy_nullable", "pyarrow"]
 SELF_LINK_COLUMN = "self_link"
 
 
-def _fix_array(v):
+def _fix_array(v: Any) -> Any:
     if isinstance(v, np.ndarray):
         v = v.tolist()
 

@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+from typing import Any
 
 import azure.data.tables
 import requests
@@ -79,7 +80,7 @@ PARTITION_FREQUENCIES = {
 }
 
 
-def build_render_config(render_params, assets):
+def build_render_config(render_params: dict[str, Any], assets: dict[str, Any]) -> str:
     flat = []
     if assets:
         for asset in assets:
@@ -93,7 +94,9 @@ def build_render_config(render_params, assets):
     return urllib.parse.urlencode(flat)
 
 
-def generate_configs_from_storage_table(table_client: azure.data.tables.TableClient):
+def generate_configs_from_storage_table(
+    table_client: azure.data.tables.TableClient,
+) -> dict[str, CollectionConfig]:
     configs = {}
     for entity in table_client.list_entities():
         collection_id = entity["RowKey"]
@@ -109,7 +112,7 @@ def generate_configs_from_storage_table(table_client: azure.data.tables.TableCli
     return configs
 
 
-def generate_configs_from_api(url):
+def generate_configs_from_api(url: str) -> dict[str, CollectionConfig]:
     configs = {}
     r = requests.get(url)
     r.raise_for_status()
@@ -131,7 +134,7 @@ def generate_configs_from_api(url):
 
 def merge_configs(
     table_configs: dict[str, CollectionConfig], api_configs: dict[str, CollectionConfig]
-):
+) -> dict[str, CollectionConfig]:
     # what a mess. Get partitioning config from the API, render from the table.
     configs = {}
     for k in table_configs.keys() | api_configs.keys():
@@ -142,9 +145,12 @@ def merge_configs(
         if api_config:
             config.partition_frequency = api_config.partition_frequency
         configs[k] = config
+    return configs
 
 
-def get_configs(table_client):
+def get_configs(
+    table_client: azure.data.tables.TableClient,
+) -> dict[str, CollectionConfig]:
     table_configs = generate_configs_from_storage_table(table_client)
     api_configs = generate_configs_from_api(
         "https://planetarycomputer.microsoft.com/api/stac/v1/collections"

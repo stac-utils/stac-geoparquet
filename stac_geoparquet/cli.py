@@ -2,12 +2,14 @@ import argparse
 import logging
 import sys
 import os
+from typing import List, Optional
+
 from stac_geoparquet import pc_runner
 
 logger = logging.getLogger("stac_geoparquet.pgstac_reader")
 
 
-def parse_args(args=None):
+def parse_args(args: Optional[List[str]] = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "--output-protocol",
@@ -47,7 +49,7 @@ def parse_args(args=None):
     return parser.parse_args(args)
 
 
-def setup_logging():
+def setup_logging() -> None:
     import logging
     import warnings
     import rich.logging
@@ -88,10 +90,10 @@ SKIP = {
 }
 
 
-def main(args=None):
+def main(inp: Optional[List[str]] = None) -> int:
     import azure.data.tables
 
-    args = parse_args(args)
+    args = parse_args(inp)
 
     skip = set(SKIP)
     if args.extra_skip:
@@ -112,7 +114,7 @@ def main(args=None):
         "credential": args.storage_options_credential,
     }
 
-    def f(config):
+    def f(config: pc_runner.CollectionConfig) -> None:
         config.export_collection(
             args.connection_info,
             args.output_protocol,
