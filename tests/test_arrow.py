@@ -2,7 +2,6 @@ import json
 from pathlib import Path
 from typing import Any, Dict, Sequence, Union
 
-import pytest
 from ciso8601 import parse_rfc3339
 
 from stac_geoparquet.from_arrow import stac_table_to_items
@@ -166,9 +165,19 @@ def assert_dict_equal(
         )
 
 
-@pytest.fixture
-def naip_items():
+def test_naip_round_trip():
     with open(HERE / "data" / "naip-pc.json") as f:
+        items = json.load(f)
+
+    table = parse_stac_items_to_arrow(items)
+    items_result = list(stac_table_to_items(table))
+
+    for result, expected in zip(items_result, items):
+        assert_json_value_equal(result, expected)
+
+
+def test_3dep_lidar_round_trip():
+    with open(HERE / "data" / "3dep-lidar-dsm-pc.json") as f:
         items = json.load(f)
 
     table = parse_stac_items_to_arrow(items)

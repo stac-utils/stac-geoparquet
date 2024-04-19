@@ -190,11 +190,21 @@ def _convert_timestamp_columns(table: pa.Table) -> pa.Table:
         except KeyError:
             continue
 
+        field_index = table.schema.get_field_index(column_name)
+
         if pa.types.is_timestamp(column.type):
             continue
+
+        # STAC allows datetimes to be null. If all rows are null, the column type may be
+        # inferred as null. We cast this to a timestamp column.
+        elif pa.types.is_null(column.type):
+            table = table.set_column(
+                field_index, column_name, column.cast(pa.timestamp("us"))
+            )
+
         elif pa.types.is_string(column.type):
-            table = table.drop(column_name).append_column(
-                column_name, _convert_timestamp_column(column)
+            table = table.set_column(
+                field_index, column_name, _convert_timestamp_column(column)
             )
         else:
             raise ValueError(
