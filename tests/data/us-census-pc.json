@@ -1,0 +1,1612 @@
+[
+  {
+    "id": "2020-census-blocks-population",
+    "bbox": [
+      -179.148909,
+      -14.548699,
+      179.77847,
+      71.365162
+    ],
+    "type": "Feature",
+    "links": [
+      {
+        "rel": "collection",
+        "type": "application/json",
+        "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/us-census"
+      },
+      {
+        "rel": "parent",
+        "type": "application/json",
+        "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/us-census"
+      },
+      {
+        "rel": "root",
+        "type": "application/json",
+        "href": "https://planetarycomputer.microsoft.com/api/stac/v1/"
+      },
+      {
+        "rel": "self",
+        "type": "application/geo+json",
+        "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/us-census/items/2020-census-blocks-population"
+      }
+    ],
+    "assets": {
+      "data": {
+        "href": "abfs://us-census/2020/census_blocks_population.parquet",
+        "type": "application/x-parquet",
+        "roles": [
+          "data"
+        ],
+        "title": "Dataset root",
+        "table:storage_options": {
+          "account_name": "ai4edataeuwest"
+        }
+      }
+    },
+    "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+        [
+          [
+            [
+              144.956712,
+              13.234189
+            ],
+            [
+              144.618068,
+              13.234189
+            ],
+            [
+              144.618068,
+              13.654383
+            ],
+            [
+              144.956712,
+              13.654383
+            ],
+            [
+              144.956712,
+              13.234189
+            ]
+          ]
+        ],
+        [
+          [
+            [
+              146.064818,
+              14.110472
+            ],
+            [
+              144.886331,
+              14.110472
+            ],
+            [
+              144.886331,
+              20.553802
+            ],
+            [
+              146.064818,
+              20.553802
+            ],
+            [
+              146.064818,
+              14.110472
+            ]
+          ]
+        ],
+        [
+          [
+            [
+              -64.564907,
+              17.673976
+            ],
+            [
+              -65.085452,
+              17.673976
+            ],
+            [
+              -65.085452,
+              18.412655
+            ],
+            [
+              -64.564907,
+              18.412655
+            ],
+            [
+              -64.564907,
+              17.673976
+            ]
+          ]
+        ],
+        [
+          [
+            [
+              -65.220703,
+              17.88328
+            ],
+            [
+              -67.945404,
+              17.88328
+            ],
+            [
+              -67.945404,
+              18.515683
+            ],
+            [
+              -65.220703,
+              18.515683
+            ],
+            [
+              -65.220703,
+              17.88328
+            ]
+          ]
+        ],
+        [
+          [
+            [
+              -168.1433,
+              -14.548699
+            ],
+            [
+              -171.089874,
+              -14.548699
+            ],
+            [
+              -171.089874,
+              -11.046934
+            ],
+            [
+              -168.1433,
+              -11.046934
+            ],
+            [
+              -168.1433,
+              -14.548699
+            ]
+          ]
+        ],
+        [
+          [
+            [
+              -154.806773,
+              18.910361
+            ],
+            [
+              -178.334698,
+              18.910361
+            ],
+            [
+              -178.334698,
+              28.402123
+            ],
+            [
+              -154.806773,
+              28.402123
+            ],
+            [
+              -154.806773,
+              18.910361
+            ]
+          ]
+        ],
+        [
+          [
+            [
+              -66.949895,
+              24.523096
+            ],
+            [
+              -124.763068,
+              24.523096
+            ],
+            [
+              -124.763068,
+              49.384358
+            ],
+            [
+              -66.949895,
+              49.384358
+            ],
+            [
+              -66.949895,
+              24.523096
+            ]
+          ]
+        ],
+        [
+          [
+            [
+              172.461667,
+              53.01075
+            ],
+            [
+              179.77847,
+              53.01075
+            ],
+            [
+              179.77847,
+              51.357688
+            ],
+            [
+              172.461667,
+              51.357688
+            ],
+            [
+              172.461667,
+              53.01075
+            ]
+          ]
+        ],
+        [
+          [
+            [
+              -179.148909,
+              71.365162
+            ],
+            [
+              -129.974167,
+              71.365162
+            ],
+            [
+              -129.974167,
+              51.214183
+            ],
+            [
+              -179.148909,
+              51.214183
+            ],
+            [
+              -179.148909,
+              71.365162
+            ]
+          ]
+        ]
+      ]
+    },
+    "collection": "us-census",
+    "properties": {
+      "datetime": "2021-08-01T00:00:00Z",
+      "table:columns": [
+        {
+          "name": "P0010001",
+          "type": "int64",
+          "description": "Total:"
+        },
+        {
+          "name": "P0010002",
+          "type": "int64",
+          "description": "Population of one race:"
+        },
+        {
+          "name": "P0010003",
+          "type": "int64",
+          "description": "White alone"
+        },
+        {
+          "name": "P0010004",
+          "type": "int64",
+          "description": "Black or African American alone"
+        },
+        {
+          "name": "P0010005",
+          "type": "int64",
+          "description": "American Indian and Alaska Native alone"
+        },
+        {
+          "name": "P0010006",
+          "type": "int64",
+          "description": "Asian alone"
+        },
+        {
+          "name": "P0010007",
+          "type": "int64",
+          "description": "Native Hawaiian and Other Pacific Islander alone"
+        },
+        {
+          "name": "P0010008",
+          "type": "int64",
+          "description": "Some Other Race alone"
+        },
+        {
+          "name": "P0010009",
+          "type": "int64",
+          "description": "Population of two or more races:"
+        },
+        {
+          "name": "P0010010",
+          "type": "int64",
+          "description": "Population of two races:"
+        },
+        {
+          "name": "P0010011",
+          "type": "int64",
+          "description": "White; Black or African American"
+        },
+        {
+          "name": "P0010012",
+          "type": "int64",
+          "description": "White; American Indian and Alaska Native"
+        },
+        {
+          "name": "P0010013",
+          "type": "int64",
+          "description": "White; Asian"
+        },
+        {
+          "name": "P0010014",
+          "type": "int64",
+          "description": "White; Native Hawaiian and Other Pacific Islander"
+        },
+        {
+          "name": "P0010015",
+          "type": "int64",
+          "description": "White; Some Other Race"
+        },
+        {
+          "name": "P0010016",
+          "type": "int64",
+          "description": "Black or African American; American Indian and Alaska Native"
+        },
+        {
+          "name": "P0010017",
+          "type": "int64",
+          "description": "Black or African American; Asian"
+        },
+        {
+          "name": "P0010018",
+          "type": "int64",
+          "description": "Black or African American; Native Hawaiian and Other Pacific Islander"
+        },
+        {
+          "name": "P0010019",
+          "type": "int64",
+          "description": "Black or African American; Some Other Race"
+        },
+        {
+          "name": "P0010020",
+          "type": "int64",
+          "description": "American Indian and Alaska Native; Asian"
+        },
+        {
+          "name": "P0010021",
+          "type": "int64",
+          "description": "American Indian and Alaska Native; Native Hawaiian and Other Pacific Islander"
+        },
+        {
+          "name": "P0010022",
+          "type": "int64",
+          "description": "American Indian and Alaska Native; Some Other Race"
+        },
+        {
+          "name": "P0010023",
+          "type": "int64",
+          "description": "Asian; Native Hawaiian and Other Pacific Islander"
+        },
+        {
+          "name": "P0010024",
+          "type": "int64",
+          "description": "Asian; Some Other Race"
+        },
+        {
+          "name": "P0010025",
+          "type": "int64",
+          "description": "Native Hawaiian and Other Pacific Islander; Some Other Race"
+        },
+        {
+          "name": "P0010026",
+          "type": "int64",
+          "description": "Population of three races:"
+        },
+        {
+          "name": "P0010027",
+          "type": "int64",
+          "description": "White; Black or African American; American Indian and Alaska Native"
+        },
+        {
+          "name": "P0010028",
+          "type": "int64",
+          "description": "White; Black or African American; Asian"
+        },
+        {
+          "name": "P0010029",
+          "type": "int64",
+          "description": "White; Black or African American; Native Hawaiian and Other Pacific Islander"
+        },
+        {
+          "name": "P0010030",
+          "type": "int64",
+          "description": "White; Black or African American; Some Other Race"
+        },
+        {
+          "name": "P0010031",
+          "type": "int64",
+          "description": "White; American Indian and Alaska Native; Asian"
+        },
+        {
+          "name": "P0010032",
+          "type": "int64",
+          "description": "White; American Indian and Alaska Native; Native Hawaiian and Other Pacific Islander"
+        },
+        {
+          "name": "P0010033",
+          "type": "int64",
+          "description": "White; American Indian and Alaska Native; Some Other Race"
+        },
+        {
+          "name": "P0010034",
+          "type": "int64",
+          "description": "White; Asian; Native Hawaiian and Other Pacific Islander"
+        },
+        {
+          "name": "P0010035",
+          "type": "int64",
+          "description": "White; Asian; Some Other Race"
+        },
+        {
+          "name": "P0010036",
+          "type": "int64",
+          "description": "White; Native Hawaiian and Other Pacific Islander; Some Other Race"
+        },
+        {
+          "name": "P0010037",
+          "type": "int64",
+          "description": "Black or African American; American Indian and Alaska Native; Asian"
+        },
+        {
+          "name": "P0010038",
+          "type": "int64",
+          "description": "Black or African American; American Indian and Alaska Native; Native Hawaiian and Other Pacific Islander"
+        },
+        {
+          "name": "P0010039",
+          "type": "int64",
+          "description": "Black or African American; American Indian and Alaska Native; Some Other Race"
+        },
+        {
+          "name": "P0010040",
+          "type": "int64",
+          "description": "Black or African American; Asian; Native Hawaiian and Other Pacific Islander"
+        },
+        {
+          "name": "P0010041",
+          "type": "int64",
+          "description": "Black or African American; Asian; Some Other Race"
+        },
+        {
+          "name": "P0010042",
+          "type": "int64",
+          "description": "Black or African American; Native Hawaiian and Other Pacific Islander; Some Other Race"
+        },
+        {
+          "name": "P0010043",
+          "type": "int64",
+          "description": "American Indian and Alaska Native; Asian; Native Hawaiian and Other Pacific Islander"
+        },
+        {
+          "name": "P0010044",
+          "type": "int64",
+          "description": "American Indian and Alaska Native; Asian; Some Other Race"
+        },
+        {
+          "name": "P0010045",
+          "type": "int64",
+          "description": "American Indian and Alaska Native; Native Hawaiian and Other Pacific Islander; Some Other Race"
+        },
+        {
+          "name": "P0010046",
+          "type": "int64",
+          "description": "Asian; Native Hawaiian and Other Pacific Islander; Some Other Race"
+        },
+        {
+          "name": "P0010047",
+          "type": "int64",
+          "description": "Population of four races:"
+        },
+        {
+          "name": "P0010048",
+          "type": "int64",
+          "description": "White; Black or African American; American Indian and Alaska Native; Asian"
+        },
+        {
+          "name": "P0010049",
+          "type": "int64",
+          "description": "White; Black or African American; American Indian and Alaska Native; Native Hawaiian and Other Pacific Islander"
+        },
+        {
+          "name": "P0010050",
+          "type": "int64",
+          "description": "White; Black or African American; American Indian and Alaska Native; Some Other Race"
+        },
+        {
+          "name": "P0010051",
+          "type": "int64",
+          "description": "White; Black or African American; Asian; Native Hawaiian and Other Pacific Islander"
+        },
+        {
+          "name": "P0010052",
+          "type": "int64",
+          "description": "White; Black or African American; Asian; Some Other Race"
+        },
+        {
+          "name": "P0010053",
+          "type": "int64",
+          "description": "White; Black or African American; Native Hawaiian and Other Pacific Islander; Some Other Race"
+        },
+        {
+          "name": "P0010054",
+          "type": "int64",
+          "description": "White; American Indian and Alaska Native; Asian; Native Hawaiian and Other Pacific Islander"
+        },
+        {
+          "name": "P0010055",
+          "type": "int64",
+          "description": "White; American Indian and Alaska Native; Asian; Some Other Race"
+        },
+        {
+          "name": "P0010056",
+          "type": "int64",
+          "description": "White; American Indian and Alaska Native; Native Hawaiian and Other Pacific Islander; Some Other Race"
+        },
+        {
+          "name": "P0010057",
+          "type": "int64",
+          "description": "White; Asian; Native Hawaiian and Other Pacific Islander; Some Other Race"
+        },
+        {
+          "name": "P0010058",
+          "type": "int64",
+          "description": "Black or African American; American Indian and Alaska Native; Asian; Native Hawaiian and Other Pacific Islander"
+        },
+        {
+          "name": "P0010059",
+          "type": "int64",
+          "description": "Black or African American; American Indian and Alaska Native; Asian; Some Other Race"
+        },
+        {
+          "name": "P0010060",
+          "type": "int64",
+          "description": "Black or African American; American Indian and Alaska Native; Native Hawaiian and Other Pacific Islander; Some Other Race"
+        },
+        {
+          "name": "P0010061",
+          "type": "int64",
+          "description": "Black or African American; Asian; Native Hawaiian and Other Pacific Islander; Some Other Race"
+        },
+        {
+          "name": "P0010062",
+          "type": "int64",
+          "description": "American Indian and Alaska Native; Asian; Native Hawaiian and Other Pacific Islander; Some Other Race"
+        },
+        {
+          "name": "P0010063",
+          "type": "int64",
+          "description": "Population of five races:"
+        },
+        {
+          "name": "P0010064",
+          "type": "int64",
+          "description": "White; Black or African American; American Indian and Alaska Native; Asian; Native Hawaiian and Other Pacific Islander"
+        },
+        {
+          "name": "P0010065",
+          "type": "int64",
+          "description": "White; Black or African American; American Indian and Alaska Native; Asian; Some Other Race"
+        },
+        {
+          "name": "P0010066",
+          "type": "int64",
+          "description": "White; Black or African American; American Indian and Alaska Native; Native Hawaiian and Other Pacific Islander; Some Other Race"
+        },
+        {
+          "name": "P0010067",
+          "type": "int64",
+          "description": "White; Black or African American; Asian; Native Hawaiian and Other Pacific Islander; Some Other Race"
+        },
+        {
+          "name": "P0010068",
+          "type": "int64",
+          "description": "White; American Indian and Alaska Native; Asian; Native Hawaiian and Other Pacific Islander; Some Other Race"
+        },
+        {
+          "name": "P0010069",
+          "type": "int64",
+          "description": "Black or African American; American Indian and Alaska Native; Asian; Native Hawaiian and Other Pacific Islander; Some Other Race"
+        },
+        {
+          "name": "P0010070",
+          "type": "int64",
+          "description": "Population of six races:"
+        },
+        {
+          "name": "P0010071",
+          "type": "int64",
+          "description": "White; Black or African American; American Indian and Alaska Native; Asian; Native Hawaiian and Other Pacific Islander; Some Other Race"
+        },
+        {
+          "name": "P0020001",
+          "type": "int64",
+          "description": "Total:"
+        },
+        {
+          "name": "P0020002",
+          "type": "int64",
+          "description": "Hispanic or Latino"
+        },
+        {
+          "name": "P0020003",
+          "type": "int64",
+          "description": "Not Hispanic or Latino:"
+        },
+        {
+          "name": "P0020004",
+          "type": "int64",
+          "description": "Population of one race:"
+        },
+        {
+          "name": "P0020005",
+          "type": "int64",
+          "description": "White alone"
+        },
+        {
+          "name": "P0020006",
+          "type": "int64",
+          "description": "Black or African American alone"
+        },
+        {
+          "name": "P0020007",
+          "type": "int64",
+          "description": "American Indian and Alaska Native alone"
+        },
+        {
+          "name": "P0020008",
+          "type": "int64",
+          "description": "Asian alone"
+        },
+        {
+          "name": "P0020009",
+          "type": "int64",
+          "description": "Native Hawaiian and Other Pacific Islander alone"
+        },
+        {
+          "name": "P0020010",
+          "type": "int64",
+          "description": "Some Other Race alone"
+        },
+        {
+          "name": "P0020011",
+          "type": "int64",
+          "description": "Population of two or more races:"
+        },
+        {
+          "name": "P0020012",
+          "type": "int64",
+          "description": "Population of two races:"
+        },
+        {
+          "name": "P0020013",
+          "type": "int64",
+          "description": "White; Black or African American"
+        },
+        {
+          "name": "P0020014",
+          "type": "int64",
+          "description": "White; American Indian and Alaska Native"
+        },
+        {
+          "name": "P0020015",
+          "type": "int64",
+          "description": "White; Asian"
+        },
+        {
+          "name": "P0020016",
+          "type": "int64",
+          "description": "White; Native Hawaiian and Other Pacific Islander"
+        },
+        {
+          "name": "P0020017",
+          "type": "int64",
+          "description": "White; Some Other Race"
+        },
+        {
+          "name": "P0020018",
+          "type": "int64",
+          "description": "Black or African American; American Indian and Alaska Native"
+        },
+        {
+          "name": "P0020019",
+          "type": "int64",
+          "description": "Black or African American; Asian"
+        },
+        {
+          "name": "P0020020",
+          "type": "int64",
+          "description": "Black or African American; Native Hawaiian and Other Pacific Islander"
+        },
+        {
+          "name": "P0020021",
+          "type": "int64",
+          "description": "Black or African American; Some Other Race"
+        },
+        {
+          "name": "P0020022",
+          "type": "int64",
+          "description": "American Indian and Alaska Native; Asian"
+        },
+        {
+          "name": "P0020023",
+          "type": "int64",
+          "description": "American Indian and Alaska Native; Native Hawaiian and Other Pacific Islander"
+        },
+        {
+          "name": "P0020024",
+          "type": "int64",
+          "description": "American Indian and Alaska Native; Some Other Race"
+        },
+        {
+          "name": "P0020025",
+          "type": "int64",
+          "description": "Asian; Native Hawaiian and Other Pacific Islander"
+        },
+        {
+          "name": "P0020026",
+          "type": "int64",
+          "description": "Asian; Some Other Race"
+        },
+        {
+          "name": "P0020027",
+          "type": "int64",
+          "description": "Native Hawaiian and Other Pacific Islander; Some Other Race"
+        },
+        {
+          "name": "P0020028",
+          "type": "int64",
+          "description": "Population of three races:"
+        },
+        {
+          "name": "P0020029",
+          "type": "int64",
+          "description": "White; Black or African American; American Indian and Alaska Native"
+        },
+        {
+          "name": "P0020030",
+          "type": "int64",
+          "description": "White; Black or African American; Asian"
+        },
+        {
+          "name": "P0020031",
+          "type": "int64",
+          "description": "White; Black or African American; Native Hawaiian and Other Pacific Islander"
+        },
+        {
+          "name": "P0020032",
+          "type": "int64",
+          "description": "White; Black or African American; Some Other Race"
+        },
+        {
+          "name": "P0020033",
+          "type": "int64",
+          "description": "White; American Indian and Alaska Native; Asian"
+        },
+        {
+          "name": "P0020034",
+          "type": "int64",
+          "description": "White; American Indian and Alaska Native; Native Hawaiian and Other Pacific Islander"
+        },
+        {
+          "name": "P0020035",
+          "type": "int64",
+          "description": "White; American Indian and Alaska Native; Some Other Race"
+        },
+        {
+          "name": "P0020036",
+          "type": "int64",
+          "description": "White; Asian; Native Hawaiian and Other Pacific Islander"
+        },
+        {
+          "name": "P0020037",
+          "type": "int64",
+          "description": "White; Asian; Some Other Race"
+        },
+        {
+          "name": "P0020038",
+          "type": "int64",
+          "description": "White; Native Hawaiian and Other Pacific Islander; Some Other Race"
+        },
+        {
+          "name": "P0020039",
+          "type": "int64",
+          "description": "Black or African American; American Indian and Alaska Native; Asian"
+        },
+        {
+          "name": "P0020040",
+          "type": "int64",
+          "description": "Black or African American; American Indian and Alaska Native; Native Hawaiian and Other Pacific Islander"
+        },
+        {
+          "name": "P0020041",
+          "type": "int64",
+          "description": "Black or African American; American Indian and Alaska Native; Some Other Race"
+        },
+        {
+          "name": "P0020042",
+          "type": "int64",
+          "description": "Black or African American; Asian; Native Hawaiian and Other Pacific Islander"
+        },
+        {
+          "name": "P0020043",
+          "type": "int64",
+          "description": "Black or African American; Asian; Some Other Race"
+        },
+        {
+          "name": "P0020044",
+          "type": "int64",
+          "description": "Black or African American; Native Hawaiian and Other Pacific Islander; Some Other Race"
+        },
+        {
+          "name": "P0020045",
+          "type": "int64",
+          "description": "American Indian and Alaska Native; Asian; Native Hawaiian and Other Pacific Islander"
+        },
+        {
+          "name": "P0020046",
+          "type": "int64",
+          "description": "American Indian and Alaska Native; Asian; Some Other Race"
+        },
+        {
+          "name": "P0020047",
+          "type": "int64",
+          "description": "American Indian and Alaska Native; Native Hawaiian and Other Pacific Islander; Some Other Race"
+        },
+        {
+          "name": "P0020048",
+          "type": "int64",
+          "description": "Asian; Native Hawaiian and Other Pacific Islander; Some Other Race"
+        },
+        {
+          "name": "P0020049",
+          "type": "int64",
+          "description": "Population of four races:"
+        },
+        {
+          "name": "P0020050",
+          "type": "int64",
+          "description": "White; Black or African American; American Indian and Alaska Native; Asian"
+        },
+        {
+          "name": "P0020051",
+          "type": "int64",
+          "description": "White; Black or African American; American Indian and Alaska Native; Native Hawaiian and Other Pacific Islander"
+        },
+        {
+          "name": "P0020052",
+          "type": "int64",
+          "description": "White; Black or African American; American Indian and Alaska Native; Some Other Race"
+        },
+        {
+          "name": "P0020053",
+          "type": "int64",
+          "description": "White; Black or African American; Asian; Native Hawaiian and Other Pacific Islander"
+        },
+        {
+          "name": "P0020054",
+          "type": "int64",
+          "description": "White; Black or African American; Asian; Some Other Race"
+        },
+        {
+          "name": "P0020055",
+          "type": "int64",
+          "description": "White; Black or African American; Native Hawaiian and Other Pacific Islander; Some Other Race"
+        },
+        {
+          "name": "P0020056",
+          "type": "int64",
+          "description": "White; American Indian and Alaska Native; Asian; Native Hawaiian and Other Pacific Islander"
+        },
+        {
+          "name": "P0020057",
+          "type": "int64",
+          "description": "White; American Indian and Alaska Native; Asian; Some Other Race"
+        },
+        {
+          "name": "P0020058",
+          "type": "int64",
+          "description": "White; American Indian and Alaska Native; Native Hawaiian and Other Pacific Islander; Some Other Race"
+        },
+        {
+          "name": "P0020059",
+          "type": "int64",
+          "description": "White; Asian; Native Hawaiian and Other Pacific Islander; Some Other Race"
+        },
+        {
+          "name": "P0020060",
+          "type": "int64",
+          "description": "Black or African American; American Indian and Alaska Native; Asian; Native Hawaiian and Other Pacific Islander"
+        },
+        {
+          "name": "P0020061",
+          "type": "int64",
+          "description": "Black or African American; American Indian and Alaska Native; Asian; Some Other Race"
+        },
+        {
+          "name": "P0020062",
+          "type": "int64",
+          "description": "Black or African American; American Indian and Alaska Native; Native Hawaiian and Other Pacific Islander; Some Other Race"
+        },
+        {
+          "name": "P0020063",
+          "type": "int64",
+          "description": "Black or African American; Asian; Native Hawaiian and Other Pacific Islander; Some Other Race"
+        },
+        {
+          "name": "P0020064",
+          "type": "int64",
+          "description": "American Indian and Alaska Native; Asian; Native Hawaiian and Other Pacific Islander; Some Other Race"
+        },
+        {
+          "name": "P0020065",
+          "type": "int64",
+          "description": "Population of five races:"
+        },
+        {
+          "name": "P0020066",
+          "type": "int64",
+          "description": "White; Black or African American; American Indian and Alaska Native; Asian; Native Hawaiian and Other Pacific Islander"
+        },
+        {
+          "name": "P0020067",
+          "type": "int64",
+          "description": "White; Black or African American; American Indian and Alaska Native; Asian; Some Other Race"
+        },
+        {
+          "name": "P0020068",
+          "type": "int64",
+          "description": "White; Black or African American; American Indian and Alaska Native; Native Hawaiian and Other Pacific Islander; Some Other Race"
+        },
+        {
+          "name": "P0020069",
+          "type": "int64",
+          "description": "White; Black or African American; Asian; Native Hawaiian and Other Pacific Islander; Some Other Race"
+        },
+        {
+          "name": "P0020070",
+          "type": "int64",
+          "description": "White; American Indian and Alaska Native; Asian; Native Hawaiian and Other Pacific Islander; Some Other Race"
+        },
+        {
+          "name": "P0020071",
+          "type": "int64",
+          "description": "Black or African American; American Indian and Alaska Native; Asian; Native Hawaiian and Other Pacific Islander; Some Other Race"
+        },
+        {
+          "name": "P0020072",
+          "type": "int64",
+          "description": "Population of six races:"
+        },
+        {
+          "name": "P0020073",
+          "type": "int64",
+          "description": "White; Black or African American; American Indian and Alaska Native; Asian; Native Hawaiian and Other Pacific Islander; Some Other Race"
+        },
+        {
+          "name": "GEOID",
+          "type": "byte_array",
+          "description": "Geographic record identifier"
+        }
+      ]
+    },
+    "stac_extensions": [
+      "https://stac-extensions.github.io/table/v1.2.0/schema.json"
+    ],
+    "stac_version": "1.0.0"
+  },
+  {
+    "id": "2020-census-blocks-geo",
+    "bbox": [
+      -179.148909,
+      -14.548699,
+      179.77847,
+      71.365162
+    ],
+    "type": "Feature",
+    "links": [
+      {
+        "rel": "collection",
+        "type": "application/json",
+        "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/us-census"
+      },
+      {
+        "rel": "parent",
+        "type": "application/json",
+        "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/us-census"
+      },
+      {
+        "rel": "root",
+        "type": "application/json",
+        "href": "https://planetarycomputer.microsoft.com/api/stac/v1/"
+      },
+      {
+        "rel": "self",
+        "type": "application/geo+json",
+        "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/us-census/items/2020-census-blocks-geo"
+      }
+    ],
+    "assets": {
+      "data": {
+        "href": "abfs://us-census/2020/census_blocks_geo.parquet",
+        "type": "application/x-parquet",
+        "roles": [
+          "data"
+        ],
+        "title": "Dataset root",
+        "table:storage_options": {
+          "account_name": "ai4edataeuwest"
+        }
+      }
+    },
+    "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+        [
+          [
+            [
+              144.956712,
+              13.234189
+            ],
+            [
+              144.618068,
+              13.234189
+            ],
+            [
+              144.618068,
+              13.654383
+            ],
+            [
+              144.956712,
+              13.654383
+            ],
+            [
+              144.956712,
+              13.234189
+            ]
+          ]
+        ],
+        [
+          [
+            [
+              146.064818,
+              14.110472
+            ],
+            [
+              144.886331,
+              14.110472
+            ],
+            [
+              144.886331,
+              20.553802
+            ],
+            [
+              146.064818,
+              20.553802
+            ],
+            [
+              146.064818,
+              14.110472
+            ]
+          ]
+        ],
+        [
+          [
+            [
+              -64.564907,
+              17.673976
+            ],
+            [
+              -65.085452,
+              17.673976
+            ],
+            [
+              -65.085452,
+              18.412655
+            ],
+            [
+              -64.564907,
+              18.412655
+            ],
+            [
+              -64.564907,
+              17.673976
+            ]
+          ]
+        ],
+        [
+          [
+            [
+              -65.220703,
+              17.88328
+            ],
+            [
+              -67.945404,
+              17.88328
+            ],
+            [
+              -67.945404,
+              18.515683
+            ],
+            [
+              -65.220703,
+              18.515683
+            ],
+            [
+              -65.220703,
+              17.88328
+            ]
+          ]
+        ],
+        [
+          [
+            [
+              -168.1433,
+              -14.548699
+            ],
+            [
+              -171.089874,
+              -14.548699
+            ],
+            [
+              -171.089874,
+              -11.046934
+            ],
+            [
+              -168.1433,
+              -11.046934
+            ],
+            [
+              -168.1433,
+              -14.548699
+            ]
+          ]
+        ],
+        [
+          [
+            [
+              -154.806773,
+              18.910361
+            ],
+            [
+              -178.334698,
+              18.910361
+            ],
+            [
+              -178.334698,
+              28.402123
+            ],
+            [
+              -154.806773,
+              28.402123
+            ],
+            [
+              -154.806773,
+              18.910361
+            ]
+          ]
+        ],
+        [
+          [
+            [
+              -66.949895,
+              24.523096
+            ],
+            [
+              -124.763068,
+              24.523096
+            ],
+            [
+              -124.763068,
+              49.384358
+            ],
+            [
+              -66.949895,
+              49.384358
+            ],
+            [
+              -66.949895,
+              24.523096
+            ]
+          ]
+        ],
+        [
+          [
+            [
+              172.461667,
+              53.01075
+            ],
+            [
+              179.77847,
+              53.01075
+            ],
+            [
+              179.77847,
+              51.357688
+            ],
+            [
+              172.461667,
+              51.357688
+            ],
+            [
+              172.461667,
+              53.01075
+            ]
+          ]
+        ],
+        [
+          [
+            [
+              -179.148909,
+              71.365162
+            ],
+            [
+              -129.974167,
+              71.365162
+            ],
+            [
+              -129.974167,
+              51.214183
+            ],
+            [
+              -179.148909,
+              51.214183
+            ],
+            [
+              -179.148909,
+              71.365162
+            ]
+          ]
+        ]
+      ]
+    },
+    "collection": "us-census",
+    "properties": {
+      "datetime": "2021-08-01T00:00:00Z",
+      "table:columns": [
+        {
+          "name": "STATEFP",
+          "type": "byte_array",
+          "description": "State FIPS code"
+        },
+        {
+          "name": "COUNTYFP",
+          "type": "byte_array",
+          "description": "County FIPS code"
+        },
+        {
+          "name": "TRACTCE",
+          "type": "int64",
+          "description": "Census tract"
+        },
+        {
+          "name": "BLOCKCE",
+          "type": "int64",
+          "description": "Census block"
+        },
+        {
+          "name": "ALAND",
+          "type": "int64",
+          "description": "Area (Land)"
+        },
+        {
+          "name": "AWATER",
+          "type": "int64",
+          "description": "Area (Water)"
+        },
+        {
+          "name": "INTPTLAT",
+          "type": "double",
+          "description": "Internal Point (Latitude)"
+        },
+        {
+          "name": "INTPTLON",
+          "type": "double",
+          "description": "Internal Point (Longitude)"
+        },
+        {
+          "name": "geometry",
+          "type": "byte_array",
+          "description": "Census block geometry"
+        },
+        {
+          "name": "GEOID",
+          "type": "byte_array",
+          "description": "Geographic record identifier"
+        }
+      ]
+    },
+    "stac_extensions": [
+      "https://stac-extensions.github.io/table/v1.2.0/schema.json"
+    ],
+    "stac_version": "1.0.0"
+  },
+  {
+    "id": "2020-cb_2020_us_vtd_500k",
+    "bbox": [
+      -179.148909,
+      17.88328,
+      179.77847,
+      71.365162
+    ],
+    "type": "Feature",
+    "links": [
+      {
+        "rel": "collection",
+        "type": "application/json",
+        "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/us-census"
+      },
+      {
+        "rel": "parent",
+        "type": "application/json",
+        "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/us-census"
+      },
+      {
+        "rel": "root",
+        "type": "application/json",
+        "href": "https://planetarycomputer.microsoft.com/api/stac/v1/"
+      },
+      {
+        "rel": "self",
+        "type": "application/geo+json",
+        "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/us-census/items/2020-cb_2020_us_vtd_500k"
+      }
+    ],
+    "assets": {
+      "data": {
+        "href": "abfs://us-census/2020/cb_2020_us_vtd_500k.parquet",
+        "type": "application/x-parquet",
+        "roles": [
+          "data"
+        ],
+        "title": "Dataset root",
+        "table:storage_options": {
+          "account_name": "ai4edataeuwest"
+        }
+      }
+    },
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [
+            179.77847,
+            17.88328
+          ],
+          [
+            179.77847,
+            71.365162
+          ],
+          [
+            -179.148909,
+            71.365162
+          ],
+          [
+            -179.148909,
+            17.88328
+          ],
+          [
+            179.77847,
+            17.88328
+          ]
+        ]
+      ]
+    },
+    "collection": "us-census",
+    "properties": {
+      "datetime": "2021-08-01T00:00:00Z",
+      "proj:epsg": 4269,
+      "table:columns": [
+        {
+          "name": "STATEFP20",
+          "type": "byte_array",
+          "description": "State FIPS code"
+        },
+        {
+          "name": "COUNTYFP20",
+          "type": "byte_array",
+          "description": "County FIPS code"
+        },
+        {
+          "name": "VTDST20",
+          "type": "byte_array",
+          "description": "Voting district code"
+        },
+        {
+          "name": "AFFGEOID20",
+          "type": "byte_array"
+        },
+        {
+          "name": "GEOID20",
+          "type": "byte_array"
+        },
+        {
+          "name": "VTDI20",
+          "type": "byte_array",
+          "description": "Voting district indicator"
+        },
+        {
+          "name": "NAME20",
+          "type": "byte_array",
+          "description": "Voting district name"
+        },
+        {
+          "name": "NAMELSAD20",
+          "type": "byte_array",
+          "description": "Voting district name and legal/statistical division"
+        },
+        {
+          "name": "LSAD20",
+          "type": "byte_array",
+          "description": "Legal/statistical classification"
+        },
+        {
+          "name": "ALAND20",
+          "type": "int64",
+          "description": "Current land area"
+        },
+        {
+          "name": "AWATER20",
+          "type": "int64",
+          "description": "Current water area"
+        },
+        {
+          "name": "geometry",
+          "type": "byte_array",
+          "description": "coordinates for Voting District polygons"
+        }
+      ],
+      "table:row_count": 158320
+    },
+    "stac_extensions": [
+      "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+      "https://stac-extensions.github.io/projection/v1.0.0/schema.json"
+    ],
+    "stac_version": "1.0.0"
+  },
+  {
+    "id": "2020-cb_2020_us_unsd_500k",
+    "bbox": [
+      -179.148909,
+      -14.548699,
+      179.77847,
+      71.365162
+    ],
+    "type": "Feature",
+    "links": [
+      {
+        "rel": "collection",
+        "type": "application/json",
+        "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/us-census"
+      },
+      {
+        "rel": "parent",
+        "type": "application/json",
+        "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/us-census"
+      },
+      {
+        "rel": "root",
+        "type": "application/json",
+        "href": "https://planetarycomputer.microsoft.com/api/stac/v1/"
+      },
+      {
+        "rel": "self",
+        "type": "application/geo+json",
+        "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/us-census/items/2020-cb_2020_us_unsd_500k"
+      }
+    ],
+    "assets": {
+      "data": {
+        "href": "abfs://us-census/2020/cb_2020_us_unsd_500k.parquet",
+        "type": "application/x-parquet",
+        "roles": [
+          "data"
+        ],
+        "title": "Dataset root",
+        "table:storage_options": {
+          "account_name": "ai4edataeuwest"
+        }
+      }
+    },
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [
+            179.77847,
+            -14.548699
+          ],
+          [
+            179.77847,
+            71.365162
+          ],
+          [
+            -179.148909,
+            71.365162
+          ],
+          [
+            -179.148909,
+            -14.548699
+          ],
+          [
+            179.77847,
+            -14.548699
+          ]
+        ]
+      ]
+    },
+    "collection": "us-census",
+    "properties": {
+      "datetime": "2021-08-01T00:00:00Z",
+      "proj:epsg": 4269,
+      "table:columns": [
+        {
+          "name": "STATEFP",
+          "type": "byte_array",
+          "description": "State FIPS code"
+        },
+        {
+          "name": "UNSDLEA",
+          "type": "int64",
+          "description": "Unified School District local education agency code"
+        },
+        {
+          "name": "AFFGEOID",
+          "type": "byte_array",
+          "description": "American FactFinder summary level code + geovariant code + \"00US\" + GEOID"
+        },
+        {
+          "name": "GEOID",
+          "type": "byte_array",
+          "description": "Concatenation of State FIPS code and UNSDLEA code"
+        },
+        {
+          "name": "NAME",
+          "type": "byte_array",
+          "description": "Unified School District name"
+        },
+        {
+          "name": "STUSPS",
+          "type": "byte_array",
+          "description": "FIPS Postal code"
+        },
+        {
+          "name": "STATE_NAME",
+          "type": "byte_array",
+          "description": "State name"
+        },
+        {
+          "name": "LSAD",
+          "type": "byte_array",
+          "description": "Legal/statistical classification"
+        },
+        {
+          "name": "ALAND",
+          "type": "int64",
+          "description": "Current land area"
+        },
+        {
+          "name": "AWATER",
+          "type": "int64",
+          "description": "Current water area"
+        },
+        {
+          "name": "geometry",
+          "type": "byte_array",
+          "description": "Coordinates for Unified School District polygons"
+        }
+      ],
+      "table:row_count": 10867
+    },
+    "stac_extensions": [
+      "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+      "https://stac-extensions.github.io/projection/v1.0.0/schema.json"
+    ],
+    "stac_version": "1.0.0"
+  }
+]

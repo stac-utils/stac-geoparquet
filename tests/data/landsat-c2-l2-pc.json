@@ -1,0 +1,4530 @@
+[
+  {
+    "id": "LC09_L2SP_089090_20240417_02_T1",
+    "bbox": [
+      147.24419221301054,
+      -44.27650501698769,
+      150.24694131166774,
+      -42.08063498301231
+    ],
+    "type": "Feature",
+    "links": [
+      {
+        "rel": "collection",
+        "type": "application/json",
+        "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-c2-l2"
+      },
+      {
+        "rel": "parent",
+        "type": "application/json",
+        "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-c2-l2"
+      },
+      {
+        "rel": "root",
+        "type": "application/json",
+        "href": "https://planetarycomputer.microsoft.com/api/stac/v1/"
+      },
+      {
+        "rel": "self",
+        "type": "application/geo+json",
+        "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-c2-l2/items/LC09_L2SP_089090_20240417_02_T1"
+      },
+      {
+        "rel": "cite-as",
+        "href": "https://doi.org/10.5066/P9OGBGM6",
+        "title": "Landsat 8-9 OLI/TIRS Collection 2 Level-2"
+      },
+      {
+        "rel": "via",
+        "href": "https://landsatlook.usgs.gov/stac-server/collections/landsat-c2l2-sr/items/LC09_L2SP_089090_20240417_20240418_02_T1_SR",
+        "type": "application/json",
+        "title": "USGS STAC Item"
+      },
+      {
+        "rel": "via",
+        "href": "https://landsatlook.usgs.gov/stac-server/collections/landsat-c2l2-st/items/LC09_L2SP_089090_20240417_20240418_02_T1_ST",
+        "type": "application/json",
+        "title": "USGS STAC Item"
+      },
+      {
+        "rel": "preview",
+        "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/map?collection=landsat-c2-l2&item=LC09_L2SP_089090_20240417_02_T1",
+        "title": "Map of item",
+        "type": "text/html"
+      }
+    ],
+    "assets": {
+      "qa": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2024/089/090/LC09_L2SP_089090_20240417_20240418_02_T1/LC09_L2SP_089090_20240417_20240418_02_T1_ST_QA.TIF",
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "data"
+        ],
+        "title": "Surface Temperature Quality Assessment Band",
+        "description": "Collection 2 Level-2 Quality Assessment Band (ST_QA) Surface Temperature Product",
+        "raster:bands": [
+          {
+            "unit": "kelvin",
+            "scale": 0.01,
+            "nodata": -9999,
+            "data_type": "int16",
+            "spatial_resolution": 30
+          }
+        ]
+      },
+      "ang": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2024/089/090/LC09_L2SP_089090_20240417_20240418_02_T1/LC09_L2SP_089090_20240417_20240418_02_T1_ANG.txt",
+        "type": "text/plain",
+        "roles": [
+          "metadata"
+        ],
+        "title": "Angle Coefficients File",
+        "description": "Collection 2 Level-1 Angle Coefficients File"
+      },
+      "red": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2024/089/090/LC09_L2SP_089090_20240417_20240418_02_T1/LC09_L2SP_089090_20240417_20240418_02_T1_SR_B4.TIF",
+        "eo:bands": [
+          {
+            "name": "OLI_B4",
+            "center_wavelength": 0.65,
+            "full_width_half_max": 0.04,
+            "common_name": "red",
+            "description": "Visible red"
+          }
+        ],
+        "description": "Collection 2 Level-2 Red Band (SR_B4) Surface Reflectance",
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "data",
+          "reflectance"
+        ],
+        "title": "Red Band",
+        "raster:bands": [
+          {
+            "scale": 2.75e-05,
+            "nodata": 0,
+            "offset": -0.2,
+            "data_type": "uint16",
+            "spatial_resolution": 30
+          }
+        ]
+      },
+      "blue": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2024/089/090/LC09_L2SP_089090_20240417_20240418_02_T1/LC09_L2SP_089090_20240417_20240418_02_T1_SR_B2.TIF",
+        "eo:bands": [
+          {
+            "name": "OLI_B2",
+            "center_wavelength": 0.48,
+            "full_width_half_max": 0.06,
+            "common_name": "blue",
+            "description": "Visible blue"
+          }
+        ],
+        "description": "Collection 2 Level-2 Blue Band (SR_B2) Surface Reflectance",
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "data",
+          "reflectance"
+        ],
+        "title": "Blue Band",
+        "raster:bands": [
+          {
+            "scale": 2.75e-05,
+            "nodata": 0,
+            "offset": -0.2,
+            "data_type": "uint16",
+            "spatial_resolution": 30
+          }
+        ]
+      },
+      "drad": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2024/089/090/LC09_L2SP_089090_20240417_20240418_02_T1/LC09_L2SP_089090_20240417_20240418_02_T1_ST_DRAD.TIF",
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "data"
+        ],
+        "title": "Downwelled Radiance Band",
+        "description": "Collection 2 Level-2 Downwelled Radiance Band (ST_DRAD) Surface Temperature Product",
+        "raster:bands": [
+          {
+            "unit": "watt/steradian/square_meter/micrometer",
+            "scale": 0.001,
+            "nodata": -9999,
+            "data_type": "int16",
+            "spatial_resolution": 30
+          }
+        ]
+      },
+      "emis": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2024/089/090/LC09_L2SP_089090_20240417_20240418_02_T1/LC09_L2SP_089090_20240417_20240418_02_T1_ST_EMIS.TIF",
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "data"
+        ],
+        "title": "Emissivity Band",
+        "description": "Collection 2 Level-2 Emissivity Band (ST_EMIS) Surface Temperature Product",
+        "raster:bands": [
+          {
+            "unit": "emissivity coefficient",
+            "scale": 0.0001,
+            "nodata": -9999,
+            "data_type": "int16",
+            "spatial_resolution": 30
+          }
+        ]
+      },
+      "emsd": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2024/089/090/LC09_L2SP_089090_20240417_20240418_02_T1/LC09_L2SP_089090_20240417_20240418_02_T1_ST_EMSD.TIF",
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "data"
+        ],
+        "title": "Emissivity Standard Deviation Band",
+        "description": "Collection 2 Level-2 Emissivity Standard Deviation Band (ST_EMSD) Surface Temperature Product",
+        "raster:bands": [
+          {
+            "unit": "emissivity coefficient",
+            "scale": 0.0001,
+            "nodata": -9999,
+            "data_type": "int16",
+            "spatial_resolution": 30
+          }
+        ]
+      },
+      "trad": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2024/089/090/LC09_L2SP_089090_20240417_20240418_02_T1/LC09_L2SP_089090_20240417_20240418_02_T1_ST_TRAD.TIF",
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "data"
+        ],
+        "title": "Thermal Radiance Band",
+        "description": "Collection 2 Level-2 Thermal Radiance Band (ST_TRAD) Surface Temperature Product",
+        "raster:bands": [
+          {
+            "unit": "watt/steradian/square_meter/micrometer",
+            "scale": 0.001,
+            "nodata": -9999,
+            "data_type": "int16",
+            "spatial_resolution": 30
+          }
+        ]
+      },
+      "urad": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2024/089/090/LC09_L2SP_089090_20240417_20240418_02_T1/LC09_L2SP_089090_20240417_20240418_02_T1_ST_URAD.TIF",
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "data"
+        ],
+        "title": "Upwelled Radiance Band",
+        "description": "Collection 2 Level-2 Upwelled Radiance Band (ST_URAD) Surface Temperature Product",
+        "raster:bands": [
+          {
+            "unit": "watt/steradian/square_meter/micrometer",
+            "scale": 0.001,
+            "nodata": -9999,
+            "data_type": "int16",
+            "spatial_resolution": 30
+          }
+        ]
+      },
+      "atran": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2024/089/090/LC09_L2SP_089090_20240417_20240418_02_T1/LC09_L2SP_089090_20240417_20240418_02_T1_ST_ATRAN.TIF",
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "data"
+        ],
+        "title": "Atmospheric Transmittance Band",
+        "description": "Collection 2 Level-2 Atmospheric Transmittance Band (ST_ATRAN) Surface Temperature Product",
+        "raster:bands": [
+          {
+            "scale": 0.0001,
+            "nodata": -9999,
+            "data_type": "int16",
+            "spatial_resolution": 30
+          }
+        ]
+      },
+      "cdist": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2024/089/090/LC09_L2SP_089090_20240417_20240418_02_T1/LC09_L2SP_089090_20240417_20240418_02_T1_ST_CDIST.TIF",
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "data"
+        ],
+        "title": "Cloud Distance Band",
+        "description": "Collection 2 Level-2 Cloud Distance Band (ST_CDIST) Surface Temperature Product",
+        "raster:bands": [
+          {
+            "unit": "kilometer",
+            "scale": 0.01,
+            "nodata": -9999,
+            "data_type": "int16",
+            "spatial_resolution": 30
+          }
+        ]
+      },
+      "green": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2024/089/090/LC09_L2SP_089090_20240417_20240418_02_T1/LC09_L2SP_089090_20240417_20240418_02_T1_SR_B3.TIF",
+        "eo:bands": [
+          {
+            "name": "OLI_B3",
+            "full_width_half_max": 0.06,
+            "common_name": "green",
+            "description": "Visible green",
+            "center_wavelength": 0.56
+          }
+        ],
+        "description": "Collection 2 Level-2 Green Band (SR_B3) Surface Reflectance",
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "data",
+          "reflectance"
+        ],
+        "title": "Green Band",
+        "raster:bands": [
+          {
+            "scale": 2.75e-05,
+            "nodata": 0,
+            "offset": -0.2,
+            "data_type": "uint16",
+            "spatial_resolution": 30
+          }
+        ]
+      },
+      "nir08": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2024/089/090/LC09_L2SP_089090_20240417_20240418_02_T1/LC09_L2SP_089090_20240417_20240418_02_T1_SR_B5.TIF",
+        "eo:bands": [
+          {
+            "name": "OLI_B5",
+            "center_wavelength": 0.87,
+            "full_width_half_max": 0.03,
+            "common_name": "nir08",
+            "description": "Near infrared"
+          }
+        ],
+        "description": "Collection 2 Level-2 Near Infrared Band 0.8 (SR_B5) Surface Reflectance",
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "data",
+          "reflectance"
+        ],
+        "title": "Near Infrared Band 0.8",
+        "raster:bands": [
+          {
+            "scale": 2.75e-05,
+            "nodata": 0,
+            "offset": -0.2,
+            "data_type": "uint16",
+            "spatial_resolution": 30
+          }
+        ]
+      },
+      "lwir11": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2024/089/090/LC09_L2SP_089090_20240417_20240418_02_T1/LC09_L2SP_089090_20240417_20240418_02_T1_ST_B10.TIF",
+        "gsd": 100,
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "data",
+          "temperature"
+        ],
+        "title": "Surface Temperature Band",
+        "eo:bands": [
+          {
+            "name": "TIRS_B10",
+            "common_name": "lwir11",
+            "description": "Long-wave infrared",
+            "center_wavelength": 10.9,
+            "full_width_half_max": 0.59
+          }
+        ],
+        "description": "Collection 2 Level-2 Thermal Infrared Band (ST_B10) Surface Temperature",
+        "raster:bands": [
+          {
+            "unit": "kelvin",
+            "scale": 0.00341802,
+            "nodata": 0,
+            "offset": 149.0,
+            "data_type": "uint16",
+            "spatial_resolution": 30
+          }
+        ]
+      },
+      "swir16": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2024/089/090/LC09_L2SP_089090_20240417_20240418_02_T1/LC09_L2SP_089090_20240417_20240418_02_T1_SR_B6.TIF",
+        "eo:bands": [
+          {
+            "name": "OLI_B6",
+            "center_wavelength": 1.61,
+            "full_width_half_max": 0.09,
+            "common_name": "swir16",
+            "description": "Short-wave infrared"
+          }
+        ],
+        "description": "Collection 2 Level-2 Short-wave Infrared Band 1.6 (SR_B6) Surface Reflectance",
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "data",
+          "reflectance"
+        ],
+        "title": "Short-wave Infrared Band 1.6",
+        "raster:bands": [
+          {
+            "scale": 2.75e-05,
+            "nodata": 0,
+            "offset": -0.2,
+            "data_type": "uint16",
+            "spatial_resolution": 30
+          }
+        ]
+      },
+      "swir22": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2024/089/090/LC09_L2SP_089090_20240417_20240418_02_T1/LC09_L2SP_089090_20240417_20240418_02_T1_SR_B7.TIF",
+        "eo:bands": [
+          {
+            "name": "OLI_B7",
+            "center_wavelength": 2.2,
+            "full_width_half_max": 0.19,
+            "common_name": "swir22",
+            "description": "Short-wave infrared"
+          }
+        ],
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "data",
+          "reflectance"
+        ],
+        "title": "Short-wave Infrared Band 2.2",
+        "description": "Collection 2 Level-2 Short-wave Infrared Band 2.2 (SR_B7) Surface Reflectance",
+        "raster:bands": [
+          {
+            "scale": 2.75e-05,
+            "nodata": 0,
+            "offset": -0.2,
+            "data_type": "uint16",
+            "spatial_resolution": 30
+          }
+        ]
+      },
+      "coastal": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2024/089/090/LC09_L2SP_089090_20240417_20240418_02_T1/LC09_L2SP_089090_20240417_20240418_02_T1_SR_B1.TIF",
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "data",
+          "reflectance"
+        ],
+        "title": "Coastal/Aerosol Band",
+        "eo:bands": [
+          {
+            "name": "OLI_B1",
+            "common_name": "coastal",
+            "description": "Coastal/Aerosol",
+            "center_wavelength": 0.44,
+            "full_width_half_max": 0.02
+          }
+        ],
+        "description": "Collection 2 Level-2 Coastal/Aerosol Band (SR_B1) Surface Reflectance",
+        "raster:bands": [
+          {
+            "scale": 2.75e-05,
+            "nodata": 0,
+            "offset": -0.2,
+            "data_type": "uint16",
+            "spatial_resolution": 30
+          }
+        ]
+      },
+      "mtl.txt": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2024/089/090/LC09_L2SP_089090_20240417_20240418_02_T1/LC09_L2SP_089090_20240417_20240418_02_T1_MTL.txt",
+        "type": "text/plain",
+        "roles": [
+          "metadata"
+        ],
+        "title": "Product Metadata File (txt)",
+        "description": "Collection 2 Level-2 Product Metadata File (txt)"
+      },
+      "mtl.xml": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2024/089/090/LC09_L2SP_089090_20240417_20240418_02_T1/LC09_L2SP_089090_20240417_20240418_02_T1_MTL.xml",
+        "type": "application/xml",
+        "roles": [
+          "metadata"
+        ],
+        "title": "Product Metadata File (xml)",
+        "description": "Collection 2 Level-2 Product Metadata File (xml)"
+      },
+      "mtl.json": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2024/089/090/LC09_L2SP_089090_20240417_20240418_02_T1/LC09_L2SP_089090_20240417_20240418_02_T1_MTL.json",
+        "type": "application/json",
+        "roles": [
+          "metadata"
+        ],
+        "title": "Product Metadata File (json)",
+        "description": "Collection 2 Level-2 Product Metadata File (json)"
+      },
+      "qa_pixel": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2024/089/090/LC09_L2SP_089090_20240417_20240418_02_T1/LC09_L2SP_089090_20240417_20240418_02_T1_QA_PIXEL.TIF",
+        "classification:bitfields": [
+          {
+            "name": "fill",
+            "length": 1,
+            "offset": 0,
+            "classes": [
+              {
+                "name": "not_fill",
+                "value": 0,
+                "description": "Image data"
+              },
+              {
+                "name": "fill",
+                "value": 1,
+                "description": "Fill data"
+              }
+            ],
+            "description": "Image or fill data"
+          },
+          {
+            "name": "dilated_cloud",
+            "length": 1,
+            "offset": 1,
+            "classes": [
+              {
+                "name": "not_dilated",
+                "value": 0,
+                "description": "Cloud is not dilated or no cloud"
+              },
+              {
+                "name": "dilated",
+                "value": 1,
+                "description": "Cloud dilation"
+              }
+            ],
+            "description": "Dilated cloud"
+          },
+          {
+            "name": "cirrus",
+            "length": 1,
+            "offset": 2,
+            "classes": [
+              {
+                "name": "not_cirrus",
+                "value": 0,
+                "description": "Cirrus confidence is not high"
+              },
+              {
+                "name": "cirrus",
+                "value": 1,
+                "description": "High confidence cirrus"
+              }
+            ],
+            "description": "Cirrus mask"
+          },
+          {
+            "name": "cloud",
+            "length": 1,
+            "offset": 3,
+            "classes": [
+              {
+                "name": "not_cloud",
+                "value": 0,
+                "description": "Cloud confidence is not high"
+              },
+              {
+                "name": "cloud",
+                "value": 1,
+                "description": "High confidence cloud"
+              }
+            ],
+            "description": "Cloud mask"
+          },
+          {
+            "name": "cloud_shadow",
+            "length": 1,
+            "offset": 4,
+            "classes": [
+              {
+                "name": "not_shadow",
+                "value": 0,
+                "description": "Cloud shadow confidence is not high"
+              },
+              {
+                "name": "shadow",
+                "value": 1,
+                "description": "High confidence cloud shadow"
+              }
+            ],
+            "description": "Cloud shadow mask"
+          },
+          {
+            "name": "snow",
+            "length": 1,
+            "offset": 5,
+            "classes": [
+              {
+                "name": "not_snow",
+                "value": 0,
+                "description": "Snow/Ice confidence is not high"
+              },
+              {
+                "name": "snow",
+                "value": 1,
+                "description": "High confidence snow cover"
+              }
+            ],
+            "description": "Snow/Ice mask"
+          },
+          {
+            "name": "clear",
+            "length": 1,
+            "offset": 6,
+            "classes": [
+              {
+                "name": "not_clear",
+                "value": 0,
+                "description": "Cloud or dilated cloud bits are set"
+              },
+              {
+                "name": "clear",
+                "value": 1,
+                "description": "Cloud and dilated cloud bits are not set"
+              }
+            ],
+            "description": "Clear mask"
+          },
+          {
+            "name": "water",
+            "length": 1,
+            "offset": 7,
+            "classes": [
+              {
+                "name": "not_water",
+                "value": 0,
+                "description": "Land or cloud"
+              },
+              {
+                "name": "water",
+                "value": 1,
+                "description": "Water"
+              }
+            ],
+            "description": "Water mask"
+          },
+          {
+            "name": "cloud_confidence",
+            "length": 2,
+            "offset": 8,
+            "classes": [
+              {
+                "name": "not_set",
+                "value": 0,
+                "description": "No confidence level set"
+              },
+              {
+                "name": "low",
+                "value": 1,
+                "description": "Low confidence cloud"
+              },
+              {
+                "name": "medium",
+                "value": 2,
+                "description": "Medium confidence cloud"
+              },
+              {
+                "name": "high",
+                "value": 3,
+                "description": "High confidence cloud"
+              }
+            ],
+            "description": "Cloud confidence levels"
+          },
+          {
+            "name": "cloud_shadow_confidence",
+            "length": 2,
+            "offset": 10,
+            "classes": [
+              {
+                "name": "not_set",
+                "value": 0,
+                "description": "No confidence level set"
+              },
+              {
+                "name": "low",
+                "value": 1,
+                "description": "Low confidence cloud shadow"
+              },
+              {
+                "name": "reserved",
+                "value": 2,
+                "description": "Reserved - value not used"
+              },
+              {
+                "name": "high",
+                "value": 3,
+                "description": "High confidence cloud shadow"
+              }
+            ],
+            "description": "Cloud shadow confidence levels"
+          },
+          {
+            "name": "snow_confidence",
+            "length": 2,
+            "offset": 12,
+            "classes": [
+              {
+                "name": "not_set",
+                "value": 0,
+                "description": "No confidence level set"
+              },
+              {
+                "name": "low",
+                "value": 1,
+                "description": "Low confidence snow/ice"
+              },
+              {
+                "name": "reserved",
+                "value": 2,
+                "description": "Reserved - value not used"
+              },
+              {
+                "name": "high",
+                "value": 3,
+                "description": "High confidence snow/ice"
+              }
+            ],
+            "description": "Snow/Ice confidence levels"
+          },
+          {
+            "name": "cirrus_confidence",
+            "length": 2,
+            "offset": 14,
+            "classes": [
+              {
+                "name": "not_set",
+                "value": 0,
+                "description": "No confidence level set"
+              },
+              {
+                "name": "low",
+                "value": 1,
+                "description": "Low confidence cirrus"
+              },
+              {
+                "name": "reserved",
+                "value": 2,
+                "description": "Reserved - value not used"
+              },
+              {
+                "name": "high",
+                "value": 3,
+                "description": "High confidence cirrus"
+              }
+            ],
+            "description": "Cirrus confidence levels"
+          }
+        ],
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "cloud",
+          "cloud-shadow",
+          "snow-ice",
+          "water-mask"
+        ],
+        "title": "Pixel Quality Assessment Band",
+        "description": "Collection 2 Level-1 Pixel Quality Assessment Band (QA_PIXEL)",
+        "raster:bands": [
+          {
+            "unit": "bit index",
+            "nodata": 1,
+            "data_type": "uint16",
+            "spatial_resolution": 30
+          }
+        ]
+      },
+      "qa_radsat": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2024/089/090/LC09_L2SP_089090_20240417_20240418_02_T1/LC09_L2SP_089090_20240417_20240418_02_T1_QA_RADSAT.TIF",
+        "title": "Radiometric Saturation and Terrain Occlusion Quality Assessment Band",
+        "description": "Collection 2 Level-1 Radiometric Saturation and Terrain Occlusion Quality Assessment Band (QA_RADSAT)",
+        "classification:bitfields": [
+          {
+            "name": "band1",
+            "length": 1,
+            "offset": 0,
+            "classes": [
+              {
+                "name": "not_saturated",
+                "value": 0,
+                "description": "Band 1 not saturated"
+              },
+              {
+                "name": "saturated",
+                "value": 1,
+                "description": "Band 1 saturated"
+              }
+            ],
+            "description": "Band 1 radiometric saturation"
+          },
+          {
+            "name": "band2",
+            "length": 1,
+            "offset": 1,
+            "classes": [
+              {
+                "name": "not_saturated",
+                "value": 0,
+                "description": "Band 2 not saturated"
+              },
+              {
+                "name": "saturated",
+                "value": 1,
+                "description": "Band 2 saturated"
+              }
+            ],
+            "description": "Band 2 radiometric saturation"
+          },
+          {
+            "name": "band3",
+            "length": 1,
+            "offset": 2,
+            "classes": [
+              {
+                "name": "not_saturated",
+                "value": 0,
+                "description": "Band 3 not saturated"
+              },
+              {
+                "name": "saturated",
+                "value": 1,
+                "description": "Band 3 saturated"
+              }
+            ],
+            "description": "Band 3 radiometric saturation"
+          },
+          {
+            "name": "band4",
+            "length": 1,
+            "offset": 3,
+            "classes": [
+              {
+                "name": "not_saturated",
+                "value": 0,
+                "description": "Band 4 not saturated"
+              },
+              {
+                "name": "saturated",
+                "value": 1,
+                "description": "Band 4 saturated"
+              }
+            ],
+            "description": "Band 4 radiometric saturation"
+          },
+          {
+            "name": "band5",
+            "length": 1,
+            "offset": 4,
+            "classes": [
+              {
+                "name": "not_saturated",
+                "value": 0,
+                "description": "Band 5 not saturated"
+              },
+              {
+                "name": "saturated",
+                "value": 1,
+                "description": "Band 5 saturated"
+              }
+            ],
+            "description": "Band 5 radiometric saturation"
+          },
+          {
+            "name": "band6",
+            "length": 1,
+            "offset": 5,
+            "classes": [
+              {
+                "name": "not_saturated",
+                "value": 0,
+                "description": "Band 6 not saturated"
+              },
+              {
+                "name": "saturated",
+                "value": 1,
+                "description": "Band 6 saturated"
+              }
+            ],
+            "description": "Band 6 radiometric saturation"
+          },
+          {
+            "name": "band7",
+            "length": 1,
+            "offset": 6,
+            "classes": [
+              {
+                "name": "not_saturated",
+                "value": 0,
+                "description": "Band 7 not saturated"
+              },
+              {
+                "name": "saturated",
+                "value": 1,
+                "description": "Band 7 saturated"
+              }
+            ],
+            "description": "Band 7 radiometric saturation"
+          },
+          {
+            "name": "band9",
+            "length": 1,
+            "offset": 8,
+            "classes": [
+              {
+                "name": "not_saturated",
+                "value": 0,
+                "description": "Band 9 not saturated"
+              },
+              {
+                "name": "saturated",
+                "value": 1,
+                "description": "Band 9 saturated"
+              }
+            ],
+            "description": "Band 9 radiometric saturation"
+          },
+          {
+            "name": "occlusion",
+            "length": 1,
+            "offset": 11,
+            "classes": [
+              {
+                "name": "not_occluded",
+                "value": 0,
+                "description": "Terrain is not occluded"
+              },
+              {
+                "name": "occluded",
+                "value": 1,
+                "description": "Terrain is occluded"
+              }
+            ],
+            "description": "Terrain not visible from sensor due to intervening terrain"
+          }
+        ],
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "saturation"
+        ],
+        "raster:bands": [
+          {
+            "unit": "bit index",
+            "data_type": "uint16",
+            "spatial_resolution": 30
+          }
+        ]
+      },
+      "qa_aerosol": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2024/089/090/LC09_L2SP_089090_20240417_20240418_02_T1/LC09_L2SP_089090_20240417_20240418_02_T1_SR_QA_AEROSOL.TIF",
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "data-mask",
+          "water-mask"
+        ],
+        "title": "Aerosol Quality Assessment Band",
+        "description": "Collection 2 Level-2 Aerosol Quality Assessment Band (SR_QA_AEROSOL) Surface Reflectance Product",
+        "raster:bands": [
+          {
+            "unit": "bit index",
+            "nodata": 1,
+            "data_type": "uint8",
+            "spatial_resolution": 30
+          }
+        ],
+        "classification:bitfields": [
+          {
+            "name": "fill",
+            "length": 1,
+            "offset": 0,
+            "classes": [
+              {
+                "name": "not_fill",
+                "value": 0,
+                "description": "Pixel is not fill"
+              },
+              {
+                "name": "fill",
+                "value": 1,
+                "description": "Pixel is fill"
+              }
+            ],
+            "description": "Image or fill data"
+          },
+          {
+            "name": "retrieval",
+            "length": 1,
+            "offset": 1,
+            "classes": [
+              {
+                "name": "not_valid",
+                "value": 0,
+                "description": "Pixel retrieval is not valid"
+              },
+              {
+                "name": "valid",
+                "value": 1,
+                "description": "Pixel retrieval is valid"
+              }
+            ],
+            "description": "Valid aerosol retrieval"
+          },
+          {
+            "name": "water",
+            "length": 1,
+            "offset": 2,
+            "classes": [
+              {
+                "name": "not_water",
+                "value": 0,
+                "description": "Pixel is not water"
+              },
+              {
+                "name": "water",
+                "value": 1,
+                "description": "Pixel is water"
+              }
+            ],
+            "description": "Water mask"
+          },
+          {
+            "name": "interpolated",
+            "length": 1,
+            "offset": 5,
+            "classes": [
+              {
+                "name": "not_interpolated",
+                "value": 0,
+                "description": "Pixel is not interpolated aerosol"
+              },
+              {
+                "name": "interpolated",
+                "value": 1,
+                "description": "Pixel is interpolated aerosol"
+              }
+            ],
+            "description": "Aerosol interpolation"
+          },
+          {
+            "name": "level",
+            "length": 2,
+            "offset": 6,
+            "classes": [
+              {
+                "name": "climatology",
+                "value": 0,
+                "description": "No aerosol correction applied"
+              },
+              {
+                "name": "low",
+                "value": 1,
+                "description": "Low aerosol level"
+              },
+              {
+                "name": "medium",
+                "value": 2,
+                "description": "Medium aerosol level"
+              },
+              {
+                "name": "high",
+                "value": 3,
+                "description": "High aerosol level"
+              }
+            ],
+            "description": "Aerosol level"
+          }
+        ]
+      },
+      "tilejson": {
+        "title": "TileJSON with default rendering",
+        "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/tilejson.json?collection=landsat-c2-l2&item=LC09_L2SP_089090_20240417_02_T1&assets=red&assets=green&assets=blue&color_formula=gamma+RGB+2.7%2C+saturation+1.5%2C+sigmoidal+RGB+15+0.55&format=png",
+        "type": "application/json",
+        "roles": [
+          "tiles"
+        ]
+      },
+      "rendered_preview": {
+        "title": "Rendered preview",
+        "rel": "preview",
+        "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/preview.png?collection=landsat-c2-l2&item=LC09_L2SP_089090_20240417_02_T1&assets=red&assets=green&assets=blue&color_formula=gamma+RGB+2.7%2C+saturation+1.5%2C+sigmoidal+RGB+15+0.55&format=png",
+        "roles": [
+          "overview"
+        ],
+        "type": "image/png"
+      }
+    },
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [
+            147.89427252263684,
+            -42.126468761320254
+          ],
+          [
+            147.28087175465538,
+            -43.82428323182334
+          ],
+          [
+            149.5841183176208,
+            -44.24268124861021
+          ],
+          [
+            150.1342302634088,
+            -42.53503309081188
+          ],
+          [
+            147.89427252263684,
+            -42.126468761320254
+          ]
+        ]
+      ]
+    },
+    "collection": "landsat-c2-l2",
+    "properties": {
+      "gsd": 30,
+      "created": "2024-04-19T09:18:13.395668Z",
+      "sci:doi": "10.5066/P9OGBGM6",
+      "datetime": "2024-04-17T23:46:20.477296Z",
+      "platform": "landsat-9",
+      "proj:epsg": 32655,
+      "proj:shape": [
+        7971,
+        7971
+      ],
+      "description": "Landsat Collection 2 Level-2",
+      "instruments": [
+        "oli",
+        "tirs"
+      ],
+      "eo:cloud_cover": 97.54,
+      "proj:transform": [
+        30.0,
+        0.0,
+        520185.0,
+        0.0,
+        -30.0,
+        -4663485.0
+      ],
+      "view:off_nadir": 0,
+      "landsat:wrs_row": "090",
+      "landsat:scene_id": "LC90890902024108LGN00",
+      "landsat:wrs_path": "089",
+      "landsat:wrs_type": "2",
+      "view:sun_azimuth": 38.82027909,
+      "landsat:correction": "L2SP",
+      "view:sun_elevation": 27.39594529,
+      "landsat:cloud_cover_land": 100.0,
+      "landsat:collection_number": "02",
+      "landsat:collection_category": "T1"
+    },
+    "stac_extensions": [
+      "https://stac-extensions.github.io/raster/v1.1.0/schema.json",
+      "https://stac-extensions.github.io/eo/v1.0.0/schema.json",
+      "https://stac-extensions.github.io/view/v1.0.0/schema.json",
+      "https://stac-extensions.github.io/projection/v1.1.0/schema.json",
+      "https://landsat.usgs.gov/stac/landsat-extension/v1.1.1/schema.json",
+      "https://stac-extensions.github.io/classification/v1.0.0/schema.json",
+      "https://stac-extensions.github.io/scientific/v1.0.0/schema.json"
+    ],
+    "stac_version": "1.0.0"
+  },
+  {
+    "id": "LC09_L2SP_089089_20240417_02_T1",
+    "bbox": [
+      147.74674660348984,
+      -42.858715045867484,
+      150.69569737266835,
+      -40.64942495413252
+    ],
+    "type": "Feature",
+    "links": [
+      {
+        "rel": "collection",
+        "type": "application/json",
+        "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-c2-l2"
+      },
+      {
+        "rel": "parent",
+        "type": "application/json",
+        "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-c2-l2"
+      },
+      {
+        "rel": "root",
+        "type": "application/json",
+        "href": "https://planetarycomputer.microsoft.com/api/stac/v1/"
+      },
+      {
+        "rel": "self",
+        "type": "application/geo+json",
+        "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-c2-l2/items/LC09_L2SP_089089_20240417_02_T1"
+      },
+      {
+        "rel": "cite-as",
+        "href": "https://doi.org/10.5066/P9OGBGM6",
+        "title": "Landsat 8-9 OLI/TIRS Collection 2 Level-2"
+      },
+      {
+        "rel": "via",
+        "href": "https://landsatlook.usgs.gov/stac-server/collections/landsat-c2l2-sr/items/LC09_L2SP_089089_20240417_20240418_02_T1_SR",
+        "type": "application/json",
+        "title": "USGS STAC Item"
+      },
+      {
+        "rel": "via",
+        "href": "https://landsatlook.usgs.gov/stac-server/collections/landsat-c2l2-st/items/LC09_L2SP_089089_20240417_20240418_02_T1_ST",
+        "type": "application/json",
+        "title": "USGS STAC Item"
+      },
+      {
+        "rel": "preview",
+        "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/map?collection=landsat-c2-l2&item=LC09_L2SP_089089_20240417_02_T1",
+        "title": "Map of item",
+        "type": "text/html"
+      }
+    ],
+    "assets": {
+      "qa": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2024/089/089/LC09_L2SP_089089_20240417_20240418_02_T1/LC09_L2SP_089089_20240417_20240418_02_T1_ST_QA.TIF",
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "data"
+        ],
+        "title": "Surface Temperature Quality Assessment Band",
+        "description": "Collection 2 Level-2 Quality Assessment Band (ST_QA) Surface Temperature Product",
+        "raster:bands": [
+          {
+            "unit": "kelvin",
+            "scale": 0.01,
+            "nodata": -9999,
+            "data_type": "int16",
+            "spatial_resolution": 30
+          }
+        ]
+      },
+      "ang": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2024/089/089/LC09_L2SP_089089_20240417_20240418_02_T1/LC09_L2SP_089089_20240417_20240418_02_T1_ANG.txt",
+        "type": "text/plain",
+        "roles": [
+          "metadata"
+        ],
+        "title": "Angle Coefficients File",
+        "description": "Collection 2 Level-1 Angle Coefficients File"
+      },
+      "red": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2024/089/089/LC09_L2SP_089089_20240417_20240418_02_T1/LC09_L2SP_089089_20240417_20240418_02_T1_SR_B4.TIF",
+        "eo:bands": [
+          {
+            "name": "OLI_B4",
+            "center_wavelength": 0.65,
+            "full_width_half_max": 0.04,
+            "common_name": "red",
+            "description": "Visible red"
+          }
+        ],
+        "description": "Collection 2 Level-2 Red Band (SR_B4) Surface Reflectance",
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "data",
+          "reflectance"
+        ],
+        "title": "Red Band",
+        "raster:bands": [
+          {
+            "scale": 2.75e-05,
+            "nodata": 0,
+            "offset": -0.2,
+            "data_type": "uint16",
+            "spatial_resolution": 30
+          }
+        ]
+      },
+      "blue": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2024/089/089/LC09_L2SP_089089_20240417_20240418_02_T1/LC09_L2SP_089089_20240417_20240418_02_T1_SR_B2.TIF",
+        "eo:bands": [
+          {
+            "name": "OLI_B2",
+            "center_wavelength": 0.48,
+            "full_width_half_max": 0.06,
+            "common_name": "blue",
+            "description": "Visible blue"
+          }
+        ],
+        "description": "Collection 2 Level-2 Blue Band (SR_B2) Surface Reflectance",
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "data",
+          "reflectance"
+        ],
+        "title": "Blue Band",
+        "raster:bands": [
+          {
+            "scale": 2.75e-05,
+            "nodata": 0,
+            "offset": -0.2,
+            "data_type": "uint16",
+            "spatial_resolution": 30
+          }
+        ]
+      },
+      "drad": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2024/089/089/LC09_L2SP_089089_20240417_20240418_02_T1/LC09_L2SP_089089_20240417_20240418_02_T1_ST_DRAD.TIF",
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "data"
+        ],
+        "title": "Downwelled Radiance Band",
+        "description": "Collection 2 Level-2 Downwelled Radiance Band (ST_DRAD) Surface Temperature Product",
+        "raster:bands": [
+          {
+            "unit": "watt/steradian/square_meter/micrometer",
+            "scale": 0.001,
+            "nodata": -9999,
+            "data_type": "int16",
+            "spatial_resolution": 30
+          }
+        ]
+      },
+      "emis": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2024/089/089/LC09_L2SP_089089_20240417_20240418_02_T1/LC09_L2SP_089089_20240417_20240418_02_T1_ST_EMIS.TIF",
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "data"
+        ],
+        "title": "Emissivity Band",
+        "description": "Collection 2 Level-2 Emissivity Band (ST_EMIS) Surface Temperature Product",
+        "raster:bands": [
+          {
+            "unit": "emissivity coefficient",
+            "scale": 0.0001,
+            "nodata": -9999,
+            "data_type": "int16",
+            "spatial_resolution": 30
+          }
+        ]
+      },
+      "emsd": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2024/089/089/LC09_L2SP_089089_20240417_20240418_02_T1/LC09_L2SP_089089_20240417_20240418_02_T1_ST_EMSD.TIF",
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "data"
+        ],
+        "title": "Emissivity Standard Deviation Band",
+        "description": "Collection 2 Level-2 Emissivity Standard Deviation Band (ST_EMSD) Surface Temperature Product",
+        "raster:bands": [
+          {
+            "unit": "emissivity coefficient",
+            "scale": 0.0001,
+            "nodata": -9999,
+            "data_type": "int16",
+            "spatial_resolution": 30
+          }
+        ]
+      },
+      "trad": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2024/089/089/LC09_L2SP_089089_20240417_20240418_02_T1/LC09_L2SP_089089_20240417_20240418_02_T1_ST_TRAD.TIF",
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "data"
+        ],
+        "title": "Thermal Radiance Band",
+        "description": "Collection 2 Level-2 Thermal Radiance Band (ST_TRAD) Surface Temperature Product",
+        "raster:bands": [
+          {
+            "unit": "watt/steradian/square_meter/micrometer",
+            "scale": 0.001,
+            "nodata": -9999,
+            "data_type": "int16",
+            "spatial_resolution": 30
+          }
+        ]
+      },
+      "urad": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2024/089/089/LC09_L2SP_089089_20240417_20240418_02_T1/LC09_L2SP_089089_20240417_20240418_02_T1_ST_URAD.TIF",
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "data"
+        ],
+        "title": "Upwelled Radiance Band",
+        "description": "Collection 2 Level-2 Upwelled Radiance Band (ST_URAD) Surface Temperature Product",
+        "raster:bands": [
+          {
+            "unit": "watt/steradian/square_meter/micrometer",
+            "scale": 0.001,
+            "nodata": -9999,
+            "data_type": "int16",
+            "spatial_resolution": 30
+          }
+        ]
+      },
+      "atran": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2024/089/089/LC09_L2SP_089089_20240417_20240418_02_T1/LC09_L2SP_089089_20240417_20240418_02_T1_ST_ATRAN.TIF",
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "data"
+        ],
+        "title": "Atmospheric Transmittance Band",
+        "description": "Collection 2 Level-2 Atmospheric Transmittance Band (ST_ATRAN) Surface Temperature Product",
+        "raster:bands": [
+          {
+            "scale": 0.0001,
+            "nodata": -9999,
+            "data_type": "int16",
+            "spatial_resolution": 30
+          }
+        ]
+      },
+      "cdist": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2024/089/089/LC09_L2SP_089089_20240417_20240418_02_T1/LC09_L2SP_089089_20240417_20240418_02_T1_ST_CDIST.TIF",
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "data"
+        ],
+        "title": "Cloud Distance Band",
+        "description": "Collection 2 Level-2 Cloud Distance Band (ST_CDIST) Surface Temperature Product",
+        "raster:bands": [
+          {
+            "unit": "kilometer",
+            "scale": 0.01,
+            "nodata": -9999,
+            "data_type": "int16",
+            "spatial_resolution": 30
+          }
+        ]
+      },
+      "green": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2024/089/089/LC09_L2SP_089089_20240417_20240418_02_T1/LC09_L2SP_089089_20240417_20240418_02_T1_SR_B3.TIF",
+        "eo:bands": [
+          {
+            "name": "OLI_B3",
+            "full_width_half_max": 0.06,
+            "common_name": "green",
+            "description": "Visible green",
+            "center_wavelength": 0.56
+          }
+        ],
+        "description": "Collection 2 Level-2 Green Band (SR_B3) Surface Reflectance",
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "data",
+          "reflectance"
+        ],
+        "title": "Green Band",
+        "raster:bands": [
+          {
+            "scale": 2.75e-05,
+            "nodata": 0,
+            "offset": -0.2,
+            "data_type": "uint16",
+            "spatial_resolution": 30
+          }
+        ]
+      },
+      "nir08": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2024/089/089/LC09_L2SP_089089_20240417_20240418_02_T1/LC09_L2SP_089089_20240417_20240418_02_T1_SR_B5.TIF",
+        "eo:bands": [
+          {
+            "name": "OLI_B5",
+            "center_wavelength": 0.87,
+            "full_width_half_max": 0.03,
+            "common_name": "nir08",
+            "description": "Near infrared"
+          }
+        ],
+        "description": "Collection 2 Level-2 Near Infrared Band 0.8 (SR_B5) Surface Reflectance",
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "data",
+          "reflectance"
+        ],
+        "title": "Near Infrared Band 0.8",
+        "raster:bands": [
+          {
+            "scale": 2.75e-05,
+            "nodata": 0,
+            "offset": -0.2,
+            "data_type": "uint16",
+            "spatial_resolution": 30
+          }
+        ]
+      },
+      "lwir11": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2024/089/089/LC09_L2SP_089089_20240417_20240418_02_T1/LC09_L2SP_089089_20240417_20240418_02_T1_ST_B10.TIF",
+        "gsd": 100,
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "data",
+          "temperature"
+        ],
+        "title": "Surface Temperature Band",
+        "eo:bands": [
+          {
+            "name": "TIRS_B10",
+            "common_name": "lwir11",
+            "description": "Long-wave infrared",
+            "center_wavelength": 10.9,
+            "full_width_half_max": 0.59
+          }
+        ],
+        "description": "Collection 2 Level-2 Thermal Infrared Band (ST_B10) Surface Temperature",
+        "raster:bands": [
+          {
+            "unit": "kelvin",
+            "scale": 0.00341802,
+            "nodata": 0,
+            "offset": 149.0,
+            "data_type": "uint16",
+            "spatial_resolution": 30
+          }
+        ]
+      },
+      "swir16": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2024/089/089/LC09_L2SP_089089_20240417_20240418_02_T1/LC09_L2SP_089089_20240417_20240418_02_T1_SR_B6.TIF",
+        "eo:bands": [
+          {
+            "name": "OLI_B6",
+            "center_wavelength": 1.61,
+            "full_width_half_max": 0.09,
+            "common_name": "swir16",
+            "description": "Short-wave infrared"
+          }
+        ],
+        "description": "Collection 2 Level-2 Short-wave Infrared Band 1.6 (SR_B6) Surface Reflectance",
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "data",
+          "reflectance"
+        ],
+        "title": "Short-wave Infrared Band 1.6",
+        "raster:bands": [
+          {
+            "scale": 2.75e-05,
+            "nodata": 0,
+            "offset": -0.2,
+            "data_type": "uint16",
+            "spatial_resolution": 30
+          }
+        ]
+      },
+      "swir22": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2024/089/089/LC09_L2SP_089089_20240417_20240418_02_T1/LC09_L2SP_089089_20240417_20240418_02_T1_SR_B7.TIF",
+        "eo:bands": [
+          {
+            "name": "OLI_B7",
+            "center_wavelength": 2.2,
+            "full_width_half_max": 0.19,
+            "common_name": "swir22",
+            "description": "Short-wave infrared"
+          }
+        ],
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "data",
+          "reflectance"
+        ],
+        "title": "Short-wave Infrared Band 2.2",
+        "description": "Collection 2 Level-2 Short-wave Infrared Band 2.2 (SR_B7) Surface Reflectance",
+        "raster:bands": [
+          {
+            "scale": 2.75e-05,
+            "nodata": 0,
+            "offset": -0.2,
+            "data_type": "uint16",
+            "spatial_resolution": 30
+          }
+        ]
+      },
+      "coastal": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2024/089/089/LC09_L2SP_089089_20240417_20240418_02_T1/LC09_L2SP_089089_20240417_20240418_02_T1_SR_B1.TIF",
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "data",
+          "reflectance"
+        ],
+        "title": "Coastal/Aerosol Band",
+        "eo:bands": [
+          {
+            "name": "OLI_B1",
+            "common_name": "coastal",
+            "description": "Coastal/Aerosol",
+            "center_wavelength": 0.44,
+            "full_width_half_max": 0.02
+          }
+        ],
+        "description": "Collection 2 Level-2 Coastal/Aerosol Band (SR_B1) Surface Reflectance",
+        "raster:bands": [
+          {
+            "scale": 2.75e-05,
+            "nodata": 0,
+            "offset": -0.2,
+            "data_type": "uint16",
+            "spatial_resolution": 30
+          }
+        ]
+      },
+      "mtl.txt": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2024/089/089/LC09_L2SP_089089_20240417_20240418_02_T1/LC09_L2SP_089089_20240417_20240418_02_T1_MTL.txt",
+        "type": "text/plain",
+        "roles": [
+          "metadata"
+        ],
+        "title": "Product Metadata File (txt)",
+        "description": "Collection 2 Level-2 Product Metadata File (txt)"
+      },
+      "mtl.xml": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2024/089/089/LC09_L2SP_089089_20240417_20240418_02_T1/LC09_L2SP_089089_20240417_20240418_02_T1_MTL.xml",
+        "type": "application/xml",
+        "roles": [
+          "metadata"
+        ],
+        "title": "Product Metadata File (xml)",
+        "description": "Collection 2 Level-2 Product Metadata File (xml)"
+      },
+      "mtl.json": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2024/089/089/LC09_L2SP_089089_20240417_20240418_02_T1/LC09_L2SP_089089_20240417_20240418_02_T1_MTL.json",
+        "type": "application/json",
+        "roles": [
+          "metadata"
+        ],
+        "title": "Product Metadata File (json)",
+        "description": "Collection 2 Level-2 Product Metadata File (json)"
+      },
+      "qa_pixel": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2024/089/089/LC09_L2SP_089089_20240417_20240418_02_T1/LC09_L2SP_089089_20240417_20240418_02_T1_QA_PIXEL.TIF",
+        "classification:bitfields": [
+          {
+            "name": "fill",
+            "length": 1,
+            "offset": 0,
+            "classes": [
+              {
+                "name": "not_fill",
+                "value": 0,
+                "description": "Image data"
+              },
+              {
+                "name": "fill",
+                "value": 1,
+                "description": "Fill data"
+              }
+            ],
+            "description": "Image or fill data"
+          },
+          {
+            "name": "dilated_cloud",
+            "length": 1,
+            "offset": 1,
+            "classes": [
+              {
+                "name": "not_dilated",
+                "value": 0,
+                "description": "Cloud is not dilated or no cloud"
+              },
+              {
+                "name": "dilated",
+                "value": 1,
+                "description": "Cloud dilation"
+              }
+            ],
+            "description": "Dilated cloud"
+          },
+          {
+            "name": "cirrus",
+            "length": 1,
+            "offset": 2,
+            "classes": [
+              {
+                "name": "not_cirrus",
+                "value": 0,
+                "description": "Cirrus confidence is not high"
+              },
+              {
+                "name": "cirrus",
+                "value": 1,
+                "description": "High confidence cirrus"
+              }
+            ],
+            "description": "Cirrus mask"
+          },
+          {
+            "name": "cloud",
+            "length": 1,
+            "offset": 3,
+            "classes": [
+              {
+                "name": "not_cloud",
+                "value": 0,
+                "description": "Cloud confidence is not high"
+              },
+              {
+                "name": "cloud",
+                "value": 1,
+                "description": "High confidence cloud"
+              }
+            ],
+            "description": "Cloud mask"
+          },
+          {
+            "name": "cloud_shadow",
+            "length": 1,
+            "offset": 4,
+            "classes": [
+              {
+                "name": "not_shadow",
+                "value": 0,
+                "description": "Cloud shadow confidence is not high"
+              },
+              {
+                "name": "shadow",
+                "value": 1,
+                "description": "High confidence cloud shadow"
+              }
+            ],
+            "description": "Cloud shadow mask"
+          },
+          {
+            "name": "snow",
+            "length": 1,
+            "offset": 5,
+            "classes": [
+              {
+                "name": "not_snow",
+                "value": 0,
+                "description": "Snow/Ice confidence is not high"
+              },
+              {
+                "name": "snow",
+                "value": 1,
+                "description": "High confidence snow cover"
+              }
+            ],
+            "description": "Snow/Ice mask"
+          },
+          {
+            "name": "clear",
+            "length": 1,
+            "offset": 6,
+            "classes": [
+              {
+                "name": "not_clear",
+                "value": 0,
+                "description": "Cloud or dilated cloud bits are set"
+              },
+              {
+                "name": "clear",
+                "value": 1,
+                "description": "Cloud and dilated cloud bits are not set"
+              }
+            ],
+            "description": "Clear mask"
+          },
+          {
+            "name": "water",
+            "length": 1,
+            "offset": 7,
+            "classes": [
+              {
+                "name": "not_water",
+                "value": 0,
+                "description": "Land or cloud"
+              },
+              {
+                "name": "water",
+                "value": 1,
+                "description": "Water"
+              }
+            ],
+            "description": "Water mask"
+          },
+          {
+            "name": "cloud_confidence",
+            "length": 2,
+            "offset": 8,
+            "classes": [
+              {
+                "name": "not_set",
+                "value": 0,
+                "description": "No confidence level set"
+              },
+              {
+                "name": "low",
+                "value": 1,
+                "description": "Low confidence cloud"
+              },
+              {
+                "name": "medium",
+                "value": 2,
+                "description": "Medium confidence cloud"
+              },
+              {
+                "name": "high",
+                "value": 3,
+                "description": "High confidence cloud"
+              }
+            ],
+            "description": "Cloud confidence levels"
+          },
+          {
+            "name": "cloud_shadow_confidence",
+            "length": 2,
+            "offset": 10,
+            "classes": [
+              {
+                "name": "not_set",
+                "value": 0,
+                "description": "No confidence level set"
+              },
+              {
+                "name": "low",
+                "value": 1,
+                "description": "Low confidence cloud shadow"
+              },
+              {
+                "name": "reserved",
+                "value": 2,
+                "description": "Reserved - value not used"
+              },
+              {
+                "name": "high",
+                "value": 3,
+                "description": "High confidence cloud shadow"
+              }
+            ],
+            "description": "Cloud shadow confidence levels"
+          },
+          {
+            "name": "snow_confidence",
+            "length": 2,
+            "offset": 12,
+            "classes": [
+              {
+                "name": "not_set",
+                "value": 0,
+                "description": "No confidence level set"
+              },
+              {
+                "name": "low",
+                "value": 1,
+                "description": "Low confidence snow/ice"
+              },
+              {
+                "name": "reserved",
+                "value": 2,
+                "description": "Reserved - value not used"
+              },
+              {
+                "name": "high",
+                "value": 3,
+                "description": "High confidence snow/ice"
+              }
+            ],
+            "description": "Snow/Ice confidence levels"
+          },
+          {
+            "name": "cirrus_confidence",
+            "length": 2,
+            "offset": 14,
+            "classes": [
+              {
+                "name": "not_set",
+                "value": 0,
+                "description": "No confidence level set"
+              },
+              {
+                "name": "low",
+                "value": 1,
+                "description": "Low confidence cirrus"
+              },
+              {
+                "name": "reserved",
+                "value": 2,
+                "description": "Reserved - value not used"
+              },
+              {
+                "name": "high",
+                "value": 3,
+                "description": "High confidence cirrus"
+              }
+            ],
+            "description": "Cirrus confidence levels"
+          }
+        ],
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "cloud",
+          "cloud-shadow",
+          "snow-ice",
+          "water-mask"
+        ],
+        "title": "Pixel Quality Assessment Band",
+        "description": "Collection 2 Level-1 Pixel Quality Assessment Band (QA_PIXEL)",
+        "raster:bands": [
+          {
+            "unit": "bit index",
+            "nodata": 1,
+            "data_type": "uint16",
+            "spatial_resolution": 30
+          }
+        ]
+      },
+      "qa_radsat": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2024/089/089/LC09_L2SP_089089_20240417_20240418_02_T1/LC09_L2SP_089089_20240417_20240418_02_T1_QA_RADSAT.TIF",
+        "title": "Radiometric Saturation and Terrain Occlusion Quality Assessment Band",
+        "description": "Collection 2 Level-1 Radiometric Saturation and Terrain Occlusion Quality Assessment Band (QA_RADSAT)",
+        "classification:bitfields": [
+          {
+            "name": "band1",
+            "length": 1,
+            "offset": 0,
+            "classes": [
+              {
+                "name": "not_saturated",
+                "value": 0,
+                "description": "Band 1 not saturated"
+              },
+              {
+                "name": "saturated",
+                "value": 1,
+                "description": "Band 1 saturated"
+              }
+            ],
+            "description": "Band 1 radiometric saturation"
+          },
+          {
+            "name": "band2",
+            "length": 1,
+            "offset": 1,
+            "classes": [
+              {
+                "name": "not_saturated",
+                "value": 0,
+                "description": "Band 2 not saturated"
+              },
+              {
+                "name": "saturated",
+                "value": 1,
+                "description": "Band 2 saturated"
+              }
+            ],
+            "description": "Band 2 radiometric saturation"
+          },
+          {
+            "name": "band3",
+            "length": 1,
+            "offset": 2,
+            "classes": [
+              {
+                "name": "not_saturated",
+                "value": 0,
+                "description": "Band 3 not saturated"
+              },
+              {
+                "name": "saturated",
+                "value": 1,
+                "description": "Band 3 saturated"
+              }
+            ],
+            "description": "Band 3 radiometric saturation"
+          },
+          {
+            "name": "band4",
+            "length": 1,
+            "offset": 3,
+            "classes": [
+              {
+                "name": "not_saturated",
+                "value": 0,
+                "description": "Band 4 not saturated"
+              },
+              {
+                "name": "saturated",
+                "value": 1,
+                "description": "Band 4 saturated"
+              }
+            ],
+            "description": "Band 4 radiometric saturation"
+          },
+          {
+            "name": "band5",
+            "length": 1,
+            "offset": 4,
+            "classes": [
+              {
+                "name": "not_saturated",
+                "value": 0,
+                "description": "Band 5 not saturated"
+              },
+              {
+                "name": "saturated",
+                "value": 1,
+                "description": "Band 5 saturated"
+              }
+            ],
+            "description": "Band 5 radiometric saturation"
+          },
+          {
+            "name": "band6",
+            "length": 1,
+            "offset": 5,
+            "classes": [
+              {
+                "name": "not_saturated",
+                "value": 0,
+                "description": "Band 6 not saturated"
+              },
+              {
+                "name": "saturated",
+                "value": 1,
+                "description": "Band 6 saturated"
+              }
+            ],
+            "description": "Band 6 radiometric saturation"
+          },
+          {
+            "name": "band7",
+            "length": 1,
+            "offset": 6,
+            "classes": [
+              {
+                "name": "not_saturated",
+                "value": 0,
+                "description": "Band 7 not saturated"
+              },
+              {
+                "name": "saturated",
+                "value": 1,
+                "description": "Band 7 saturated"
+              }
+            ],
+            "description": "Band 7 radiometric saturation"
+          },
+          {
+            "name": "band9",
+            "length": 1,
+            "offset": 8,
+            "classes": [
+              {
+                "name": "not_saturated",
+                "value": 0,
+                "description": "Band 9 not saturated"
+              },
+              {
+                "name": "saturated",
+                "value": 1,
+                "description": "Band 9 saturated"
+              }
+            ],
+            "description": "Band 9 radiometric saturation"
+          },
+          {
+            "name": "occlusion",
+            "length": 1,
+            "offset": 11,
+            "classes": [
+              {
+                "name": "not_occluded",
+                "value": 0,
+                "description": "Terrain is not occluded"
+              },
+              {
+                "name": "occluded",
+                "value": 1,
+                "description": "Terrain is occluded"
+              }
+            ],
+            "description": "Terrain not visible from sensor due to intervening terrain"
+          }
+        ],
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "saturation"
+        ],
+        "raster:bands": [
+          {
+            "unit": "bit index",
+            "data_type": "uint16",
+            "spatial_resolution": 30
+          }
+        ]
+      },
+      "qa_aerosol": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2024/089/089/LC09_L2SP_089089_20240417_20240418_02_T1/LC09_L2SP_089089_20240417_20240418_02_T1_SR_QA_AEROSOL.TIF",
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "data-mask",
+          "water-mask"
+        ],
+        "title": "Aerosol Quality Assessment Band",
+        "description": "Collection 2 Level-2 Aerosol Quality Assessment Band (SR_QA_AEROSOL) Surface Reflectance Product",
+        "raster:bands": [
+          {
+            "unit": "bit index",
+            "nodata": 1,
+            "data_type": "uint8",
+            "spatial_resolution": 30
+          }
+        ],
+        "classification:bitfields": [
+          {
+            "name": "fill",
+            "length": 1,
+            "offset": 0,
+            "classes": [
+              {
+                "name": "not_fill",
+                "value": 0,
+                "description": "Pixel is not fill"
+              },
+              {
+                "name": "fill",
+                "value": 1,
+                "description": "Pixel is fill"
+              }
+            ],
+            "description": "Image or fill data"
+          },
+          {
+            "name": "retrieval",
+            "length": 1,
+            "offset": 1,
+            "classes": [
+              {
+                "name": "not_valid",
+                "value": 0,
+                "description": "Pixel retrieval is not valid"
+              },
+              {
+                "name": "valid",
+                "value": 1,
+                "description": "Pixel retrieval is valid"
+              }
+            ],
+            "description": "Valid aerosol retrieval"
+          },
+          {
+            "name": "water",
+            "length": 1,
+            "offset": 2,
+            "classes": [
+              {
+                "name": "not_water",
+                "value": 0,
+                "description": "Pixel is not water"
+              },
+              {
+                "name": "water",
+                "value": 1,
+                "description": "Pixel is water"
+              }
+            ],
+            "description": "Water mask"
+          },
+          {
+            "name": "interpolated",
+            "length": 1,
+            "offset": 5,
+            "classes": [
+              {
+                "name": "not_interpolated",
+                "value": 0,
+                "description": "Pixel is not interpolated aerosol"
+              },
+              {
+                "name": "interpolated",
+                "value": 1,
+                "description": "Pixel is interpolated aerosol"
+              }
+            ],
+            "description": "Aerosol interpolation"
+          },
+          {
+            "name": "level",
+            "length": 2,
+            "offset": 6,
+            "classes": [
+              {
+                "name": "climatology",
+                "value": 0,
+                "description": "No aerosol correction applied"
+              },
+              {
+                "name": "low",
+                "value": 1,
+                "description": "Low aerosol level"
+              },
+              {
+                "name": "medium",
+                "value": 2,
+                "description": "Medium aerosol level"
+              },
+              {
+                "name": "high",
+                "value": 3,
+                "description": "High aerosol level"
+              }
+            ],
+            "description": "Aerosol level"
+          }
+        ]
+      },
+      "tilejson": {
+        "title": "TileJSON with default rendering",
+        "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/tilejson.json?collection=landsat-c2-l2&item=LC09_L2SP_089089_20240417_02_T1&assets=red&assets=green&assets=blue&color_formula=gamma+RGB+2.7%2C+saturation+1.5%2C+sigmoidal+RGB+15+0.55&format=png",
+        "type": "application/json",
+        "roles": [
+          "tiles"
+        ]
+      },
+      "rendered_preview": {
+        "title": "Rendered preview",
+        "rel": "preview",
+        "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/preview.png?collection=landsat-c2-l2&item=LC09_L2SP_089089_20240417_02_T1&assets=red&assets=green&assets=blue&color_formula=gamma+RGB+2.7%2C+saturation+1.5%2C+sigmoidal+RGB+15+0.55&format=png",
+        "roles": [
+          "overview"
+        ],
+        "type": "image/png"
+      }
+    },
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [
+            148.38560684671873,
+            -40.702943921359335
+          ],
+          [
+            147.79612370850293,
+            -42.403590973265004
+          ],
+          [
+            150.0456531291144,
+            -42.815934623050346
+          ],
+          [
+            150.57783725455138,
+            -41.106172431881674
+          ],
+          [
+            148.38560684671873,
+            -40.702943921359335
+          ]
+        ]
+      ]
+    },
+    "collection": "landsat-c2-l2",
+    "properties": {
+      "gsd": 30,
+      "created": "2024-04-19T09:18:11.013453Z",
+      "sci:doi": "10.5066/P9OGBGM6",
+      "datetime": "2024-04-17T23:45:56.518505Z",
+      "platform": "landsat-9",
+      "proj:epsg": 32655,
+      "proj:shape": [
+        7981,
+        7971
+      ],
+      "description": "Landsat Collection 2 Level-2",
+      "instruments": [
+        "oli",
+        "tirs"
+      ],
+      "eo:cloud_cover": 42.93,
+      "proj:transform": [
+        30.0,
+        0.0,
+        563085.0,
+        0.0,
+        -30.0,
+        -4505985.0
+      ],
+      "view:off_nadir": 0,
+      "landsat:wrs_row": "089",
+      "landsat:scene_id": "LC90890892024108LGN00",
+      "landsat:wrs_path": "089",
+      "landsat:wrs_type": "2",
+      "view:sun_azimuth": 38.92559147,
+      "landsat:correction": "L2SP",
+      "view:sun_elevation": 28.68069885,
+      "landsat:cloud_cover_land": 53.0,
+      "landsat:collection_number": "02",
+      "landsat:collection_category": "T1"
+    },
+    "stac_extensions": [
+      "https://stac-extensions.github.io/raster/v1.1.0/schema.json",
+      "https://stac-extensions.github.io/eo/v1.0.0/schema.json",
+      "https://stac-extensions.github.io/view/v1.0.0/schema.json",
+      "https://stac-extensions.github.io/projection/v1.1.0/schema.json",
+      "https://landsat.usgs.gov/stac/landsat-extension/v1.1.1/schema.json",
+      "https://stac-extensions.github.io/classification/v1.0.0/schema.json",
+      "https://stac-extensions.github.io/scientific/v1.0.0/schema.json"
+    ],
+    "stac_version": "1.0.0"
+  },
+  {
+    "id": "LC09_L2SP_089088_20240417_02_T2",
+    "bbox": [
+      148.23226069272383,
+      -41.43847507102592,
+      151.12991370030332,
+      -39.21696492897408
+    ],
+    "type": "Feature",
+    "links": [
+      {
+        "rel": "collection",
+        "type": "application/json",
+        "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-c2-l2"
+      },
+      {
+        "rel": "parent",
+        "type": "application/json",
+        "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-c2-l2"
+      },
+      {
+        "rel": "root",
+        "type": "application/json",
+        "href": "https://planetarycomputer.microsoft.com/api/stac/v1/"
+      },
+      {
+        "rel": "self",
+        "type": "application/geo+json",
+        "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-c2-l2/items/LC09_L2SP_089088_20240417_02_T2"
+      },
+      {
+        "rel": "cite-as",
+        "href": "https://doi.org/10.5066/P9OGBGM6",
+        "title": "Landsat 8-9 OLI/TIRS Collection 2 Level-2"
+      },
+      {
+        "rel": "via",
+        "href": "https://landsatlook.usgs.gov/stac-server/collections/landsat-c2l2-sr/items/LC09_L2SP_089088_20240417_20240418_02_T2_SR",
+        "type": "application/json",
+        "title": "USGS STAC Item"
+      },
+      {
+        "rel": "via",
+        "href": "https://landsatlook.usgs.gov/stac-server/collections/landsat-c2l2-st/items/LC09_L2SP_089088_20240417_20240418_02_T2_ST",
+        "type": "application/json",
+        "title": "USGS STAC Item"
+      },
+      {
+        "rel": "preview",
+        "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/map?collection=landsat-c2-l2&item=LC09_L2SP_089088_20240417_02_T2",
+        "title": "Map of item",
+        "type": "text/html"
+      }
+    ],
+    "assets": {
+      "qa": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2024/089/088/LC09_L2SP_089088_20240417_20240418_02_T2/LC09_L2SP_089088_20240417_20240418_02_T2_ST_QA.TIF",
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "data"
+        ],
+        "title": "Surface Temperature Quality Assessment Band",
+        "description": "Collection 2 Level-2 Quality Assessment Band (ST_QA) Surface Temperature Product",
+        "raster:bands": [
+          {
+            "unit": "kelvin",
+            "scale": 0.01,
+            "nodata": -9999,
+            "data_type": "int16",
+            "spatial_resolution": 30
+          }
+        ]
+      },
+      "ang": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2024/089/088/LC09_L2SP_089088_20240417_20240418_02_T2/LC09_L2SP_089088_20240417_20240418_02_T2_ANG.txt",
+        "type": "text/plain",
+        "roles": [
+          "metadata"
+        ],
+        "title": "Angle Coefficients File",
+        "description": "Collection 2 Level-1 Angle Coefficients File"
+      },
+      "red": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2024/089/088/LC09_L2SP_089088_20240417_20240418_02_T2/LC09_L2SP_089088_20240417_20240418_02_T2_SR_B4.TIF",
+        "eo:bands": [
+          {
+            "name": "OLI_B4",
+            "center_wavelength": 0.65,
+            "full_width_half_max": 0.04,
+            "common_name": "red",
+            "description": "Visible red"
+          }
+        ],
+        "description": "Collection 2 Level-2 Red Band (SR_B4) Surface Reflectance",
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "data",
+          "reflectance"
+        ],
+        "title": "Red Band",
+        "raster:bands": [
+          {
+            "scale": 2.75e-05,
+            "nodata": 0,
+            "offset": -0.2,
+            "data_type": "uint16",
+            "spatial_resolution": 30
+          }
+        ]
+      },
+      "blue": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2024/089/088/LC09_L2SP_089088_20240417_20240418_02_T2/LC09_L2SP_089088_20240417_20240418_02_T2_SR_B2.TIF",
+        "eo:bands": [
+          {
+            "name": "OLI_B2",
+            "center_wavelength": 0.48,
+            "full_width_half_max": 0.06,
+            "common_name": "blue",
+            "description": "Visible blue"
+          }
+        ],
+        "description": "Collection 2 Level-2 Blue Band (SR_B2) Surface Reflectance",
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "data",
+          "reflectance"
+        ],
+        "title": "Blue Band",
+        "raster:bands": [
+          {
+            "scale": 2.75e-05,
+            "nodata": 0,
+            "offset": -0.2,
+            "data_type": "uint16",
+            "spatial_resolution": 30
+          }
+        ]
+      },
+      "drad": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2024/089/088/LC09_L2SP_089088_20240417_20240418_02_T2/LC09_L2SP_089088_20240417_20240418_02_T2_ST_DRAD.TIF",
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "data"
+        ],
+        "title": "Downwelled Radiance Band",
+        "description": "Collection 2 Level-2 Downwelled Radiance Band (ST_DRAD) Surface Temperature Product",
+        "raster:bands": [
+          {
+            "unit": "watt/steradian/square_meter/micrometer",
+            "scale": 0.001,
+            "nodata": -9999,
+            "data_type": "int16",
+            "spatial_resolution": 30
+          }
+        ]
+      },
+      "emis": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2024/089/088/LC09_L2SP_089088_20240417_20240418_02_T2/LC09_L2SP_089088_20240417_20240418_02_T2_ST_EMIS.TIF",
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "data"
+        ],
+        "title": "Emissivity Band",
+        "description": "Collection 2 Level-2 Emissivity Band (ST_EMIS) Surface Temperature Product",
+        "raster:bands": [
+          {
+            "unit": "emissivity coefficient",
+            "scale": 0.0001,
+            "nodata": -9999,
+            "data_type": "int16",
+            "spatial_resolution": 30
+          }
+        ]
+      },
+      "emsd": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2024/089/088/LC09_L2SP_089088_20240417_20240418_02_T2/LC09_L2SP_089088_20240417_20240418_02_T2_ST_EMSD.TIF",
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "data"
+        ],
+        "title": "Emissivity Standard Deviation Band",
+        "description": "Collection 2 Level-2 Emissivity Standard Deviation Band (ST_EMSD) Surface Temperature Product",
+        "raster:bands": [
+          {
+            "unit": "emissivity coefficient",
+            "scale": 0.0001,
+            "nodata": -9999,
+            "data_type": "int16",
+            "spatial_resolution": 30
+          }
+        ]
+      },
+      "trad": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2024/089/088/LC09_L2SP_089088_20240417_20240418_02_T2/LC09_L2SP_089088_20240417_20240418_02_T2_ST_TRAD.TIF",
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "data"
+        ],
+        "title": "Thermal Radiance Band",
+        "description": "Collection 2 Level-2 Thermal Radiance Band (ST_TRAD) Surface Temperature Product",
+        "raster:bands": [
+          {
+            "unit": "watt/steradian/square_meter/micrometer",
+            "scale": 0.001,
+            "nodata": -9999,
+            "data_type": "int16",
+            "spatial_resolution": 30
+          }
+        ]
+      },
+      "urad": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2024/089/088/LC09_L2SP_089088_20240417_20240418_02_T2/LC09_L2SP_089088_20240417_20240418_02_T2_ST_URAD.TIF",
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "data"
+        ],
+        "title": "Upwelled Radiance Band",
+        "description": "Collection 2 Level-2 Upwelled Radiance Band (ST_URAD) Surface Temperature Product",
+        "raster:bands": [
+          {
+            "unit": "watt/steradian/square_meter/micrometer",
+            "scale": 0.001,
+            "nodata": -9999,
+            "data_type": "int16",
+            "spatial_resolution": 30
+          }
+        ]
+      },
+      "atran": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2024/089/088/LC09_L2SP_089088_20240417_20240418_02_T2/LC09_L2SP_089088_20240417_20240418_02_T2_ST_ATRAN.TIF",
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "data"
+        ],
+        "title": "Atmospheric Transmittance Band",
+        "description": "Collection 2 Level-2 Atmospheric Transmittance Band (ST_ATRAN) Surface Temperature Product",
+        "raster:bands": [
+          {
+            "scale": 0.0001,
+            "nodata": -9999,
+            "data_type": "int16",
+            "spatial_resolution": 30
+          }
+        ]
+      },
+      "cdist": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2024/089/088/LC09_L2SP_089088_20240417_20240418_02_T2/LC09_L2SP_089088_20240417_20240418_02_T2_ST_CDIST.TIF",
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "data"
+        ],
+        "title": "Cloud Distance Band",
+        "description": "Collection 2 Level-2 Cloud Distance Band (ST_CDIST) Surface Temperature Product",
+        "raster:bands": [
+          {
+            "unit": "kilometer",
+            "scale": 0.01,
+            "nodata": -9999,
+            "data_type": "int16",
+            "spatial_resolution": 30
+          }
+        ]
+      },
+      "green": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2024/089/088/LC09_L2SP_089088_20240417_20240418_02_T2/LC09_L2SP_089088_20240417_20240418_02_T2_SR_B3.TIF",
+        "eo:bands": [
+          {
+            "name": "OLI_B3",
+            "full_width_half_max": 0.06,
+            "common_name": "green",
+            "description": "Visible green",
+            "center_wavelength": 0.56
+          }
+        ],
+        "description": "Collection 2 Level-2 Green Band (SR_B3) Surface Reflectance",
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "data",
+          "reflectance"
+        ],
+        "title": "Green Band",
+        "raster:bands": [
+          {
+            "scale": 2.75e-05,
+            "nodata": 0,
+            "offset": -0.2,
+            "data_type": "uint16",
+            "spatial_resolution": 30
+          }
+        ]
+      },
+      "nir08": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2024/089/088/LC09_L2SP_089088_20240417_20240418_02_T2/LC09_L2SP_089088_20240417_20240418_02_T2_SR_B5.TIF",
+        "eo:bands": [
+          {
+            "name": "OLI_B5",
+            "center_wavelength": 0.87,
+            "full_width_half_max": 0.03,
+            "common_name": "nir08",
+            "description": "Near infrared"
+          }
+        ],
+        "description": "Collection 2 Level-2 Near Infrared Band 0.8 (SR_B5) Surface Reflectance",
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "data",
+          "reflectance"
+        ],
+        "title": "Near Infrared Band 0.8",
+        "raster:bands": [
+          {
+            "scale": 2.75e-05,
+            "nodata": 0,
+            "offset": -0.2,
+            "data_type": "uint16",
+            "spatial_resolution": 30
+          }
+        ]
+      },
+      "lwir11": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2024/089/088/LC09_L2SP_089088_20240417_20240418_02_T2/LC09_L2SP_089088_20240417_20240418_02_T2_ST_B10.TIF",
+        "gsd": 100,
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "data",
+          "temperature"
+        ],
+        "title": "Surface Temperature Band",
+        "eo:bands": [
+          {
+            "name": "TIRS_B10",
+            "common_name": "lwir11",
+            "description": "Long-wave infrared",
+            "center_wavelength": 10.9,
+            "full_width_half_max": 0.59
+          }
+        ],
+        "description": "Collection 2 Level-2 Thermal Infrared Band (ST_B10) Surface Temperature",
+        "raster:bands": [
+          {
+            "unit": "kelvin",
+            "scale": 0.00341802,
+            "nodata": 0,
+            "offset": 149.0,
+            "data_type": "uint16",
+            "spatial_resolution": 30
+          }
+        ]
+      },
+      "swir16": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2024/089/088/LC09_L2SP_089088_20240417_20240418_02_T2/LC09_L2SP_089088_20240417_20240418_02_T2_SR_B6.TIF",
+        "eo:bands": [
+          {
+            "name": "OLI_B6",
+            "center_wavelength": 1.61,
+            "full_width_half_max": 0.09,
+            "common_name": "swir16",
+            "description": "Short-wave infrared"
+          }
+        ],
+        "description": "Collection 2 Level-2 Short-wave Infrared Band 1.6 (SR_B6) Surface Reflectance",
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "data",
+          "reflectance"
+        ],
+        "title": "Short-wave Infrared Band 1.6",
+        "raster:bands": [
+          {
+            "scale": 2.75e-05,
+            "nodata": 0,
+            "offset": -0.2,
+            "data_type": "uint16",
+            "spatial_resolution": 30
+          }
+        ]
+      },
+      "swir22": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2024/089/088/LC09_L2SP_089088_20240417_20240418_02_T2/LC09_L2SP_089088_20240417_20240418_02_T2_SR_B7.TIF",
+        "eo:bands": [
+          {
+            "name": "OLI_B7",
+            "center_wavelength": 2.2,
+            "full_width_half_max": 0.19,
+            "common_name": "swir22",
+            "description": "Short-wave infrared"
+          }
+        ],
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "data",
+          "reflectance"
+        ],
+        "title": "Short-wave Infrared Band 2.2",
+        "description": "Collection 2 Level-2 Short-wave Infrared Band 2.2 (SR_B7) Surface Reflectance",
+        "raster:bands": [
+          {
+            "scale": 2.75e-05,
+            "nodata": 0,
+            "offset": -0.2,
+            "data_type": "uint16",
+            "spatial_resolution": 30
+          }
+        ]
+      },
+      "coastal": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2024/089/088/LC09_L2SP_089088_20240417_20240418_02_T2/LC09_L2SP_089088_20240417_20240418_02_T2_SR_B1.TIF",
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "data",
+          "reflectance"
+        ],
+        "title": "Coastal/Aerosol Band",
+        "eo:bands": [
+          {
+            "name": "OLI_B1",
+            "common_name": "coastal",
+            "description": "Coastal/Aerosol",
+            "center_wavelength": 0.44,
+            "full_width_half_max": 0.02
+          }
+        ],
+        "description": "Collection 2 Level-2 Coastal/Aerosol Band (SR_B1) Surface Reflectance",
+        "raster:bands": [
+          {
+            "scale": 2.75e-05,
+            "nodata": 0,
+            "offset": -0.2,
+            "data_type": "uint16",
+            "spatial_resolution": 30
+          }
+        ]
+      },
+      "mtl.txt": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2024/089/088/LC09_L2SP_089088_20240417_20240418_02_T2/LC09_L2SP_089088_20240417_20240418_02_T2_MTL.txt",
+        "type": "text/plain",
+        "roles": [
+          "metadata"
+        ],
+        "title": "Product Metadata File (txt)",
+        "description": "Collection 2 Level-2 Product Metadata File (txt)"
+      },
+      "mtl.xml": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2024/089/088/LC09_L2SP_089088_20240417_20240418_02_T2/LC09_L2SP_089088_20240417_20240418_02_T2_MTL.xml",
+        "type": "application/xml",
+        "roles": [
+          "metadata"
+        ],
+        "title": "Product Metadata File (xml)",
+        "description": "Collection 2 Level-2 Product Metadata File (xml)"
+      },
+      "mtl.json": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2024/089/088/LC09_L2SP_089088_20240417_20240418_02_T2/LC09_L2SP_089088_20240417_20240418_02_T2_MTL.json",
+        "type": "application/json",
+        "roles": [
+          "metadata"
+        ],
+        "title": "Product Metadata File (json)",
+        "description": "Collection 2 Level-2 Product Metadata File (json)"
+      },
+      "qa_pixel": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2024/089/088/LC09_L2SP_089088_20240417_20240418_02_T2/LC09_L2SP_089088_20240417_20240418_02_T2_QA_PIXEL.TIF",
+        "classification:bitfields": [
+          {
+            "name": "fill",
+            "length": 1,
+            "offset": 0,
+            "classes": [
+              {
+                "name": "not_fill",
+                "value": 0,
+                "description": "Image data"
+              },
+              {
+                "name": "fill",
+                "value": 1,
+                "description": "Fill data"
+              }
+            ],
+            "description": "Image or fill data"
+          },
+          {
+            "name": "dilated_cloud",
+            "length": 1,
+            "offset": 1,
+            "classes": [
+              {
+                "name": "not_dilated",
+                "value": 0,
+                "description": "Cloud is not dilated or no cloud"
+              },
+              {
+                "name": "dilated",
+                "value": 1,
+                "description": "Cloud dilation"
+              }
+            ],
+            "description": "Dilated cloud"
+          },
+          {
+            "name": "cirrus",
+            "length": 1,
+            "offset": 2,
+            "classes": [
+              {
+                "name": "not_cirrus",
+                "value": 0,
+                "description": "Cirrus confidence is not high"
+              },
+              {
+                "name": "cirrus",
+                "value": 1,
+                "description": "High confidence cirrus"
+              }
+            ],
+            "description": "Cirrus mask"
+          },
+          {
+            "name": "cloud",
+            "length": 1,
+            "offset": 3,
+            "classes": [
+              {
+                "name": "not_cloud",
+                "value": 0,
+                "description": "Cloud confidence is not high"
+              },
+              {
+                "name": "cloud",
+                "value": 1,
+                "description": "High confidence cloud"
+              }
+            ],
+            "description": "Cloud mask"
+          },
+          {
+            "name": "cloud_shadow",
+            "length": 1,
+            "offset": 4,
+            "classes": [
+              {
+                "name": "not_shadow",
+                "value": 0,
+                "description": "Cloud shadow confidence is not high"
+              },
+              {
+                "name": "shadow",
+                "value": 1,
+                "description": "High confidence cloud shadow"
+              }
+            ],
+            "description": "Cloud shadow mask"
+          },
+          {
+            "name": "snow",
+            "length": 1,
+            "offset": 5,
+            "classes": [
+              {
+                "name": "not_snow",
+                "value": 0,
+                "description": "Snow/Ice confidence is not high"
+              },
+              {
+                "name": "snow",
+                "value": 1,
+                "description": "High confidence snow cover"
+              }
+            ],
+            "description": "Snow/Ice mask"
+          },
+          {
+            "name": "clear",
+            "length": 1,
+            "offset": 6,
+            "classes": [
+              {
+                "name": "not_clear",
+                "value": 0,
+                "description": "Cloud or dilated cloud bits are set"
+              },
+              {
+                "name": "clear",
+                "value": 1,
+                "description": "Cloud and dilated cloud bits are not set"
+              }
+            ],
+            "description": "Clear mask"
+          },
+          {
+            "name": "water",
+            "length": 1,
+            "offset": 7,
+            "classes": [
+              {
+                "name": "not_water",
+                "value": 0,
+                "description": "Land or cloud"
+              },
+              {
+                "name": "water",
+                "value": 1,
+                "description": "Water"
+              }
+            ],
+            "description": "Water mask"
+          },
+          {
+            "name": "cloud_confidence",
+            "length": 2,
+            "offset": 8,
+            "classes": [
+              {
+                "name": "not_set",
+                "value": 0,
+                "description": "No confidence level set"
+              },
+              {
+                "name": "low",
+                "value": 1,
+                "description": "Low confidence cloud"
+              },
+              {
+                "name": "medium",
+                "value": 2,
+                "description": "Medium confidence cloud"
+              },
+              {
+                "name": "high",
+                "value": 3,
+                "description": "High confidence cloud"
+              }
+            ],
+            "description": "Cloud confidence levels"
+          },
+          {
+            "name": "cloud_shadow_confidence",
+            "length": 2,
+            "offset": 10,
+            "classes": [
+              {
+                "name": "not_set",
+                "value": 0,
+                "description": "No confidence level set"
+              },
+              {
+                "name": "low",
+                "value": 1,
+                "description": "Low confidence cloud shadow"
+              },
+              {
+                "name": "reserved",
+                "value": 2,
+                "description": "Reserved - value not used"
+              },
+              {
+                "name": "high",
+                "value": 3,
+                "description": "High confidence cloud shadow"
+              }
+            ],
+            "description": "Cloud shadow confidence levels"
+          },
+          {
+            "name": "snow_confidence",
+            "length": 2,
+            "offset": 12,
+            "classes": [
+              {
+                "name": "not_set",
+                "value": 0,
+                "description": "No confidence level set"
+              },
+              {
+                "name": "low",
+                "value": 1,
+                "description": "Low confidence snow/ice"
+              },
+              {
+                "name": "reserved",
+                "value": 2,
+                "description": "Reserved - value not used"
+              },
+              {
+                "name": "high",
+                "value": 3,
+                "description": "High confidence snow/ice"
+              }
+            ],
+            "description": "Snow/Ice confidence levels"
+          },
+          {
+            "name": "cirrus_confidence",
+            "length": 2,
+            "offset": 14,
+            "classes": [
+              {
+                "name": "not_set",
+                "value": 0,
+                "description": "No confidence level set"
+              },
+              {
+                "name": "low",
+                "value": 1,
+                "description": "Low confidence cirrus"
+              },
+              {
+                "name": "reserved",
+                "value": 2,
+                "description": "Reserved - value not used"
+              },
+              {
+                "name": "high",
+                "value": 3,
+                "description": "High confidence cirrus"
+              }
+            ],
+            "description": "Cirrus confidence levels"
+          }
+        ],
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "cloud",
+          "cloud-shadow",
+          "snow-ice",
+          "water-mask"
+        ],
+        "title": "Pixel Quality Assessment Band",
+        "description": "Collection 2 Level-1 Pixel Quality Assessment Band (QA_PIXEL)",
+        "raster:bands": [
+          {
+            "unit": "bit index",
+            "nodata": 1,
+            "data_type": "uint16",
+            "spatial_resolution": 30
+          }
+        ]
+      },
+      "qa_radsat": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2024/089/088/LC09_L2SP_089088_20240417_20240418_02_T2/LC09_L2SP_089088_20240417_20240418_02_T2_QA_RADSAT.TIF",
+        "title": "Radiometric Saturation and Terrain Occlusion Quality Assessment Band",
+        "description": "Collection 2 Level-1 Radiometric Saturation and Terrain Occlusion Quality Assessment Band (QA_RADSAT)",
+        "classification:bitfields": [
+          {
+            "name": "band1",
+            "length": 1,
+            "offset": 0,
+            "classes": [
+              {
+                "name": "not_saturated",
+                "value": 0,
+                "description": "Band 1 not saturated"
+              },
+              {
+                "name": "saturated",
+                "value": 1,
+                "description": "Band 1 saturated"
+              }
+            ],
+            "description": "Band 1 radiometric saturation"
+          },
+          {
+            "name": "band2",
+            "length": 1,
+            "offset": 1,
+            "classes": [
+              {
+                "name": "not_saturated",
+                "value": 0,
+                "description": "Band 2 not saturated"
+              },
+              {
+                "name": "saturated",
+                "value": 1,
+                "description": "Band 2 saturated"
+              }
+            ],
+            "description": "Band 2 radiometric saturation"
+          },
+          {
+            "name": "band3",
+            "length": 1,
+            "offset": 2,
+            "classes": [
+              {
+                "name": "not_saturated",
+                "value": 0,
+                "description": "Band 3 not saturated"
+              },
+              {
+                "name": "saturated",
+                "value": 1,
+                "description": "Band 3 saturated"
+              }
+            ],
+            "description": "Band 3 radiometric saturation"
+          },
+          {
+            "name": "band4",
+            "length": 1,
+            "offset": 3,
+            "classes": [
+              {
+                "name": "not_saturated",
+                "value": 0,
+                "description": "Band 4 not saturated"
+              },
+              {
+                "name": "saturated",
+                "value": 1,
+                "description": "Band 4 saturated"
+              }
+            ],
+            "description": "Band 4 radiometric saturation"
+          },
+          {
+            "name": "band5",
+            "length": 1,
+            "offset": 4,
+            "classes": [
+              {
+                "name": "not_saturated",
+                "value": 0,
+                "description": "Band 5 not saturated"
+              },
+              {
+                "name": "saturated",
+                "value": 1,
+                "description": "Band 5 saturated"
+              }
+            ],
+            "description": "Band 5 radiometric saturation"
+          },
+          {
+            "name": "band6",
+            "length": 1,
+            "offset": 5,
+            "classes": [
+              {
+                "name": "not_saturated",
+                "value": 0,
+                "description": "Band 6 not saturated"
+              },
+              {
+                "name": "saturated",
+                "value": 1,
+                "description": "Band 6 saturated"
+              }
+            ],
+            "description": "Band 6 radiometric saturation"
+          },
+          {
+            "name": "band7",
+            "length": 1,
+            "offset": 6,
+            "classes": [
+              {
+                "name": "not_saturated",
+                "value": 0,
+                "description": "Band 7 not saturated"
+              },
+              {
+                "name": "saturated",
+                "value": 1,
+                "description": "Band 7 saturated"
+              }
+            ],
+            "description": "Band 7 radiometric saturation"
+          },
+          {
+            "name": "band9",
+            "length": 1,
+            "offset": 8,
+            "classes": [
+              {
+                "name": "not_saturated",
+                "value": 0,
+                "description": "Band 9 not saturated"
+              },
+              {
+                "name": "saturated",
+                "value": 1,
+                "description": "Band 9 saturated"
+              }
+            ],
+            "description": "Band 9 radiometric saturation"
+          },
+          {
+            "name": "occlusion",
+            "length": 1,
+            "offset": 11,
+            "classes": [
+              {
+                "name": "not_occluded",
+                "value": 0,
+                "description": "Terrain is not occluded"
+              },
+              {
+                "name": "occluded",
+                "value": 1,
+                "description": "Terrain is occluded"
+              }
+            ],
+            "description": "Terrain not visible from sensor due to intervening terrain"
+          }
+        ],
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "saturation"
+        ],
+        "raster:bands": [
+          {
+            "unit": "bit index",
+            "data_type": "uint16",
+            "spatial_resolution": 30
+          }
+        ]
+      },
+      "qa_aerosol": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2024/089/088/LC09_L2SP_089088_20240417_20240418_02_T2/LC09_L2SP_089088_20240417_20240418_02_T2_SR_QA_AEROSOL.TIF",
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "data-mask",
+          "water-mask"
+        ],
+        "title": "Aerosol Quality Assessment Band",
+        "description": "Collection 2 Level-2 Aerosol Quality Assessment Band (SR_QA_AEROSOL) Surface Reflectance Product",
+        "raster:bands": [
+          {
+            "unit": "bit index",
+            "nodata": 1,
+            "data_type": "uint8",
+            "spatial_resolution": 30
+          }
+        ],
+        "classification:bitfields": [
+          {
+            "name": "fill",
+            "length": 1,
+            "offset": 0,
+            "classes": [
+              {
+                "name": "not_fill",
+                "value": 0,
+                "description": "Pixel is not fill"
+              },
+              {
+                "name": "fill",
+                "value": 1,
+                "description": "Pixel is fill"
+              }
+            ],
+            "description": "Image or fill data"
+          },
+          {
+            "name": "retrieval",
+            "length": 1,
+            "offset": 1,
+            "classes": [
+              {
+                "name": "not_valid",
+                "value": 0,
+                "description": "Pixel retrieval is not valid"
+              },
+              {
+                "name": "valid",
+                "value": 1,
+                "description": "Pixel retrieval is valid"
+              }
+            ],
+            "description": "Valid aerosol retrieval"
+          },
+          {
+            "name": "water",
+            "length": 1,
+            "offset": 2,
+            "classes": [
+              {
+                "name": "not_water",
+                "value": 0,
+                "description": "Pixel is not water"
+              },
+              {
+                "name": "water",
+                "value": 1,
+                "description": "Pixel is water"
+              }
+            ],
+            "description": "Water mask"
+          },
+          {
+            "name": "interpolated",
+            "length": 1,
+            "offset": 5,
+            "classes": [
+              {
+                "name": "not_interpolated",
+                "value": 0,
+                "description": "Pixel is not interpolated aerosol"
+              },
+              {
+                "name": "interpolated",
+                "value": 1,
+                "description": "Pixel is interpolated aerosol"
+              }
+            ],
+            "description": "Aerosol interpolation"
+          },
+          {
+            "name": "level",
+            "length": 2,
+            "offset": 6,
+            "classes": [
+              {
+                "name": "climatology",
+                "value": 0,
+                "description": "No aerosol correction applied"
+              },
+              {
+                "name": "low",
+                "value": 1,
+                "description": "Low aerosol level"
+              },
+              {
+                "name": "medium",
+                "value": 2,
+                "description": "Medium aerosol level"
+              },
+              {
+                "name": "high",
+                "value": 3,
+                "description": "High aerosol level"
+              }
+            ],
+            "description": "Aerosol level"
+          }
+        ]
+      },
+      "tilejson": {
+        "title": "TileJSON with default rendering",
+        "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/tilejson.json?collection=landsat-c2-l2&item=LC09_L2SP_089088_20240417_02_T2&assets=red&assets=green&assets=blue&color_formula=gamma+RGB+2.7%2C+saturation+1.5%2C+sigmoidal+RGB+15+0.55&format=png",
+        "type": "application/json",
+        "roles": [
+          "tiles"
+        ]
+      },
+      "rendered_preview": {
+        "title": "Rendered preview",
+        "rel": "preview",
+        "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/preview.png?collection=landsat-c2-l2&item=LC09_L2SP_089088_20240417_02_T2&assets=red&assets=green&assets=blue&color_formula=gamma+RGB+2.7%2C+saturation+1.5%2C+sigmoidal+RGB+15+0.55&format=png",
+        "roles": [
+          "overview"
+        ],
+        "type": "image/png"
+      }
+    },
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [
+            148.86105711331297,
+            -39.278152385031966
+          ],
+          [
+            148.2912081368755,
+            -40.981039149041095
+          ],
+          [
+            150.49173639907698,
+            -41.387902232962716
+          ],
+          [
+            151.0070819657586,
+            -39.67633612164197
+          ],
+          [
+            148.86105711331297,
+            -39.278152385031966
+          ]
+        ]
+      ]
+    },
+    "collection": "landsat-c2-l2",
+    "properties": {
+      "gsd": 30,
+      "created": "2024-04-19T09:18:07.946096Z",
+      "sci:doi": "10.5066/P9OGBGM6",
+      "datetime": "2024-04-17T23:45:32.563949Z",
+      "platform": "landsat-9",
+      "proj:epsg": 32655,
+      "proj:shape": [
+        7991,
+        7971
+      ],
+      "description": "Landsat Collection 2 Level-2",
+      "instruments": [
+        "oli",
+        "tirs"
+      ],
+      "eo:cloud_cover": 25.53,
+      "proj:transform": [
+        30.0,
+        0.0,
+        606285.0,
+        0.0,
+        -30.0,
+        -4348485.0
+      ],
+      "view:off_nadir": 0,
+      "landsat:wrs_row": "088",
+      "landsat:scene_id": "LC90890882024108LGN00",
+      "landsat:wrs_path": "089",
+      "landsat:wrs_type": "2",
+      "view:sun_azimuth": 39.07332141,
+      "landsat:correction": "L2SP",
+      "view:sun_elevation": 29.9612243,
+      "landsat:cloud_cover_land": 85.15,
+      "landsat:collection_number": "02",
+      "landsat:collection_category": "T2"
+    },
+    "stac_extensions": [
+      "https://stac-extensions.github.io/raster/v1.1.0/schema.json",
+      "https://stac-extensions.github.io/eo/v1.0.0/schema.json",
+      "https://stac-extensions.github.io/view/v1.0.0/schema.json",
+      "https://stac-extensions.github.io/projection/v1.1.0/schema.json",
+      "https://landsat.usgs.gov/stac/landsat-extension/v1.1.1/schema.json",
+      "https://stac-extensions.github.io/classification/v1.0.0/schema.json",
+      "https://stac-extensions.github.io/scientific/v1.0.0/schema.json"
+    ],
+    "stac_version": "1.0.0"
+  },
+  {
+    "id": "LC09_L2SP_089087_20240417_02_T2",
+    "bbox": [
+      148.7201145966869,
+      -39.96974497493013,
+      151.45233038160774,
+      -37.828045025069876
+    ],
+    "type": "Feature",
+    "links": [
+      {
+        "rel": "collection",
+        "type": "application/json",
+        "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-c2-l2"
+      },
+      {
+        "rel": "parent",
+        "type": "application/json",
+        "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-c2-l2"
+      },
+      {
+        "rel": "root",
+        "type": "application/json",
+        "href": "https://planetarycomputer.microsoft.com/api/stac/v1/"
+      },
+      {
+        "rel": "self",
+        "type": "application/geo+json",
+        "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-c2-l2/items/LC09_L2SP_089087_20240417_02_T2"
+      },
+      {
+        "rel": "cite-as",
+        "href": "https://doi.org/10.5066/P9OGBGM6",
+        "title": "Landsat 8-9 OLI/TIRS Collection 2 Level-2"
+      },
+      {
+        "rel": "via",
+        "href": "https://landsatlook.usgs.gov/stac-server/collections/landsat-c2l2-sr/items/LC09_L2SP_089087_20240417_20240418_02_T2_SR",
+        "type": "application/json",
+        "title": "USGS STAC Item"
+      },
+      {
+        "rel": "via",
+        "href": "https://landsatlook.usgs.gov/stac-server/collections/landsat-c2l2-st/items/LC09_L2SP_089087_20240417_20240418_02_T2_ST",
+        "type": "application/json",
+        "title": "USGS STAC Item"
+      },
+      {
+        "rel": "preview",
+        "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/map?collection=landsat-c2-l2&item=LC09_L2SP_089087_20240417_02_T2",
+        "title": "Map of item",
+        "type": "text/html"
+      }
+    ],
+    "assets": {
+      "qa": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2024/089/087/LC09_L2SP_089087_20240417_20240418_02_T2/LC09_L2SP_089087_20240417_20240418_02_T2_ST_QA.TIF",
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "data"
+        ],
+        "title": "Surface Temperature Quality Assessment Band",
+        "description": "Collection 2 Level-2 Quality Assessment Band (ST_QA) Surface Temperature Product",
+        "raster:bands": [
+          {
+            "unit": "kelvin",
+            "scale": 0.01,
+            "nodata": -9999,
+            "data_type": "int16",
+            "spatial_resolution": 30
+          }
+        ]
+      },
+      "ang": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2024/089/087/LC09_L2SP_089087_20240417_20240418_02_T2/LC09_L2SP_089087_20240417_20240418_02_T2_ANG.txt",
+        "type": "text/plain",
+        "roles": [
+          "metadata"
+        ],
+        "title": "Angle Coefficients File",
+        "description": "Collection 2 Level-1 Angle Coefficients File"
+      },
+      "red": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2024/089/087/LC09_L2SP_089087_20240417_20240418_02_T2/LC09_L2SP_089087_20240417_20240418_02_T2_SR_B4.TIF",
+        "eo:bands": [
+          {
+            "name": "OLI_B4",
+            "center_wavelength": 0.65,
+            "full_width_half_max": 0.04,
+            "common_name": "red",
+            "description": "Visible red"
+          }
+        ],
+        "description": "Collection 2 Level-2 Red Band (SR_B4) Surface Reflectance",
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "data",
+          "reflectance"
+        ],
+        "title": "Red Band",
+        "raster:bands": [
+          {
+            "scale": 2.75e-05,
+            "nodata": 0,
+            "offset": -0.2,
+            "data_type": "uint16",
+            "spatial_resolution": 30
+          }
+        ]
+      },
+      "blue": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2024/089/087/LC09_L2SP_089087_20240417_20240418_02_T2/LC09_L2SP_089087_20240417_20240418_02_T2_SR_B2.TIF",
+        "eo:bands": [
+          {
+            "name": "OLI_B2",
+            "center_wavelength": 0.48,
+            "full_width_half_max": 0.06,
+            "common_name": "blue",
+            "description": "Visible blue"
+          }
+        ],
+        "description": "Collection 2 Level-2 Blue Band (SR_B2) Surface Reflectance",
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "data",
+          "reflectance"
+        ],
+        "title": "Blue Band",
+        "raster:bands": [
+          {
+            "scale": 2.75e-05,
+            "nodata": 0,
+            "offset": -0.2,
+            "data_type": "uint16",
+            "spatial_resolution": 30
+          }
+        ]
+      },
+      "drad": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2024/089/087/LC09_L2SP_089087_20240417_20240418_02_T2/LC09_L2SP_089087_20240417_20240418_02_T2_ST_DRAD.TIF",
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "data"
+        ],
+        "title": "Downwelled Radiance Band",
+        "description": "Collection 2 Level-2 Downwelled Radiance Band (ST_DRAD) Surface Temperature Product",
+        "raster:bands": [
+          {
+            "unit": "watt/steradian/square_meter/micrometer",
+            "scale": 0.001,
+            "nodata": -9999,
+            "data_type": "int16",
+            "spatial_resolution": 30
+          }
+        ]
+      },
+      "emis": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2024/089/087/LC09_L2SP_089087_20240417_20240418_02_T2/LC09_L2SP_089087_20240417_20240418_02_T2_ST_EMIS.TIF",
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "data"
+        ],
+        "title": "Emissivity Band",
+        "description": "Collection 2 Level-2 Emissivity Band (ST_EMIS) Surface Temperature Product",
+        "raster:bands": [
+          {
+            "unit": "emissivity coefficient",
+            "scale": 0.0001,
+            "nodata": -9999,
+            "data_type": "int16",
+            "spatial_resolution": 30
+          }
+        ]
+      },
+      "emsd": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2024/089/087/LC09_L2SP_089087_20240417_20240418_02_T2/LC09_L2SP_089087_20240417_20240418_02_T2_ST_EMSD.TIF",
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "data"
+        ],
+        "title": "Emissivity Standard Deviation Band",
+        "description": "Collection 2 Level-2 Emissivity Standard Deviation Band (ST_EMSD) Surface Temperature Product",
+        "raster:bands": [
+          {
+            "unit": "emissivity coefficient",
+            "scale": 0.0001,
+            "nodata": -9999,
+            "data_type": "int16",
+            "spatial_resolution": 30
+          }
+        ]
+      },
+      "trad": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2024/089/087/LC09_L2SP_089087_20240417_20240418_02_T2/LC09_L2SP_089087_20240417_20240418_02_T2_ST_TRAD.TIF",
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "data"
+        ],
+        "title": "Thermal Radiance Band",
+        "description": "Collection 2 Level-2 Thermal Radiance Band (ST_TRAD) Surface Temperature Product",
+        "raster:bands": [
+          {
+            "unit": "watt/steradian/square_meter/micrometer",
+            "scale": 0.001,
+            "nodata": -9999,
+            "data_type": "int16",
+            "spatial_resolution": 30
+          }
+        ]
+      },
+      "urad": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2024/089/087/LC09_L2SP_089087_20240417_20240418_02_T2/LC09_L2SP_089087_20240417_20240418_02_T2_ST_URAD.TIF",
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "data"
+        ],
+        "title": "Upwelled Radiance Band",
+        "description": "Collection 2 Level-2 Upwelled Radiance Band (ST_URAD) Surface Temperature Product",
+        "raster:bands": [
+          {
+            "unit": "watt/steradian/square_meter/micrometer",
+            "scale": 0.001,
+            "nodata": -9999,
+            "data_type": "int16",
+            "spatial_resolution": 30
+          }
+        ]
+      },
+      "atran": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2024/089/087/LC09_L2SP_089087_20240417_20240418_02_T2/LC09_L2SP_089087_20240417_20240418_02_T2_ST_ATRAN.TIF",
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "data"
+        ],
+        "title": "Atmospheric Transmittance Band",
+        "description": "Collection 2 Level-2 Atmospheric Transmittance Band (ST_ATRAN) Surface Temperature Product",
+        "raster:bands": [
+          {
+            "scale": 0.0001,
+            "nodata": -9999,
+            "data_type": "int16",
+            "spatial_resolution": 30
+          }
+        ]
+      },
+      "cdist": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2024/089/087/LC09_L2SP_089087_20240417_20240418_02_T2/LC09_L2SP_089087_20240417_20240418_02_T2_ST_CDIST.TIF",
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "data"
+        ],
+        "title": "Cloud Distance Band",
+        "description": "Collection 2 Level-2 Cloud Distance Band (ST_CDIST) Surface Temperature Product",
+        "raster:bands": [
+          {
+            "unit": "kilometer",
+            "scale": 0.01,
+            "nodata": -9999,
+            "data_type": "int16",
+            "spatial_resolution": 30
+          }
+        ]
+      },
+      "green": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2024/089/087/LC09_L2SP_089087_20240417_20240418_02_T2/LC09_L2SP_089087_20240417_20240418_02_T2_SR_B3.TIF",
+        "eo:bands": [
+          {
+            "name": "OLI_B3",
+            "full_width_half_max": 0.06,
+            "common_name": "green",
+            "description": "Visible green",
+            "center_wavelength": 0.56
+          }
+        ],
+        "description": "Collection 2 Level-2 Green Band (SR_B3) Surface Reflectance",
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "data",
+          "reflectance"
+        ],
+        "title": "Green Band",
+        "raster:bands": [
+          {
+            "scale": 2.75e-05,
+            "nodata": 0,
+            "offset": -0.2,
+            "data_type": "uint16",
+            "spatial_resolution": 30
+          }
+        ]
+      },
+      "nir08": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2024/089/087/LC09_L2SP_089087_20240417_20240418_02_T2/LC09_L2SP_089087_20240417_20240418_02_T2_SR_B5.TIF",
+        "eo:bands": [
+          {
+            "name": "OLI_B5",
+            "center_wavelength": 0.87,
+            "full_width_half_max": 0.03,
+            "common_name": "nir08",
+            "description": "Near infrared"
+          }
+        ],
+        "description": "Collection 2 Level-2 Near Infrared Band 0.8 (SR_B5) Surface Reflectance",
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "data",
+          "reflectance"
+        ],
+        "title": "Near Infrared Band 0.8",
+        "raster:bands": [
+          {
+            "scale": 2.75e-05,
+            "nodata": 0,
+            "offset": -0.2,
+            "data_type": "uint16",
+            "spatial_resolution": 30
+          }
+        ]
+      },
+      "lwir11": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2024/089/087/LC09_L2SP_089087_20240417_20240418_02_T2/LC09_L2SP_089087_20240417_20240418_02_T2_ST_B10.TIF",
+        "gsd": 100,
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "data",
+          "temperature"
+        ],
+        "title": "Surface Temperature Band",
+        "eo:bands": [
+          {
+            "name": "TIRS_B10",
+            "common_name": "lwir11",
+            "description": "Long-wave infrared",
+            "center_wavelength": 10.9,
+            "full_width_half_max": 0.59
+          }
+        ],
+        "description": "Collection 2 Level-2 Thermal Infrared Band (ST_B10) Surface Temperature",
+        "raster:bands": [
+          {
+            "unit": "kelvin",
+            "scale": 0.00341802,
+            "nodata": 0,
+            "offset": 149.0,
+            "data_type": "uint16",
+            "spatial_resolution": 30
+          }
+        ]
+      },
+      "swir16": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2024/089/087/LC09_L2SP_089087_20240417_20240418_02_T2/LC09_L2SP_089087_20240417_20240418_02_T2_SR_B6.TIF",
+        "eo:bands": [
+          {
+            "name": "OLI_B6",
+            "center_wavelength": 1.61,
+            "full_width_half_max": 0.09,
+            "common_name": "swir16",
+            "description": "Short-wave infrared"
+          }
+        ],
+        "description": "Collection 2 Level-2 Short-wave Infrared Band 1.6 (SR_B6) Surface Reflectance",
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "data",
+          "reflectance"
+        ],
+        "title": "Short-wave Infrared Band 1.6",
+        "raster:bands": [
+          {
+            "scale": 2.75e-05,
+            "nodata": 0,
+            "offset": -0.2,
+            "data_type": "uint16",
+            "spatial_resolution": 30
+          }
+        ]
+      },
+      "swir22": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2024/089/087/LC09_L2SP_089087_20240417_20240418_02_T2/LC09_L2SP_089087_20240417_20240418_02_T2_SR_B7.TIF",
+        "eo:bands": [
+          {
+            "name": "OLI_B7",
+            "center_wavelength": 2.2,
+            "full_width_half_max": 0.19,
+            "common_name": "swir22",
+            "description": "Short-wave infrared"
+          }
+        ],
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "data",
+          "reflectance"
+        ],
+        "title": "Short-wave Infrared Band 2.2",
+        "description": "Collection 2 Level-2 Short-wave Infrared Band 2.2 (SR_B7) Surface Reflectance",
+        "raster:bands": [
+          {
+            "scale": 2.75e-05,
+            "nodata": 0,
+            "offset": -0.2,
+            "data_type": "uint16",
+            "spatial_resolution": 30
+          }
+        ]
+      },
+      "coastal": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2024/089/087/LC09_L2SP_089087_20240417_20240418_02_T2/LC09_L2SP_089087_20240417_20240418_02_T2_SR_B1.TIF",
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "data",
+          "reflectance"
+        ],
+        "title": "Coastal/Aerosol Band",
+        "eo:bands": [
+          {
+            "name": "OLI_B1",
+            "common_name": "coastal",
+            "description": "Coastal/Aerosol",
+            "center_wavelength": 0.44,
+            "full_width_half_max": 0.02
+          }
+        ],
+        "description": "Collection 2 Level-2 Coastal/Aerosol Band (SR_B1) Surface Reflectance",
+        "raster:bands": [
+          {
+            "scale": 2.75e-05,
+            "nodata": 0,
+            "offset": -0.2,
+            "data_type": "uint16",
+            "spatial_resolution": 30
+          }
+        ]
+      },
+      "mtl.txt": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2024/089/087/LC09_L2SP_089087_20240417_20240418_02_T2/LC09_L2SP_089087_20240417_20240418_02_T2_MTL.txt",
+        "type": "text/plain",
+        "roles": [
+          "metadata"
+        ],
+        "title": "Product Metadata File (txt)",
+        "description": "Collection 2 Level-2 Product Metadata File (txt)"
+      },
+      "mtl.xml": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2024/089/087/LC09_L2SP_089087_20240417_20240418_02_T2/LC09_L2SP_089087_20240417_20240418_02_T2_MTL.xml",
+        "type": "application/xml",
+        "roles": [
+          "metadata"
+        ],
+        "title": "Product Metadata File (xml)",
+        "description": "Collection 2 Level-2 Product Metadata File (xml)"
+      },
+      "mtl.json": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2024/089/087/LC09_L2SP_089087_20240417_20240418_02_T2/LC09_L2SP_089087_20240417_20240418_02_T2_MTL.json",
+        "type": "application/json",
+        "roles": [
+          "metadata"
+        ],
+        "title": "Product Metadata File (json)",
+        "description": "Collection 2 Level-2 Product Metadata File (json)"
+      },
+      "qa_pixel": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2024/089/087/LC09_L2SP_089087_20240417_20240418_02_T2/LC09_L2SP_089087_20240417_20240418_02_T2_QA_PIXEL.TIF",
+        "classification:bitfields": [
+          {
+            "name": "fill",
+            "length": 1,
+            "offset": 0,
+            "classes": [
+              {
+                "name": "not_fill",
+                "value": 0,
+                "description": "Image data"
+              },
+              {
+                "name": "fill",
+                "value": 1,
+                "description": "Fill data"
+              }
+            ],
+            "description": "Image or fill data"
+          },
+          {
+            "name": "dilated_cloud",
+            "length": 1,
+            "offset": 1,
+            "classes": [
+              {
+                "name": "not_dilated",
+                "value": 0,
+                "description": "Cloud is not dilated or no cloud"
+              },
+              {
+                "name": "dilated",
+                "value": 1,
+                "description": "Cloud dilation"
+              }
+            ],
+            "description": "Dilated cloud"
+          },
+          {
+            "name": "cirrus",
+            "length": 1,
+            "offset": 2,
+            "classes": [
+              {
+                "name": "not_cirrus",
+                "value": 0,
+                "description": "Cirrus confidence is not high"
+              },
+              {
+                "name": "cirrus",
+                "value": 1,
+                "description": "High confidence cirrus"
+              }
+            ],
+            "description": "Cirrus mask"
+          },
+          {
+            "name": "cloud",
+            "length": 1,
+            "offset": 3,
+            "classes": [
+              {
+                "name": "not_cloud",
+                "value": 0,
+                "description": "Cloud confidence is not high"
+              },
+              {
+                "name": "cloud",
+                "value": 1,
+                "description": "High confidence cloud"
+              }
+            ],
+            "description": "Cloud mask"
+          },
+          {
+            "name": "cloud_shadow",
+            "length": 1,
+            "offset": 4,
+            "classes": [
+              {
+                "name": "not_shadow",
+                "value": 0,
+                "description": "Cloud shadow confidence is not high"
+              },
+              {
+                "name": "shadow",
+                "value": 1,
+                "description": "High confidence cloud shadow"
+              }
+            ],
+            "description": "Cloud shadow mask"
+          },
+          {
+            "name": "snow",
+            "length": 1,
+            "offset": 5,
+            "classes": [
+              {
+                "name": "not_snow",
+                "value": 0,
+                "description": "Snow/Ice confidence is not high"
+              },
+              {
+                "name": "snow",
+                "value": 1,
+                "description": "High confidence snow cover"
+              }
+            ],
+            "description": "Snow/Ice mask"
+          },
+          {
+            "name": "clear",
+            "length": 1,
+            "offset": 6,
+            "classes": [
+              {
+                "name": "not_clear",
+                "value": 0,
+                "description": "Cloud or dilated cloud bits are set"
+              },
+              {
+                "name": "clear",
+                "value": 1,
+                "description": "Cloud and dilated cloud bits are not set"
+              }
+            ],
+            "description": "Clear mask"
+          },
+          {
+            "name": "water",
+            "length": 1,
+            "offset": 7,
+            "classes": [
+              {
+                "name": "not_water",
+                "value": 0,
+                "description": "Land or cloud"
+              },
+              {
+                "name": "water",
+                "value": 1,
+                "description": "Water"
+              }
+            ],
+            "description": "Water mask"
+          },
+          {
+            "name": "cloud_confidence",
+            "length": 2,
+            "offset": 8,
+            "classes": [
+              {
+                "name": "not_set",
+                "value": 0,
+                "description": "No confidence level set"
+              },
+              {
+                "name": "low",
+                "value": 1,
+                "description": "Low confidence cloud"
+              },
+              {
+                "name": "medium",
+                "value": 2,
+                "description": "Medium confidence cloud"
+              },
+              {
+                "name": "high",
+                "value": 3,
+                "description": "High confidence cloud"
+              }
+            ],
+            "description": "Cloud confidence levels"
+          },
+          {
+            "name": "cloud_shadow_confidence",
+            "length": 2,
+            "offset": 10,
+            "classes": [
+              {
+                "name": "not_set",
+                "value": 0,
+                "description": "No confidence level set"
+              },
+              {
+                "name": "low",
+                "value": 1,
+                "description": "Low confidence cloud shadow"
+              },
+              {
+                "name": "reserved",
+                "value": 2,
+                "description": "Reserved - value not used"
+              },
+              {
+                "name": "high",
+                "value": 3,
+                "description": "High confidence cloud shadow"
+              }
+            ],
+            "description": "Cloud shadow confidence levels"
+          },
+          {
+            "name": "snow_confidence",
+            "length": 2,
+            "offset": 12,
+            "classes": [
+              {
+                "name": "not_set",
+                "value": 0,
+                "description": "No confidence level set"
+              },
+              {
+                "name": "low",
+                "value": 1,
+                "description": "Low confidence snow/ice"
+              },
+              {
+                "name": "reserved",
+                "value": 2,
+                "description": "Reserved - value not used"
+              },
+              {
+                "name": "high",
+                "value": 3,
+                "description": "High confidence snow/ice"
+              }
+            ],
+            "description": "Snow/Ice confidence levels"
+          },
+          {
+            "name": "cirrus_confidence",
+            "length": 2,
+            "offset": 14,
+            "classes": [
+              {
+                "name": "not_set",
+                "value": 0,
+                "description": "No confidence level set"
+              },
+              {
+                "name": "low",
+                "value": 1,
+                "description": "Low confidence cirrus"
+              },
+              {
+                "name": "reserved",
+                "value": 2,
+                "description": "Reserved - value not used"
+              },
+              {
+                "name": "high",
+                "value": 3,
+                "description": "High confidence cirrus"
+              }
+            ],
+            "description": "Cirrus confidence levels"
+          }
+        ],
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "cloud",
+          "cloud-shadow",
+          "snow-ice",
+          "water-mask"
+        ],
+        "title": "Pixel Quality Assessment Band",
+        "description": "Collection 2 Level-1 Pixel Quality Assessment Band (QA_PIXEL)",
+        "raster:bands": [
+          {
+            "unit": "bit index",
+            "nodata": 1,
+            "data_type": "uint16",
+            "spatial_resolution": 30
+          }
+        ]
+      },
+      "qa_radsat": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2024/089/087/LC09_L2SP_089087_20240417_20240418_02_T2/LC09_L2SP_089087_20240417_20240418_02_T2_QA_RADSAT.TIF",
+        "title": "Radiometric Saturation and Terrain Occlusion Quality Assessment Band",
+        "description": "Collection 2 Level-1 Radiometric Saturation and Terrain Occlusion Quality Assessment Band (QA_RADSAT)",
+        "classification:bitfields": [
+          {
+            "name": "band1",
+            "length": 1,
+            "offset": 0,
+            "classes": [
+              {
+                "name": "not_saturated",
+                "value": 0,
+                "description": "Band 1 not saturated"
+              },
+              {
+                "name": "saturated",
+                "value": 1,
+                "description": "Band 1 saturated"
+              }
+            ],
+            "description": "Band 1 radiometric saturation"
+          },
+          {
+            "name": "band2",
+            "length": 1,
+            "offset": 1,
+            "classes": [
+              {
+                "name": "not_saturated",
+                "value": 0,
+                "description": "Band 2 not saturated"
+              },
+              {
+                "name": "saturated",
+                "value": 1,
+                "description": "Band 2 saturated"
+              }
+            ],
+            "description": "Band 2 radiometric saturation"
+          },
+          {
+            "name": "band3",
+            "length": 1,
+            "offset": 2,
+            "classes": [
+              {
+                "name": "not_saturated",
+                "value": 0,
+                "description": "Band 3 not saturated"
+              },
+              {
+                "name": "saturated",
+                "value": 1,
+                "description": "Band 3 saturated"
+              }
+            ],
+            "description": "Band 3 radiometric saturation"
+          },
+          {
+            "name": "band4",
+            "length": 1,
+            "offset": 3,
+            "classes": [
+              {
+                "name": "not_saturated",
+                "value": 0,
+                "description": "Band 4 not saturated"
+              },
+              {
+                "name": "saturated",
+                "value": 1,
+                "description": "Band 4 saturated"
+              }
+            ],
+            "description": "Band 4 radiometric saturation"
+          },
+          {
+            "name": "band5",
+            "length": 1,
+            "offset": 4,
+            "classes": [
+              {
+                "name": "not_saturated",
+                "value": 0,
+                "description": "Band 5 not saturated"
+              },
+              {
+                "name": "saturated",
+                "value": 1,
+                "description": "Band 5 saturated"
+              }
+            ],
+            "description": "Band 5 radiometric saturation"
+          },
+          {
+            "name": "band6",
+            "length": 1,
+            "offset": 5,
+            "classes": [
+              {
+                "name": "not_saturated",
+                "value": 0,
+                "description": "Band 6 not saturated"
+              },
+              {
+                "name": "saturated",
+                "value": 1,
+                "description": "Band 6 saturated"
+              }
+            ],
+            "description": "Band 6 radiometric saturation"
+          },
+          {
+            "name": "band7",
+            "length": 1,
+            "offset": 6,
+            "classes": [
+              {
+                "name": "not_saturated",
+                "value": 0,
+                "description": "Band 7 not saturated"
+              },
+              {
+                "name": "saturated",
+                "value": 1,
+                "description": "Band 7 saturated"
+              }
+            ],
+            "description": "Band 7 radiometric saturation"
+          },
+          {
+            "name": "band9",
+            "length": 1,
+            "offset": 8,
+            "classes": [
+              {
+                "name": "not_saturated",
+                "value": 0,
+                "description": "Band 9 not saturated"
+              },
+              {
+                "name": "saturated",
+                "value": 1,
+                "description": "Band 9 saturated"
+              }
+            ],
+            "description": "Band 9 radiometric saturation"
+          },
+          {
+            "name": "occlusion",
+            "length": 1,
+            "offset": 11,
+            "classes": [
+              {
+                "name": "not_occluded",
+                "value": 0,
+                "description": "Terrain is not occluded"
+              },
+              {
+                "name": "occluded",
+                "value": 1,
+                "description": "Terrain is occluded"
+              }
+            ],
+            "description": "Terrain not visible from sensor due to intervening terrain"
+          }
+        ],
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "saturation"
+        ],
+        "raster:bands": [
+          {
+            "unit": "bit index",
+            "data_type": "uint16",
+            "spatial_resolution": 30
+          }
+        ]
+      },
+      "qa_aerosol": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2024/089/087/LC09_L2SP_089087_20240417_20240418_02_T2/LC09_L2SP_089087_20240417_20240418_02_T2_SR_QA_AEROSOL.TIF",
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "data-mask",
+          "water-mask"
+        ],
+        "title": "Aerosol Quality Assessment Band",
+        "description": "Collection 2 Level-2 Aerosol Quality Assessment Band (SR_QA_AEROSOL) Surface Reflectance Product",
+        "raster:bands": [
+          {
+            "unit": "bit index",
+            "nodata": 1,
+            "data_type": "uint8",
+            "spatial_resolution": 30
+          }
+        ],
+        "classification:bitfields": [
+          {
+            "name": "fill",
+            "length": 1,
+            "offset": 0,
+            "classes": [
+              {
+                "name": "not_fill",
+                "value": 0,
+                "description": "Pixel is not fill"
+              },
+              {
+                "name": "fill",
+                "value": 1,
+                "description": "Pixel is fill"
+              }
+            ],
+            "description": "Image or fill data"
+          },
+          {
+            "name": "retrieval",
+            "length": 1,
+            "offset": 1,
+            "classes": [
+              {
+                "name": "not_valid",
+                "value": 0,
+                "description": "Pixel retrieval is not valid"
+              },
+              {
+                "name": "valid",
+                "value": 1,
+                "description": "Pixel retrieval is valid"
+              }
+            ],
+            "description": "Valid aerosol retrieval"
+          },
+          {
+            "name": "water",
+            "length": 1,
+            "offset": 2,
+            "classes": [
+              {
+                "name": "not_water",
+                "value": 0,
+                "description": "Pixel is not water"
+              },
+              {
+                "name": "water",
+                "value": 1,
+                "description": "Pixel is water"
+              }
+            ],
+            "description": "Water mask"
+          },
+          {
+            "name": "interpolated",
+            "length": 1,
+            "offset": 5,
+            "classes": [
+              {
+                "name": "not_interpolated",
+                "value": 0,
+                "description": "Pixel is not interpolated aerosol"
+              },
+              {
+                "name": "interpolated",
+                "value": 1,
+                "description": "Pixel is interpolated aerosol"
+              }
+            ],
+            "description": "Aerosol interpolation"
+          },
+          {
+            "name": "level",
+            "length": 2,
+            "offset": 6,
+            "classes": [
+              {
+                "name": "climatology",
+                "value": 0,
+                "description": "No aerosol correction applied"
+              },
+              {
+                "name": "low",
+                "value": 1,
+                "description": "Low aerosol level"
+              },
+              {
+                "name": "medium",
+                "value": 2,
+                "description": "Medium aerosol level"
+              },
+              {
+                "name": "high",
+                "value": 3,
+                "description": "High aerosol level"
+              }
+            ],
+            "description": "Aerosol level"
+          }
+        ]
+      },
+      "tilejson": {
+        "title": "TileJSON with default rendering",
+        "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/tilejson.json?collection=landsat-c2-l2&item=LC09_L2SP_089087_20240417_02_T2&assets=red&assets=green&assets=blue&color_formula=gamma+RGB+2.7%2C+saturation+1.5%2C+sigmoidal+RGB+15+0.55&format=png",
+        "type": "application/json",
+        "roles": [
+          "tiles"
+        ]
+      },
+      "rendered_preview": {
+        "title": "Rendered preview",
+        "rel": "preview",
+        "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/preview.png?collection=landsat-c2-l2&item=LC09_L2SP_089087_20240417_02_T2&assets=red&assets=green&assets=blue&color_formula=gamma+RGB+2.7%2C+saturation+1.5%2C+sigmoidal+RGB+15+0.55&format=png",
+        "roles": [
+          "overview"
+        ],
+        "type": "image/png"
+      }
+    },
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [
+            149.3207645458389,
+            -37.850987597272
+          ],
+          [
+            148.7697329168507,
+            -39.5560152032096
+          ],
+          [
+            150.92384790572982,
+            -39.95804893187826
+          ],
+          [
+            151.4243073880589,
+            -38.24457038924309
+          ],
+          [
+            149.3207645458389,
+            -37.850987597272
+          ]
+        ]
+      ]
+    },
+    "collection": "landsat-c2-l2",
+    "properties": {
+      "gsd": 30,
+      "created": "2024-04-19T09:18:05.289361Z",
+      "sci:doi": "10.5066/P9OGBGM6",
+      "datetime": "2024-04-17T23:45:08.600922Z",
+      "platform": "landsat-9",
+      "proj:epsg": 32656,
+      "proj:shape": [
+        7691,
+        7661
+      ],
+      "description": "Landsat Collection 2 Level-2",
+      "instruments": [
+        "oli",
+        "tirs"
+      ],
+      "eo:cloud_cover": 25.41,
+      "proj:transform": [
+        30.0,
+        0.0,
+        134085.0,
+        0.0,
+        -30.0,
+        -4194885.0
+      ],
+      "view:off_nadir": 0,
+      "landsat:wrs_row": "087",
+      "landsat:scene_id": "LC90890872024108LGN00",
+      "landsat:wrs_path": "089",
+      "landsat:wrs_type": "2",
+      "view:sun_azimuth": 39.26303633,
+      "landsat:correction": "L2SP",
+      "view:sun_elevation": 31.23794783,
+      "landsat:cloud_cover_land": -1.0,
+      "landsat:collection_number": "02",
+      "landsat:collection_category": "T2"
+    },
+    "stac_extensions": [
+      "https://stac-extensions.github.io/raster/v1.1.0/schema.json",
+      "https://stac-extensions.github.io/eo/v1.0.0/schema.json",
+      "https://stac-extensions.github.io/view/v1.0.0/schema.json",
+      "https://stac-extensions.github.io/projection/v1.1.0/schema.json",
+      "https://landsat.usgs.gov/stac/landsat-extension/v1.1.1/schema.json",
+      "https://stac-extensions.github.io/classification/v1.0.0/schema.json",
+      "https://stac-extensions.github.io/scientific/v1.0.0/schema.json"
+    ],
+    "stac_version": "1.0.0"
+  }
+]

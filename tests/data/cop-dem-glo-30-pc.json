@@ -1,0 +1,490 @@
+[
+  {
+    "id": "Copernicus_DSM_COG_10_S90_00_W180_00_DEM",
+    "bbox": [
+      -180.0013888888889,
+      -89.99986111111112,
+      -179.0013888888889,
+      -88.99986111111112
+    ],
+    "type": "Feature",
+    "links": [
+      {
+        "rel": "collection",
+        "type": "application/json",
+        "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/cop-dem-glo-30"
+      },
+      {
+        "rel": "parent",
+        "type": "application/json",
+        "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/cop-dem-glo-30"
+      },
+      {
+        "rel": "root",
+        "type": "application/json",
+        "href": "https://planetarycomputer.microsoft.com/api/stac/v1/"
+      },
+      {
+        "rel": "self",
+        "type": "application/geo+json",
+        "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/cop-dem-glo-30/items/Copernicus_DSM_COG_10_S90_00_W180_00_DEM"
+      },
+      {
+        "rel": "handbook",
+        "href": "https://object.cloud.sdsc.edu/v1/AUTH_opentopography/www/metadata/Copernicus_metadata.pdf",
+        "type": "application/pdf",
+        "title": "Copernicus DEM User handbook",
+        "description": "Also includes data usage information"
+      },
+      {
+        "rel": "preview",
+        "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/map?collection=cop-dem-glo-30&item=Copernicus_DSM_COG_10_S90_00_W180_00_DEM",
+        "title": "Map of item",
+        "type": "text/html"
+      }
+    ],
+    "assets": {
+      "data": {
+        "href": "https://elevationeuwest.blob.core.windows.net/copernicus-dem/COP30_hh/Copernicus_DSM_COG_10_S90_00_W180_00_DEM.tif",
+        "title": "S90_00_W180_00",
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "data"
+        ]
+      },
+      "tilejson": {
+        "title": "TileJSON with default rendering",
+        "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/tilejson.json?collection=cop-dem-glo-30&item=Copernicus_DSM_COG_10_S90_00_W180_00_DEM&assets=data&colormap_name=terrain&rescale=-1000%2C4000&format=png",
+        "type": "application/json",
+        "roles": [
+          "tiles"
+        ]
+      },
+      "rendered_preview": {
+        "title": "Rendered preview",
+        "rel": "preview",
+        "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/preview.png?collection=cop-dem-glo-30&item=Copernicus_DSM_COG_10_S90_00_W180_00_DEM&assets=data&colormap_name=terrain&rescale=-1000%2C4000&format=png",
+        "roles": [
+          "overview"
+        ],
+        "type": "image/png"
+      }
+    },
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [
+            -179.00138889,
+            -89.99986111
+          ],
+          [
+            -179.00138889,
+            -88.99986111
+          ],
+          [
+            -180.00138889,
+            -88.99986111
+          ],
+          [
+            -180.00138889,
+            -89.99986111
+          ],
+          [
+            -179.00138889,
+            -89.99986111
+          ]
+        ]
+      ]
+    },
+    "collection": "cop-dem-glo-30",
+    "properties": {
+      "gsd": 30,
+      "datetime": "2021-04-22T00:00:00Z",
+      "platform": "TanDEM-X",
+      "proj:epsg": 4326,
+      "proj:shape": [
+        3600,
+        360
+      ],
+      "proj:transform": [
+        0.002777777777777778,
+        0.0,
+        -180.0013888888889,
+        0.0,
+        -0.0002777777777777778,
+        -88.99986111111112
+      ]
+    },
+    "stac_extensions": [
+      "https://stac-extensions.github.io/projection/v1.0.0/schema.json"
+    ],
+    "stac_version": "1.0.0"
+  },
+  {
+    "id": "Copernicus_DSM_COG_10_S90_00_W179_00_DEM",
+    "bbox": [
+      -179.0013888888889,
+      -89.99986111111112,
+      -178.0013888888889,
+      -88.99986111111112
+    ],
+    "type": "Feature",
+    "links": [
+      {
+        "rel": "collection",
+        "type": "application/json",
+        "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/cop-dem-glo-30"
+      },
+      {
+        "rel": "parent",
+        "type": "application/json",
+        "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/cop-dem-glo-30"
+      },
+      {
+        "rel": "root",
+        "type": "application/json",
+        "href": "https://planetarycomputer.microsoft.com/api/stac/v1/"
+      },
+      {
+        "rel": "self",
+        "type": "application/geo+json",
+        "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/cop-dem-glo-30/items/Copernicus_DSM_COG_10_S90_00_W179_00_DEM"
+      },
+      {
+        "rel": "handbook",
+        "href": "https://object.cloud.sdsc.edu/v1/AUTH_opentopography/www/metadata/Copernicus_metadata.pdf",
+        "type": "application/pdf",
+        "title": "Copernicus DEM User handbook",
+        "description": "Also includes data usage information"
+      },
+      {
+        "rel": "preview",
+        "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/map?collection=cop-dem-glo-30&item=Copernicus_DSM_COG_10_S90_00_W179_00_DEM",
+        "title": "Map of item",
+        "type": "text/html"
+      }
+    ],
+    "assets": {
+      "data": {
+        "href": "https://elevationeuwest.blob.core.windows.net/copernicus-dem/COP30_hh/Copernicus_DSM_COG_10_S90_00_W179_00_DEM.tif",
+        "title": "S90_00_W179_00",
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "data"
+        ]
+      },
+      "tilejson": {
+        "title": "TileJSON with default rendering",
+        "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/tilejson.json?collection=cop-dem-glo-30&item=Copernicus_DSM_COG_10_S90_00_W179_00_DEM&assets=data&colormap_name=terrain&rescale=-1000%2C4000&format=png",
+        "type": "application/json",
+        "roles": [
+          "tiles"
+        ]
+      },
+      "rendered_preview": {
+        "title": "Rendered preview",
+        "rel": "preview",
+        "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/preview.png?collection=cop-dem-glo-30&item=Copernicus_DSM_COG_10_S90_00_W179_00_DEM&assets=data&colormap_name=terrain&rescale=-1000%2C4000&format=png",
+        "roles": [
+          "overview"
+        ],
+        "type": "image/png"
+      }
+    },
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [
+            -178.00138889,
+            -89.99986111
+          ],
+          [
+            -178.00138889,
+            -88.99986111
+          ],
+          [
+            -179.00138889,
+            -88.99986111
+          ],
+          [
+            -179.00138889,
+            -89.99986111
+          ],
+          [
+            -178.00138889,
+            -89.99986111
+          ]
+        ]
+      ]
+    },
+    "collection": "cop-dem-glo-30",
+    "properties": {
+      "gsd": 30,
+      "datetime": "2021-04-22T00:00:00Z",
+      "platform": "TanDEM-X",
+      "proj:epsg": 4326,
+      "proj:shape": [
+        3600,
+        360
+      ],
+      "proj:transform": [
+        0.002777777777777778,
+        0.0,
+        -179.0013888888889,
+        0.0,
+        -0.0002777777777777778,
+        -88.99986111111112
+      ]
+    },
+    "stac_extensions": [
+      "https://stac-extensions.github.io/projection/v1.0.0/schema.json"
+    ],
+    "stac_version": "1.0.0"
+  },
+  {
+    "id": "Copernicus_DSM_COG_10_S90_00_W178_00_DEM",
+    "bbox": [
+      -178.0013888888889,
+      -89.99986111111112,
+      -177.0013888888889,
+      -88.99986111111112
+    ],
+    "type": "Feature",
+    "links": [
+      {
+        "rel": "collection",
+        "type": "application/json",
+        "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/cop-dem-glo-30"
+      },
+      {
+        "rel": "parent",
+        "type": "application/json",
+        "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/cop-dem-glo-30"
+      },
+      {
+        "rel": "root",
+        "type": "application/json",
+        "href": "https://planetarycomputer.microsoft.com/api/stac/v1/"
+      },
+      {
+        "rel": "self",
+        "type": "application/geo+json",
+        "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/cop-dem-glo-30/items/Copernicus_DSM_COG_10_S90_00_W178_00_DEM"
+      },
+      {
+        "rel": "handbook",
+        "href": "https://object.cloud.sdsc.edu/v1/AUTH_opentopography/www/metadata/Copernicus_metadata.pdf",
+        "type": "application/pdf",
+        "title": "Copernicus DEM User handbook",
+        "description": "Also includes data usage information"
+      },
+      {
+        "rel": "preview",
+        "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/map?collection=cop-dem-glo-30&item=Copernicus_DSM_COG_10_S90_00_W178_00_DEM",
+        "title": "Map of item",
+        "type": "text/html"
+      }
+    ],
+    "assets": {
+      "data": {
+        "href": "https://elevationeuwest.blob.core.windows.net/copernicus-dem/COP30_hh/Copernicus_DSM_COG_10_S90_00_W178_00_DEM.tif",
+        "title": "S90_00_W178_00",
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "data"
+        ]
+      },
+      "tilejson": {
+        "title": "TileJSON with default rendering",
+        "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/tilejson.json?collection=cop-dem-glo-30&item=Copernicus_DSM_COG_10_S90_00_W178_00_DEM&assets=data&colormap_name=terrain&rescale=-1000%2C4000&format=png",
+        "type": "application/json",
+        "roles": [
+          "tiles"
+        ]
+      },
+      "rendered_preview": {
+        "title": "Rendered preview",
+        "rel": "preview",
+        "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/preview.png?collection=cop-dem-glo-30&item=Copernicus_DSM_COG_10_S90_00_W178_00_DEM&assets=data&colormap_name=terrain&rescale=-1000%2C4000&format=png",
+        "roles": [
+          "overview"
+        ],
+        "type": "image/png"
+      }
+    },
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [
+            -177.00138889,
+            -89.99986111
+          ],
+          [
+            -177.00138889,
+            -88.99986111
+          ],
+          [
+            -178.00138889,
+            -88.99986111
+          ],
+          [
+            -178.00138889,
+            -89.99986111
+          ],
+          [
+            -177.00138889,
+            -89.99986111
+          ]
+        ]
+      ]
+    },
+    "collection": "cop-dem-glo-30",
+    "properties": {
+      "gsd": 30,
+      "datetime": "2021-04-22T00:00:00Z",
+      "platform": "TanDEM-X",
+      "proj:epsg": 4326,
+      "proj:shape": [
+        3600,
+        360
+      ],
+      "proj:transform": [
+        0.002777777777777778,
+        0.0,
+        -178.0013888888889,
+        0.0,
+        -0.0002777777777777778,
+        -88.99986111111112
+      ]
+    },
+    "stac_extensions": [
+      "https://stac-extensions.github.io/projection/v1.0.0/schema.json"
+    ],
+    "stac_version": "1.0.0"
+  },
+  {
+    "id": "Copernicus_DSM_COG_10_S90_00_W177_00_DEM",
+    "bbox": [
+      -177.0013888888889,
+      -89.99986111111112,
+      -176.0013888888889,
+      -88.99986111111112
+    ],
+    "type": "Feature",
+    "links": [
+      {
+        "rel": "collection",
+        "type": "application/json",
+        "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/cop-dem-glo-30"
+      },
+      {
+        "rel": "parent",
+        "type": "application/json",
+        "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/cop-dem-glo-30"
+      },
+      {
+        "rel": "root",
+        "type": "application/json",
+        "href": "https://planetarycomputer.microsoft.com/api/stac/v1/"
+      },
+      {
+        "rel": "self",
+        "type": "application/geo+json",
+        "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/cop-dem-glo-30/items/Copernicus_DSM_COG_10_S90_00_W177_00_DEM"
+      },
+      {
+        "rel": "handbook",
+        "href": "https://object.cloud.sdsc.edu/v1/AUTH_opentopography/www/metadata/Copernicus_metadata.pdf",
+        "type": "application/pdf",
+        "title": "Copernicus DEM User handbook",
+        "description": "Also includes data usage information"
+      },
+      {
+        "rel": "preview",
+        "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/map?collection=cop-dem-glo-30&item=Copernicus_DSM_COG_10_S90_00_W177_00_DEM",
+        "title": "Map of item",
+        "type": "text/html"
+      }
+    ],
+    "assets": {
+      "data": {
+        "href": "https://elevationeuwest.blob.core.windows.net/copernicus-dem/COP30_hh/Copernicus_DSM_COG_10_S90_00_W177_00_DEM.tif",
+        "title": "S90_00_W177_00",
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "data"
+        ]
+      },
+      "tilejson": {
+        "title": "TileJSON with default rendering",
+        "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/tilejson.json?collection=cop-dem-glo-30&item=Copernicus_DSM_COG_10_S90_00_W177_00_DEM&assets=data&colormap_name=terrain&rescale=-1000%2C4000&format=png",
+        "type": "application/json",
+        "roles": [
+          "tiles"
+        ]
+      },
+      "rendered_preview": {
+        "title": "Rendered preview",
+        "rel": "preview",
+        "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/preview.png?collection=cop-dem-glo-30&item=Copernicus_DSM_COG_10_S90_00_W177_00_DEM&assets=data&colormap_name=terrain&rescale=-1000%2C4000&format=png",
+        "roles": [
+          "overview"
+        ],
+        "type": "image/png"
+      }
+    },
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [
+            -176.00138889,
+            -89.99986111
+          ],
+          [
+            -176.00138889,
+            -88.99986111
+          ],
+          [
+            -177.00138889,
+            -88.99986111
+          ],
+          [
+            -177.00138889,
+            -89.99986111
+          ],
+          [
+            -176.00138889,
+            -89.99986111
+          ]
+        ]
+      ]
+    },
+    "collection": "cop-dem-glo-30",
+    "properties": {
+      "gsd": 30,
+      "datetime": "2021-04-22T00:00:00Z",
+      "platform": "TanDEM-X",
+      "proj:epsg": 4326,
+      "proj:shape": [
+        3600,
+        360
+      ],
+      "proj:transform": [
+        0.002777777777777778,
+        0.0,
+        -177.0013888888889,
+        0.0,
+        -0.0002777777777777778,
+        -88.99986111111112
+      ]
+    },
+    "stac_extensions": [
+      "https://stac-extensions.github.io/projection/v1.0.0/schema.json"
+    ],
+    "stac_version": "1.0.0"
+  }
+]

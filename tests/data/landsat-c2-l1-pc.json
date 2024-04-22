@@ -1,0 +1,2094 @@
+[
+  {
+    "id": "LM05_L1GS_039039_20130107_02_T2",
+    "bbox": [
+      -117.50762889,
+      29.33011939,
+      -115.11943478,
+      31.33978061
+    ],
+    "type": "Feature",
+    "links": [
+      {
+        "rel": "collection",
+        "type": "application/json",
+        "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-c2-l1"
+      },
+      {
+        "rel": "parent",
+        "type": "application/json",
+        "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-c2-l1"
+      },
+      {
+        "rel": "root",
+        "type": "application/json",
+        "href": "https://planetarycomputer.microsoft.com/api/stac/v1/"
+      },
+      {
+        "rel": "self",
+        "type": "application/geo+json",
+        "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-c2-l1/items/LM05_L1GS_039039_20130107_02_T2"
+      },
+      {
+        "rel": "cite-as",
+        "href": "https://doi.org/10.5066/P9AF14YV",
+        "title": "Landsat 1-5 MSS Collection 2 Level-1"
+      },
+      {
+        "rel": "via",
+        "href": "https://landsatlook.usgs.gov/stac-server/collections/landsat-c2l1/items/LM05_L1GS_039039_20130107_20200820_02_T2",
+        "type": "application/json",
+        "title": "USGS STAC Item"
+      },
+      {
+        "rel": "preview",
+        "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/map?collection=landsat-c2-l1&item=LM05_L1GS_039039_20130107_02_T2",
+        "title": "Map of item",
+        "type": "text/html"
+      }
+    ],
+    "assets": {
+      "red": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-1/standard/mss/2013/039/039/LM05_L1GS_039039_20130107_20200820_02_T2/LM05_L1GS_039039_20130107_20200820_02_T2_B2.TIF",
+        "eo:bands": [
+          {
+            "name": "B2",
+            "common_name": "red",
+            "description": "Visible red",
+            "center_wavelength": 0.65,
+            "full_width_half_max": 0.1
+          }
+        ],
+        "description": "Collection 2 Level-1 Red Band (B2) Top of Atmosphere Radiance",
+        "raster:bands": [
+          {
+            "scale": 0.66024,
+            "offset": 2.03976,
+            "unit": "watt/steradian/square_meter/micrometer",
+            "nodata": 0,
+            "data_type": "uint8",
+            "spatial_resolution": 60
+          }
+        ],
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "data"
+        ],
+        "title": "Red Band"
+      },
+      "green": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-1/standard/mss/2013/039/039/LM05_L1GS_039039_20130107_20200820_02_T2/LM05_L1GS_039039_20130107_20200820_02_T2_B1.TIF",
+        "eo:bands": [
+          {
+            "name": "B1",
+            "common_name": "green",
+            "description": "Visible green",
+            "center_wavelength": 0.55,
+            "full_width_half_max": 0.1
+          }
+        ],
+        "description": "Collection 2 Level-1 Green Band (B1) Top of Atmosphere Radiance",
+        "raster:bands": [
+          {
+            "scale": 0.88504,
+            "offset": 1.51496,
+            "unit": "watt/steradian/square_meter/micrometer",
+            "nodata": 0,
+            "data_type": "uint8",
+            "spatial_resolution": 60
+          }
+        ],
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "data"
+        ],
+        "title": "Green Band"
+      },
+      "nir08": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-1/standard/mss/2013/039/039/LM05_L1GS_039039_20130107_20200820_02_T2/LM05_L1GS_039039_20130107_20200820_02_T2_B3.TIF",
+        "eo:bands": [
+          {
+            "name": "B3",
+            "common_name": "nir08",
+            "description": "Near infrared",
+            "center_wavelength": 0.75,
+            "full_width_half_max": 0.1
+          }
+        ],
+        "description": "Collection 2 Level-1 Near Infrared Band 0.8 (B3) Top of Atmosphere Radiance",
+        "raster:bands": [
+          {
+            "scale": 0.55866,
+            "offset": 4.34134,
+            "unit": "watt/steradian/square_meter/micrometer",
+            "nodata": 0,
+            "data_type": "uint8",
+            "spatial_resolution": 60
+          }
+        ],
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "data"
+        ],
+        "title": "Near Infrared Band 0.8"
+      },
+      "nir09": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-1/standard/mss/2013/039/039/LM05_L1GS_039039_20130107_20200820_02_T2/LM05_L1GS_039039_20130107_20200820_02_T2_B4.TIF",
+        "eo:bands": [
+          {
+            "name": "B4",
+            "common_name": "nir09",
+            "description": "Near infrared",
+            "center_wavelength": 0.95,
+            "full_width_half_max": 0.3
+          }
+        ],
+        "description": "Collection 2 Level-1 Near Infrared Band 0.9 (B4) Top of Atmosphere Radiance",
+        "raster:bands": [
+          {
+            "nodata": 0,
+            "data_type": "uint8",
+            "spatial_resolution": 60
+          }
+        ],
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "data"
+        ],
+        "title": "Near Infrared Band 0.9"
+      },
+      "mtl.txt": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-1/standard/mss/2013/039/039/LM05_L1GS_039039_20130107_20200820_02_T2/LM05_L1GS_039039_20130107_20200820_02_T2_MTL.txt",
+        "type": "text/plain",
+        "roles": [
+          "metadata"
+        ],
+        "title": "Product Metadata File (txt)",
+        "description": "Collection 2 Level-1 Product Metadata File (txt)"
+      },
+      "mtl.xml": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-1/standard/mss/2013/039/039/LM05_L1GS_039039_20130107_20200820_02_T2/LM05_L1GS_039039_20130107_20200820_02_T2_MTL.xml",
+        "type": "application/xml",
+        "roles": [
+          "metadata"
+        ],
+        "title": "Product Metadata File (xml)",
+        "description": "Collection 2 Level-1 Product Metadata File (xml)"
+      },
+      "mtl.json": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-1/standard/mss/2013/039/039/LM05_L1GS_039039_20130107_20200820_02_T2/LM05_L1GS_039039_20130107_20200820_02_T2_MTL.json",
+        "type": "application/json",
+        "roles": [
+          "metadata"
+        ],
+        "title": "Product Metadata File (json)",
+        "description": "Collection 2 Level-1 Product Metadata File (json)"
+      },
+      "qa_pixel": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-1/standard/mss/2013/039/039/LM05_L1GS_039039_20130107_20200820_02_T2/LM05_L1GS_039039_20130107_20200820_02_T2_QA_PIXEL.TIF",
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "cloud"
+        ],
+        "title": "Pixel Quality Assessment Band",
+        "description": "Collection 2 Level-1 Pixel Quality Assessment Band (QA_PIXEL)",
+        "raster:bands": [
+          {
+            "unit": "bit index",
+            "nodata": 1,
+            "data_type": "uint16",
+            "spatial_resolution": 60
+          }
+        ],
+        "classification:bitfields": [
+          {
+            "name": "fill",
+            "length": 1,
+            "offset": 0,
+            "classes": [
+              {
+                "name": "not_fill",
+                "value": 0,
+                "description": "Image data"
+              },
+              {
+                "name": "fill",
+                "value": 1,
+                "description": "Fill data"
+              }
+            ],
+            "description": "Image or fill data"
+          },
+          {
+            "name": "cloud",
+            "length": 1,
+            "offset": 3,
+            "classes": [
+              {
+                "name": "not_cloud",
+                "value": 0,
+                "description": "Cloud confidence is not high"
+              },
+              {
+                "name": "cloud",
+                "value": 1,
+                "description": "High confidence cloud"
+              }
+            ],
+            "description": "Cloud mask"
+          },
+          {
+            "name": "cloud_confidence",
+            "length": 2,
+            "offset": 8,
+            "classes": [
+              {
+                "name": "not_set",
+                "value": 0,
+                "description": "No confidence level set"
+              },
+              {
+                "name": "low",
+                "value": 1,
+                "description": "Low confidence cloud"
+              },
+              {
+                "name": "reserved",
+                "value": 2,
+                "description": "Reserved - value not used"
+              },
+              {
+                "name": "high",
+                "value": 3,
+                "description": "High confidence cloud"
+              }
+            ],
+            "description": "Cloud confidence levels"
+          }
+        ]
+      },
+      "qa_radsat": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-1/standard/mss/2013/039/039/LM05_L1GS_039039_20130107_20200820_02_T2/LM05_L1GS_039039_20130107_20200820_02_T2_QA_RADSAT.TIF",
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "saturation"
+        ],
+        "title": "Radiometric Saturation and Dropped Pixel Quality Assessment Band",
+        "description": "Collection 2 Level-1 Radiometric Saturation and Dropped Pixel Quality Assessment Band (QA_RADSAT)",
+        "raster:bands": [
+          {
+            "unit": "bit index",
+            "data_type": "uint16",
+            "spatial_resolution": 60
+          }
+        ],
+        "classification:bitfields": [
+          {
+            "name": "band1",
+            "length": 1,
+            "offset": 0,
+            "classes": [
+              {
+                "name": "not_saturated",
+                "value": 0,
+                "description": "Band 1 not saturated"
+              },
+              {
+                "name": "saturated",
+                "value": 1,
+                "description": "Band 1 saturated"
+              }
+            ],
+            "description": "Band 1 radiometric saturation"
+          },
+          {
+            "name": "band2",
+            "length": 1,
+            "offset": 1,
+            "classes": [
+              {
+                "name": "not_saturated",
+                "value": 0,
+                "description": "Band 2 not saturated"
+              },
+              {
+                "name": "saturated",
+                "value": 1,
+                "description": "Band 2 saturated"
+              }
+            ],
+            "description": "Band 2 radiometric saturation"
+          },
+          {
+            "name": "band3",
+            "length": 1,
+            "offset": 2,
+            "classes": [
+              {
+                "name": "not_saturated",
+                "value": 0,
+                "description": "Band 3 not saturated"
+              },
+              {
+                "name": "saturated",
+                "value": 1,
+                "description": "Band 3 saturated"
+              }
+            ],
+            "description": "Band 3 radiometric saturation"
+          },
+          {
+            "name": "band4",
+            "length": 1,
+            "offset": 3,
+            "classes": [
+              {
+                "name": "not_saturated",
+                "value": 0,
+                "description": "Band 4 not saturated"
+              },
+              {
+                "name": "saturated",
+                "value": 1,
+                "description": "Band 4 saturated"
+              }
+            ],
+            "description": "Band 4 radiometric saturation"
+          },
+          {
+            "name": "band5",
+            "length": 1,
+            "offset": 4,
+            "classes": [
+              {
+                "name": "not_saturated",
+                "value": 0,
+                "description": "Band 5 not saturated"
+              },
+              {
+                "name": "saturated",
+                "value": 1,
+                "description": "Band 5 saturated"
+              }
+            ],
+            "description": "Band 5 radiometric saturation"
+          },
+          {
+            "name": "band6",
+            "length": 1,
+            "offset": 5,
+            "classes": [
+              {
+                "name": "not_saturated",
+                "value": 0,
+                "description": "Band 6 not saturated"
+              },
+              {
+                "name": "saturated",
+                "value": 1,
+                "description": "Band 6 saturated"
+              }
+            ],
+            "description": "Band 6 radiometric saturation"
+          },
+          {
+            "name": "band7",
+            "length": 1,
+            "offset": 6,
+            "classes": [
+              {
+                "name": "not_saturated",
+                "value": 0,
+                "description": "Band 7 not saturated"
+              },
+              {
+                "name": "saturated",
+                "value": 1,
+                "description": "Band 7 saturated"
+              }
+            ],
+            "description": "Band 7 radiometric saturation"
+          },
+          {
+            "name": "dropped",
+            "length": 1,
+            "offset": 9,
+            "classes": [
+              {
+                "name": "not_dropped",
+                "value": 0,
+                "description": "Detector has a value - pixel present"
+              },
+              {
+                "name": "dropped",
+                "value": 1,
+                "description": "Detector does not have a value - no data"
+              }
+            ],
+            "description": "Dropped pixel"
+          }
+        ]
+      },
+      "tilejson": {
+        "title": "TileJSON with default rendering",
+        "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/tilejson.json?collection=landsat-c2-l1&item=LM05_L1GS_039039_20130107_02_T2&assets=nir08&assets=red&assets=green&color_formula=gamma+RGB+2.6%2C+saturation+1.0%2C+sigmoidal+RGB+14+0.5&format=png",
+        "type": "application/json",
+        "roles": [
+          "tiles"
+        ]
+      },
+      "rendered_preview": {
+        "title": "Rendered preview",
+        "rel": "preview",
+        "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/preview.png?collection=landsat-c2-l1&item=LM05_L1GS_039039_20130107_02_T2&assets=nir08&assets=red&assets=green&color_formula=gamma+RGB+2.6%2C+saturation+1.0%2C+sigmoidal+RGB+14+0.5&format=png",
+        "roles": [
+          "overview"
+        ],
+        "type": "image/png"
+      }
+    },
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [
+            -117.0594992,
+            31.3383308
+          ],
+          [
+            -117.4904164,
+            29.6178348
+          ],
+          [
+            -115.5959944,
+            29.3454678
+          ],
+          [
+            -115.1325401,
+            31.0611731
+          ],
+          [
+            -117.0594992,
+            31.3383308
+          ]
+        ]
+      ]
+    },
+    "collection": "landsat-c2-l1",
+    "properties": {
+      "gsd": 79,
+      "created": "2022-06-28T09:36:44.703787Z",
+      "sci:doi": "10.5066/P9AF14YV",
+      "datetime": "2013-01-07T17:52:14.088001Z",
+      "platform": "landsat-5",
+      "proj:epsg": 32611,
+      "proj:shape": [
+        3690,
+        3787
+      ],
+      "description": "Landsat Collection 2 Level-1",
+      "instruments": [
+        "mss"
+      ],
+      "eo:cloud_cover": 2.0,
+      "proj:transform": [
+        60.0,
+        0.0,
+        451710.0,
+        0.0,
+        -60.0,
+        3467370.0
+      ],
+      "view:off_nadir": 0,
+      "landsat:wrs_row": "039",
+      "landsat:scene_id": "LM50390392013007EDC01",
+      "landsat:wrs_path": "039",
+      "landsat:wrs_type": "2",
+      "view:sun_azimuth": 147.79546921,
+      "landsat:correction": "L1GS",
+      "view:sun_elevation": 30.10936649,
+      "landsat:cloud_cover_land": 2.0,
+      "landsat:collection_number": "02",
+      "landsat:collection_category": "T2"
+    },
+    "stac_extensions": [
+      "https://stac-extensions.github.io/raster/v1.0.0/schema.json",
+      "https://stac-extensions.github.io/eo/v1.0.0/schema.json",
+      "https://stac-extensions.github.io/view/v1.0.0/schema.json",
+      "https://stac-extensions.github.io/projection/v1.0.0/schema.json",
+      "https://landsat.usgs.gov/stac/landsat-extension/v1.1.1/schema.json",
+      "https://stac-extensions.github.io/classification/v1.0.0/schema.json",
+      "https://stac-extensions.github.io/scientific/v1.0.0/schema.json"
+    ],
+    "stac_version": "1.0.0"
+  },
+  {
+    "id": "LM05_L1TP_039038_20130107_02_T2",
+    "bbox": [
+      -117.14335328,
+      30.73529944,
+      -114.72179993,
+      32.75080056
+    ],
+    "type": "Feature",
+    "links": [
+      {
+        "rel": "collection",
+        "type": "application/json",
+        "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-c2-l1"
+      },
+      {
+        "rel": "parent",
+        "type": "application/json",
+        "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-c2-l1"
+      },
+      {
+        "rel": "root",
+        "type": "application/json",
+        "href": "https://planetarycomputer.microsoft.com/api/stac/v1/"
+      },
+      {
+        "rel": "self",
+        "type": "application/geo+json",
+        "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-c2-l1/items/LM05_L1TP_039038_20130107_02_T2"
+      },
+      {
+        "rel": "cite-as",
+        "href": "https://doi.org/10.5066/P9AF14YV",
+        "title": "Landsat 1-5 MSS Collection 2 Level-1"
+      },
+      {
+        "rel": "via",
+        "href": "https://landsatlook.usgs.gov/stac-server/collections/landsat-c2l1/items/LM05_L1TP_039038_20130107_20200820_02_T2",
+        "type": "application/json",
+        "title": "USGS STAC Item"
+      },
+      {
+        "rel": "preview",
+        "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/map?collection=landsat-c2-l1&item=LM05_L1TP_039038_20130107_02_T2",
+        "title": "Map of item",
+        "type": "text/html"
+      }
+    ],
+    "assets": {
+      "red": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-1/standard/mss/2013/039/038/LM05_L1TP_039038_20130107_20200820_02_T2/LM05_L1TP_039038_20130107_20200820_02_T2_B2.TIF",
+        "eo:bands": [
+          {
+            "name": "B2",
+            "common_name": "red",
+            "description": "Visible red",
+            "center_wavelength": 0.65,
+            "full_width_half_max": 0.1
+          }
+        ],
+        "description": "Collection 2 Level-1 Red Band (B2) Top of Atmosphere Radiance",
+        "raster:bands": [
+          {
+            "scale": 0.66024,
+            "offset": 2.03976,
+            "unit": "watt/steradian/square_meter/micrometer",
+            "nodata": 0,
+            "data_type": "uint8",
+            "spatial_resolution": 60
+          }
+        ],
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "data"
+        ],
+        "title": "Red Band"
+      },
+      "green": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-1/standard/mss/2013/039/038/LM05_L1TP_039038_20130107_20200820_02_T2/LM05_L1TP_039038_20130107_20200820_02_T2_B1.TIF",
+        "eo:bands": [
+          {
+            "name": "B1",
+            "common_name": "green",
+            "description": "Visible green",
+            "center_wavelength": 0.55,
+            "full_width_half_max": 0.1
+          }
+        ],
+        "description": "Collection 2 Level-1 Green Band (B1) Top of Atmosphere Radiance",
+        "raster:bands": [
+          {
+            "scale": 0.88504,
+            "offset": 1.51496,
+            "unit": "watt/steradian/square_meter/micrometer",
+            "nodata": 0,
+            "data_type": "uint8",
+            "spatial_resolution": 60
+          }
+        ],
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "data"
+        ],
+        "title": "Green Band"
+      },
+      "nir08": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-1/standard/mss/2013/039/038/LM05_L1TP_039038_20130107_20200820_02_T2/LM05_L1TP_039038_20130107_20200820_02_T2_B3.TIF",
+        "eo:bands": [
+          {
+            "name": "B3",
+            "common_name": "nir08",
+            "description": "Near infrared",
+            "center_wavelength": 0.75,
+            "full_width_half_max": 0.1
+          }
+        ],
+        "description": "Collection 2 Level-1 Near Infrared Band 0.8 (B3) Top of Atmosphere Radiance",
+        "raster:bands": [
+          {
+            "scale": 0.55866,
+            "offset": 4.34134,
+            "unit": "watt/steradian/square_meter/micrometer",
+            "nodata": 0,
+            "data_type": "uint8",
+            "spatial_resolution": 60
+          }
+        ],
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "data"
+        ],
+        "title": "Near Infrared Band 0.8"
+      },
+      "nir09": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-1/standard/mss/2013/039/038/LM05_L1TP_039038_20130107_20200820_02_T2/LM05_L1TP_039038_20130107_20200820_02_T2_B4.TIF",
+        "eo:bands": [
+          {
+            "name": "B4",
+            "common_name": "nir09",
+            "description": "Near infrared",
+            "center_wavelength": 0.95,
+            "full_width_half_max": 0.3
+          }
+        ],
+        "description": "Collection 2 Level-1 Near Infrared Band 0.9 (B4) Top of Atmosphere Radiance",
+        "raster:bands": [
+          {
+            "nodata": 0,
+            "data_type": "uint8",
+            "spatial_resolution": 60
+          }
+        ],
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "data"
+        ],
+        "title": "Near Infrared Band 0.9"
+      },
+      "mtl.txt": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-1/standard/mss/2013/039/038/LM05_L1TP_039038_20130107_20200820_02_T2/LM05_L1TP_039038_20130107_20200820_02_T2_MTL.txt",
+        "type": "text/plain",
+        "roles": [
+          "metadata"
+        ],
+        "title": "Product Metadata File (txt)",
+        "description": "Collection 2 Level-1 Product Metadata File (txt)"
+      },
+      "mtl.xml": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-1/standard/mss/2013/039/038/LM05_L1TP_039038_20130107_20200820_02_T2/LM05_L1TP_039038_20130107_20200820_02_T2_MTL.xml",
+        "type": "application/xml",
+        "roles": [
+          "metadata"
+        ],
+        "title": "Product Metadata File (xml)",
+        "description": "Collection 2 Level-1 Product Metadata File (xml)"
+      },
+      "mtl.json": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-1/standard/mss/2013/039/038/LM05_L1TP_039038_20130107_20200820_02_T2/LM05_L1TP_039038_20130107_20200820_02_T2_MTL.json",
+        "type": "application/json",
+        "roles": [
+          "metadata"
+        ],
+        "title": "Product Metadata File (json)",
+        "description": "Collection 2 Level-1 Product Metadata File (json)"
+      },
+      "qa_pixel": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-1/standard/mss/2013/039/038/LM05_L1TP_039038_20130107_20200820_02_T2/LM05_L1TP_039038_20130107_20200820_02_T2_QA_PIXEL.TIF",
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "cloud"
+        ],
+        "title": "Pixel Quality Assessment Band",
+        "description": "Collection 2 Level-1 Pixel Quality Assessment Band (QA_PIXEL)",
+        "raster:bands": [
+          {
+            "unit": "bit index",
+            "nodata": 1,
+            "data_type": "uint16",
+            "spatial_resolution": 60
+          }
+        ],
+        "classification:bitfields": [
+          {
+            "name": "fill",
+            "length": 1,
+            "offset": 0,
+            "classes": [
+              {
+                "name": "not_fill",
+                "value": 0,
+                "description": "Image data"
+              },
+              {
+                "name": "fill",
+                "value": 1,
+                "description": "Fill data"
+              }
+            ],
+            "description": "Image or fill data"
+          },
+          {
+            "name": "cloud",
+            "length": 1,
+            "offset": 3,
+            "classes": [
+              {
+                "name": "not_cloud",
+                "value": 0,
+                "description": "Cloud confidence is not high"
+              },
+              {
+                "name": "cloud",
+                "value": 1,
+                "description": "High confidence cloud"
+              }
+            ],
+            "description": "Cloud mask"
+          },
+          {
+            "name": "cloud_confidence",
+            "length": 2,
+            "offset": 8,
+            "classes": [
+              {
+                "name": "not_set",
+                "value": 0,
+                "description": "No confidence level set"
+              },
+              {
+                "name": "low",
+                "value": 1,
+                "description": "Low confidence cloud"
+              },
+              {
+                "name": "reserved",
+                "value": 2,
+                "description": "Reserved - value not used"
+              },
+              {
+                "name": "high",
+                "value": 3,
+                "description": "High confidence cloud"
+              }
+            ],
+            "description": "Cloud confidence levels"
+          }
+        ]
+      },
+      "qa_radsat": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-1/standard/mss/2013/039/038/LM05_L1TP_039038_20130107_20200820_02_T2/LM05_L1TP_039038_20130107_20200820_02_T2_QA_RADSAT.TIF",
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "saturation"
+        ],
+        "title": "Radiometric Saturation and Dropped Pixel Quality Assessment Band",
+        "description": "Collection 2 Level-1 Radiometric Saturation and Dropped Pixel Quality Assessment Band (QA_RADSAT)",
+        "raster:bands": [
+          {
+            "unit": "bit index",
+            "data_type": "uint16",
+            "spatial_resolution": 60
+          }
+        ],
+        "classification:bitfields": [
+          {
+            "name": "band1",
+            "length": 1,
+            "offset": 0,
+            "classes": [
+              {
+                "name": "not_saturated",
+                "value": 0,
+                "description": "Band 1 not saturated"
+              },
+              {
+                "name": "saturated",
+                "value": 1,
+                "description": "Band 1 saturated"
+              }
+            ],
+            "description": "Band 1 radiometric saturation"
+          },
+          {
+            "name": "band2",
+            "length": 1,
+            "offset": 1,
+            "classes": [
+              {
+                "name": "not_saturated",
+                "value": 0,
+                "description": "Band 2 not saturated"
+              },
+              {
+                "name": "saturated",
+                "value": 1,
+                "description": "Band 2 saturated"
+              }
+            ],
+            "description": "Band 2 radiometric saturation"
+          },
+          {
+            "name": "band3",
+            "length": 1,
+            "offset": 2,
+            "classes": [
+              {
+                "name": "not_saturated",
+                "value": 0,
+                "description": "Band 3 not saturated"
+              },
+              {
+                "name": "saturated",
+                "value": 1,
+                "description": "Band 3 saturated"
+              }
+            ],
+            "description": "Band 3 radiometric saturation"
+          },
+          {
+            "name": "band4",
+            "length": 1,
+            "offset": 3,
+            "classes": [
+              {
+                "name": "not_saturated",
+                "value": 0,
+                "description": "Band 4 not saturated"
+              },
+              {
+                "name": "saturated",
+                "value": 1,
+                "description": "Band 4 saturated"
+              }
+            ],
+            "description": "Band 4 radiometric saturation"
+          },
+          {
+            "name": "band5",
+            "length": 1,
+            "offset": 4,
+            "classes": [
+              {
+                "name": "not_saturated",
+                "value": 0,
+                "description": "Band 5 not saturated"
+              },
+              {
+                "name": "saturated",
+                "value": 1,
+                "description": "Band 5 saturated"
+              }
+            ],
+            "description": "Band 5 radiometric saturation"
+          },
+          {
+            "name": "band6",
+            "length": 1,
+            "offset": 5,
+            "classes": [
+              {
+                "name": "not_saturated",
+                "value": 0,
+                "description": "Band 6 not saturated"
+              },
+              {
+                "name": "saturated",
+                "value": 1,
+                "description": "Band 6 saturated"
+              }
+            ],
+            "description": "Band 6 radiometric saturation"
+          },
+          {
+            "name": "band7",
+            "length": 1,
+            "offset": 6,
+            "classes": [
+              {
+                "name": "not_saturated",
+                "value": 0,
+                "description": "Band 7 not saturated"
+              },
+              {
+                "name": "saturated",
+                "value": 1,
+                "description": "Band 7 saturated"
+              }
+            ],
+            "description": "Band 7 radiometric saturation"
+          },
+          {
+            "name": "dropped",
+            "length": 1,
+            "offset": 9,
+            "classes": [
+              {
+                "name": "not_dropped",
+                "value": 0,
+                "description": "Detector has a value - pixel present"
+              },
+              {
+                "name": "dropped",
+                "value": 1,
+                "description": "Detector does not have a value - no data"
+              }
+            ],
+            "description": "Dropped pixel"
+          }
+        ]
+      },
+      "tilejson": {
+        "title": "TileJSON with default rendering",
+        "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/tilejson.json?collection=landsat-c2-l1&item=LM05_L1TP_039038_20130107_02_T2&assets=nir08&assets=red&assets=green&color_formula=gamma+RGB+2.6%2C+saturation+1.0%2C+sigmoidal+RGB+14+0.5&format=png",
+        "type": "application/json",
+        "roles": [
+          "tiles"
+        ]
+      },
+      "rendered_preview": {
+        "title": "Rendered preview",
+        "rel": "preview",
+        "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/preview.png?collection=landsat-c2-l1&item=LM05_L1TP_039038_20130107_02_T2&assets=nir08&assets=red&assets=green&color_formula=gamma+RGB+2.6%2C+saturation+1.0%2C+sigmoidal+RGB+14+0.5&format=png",
+        "roles": [
+          "overview"
+        ],
+        "type": "image/png"
+      }
+    },
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [
+            -116.6940669,
+            32.7480708
+          ],
+          [
+            -117.1347477,
+            31.028606
+          ],
+          [
+            -115.2318804,
+            30.7540446
+          ],
+          [
+            -114.7555284,
+            32.4686262
+          ],
+          [
+            -116.6940669,
+            32.7480708
+          ]
+        ]
+      ]
+    },
+    "collection": "landsat-c2-l1",
+    "properties": {
+      "gsd": 79,
+      "created": "2022-06-28T09:36:44.582324Z",
+      "sci:doi": "10.5066/P9AF14YV",
+      "datetime": "2013-01-07T17:51:50.098006Z",
+      "platform": "landsat-5",
+      "proj:epsg": 32611,
+      "proj:shape": [
+        3688,
+        3782
+      ],
+      "description": "Landsat Collection 2 Level-1",
+      "instruments": [
+        "mss"
+      ],
+      "eo:cloud_cover": 0.0,
+      "proj:transform": [
+        60.0,
+        0.0,
+        486570.0,
+        0.0,
+        -60.0,
+        3623670.0
+      ],
+      "view:off_nadir": 0,
+      "landsat:wrs_row": "038",
+      "landsat:scene_id": "LM50390382013007EDC01",
+      "landsat:wrs_path": "039",
+      "landsat:wrs_type": "2",
+      "view:sun_azimuth": 148.47171158,
+      "landsat:correction": "L1TP",
+      "view:sun_elevation": 29.01254102,
+      "landsat:cloud_cover_land": 1.0,
+      "landsat:collection_number": "02",
+      "landsat:collection_category": "T2"
+    },
+    "stac_extensions": [
+      "https://stac-extensions.github.io/raster/v1.0.0/schema.json",
+      "https://stac-extensions.github.io/eo/v1.0.0/schema.json",
+      "https://stac-extensions.github.io/view/v1.0.0/schema.json",
+      "https://stac-extensions.github.io/projection/v1.0.0/schema.json",
+      "https://landsat.usgs.gov/stac/landsat-extension/v1.1.1/schema.json",
+      "https://stac-extensions.github.io/classification/v1.0.0/schema.json",
+      "https://stac-extensions.github.io/scientific/v1.0.0/schema.json"
+    ],
+    "stac_version": "1.0.0"
+  },
+  {
+    "id": "LM05_L1TP_039037_20130107_02_T2",
+    "bbox": [
+      -116.77455808,
+      32.16444951,
+      -114.31197464,
+      34.18642049
+    ],
+    "type": "Feature",
+    "links": [
+      {
+        "rel": "collection",
+        "type": "application/json",
+        "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-c2-l1"
+      },
+      {
+        "rel": "parent",
+        "type": "application/json",
+        "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-c2-l1"
+      },
+      {
+        "rel": "root",
+        "type": "application/json",
+        "href": "https://planetarycomputer.microsoft.com/api/stac/v1/"
+      },
+      {
+        "rel": "self",
+        "type": "application/geo+json",
+        "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-c2-l1/items/LM05_L1TP_039037_20130107_02_T2"
+      },
+      {
+        "rel": "cite-as",
+        "href": "https://doi.org/10.5066/P9AF14YV",
+        "title": "Landsat 1-5 MSS Collection 2 Level-1"
+      },
+      {
+        "rel": "via",
+        "href": "https://landsatlook.usgs.gov/stac-server/collections/landsat-c2l1/items/LM05_L1TP_039037_20130107_20200820_02_T2",
+        "type": "application/json",
+        "title": "USGS STAC Item"
+      },
+      {
+        "rel": "preview",
+        "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/map?collection=landsat-c2-l1&item=LM05_L1TP_039037_20130107_02_T2",
+        "title": "Map of item",
+        "type": "text/html"
+      }
+    ],
+    "assets": {
+      "red": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-1/standard/mss/2013/039/037/LM05_L1TP_039037_20130107_20200820_02_T2/LM05_L1TP_039037_20130107_20200820_02_T2_B2.TIF",
+        "eo:bands": [
+          {
+            "name": "B2",
+            "common_name": "red",
+            "description": "Visible red",
+            "center_wavelength": 0.65,
+            "full_width_half_max": 0.1
+          }
+        ],
+        "description": "Collection 2 Level-1 Red Band (B2) Top of Atmosphere Radiance",
+        "raster:bands": [
+          {
+            "scale": 0.66024,
+            "offset": 2.03976,
+            "unit": "watt/steradian/square_meter/micrometer",
+            "nodata": 0,
+            "data_type": "uint8",
+            "spatial_resolution": 60
+          }
+        ],
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "data"
+        ],
+        "title": "Red Band"
+      },
+      "green": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-1/standard/mss/2013/039/037/LM05_L1TP_039037_20130107_20200820_02_T2/LM05_L1TP_039037_20130107_20200820_02_T2_B1.TIF",
+        "eo:bands": [
+          {
+            "name": "B1",
+            "common_name": "green",
+            "description": "Visible green",
+            "center_wavelength": 0.55,
+            "full_width_half_max": 0.1
+          }
+        ],
+        "description": "Collection 2 Level-1 Green Band (B1) Top of Atmosphere Radiance",
+        "raster:bands": [
+          {
+            "scale": 0.88504,
+            "offset": 1.51496,
+            "unit": "watt/steradian/square_meter/micrometer",
+            "nodata": 0,
+            "data_type": "uint8",
+            "spatial_resolution": 60
+          }
+        ],
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "data"
+        ],
+        "title": "Green Band"
+      },
+      "nir08": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-1/standard/mss/2013/039/037/LM05_L1TP_039037_20130107_20200820_02_T2/LM05_L1TP_039037_20130107_20200820_02_T2_B3.TIF",
+        "eo:bands": [
+          {
+            "name": "B3",
+            "common_name": "nir08",
+            "description": "Near infrared",
+            "center_wavelength": 0.75,
+            "full_width_half_max": 0.1
+          }
+        ],
+        "description": "Collection 2 Level-1 Near Infrared Band 0.8 (B3) Top of Atmosphere Radiance",
+        "raster:bands": [
+          {
+            "scale": 0.55866,
+            "offset": 4.34134,
+            "unit": "watt/steradian/square_meter/micrometer",
+            "nodata": 0,
+            "data_type": "uint8",
+            "spatial_resolution": 60
+          }
+        ],
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "data"
+        ],
+        "title": "Near Infrared Band 0.8"
+      },
+      "nir09": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-1/standard/mss/2013/039/037/LM05_L1TP_039037_20130107_20200820_02_T2/LM05_L1TP_039037_20130107_20200820_02_T2_B4.TIF",
+        "eo:bands": [
+          {
+            "name": "B4",
+            "common_name": "nir09",
+            "description": "Near infrared",
+            "center_wavelength": 0.95,
+            "full_width_half_max": 0.3
+          }
+        ],
+        "description": "Collection 2 Level-1 Near Infrared Band 0.9 (B4) Top of Atmosphere Radiance",
+        "raster:bands": [
+          {
+            "nodata": 0,
+            "data_type": "uint8",
+            "spatial_resolution": 60
+          }
+        ],
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "data"
+        ],
+        "title": "Near Infrared Band 0.9"
+      },
+      "mtl.txt": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-1/standard/mss/2013/039/037/LM05_L1TP_039037_20130107_20200820_02_T2/LM05_L1TP_039037_20130107_20200820_02_T2_MTL.txt",
+        "type": "text/plain",
+        "roles": [
+          "metadata"
+        ],
+        "title": "Product Metadata File (txt)",
+        "description": "Collection 2 Level-1 Product Metadata File (txt)"
+      },
+      "mtl.xml": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-1/standard/mss/2013/039/037/LM05_L1TP_039037_20130107_20200820_02_T2/LM05_L1TP_039037_20130107_20200820_02_T2_MTL.xml",
+        "type": "application/xml",
+        "roles": [
+          "metadata"
+        ],
+        "title": "Product Metadata File (xml)",
+        "description": "Collection 2 Level-1 Product Metadata File (xml)"
+      },
+      "mtl.json": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-1/standard/mss/2013/039/037/LM05_L1TP_039037_20130107_20200820_02_T2/LM05_L1TP_039037_20130107_20200820_02_T2_MTL.json",
+        "type": "application/json",
+        "roles": [
+          "metadata"
+        ],
+        "title": "Product Metadata File (json)",
+        "description": "Collection 2 Level-1 Product Metadata File (json)"
+      },
+      "qa_pixel": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-1/standard/mss/2013/039/037/LM05_L1TP_039037_20130107_20200820_02_T2/LM05_L1TP_039037_20130107_20200820_02_T2_QA_PIXEL.TIF",
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "cloud"
+        ],
+        "title": "Pixel Quality Assessment Band",
+        "description": "Collection 2 Level-1 Pixel Quality Assessment Band (QA_PIXEL)",
+        "raster:bands": [
+          {
+            "unit": "bit index",
+            "nodata": 1,
+            "data_type": "uint16",
+            "spatial_resolution": 60
+          }
+        ],
+        "classification:bitfields": [
+          {
+            "name": "fill",
+            "length": 1,
+            "offset": 0,
+            "classes": [
+              {
+                "name": "not_fill",
+                "value": 0,
+                "description": "Image data"
+              },
+              {
+                "name": "fill",
+                "value": 1,
+                "description": "Fill data"
+              }
+            ],
+            "description": "Image or fill data"
+          },
+          {
+            "name": "cloud",
+            "length": 1,
+            "offset": 3,
+            "classes": [
+              {
+                "name": "not_cloud",
+                "value": 0,
+                "description": "Cloud confidence is not high"
+              },
+              {
+                "name": "cloud",
+                "value": 1,
+                "description": "High confidence cloud"
+              }
+            ],
+            "description": "Cloud mask"
+          },
+          {
+            "name": "cloud_confidence",
+            "length": 2,
+            "offset": 8,
+            "classes": [
+              {
+                "name": "not_set",
+                "value": 0,
+                "description": "No confidence level set"
+              },
+              {
+                "name": "low",
+                "value": 1,
+                "description": "Low confidence cloud"
+              },
+              {
+                "name": "reserved",
+                "value": 2,
+                "description": "Reserved - value not used"
+              },
+              {
+                "name": "high",
+                "value": 3,
+                "description": "High confidence cloud"
+              }
+            ],
+            "description": "Cloud confidence levels"
+          }
+        ]
+      },
+      "qa_radsat": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-1/standard/mss/2013/039/037/LM05_L1TP_039037_20130107_20200820_02_T2/LM05_L1TP_039037_20130107_20200820_02_T2_QA_RADSAT.TIF",
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "saturation"
+        ],
+        "title": "Radiometric Saturation and Dropped Pixel Quality Assessment Band",
+        "description": "Collection 2 Level-1 Radiometric Saturation and Dropped Pixel Quality Assessment Band (QA_RADSAT)",
+        "raster:bands": [
+          {
+            "unit": "bit index",
+            "data_type": "uint16",
+            "spatial_resolution": 60
+          }
+        ],
+        "classification:bitfields": [
+          {
+            "name": "band1",
+            "length": 1,
+            "offset": 0,
+            "classes": [
+              {
+                "name": "not_saturated",
+                "value": 0,
+                "description": "Band 1 not saturated"
+              },
+              {
+                "name": "saturated",
+                "value": 1,
+                "description": "Band 1 saturated"
+              }
+            ],
+            "description": "Band 1 radiometric saturation"
+          },
+          {
+            "name": "band2",
+            "length": 1,
+            "offset": 1,
+            "classes": [
+              {
+                "name": "not_saturated",
+                "value": 0,
+                "description": "Band 2 not saturated"
+              },
+              {
+                "name": "saturated",
+                "value": 1,
+                "description": "Band 2 saturated"
+              }
+            ],
+            "description": "Band 2 radiometric saturation"
+          },
+          {
+            "name": "band3",
+            "length": 1,
+            "offset": 2,
+            "classes": [
+              {
+                "name": "not_saturated",
+                "value": 0,
+                "description": "Band 3 not saturated"
+              },
+              {
+                "name": "saturated",
+                "value": 1,
+                "description": "Band 3 saturated"
+              }
+            ],
+            "description": "Band 3 radiometric saturation"
+          },
+          {
+            "name": "band4",
+            "length": 1,
+            "offset": 3,
+            "classes": [
+              {
+                "name": "not_saturated",
+                "value": 0,
+                "description": "Band 4 not saturated"
+              },
+              {
+                "name": "saturated",
+                "value": 1,
+                "description": "Band 4 saturated"
+              }
+            ],
+            "description": "Band 4 radiometric saturation"
+          },
+          {
+            "name": "band5",
+            "length": 1,
+            "offset": 4,
+            "classes": [
+              {
+                "name": "not_saturated",
+                "value": 0,
+                "description": "Band 5 not saturated"
+              },
+              {
+                "name": "saturated",
+                "value": 1,
+                "description": "Band 5 saturated"
+              }
+            ],
+            "description": "Band 5 radiometric saturation"
+          },
+          {
+            "name": "band6",
+            "length": 1,
+            "offset": 5,
+            "classes": [
+              {
+                "name": "not_saturated",
+                "value": 0,
+                "description": "Band 6 not saturated"
+              },
+              {
+                "name": "saturated",
+                "value": 1,
+                "description": "Band 6 saturated"
+              }
+            ],
+            "description": "Band 6 radiometric saturation"
+          },
+          {
+            "name": "band7",
+            "length": 1,
+            "offset": 6,
+            "classes": [
+              {
+                "name": "not_saturated",
+                "value": 0,
+                "description": "Band 7 not saturated"
+              },
+              {
+                "name": "saturated",
+                "value": 1,
+                "description": "Band 7 saturated"
+              }
+            ],
+            "description": "Band 7 radiometric saturation"
+          },
+          {
+            "name": "dropped",
+            "length": 1,
+            "offset": 9,
+            "classes": [
+              {
+                "name": "not_dropped",
+                "value": 0,
+                "description": "Detector has a value - pixel present"
+              },
+              {
+                "name": "dropped",
+                "value": 1,
+                "description": "Detector does not have a value - no data"
+              }
+            ],
+            "description": "Dropped pixel"
+          }
+        ]
+      },
+      "tilejson": {
+        "title": "TileJSON with default rendering",
+        "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/tilejson.json?collection=landsat-c2-l1&item=LM05_L1TP_039037_20130107_02_T2&assets=nir08&assets=red&assets=green&color_formula=gamma+RGB+2.6%2C+saturation+1.0%2C+sigmoidal+RGB+14+0.5&format=png",
+        "type": "application/json",
+        "roles": [
+          "tiles"
+        ]
+      },
+      "rendered_preview": {
+        "title": "Rendered preview",
+        "rel": "preview",
+        "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/preview.png?collection=landsat-c2-l1&item=LM05_L1TP_039037_20130107_02_T2&assets=nir08&assets=red&assets=green&color_formula=gamma+RGB+2.6%2C+saturation+1.0%2C+sigmoidal+RGB+14+0.5&format=png",
+        "roles": [
+          "overview"
+        ],
+        "type": "image/png"
+      }
+    },
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [
+            -116.317858,
+            34.1823038
+          ],
+          [
+            -116.7684544,
+            32.4635302
+          ],
+          [
+            -114.8344239,
+            32.1848416
+          ],
+          [
+            -114.3477473,
+            33.8964336
+          ],
+          [
+            -116.317858,
+            34.1823038
+          ]
+        ]
+      ]
+    },
+    "collection": "landsat-c2-l1",
+    "properties": {
+      "gsd": 79,
+      "created": "2022-06-28T09:36:44.454608Z",
+      "sci:doi": "10.5066/P9AF14YV",
+      "datetime": "2013-01-07T17:51:27.009000Z",
+      "platform": "landsat-5",
+      "proj:epsg": 32611,
+      "proj:shape": [
+        3686,
+        3776
+      ],
+      "description": "Landsat Collection 2 Level-1",
+      "instruments": [
+        "mss"
+      ],
+      "eo:cloud_cover": 0.0,
+      "proj:transform": [
+        60.0,
+        0.0,
+        521250.0,
+        0.0,
+        -60.0,
+        3782850.0
+      ],
+      "view:off_nadir": 0,
+      "landsat:wrs_row": "037",
+      "landsat:scene_id": "LM50390372013007EDC01",
+      "landsat:wrs_path": "039",
+      "landsat:wrs_type": "2",
+      "view:sun_azimuth": 149.16081462,
+      "landsat:correction": "L1TP",
+      "view:sun_elevation": 27.90457426,
+      "landsat:cloud_cover_land": 0.0,
+      "landsat:collection_number": "02",
+      "landsat:collection_category": "T2"
+    },
+    "stac_extensions": [
+      "https://stac-extensions.github.io/raster/v1.0.0/schema.json",
+      "https://stac-extensions.github.io/eo/v1.0.0/schema.json",
+      "https://stac-extensions.github.io/view/v1.0.0/schema.json",
+      "https://stac-extensions.github.io/projection/v1.0.0/schema.json",
+      "https://landsat.usgs.gov/stac/landsat-extension/v1.1.1/schema.json",
+      "https://stac-extensions.github.io/classification/v1.0.0/schema.json",
+      "https://stac-extensions.github.io/scientific/v1.0.0/schema.json"
+    ],
+    "stac_version": "1.0.0"
+  },
+  {
+    "id": "LM05_L1TP_039036_20130107_02_T2",
+    "bbox": [
+      -116.40082324,
+      33.59737957,
+      -113.88964896,
+      35.62536043
+    ],
+    "type": "Feature",
+    "links": [
+      {
+        "rel": "collection",
+        "type": "application/json",
+        "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-c2-l1"
+      },
+      {
+        "rel": "parent",
+        "type": "application/json",
+        "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-c2-l1"
+      },
+      {
+        "rel": "root",
+        "type": "application/json",
+        "href": "https://planetarycomputer.microsoft.com/api/stac/v1/"
+      },
+      {
+        "rel": "self",
+        "type": "application/geo+json",
+        "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-c2-l1/items/LM05_L1TP_039036_20130107_02_T2"
+      },
+      {
+        "rel": "cite-as",
+        "href": "https://doi.org/10.5066/P9AF14YV",
+        "title": "Landsat 1-5 MSS Collection 2 Level-1"
+      },
+      {
+        "rel": "via",
+        "href": "https://landsatlook.usgs.gov/stac-server/collections/landsat-c2l1/items/LM05_L1TP_039036_20130107_20200820_02_T2",
+        "type": "application/json",
+        "title": "USGS STAC Item"
+      },
+      {
+        "rel": "preview",
+        "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/map?collection=landsat-c2-l1&item=LM05_L1TP_039036_20130107_02_T2",
+        "title": "Map of item",
+        "type": "text/html"
+      }
+    ],
+    "assets": {
+      "red": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-1/standard/mss/2013/039/036/LM05_L1TP_039036_20130107_20200820_02_T2/LM05_L1TP_039036_20130107_20200820_02_T2_B2.TIF",
+        "eo:bands": [
+          {
+            "name": "B2",
+            "common_name": "red",
+            "description": "Visible red",
+            "center_wavelength": 0.65,
+            "full_width_half_max": 0.1
+          }
+        ],
+        "description": "Collection 2 Level-1 Red Band (B2) Top of Atmosphere Radiance",
+        "raster:bands": [
+          {
+            "scale": 0.66024,
+            "offset": 2.03976,
+            "unit": "watt/steradian/square_meter/micrometer",
+            "nodata": 0,
+            "data_type": "uint8",
+            "spatial_resolution": 60
+          }
+        ],
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "data"
+        ],
+        "title": "Red Band"
+      },
+      "green": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-1/standard/mss/2013/039/036/LM05_L1TP_039036_20130107_20200820_02_T2/LM05_L1TP_039036_20130107_20200820_02_T2_B1.TIF",
+        "eo:bands": [
+          {
+            "name": "B1",
+            "common_name": "green",
+            "description": "Visible green",
+            "center_wavelength": 0.55,
+            "full_width_half_max": 0.1
+          }
+        ],
+        "description": "Collection 2 Level-1 Green Band (B1) Top of Atmosphere Radiance",
+        "raster:bands": [
+          {
+            "scale": 0.88504,
+            "offset": 1.51496,
+            "unit": "watt/steradian/square_meter/micrometer",
+            "nodata": 0,
+            "data_type": "uint8",
+            "spatial_resolution": 60
+          }
+        ],
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "data"
+        ],
+        "title": "Green Band"
+      },
+      "nir08": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-1/standard/mss/2013/039/036/LM05_L1TP_039036_20130107_20200820_02_T2/LM05_L1TP_039036_20130107_20200820_02_T2_B3.TIF",
+        "eo:bands": [
+          {
+            "name": "B3",
+            "common_name": "nir08",
+            "description": "Near infrared",
+            "center_wavelength": 0.75,
+            "full_width_half_max": 0.1
+          }
+        ],
+        "description": "Collection 2 Level-1 Near Infrared Band 0.8 (B3) Top of Atmosphere Radiance",
+        "raster:bands": [
+          {
+            "scale": 0.55866,
+            "offset": 4.34134,
+            "unit": "watt/steradian/square_meter/micrometer",
+            "nodata": 0,
+            "data_type": "uint8",
+            "spatial_resolution": 60
+          }
+        ],
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "data"
+        ],
+        "title": "Near Infrared Band 0.8"
+      },
+      "nir09": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-1/standard/mss/2013/039/036/LM05_L1TP_039036_20130107_20200820_02_T2/LM05_L1TP_039036_20130107_20200820_02_T2_B4.TIF",
+        "eo:bands": [
+          {
+            "name": "B4",
+            "common_name": "nir09",
+            "description": "Near infrared",
+            "center_wavelength": 0.95,
+            "full_width_half_max": 0.3
+          }
+        ],
+        "description": "Collection 2 Level-1 Near Infrared Band 0.9 (B4) Top of Atmosphere Radiance",
+        "raster:bands": [
+          {
+            "nodata": 0,
+            "data_type": "uint8",
+            "spatial_resolution": 60
+          }
+        ],
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "data"
+        ],
+        "title": "Near Infrared Band 0.9"
+      },
+      "mtl.txt": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-1/standard/mss/2013/039/036/LM05_L1TP_039036_20130107_20200820_02_T2/LM05_L1TP_039036_20130107_20200820_02_T2_MTL.txt",
+        "type": "text/plain",
+        "roles": [
+          "metadata"
+        ],
+        "title": "Product Metadata File (txt)",
+        "description": "Collection 2 Level-1 Product Metadata File (txt)"
+      },
+      "mtl.xml": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-1/standard/mss/2013/039/036/LM05_L1TP_039036_20130107_20200820_02_T2/LM05_L1TP_039036_20130107_20200820_02_T2_MTL.xml",
+        "type": "application/xml",
+        "roles": [
+          "metadata"
+        ],
+        "title": "Product Metadata File (xml)",
+        "description": "Collection 2 Level-1 Product Metadata File (xml)"
+      },
+      "mtl.json": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-1/standard/mss/2013/039/036/LM05_L1TP_039036_20130107_20200820_02_T2/LM05_L1TP_039036_20130107_20200820_02_T2_MTL.json",
+        "type": "application/json",
+        "roles": [
+          "metadata"
+        ],
+        "title": "Product Metadata File (json)",
+        "description": "Collection 2 Level-1 Product Metadata File (json)"
+      },
+      "qa_pixel": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-1/standard/mss/2013/039/036/LM05_L1TP_039036_20130107_20200820_02_T2/LM05_L1TP_039036_20130107_20200820_02_T2_QA_PIXEL.TIF",
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "cloud"
+        ],
+        "title": "Pixel Quality Assessment Band",
+        "description": "Collection 2 Level-1 Pixel Quality Assessment Band (QA_PIXEL)",
+        "raster:bands": [
+          {
+            "unit": "bit index",
+            "nodata": 1,
+            "data_type": "uint16",
+            "spatial_resolution": 60
+          }
+        ],
+        "classification:bitfields": [
+          {
+            "name": "fill",
+            "length": 1,
+            "offset": 0,
+            "classes": [
+              {
+                "name": "not_fill",
+                "value": 0,
+                "description": "Image data"
+              },
+              {
+                "name": "fill",
+                "value": 1,
+                "description": "Fill data"
+              }
+            ],
+            "description": "Image or fill data"
+          },
+          {
+            "name": "cloud",
+            "length": 1,
+            "offset": 3,
+            "classes": [
+              {
+                "name": "not_cloud",
+                "value": 0,
+                "description": "Cloud confidence is not high"
+              },
+              {
+                "name": "cloud",
+                "value": 1,
+                "description": "High confidence cloud"
+              }
+            ],
+            "description": "Cloud mask"
+          },
+          {
+            "name": "cloud_confidence",
+            "length": 2,
+            "offset": 8,
+            "classes": [
+              {
+                "name": "not_set",
+                "value": 0,
+                "description": "No confidence level set"
+              },
+              {
+                "name": "low",
+                "value": 1,
+                "description": "Low confidence cloud"
+              },
+              {
+                "name": "reserved",
+                "value": 2,
+                "description": "Reserved - value not used"
+              },
+              {
+                "name": "high",
+                "value": 3,
+                "description": "High confidence cloud"
+              }
+            ],
+            "description": "Cloud confidence levels"
+          }
+        ]
+      },
+      "qa_radsat": {
+        "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-1/standard/mss/2013/039/036/LM05_L1TP_039036_20130107_20200820_02_T2/LM05_L1TP_039036_20130107_20200820_02_T2_QA_RADSAT.TIF",
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "roles": [
+          "saturation"
+        ],
+        "title": "Radiometric Saturation and Dropped Pixel Quality Assessment Band",
+        "description": "Collection 2 Level-1 Radiometric Saturation and Dropped Pixel Quality Assessment Band (QA_RADSAT)",
+        "raster:bands": [
+          {
+            "unit": "bit index",
+            "data_type": "uint16",
+            "spatial_resolution": 60
+          }
+        ],
+        "classification:bitfields": [
+          {
+            "name": "band1",
+            "length": 1,
+            "offset": 0,
+            "classes": [
+              {
+                "name": "not_saturated",
+                "value": 0,
+                "description": "Band 1 not saturated"
+              },
+              {
+                "name": "saturated",
+                "value": 1,
+                "description": "Band 1 saturated"
+              }
+            ],
+            "description": "Band 1 radiometric saturation"
+          },
+          {
+            "name": "band2",
+            "length": 1,
+            "offset": 1,
+            "classes": [
+              {
+                "name": "not_saturated",
+                "value": 0,
+                "description": "Band 2 not saturated"
+              },
+              {
+                "name": "saturated",
+                "value": 1,
+                "description": "Band 2 saturated"
+              }
+            ],
+            "description": "Band 2 radiometric saturation"
+          },
+          {
+            "name": "band3",
+            "length": 1,
+            "offset": 2,
+            "classes": [
+              {
+                "name": "not_saturated",
+                "value": 0,
+                "description": "Band 3 not saturated"
+              },
+              {
+                "name": "saturated",
+                "value": 1,
+                "description": "Band 3 saturated"
+              }
+            ],
+            "description": "Band 3 radiometric saturation"
+          },
+          {
+            "name": "band4",
+            "length": 1,
+            "offset": 3,
+            "classes": [
+              {
+                "name": "not_saturated",
+                "value": 0,
+                "description": "Band 4 not saturated"
+              },
+              {
+                "name": "saturated",
+                "value": 1,
+                "description": "Band 4 saturated"
+              }
+            ],
+            "description": "Band 4 radiometric saturation"
+          },
+          {
+            "name": "band5",
+            "length": 1,
+            "offset": 4,
+            "classes": [
+              {
+                "name": "not_saturated",
+                "value": 0,
+                "description": "Band 5 not saturated"
+              },
+              {
+                "name": "saturated",
+                "value": 1,
+                "description": "Band 5 saturated"
+              }
+            ],
+            "description": "Band 5 radiometric saturation"
+          },
+          {
+            "name": "band6",
+            "length": 1,
+            "offset": 5,
+            "classes": [
+              {
+                "name": "not_saturated",
+                "value": 0,
+                "description": "Band 6 not saturated"
+              },
+              {
+                "name": "saturated",
+                "value": 1,
+                "description": "Band 6 saturated"
+              }
+            ],
+            "description": "Band 6 radiometric saturation"
+          },
+          {
+            "name": "band7",
+            "length": 1,
+            "offset": 6,
+            "classes": [
+              {
+                "name": "not_saturated",
+                "value": 0,
+                "description": "Band 7 not saturated"
+              },
+              {
+                "name": "saturated",
+                "value": 1,
+                "description": "Band 7 saturated"
+              }
+            ],
+            "description": "Band 7 radiometric saturation"
+          },
+          {
+            "name": "dropped",
+            "length": 1,
+            "offset": 9,
+            "classes": [
+              {
+                "name": "not_dropped",
+                "value": 0,
+                "description": "Detector has a value - pixel present"
+              },
+              {
+                "name": "dropped",
+                "value": 1,
+                "description": "Detector does not have a value - no data"
+              }
+            ],
+            "description": "Dropped pixel"
+          }
+        ]
+      },
+      "tilejson": {
+        "title": "TileJSON with default rendering",
+        "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/tilejson.json?collection=landsat-c2-l1&item=LM05_L1TP_039036_20130107_02_T2&assets=nir08&assets=red&assets=green&color_formula=gamma+RGB+2.6%2C+saturation+1.0%2C+sigmoidal+RGB+14+0.5&format=png",
+        "type": "application/json",
+        "roles": [
+          "tiles"
+        ]
+      },
+      "rendered_preview": {
+        "title": "Rendered preview",
+        "rel": "preview",
+        "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/preview.png?collection=landsat-c2-l1&item=LM05_L1TP_039036_20130107_02_T2&assets=nir08&assets=red&assets=green&color_formula=gamma+RGB+2.6%2C+saturation+1.0%2C+sigmoidal+RGB+14+0.5&format=png",
+        "roles": [
+          "overview"
+        ],
+        "type": "image/png"
+      }
+    },
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [
+            -115.9321995,
+            35.619756
+          ],
+          [
+            -116.392779,
+            33.9023973
+          ],
+          [
+            -114.428054,
+            33.6190091
+          ],
+          [
+            -113.9295519,
+            35.3295776
+          ],
+          [
+            -115.9321995,
+            35.619756
+          ]
+        ]
+      ]
+    },
+    "collection": "landsat-c2-l1",
+    "properties": {
+      "gsd": 79,
+      "created": "2022-06-28T09:36:44.328644Z",
+      "sci:doi": "10.5066/P9AF14YV",
+      "datetime": "2013-01-07T17:51:03.019004Z",
+      "platform": "landsat-5",
+      "proj:epsg": 32611,
+      "proj:shape": [
+        3682,
+        3771
+      ],
+      "description": "Landsat Collection 2 Level-1",
+      "instruments": [
+        "mss"
+      ],
+      "eo:cloud_cover": 0.0,
+      "proj:transform": [
+        60.0,
+        0.0,
+        555570.0,
+        0.0,
+        -60.0,
+        3942570.0
+      ],
+      "view:off_nadir": 0,
+      "landsat:wrs_row": "036",
+      "landsat:scene_id": "LM50390362013007EDC01",
+      "landsat:wrs_path": "039",
+      "landsat:wrs_type": "2",
+      "view:sun_azimuth": 149.8002861,
+      "landsat:correction": "L1TP",
+      "view:sun_elevation": 26.7895979,
+      "landsat:cloud_cover_land": 0.0,
+      "landsat:collection_number": "02",
+      "landsat:collection_category": "T2"
+    },
+    "stac_extensions": [
+      "https://stac-extensions.github.io/raster/v1.0.0/schema.json",
+      "https://stac-extensions.github.io/eo/v1.0.0/schema.json",
+      "https://stac-extensions.github.io/view/v1.0.0/schema.json",
+      "https://stac-extensions.github.io/projection/v1.0.0/schema.json",
+      "https://landsat.usgs.gov/stac/landsat-extension/v1.1.1/schema.json",
+      "https://stac-extensions.github.io/classification/v1.0.0/schema.json",
+      "https://stac-extensions.github.io/scientific/v1.0.0/schema.json"
+    ],
+    "stac_version": "1.0.0"
+  }
+]
