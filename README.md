@@ -8,40 +8,28 @@ This library helps convert [STAC Items](https://github.com/radiantearth/stac-spe
 
 ## Usage
 
-`stac_geoparquet.to_dataframe` does it all. You give it a list of (STAC Item) dictionaries. It just converts them to a `geopandas.GeoDataFrame`, which can be written to parquet with `.to_parquet`.
-
-```python
->>> import requests
->>> import stac_geoparquet
->>> item = requests.get("https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip/items/ia_m_4209150_sw_15_060_20190828_20191105").json()
->>> df = stac_geoparquet.to_geodataframe([item])
->>> df.to_parquet("naip.parquet")
-```
+Use `stac_geoparquet.to_arrow.stac_items_to_arrow` and
+`stac_geoparquet.from_arrow.stac_table_to_items` to convert between STAC items
+and Arrow tables. Arrow Tables of STAC items can be written to parquet with
+`stac_geoparquet.to_parquet.to_parquet`.
 
 Note that `stac_geoparquet` lifts the keys in the item `properties` up to the top level of the DataFrame, similar to `geopandas.GeoDataFrame.from_features`.
 
 ```python
->>> list(df.columns)
-['type',
- 'stac_version',
- 'stac_extensions',
- 'id',
- 'geometry',
- 'bbox',
- 'links',
- 'assets',
- 'collection',
- 'gsd',
- 'datetime',
- 'naip:year',
- 'proj:bbox',
- 'proj:epsg',
- 'naip:state',
- 'proj:shape',
- 'proj:transform']
+>>> import requests
+>>> import stac_geoparquet.to_arrow
+>>> import stac_geoparquet.from_arrow
+>>> import stac_geoparquet.to_parquet
+>>> import pyarrow.parquet
+
+>>> items = requests.get("https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-2-l2a/items").json()["features"]
+>>> table = stac_geoparquet.to_arrow.parse_stac_items_to_arrow(items)
+>>> stac_geoparquet.to_parquet.to_parquet(table, "items.parquet")
+>>> table2 = pyarrow.parquet.read_table("items.parquet")
+>>> items2 = list(stac_geoparquet.from_arrow.stac_table_to_items(table2))
 ```
 
-We also provide `stac_geoparquet.to_dict` and `stac_geoparquet.to_item_collection` helpers that can be used to convert from DataFrames back to the original STAC items.
+See the [specification](./spec/stac-geoparquet-spec.md) for details on the output stac-geoparquet dataset.
 
 ## pgstac integration
 
