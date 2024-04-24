@@ -6,8 +6,7 @@ from typing import Any, Dict, Sequence, Union
 import pytest
 from ciso8601 import parse_rfc3339
 
-from stac_geoparquet.from_arrow import stac_table_to_items
-from stac_geoparquet.to_arrow import parse_stac_items_to_arrow
+from stac_geoparquet.arrow import parse_stac_items_to_arrow, stac_table_to_items
 
 HERE = Path(__file__).parent
 
