@@ -208,3 +208,23 @@ def test_round_trip(collection_id: str):
 
     for result, expected in zip(items_result, items):
         assert_json_value_equal(result, expected, precision=0)
+
+
+def test_to_arrow_deprecated():
+    with pytest.warns(FutureWarning):
+        import stac_geoparquet.to_arrow
+    stac_geoparquet.to_arrow.parse_stac_items_to_arrow
+
+
+def test_to_parquet_deprecated():
+    with pytest.warns(FutureWarning):
+        import stac_geoparquet.to_parquet
+
+    stac_geoparquet.to_parquet.to_parquet
+
+
+def test_from_arrow_deprecated():
+    with pytest.warns(FutureWarning):
+        import stac_geoparquet.from_arrow
+
+    stac_geoparquet.from_arrow.stac_table_to_items
