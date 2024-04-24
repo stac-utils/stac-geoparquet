@@ -237,7 +237,7 @@ def _convert_timestamp_column(column: pa.ChunkedArray) -> pa.ChunkedArray:
     return pa.chunked_array(chunks)
 
 
-def is_bbox_3d(bbox_col: pa.ChunkedArray) -> bool:
+def _is_bbox_3d(bbox_col: pa.ChunkedArray) -> bool:
     """Infer whether the bounding box column represents 2d or 3d bounding boxes."""
     offsets_set = set()
     for chunk in bbox_col.chunks:
@@ -276,7 +276,7 @@ def _convert_bbox_to_struct(table: pa.Table, *, downcast: bool) -> pa.Table:
     """
     bbox_col_idx = table.schema.get_field_index("bbox")
     bbox_col = table.column(bbox_col_idx)
-    bbox_3d = is_bbox_3d(bbox_col)
+    bbox_3d = _is_bbox_3d(bbox_col)
 
     new_chunks = []
     for chunk in bbox_col.chunks:
