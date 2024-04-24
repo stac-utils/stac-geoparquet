@@ -17,16 +17,16 @@ Note that `stac_geoparquet` lifts the keys in the item `properties` up to the to
 
 ```python
 >>> import requests
->>> import stac_geoparquet.to_arrow
->>> import stac_geoparquet.from_arrow
->>> import stac_geoparquet.to_parquet
+>>> import stac_geoparquet.arrow
 >>> import pyarrow.parquet
 
->>> items = requests.get("https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-2-l2a/items").json()["features"]
->>> table = stac_geoparquet.to_arrow.parse_stac_items_to_arrow(items)
->>> stac_geoparquet.to_parquet.to_parquet(table, "items.parquet")
+>>> items = requests.get(
+...     "https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-2-l2a/items"
+... ).json()["features"]
+>>> table = stac_geoparquet.arrow.parse_stac_items_to_arrow(items)
+>>> stac_geoparquet.arrow.to_parquet(table, "items.parquet")
 >>> table2 = pyarrow.parquet.read_table("items.parquet")
->>> items2 = list(stac_geoparquet.from_arrow.stac_table_to_items(table2))
+>>> items2 = list(stac_geoparquet.arrow.stac_table_to_items(table2))
 ```
 
 See the [specification](./spec/stac-geoparquet-spec.md) for details on the output stac-geoparquet dataset.
