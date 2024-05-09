@@ -27,10 +27,10 @@ def parse_stac_ndjson_to_parquet(
         output_path: A path to the output Parquet file.
         chunk_size: The chunk size. Defaults to 65536.
         schema: The schema to represent the input STAC data. Defaults to None, in which
-            case the schema will be inferred via a full pass over the input data. In
-            this case, there will be two full passes over the input data: one to infer a
-            common schema across all data and another to read the data and iteratively
-            convert to GeoParquet.
+            case the schema will first be inferred via a full pass over the input data.
+            In this case, there will be two full passes over the input data: one to
+            infer a common schema across all data and another to read the data and
+            iteratively convert to GeoParquet.
     """
     batches_iter = parse_stac_ndjson_to_arrow(
         input_path, chunk_size=chunk_size, schema=schema

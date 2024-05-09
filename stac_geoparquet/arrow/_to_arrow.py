@@ -74,9 +74,27 @@ def parse_stac_items_to_arrow(
 def parse_stac_ndjson_to_arrow(
     path: Union[Union[str, Path], Iterable[Union[str, Path]]],
     *,
-    chunk_size: int = 8192,
+    chunk_size: int = 65536,
     schema: Optional[Union[pa.Schema, InferredSchema]] = None,
 ):
+    """
+    Convert one or more newline-delimited JSON STAC files to a generator of Arrow
+    RecordBatches.
+
+    Each RecordBatch in the returned iterator is guaranteed to have an identical schema,
+    and can be used to write to one or more Parquet files.
+
+    Args:
+        path: One or more paths to files with STAC items.
+        chunk_size: The chunk size. Defaults to 65536.
+        schema: The schema to represent the input STAC data. Defaults to None, in which
+            case the schema will first be inferred via a full pass over the input data.
+            In this case, there will be two full passes over the input data: one to
+            infer a common schema across all data and another to read the data.
+
+    Yields:
+        Arrow RecordBatch with a single chunk of Item data.
+    """
     # Define outside of if/else to make mypy happy
     items: List[dict] = []
 
