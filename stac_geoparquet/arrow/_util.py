@@ -40,7 +40,7 @@ def stac_items_to_arrow(
 
         # If a proj:geometry key exists in top-level properties, convert that to WKB
         if "proj:geometry" in wkb_item["properties"]:
-            wkb_item["proj:geometry"] = shapely.to_wkb(
+            wkb_item["properties"]["proj:geometry"] = shapely.to_wkb(
                 shapely.geometry.shape(wkb_item["properties"]["proj:geometry"]),
                 flavor="iso",
             )
