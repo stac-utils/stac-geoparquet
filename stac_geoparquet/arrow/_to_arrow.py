@@ -103,9 +103,10 @@ def parse_stac_ndjson_to_arrow(
     if schema is None:
         inferred_schema = InferredSchema()
         inferred_schema.update_from_ndjson(path, chunk_size=chunk_size)
-        return parse_stac_ndjson_to_arrow(
+        yield from parse_stac_ndjson_to_arrow(
             path, chunk_size=chunk_size, schema=inferred_schema
         )
+        return
 
     # Check if path is an iterable
     # If so, recursively call this function on each item in the iterable
