@@ -1,13 +1,17 @@
 """Convert STAC Items in Arrow Table format to JSON Lines or Python dicts."""
 
-import os
 import json
-from typing import Iterable, List, Union
+import operator
+import os
+from functools import reduce
+from typing import Iterable, List, Sequence, Union
 
 import numpy as np
 import pyarrow as pa
 import pyarrow.compute as pc
 import shapely
+from numpy.typing import NDArray
+import shapely.geometry
 
 
 def stac_table_to_ndjson(table: pa.Table, dest: Union[str, os.PathLike[str]]) -> None:
@@ -22,20 +26,46 @@ def stac_table_to_items(table: pa.Table) -> Iterable[dict]:
     """Convert a STAC Table to a generator of STAC Item `dict`s"""
     table = _undo_stac_table_transformations(table)
 
-    # Convert WKB geometry column to GeoJSON, and then assign the geojson geometry when
-    # converting each row to a dictionary.
+    # Find all paths in the schema that have a WKB geometry
+    geometry_paths = [["geometry"]]
+    try:
+        table.schema.field("properties").type.field("proj:geometry")
+        geometry_paths.append(["properties", "proj:geometry"])
+    except KeyError:
+        pass
+
+    assets_struct = table.schema.field("assets").type
+    for asset_idx in range(assets_struct.num_fields):
+        asset_field = assets_struct.field(asset_idx)
+        if "proj:geometry" in pa.schema(asset_field).names:
+            geometry_paths.append(["assets", asset_field.name, "proj:geometry"])
+
     for batch in table.to_batches():
-        geoms = shapely.from_wkb(batch["geometry"])
-        geojson_strings = shapely.to_geojson(geoms)
+        # Convert each geometry column to a Shapely geometry, and then assign the
+        # geojson geometry when converting each row to a dictionary.
+        geometries: List[NDArray[np.object_]] = []
+        for geometry_path in geometry_paths:
+            col = batch
+            for path_segment in geometry_path:
+                if isinstance(col, pa.RecordBatch):
+                    col = col[path_segment]
+                elif pa.types.is_struct(col.type):
+                    col = pc.struct_field(col, path_segment)
+                else:
+                    raise AssertionError(f"unexpected type {type(col)}")
 
-        # RecordBatch is missing a `drop()` method, so we keep all columns other than
-        # geometry instead
-        keep_column_names = [name for name in batch.column_names if name != "geometry"]
-        struct_batch = batch.select(keep_column_names).to_struct_array()
+            geometries.append(shapely.from_wkb(col))
 
+        struct_batch = batch.to_struct_array()
         for row_idx in range(len(struct_batch)):
             row_dict = struct_batch[row_idx].as_py()
-            row_dict["geometry"] = json.loads(geojson_strings[row_idx])
+            for geometry_path, geometry_column in zip(geometry_paths, geometries):
+                geojson_g = geometry_column[row_idx].__geo_interface__
+                geojson_g["coordinates"] = convert_tuples_to_lists(
+                    geojson_g["coordinates"]
+                )
+                set_by_path(row_dict, geometry_path, geojson_g)
+
             yield row_dict
 
 
@@ -164,3 +194,56 @@ def _convert_bbox_to_array(table: pa.Table) -> pa.Table:
         new_chunks.append(list_arr)
 
     return table.set_column(bbox_col_idx, "bbox", new_chunks)
+
+
+def convert_tuples_to_lists(t: Sequence):
+    """Convert tuples to lists, recursively
+
+    For example, converts:
+    ```
+    (
+        (
+            (-112.4820566, 38.1261015),
+            (-112.4816283, 38.1331311),
+            (-112.4833551, 38.1338897),
+            (-112.4832919, 38.1307687),
+            (-112.4855415, 38.1291793),
+            (-112.4820566, 38.1261015),
+        ),
+    )
+    ```
+
+    to
+
+    ```py
+    [
+        [
+            [-112.4820566, 38.1261015],
+            [-112.4816283, 38.1331311],
+            [-112.4833551, 38.1338897],
+            [-112.4832919, 38.1307687],
+            [-112.4855415, 38.1291793],
+            [-112.4820566, 38.1261015],
+        ]
+    ]
+    ```
+
+    From https://stackoverflow.com/a/1014669.
+    """
+    return list(map(convert_tuples_to_lists, t)) if isinstance(t, (list, tuple)) else t
+
+
+def get_by_path(root, items):
+    """Access a nested object in root by item sequence.
+
+    From https://stackoverflow.com/a/14692747
+    """
+    return reduce(operator.getitem, items, root)
+
+
+def set_by_path(root, items, value):
+    """Set a value in a nested object in root by item sequence.
+
+    From https://stackoverflow.com/a/14692747
+    """
+    get_by_path(root, items[:-1])[items[-1]] = value  # type: ignore
