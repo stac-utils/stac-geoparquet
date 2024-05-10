@@ -3,7 +3,17 @@
 import json
 from datetime import datetime
 from pathlib import Path
-from typing import Any, Dict, Generator, Iterable, List, Optional, Sequence, Union
+from typing import (
+    Any,
+    Dict,
+    Generator,
+    Iterable,
+    Iterator,
+    List,
+    Optional,
+    Sequence,
+    Union,
+)
 
 import ciso8601
 import numpy as np
@@ -76,7 +86,7 @@ def parse_stac_ndjson_to_arrow(
     *,
     chunk_size: int = 65536,
     schema: Optional[Union[pa.Schema, InferredSchema]] = None,
-):
+) -> Iterator[pa.RecordBatch]:
     """
     Convert one or more newline-delimited JSON STAC files to a generator of Arrow
     RecordBatches.

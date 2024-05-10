@@ -30,7 +30,7 @@ class InferredSchema:
         path: Union[Union[str, Path], Iterable[Union[str, Path]]],
         *,
         chunk_size: int = 65536,
-    ):
+    ) -> None:
         """
         Update this inferred schema from one or more newline-delimited JSON STAC files.
 
@@ -60,7 +60,7 @@ class InferredSchema:
             if len(items) > 0:
                 self.update_from_items(items)
 
-    def update_from_items(self, items: Sequence[Dict[str, Any]]):
+    def update_from_items(self, items: Sequence[Dict[str, Any]]) -> None:
         """Update this inferred schema from a sequence of STAC Items."""
         self.count += len(items)
         current_schema = stac_items_to_arrow(items, schema=None).schema

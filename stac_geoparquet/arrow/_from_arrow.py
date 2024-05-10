@@ -4,7 +4,7 @@ import json
 import operator
 import os
 from functools import reduce
-from typing import Iterable, List, Sequence, Union
+from typing import Any, Dict, Iterable, List, Sequence, Tuple, Union
 
 import numpy as np
 import pyarrow as pa
@@ -196,7 +196,7 @@ def _convert_bbox_to_array(table: pa.Table) -> pa.Table:
     return table.set_column(bbox_col_idx, "bbox", new_chunks)
 
 
-def convert_tuples_to_lists(t: Sequence):
+def convert_tuples_to_lists(t: List | Tuple) -> List[Any]:
     """Convert tuples to lists, recursively
 
     For example, converts:
@@ -233,17 +233,17 @@ def convert_tuples_to_lists(t: Sequence):
     return list(map(convert_tuples_to_lists, t)) if isinstance(t, (list, tuple)) else t
 
 
-def get_by_path(root, items):
+def get_by_path(root: Dict[str, Any], keys: Sequence[str]) -> Any:
     """Access a nested object in root by item sequence.
 
     From https://stackoverflow.com/a/14692747
     """
-    return reduce(operator.getitem, items, root)
+    return reduce(operator.getitem, keys, root)
 
 
-def set_by_path(root, items, value):
+def set_by_path(root: Dict[str, Any], keys: Sequence[str], value: Any) -> None:
     """Set a value in a nested object in root by item sequence.
 
     From https://stackoverflow.com/a/14692747
     """
-    get_by_path(root, items[:-1])[items[-1]] = value  # type: ignore
+    get_by_path(root, keys[:-1])[keys[-1]] = value  # type: ignore

@@ -18,8 +18,8 @@ def parse_stac_ndjson_to_parquet(
     *,
     chunk_size: int = 65536,
     schema: Optional[Union[pa.Schema, InferredSchema]] = None,
-    **kwargs,
-):
+    **kwargs: Any,
+) -> None:
     """Convert one or more newline-delimited JSON STAC files to GeoParquet
 
     Args:
@@ -59,7 +59,7 @@ def to_parquet(table: pa.Table, where: Any, **kwargs: Any) -> None:
     pq.write_table(table, where, **kwargs)
 
 
-def _create_geoparquet_metadata():
+def _create_geoparquet_metadata() -> dict[bytes, bytes]:
     # TODO: include bbox of geometries
     column_meta = {
         "encoding": "WKB",
