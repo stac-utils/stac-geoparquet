@@ -210,6 +210,20 @@ def test_round_trip(collection_id: str):
         assert_json_value_equal(result, expected, precision=0)
 
 
+def test_table_contains_geoarrow_metadata():
+    collection_id = "naip"
+    with open(HERE / "data" / f"{collection_id}-pc.json") as f:
+        items = json.load(f)
+
+    table = parse_stac_items_to_arrow(items)
+    field_meta = table.schema.field("geometry").metadata
+    assert field_meta[b"ARROW:extension:name"] == b"geoarrow.wkb"
+    assert json.loads(field_meta[b"ARROW:extension:metadata"])["crs"]["id"] == {
+        "authority": "EPSG",
+        "code": 4326,
+    }
+
+
 def test_to_arrow_deprecated():
     with pytest.warns(FutureWarning):
         import stac_geoparquet.to_arrow

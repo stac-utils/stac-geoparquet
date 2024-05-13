@@ -13,6 +13,8 @@ import pyarrow.compute as pc
 import shapely
 import shapely.geometry
 
+from stac_geoparquet.arrow._to_parquet import WGS84_CRS_JSON
+
 
 def _chunks(
     lst: Sequence[Dict[str, Any]], n: int
@@ -109,6 +111,7 @@ def _process_arrow_table(table: pa.Table, *, downcast: bool = True) -> pa.Table:
     table = _bring_properties_to_top_level(table)
     table = _convert_timestamp_columns(table)
     table = _convert_bbox_to_struct(table, downcast=downcast)
+    table = _assign_geoarrow_metadata(table)
     return table
 
 
@@ -362,3 +365,18 @@ def _convert_bbox_to_struct(table: pa.Table, *, downcast: bool) -> pa.Table:
         new_chunks.append(struct_arr)
 
     return table.set_column(bbox_col_idx, "bbox", new_chunks)
+
+
+def _assign_geoarrow_metadata(table: pa.Table) -> pa.Table:
+    """Tag the primary geometry column with `geoarrow.wkb` on the field metadata."""
+    existing_field_idx = table.schema.get_field_index("geometry")
+    existing_field = table.schema.field(existing_field_idx)
+    ext_metadata = {"crs": WGS84_CRS_JSON}
+    field_metadata = {
+        b"ARROW:extension:name": b"geoarrow.wkb",
+        b"ARROW:extension:metadata": json.dumps(ext_metadata).encode("utf-8"),
+    }
+    new_field = existing_field.with_metadata(field_metadata)
+    return table.set_column(
+        existing_field_idx, new_field, table.column(existing_field_idx)
+    )
