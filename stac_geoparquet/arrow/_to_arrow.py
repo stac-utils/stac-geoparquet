@@ -101,14 +101,14 @@ def parse_stac_ndjson_to_arrow(
     return pa.Table.from_batches(batches, schema=schema)
 
 
-def _process_arrow_table(
-    table: Union[pa.Table, pa.RecordBatch], *, downcast: bool = True
-) -> Union[pa.Table, pa.RecordBatch]:
-    table = _bring_properties_to_top_level(table)
-    table = _convert_timestamp_columns(table)
-    table = _convert_bbox_to_struct(table, downcast=downcast)
-    table = _assign_geoarrow_metadata(table)
-    return table
+def _process_arrow_batch(
+    batch: pa.RecordBatch, *, downcast: bool = True
+) -> pa.RecordBatch:
+    batch = _bring_properties_to_top_level(batch)
+    batch = _convert_timestamp_columns(batch)
+    batch = _convert_bbox_to_struct(batch, downcast=downcast)
+    batch = _assign_geoarrow_metadata(batch)
+    return batch
 
 
 def _stac_items_to_arrow(
@@ -152,41 +152,41 @@ def _stac_items_to_arrow(
         array = pa.array(wkb_items, type=pa.struct(schema))
     else:
         array = pa.array(wkb_items)
-    return _process_arrow_table(
+    return _process_arrow_batch(
         pa.RecordBatch.from_struct_array(array), downcast=downcast
     )
 
 
 def _bring_properties_to_top_level(
-    table: Union[pa.Table, pa.RecordBatch],
-) -> Union[pa.Table, pa.RecordBatch]:
+    batch: pa.RecordBatch,
+) -> pa.RecordBatch:
     """Bring all the fields inside of the nested "properties" struct to the top level"""
-    properties_field = table.schema.field("properties")
-    properties_column = table["properties"]
+    properties_field = batch.schema.field("properties")
+    properties_column = batch["properties"]
 
     for field_idx in range(properties_field.type.num_fields):
         inner_prop_field = properties_field.type.field(field_idx)
-        table = table.append_column(
+        batch = batch.append_column(
             inner_prop_field, pc.struct_field(properties_column, field_idx)
         )
 
-    table = table.drop_columns(
+    batch = batch.drop_columns(
         [
             "properties",
         ]
     )
-    return table
+    return batch
 
 
 def _convert_geometry_to_wkb(
-    table: Union[pa.Table, pa.RecordBatch],
-) -> Union[pa.Table, pa.RecordBatch]:
+    batch: pa.RecordBatch,
+) -> pa.RecordBatch:
     """Convert the geometry column in the table to WKB"""
     geoms = shapely.from_geojson(
-        [orjson.dumps(item) for item in table["geometry"].to_pylist()]
+        [orjson.dumps(item) for item in batch["geometry"].to_pylist()]
     )
     wkb_geoms = shapely.to_wkb(geoms)
-    return table.drop_columns(
+    return batch.drop_columns(
         [
             "geometry",
         ]
@@ -194,8 +194,8 @@ def _convert_geometry_to_wkb(
 
 
 def _convert_timestamp_columns(
-    table: Union[pa.Table, pa.RecordBatch],
-) -> Union[pa.Table, pa.RecordBatch]:
+    batch: pa.RecordBatch,
+) -> pa.RecordBatch:
     """Convert all timestamp columns from a string to an Arrow Timestamp data type"""
     allowed_column_names = {
         "datetime",  # common metadata
@@ -209,11 +209,11 @@ def _convert_timestamp_columns(
     }
     for column_name in allowed_column_names:
         try:
-            column = table[column_name]
+            column = batch[column_name]
         except KeyError:
             continue
 
-        field_index = table.schema.get_field_index(column_name)
+        field_index = batch.schema.get_field_index(column_name)
 
         if pa.types.is_timestamp(column.type):
             continue
@@ -221,12 +221,12 @@ def _convert_timestamp_columns(
         # STAC allows datetimes to be null. If all rows are null, the column type may be
         # inferred as null. We cast this to a timestamp column.
         elif pa.types.is_null(column.type):
-            table = table.set_column(
+            batch = batch.set_column(
                 field_index, column_name, column.cast(pa.timestamp("us"))
             )
 
         elif pa.types.is_string(column.type):
-            table = table.set_column(
+            batch = batch.set_column(
                 field_index, column_name, _convert_timestamp_column(column)
             )
         else:
@@ -235,7 +235,7 @@ def _convert_timestamp_columns(
                 f" timestamp data type but got {column.type}"
             )
 
-    return table
+    return batch
 
 
 def _convert_timestamp_column(column: pa.Array) -> pa.TimestampArray:
@@ -264,8 +264,8 @@ def _is_bbox_3d(bbox_col: pa.Array) -> bool:
 
 
 def _convert_bbox_to_struct(
-    table: Union[pa.Table, pa.RecordBatch], *, downcast: bool
-) -> Union[pa.Table, pa.RecordBatch]:
+    batch: pa.RecordBatch, downcast: bool = True
+) -> pa.RecordBatch:
     """Convert bbox column to a struct representation
 
     Since the bbox in JSON is stored as an array, pyarrow automatically converts the
@@ -283,8 +283,8 @@ def _convert_bbox_to_struct(
     Returns:
         New table
     """
-    bbox_col_idx = table.schema.get_field_index("bbox")
-    bbox_col = table.column(bbox_col_idx)
+    bbox_col_idx = batch.schema.get_field_index("bbox")
+    bbox_col = batch.column(bbox_col_idx)
     bbox_3d = _is_bbox_3d(bbox_col)
 
     assert (
@@ -366,21 +366,21 @@ def _convert_bbox_to_struct(
             ],
         )
 
-    return table.set_column(bbox_col_idx, "bbox", struct_arr)
+    return batch.set_column(bbox_col_idx, "bbox", struct_arr)
 
 
 def _assign_geoarrow_metadata(
-    table: Union[pa.Table, pa.RecordBatch],
-) -> Union[pa.Table, pa.RecordBatch]:
+    batch: pa.RecordBatch,
+) -> pa.RecordBatch:
     """Tag the primary geometry column with `geoarrow.wkb` on the field metadata."""
-    existing_field_idx = table.schema.get_field_index("geometry")
-    existing_field = table.schema.field(existing_field_idx)
+    existing_field_idx = batch.schema.get_field_index("geometry")
+    existing_field = batch.schema.field(existing_field_idx)
     ext_metadata = {"crs": WGS84_CRS_JSON}
     field_metadata = {
         b"ARROW:extension:name": b"geoarrow.wkb",
         b"ARROW:extension:metadata": orjson.dumps(ext_metadata),
     }
     new_field = existing_field.with_metadata(field_metadata)
-    return table.set_column(
-        existing_field_idx, new_field, table.column(existing_field_idx)
+    return batch.set_column(
+        existing_field_idx, new_field, batch.column(existing_field_idx)
     )
