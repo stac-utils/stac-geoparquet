@@ -4,12 +4,10 @@ from typing import Any, Iterable, Optional, Union
 
 import pyarrow as pa
 import pyarrow.parquet as pq
-from pyproj import CRS
 
 from stac_geoparquet.arrow._schema.models import InferredSchema
 from stac_geoparquet.arrow._to_arrow import parse_stac_ndjson_to_arrow
-
-WGS84_CRS_JSON = CRS.from_epsg(4326).to_json_dict()
+from stac_geoparquet.arrow._crs import WGS84_CRS_JSON
 
 
 def parse_stac_ndjson_to_parquet(

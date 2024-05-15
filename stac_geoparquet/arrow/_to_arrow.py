@@ -23,7 +23,7 @@ import shapely
 import shapely.geometry
 
 from stac_geoparquet.arrow._schema.models import InferredSchema
-from stac_geoparquet.arrow._to_parquet import WGS84_CRS_JSON
+from stac_geoparquet.arrow._crs import WGS84_CRS_JSON
 from stac_geoparquet.arrow._util import stac_items_to_arrow
 
 
