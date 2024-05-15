@@ -16,6 +16,7 @@ dependencies = [
     "packaging",
     "pandas",
     "pyarrow",
+    "pyproj",
     "pystac",
     "shapely",
 ]
