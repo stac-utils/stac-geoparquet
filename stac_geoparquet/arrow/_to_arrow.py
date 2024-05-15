@@ -1,37 +1,41 @@
 """Convert STAC data into Arrow tables"""
 
-import json
 from copy import deepcopy
-from datetime import datetime
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Sequence, Union, Generator
+from typing import Any, Dict, Optional, Sequence, Union, Iterable
 
 import ciso8601
+from itertools import islice
 import numpy as np
 import pyarrow as pa
 import pyarrow.compute as pc
 import shapely
 import shapely.geometry
+import orjson
 
 from stac_geoparquet.arrow._to_parquet import WGS84_CRS_JSON
+from stac_geoparquet.json_reader import read_json
 
 
 def _chunks(
-    lst: Sequence[Dict[str, Any]], n: int
-) -> Generator[Sequence[Dict[str, Any]], None, None]:
-    """Yield successive n-sized chunks from lst."""
-    for i in range(0, len(lst), n):
-        yield lst[i : i + n]
+    lst: Iterable[Dict[str, Any]], n: int
+) -> Iterable[Sequence[Dict[str, Any]]]:
+    """Yield successive n-sized chunks from iterable."""
+    if n < 1:
+        raise ValueError("n must be at least one")
+    it = iter(lst)
+    while batch := tuple(islice(it, n)):
+        yield batch
 
 
-def parse_stac_items_to_arrow(
-    items: Sequence[Dict[str, Any]],
+def parse_stac_items_to_batches(
+    items: Iterable[Dict[str, Any]],
     *,
     chunk_size: int = 8192,
     schema: Optional[pa.Schema] = None,
     downcast: bool = True,
-) -> pa.Table:
-    """Parse a collection of STAC Items to a :class:`pyarrow.Table`.
+) -> Iterable[pa.RecordBatch]:
+    """Parse a collection of STAC Items to an iterable of :class:`pyarrow.RecordBatch`.
 
     The objects under `properties` are moved up to the top-level of the
     Table, similar to :meth:`geopandas.GeoDataFrame.from_features`.
@@ -47,25 +51,41 @@ def parse_stac_items_to_arrow(
         downcast: if True, store bbox as float32 for memory and disk saving.
 
     Returns:
-        a pyarrow Table with the STAC-GeoParquet representation of items.
+        an iterable of pyarrow RecordBatches with the STAC-GeoParquet representation of items.
     """
 
     if schema is not None:
         # If schema is provided, then for better memory usage we parse input STAC items
         # to Arrow batches in chunks.
-        batches = []
         for chunk in _chunks(items, chunk_size):
-            batches.append(_stac_items_to_arrow(chunk, schema=schema))
-
-        table = pa.Table.from_batches(batches, schema=schema)
+            yield _stac_items_to_arrow(chunk, schema=schema, downcast=downcast)
     else:
-        # If schema is _not_ provided, then we must convert to Arrow all at once, or
-        # else it would be possible for a STAC item late in the collection (after the
-        # first chunk) to have a different schema and not match the schema inferred for
-        # the first chunk.
-        table = pa.Table.from_batches([_stac_items_to_arrow(items)])
+        yield _stac_items_to_arrow(items, downcast=downcast)
 
-    return _process_arrow_table(table, downcast=downcast)
+
+def parse_stac_items_to_arrow(
+    items: Iterable[Dict[str, Any]],
+    *,
+    chunk_size: int = 8192,
+    schema: Optional[pa.Schema] = None,
+    downcast: bool = True,
+) -> pa.Table:
+    batches = parse_stac_items_to_batches(
+        items, chunk_size=chunk_size, schema=schema, downcast=downcast
+    )
+    return pa.Table.from_batches(batches, schema=schema)
+
+
+def parse_stac_ndjson_to_batches(
+    path: Union[str, Path],
+    *,
+    chunk_size: int = 8192,
+    schema: Optional[pa.Schema] = None,
+    downcast: bool = True,
+) -> Iterable[pa.RecordBatch]:
+    return parse_stac_items_to_batches(
+        read_json(path), chunk_size=chunk_size, schema=schema, downcast=downcast
+    )
 
 
 def parse_stac_ndjson_to_arrow(
@@ -75,39 +95,15 @@ def parse_stac_ndjson_to_arrow(
     schema: Optional[pa.Schema] = None,
     downcast: bool = True,
 ) -> pa.Table:
-    # Define outside of if/else to make mypy happy
-    items: List[dict] = []
-
-    # If the schema was not provided, then we need to load all data into memory at once
-    # to perform schema resolution.
-    if schema is None:
-        with open(path) as f:
-            for line in f:
-                items.append(json.loads(line))
-
-        return parse_stac_items_to_arrow(items, chunk_size=chunk_size, schema=schema)
-
-    # Otherwise, we can stream over the input, converting each batch of `chunk_size`
-    # into an Arrow RecordBatch at a time. This is much more memory efficient.
-    with open(path) as f:
-        batches: List[pa.RecordBatch] = []
-        for line in f:
-            items.append(json.loads(line))
-
-            if len(items) >= chunk_size:
-                batches.append(_stac_items_to_arrow(items, schema=schema))
-                items = []
-
-    # Don't forget the last chunk in case the total number of items is not a multiple of
-    # chunk_size.
-    if len(items) > 0:
-        batches.append(_stac_items_to_arrow(items, schema=schema))
-
-    table = pa.Table.from_batches(batches, schema=schema)
-    return _process_arrow_table(table, downcast=downcast)
+    batches = parse_stac_items_to_batches(
+        read_json(path), chunk_size=chunk_size, schema=schema, downcast=downcast
+    )
+    return pa.Table.from_batches(batches, schema=schema)
 
 
-def _process_arrow_table(table: pa.Table, *, downcast: bool = True) -> pa.Table:
+def _process_arrow_table(
+    table: Union[pa.Table, pa.RecordBatch], *, downcast: bool = True
+) -> Union[pa.Table, pa.RecordBatch]:
     table = _bring_properties_to_top_level(table)
     table = _convert_timestamp_columns(table)
     table = _convert_bbox_to_struct(table, downcast=downcast)
@@ -116,7 +112,10 @@ def _process_arrow_table(table: pa.Table, *, downcast: bool = True) -> pa.Table:
 
 
 def _stac_items_to_arrow(
-    items: Sequence[Dict[str, Any]], *, schema: Optional[pa.Schema] = None
+    items: Iterable[Dict[str, Any]],
+    *,
+    schema: Optional[pa.Schema] = None,
+    downcast: bool = True,
 ) -> pa.RecordBatch:
     """Convert dicts representing STAC Items to Arrow
 
@@ -153,10 +152,14 @@ def _stac_items_to_arrow(
         array = pa.array(wkb_items, type=pa.struct(schema))
     else:
         array = pa.array(wkb_items)
-    return pa.RecordBatch.from_struct_array(array)
+    return _process_arrow_table(
+        pa.RecordBatch.from_struct_array(array), downcast=downcast
+    )
 
 
-def _bring_properties_to_top_level(table: pa.Table) -> pa.Table:
+def _bring_properties_to_top_level(
+    table: Union[pa.Table, pa.RecordBatch],
+) -> Union[pa.Table, pa.RecordBatch]:
     """Bring all the fields inside of the nested "properties" struct to the top level"""
     properties_field = table.schema.field("properties")
     properties_column = table["properties"]
@@ -167,20 +170,32 @@ def _bring_properties_to_top_level(table: pa.Table) -> pa.Table:
             inner_prop_field, pc.struct_field(properties_column, field_idx)
         )
 
-    table = table.drop("properties")
+    table = table.drop_columns(
+        [
+            "properties",
+        ]
+    )
     return table
 
 
-def _convert_geometry_to_wkb(table: pa.Table) -> pa.Table:
+def _convert_geometry_to_wkb(
+    table: Union[pa.Table, pa.RecordBatch],
+) -> Union[pa.Table, pa.RecordBatch]:
     """Convert the geometry column in the table to WKB"""
     geoms = shapely.from_geojson(
-        [json.dumps(item) for item in table["geometry"].to_pylist()]
+        [orjson.dumps(item) for item in table["geometry"].to_pylist()]
     )
     wkb_geoms = shapely.to_wkb(geoms)
-    return table.drop("geometry").append_column("geometry", pa.array(wkb_geoms))
+    return table.drop_columns(
+        [
+            "geometry",
+        ]
+    ).append_column("geometry", pa.array(wkb_geoms))
 
 
-def _convert_timestamp_columns(table: pa.Table) -> pa.Table:
+def _convert_timestamp_columns(
+    table: Union[pa.Table, pa.RecordBatch],
+) -> Union[pa.Table, pa.RecordBatch]:
     """Convert all timestamp columns from a string to an Arrow Timestamp data type"""
     allowed_column_names = {
         "datetime",  # common metadata
@@ -223,29 +238,18 @@ def _convert_timestamp_columns(table: pa.Table) -> pa.Table:
     return table
 
 
-def _convert_timestamp_column(column: pa.ChunkedArray) -> pa.ChunkedArray:
+def _convert_timestamp_column(column: pa.Array) -> pa.TimestampArray:
     """Convert an individual timestamp column from string to a Timestamp type"""
-    chunks = []
-    for chunk in column.chunks:
-        parsed_chunk: List[Optional[datetime]] = []
-        for item in chunk:
-            if not item.is_valid:
-                parsed_chunk.append(None)
-            else:
-                parsed_chunk.append(ciso8601.parse_rfc3339(item.as_py()))
-
-        pyarrow_chunk = pa.array(parsed_chunk)
-        chunks.append(pyarrow_chunk)
-
-    return pa.chunked_array(chunks)
+    return pa.array(
+        [ciso8601.parse_rfc3339(str(t)) for t in column], pa.timestamp("us", tz="UTC")
+    )
 
 
-def _is_bbox_3d(bbox_col: pa.ChunkedArray) -> bool:
+def _is_bbox_3d(bbox_col: pa.Array) -> bool:
     """Infer whether the bounding box column represents 2d or 3d bounding boxes."""
     offsets_set = set()
-    for chunk in bbox_col.chunks:
-        offsets = chunk.offsets.to_numpy()
-        offsets_set.update(np.unique(offsets[1:] - offsets[:-1]))
+    offsets = bbox_col.offsets.to_numpy()
+    offsets_set.update(np.unique(offsets[1:] - offsets[:-1]))
 
     if len(offsets_set) > 1:
         raise ValueError("Mixed 2d-3d bounding boxes not yet supported")
@@ -259,7 +263,9 @@ def _is_bbox_3d(bbox_col: pa.ChunkedArray) -> bool:
         raise ValueError(f"Unexpected bbox offset: {offset=}")
 
 
-def _convert_bbox_to_struct(table: pa.Table, *, downcast: bool) -> pa.Table:
+def _convert_bbox_to_struct(
+    table: Union[pa.Table, pa.RecordBatch], *, downcast: bool
+) -> Union[pa.Table, pa.RecordBatch]:
     """Convert bbox column to a struct representation
 
     Since the bbox in JSON is stored as an array, pyarrow automatically converts the
@@ -281,100 +287,98 @@ def _convert_bbox_to_struct(table: pa.Table, *, downcast: bool) -> pa.Table:
     bbox_col = table.column(bbox_col_idx)
     bbox_3d = _is_bbox_3d(bbox_col)
 
-    new_chunks = []
-    for chunk in bbox_col.chunks:
-        assert (
-            pa.types.is_list(chunk.type)
-            or pa.types.is_large_list(chunk.type)
-            or pa.types.is_fixed_size_list(chunk.type)
-        )
-        if bbox_3d:
-            coords = chunk.flatten().to_numpy().reshape(-1, 6)
-        else:
-            coords = chunk.flatten().to_numpy().reshape(-1, 4)
+    assert (
+        pa.types.is_list(bbox_col.type)
+        or pa.types.is_large_list(bbox_col.type)
+        or pa.types.is_fixed_size_list(bbox_col.type)
+    )
+    if bbox_3d:
+        coords = bbox_col.flatten().to_numpy().reshape(-1, 6)
+    else:
+        coords = bbox_col.flatten().to_numpy().reshape(-1, 4)
+
+    if downcast:
+        coords = coords.astype(np.float32)
+
+    if bbox_3d:
+        xmin = coords[:, 0]
+        ymin = coords[:, 1]
+        zmin = coords[:, 2]
+        xmax = coords[:, 3]
+        ymax = coords[:, 4]
+        zmax = coords[:, 5]
 
         if downcast:
-            coords = coords.astype(np.float32)
+            # Round min values down to the next float32 value
+            # Round max values up to the next float32 value
+            xmin = np.nextafter(xmin, -np.Infinity)
+            ymin = np.nextafter(ymin, -np.Infinity)
+            zmin = np.nextafter(zmin, -np.Infinity)
+            xmax = np.nextafter(xmax, np.Infinity)
+            ymax = np.nextafter(ymax, np.Infinity)
+            zmax = np.nextafter(zmax, np.Infinity)
 
-        if bbox_3d:
-            xmin = coords[:, 0]
-            ymin = coords[:, 1]
-            zmin = coords[:, 2]
-            xmax = coords[:, 3]
-            ymax = coords[:, 4]
-            zmax = coords[:, 5]
+        struct_arr = pa.StructArray.from_arrays(
+            [
+                xmin,
+                ymin,
+                zmin,
+                xmax,
+                ymax,
+                zmax,
+            ],
+            names=[
+                "xmin",
+                "ymin",
+                "zmin",
+                "xmax",
+                "ymax",
+                "zmax",
+            ],
+        )
 
-            if downcast:
-                # Round min values down to the next float32 value
-                # Round max values up to the next float32 value
-                xmin = np.nextafter(xmin, -np.Infinity)
-                ymin = np.nextafter(ymin, -np.Infinity)
-                zmin = np.nextafter(zmin, -np.Infinity)
-                xmax = np.nextafter(xmax, np.Infinity)
-                ymax = np.nextafter(ymax, np.Infinity)
-                zmax = np.nextafter(zmax, np.Infinity)
+    else:
+        xmin = coords[:, 0]
+        ymin = coords[:, 1]
+        xmax = coords[:, 2]
+        ymax = coords[:, 3]
 
-            struct_arr = pa.StructArray.from_arrays(
-                [
-                    xmin,
-                    ymin,
-                    zmin,
-                    xmax,
-                    ymax,
-                    zmax,
-                ],
-                names=[
-                    "xmin",
-                    "ymin",
-                    "zmin",
-                    "xmax",
-                    "ymax",
-                    "zmax",
-                ],
-            )
+        if downcast:
+            # Round min values down to the next float32 value
+            # Round max values up to the next float32 value
+            xmin = np.nextafter(xmin, -np.Infinity)
+            ymin = np.nextafter(ymin, -np.Infinity)
+            xmax = np.nextafter(xmax, np.Infinity)
+            ymax = np.nextafter(ymax, np.Infinity)
 
-        else:
-            xmin = coords[:, 0]
-            ymin = coords[:, 1]
-            xmax = coords[:, 2]
-            ymax = coords[:, 3]
+        struct_arr = pa.StructArray.from_arrays(
+            [
+                xmin,
+                ymin,
+                xmax,
+                ymax,
+            ],
+            names=[
+                "xmin",
+                "ymin",
+                "xmax",
+                "ymax",
+            ],
+        )
 
-            if downcast:
-                # Round min values down to the next float32 value
-                # Round max values up to the next float32 value
-                xmin = np.nextafter(xmin, -np.Infinity)
-                ymin = np.nextafter(ymin, -np.Infinity)
-                xmax = np.nextafter(xmax, np.Infinity)
-                ymax = np.nextafter(ymax, np.Infinity)
-
-            struct_arr = pa.StructArray.from_arrays(
-                [
-                    xmin,
-                    ymin,
-                    xmax,
-                    ymax,
-                ],
-                names=[
-                    "xmin",
-                    "ymin",
-                    "xmax",
-                    "ymax",
-                ],
-            )
-
-        new_chunks.append(struct_arr)
-
-    return table.set_column(bbox_col_idx, "bbox", new_chunks)
+    return table.set_column(bbox_col_idx, "bbox", struct_arr)
 
 
-def _assign_geoarrow_metadata(table: pa.Table) -> pa.Table:
+def _assign_geoarrow_metadata(
+    table: Union[pa.Table, pa.RecordBatch],
+) -> Union[pa.Table, pa.RecordBatch]:
     """Tag the primary geometry column with `geoarrow.wkb` on the field metadata."""
     existing_field_idx = table.schema.get_field_index("geometry")
     existing_field = table.schema.field(existing_field_idx)
     ext_metadata = {"crs": WGS84_CRS_JSON}
     field_metadata = {
         b"ARROW:extension:name": b"geoarrow.wkb",
-        b"ARROW:extension:metadata": json.dumps(ext_metadata).encode("utf-8"),
+        b"ARROW:extension:metadata": orjson.dumps(ext_metadata),
     }
     new_field = existing_field.with_metadata(field_metadata)
     return table.set_column(
