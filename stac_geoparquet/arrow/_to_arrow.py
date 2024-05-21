@@ -25,7 +25,6 @@ def parse_stac_items_to_batches(
     *,
     chunk_size: int = 8192,
     schema: Optional[pa.Schema] = None,
-    downcast: bool = True,
 ) -> Iterable[pa.RecordBatch]:
     """Parse a collection of STAC Items to an iterable of :class:`pyarrow.RecordBatch`.
 
@@ -40,13 +39,12 @@ def parse_stac_items_to_batches(
         schema: The schema of the input data. If provided, can improve memory use;
             otherwise all items need to be parsed into a single array for schema
             inference. Defaults to None.
-        downcast: if True, store bbox as float32 for memory and disk saving.
 
     Returns:
         an iterable of pyarrow RecordBatches with the STAC-GeoParquet representation of items.
     """
     for item_batch in batched_iter(items, chunk_size):
-        yield stac_items_to_arrow(item_batch, downcast=downcast)
+        yield stac_items_to_arrow(item_batch)
 
 
 def parse_stac_items_to_arrow(
@@ -54,11 +52,8 @@ def parse_stac_items_to_arrow(
     *,
     chunk_size: int = 8192,
     schema: Optional[pa.Schema] = None,
-    downcast: bool = True,
 ) -> pa.Table:
-    batches = parse_stac_items_to_batches(
-        items, chunk_size=chunk_size, schema=schema, downcast=downcast
-    )
+    batches = parse_stac_items_to_batches(items, chunk_size=chunk_size, schema=schema)
     if schema is not None:
         return pa.Table.from_batches(batches, schema=schema)
 
@@ -79,10 +74,9 @@ def parse_stac_ndjson_to_batches(
     *,
     chunk_size: int = 8192,
     schema: Optional[pa.Schema] = None,
-    downcast: bool = True,
 ) -> Iterable[pa.RecordBatch]:
     return parse_stac_items_to_batches(
-        read_json(path), chunk_size=chunk_size, schema=schema, downcast=downcast
+        read_json(path), chunk_size=chunk_size, schema=schema
     )
 
 
@@ -91,7 +85,6 @@ def parse_stac_ndjson_to_arrow(
     *,
     chunk_size: int = 65536,
     schema: Optional[pa.Schema] = None,
-    downcast: bool = True,
 ) -> Iterator[pa.RecordBatch]:
     """
     Convert one or more newline-delimited JSON STAC files to a generator of Arrow
@@ -112,5 +105,5 @@ def parse_stac_ndjson_to_arrow(
         Arrow RecordBatch with a single chunk of Item data.
     """
     return parse_stac_items_to_arrow(
-        read_json(path), chunk_size=chunk_size, schema=schema, downcast=downcast
+        read_json(path), chunk_size=chunk_size, schema=schema
     )

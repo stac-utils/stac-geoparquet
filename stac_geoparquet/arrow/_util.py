@@ -42,7 +42,6 @@ def stac_items_to_arrow(
     items: Iterable[Dict[str, Any]],
     *,
     schema: Optional[pa.Schema] = None,
-    downcast: bool = True,
 ) -> pa.RecordBatch:
     """Convert dicts representing STAC Items to Arrow
 
@@ -94,9 +93,7 @@ def stac_items_to_arrow(
         array = pa.array(wkb_items, type=pa.struct(schema))
     else:
         array = pa.array(wkb_items)
-    return _process_arrow_batch(
-        pa.RecordBatch.from_struct_array(array), downcast=downcast
-    )
+    return _process_arrow_batch(pa.RecordBatch.from_struct_array(array))
 
 
 def _bring_properties_to_top_level(
@@ -205,9 +202,7 @@ def _is_bbox_3d(bbox_col: pa.Array) -> bool:
         raise ValueError(f"Unexpected bbox offset: {offset=}")
 
 
-def _convert_bbox_to_struct(
-    batch: pa.RecordBatch, downcast: bool = True
-) -> pa.RecordBatch:
+def _convert_bbox_to_struct(batch: pa.RecordBatch) -> pa.RecordBatch:
     """Convert bbox column to a struct representation
 
     Since the bbox in JSON is stored as an array, pyarrow automatically converts the
@@ -216,14 +211,10 @@ def _convert_bbox_to_struct(
     partitioning in the dataset.
 
     Args:
-        table: _description_
-        downcast: if True, will use float32 coordinates for the bounding boxes instead
-            of float64. Float rounding is applied to ensure the float32 bounding box
-            strictly contains the original float64 box. This is recommended when
-            possible to minimize file size.
+        batch: _description_
 
     Returns:
-        New table
+        New record batch
     """
     bbox_col_idx = batch.schema.get_field_index("bbox")
     bbox_col = batch.column(bbox_col_idx)
@@ -239,9 +230,6 @@ def _convert_bbox_to_struct(
     else:
         coords = bbox_col.flatten().to_numpy().reshape(-1, 4)
 
-    if downcast:
-        coords = coords.astype(np.float32)
-
     if bbox_3d:
         xmin = coords[:, 0]
         ymin = coords[:, 1]
@@ -249,16 +237,6 @@ def _convert_bbox_to_struct(
         xmax = coords[:, 3]
         ymax = coords[:, 4]
         zmax = coords[:, 5]
-
-        if downcast:
-            # Round min values down to the next float32 value
-            # Round max values up to the next float32 value
-            xmin = np.nextafter(xmin, -np.Infinity)
-            ymin = np.nextafter(ymin, -np.Infinity)
-            zmin = np.nextafter(zmin, -np.Infinity)
-            xmax = np.nextafter(xmax, np.Infinity)
-            ymax = np.nextafter(ymax, np.Infinity)
-            zmax = np.nextafter(zmax, np.Infinity)
 
         struct_arr = pa.StructArray.from_arrays(
             [
@@ -284,14 +262,6 @@ def _convert_bbox_to_struct(
         ymin = coords[:, 1]
         xmax = coords[:, 2]
         ymax = coords[:, 3]
-
-        if downcast:
-            # Round min values down to the next float32 value
-            # Round max values up to the next float32 value
-            xmin = np.nextafter(xmin, -np.Infinity)
-            ymin = np.nextafter(ymin, -np.Infinity)
-            xmax = np.nextafter(xmax, np.Infinity)
-            ymax = np.nextafter(ymax, np.Infinity)
 
         struct_arr = pa.StructArray.from_arrays(
             [
@@ -328,11 +298,9 @@ def _assign_geoarrow_metadata(
     )
 
 
-def _process_arrow_batch(
-    batch: pa.RecordBatch, *, downcast: bool = True
-) -> pa.RecordBatch:
+def _process_arrow_batch(batch: pa.RecordBatch) -> pa.RecordBatch:
     batch = _bring_properties_to_top_level(batch)
     batch = _convert_timestamp_columns(batch)
-    batch = _convert_bbox_to_struct(batch, downcast=downcast)
+    batch = _convert_bbox_to_struct(batch)
     batch = _assign_geoarrow_metadata(batch)
     return batch

@@ -17,7 +17,6 @@ def parse_stac_ndjson_to_parquet(
     *,
     chunk_size: int = 65536,
     schema: Optional[pa.Schema] = None,
-    downcast: bool = True,
     **kwargs: Any,
 ) -> None:
     """Convert one or more newline-delimited JSON STAC files to GeoParquet
@@ -33,7 +32,7 @@ def parse_stac_ndjson_to_parquet(
             iteratively convert to GeoParquet.
     """
     batches = parse_stac_items_to_batches(
-        read_json(input_path), chunk_size=chunk_size, schema=schema, downcast=downcast
+        read_json(input_path), chunk_size=chunk_size, schema=schema
     )
     if schema is None:
         unified_batches = []

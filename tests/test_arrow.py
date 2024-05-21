@@ -197,13 +197,7 @@ def test_round_trip(collection_id: str):
     with open(HERE / "data" / f"{collection_id}-pc.json") as f:
         items = json.load(f)
 
-    table = parse_stac_items_to_arrow(items, downcast=True)
-    items_result = list(stac_table_to_items(table))
-
-    for result, expected in zip(items_result, items):
-        assert_json_value_equal(result, expected, precision=0.001)
-
-    table = parse_stac_items_to_arrow(items, downcast=False)
+    table = parse_stac_items_to_arrow(items)
     items_result = list(stac_table_to_items(table))
 
     for result, expected in zip(items_result, items):
