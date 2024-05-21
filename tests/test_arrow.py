@@ -3,6 +3,7 @@ import math
 from pathlib import Path
 from typing import Any, Dict, Sequence, Union
 
+import pyarrow as pa
 import pytest
 from ciso8601 import parse_rfc3339
 
@@ -197,7 +198,7 @@ def test_round_trip(collection_id: str):
     with open(HERE / "data" / f"{collection_id}-pc.json") as f:
         items = json.load(f)
 
-    table = parse_stac_items_to_arrow(items)
+    table = pa.Table.from_batches(parse_stac_items_to_arrow(items))
     items_result = list(stac_table_to_items(table))
 
     for result, expected in zip(items_result, items):
@@ -209,7 +210,7 @@ def test_table_contains_geoarrow_metadata():
     with open(HERE / "data" / f"{collection_id}-pc.json") as f:
         items = json.load(f)
 
-    table = parse_stac_items_to_arrow(items)
+    table = pa.Table.from_batches(parse_stac_items_to_arrow(items))
     field_meta = table.schema.field("geometry").metadata
     assert field_meta[b"ARROW:extension:name"] == b"geoarrow.wkb"
     assert json.loads(field_meta[b"ARROW:extension:metadata"])["crs"]["id"] == {
