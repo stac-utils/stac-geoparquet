@@ -12,19 +12,16 @@ from typing import (
 
 import pyarrow as pa
 
-from stac_geoparquet.json_reader import read_json
-from stac_geoparquet.arrow._util import (
-    stac_items_to_arrow,
-    batched_iter,
-    update_batch_schema,
-)
+from stac_geoparquet.arrow._schema.models import InferredSchema
+from stac_geoparquet.json_reader import read_json_chunked
+from stac_geoparquet.arrow._util import stac_items_to_arrow, batched_iter
 
 
-def parse_stac_items_to_batches(
+def parse_stac_items_to_arrow(
     items: Iterable[Dict[str, Any]],
     *,
     chunk_size: int = 8192,
-    schema: Optional[pa.Schema] = None,
+    schema: Optional[Union[pa.Schema, InferredSchema]] = None,
 ) -> Iterable[pa.RecordBatch]:
     """Parse a collection of STAC Items to an iterable of :class:`pyarrow.RecordBatch`.
 
@@ -43,45 +40,25 @@ def parse_stac_items_to_batches(
     Returns:
         an iterable of pyarrow RecordBatches with the STAC-GeoParquet representation of items.
     """
-    for item_batch in batched_iter(items, chunk_size):
-        yield stac_items_to_arrow(item_batch, schema=schema)
-
-
-def parse_stac_items_to_arrow(
-    items: Iterable[Dict[str, Any]],
-    *,
-    chunk_size: int = 8192,
-    schema: Optional[pa.Schema] = None,
-) -> pa.Table:
-    batches = parse_stac_items_to_batches(items, chunk_size=chunk_size, schema=schema)
     if schema is not None:
-        return pa.Table.from_batches(batches, schema=schema)
+        if isinstance(schema, InferredSchema):
+            schema = schema.inner
 
-    for batch in batches:
-        if schema is None:
-            schema = batch.schema
-        else:
-            schema = pa.unify_schemas(
-                [schema, batch.schema], promote_options="permissive"
-            )
-    return pa.Table.from_batches(
-        (update_batch_schema(batch, schema) for batch in batches), schema=schema
-    )
+        # If schema is provided, then for better memory usage we parse input STAC items
+        # to Arrow batches in chunks.
+        for chunk in batched_iter(items, chunk_size):
+            yield stac_items_to_arrow(chunk, schema=schema)
 
-
-def parse_stac_ndjson_to_batches(
-    path: Union[str, Path],
-    *,
-    chunk_size: int = 8192,
-    schema: Optional[pa.Schema] = None,
-) -> Iterable[pa.RecordBatch]:
-    return parse_stac_items_to_batches(
-        read_json(path), chunk_size=chunk_size, schema=schema
-    )
+    else:
+        # If schema is _not_ provided, then we must convert to Arrow all at once, or
+        # else it would be possible for a STAC item late in the collection (after the
+        # first chunk) to have a different schema and not match the schema inferred for
+        # the first chunk.
+        yield stac_items_to_arrow(items)
 
 
 def parse_stac_ndjson_to_arrow(
-    path: Union[Union[str, Path], Iterable[Union[str, Path]]],
+    path: Union[str, Path, Iterable[Union[str, Path]]],
     *,
     chunk_size: int = 65536,
     schema: Optional[pa.Schema] = None,
@@ -104,6 +81,18 @@ def parse_stac_ndjson_to_arrow(
     Yields:
         Arrow RecordBatch with a single chunk of Item data.
     """
-    return parse_stac_items_to_arrow(
-        read_json(path), chunk_size=chunk_size, schema=schema
-    )
+    # If the schema was not provided, then we need to load all data into memory at once
+    # to perform schema resolution.
+    if schema is None:
+        inferred_schema = InferredSchema()
+        inferred_schema.update_from_json(path, chunk_size=chunk_size)
+        yield from parse_stac_ndjson_to_arrow(
+            path, chunk_size=chunk_size, schema=inferred_schema
+        )
+        return
+
+    if isinstance(schema, InferredSchema):
+        schema = schema.inner
+
+    for batch in read_json_chunked(path, chunk_size=chunk_size):
+        yield stac_items_to_arrow(batch, schema=schema)

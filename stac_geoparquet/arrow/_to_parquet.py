@@ -6,9 +6,7 @@ import pyarrow as pa
 import pyarrow.parquet as pq
 
 from stac_geoparquet.arrow._schema.models import InferredSchema
-from stac_geoparquet.arrow._to_arrow import parse_stac_items_to_batches
-from stac_geoparquet.json_reader import read_json
-from stac_geoparquet.arrow._util import update_batch_schema
+from stac_geoparquet.arrow._to_arrow import parse_stac_ndjson_to_arrow
 from stac_geoparquet.arrow._crs import WGS84_CRS_JSON
 
 
@@ -32,26 +30,15 @@ def parse_stac_ndjson_to_parquet(
             infer a common schema across all data and another to read the data and
             iteratively convert to GeoParquet.
     """
-    batches = parse_stac_items_to_batches(
-        read_json(input_path), chunk_size=chunk_size, schema=schema
+
+    batches_iter = parse_stac_ndjson_to_arrow(
+        input_path, chunk_size=chunk_size, schema=schema
     )
-    if schema is None:
-        unified_batches = []
-        for batch in batches:
-            if schema is None:
-                schema = batch.schema
-            else:
-                schema = pa.unify_schemas(
-                    [schema, batch.schema], promote_options="permissive"
-                )
-            unified_batches.append(update_batch_schema(batch, schema))
-        batches = unified_batches
-
-    assert schema is not None
-    schema = schema.with_metadata(_create_geoparquet_metadata())
-
+    first_batch = next(batches_iter)
+    schema = first_batch.schema.with_metadata(_create_geoparquet_metadata())
     with pq.ParquetWriter(output_path, schema, **kwargs) as writer:
-        for batch in batches:
+        writer.write_batch(first_batch)
+        for batch in batches_iter:
             writer.write_batch(batch)
 
 
