@@ -6,7 +6,7 @@ from pathlib import Path
 
 
 def read_json(
-    path: Union[str, Path, Iterable[Union[str, Path]]]
+    path: Union[str, Path, Iterable[Union[str, Path]]],
 ) -> Iterator[Dict[str, Any]]:
     """Read a json or ndjson file."""
     if isinstance(path, (str, Path)):
@@ -15,9 +15,16 @@ def read_json(
     for p in path:
         with open(p) as f:
             try:
-                # read ndjson
+                # Support ndjson or json list/FeatureCollection without any whitespace
+                # (all on first line)
                 for line in f:
-                    yield orjson.loads(line.strip())
+                    item = orjson.loads(line.strip())
+                    if isinstance(item, list):
+                        yield from item
+                    elif "features" in item:
+                        yield from item["features"]
+                    else:
+                        yield item
             except orjson.JSONDecodeError:
                 f.seek(0)
                 # read full json file as either a list or FeatureCollection
