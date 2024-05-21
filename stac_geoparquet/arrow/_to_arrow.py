@@ -44,7 +44,7 @@ def parse_stac_items_to_batches(
         an iterable of pyarrow RecordBatches with the STAC-GeoParquet representation of items.
     """
     for item_batch in batched_iter(items, chunk_size):
-        yield stac_items_to_arrow(item_batch)
+        yield stac_items_to_arrow(item_batch, schema=schema)
 
 
 def parse_stac_items_to_arrow(
