@@ -4,7 +4,7 @@ from typing import Any, Dict, Iterable, Sequence, Union
 import pyarrow as pa
 
 from stac_geoparquet.arrow._util import stac_items_to_arrow
-from stac_geoparquet.json_reader import read_json
+from stac_geoparquet.json_reader import read_json_chunked
 
 
 class InferredSchema:
@@ -38,17 +38,8 @@ class InferredSchema:
             path: One or more paths to files with STAC items.
             chunk_size: The chunk size to load into memory at a time. Defaults to 65536.
         """
-        items = []
-        for item in read_json(path):
-            items.append(item)
-
-            if len(items) >= chunk_size:
-                self.update_from_items(items)
-                items = []
-
-        # Handle remainder
-        if len(items) > 0:
-            self.update_from_items(items)
+        for batch in read_json_chunked(path, chunk_size=chunk_size):
+            self.update_from_items(batch)
 
     def update_from_items(self, items: Sequence[Dict[str, Any]]) -> None:
         """Update this inferred schema from a sequence of STAC Items."""

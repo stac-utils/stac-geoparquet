@@ -5,6 +5,7 @@ from typing import Any, Iterable, Optional, Union
 import pyarrow as pa
 import pyarrow.parquet as pq
 
+from stac_geoparquet.arrow._schema.models import InferredSchema
 from stac_geoparquet.arrow._to_arrow import parse_stac_items_to_batches
 from stac_geoparquet.json_reader import read_json
 from stac_geoparquet.arrow._util import update_batch_schema
@@ -12,11 +13,11 @@ from stac_geoparquet.arrow._crs import WGS84_CRS_JSON
 
 
 def parse_stac_ndjson_to_parquet(
-    input_path: Union[Union[str, Path], Iterable[Union[str, Path]]],
+    input_path: Union[str, Path, Iterable[Union[str, Path]]],
     output_path: Union[str, Path],
     *,
     chunk_size: int = 65536,
-    schema: Optional[pa.Schema] = None,
+    schema: Optional[Union[pa.Schema, InferredSchema]] = None,
     **kwargs: Any,
 ) -> None:
     """Convert one or more newline-delimited JSON STAC files to GeoParquet

@@ -39,9 +39,7 @@ def batched_iter(
 
 
 def stac_items_to_arrow(
-    items: Iterable[Dict[str, Any]],
-    *,
-    schema: Optional[pa.Schema] = None,
+    items: Iterable[Dict[str, Any]], *, schema: Optional[pa.Schema] = None
 ) -> pa.RecordBatch:
     """Convert dicts representing STAC Items to Arrow
 
@@ -93,6 +91,7 @@ def stac_items_to_arrow(
         array = pa.array(wkb_items, type=pa.struct(schema))
     else:
         array = pa.array(wkb_items)
+
     return _process_arrow_batch(pa.RecordBatch.from_struct_array(array))
 
 
