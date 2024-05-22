@@ -15,10 +15,12 @@ dependencies = [
     "geopandas",
     "packaging",
     "pandas",
-    "pyarrow",
+    # Needed for RecordBatch.append_column
+    "pyarrow>=16",
     "pyproj",
     "pystac",
     "shapely",
+    "orjson",
 ]
 
 [tool.hatch.version]

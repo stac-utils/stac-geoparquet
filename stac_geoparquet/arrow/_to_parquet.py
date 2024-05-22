@@ -11,7 +11,7 @@ from stac_geoparquet.arrow._crs import WGS84_CRS_JSON
 
 
 def parse_stac_ndjson_to_parquet(
-    input_path: Union[Union[str, Path], Iterable[Union[str, Path]]],
+    input_path: Union[str, Path, Iterable[Union[str, Path]]],
     output_path: Union[str, Path],
     *,
     chunk_size: int = 65536,
@@ -30,6 +30,7 @@ def parse_stac_ndjson_to_parquet(
             infer a common schema across all data and another to read the data and
             iteratively convert to GeoParquet.
     """
+
     batches_iter = parse_stac_ndjson_to_arrow(
         input_path, chunk_size=chunk_size, schema=schema
     )
