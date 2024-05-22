@@ -1,5 +1,5 @@
 from pathlib import Path
-from typing import Any, Dict, Iterable, Sequence, Union
+from typing import Any, Dict, Iterable, Optional, Sequence, Union
 
 import pyarrow as pa
 
@@ -30,6 +30,7 @@ class InferredSchema:
         path: Union[str, Path, Iterable[Union[str, Path]]],
         *,
         chunk_size: int = 65536,
+        limit: Optional[int] = None,
     ) -> None:
         """
         Update this inferred schema from one or more newline-delimited JSON STAC files.
@@ -37,8 +38,11 @@ class InferredSchema:
         Args:
             path: One or more paths to files with STAC items.
             chunk_size: The chunk size to load into memory at a time. Defaults to 65536.
+
+        Other args:
+            limit: The maximum number of JSON Items to use for schema inference
         """
-        for batch in read_json_chunked(path, chunk_size=chunk_size):
+        for batch in read_json_chunked(path, chunk_size=chunk_size, limit=limit):
             self.update_from_items(batch)
 
     def update_from_items(self, items: Sequence[Dict[str, Any]]) -> None:

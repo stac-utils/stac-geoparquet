@@ -62,6 +62,7 @@ def parse_stac_ndjson_to_arrow(
     *,
     chunk_size: int = 65536,
     schema: Optional[pa.Schema] = None,
+    limit: Optional[int] = None,
 ) -> Iterator[pa.RecordBatch]:
     """
     Convert one or more newline-delimited JSON STAC files to a generator of Arrow
@@ -78,6 +79,9 @@ def parse_stac_ndjson_to_arrow(
             In this case, there will be two full passes over the input data: one to
             infer a common schema across all data and another to read the data.
 
+    Other args:
+        limit: The maximum number of JSON Items to use for schema inference
+
     Yields:
         Arrow RecordBatch with a single chunk of Item data.
     """
@@ -85,7 +89,7 @@ def parse_stac_ndjson_to_arrow(
     # to perform schema resolution.
     if schema is None:
         inferred_schema = InferredSchema()
-        inferred_schema.update_from_json(path, chunk_size=chunk_size)
+        inferred_schema.update_from_json(path, chunk_size=chunk_size, limit=limit)
         yield from parse_stac_ndjson_to_arrow(
             path, chunk_size=chunk_size, schema=inferred_schema
         )

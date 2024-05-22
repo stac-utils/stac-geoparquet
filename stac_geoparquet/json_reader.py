@@ -1,7 +1,7 @@
 """Return an iterator of items from an ndjson, a json array of items, or a featurecollection of items."""
 
 from pathlib import Path
-from typing import Any, Dict, Iterable, Sequence, Union
+from typing import Any, Dict, Iterable, Optional, Sequence, Union
 
 import orjson
 
@@ -39,7 +39,10 @@ def read_json(
 
 
 def read_json_chunked(
-    path: Union[str, Path, Iterable[Union[str, Path]]], chunk_size: int
+    path: Union[str, Path, Iterable[Union[str, Path]]],
+    chunk_size: int,
+    *,
+    limit: Optional[int] = None,
 ) -> Iterable[Sequence[Dict[str, Any]]]:
     """Read from a JSON or NDJSON file in chunks of `chunk_size`."""
-    return batched_iter(read_json(path), chunk_size)
+    return batched_iter(read_json(path), chunk_size, limit=limit)

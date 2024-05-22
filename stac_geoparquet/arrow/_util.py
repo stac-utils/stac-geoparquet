@@ -28,14 +28,18 @@ def update_batch_schema(
 
 
 def batched_iter(
-    lst: Iterable[Dict[str, Any]], n: int
+    lst: Iterable[Dict[str, Any]], n: int, *, limit: Optional[int] = None
 ) -> Iterable[Sequence[Dict[str, Any]]]:
     """Yield successive n-sized chunks from iterable."""
     if n < 1:
         raise ValueError("n must be at least one")
     it = iter(lst)
+    count = 0
     while batch := tuple(islice(it, n)):
         yield batch
+        count += len(batch)
+        if limit and count >= limit:
+            return
 
 
 def stac_items_to_arrow(
