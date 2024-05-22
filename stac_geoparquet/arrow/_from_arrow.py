@@ -133,7 +133,7 @@ def _lower_properties_from_top_level(batch: pa.RecordBatch) -> pa.RecordBatch:
         properties_column_fields.append(batch.schema.field(column_idx))
 
     struct_arr = pa.StructArray.from_arrays(
-        batch.columns, fields=properties_column_fields
+        batch.select(properties_column_names).columns, fields=properties_column_fields
     )
 
     return batch.drop_columns(properties_column_names).append_column(
