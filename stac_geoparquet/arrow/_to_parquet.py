@@ -35,7 +35,9 @@ def parse_stac_ndjson_to_parquet(
         input_path, chunk_size=chunk_size, schema=schema
     )
     first_batch = next(batches_iter)
-    schema = first_batch.schema.with_metadata(_create_geoparquet_metadata())
+    schema = first_batch.schema.with_metadata(
+        _create_geoparquet_metadata(pa.Table.from_batches([first_batch]))
+    )
     with pq.ParquetWriter(output_path, schema, **kwargs) as writer:
         writer.write_batch(first_batch)
         for batch in batches_iter:
