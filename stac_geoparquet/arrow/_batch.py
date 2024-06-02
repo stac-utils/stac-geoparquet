@@ -76,7 +76,7 @@ class RawBatch:
                 as binary type.
 
         Returns:
-            _description_
+            a new RawBatch of data.
         """
         # Preprocess GeoJSON to WKB in each STAC item
         # Otherwise, pyarrow will try to parse coordinates into a native geometry type

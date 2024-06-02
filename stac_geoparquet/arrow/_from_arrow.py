@@ -1,42 +1,10 @@
 """Convert STAC Items in Arrow Table format to JSON Lines or Python dicts."""
 
-import orjson
-import os
-from typing import Iterable, List, Union
+from typing import List
 
 import numpy as np
 import pyarrow as pa
 import pyarrow.compute as pc
-
-
-def stac_batch_to_items(batch: pa.RecordBatch) -> Iterable[dict]:
-    """Convert a stac arrow recordbatch to item dicts."""
-    batch = _undo_stac_transformations(batch)
-
-
-def stac_table_to_ndjson(table: pa.Table, dest: Union[str, os.PathLike[str]]) -> None:
-    """Write a STAC Table to a newline-delimited JSON file."""
-    with open(dest, "wb") as f:
-        for item_dict in stac_table_to_items(table):
-            f.write(orjson.dumps(item_dict))
-            f.write(b"\n")
-
-
-def stac_table_to_items(table: pa.Table) -> Iterable[dict]:
-    """Convert a STAC Table to a generator of STAC Item `dict`s"""
-    for batch in table.to_batches():
-        yield from stac_batch_to_items(batch)
-
-
-def _undo_stac_transformations(batch: pa.RecordBatch) -> pa.RecordBatch:
-    """Undo the transformations done to convert STAC Json into an Arrow Table
-
-    Note that this function does _not_ undo the GeoJSON -> WKB geometry transformation,
-    as that is easier to do when converting each item in the table to a dict.
-    """
-    batch = lower_properties_from_top_level(batch)
-    batch = convert_bbox_to_array(batch)
-    return batch
 
 
 def convert_timestamp_columns_to_string(batch: pa.RecordBatch) -> pa.RecordBatch:
