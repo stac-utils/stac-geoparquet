@@ -53,3 +53,49 @@ class InferredSchema:
             [self.inner, current_schema], promote_options="permissive"
         )
         self.inner = new_schema
+
+    def manual_updates(self):
+        schema = self.inner
+        properties_field = schema.field("properties")
+        properties_schema = pa.schema(properties_field.type)
+
+        # The datetime column can be inferred as `null` in the case of a Collection with
+        # start_datetime and end_datetime. But `null` is incompatible with Delta Lake,
+        # so we coerce to a Timestamp type.
+        if pa.types.is_null(properties_schema.field("datetime").type):
+            field_idx = properties_schema.get_field_index("datetime")
+            properties_schema = properties_schema.set(
+                field_idx,
+                properties_schema.field(field_idx).with_type(
+                    pa.timestamp("us", tz="UTC")
+                ),
+            )
+
+        if "proj:epsg" in properties_schema.names and pa.types.is_null(
+            properties_schema.field("proj:epsg").type
+        ):
+            field_idx = properties_schema.get_field_index("proj:epsg")
+            properties_schema = properties_schema.set(
+                field_idx,
+                properties_schema.field(field_idx).with_type(pa.int64()),
+            )
+
+        if "proj:wkt2" in properties_schema.names and pa.types.is_null(
+            properties_schema.field("proj:wkt2").type
+        ):
+            field_idx = properties_schema.get_field_index("proj:wkt2")
+            properties_schema = properties_schema.set(
+                field_idx,
+                properties_schema.field(field_idx).with_type(pa.string()),
+            )
+
+        # Note: proj:projjson can also be null, but we don't have a type we can cast
+        # that to.
+
+        properties_idx = schema.get_field_index("properties")
+        updated_schema = schema.set(
+            properties_idx,
+            properties_field.with_type(pa.struct(properties_schema)),
+        )
+
+        self.inner = updated_schema

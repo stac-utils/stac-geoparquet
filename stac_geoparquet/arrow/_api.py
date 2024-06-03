@@ -83,6 +83,7 @@ def parse_stac_ndjson_to_arrow(
     if schema is None:
         inferred_schema = InferredSchema()
         inferred_schema.update_from_json(path, chunk_size=chunk_size, limit=limit)
+        inferred_schema.manual_updates()
         yield from parse_stac_ndjson_to_arrow(
             path, chunk_size=chunk_size, schema=inferred_schema
         )
