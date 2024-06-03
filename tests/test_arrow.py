@@ -4,7 +4,11 @@ from pathlib import Path
 import pyarrow as pa
 import pytest
 
-from stac_geoparquet.arrow import parse_stac_items_to_arrow, stac_table_to_items
+from stac_geoparquet.arrow import (
+    parse_stac_items_to_arrow,
+    parse_stac_ndjson_to_arrow,
+    stac_table_to_items,
+)
 
 from .json_equals import assert_json_value_equal
 
@@ -53,6 +57,22 @@ def test_table_contains_geoarrow_metadata():
         "authority": "EPSG",
         "code": 4326,
     }
+
+
+@pytest.mark.parametrize(
+    "collection_id",
+    TEST_COLLECTIONS,
+)
+def test_parse_json_to_arrow(collection_id: str):
+    path = HERE / "data" / f"{collection_id}-pc.json"
+    table = pa.Table.from_batches(parse_stac_ndjson_to_arrow(path))
+    items_result = list(stac_table_to_items(table))
+
+    with open(HERE / "data" / f"{collection_id}-pc.json") as f:
+        items = json.load(f)
+
+    for result, expected in zip(items_result, items):
+        assert_json_value_equal(result, expected, precision=0)
 
 
 def test_to_arrow_deprecated():

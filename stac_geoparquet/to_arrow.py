@@ -5,4 +5,4 @@ warnings.warn(
     FutureWarning,
 )
 
-from stac_geoparquet.arrow._to_arrow import *  # noqa
+from stac_geoparquet.arrow import parse_stac_items_to_arrow, parse_stac_ndjson_to_arrow  # noqa
