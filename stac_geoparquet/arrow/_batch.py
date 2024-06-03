@@ -3,14 +3,7 @@ from __future__ import annotations
 import os
 from copy import deepcopy
 from pathlib import Path
-from typing import (
-    Any,
-    Dict,
-    Iterable,
-    List,
-    Optional,
-    Union,
-)
+from typing import Any, Iterable
 
 import numpy as np
 import orjson
@@ -61,7 +54,7 @@ class RawBatch:
 
     @classmethod
     def from_dicts(
-        cls, items: Iterable[Dict[str, Any]], *, schema: Optional[pa.Schema] = None
+        cls, items: Iterable[dict[str, Any]], *, schema: pa.Schema | None = None
     ) -> Self:
         """Construct a RawBatch from an iterable of dicts representing STAC items.
 
@@ -133,7 +126,7 @@ class RawBatch:
 
         # Convert each geometry column to a Shapely geometry, and then assign the
         # geojson geometry when converting each row to a dictionary.
-        geometries: List[NDArray[np.object_]] = []
+        geometries: list[NDArray[np.object_]] = []
         for geometry_path in geometry_paths:
             col = batch
             for path_segment in geometry_path:
@@ -168,7 +161,7 @@ class RawBatch:
 
         return CleanBatch(batch)
 
-    def to_ndjson(self, dest: Union[str, Path, os.PathLike[bytes]]) -> None:
+    def to_ndjson(self, dest: str | Path | os.PathLike[bytes]) -> None:
         with open(dest, "ab") as f:
             for item_dict in self.iter_dicts():
                 f.write(orjson.dumps(item_dict))
