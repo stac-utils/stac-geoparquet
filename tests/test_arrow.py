@@ -8,6 +8,7 @@ from stac_geoparquet.arrow import (
     parse_stac_items_to_arrow,
     parse_stac_ndjson_to_arrow,
     stac_table_to_items,
+    stac_table_to_ndjson,
 )
 
 from .json_equals import assert_json_value_equal
@@ -30,11 +31,8 @@ TEST_COLLECTIONS = [
 ]
 
 
-@pytest.mark.parametrize(
-    "collection_id",
-    TEST_COLLECTIONS,
-)
-def test_round_trip(collection_id: str):
+@pytest.mark.parametrize("collection_id", TEST_COLLECTIONS)
+def test_round_trip_read_write(collection_id: str):
     with open(HERE / "data" / f"{collection_id}-pc.json") as f:
         items = json.load(f)
 
@@ -43,6 +41,19 @@ def test_round_trip(collection_id: str):
 
     for result, expected in zip(items_result, items):
         assert_json_value_equal(result, expected, precision=0)
+
+
+@pytest.mark.parametrize("collection_id", TEST_COLLECTIONS)
+def test_round_trip_write_read_ndjson(collection_id: str, tmp_path: Path):
+    # First load into a STAC-GeoParquet table
+    path = HERE / "data" / f"{collection_id}-pc.json"
+    table = pa.Table.from_batches(parse_stac_ndjson_to_arrow(path))
+
+    # Then write to disk
+    stac_table_to_ndjson(table, tmp_path / "tmp.ndjson")
+
+    # Then read back and assert tables match
+    table = pa.Table.from_batches(parse_stac_ndjson_to_arrow(tmp_path / "tmp.ndjson"))
 
 
 def test_table_contains_geoarrow_metadata():
@@ -59,10 +70,7 @@ def test_table_contains_geoarrow_metadata():
     }
 
 
-@pytest.mark.parametrize(
-    "collection_id",
-    TEST_COLLECTIONS,
-)
+@pytest.mark.parametrize("collection_id", TEST_COLLECTIONS)
 def test_parse_json_to_arrow(collection_id: str):
     path = HERE / "data" / f"{collection_id}-pc.json"
     table = pa.Table.from_batches(parse_stac_ndjson_to_arrow(path))

@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import os
 from copy import deepcopy
+from pathlib import Path
 from typing import (
     Any,
     Dict,
@@ -20,6 +21,11 @@ import shapely.geometry
 from numpy.typing import NDArray
 from typing_extensions import Self
 
+from stac_geoparquet.arrow._from_arrow import (
+    convert_bbox_to_array,
+    convert_timestamp_columns_to_string,
+    lower_properties_from_top_level,
+)
 from stac_geoparquet.arrow._to_arrow import (
     assign_geoarrow_metadata,
     bring_properties_to_top_level,
@@ -27,11 +33,6 @@ from stac_geoparquet.arrow._to_arrow import (
     convert_timestamp_columns,
 )
 from stac_geoparquet.arrow._util import convert_tuples_to_lists, set_by_path
-from stac_geoparquet.arrow._from_arrow import (
-    convert_bbox_to_array,
-    convert_timestamp_columns_to_string,
-    lower_properties_from_top_level,
-)
 
 
 class RawBatch:
@@ -167,7 +168,7 @@ class RawBatch:
 
         return CleanBatch(batch)
 
-    def to_ndjson(self, dest: Union[str, os.PathLike[bytes]]) -> None:
+    def to_ndjson(self, dest: Union[str, Path, os.PathLike[bytes]]) -> None:
         with open(dest, "ab") as f:
             for item_dict in self.iter_dicts():
                 f.write(orjson.dumps(item_dict))

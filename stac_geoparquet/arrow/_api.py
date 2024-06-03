@@ -102,7 +102,9 @@ def stac_table_to_items(table: pa.Table) -> Iterable[dict]:
         yield from clean_batch.to_raw_batch().iter_dicts()
 
 
-def stac_table_to_ndjson(table: pa.Table, dest: Union[str, os.PathLike[bytes]]) -> None:
+def stac_table_to_ndjson(
+    table: pa.Table, dest: Union[str, Path, os.PathLike[bytes]]
+) -> None:
     """Write a STAC Table to a newline-delimited JSON file."""
     for batch in table.to_batches():
         clean_batch = CleanBatch(batch)
