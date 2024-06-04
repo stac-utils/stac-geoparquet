@@ -1,6 +1,6 @@
 import json
 from pathlib import Path
-from typing import Any, Iterable, Optional, Union
+from typing import Any, Dict, Iterable, Optional, Union
 
 import pyarrow as pa
 import pyarrow.parquet as pq
@@ -77,7 +77,7 @@ def _create_geoparquet_metadata(table: pa.Table) -> dict[bytes, bytes]:
             }
         },
     }
-    geo_meta = {
+    geo_meta: Dict[str, Any] = {
         "version": "1.1.0-dev",
         "columns": {"geometry": column_meta},
         "primary_column": "geometry",
