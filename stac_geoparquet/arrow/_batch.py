@@ -151,7 +151,7 @@ class StacJsonBatch:
 
             yield row_dict
 
-    def to_clean_batch(self) -> StacArrowBatch:
+    def to_arrow_batch(self) -> StacArrowBatch:
         batch = self.inner
 
         batch = bring_properties_to_top_level(batch)
@@ -180,7 +180,7 @@ class StacArrowBatch:
     def __init__(self, batch: pa.RecordBatch) -> None:
         self.inner = batch
 
-    def to_raw_batch(self) -> StacJsonBatch:
+    def to_json_batch(self) -> StacJsonBatch:
         batch = self.inner
 
         batch = convert_timestamp_columns_to_string(batch)
