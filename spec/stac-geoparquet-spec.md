@@ -36,6 +36,7 @@ most of the fields should be the same in STAC and in GeoParquet.
 * STAC GeoParquet does not support properties that are named such that they collide with a top-level key.
 * datetime columns should be stored as a [native timestamp][timestamp], not as a string
 * The Collection JSON should be included in the Parquet metadata. See [Collection JSON](#collection-json) below.
+* Any other properties that would be stored as GeoJSON in a STAC JSON Item (e.g. `proj:geometry`) should be stored as a binary column with WKB encoding. This simplifies the handling of collections with multiple geometry types.
 
 ### Link Struct
 

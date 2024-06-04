@@ -5,9 +5,9 @@ from typing import Any, Iterable, Optional, Union
 import pyarrow as pa
 import pyarrow.parquet as pq
 
-from stac_geoparquet.arrow._schema.models import InferredSchema
-from stac_geoparquet.arrow._to_arrow import parse_stac_ndjson_to_arrow
+from stac_geoparquet.arrow._api import parse_stac_ndjson_to_arrow
 from stac_geoparquet.arrow._crs import WGS84_CRS_JSON
+from stac_geoparquet.arrow._schema.models import InferredSchema
 
 
 def parse_stac_ndjson_to_parquet(
