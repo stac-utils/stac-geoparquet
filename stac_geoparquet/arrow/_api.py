@@ -99,7 +99,7 @@ def stac_table_to_items(table: pa.Table) -> Iterable[dict]:
     """Convert a STAC Table to a generator of STAC Item `dict`s"""
     for batch in table.to_batches():
         clean_batch = StacArrowBatch(batch)
-        yield from clean_batch.to_raw_batch().iter_dicts()
+        yield from clean_batch.to_json_batch().iter_dicts()
 
 
 def stac_table_to_ndjson(
@@ -108,7 +108,7 @@ def stac_table_to_ndjson(
     """Write a STAC Table to a newline-delimited JSON file."""
     for batch in table.to_batches():
         clean_batch = StacArrowBatch(batch)
-        clean_batch.to_raw_batch().to_ndjson(dest)
+        clean_batch.to_json_batch().to_ndjson(dest)
 
 
 def stac_items_to_arrow(
@@ -133,4 +133,4 @@ def stac_items_to_arrow(
         Arrow RecordBatch with items in Arrow
     """
     raw_batch = StacJsonBatch.from_dicts(items, schema=schema)
-    return raw_batch.to_clean_batch().inner
+    return raw_batch.to_arrow_batch().inner
