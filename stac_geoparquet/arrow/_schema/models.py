@@ -56,7 +56,7 @@ class InferredSchema:
         )
         self.inner = new_schema
 
-    def manual_updates(self):
+    def manual_updates(self) -> None:
         schema = self.inner
         properties_field = schema.field("properties")
         properties_schema = pa.schema(properties_field.type)

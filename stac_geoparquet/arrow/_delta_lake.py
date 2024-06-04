@@ -22,7 +22,7 @@ def parse_stac_ndjson_to_delta_lake(
     schema: pa.Schema | None = None,
     limit: int | None = None,
     **kwargs,
-):
+) -> None:
     batches_iter = parse_stac_ndjson_to_arrow(
         input_path, chunk_size=chunk_size, schema=schema, limit=limit
     )
