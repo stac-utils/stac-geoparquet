@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import itertools
 from pathlib import Path
-from typing import TYPE_CHECKING, Iterable, Optional, Union
+from typing import TYPE_CHECKING, Iterable
 
 import pyarrow as pa
 from deltalake import write_deltalake
@@ -15,12 +15,12 @@ if TYPE_CHECKING:
 
 
 def parse_stac_ndjson_to_delta_lake(
-    input_path: Union[str, Path, Iterable[Union[str, Path]]],
-    table_or_uri: Union[str, Path, DeltaTable],
+    input_path: str | Path | Iterable[str | Path],
+    table_or_uri: str | Path | DeltaTable,
     *,
     chunk_size: int = 65536,
-    schema: Optional[pa.Schema] = None,
-    limit: Optional[int] = None,
+    schema: pa.Schema | None = None,
+    limit: int | None = None,
     **kwargs,
 ):
     batches_iter = parse_stac_ndjson_to_arrow(

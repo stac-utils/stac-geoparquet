@@ -1,6 +1,8 @@
+from __future__ import annotations
+
 import json
 from pathlib import Path
-from typing import Any, Dict, Iterable, Optional, Union
+from typing import Any, Iterable
 
 import pyarrow as pa
 import pyarrow.parquet as pq
@@ -11,12 +13,12 @@ from stac_geoparquet.arrow._schema.models import InferredSchema
 
 
 def parse_stac_ndjson_to_parquet(
-    input_path: Union[str, Path, Iterable[Union[str, Path]]],
-    output_path: Union[str, Path],
+    input_path: str | Path | Iterable[str | Path],
+    output_path: str | Path,
     *,
     chunk_size: int = 65536,
-    schema: Optional[Union[pa.Schema, InferredSchema]] = None,
-    limit: Optional[int] = None,
+    schema: pa.Schema | InferredSchema | None = None,
+    limit: int | None = None,
     **kwargs: Any,
 ) -> None:
     """Convert one or more newline-delimited JSON STAC files to GeoParquet
@@ -78,7 +80,7 @@ def create_geoparquet_metadata(table: pa.Table) -> dict[bytes, bytes]:
             }
         },
     }
-    geo_meta: Dict[str, Any] = {
+    geo_meta: dict[str, Any] = {
         "version": "1.1.0-dev",
         "columns": {"geometry": column_meta},
         "primary_column": "geometry",
