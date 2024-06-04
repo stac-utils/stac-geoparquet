@@ -27,6 +27,8 @@ def parse_stac_ndjson_to_delta_lake(
         input_path, chunk_size=chunk_size, schema=schema, limit=limit
     )
     first_batch = next(batches_iter)
-    schema = first_batch.schema.with_metadata(create_geoparquet_metadata())
+    schema = first_batch.schema.with_metadata(
+        create_geoparquet_metadata(pa.Table.from_batches([first_batch]))
+    )
     combined_iter = itertools.chain([first_batch], batches_iter)
     write_deltalake(table_or_uri, combined_iter, schema=schema, engine="rust", **kwargs)

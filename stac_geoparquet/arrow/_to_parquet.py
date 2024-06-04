@@ -37,7 +37,7 @@ def parse_stac_ndjson_to_parquet(
     )
     first_batch = next(batches_iter)
     schema = first_batch.schema.with_metadata(
-        _create_geoparquet_metadata(pa.Table.from_batches([first_batch]))
+        create_geoparquet_metadata(pa.Table.from_batches([first_batch]))
     )
     with pq.ParquetWriter(output_path, schema, **kwargs) as writer:
         writer.write_batch(first_batch)
@@ -55,13 +55,13 @@ def to_parquet(table: pa.Table, where: Any, **kwargs: Any) -> None:
         where: The destination for saving.
     """
     metadata = table.schema.metadata or {}
-    metadata.update(_create_geoparquet_metadata(table))
+    metadata.update(create_geoparquet_metadata(table))
     table = table.replace_schema_metadata(metadata)
 
     pq.write_table(table, where, **kwargs)
 
 
-def _create_geoparquet_metadata(table: pa.Table) -> dict[bytes, bytes]:
+def create_geoparquet_metadata(table: pa.Table) -> dict[bytes, bytes]:
     # TODO: include bbox of geometries
     column_meta = {
         "encoding": "WKB",

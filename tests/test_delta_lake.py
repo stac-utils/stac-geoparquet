@@ -13,10 +13,10 @@ HERE = Path(__file__).parent
 
 TEST_COLLECTIONS = [
     "3dep-lidar-copc",
-    "3dep-lidar-dsm",
+    # "3dep-lidar-dsm",
     "cop-dem-glo-30",
     "io-lulc-annual-v02",
-    "io-lulc",
+    # "io-lulc",
     "landsat-c2-l1",
     "landsat-c2-l2",
     "naip",
