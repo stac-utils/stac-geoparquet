@@ -1,7 +1,9 @@
 import json
+from io import BytesIO
 from pathlib import Path
 
 import pyarrow as pa
+import pyarrow.parquet as pq
 import pytest
 
 from stac_geoparquet.arrow import (
@@ -9,6 +11,7 @@ from stac_geoparquet.arrow import (
     parse_stac_ndjson_to_arrow,
     stac_table_to_items,
     stac_table_to_ndjson,
+    to_parquet,
 )
 
 from .json_equals import assert_json_value_equal
@@ -94,3 +97,23 @@ def test_from_arrow_deprecated():
         import stac_geoparquet.from_arrow
 
     stac_geoparquet.from_arrow.stac_table_to_items
+
+
+def test_to_parquet_two_geometry_columns():
+    """
+    When writing STAC Items that have a proj:geometry field, there should be two
+    geometry columns listed in the GeoParquet metadata.
+    """
+    with open(HERE / "data" / "3dep-lidar-copc-pc.json") as f:
+        items = json.load(f)
+
+    table = pa.Table.from_batches(parse_stac_items_to_arrow(items))
+    with BytesIO() as bio:
+        to_parquet(table, bio)
+        bio.seek(0)
+        pq_meta = pq.read_metadata(bio)
+
+    geo_meta = json.loads(pq_meta.metadata[b"geo"])
+    assert geo_meta["primary_column"] == "geometry"
+    assert "geometry" in geo_meta["columns"].keys()
+    assert "proj:geometry" in geo_meta["columns"].keys()

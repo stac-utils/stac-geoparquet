@@ -4,7 +4,7 @@ from typing import Any, Dict, Iterable, Iterator, Optional, Union
 
 import pyarrow as pa
 
-from stac_geoparquet.arrow._batch import CleanBatch, RawBatch
+from stac_geoparquet.arrow._batch import StacArrowBatch, StacJsonBatch
 from stac_geoparquet.arrow._schema.models import InferredSchema
 from stac_geoparquet.arrow._util import batched_iter
 from stac_geoparquet.json_reader import read_json_chunked
@@ -99,7 +99,7 @@ def parse_stac_ndjson_to_arrow(
 def stac_table_to_items(table: pa.Table) -> Iterable[dict]:
     """Convert a STAC Table to a generator of STAC Item `dict`s"""
     for batch in table.to_batches():
-        clean_batch = CleanBatch(batch)
+        clean_batch = StacArrowBatch(batch)
         yield from clean_batch.to_raw_batch().iter_dicts()
 
 
@@ -108,7 +108,7 @@ def stac_table_to_ndjson(
 ) -> None:
     """Write a STAC Table to a newline-delimited JSON file."""
     for batch in table.to_batches():
-        clean_batch = CleanBatch(batch)
+        clean_batch = StacArrowBatch(batch)
         clean_batch.to_raw_batch().to_ndjson(dest)
 
 
@@ -133,5 +133,5 @@ def stac_items_to_arrow(
     Returns:
         Arrow RecordBatch with items in Arrow
     """
-    raw_batch = RawBatch.from_dicts(items, schema=schema)
+    raw_batch = StacJsonBatch.from_dicts(items, schema=schema)
     return raw_batch.to_clean_batch().inner

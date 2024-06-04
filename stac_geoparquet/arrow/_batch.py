@@ -28,7 +28,7 @@ from stac_geoparquet.arrow._to_arrow import (
 from stac_geoparquet.arrow._util import convert_tuples_to_lists, set_by_path
 
 
-class RawBatch:
+class StacJsonBatch:
     """
     An Arrow RecordBatch of STAC Items that has been **minimally converted** to Arrow.
     That is, it aligns as much as possible to the raw STAC JSON representation.
@@ -56,7 +56,7 @@ class RawBatch:
     def from_dicts(
         cls, items: Iterable[dict[str, Any]], *, schema: pa.Schema | None = None
     ) -> Self:
-        """Construct a RawBatch from an iterable of dicts representing STAC items.
+        """Construct a StacJsonBatch from an iterable of dicts representing STAC items.
 
         All items will be parsed into a single RecordBatch, meaning that each internal
         array is fully contiguous in memory for the length of `items`.
@@ -70,7 +70,7 @@ class RawBatch:
                 as binary type.
 
         Returns:
-            a new RawBatch of data.
+            a new StacJsonBatch of data.
         """
         # Preprocess GeoJSON to WKB in each STAC item
         # Otherwise, pyarrow will try to parse coordinates into a native geometry type
@@ -151,7 +151,7 @@ class RawBatch:
 
             yield row_dict
 
-    def to_clean_batch(self) -> CleanBatch:
+    def to_clean_batch(self) -> StacArrowBatch:
         batch = self.inner
 
         batch = bring_properties_to_top_level(batch)
@@ -159,7 +159,7 @@ class RawBatch:
         batch = convert_bbox_to_struct(batch)
         batch = assign_geoarrow_metadata(batch)
 
-        return CleanBatch(batch)
+        return StacArrowBatch(batch)
 
     def to_ndjson(self, dest: str | Path | os.PathLike[bytes]) -> None:
         with open(dest, "ab") as f:
@@ -168,7 +168,7 @@ class RawBatch:
                 f.write(b"\n")
 
 
-class CleanBatch:
+class StacArrowBatch:
     """
     An Arrow RecordBatch of STAC Items that has been processed to match the
     STAC-GeoParquet specification.
@@ -180,11 +180,11 @@ class CleanBatch:
     def __init__(self, batch: pa.RecordBatch) -> None:
         self.inner = batch
 
-    def to_raw_batch(self) -> RawBatch:
+    def to_raw_batch(self) -> StacJsonBatch:
         batch = self.inner
 
         batch = convert_timestamp_columns_to_string(batch)
         batch = lower_properties_from_top_level(batch)
         batch = convert_bbox_to_array(batch)
 
-        return RawBatch(batch)
+        return StacJsonBatch(batch)

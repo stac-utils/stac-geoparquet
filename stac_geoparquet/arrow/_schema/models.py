@@ -3,7 +3,7 @@ from typing import Any, Dict, Iterable, Optional, Sequence, Union
 
 import pyarrow as pa
 
-from stac_geoparquet.arrow._batch import RawBatch
+from stac_geoparquet.arrow._batch import StacJsonBatch
 from stac_geoparquet.json_reader import read_json_chunked
 
 
@@ -48,7 +48,7 @@ class InferredSchema:
     def update_from_items(self, items: Sequence[Dict[str, Any]]) -> None:
         """Update this inferred schema from a sequence of STAC Items."""
         self.count += len(items)
-        current_schema = RawBatch.from_dicts(items, schema=None).inner.schema
+        current_schema = StacJsonBatch.from_dicts(items, schema=None).inner.schema
         new_schema = pa.unify_schemas(
             [self.inner, current_schema], promote_options="permissive"
         )

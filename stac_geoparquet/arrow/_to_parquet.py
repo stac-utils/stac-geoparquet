@@ -1,6 +1,6 @@
 import json
 from pathlib import Path
-from typing import Any, Iterable, Optional, Union
+from typing import Any, Dict, Iterable, Optional, Union
 
 import pyarrow as pa
 import pyarrow.parquet as pq
@@ -36,7 +36,9 @@ def parse_stac_ndjson_to_parquet(
         input_path, chunk_size=chunk_size, schema=schema, limit=limit
     )
     first_batch = next(batches_iter)
-    schema = first_batch.schema.with_metadata(create_geoparquet_metadata())
+    schema = first_batch.schema.with_metadata(
+        _create_geoparquet_metadata(pa.Table.from_batches([first_batch]))
+    )
     with pq.ParquetWriter(output_path, schema, **kwargs) as writer:
         writer.write_batch(first_batch)
         for batch in batches_iter:
@@ -53,13 +55,13 @@ def to_parquet(table: pa.Table, where: Any, **kwargs: Any) -> None:
         where: The destination for saving.
     """
     metadata = table.schema.metadata or {}
-    metadata.update(create_geoparquet_metadata())
+    metadata.update(_create_geoparquet_metadata(table))
     table = table.replace_schema_metadata(metadata)
 
     pq.write_table(table, where, **kwargs)
 
 
-def create_geoparquet_metadata() -> dict[bytes, bytes]:
+def _create_geoparquet_metadata(table: pa.Table) -> dict[bytes, bytes]:
     # TODO: include bbox of geometries
     column_meta = {
         "encoding": "WKB",
@@ -76,9 +78,24 @@ def create_geoparquet_metadata() -> dict[bytes, bytes]:
             }
         },
     }
-    geo_meta = {
+    geo_meta: Dict[str, Any] = {
         "version": "1.1.0-dev",
         "columns": {"geometry": column_meta},
         "primary_column": "geometry",
     }
+
+    if "proj:geometry" in table.schema.names:
+        # Note we don't include proj:bbox as a covering here for a couple different
+        # reasons. For one, it's very common for the projected geometries to have a
+        # different CRS in each row, so having statistics for proj:bbox wouldn't be
+        # useful. Additionally, because of this we leave proj:bbox as a list instead of
+        # a struct.
+        geo_meta["columns"]["proj:geometry"] = {
+            "encoding": "WKB",
+            "geometry_types": [],
+            # Note that we have to set CRS to `null` to signify that the CRS is unknown.
+            # If the CRS key is missing, it gets inferred as WGS84.
+            "crs": None,
+        }
+
     return {b"geo": json.dumps(geo_meta).encode("utf-8")}
