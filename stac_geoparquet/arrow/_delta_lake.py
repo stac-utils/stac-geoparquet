@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import itertools
 from pathlib import Path
-from typing import TYPE_CHECKING, Iterable
+from typing import TYPE_CHECKING, Any, Iterable
 
 import pyarrow as pa
 from deltalake import write_deltalake
@@ -21,7 +21,7 @@ def parse_stac_ndjson_to_delta_lake(
     chunk_size: int = 65536,
     schema: pa.Schema | None = None,
     limit: int | None = None,
-    **kwargs,
+    **kwargs: Any,
 ) -> None:
     batches_iter = parse_stac_ndjson_to_arrow(
         input_path, chunk_size=chunk_size, schema=schema, limit=limit
