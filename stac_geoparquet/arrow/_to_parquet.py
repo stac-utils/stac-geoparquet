@@ -1,6 +1,8 @@
+from __future__ import annotations
+
 import json
 from pathlib import Path
-from typing import Any, Dict, Iterable, Optional, Union
+from typing import Any, Iterable
 
 import pyarrow as pa
 import pyarrow.parquet as pq
@@ -11,11 +13,12 @@ from stac_geoparquet.arrow._schema.models import InferredSchema
 
 
 def parse_stac_ndjson_to_parquet(
-    input_path: Union[str, Path, Iterable[Union[str, Path]]],
-    output_path: Union[str, Path],
+    input_path: str | Path | Iterable[str | Path],
+    output_path: str | Path,
     *,
     chunk_size: int = 65536,
-    schema: Optional[Union[pa.Schema, InferredSchema]] = None,
+    schema: pa.Schema | InferredSchema | None = None,
+    limit: int | None = None,
     **kwargs: Any,
 ) -> None:
     """Convert one or more newline-delimited JSON STAC files to GeoParquet
@@ -32,11 +35,11 @@ def parse_stac_ndjson_to_parquet(
     """
 
     batches_iter = parse_stac_ndjson_to_arrow(
-        input_path, chunk_size=chunk_size, schema=schema
+        input_path, chunk_size=chunk_size, schema=schema, limit=limit
     )
     first_batch = next(batches_iter)
     schema = first_batch.schema.with_metadata(
-        _create_geoparquet_metadata(pa.Table.from_batches([first_batch]))
+        create_geoparquet_metadata(pa.Table.from_batches([first_batch]))
     )
     with pq.ParquetWriter(output_path, schema, **kwargs) as writer:
         writer.write_batch(first_batch)
@@ -54,13 +57,13 @@ def to_parquet(table: pa.Table, where: Any, **kwargs: Any) -> None:
         where: The destination for saving.
     """
     metadata = table.schema.metadata or {}
-    metadata.update(_create_geoparquet_metadata(table))
+    metadata.update(create_geoparquet_metadata(table))
     table = table.replace_schema_metadata(metadata)
 
     pq.write_table(table, where, **kwargs)
 
 
-def _create_geoparquet_metadata(table: pa.Table) -> dict[bytes, bytes]:
+def create_geoparquet_metadata(table: pa.Table) -> dict[bytes, bytes]:
     # TODO: include bbox of geometries
     column_meta = {
         "encoding": "WKB",
@@ -77,7 +80,7 @@ def _create_geoparquet_metadata(table: pa.Table) -> dict[bytes, bytes]:
             }
         },
     }
-    geo_meta: Dict[str, Any] = {
+    geo_meta: dict[str, Any] = {
         "version": "1.1.0-dev",
         "columns": {"geometry": column_meta},
         "primary_column": "geometry",

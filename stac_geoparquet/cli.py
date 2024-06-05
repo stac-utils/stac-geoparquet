@@ -1,15 +1,16 @@
+from __future__ import annotations
+
 import argparse
 import logging
 import sys
 import os
-from typing import List, Optional
 
 from stac_geoparquet import pc_runner
 
 logger = logging.getLogger("stac_geoparquet.pgstac_reader")
 
 
-def parse_args(args: Optional[List[str]] = None) -> argparse.Namespace:
+def parse_args(args: list[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "--output-protocol",
@@ -90,7 +91,7 @@ SKIP = {
 }
 
 
-def main(inp: Optional[List[str]] = None) -> int:
+def main(inp: list[str] | None = None) -> int:
     import azure.data.tables
 
     args = parse_args(inp)

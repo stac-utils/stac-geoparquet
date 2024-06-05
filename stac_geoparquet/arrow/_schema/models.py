@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from pathlib import Path
-from typing import Any, Dict, Iterable, Optional, Sequence, Union
+from typing import Any, Iterable, Sequence
 
 import pyarrow as pa
 
@@ -27,10 +29,10 @@ class InferredSchema:
 
     def update_from_json(
         self,
-        path: Union[str, Path, Iterable[Union[str, Path]]],
+        path: str | Path | Iterable[str | Path],
         *,
         chunk_size: int = 65536,
-        limit: Optional[int] = None,
+        limit: int | None = None,
     ) -> None:
         """
         Update this inferred schema from one or more newline-delimited JSON STAC files.
@@ -45,7 +47,7 @@ class InferredSchema:
         for batch in read_json_chunked(path, chunk_size=chunk_size, limit=limit):
             self.update_from_items(batch)
 
-    def update_from_items(self, items: Sequence[Dict[str, Any]]) -> None:
+    def update_from_items(self, items: Sequence[dict[str, Any]]) -> None:
         """Update this inferred schema from a sequence of STAC Items."""
         self.count += len(items)
         current_schema = StacJsonBatch.from_dicts(items, schema=None).inner.schema
@@ -53,3 +55,49 @@ class InferredSchema:
             [self.inner, current_schema], promote_options="permissive"
         )
         self.inner = new_schema
+
+    def manual_updates(self) -> None:
+        schema = self.inner
+        properties_field = schema.field("properties")
+        properties_schema = pa.schema(properties_field.type)
+
+        # The datetime column can be inferred as `null` in the case of a Collection with
+        # start_datetime and end_datetime. But `null` is incompatible with Delta Lake,
+        # so we coerce to a Timestamp type.
+        if pa.types.is_null(properties_schema.field("datetime").type):
+            field_idx = properties_schema.get_field_index("datetime")
+            properties_schema = properties_schema.set(
+                field_idx,
+                properties_schema.field(field_idx).with_type(
+                    pa.timestamp("us", tz="UTC")
+                ),
+            )
+
+        if "proj:epsg" in properties_schema.names and pa.types.is_null(
+            properties_schema.field("proj:epsg").type
+        ):
+            field_idx = properties_schema.get_field_index("proj:epsg")
+            properties_schema = properties_schema.set(
+                field_idx,
+                properties_schema.field(field_idx).with_type(pa.int64()),
+            )
+
+        if "proj:wkt2" in properties_schema.names and pa.types.is_null(
+            properties_schema.field("proj:wkt2").type
+        ):
+            field_idx = properties_schema.get_field_index("proj:wkt2")
+            properties_schema = properties_schema.set(
+                field_idx,
+                properties_schema.field(field_idx).with_type(pa.string()),
+            )
+
+        # Note: proj:projjson can also be null, but we don't have a type we can cast
+        # that to.
+
+        properties_idx = schema.get_field_index("properties")
+        updated_schema = schema.set(
+            properties_idx,
+            properties_field.with_type(pa.struct(properties_schema)),
+        )
+
+        self.inner = updated_schema

@@ -1,6 +1,8 @@
+from __future__ import annotations
+
 import os
 from pathlib import Path
-from typing import Any, Dict, Iterable, Iterator, Optional, Union
+from typing import Any, Iterable, Iterator
 
 import pyarrow as pa
 
@@ -11,10 +13,10 @@ from stac_geoparquet.json_reader import read_json_chunked
 
 
 def parse_stac_items_to_arrow(
-    items: Iterable[Dict[str, Any]],
+    items: Iterable[dict[str, Any]],
     *,
     chunk_size: int = 8192,
-    schema: Optional[Union[pa.Schema, InferredSchema]] = None,
+    schema: pa.Schema | InferredSchema | None = None,
 ) -> Iterable[pa.RecordBatch]:
     """Parse a collection of STAC Items to an iterable of :class:`pyarrow.RecordBatch`.
 
@@ -51,11 +53,11 @@ def parse_stac_items_to_arrow(
 
 
 def parse_stac_ndjson_to_arrow(
-    path: Union[str, Path, Iterable[Union[str, Path]]],
+    path: str | Path | Iterable[str | Path],
     *,
     chunk_size: int = 65536,
-    schema: Optional[pa.Schema] = None,
-    limit: Optional[int] = None,
+    schema: pa.Schema | None = None,
+    limit: int | None = None,
 ) -> Iterator[pa.RecordBatch]:
     """
     Convert one or more newline-delimited JSON STAC files to a generator of Arrow
@@ -83,6 +85,7 @@ def parse_stac_ndjson_to_arrow(
     if schema is None:
         inferred_schema = InferredSchema()
         inferred_schema.update_from_json(path, chunk_size=chunk_size, limit=limit)
+        inferred_schema.manual_updates()
         yield from parse_stac_ndjson_to_arrow(
             path, chunk_size=chunk_size, schema=inferred_schema
         )
@@ -103,7 +106,7 @@ def stac_table_to_items(table: pa.Table) -> Iterable[dict]:
 
 
 def stac_table_to_ndjson(
-    table: pa.Table, dest: Union[str, Path, os.PathLike[bytes]]
+    table: pa.Table, dest: str | Path | os.PathLike[bytes]
 ) -> None:
     """Write a STAC Table to a newline-delimited JSON file."""
     for batch in table.to_batches():
@@ -112,7 +115,7 @@ def stac_table_to_ndjson(
 
 
 def stac_items_to_arrow(
-    items: Iterable[Dict[str, Any]], *, schema: Optional[pa.Schema] = None
+    items: Iterable[dict[str, Any]], *, schema: pa.Schema | None = None
 ) -> pa.RecordBatch:
     """Convert dicts representing STAC Items to Arrow
 
