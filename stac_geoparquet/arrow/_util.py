@@ -1,5 +1,6 @@
 import operator
 from functools import reduce
+from itertools import islice
 from typing import (
     Any,
     Dict,
@@ -11,7 +12,6 @@ from typing import (
 )
 
 import pyarrow as pa
-from itertools import islice
 
 
 def update_batch_schema(

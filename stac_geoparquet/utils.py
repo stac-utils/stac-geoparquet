@@ -3,8 +3,9 @@ from __future__ import annotations
 import functools
 from typing import Any
 
-import shapely.geometry
 import pystac
+import shapely.geometry
+import shapely.geometry.base
 
 
 @functools.singledispatch
@@ -36,7 +37,7 @@ def assert_equal_item(
     )
     assert result.bbox == expected.bbox
     assert result.datetime == expected.datetime
-    assert type(result.stac_extensions) == type(expected.stac_extensions)
+    assert isinstance(result.stac_extensions, type(expected.stac_extensions))
     assert sorted(result.stac_extensions) == sorted(expected.stac_extensions)
     assert result.collection_id == expected.collection_id
     assert result.extra_fields == expected.extra_fields
@@ -86,7 +87,7 @@ def assert_link_equal(
 
 
 def fix_empty_multipolygon(
-    item_geometry: dict[str, Any]
+    item_geometry: dict[str, Any],
 ) -> shapely.geometry.base.BaseGeometry:
     # Filter out missing geoms in MultiPolygons
     # https://github.com/shapely/shapely/issues/1407

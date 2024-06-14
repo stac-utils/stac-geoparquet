@@ -84,3 +84,22 @@ ignore_missing_imports = true
 [[tool.mypy.overrides]]
 module = "stac_geoparquet.*"
 disallow_untyped_defs = true
+
+[tool.ruff.lint]
+select = [
+    # Pyflakes
+    "F",
+    # Pycodestyle
+    "E",
+    "W",
+    # isort
+    "I",
+]
+ignore = [
+    "E501", # Line too long
+]
+
+[tool.ruff.lint.extend-per-file-ignores]
+"__init__.py" = [
+    "F401", # Allow unused imports in __init__.py files
+]

@@ -2,15 +2,14 @@ import datetime
 import json
 import pathlib
 
-import pystac
 import dateutil
 import pandas as pd
+import pystac
 import pytest
 
 import stac_geoparquet.pgstac_reader
-from stac_geoparquet.utils import assert_equal
 from stac_geoparquet._compat import PYSTAC_1_7_0
-
+from stac_geoparquet.utils import assert_equal
 
 HERE = pathlib.Path(__file__).parent
 
