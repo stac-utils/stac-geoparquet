@@ -2,8 +2,8 @@ from __future__ import annotations
 
 import argparse
 import logging
-import sys
 import os
+import sys
 
 from stac_geoparquet import pc_runner
 
@@ -53,6 +53,7 @@ def parse_args(args: list[str] | None = None) -> argparse.Namespace:
 def setup_logging() -> None:
     import logging
     import warnings
+
     import rich.logging
 
     warnings.filterwarnings("ignore", message=".*initial implementation of Parquet.*")

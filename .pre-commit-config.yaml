@@ -1,3 +1,6 @@
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+
 repos:
   - repo: https://github.com/asottile/pyupgrade
     rev: v3.15.2
@@ -5,16 +8,20 @@ repos:
       - id: pyupgrade
         args:
           - --py38-plus
-  - repo: https://github.com/psf/black
-    rev: 24.4.0
-    hooks:
-      - id: black
-        language_version: python3
-        exclude: versioneer.py
-        args:
-          - --target-version=py38
   - repo: https://github.com/pycqa/flake8
     rev: 7.0.0
     hooks:
       - id: flake8
         language_version: python3
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v2.4.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+        exclude: tests/.*\.json
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.4.9
+    hooks:
+      - id: ruff
+        args: ["--fix"]
+      - id: ruff-format

@@ -3,7 +3,6 @@ from typing import Any, Dict, Sequence, Union
 
 from ciso8601 import parse_rfc3339
 
-
 JsonValue = Union[list, tuple, int, float, dict, str, bool, None]
 
 

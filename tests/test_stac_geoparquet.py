@@ -1,16 +1,16 @@
 import json
 import pathlib
 
-import stac_geoparquet
-import shapely.geometry
+import geopandas
 import pandas as pd
 import pandas.testing
 import pyarrow as pa
 import pystac
-import geopandas
-import requests
 import pytest
+import requests
+import shapely.geometry
 
+import stac_geoparquet
 from stac_geoparquet.stac_geoparquet import to_item_collection
 from stac_geoparquet.utils import assert_equal, fix_empty_multipolygon
 
