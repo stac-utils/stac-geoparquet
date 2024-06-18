@@ -28,7 +28,7 @@ def parse_stac_ndjson_to_parquet(
         input_path: One or more paths to files with STAC items.
         output_path: A path to the output Parquet file.
 
-    Other args:
+    Keyword Args:
         chunk_size: The chunk size. Defaults to 65536.
         schema: The schema to represent the input STAC data. Defaults to None, in which
             case the schema will first be inferred via a full pass over the input data.
@@ -70,7 +70,7 @@ def to_parquet(
         table: The table to write to Parquet
         where: The destination for saving.
 
-    Other args:
+    Keyword Args:
         schema_version: GeoParquet specification version; if not provided will default
             to latest supported version.
     """

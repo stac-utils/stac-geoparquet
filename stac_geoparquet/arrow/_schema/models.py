@@ -41,7 +41,7 @@ class InferredSchema:
             path: One or more paths to files with STAC items.
             chunk_size: The chunk size to load into memory at a time. Defaults to 65536.
 
-        Other args:
+        Keyword Args:
             limit: The maximum number of JSON Items to use for schema inference
         """
         for batch in read_json_chunked(path, chunk_size=chunk_size, limit=limit):

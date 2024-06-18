@@ -74,7 +74,7 @@ def parse_stac_ndjson_to_arrow(
             In this case, there will be two full passes over the input data: one to
             infer a common schema across all data and another to read the data.
 
-    Other args:
+    Keyword Args:
         limit: The maximum number of JSON Items to use for schema inference
 
     Yields:
