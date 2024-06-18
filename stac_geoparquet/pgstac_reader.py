@@ -1,25 +1,25 @@
 from __future__ import annotations
-import textwrap
-import hashlib
 
-import datetime
-import logging
-from typing import Any
 import collections.abc
+import dataclasses
+import datetime
+import hashlib
 import itertools
+import logging
+import textwrap
+from typing import Any
 
+import dateutil.tz
 import fsspec
 import pandas as pd
-import pystac
-import dateutil.tz
-import dataclasses
 import pyarrow.fs
 import pypgstac.db
 import pypgstac.hydration
+import pystac
 import shapely.wkb
 import tqdm.auto
-from stac_geoparquet import to_geodataframe
 
+from stac_geoparquet import to_geodataframe
 
 logger = logging.getLogger(__name__)
 

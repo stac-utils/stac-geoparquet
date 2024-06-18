@@ -1,11 +1,12 @@
 from __future__ import annotations
 
 import json
+import urllib.parse
 from typing import Any
 
 import azure.data.tables
 import requests
-import urllib.parse
+
 from stac_geoparquet.pgstac_reader import CollectionConfig
 
 PARTITION_FREQUENCIES = {

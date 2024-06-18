@@ -3,19 +3,18 @@ Generate geoparquet from a sequence of STAC items.
 """
 
 from __future__ import annotations
+
 import collections
-
-from typing import Sequence, Any, Literal
 import warnings
+from typing import Any, Literal, Sequence
+from urllib.parse import urlparse
 
-import pystac
 import geopandas
+import numpy as np
 import pandas as pd
 import pyarrow as pa
-import numpy as np
+import pystac
 import shapely.geometry
-
-from urllib.parse import urlparse
 
 from stac_geoparquet.utils import fix_empty_multipolygon
 

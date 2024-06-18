@@ -1,10 +1,9 @@
 import pathlib
 
-import pytest
 import geopandas
+import pytest
 
 import stac_geoparquet
-
 
 HERE = pathlib.Path(__file__).parent
 
