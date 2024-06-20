@@ -7,6 +7,7 @@ from typing import Any, Iterable, Iterator
 import pyarrow as pa
 
 from stac_geoparquet.arrow._batch import StacArrowBatch, StacJsonBatch
+from stac_geoparquet.arrow._constants import DEFAULT_JSON_CHUNK_SIZE
 from stac_geoparquet.arrow._schema.models import InferredSchema
 from stac_geoparquet.arrow._util import batched_iter
 from stac_geoparquet.json_reader import read_json_chunked
@@ -55,7 +56,7 @@ def parse_stac_items_to_arrow(
 def parse_stac_ndjson_to_arrow(
     path: str | Path | Iterable[str | Path],
     *,
-    chunk_size: int = 65536,
+    chunk_size: int = DEFAULT_JSON_CHUNK_SIZE,
     schema: pa.Schema | None = None,
     limit: int | None = None,
 ) -> Iterator[pa.RecordBatch]:
@@ -74,7 +75,7 @@ def parse_stac_ndjson_to_arrow(
             In this case, there will be two full passes over the input data: one to
             infer a common schema across all data and another to read the data.
 
-    Other args:
+    Keyword Args:
         limit: The maximum number of JSON Items to use for schema inference
 
     Yields:

@@ -6,6 +6,7 @@ from typing import Any, Iterable, Sequence
 import pyarrow as pa
 
 from stac_geoparquet.arrow._batch import StacJsonBatch
+from stac_geoparquet.arrow._constants import DEFAULT_JSON_CHUNK_SIZE
 from stac_geoparquet.json_reader import read_json_chunked
 
 
@@ -31,7 +32,7 @@ class InferredSchema:
         self,
         path: str | Path | Iterable[str | Path],
         *,
-        chunk_size: int = 65536,
+        chunk_size: int = DEFAULT_JSON_CHUNK_SIZE,
         limit: int | None = None,
     ) -> None:
         """
@@ -41,7 +42,7 @@ class InferredSchema:
             path: One or more paths to files with STAC items.
             chunk_size: The chunk size to load into memory at a time. Defaults to 65536.
 
-        Other args:
+        Keyword Args:
             limit: The maximum number of JSON Items to use for schema inference
         """
         for batch in read_json_chunked(path, chunk_size=chunk_size, limit=limit):
