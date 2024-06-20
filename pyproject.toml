@@ -31,6 +31,13 @@ source = "vcs"
 version-file = "stac_geoparquet/_version.py"
 
 [project.optional-dependencies]
+docs = [
+    "griffe-inherited-docstrings",
+    "mike>=2",
+    "mkdocs-material[imaging]>=9.5",
+    "mkdocs",
+    "mkdocstrings[python]>=0.25.1",
+]
 pgstac = [
     "fsspec",
     "pypgstac",

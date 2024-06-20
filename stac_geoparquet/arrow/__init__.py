@@ -9,4 +9,5 @@ from ._constants import (
     DEFAULT_PARQUET_SCHEMA_VERSION,
     SUPPORTED_PARQUET_SCHEMA_VERSIONS,
 )
+from ._delta_lake import parse_stac_ndjson_to_delta_lake
 from ._to_parquet import parse_stac_ndjson_to_parquet, to_parquet
