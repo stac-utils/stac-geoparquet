@@ -40,34 +40,34 @@ def to_geodataframe(
     datetime_precision: str = "ns",
 ) -> geopandas.GeoDataFrame:
     """
-    Convert a sequence of STAC items to a :class:`geopandas.GeoDataFrame`.
+    Convert a sequence of STAC items to a [`geopandas.GeoDataFrame`][geopandas.GeoDataFrame].
 
     The objects under `properties` are moved up to the top-level of the
     DataFrame, similar to :meth:`geopandas.GeoDataFrame.from_features`.
 
-    Parameters
-    ----------
-    items: A sequence of STAC items.
-    add_self_link: bool, default False
-        Add the absolute link (if available) to the source STAC Item
-        as a separate column named "self_link"
-    dtype_backend: {'pyarrow', 'numpy_nullable'}, optional
-        The dtype backend to use for storing arrays.
+    Args:
+        items: A sequence of STAC items.
+        add_self_link: bool, default False
+            Add the absolute link (if available) to the source STAC Item
+            as a separate column named "self_link"
+        dtype_backend: `{'pyarrow', 'numpy_nullable'}`, optional
+            The dtype backend to use for storing arrays.
 
-        By default, this will use 'numpy_nullable' and emit a
-        FutureWarning that the default will change to 'pyarrow' in
-        the next release.
+            By default, this will use 'numpy_nullable' and emit a
+            FutureWarning that the default will change to 'pyarrow' in
+            the next release.
 
-        Set to 'numpy_nullable' to silence the warning and accept the
-        old behavior.
+            Set to 'numpy_nullable' to silence the warning and accept the
+            old behavior.
 
-        Set to 'pyarrow' to silence the warning and accept the new behavior.
+            Set to 'pyarrow' to silence the warning and accept the new behavior.
 
-        There are some difference in the output as well: with
-        ``dtype_backend="pyarrow"``, struct-like fields will explicitly
-        contain null values for fields that appear in only some of the
-        records. For example, given an ``assets`` like::
+            There are some difference in the output as well: with
+            ``dtype_backend="pyarrow"``, struct-like fields will explicitly
+            contain null values for fields that appear in only some of the
+            records. For example, given an ``assets`` like::
 
+            ```json
             {
                 "a": {
                     "href": "a.tif",
@@ -77,22 +77,22 @@ def to_geodataframe(
                     "title": "B",
                 }
             }
+            ```
 
-        The ``assets`` field of the output for the first row with
-        ``dtype_backend="numpy_nullable"`` will be a Python dictionary with
-        just ``{"href": "a.tiff"}``.
+            The ``assets`` field of the output for the first row with
+            ``dtype_backend="numpy_nullable"`` will be a Python dictionary with
+            just ``{"href": "a.tiff"}``.
 
-        With ``dtype_backend="pyarrow"``, this will be a pyarrow struct
-        with fields ``{"href": "a.tif", "title", None}``. pyarrow will
-        infer that the struct field ``asset.title`` is nullable.
+            With ``dtype_backend="pyarrow"``, this will be a pyarrow struct
+            with fields ``{"href": "a.tif", "title", None}``. pyarrow will
+            infer that the struct field ``asset.title`` is nullable.
 
-    datetime_precision: str, default "ns"
-        The precision to use for the datetime columns. For example,
-        "us" is microsecond and "ns" is nanosecond.
+        datetime_precision: str, default "ns"
+            The precision to use for the datetime columns. For example,
+            "us" is microsecond and "ns" is nanosecond.
 
-    Returns
-    -------
-    The converted GeoDataFrame.
+    Returns:
+        The converted GeoDataFrame.
     """
     items2 = collections.defaultdict(list)
 
@@ -199,9 +199,8 @@ def to_dict(record: dict) -> dict:
     """
     Create a dictionary representing a STAC item from a row of the GeoDataFrame.
 
-    Parameters
-    ----------
-    row: namedtuple
+    Parameters:
+        row: namedtuple
     """
     properties = {}
     top_level_keys = {
@@ -238,18 +237,14 @@ def to_dict(record: dict) -> dict:
 
 def to_item_collection(df: geopandas.GeoDataFrame) -> pystac.ItemCollection:
     """
-    Convert a GeoDataFrame of STAC items to an :class:`pystac.ItemCollection`.
+    Convert a GeoDataFrame of STAC items to a [`pystac.ItemCollection`][pystac.ItemCollection].
 
-    Parameters
-    ----------
-    df : geopandas.GeoDataFrame
-        A GeoDataFrame with a schema similar to that exported by stac-geoparquet.
+    Parameters:
+        df: A GeoDataFrame with a schema similar to that exported by stac-geoparquet.
 
-    Returns
-    -------
-    item_collection : pystac.ItemCollection
-        The converted ItemCollection. There will be one record / feature per
-        row in the in the GeoDataFrame.
+    Returns:
+        The converted `ItemCollection`. There will be one record / feature per
+            row in the in the GeoDataFrame.
     """
     df2 = df.copy()
     datelike = df2.select_dtypes(
