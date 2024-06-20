@@ -32,6 +32,7 @@ version-file = "stac_geoparquet/_version.py"
 
 [project.optional-dependencies]
 docs = [
+    "black",
     "griffe-inherited-docstrings",
     "mike>=2",
     "mkdocs-material[imaging]>=9.5",

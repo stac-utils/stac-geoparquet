@@ -18,7 +18,7 @@ nav:
   - "index.md"
   - API Reference:
       - api/geopandas.md
-      - api/viz.md
+      # - api/pgstac.md
 
 watch:
   - stac_geoparquet
