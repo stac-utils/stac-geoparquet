@@ -33,21 +33,22 @@ version-file = "stac_geoparquet/_version.py"
 [project.optional-dependencies]
 pgstac = [
     "fsspec",
-    "pypgstac",
     "psycopg[binary,pool]",
-    "tqdm",
+    "pypgstac",
     "python-dateutil",
+    "tqdm",
 ]
 pc = ["adlfs", "pypgstac", "psycopg[binary,pool]", "tqdm", "azure-data-tables"]
 test = [
+    "mypy",
+    "numpy>=2",
+    "pre-commit",
     "pytest",
     "requests",
-    "pre-commit",
-    "stac-geoparquet[pgstac]",
     "stac-geoparquet[pc]",
+    "stac-geoparquet[pgstac]",
     "types-python-dateutil",
     "types-requests",
-    "mypy",
 ]
 
 
