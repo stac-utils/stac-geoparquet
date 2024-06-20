@@ -2,13 +2,18 @@ from __future__ import annotations
 
 import itertools
 from pathlib import Path
-from typing import TYPE_CHECKING, Any, Iterable, Literal
+from typing import TYPE_CHECKING, Any, Iterable
 
 import pyarrow as pa
 from deltalake import write_deltalake
 
 from stac_geoparquet.arrow._api import parse_stac_ndjson_to_arrow
-from stac_geoparquet.arrow._to_parquet import create_geoparquet_metadata
+from stac_geoparquet.arrow._constants import DEFAULT_JSON_CHUNK_SIZE
+from stac_geoparquet.arrow._to_parquet import (
+    DEFAULT_PARQUET_SCHEMA_VERSION,
+    SUPPORTED_PARQUET_SCHEMA_VERSIONS,
+    create_geoparquet_metadata,
+)
 
 if TYPE_CHECKING:
     from deltalake import DeltaTable
@@ -18,10 +23,10 @@ def parse_stac_ndjson_to_delta_lake(
     input_path: str | Path | Iterable[str | Path],
     table_or_uri: str | Path | DeltaTable,
     *,
-    chunk_size: int = 65536,
+    chunk_size: int = DEFAULT_JSON_CHUNK_SIZE,
     schema: pa.Schema | None = None,
     limit: int | None = None,
-    schema_version: Literal["1.0.0", "1.1.0"] = "1.0.0",
+    schema_version: SUPPORTED_PARQUET_SCHEMA_VERSIONS = DEFAULT_PARQUET_SCHEMA_VERSION,
     **kwargs: Any,
 ) -> None:
     """Convert one or more newline-delimited JSON STAC files to Delta Lake

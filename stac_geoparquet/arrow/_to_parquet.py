@@ -2,12 +2,17 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
-from typing import Any, Iterable, Literal
+from typing import Any, Iterable
 
 import pyarrow as pa
 import pyarrow.parquet as pq
 
 from stac_geoparquet.arrow._api import parse_stac_ndjson_to_arrow
+from stac_geoparquet.arrow._constants import (
+    DEFAULT_JSON_CHUNK_SIZE,
+    DEFAULT_PARQUET_SCHEMA_VERSION,
+    SUPPORTED_PARQUET_SCHEMA_VERSIONS,
+)
 from stac_geoparquet.arrow._crs import WGS84_CRS_JSON
 from stac_geoparquet.arrow._schema.models import InferredSchema
 
@@ -16,10 +21,10 @@ def parse_stac_ndjson_to_parquet(
     input_path: str | Path | Iterable[str | Path],
     output_path: str | Path,
     *,
-    chunk_size: int = 65536,
+    chunk_size: int = DEFAULT_JSON_CHUNK_SIZE,
     schema: pa.Schema | InferredSchema | None = None,
     limit: int | None = None,
-    schema_version: Literal["1.0.0", "1.1.0"] = "1.0.0",
+    schema_version: SUPPORTED_PARQUET_SCHEMA_VERSIONS = DEFAULT_PARQUET_SCHEMA_VERSION,
     **kwargs: Any,
 ) -> None:
     """Convert one or more newline-delimited JSON STAC files to GeoParquet
@@ -59,7 +64,7 @@ def to_parquet(
     table: pa.Table,
     where: Any,
     *,
-    schema_version: Literal["1.0.0", "1.1.0"] = "1.0.0",
+    schema_version: SUPPORTED_PARQUET_SCHEMA_VERSIONS = DEFAULT_PARQUET_SCHEMA_VERSION,
     **kwargs: Any,
 ) -> None:
     """Write an Arrow table with STAC data to GeoParquet
@@ -84,7 +89,7 @@ def to_parquet(
 def create_geoparquet_metadata(
     table: pa.Table,
     *,
-    schema_version: Literal["1.0.0", "1.1.0"],
+    schema_version: SUPPORTED_PARQUET_SCHEMA_VERSIONS,
 ) -> dict[bytes, bytes]:
     # TODO: include bbox of geometries
     column_meta = {
