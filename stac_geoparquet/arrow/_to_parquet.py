@@ -100,7 +100,7 @@ def create_geoparquet_metadata(
         "edges": "planar",
     }
 
-    if int(schema_version.split(".")[1]) >= 1:
+    if schema_version_has_bbox_mapping(schema_version):
         column_meta["covering"] = {
             "bbox": {
                 "xmin": ["bbox", "xmin"],
@@ -131,3 +131,11 @@ def create_geoparquet_metadata(
         }
 
     return {b"geo": json.dumps(geo_meta).encode("utf-8")}
+
+
+def schema_version_has_bbox_mapping(schema_version: str) -> bool:
+    """
+    Return true if this GeoParquet schema version supports bounding box covering
+    metadata.
+    """
+    return int(schema_version.split(".")[1]) >= 1
