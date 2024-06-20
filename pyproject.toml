@@ -38,7 +38,7 @@ pgstac = [
     "python-dateutil",
     "tqdm",
 ]
-pc = ["adlfs", "pypgstac", "psycopg[binary,pool]", "tqdm", "azure-data-tables"]
+pc = ["adlfs", "azure-data-tables", "psycopg[binary,pool]", "pypgstac", "tqdm"]
 test = [
     "mypy",
     "numpy>=2",
