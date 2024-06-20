@@ -133,7 +133,9 @@ def create_geoparquet_metadata(
     return {b"geo": json.dumps(geo_meta).encode("utf-8")}
 
 
-def schema_version_has_bbox_mapping(schema_version: str) -> bool:
+def schema_version_has_bbox_mapping(
+    schema_version: SUPPORTED_PARQUET_SCHEMA_VERSIONS,
+) -> bool:
     """
     Return true if this GeoParquet schema version supports bounding box covering
     metadata.
