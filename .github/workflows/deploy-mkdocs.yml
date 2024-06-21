@@ -26,7 +26,7 @@ jobs:
           python-version: ${{ matrix.python-version }}
 
       - name: Install dependencies
-        run: python -m pip install .[docs]
+        run: python -m pip install -e .[pgstac,pc,test,docs]
 
       - name: Deploy docs
         env:
