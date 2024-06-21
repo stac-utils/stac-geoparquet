@@ -43,7 +43,8 @@ def to_geodataframe(
     Convert a sequence of STAC items to a [`geopandas.GeoDataFrame`][geopandas.GeoDataFrame].
 
     The objects under `properties` are moved up to the top-level of the
-    DataFrame, similar to :meth:`geopandas.GeoDataFrame.from_features`.
+    DataFrame, similar to
+    [`geopandas.GeoDataFrame.from_features`][geopandas.GeoDataFrame.from_features].
 
     Args:
         items: A sequence of STAC items.

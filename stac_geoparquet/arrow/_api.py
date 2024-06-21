@@ -19,10 +19,13 @@ def parse_stac_items_to_arrow(
     chunk_size: int = 8192,
     schema: pa.Schema | InferredSchema | None = None,
 ) -> Iterable[pa.RecordBatch]:
-    """Parse a collection of STAC Items to an iterable of :class:`pyarrow.RecordBatch`.
+    """
+    Parse a collection of STAC Items to an iterable of
+    [`pyarrow.RecordBatch`][pyarrow.RecordBatch].
 
     The objects under `properties` are moved up to the top-level of the
-    Table, similar to :meth:`geopandas.GeoDataFrame.from_features`.
+    Table, similar to
+    [`geopandas.GeoDataFrame.from_features`][geopandas.GeoDataFrame.from_features].
 
     Args:
         items: the STAC Items to convert

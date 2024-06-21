@@ -289,10 +289,8 @@ class CollectionConfig:
         records: list[tuple]
             The dehydrated records from pgstac.items table.
         base_item: dict[str, Any]
-            The base item from the ``collection_base_item`` pgstac function for this collection.
-            Used for rehydration
-        cfg: CollectionConfig
-            The :class:`CollectionConfig` used for injecting dynamic properties.
+            The base item from the ``collection_base_item`` pgstac function for this
+            collection. Used for rehydration
         """
         columns = [
             "id",
