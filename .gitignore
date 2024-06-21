@@ -4,3 +4,4 @@ dist
 .direnv
 stac_geoparquet/_version.py
 .cache
+site
