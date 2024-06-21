@@ -15,10 +15,12 @@ extra:
     provider: mike
 
 nav:
-  - "index.md"
+  - index.md
+  - usage.md
   - Specification: spec/stac-geoparquet-spec.md
   - API Reference:
-      - api/legacy.md
+      - api/arrow.md
+      - Legacy: api/legacy.md
       # - api/pgstac.md
 
 watch:
@@ -74,7 +76,6 @@ plugins:
       enable_inventory: true
       handlers:
         python:
-          paths: [stac_geoparquet]
           options:
             docstring_section_style: list
             docstring_style: google
