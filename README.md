@@ -10,6 +10,8 @@ GeoParquet can be a good complement to JSON for many bulk-access and analytic us
 
 For analytic questions like "find the items in the Sentinel-2 collection in June 2024 over New York City with cloud cover of less than 20%" it can be much, much faster to find the relevant data from a GeoParquet source than from JSON, because GeoParquet needs to load only the relevant columns for that query, not the full data.
 
+See the [STAC-GeoParquet specification](./spec/stac-geoparquet-spec.md) for details on the exact schema of the written Parquet files.
+
 ## Usage
 
 Use `stac_geoparquet.to_arrow.stac_items_to_arrow` and
@@ -34,7 +36,6 @@ Note that `stac_geoparquet` lifts the keys in the item `properties` up to the to
 >>> items2 = list(stac_geoparquet.arrow.stac_table_to_items(table2))
 ```
 
-See the [specification](./spec/stac-geoparquet-spec.md) for details on the output stac-geoparquet dataset.
 
 ## pgstac integration
 

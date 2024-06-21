@@ -16,6 +16,7 @@ extra:
 
 nav:
   - "index.md"
+  - Specification: spec/stac-geoparquet-spec.md
   - API Reference:
       - api/geopandas.md
       # - api/pgstac.md
