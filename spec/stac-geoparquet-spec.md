@@ -8,9 +8,9 @@ library, but aims to provide guidance for anyone putting STAC data into GeoParqu
 
 ## Use cases
 
-* Provide a STAC GeoParquet that mirrors a static Collection as a way to query the whole dataset instead of reading every specific GeoJSON file.
-* As an output format for STAC API responses that is more efficient than paging through thousands of pages of GeoJSON.
-* Provide efficient access to specific fields of a STAC item, thanks to Parquet's columnar format.
+- Provide a STAC GeoParquet that mirrors a static Collection as a way to query the whole dataset instead of reading every specific GeoJSON file.
+- As an output format for STAC API responses that is more efficient than paging through thousands of pages of GeoJSON.
+- Provide efficient access to specific fields of a STAC item, thanks to Parquet's columnar format.
 
 ## Guidelines
 
@@ -19,7 +19,7 @@ from JSON into nested structures. We do pull the properties to the top level, so
 most of the fields should be the same in STAC and in GeoParquet.
 
 | Field              | GeoParquet Type      | Required | Details                                                                                                                                                                                                                                                 |
-|--------------------|----------------------|----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ------------------ | -------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | type               | String               | Optional | This is just needed for GeoJSON, so it is optional and not recommended to include in GeoParquet                                                                                                                                                         |
 | stac_extensions    | List of Strings      | Required | This column is required, but can be empty if no STAC extensions were used                                                                                                                                                                               |
 | id                 | String               | Required | Required, should be unique within each collection                                                                                                                                                                                                       |
@@ -30,20 +30,20 @@ most of the fields should be the same in STAC and in GeoParquet.
 | collection         | String               | Optional | The ID of the collection this Item is a part of. See notes below on 'Collection' and 'Collection JSON' in the Parquet metadata                                                                                                                          |
 | _property columns_ | _varies_             | -        | Each property should use the relevant Parquet type, and be pulled out of the properties object to be a top-level Parquet field                                                                                                                          |
 
-* Must be valid GeoParquet, with proper metadata. Ideally the geometry types are defined and as narrow as possible.
-* Strongly recommend to only have one GeoParquet per STAC 'Collection'. Not doing this will lead to an expanded GeoParquet schema (the union of all the schemas of the collection) with lots of empty data
-* Any field in 'properties' of the STAC item should be moved up to be a top-level field in the GeoParquet.
-* STAC GeoParquet does not support properties that are named such that they collide with a top-level key.
-* datetime columns should be stored as a [native timestamp][timestamp], not as a string
-* The Collection JSON should be included in the Parquet metadata. See [Collection JSON](#collection-json) below.
-* Any other properties that would be stored as GeoJSON in a STAC JSON Item (e.g. `proj:geometry`) should be stored as a binary column with WKB encoding. This simplifies the handling of collections with multiple geometry types.
+- Must be valid GeoParquet, with proper metadata. Ideally the geometry types are defined and as narrow as possible.
+- Strongly recommend to only have one GeoParquet per STAC 'Collection'. Not doing this will lead to an expanded GeoParquet schema (the union of all the schemas of the collection) with lots of empty data
+- Any field in 'properties' of the STAC item should be moved up to be a top-level field in the GeoParquet.
+- STAC GeoParquet does not support properties that are named such that they collide with a top-level key.
+- datetime columns should be stored as a [native timestamp][timestamp], not as a string
+- The Collection JSON should be included in the Parquet metadata. See [Collection JSON](#including-a-stac-collection-json-in-a-stac-geoparquet-collection) below.
+- Any other properties that would be stored as GeoJSON in a STAC JSON Item (e.g. `proj:geometry`) should be stored as a binary column with WKB encoding. This simplifies the handling of collections with multiple geometry types.
 
 ### Link Struct
 
 The GeoParquet dataset can contain zero or more Link Structs. Each Link Struct has 2 required fields and 2 optional ones:
 
 | Field Name | Type   | Description                                                                                                                         |
-|------------|--------|-------------------------------------------------------------------------------------------------------------------------------------|
+| ---------- | ------ | ----------------------------------------------------------------------------------------------------------------------------------- |
 | href       | string | **REQUIRED.** The actual link in the format of an URL. Relative and absolute links are both allowed.                                |
 | rel        | string | **REQUIRED.** Relationship between the current document and the linked document. See chapter "Relation types" for more information. |
 | type       | string | [Media type][media-type] of the referenced entity.                                                                                  |
@@ -56,7 +56,7 @@ See [Link Object][link] for more.
 The GeoParquet dataset can contain zero or more Asset Structs. Each Asset Struct can have the following fields:
 
 | Field Name  | Type      | Description                                                                                                                                                                                  |
-|-------------|-----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ----------- | --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | href        | string    | **REQUIRED.** URI to the asset object. Relative and absolute URI are both allowed.                                                                                                           |
 | title       | string    | The displayed title for clients and users.                                                                                                                                                   |
 | description | string    | A description of the Asset providing additional details, such as how it was processed or created. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
@@ -82,18 +82,17 @@ A common use case of stac-geoparquet is to create a mirror of a STAC collection.
 
 For example:
 
-| Field Name  | Type      | Value                               |
-|-------------|-----------|-------------------------------------|
-| href        | string    | s3://example/uti/to/file.geoparquet |
-| title       | string    | An example STAC geoparquet.         |
-| description | string    | Example description.                |
-| type        | string    | application/vnd.apache.parquet      |
-| roles       | \[string] | [collection-mirror]\*                |
+| Field Name  | Type      | Value                            |
+| ----------- | --------- | -------------------------------- |
+| href        | string    | s3://example/uri/to/file.parquet |
+| title       | string    | An example STAC GeoParquet.      |
+| description | string    | Example description.             |
+| type        | string    | `application/vnd.apache.parquet` |
+| roles       | \[string] | [collection-mirror]\*            |
 
-\*Note the IANA has not approved the new Media type `application/vnd.apache.parquet` yet, it's been (submitted for approval)[https://issues.apache.org/jira/browse/PARQUET-1889].
+\*Note the IANA has not approved the new Media type `application/vnd.apache.parquet` yet, it's been [submitted for approval](https://issues.apache.org/jira/browse/PARQUET-1889).
 
 The description should ideally include details about the spatial partitioning method.
-
 
 ## Mapping to other geospatial data formats
 

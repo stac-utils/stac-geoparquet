@@ -1,0 +1,1 @@
+../../spec/stac-geoparquet-spec.md

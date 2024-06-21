@@ -1,0 +1,46 @@
+name: Publish docs via GitHub Pages
+
+# Only run manually or on new tags starting with `v`
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Deploy docs
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.11"]
+    steps:
+      - uses: actions/checkout@v4
+        # We need to additionally fetch the gh-pages branch for mike deploy
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install dependencies
+        run: python -m pip install -e .[pgstac,pc,test,docs]
+
+      - name: Deploy docs
+        env:
+          GIT_COMMITTER_NAME: CI
+          GIT_COMMITTER_EMAIL: ci-bot@example.com
+        run: |
+          # Get most recent git tag
+          # https://stackoverflow.com/a/7261049
+          # We don't use {{github.ref_name}} because if triggered manually, it
+          # will be a branch name instead of a tag version.
+          VERSION=$(git describe --tags --abbrev=0)
+
+          # Only push docs if no letters in git tag after the first character
+          # (usually the git tag will have v as the first character)
+          if ! echo $VERSION | sed 's/^.//' | grep -q "[A-Za-z]"; then
+            mike deploy $VERSION latest --update-aliases --push
+          fi

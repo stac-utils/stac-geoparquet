@@ -69,7 +69,7 @@ def to_parquet(
 ) -> None:
     """Write an Arrow table with STAC data to GeoParquet
 
-    This writes metadata compliant with GeoParquet 1.1.
+    This writes metadata compliant with either GeoParquet 1.0 or 1.1.
 
     Args:
         table: The table to write to Parquet
