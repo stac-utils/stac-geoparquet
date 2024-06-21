@@ -200,7 +200,7 @@ def to_dict(record: dict) -> dict:
     Create a dictionary representing a STAC item from a row of the GeoDataFrame.
 
     Parameters:
-        row: namedtuple
+        record: dict
     """
     properties = {}
     top_level_keys = {
