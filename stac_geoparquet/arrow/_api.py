@@ -38,7 +38,7 @@ def parse_stac_items_to_arrow(
             inference. Defaults to None.
 
     Returns:
-        an iterable of pyarrow RecordBatches with the STAC-GeoParquet representation of items.
+        pyarrow RecordBatchReader with a stream of STAC Arrow RecordBatches.
     """
     if schema is not None:
         if isinstance(schema, InferredSchema):
@@ -46,9 +46,6 @@ def parse_stac_items_to_arrow(
 
         # If schema is provided, then for better memory usage we parse input STAC items
         # to Arrow batches in chunks.
-        for chunk in batched_iter(items, chunk_size):
-            yield stac_items_to_arrow(chunk, schema=schema)
-
         batches = (
             stac_items_to_arrow(batch, schema=schema)
             for batch in batched_iter(items, chunk_size)
@@ -89,8 +86,8 @@ def parse_stac_ndjson_to_arrow(
     Keyword Args:
         limit: The maximum number of JSON Items to use for schema inference
 
-    Yields:
-        Arrow RecordBatch with a single chunk of Item data.
+    Returns:
+        pyarrow RecordBatchReader with a stream of STAC Arrow RecordBatches.
     """
     # If the schema was not provided, then we need to load all data into memory at once
     # to perform schema resolution.
@@ -98,10 +95,9 @@ def parse_stac_ndjson_to_arrow(
         inferred_schema = InferredSchema()
         inferred_schema.update_from_json(path, chunk_size=chunk_size, limit=limit)
         inferred_schema.manual_updates()
-        yield from parse_stac_ndjson_to_arrow(
+        return parse_stac_ndjson_to_arrow(
             path, chunk_size=chunk_size, schema=inferred_schema
         )
-        return
 
     if isinstance(schema, InferredSchema):
         schema = schema.inner
