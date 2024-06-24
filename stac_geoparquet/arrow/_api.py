@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import itertools
 import os
 from pathlib import Path
 from typing import Any, Iterable
@@ -102,11 +103,17 @@ def parse_stac_ndjson_to_arrow(
     if isinstance(schema, InferredSchema):
         schema = schema.inner
 
-    batches = (
+    batches_iter = (
         stac_items_to_arrow(batch, schema=schema)
         for batch in read_json_chunked(path, chunk_size=chunk_size)
     )
-    return pa.RecordBatchReader.from_batches(schema, batches)
+    first_batch = next(batches_iter)
+    # Need to take this schema from the iterator; the existing `schema` is the schema of
+    # JSON batch
+    resolved_schema = first_batch.schema
+    return pa.RecordBatchReader.from_batches(
+        resolved_schema, itertools.chain([first_batch], batches_iter)
+    )
 
 
 def stac_table_to_items(
