@@ -344,6 +344,26 @@
   
   
     <li class="md-nav__item">
+      <a href="../../schema/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Schema considerations
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../spec/stac-geoparquet-spec/" class="md-nav__link">
         
   
@@ -372,6 +392,8 @@
       
         
       
+        
+      
     
     
     
@@ -379,10 +401,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
         
           
-          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -393,8 +415,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_4">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             API Reference
           </label>
@@ -587,9 +609,50 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pgstac/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    pgstac integration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../drawbacks/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Drawbacks
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -849,7 +912,7 @@
 
 <a href="#stac_geoparquet.arrow.parse_stac_items_to_arrow" class="headerlink" title="Permanent link">&para;</a></h3>
 <div class="doc-signature codehilite"><pre><span></span><code><span class="nf">parse_stac_items_to_arrow</span><span class="p">(</span>
-    <span class="n">items</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="typing.Iterable" href="https://docs.python.org/3/library/typing.html#typing.Iterable">Iterable</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#dict">dict</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span><span class="p">,</span> <span class="n"><a class="autorefs autorefs-external" title="typing.Any" href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a></span><span class="p">]],</span>
+    <span class="n">items</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="typing.Iterable" href="https://docs.python.org/3/library/typing.html#typing.Iterable">Iterable</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" title="pystac.Item" href="https://pystac.readthedocs.io/en/stable/api/pystac.html#pystac.Item">Item</a></span> <span class="o">|</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#dict">dict</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span><span class="p">,</span> <span class="n"><a class="autorefs autorefs-external" title="typing.Any" href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a></span><span class="p">]],</span>
     <span class="o">*</span><span class="p">,</span>
     <span class="n">chunk_size</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></span> <span class="o">=</span> <span class="mi">8192</span><span class="p">,</span>
     <span class="n">schema</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="pyarrow.Schema" href="https://arrow.apache.org/docs/python/generated/pyarrow.Schema.html#pyarrow.Schema">Schema</a></span> <span class="o">|</span> <span class="n"><span title="stac_geoparquet.arrow._schema.models.InferredSchema">InferredSchema</span></span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
@@ -869,7 +932,7 @@ Table, similar to
     <ul>
         <li class="doc-section-item field-body">
           <b><code>items</code></b>
-              (<code><a class="autorefs autorefs-external" title="typing.Iterable" href="https://docs.python.org/3/library/typing.html#typing.Iterable">Iterable</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#dict">dict</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a>, <a class="autorefs autorefs-external" title="typing.Any" href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a>]]</code>)
+              (<code><a class="autorefs autorefs-external" title="typing.Iterable" href="https://docs.python.org/3/library/typing.html#typing.Iterable">Iterable</a>[<a class="autorefs autorefs-external" title="pystac.Item" href="https://pystac.readthedocs.io/en/stable/api/pystac.html#pystac.Item">Item</a> | <a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#dict">dict</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a>, <a class="autorefs autorefs-external" title="typing.Any" href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a>]]</code>)
           –
           <div class="doc-md-description">
             <p>the STAC Items to convert</p>

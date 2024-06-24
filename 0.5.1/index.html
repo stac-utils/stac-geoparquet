@@ -357,18 +357,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#usage" class="md-nav__link">
+  <a href="#documentation" class="md-nav__link">
     <span class="md-ellipsis">
-      Usage
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#pgstac-integration" class="md-nav__link">
-    <span class="md-ellipsis">
-      pgstac integration
+      Documentation
     </span>
   </a>
   
@@ -394,6 +385,26 @@
   
   <span class="md-ellipsis">
     Usage
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="schema/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Schema considerations
   </span>
   
 
@@ -435,6 +446,8 @@
       
         
       
+        
+      
     
     
     
@@ -442,10 +455,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
         
           
-          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -456,8 +469,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             API Reference
           </label>
@@ -505,9 +518,50 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="api/pgstac/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    pgstac integration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="drawbacks/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Drawbacks
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -548,18 +602,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#usage" class="md-nav__link">
+  <a href="#documentation" class="md-nav__link">
     <span class="md-ellipsis">
-      Usage
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#pgstac-integration" class="md-nav__link">
-    <span class="md-ellipsis">
-      pgstac integration
+      Documentation
     </span>
   </a>
   
@@ -590,32 +635,8 @@
 <p>GeoParquet can be a good complement to JSON for many bulk-access and analytic use cases. While STAC Items are commonly distributed as individual JSON files on object storage or through a <a href="https://github.com/radiantearth/stac-api-spec">STAC API</a>, STAC GeoParquet allows users to access a large number of STAC items in bulk without making repeated HTTP requests.</p>
 <p>For analytic questions like "find the items in the Sentinel-2 collection in June 2024 over New York City with cloud cover of less than 20%" it can be much, much faster to find the relevant data from a GeoParquet source than from JSON, because GeoParquet needs to load only the relevant columns for that query, not the full data.</p>
 <p>See the <a href="spec/stac-geoparquet-spec/">STAC-GeoParquet specification</a> for details on the exact schema of the written Parquet files.</p>
-<h2 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">&para;</a></h2>
-<p>Use <code>stac_geoparquet.to_arrow.stac_items_to_arrow</code> and
-<code>stac_geoparquet.from_arrow.stac_table_to_items</code> to convert between STAC items
-and Arrow tables. Arrow Tables of STAC items can be written to parquet with
-<code>stac_geoparquet.to_parquet.to_parquet</code>.</p>
-<p>Note that <code>stac_geoparquet</code> lifts the keys in the item <code>properties</code> up to the top level of the DataFrame, similar to <code>geopandas.GeoDataFrame.from_features</code>.</p>
-<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">requests</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">stac_geoparquet.arrow</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">pyarrow.parquet</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">pyarrow</span> <span class="k">as</span> <span class="nn">pa</span>
-
-<span class="o">&gt;&gt;&gt;</span> <span class="n">items</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
-<span class="o">...</span>     <span class="s2">&quot;https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-2-l2a/items&quot;</span>
-<span class="o">...</span> <span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">&quot;features&quot;</span><span class="p">]</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">table</span> <span class="o">=</span> <span class="n">pa</span><span class="o">.</span><span class="n">Table</span><span class="o">.</span><span class="n">from_batches</span><span class="p">(</span><span class="n">stac_geoparquet</span><span class="o">.</span><span class="n">arrow</span><span class="o">.</span><span class="n">parse_stac_items_to_arrow</span><span class="p">(</span><span class="n">items</span><span class="p">))</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">stac_geoparquet</span><span class="o">.</span><span class="n">arrow</span><span class="o">.</span><span class="n">to_parquet</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="s2">&quot;items.parquet&quot;</span><span class="p">)</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">table2</span> <span class="o">=</span> <span class="n">pyarrow</span><span class="o">.</span><span class="n">parquet</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s2">&quot;items.parquet&quot;</span><span class="p">)</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">items2</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">stac_geoparquet</span><span class="o">.</span><span class="n">arrow</span><span class="o">.</span><span class="n">stac_table_to_items</span><span class="p">(</span><span class="n">table2</span><span class="p">))</span>
-</code></pre></div>
-<h2 id="pgstac-integration">pgstac integration<a class="headerlink" href="#pgstac-integration" title="Permanent link">&para;</a></h2>
-<p><code>stac_geoparquet.pgstac_reader</code> has some helpers for working with items coming from a <code>pgstac.items</code> table. It takes care of</p>
-<ul>
-<li>Rehydrating the dehydrated items</li>
-<li>Partitioning by time</li>
-<li>Injecting dynamic links and assets from a STAC API</li>
-</ul>
+<h2 id="documentation">Documentation<a class="headerlink" href="#documentation" title="Permanent link">&para;</a></h2>
+<p><a href="https://stac-utils.github.io/stac-geoparquet/">Documentation website</a></p>
 
 
 

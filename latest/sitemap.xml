@@ -6,6 +6,16 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://stac-utils.github.io/stac-geoparquet/latest/drawbacks/</loc>
+         <lastmod>2024-06-24</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://stac-utils.github.io/stac-geoparquet/latest/schema/</loc>
+         <lastmod>2024-06-24</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://stac-utils.github.io/stac-geoparquet/latest/usage/</loc>
          <lastmod>2024-06-24</lastmod>
          <changefreq>daily</changefreq>
@@ -17,6 +27,11 @@
     </url>
     <url>
          <loc>https://stac-utils.github.io/stac-geoparquet/latest/api/legacy/</loc>
+         <lastmod>2024-06-24</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://stac-utils.github.io/stac-geoparquet/latest/api/pgstac/</loc>
          <lastmod>2024-06-24</lastmod>
          <changefreq>daily</changefreq>
     </url>

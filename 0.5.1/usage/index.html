@@ -16,7 +16,7 @@
         <link rel="prev" href="..">
       
       
-        <link rel="next" href="../spec/stac-geoparquet-spec/">
+        <link rel="next" href="../schema/">
       
       
       <link rel="icon" href="../assets/images/favicon.png">
@@ -333,6 +333,17 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Usage
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -343,6 +354,114 @@
 
       </a>
       
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#dictjson-arrow-conversion" class="md-nav__link">
+    <span class="md-ellipsis">
+      dict/JSON - Arrow conversion
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="dict/JSON - Arrow conversion">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#convert-dicts-to-arrow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Convert dicts to Arrow
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#convert-json-to-arrow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Convert JSON to Arrow
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#convert-arrow-to-dicts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Convert Arrow to dicts
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#convert-arrow-to-json" class="md-nav__link">
+    <span class="md-ellipsis">
+      Convert Arrow to JSON
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parquet" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parquet
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#delta-lake" class="md-nav__link">
+    <span class="md-ellipsis">
+      Delta Lake
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schema/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Schema considerations
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -380,6 +499,8 @@
       
         
       
+        
+      
     
     
     
@@ -387,10 +508,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
         
           
-          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -401,8 +522,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             API Reference
           </label>
@@ -450,9 +571,50 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/pgstac/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    pgstac integration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../drawbacks/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Drawbacks
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -477,6 +639,83 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#dictjson-arrow-conversion" class="md-nav__link">
+    <span class="md-ellipsis">
+      dict/JSON - Arrow conversion
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="dict/JSON - Arrow conversion">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#convert-dicts-to-arrow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Convert dicts to Arrow
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#convert-json-to-arrow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Convert JSON to Arrow
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#convert-arrow-to-dicts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Convert Arrow to dicts
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#convert-arrow-to-json" class="md-nav__link">
+    <span class="md-ellipsis">
+      Convert Arrow to JSON
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parquet" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parquet
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#delta-lake" class="md-nav__link">
+    <span class="md-ellipsis">
+      Delta Lake
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -494,6 +733,33 @@
 
 
 <h1 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">&para;</a></h1>
+<p>Except for the <a href="../api/legacy/">legacy API</a>, <a href="https://arrow.apache.org/">Apache Arrow</a> is used as the in-memory interchange format between all formats. While some end-to-end helper functions are provided, the user can go through Arrow objects for maximal flexibility in the conversion process.</p>
+<p>All functionality that goes through Arrow is currently exported via the <code>stac_geoparquet.arrow</code> namespace.</p>
+<h2 id="dictjson-arrow-conversion"><code>dict</code>/JSON - Arrow conversion<a class="headerlink" href="#dictjson-arrow-conversion" title="Permanent link">&para;</a></h2>
+<h3 id="convert-dicts-to-arrow">Convert <code>dict</code>s to Arrow<a class="headerlink" href="#convert-dicts-to-arrow" title="Permanent link">&para;</a></h3>
+<p>Use <a class="autorefs autorefs-internal" href="../api/arrow/#stac_geoparquet.arrow.parse_stac_items_to_arrow"><code>parse_stac_items_to_arrow</code></a> to convert STAC items either in memory or on disk to a stream of Arrow record batches. This accepts either an iterable of Python <code>dict</code>s or an iterable of <a class="autorefs autorefs-external" href="https://pystac.readthedocs.io/en/stable/api/pystac.html#pystac.Item"><code>pystac.Item</code></a> objects.</p>
+<h3 id="convert-json-to-arrow">Convert JSON to Arrow<a class="headerlink" href="#convert-json-to-arrow" title="Permanent link">&para;</a></h3>
+<p><a class="autorefs autorefs-internal" href="../api/arrow/#stac_geoparquet.arrow.parse_stac_ndjson_to_arrow"><code>parse_stac_ndjson_to_arrow</code></a> is a helper function to take one or more JSON or newline-delimited JSON files on disk, infer the schema from all of them, and convert the data to a stream of Arrow record batches.</p>
+<h3 id="convert-arrow-to-dicts">Convert Arrow to <code>dict</code>s<a class="headerlink" href="#convert-arrow-to-dicts" title="Permanent link">&para;</a></h3>
+<p>Use <a class="autorefs autorefs-internal" href="../api/arrow/#stac_geoparquet.arrow.stac_table_to_items"><code>stac_table_to_items</code></a> to convert a table or stream of Arrow record batches of STAC data to a generator of Python <code>dict</code>s. This accepts either a <code>pyarrow.Table</code> or a <code>pyarrow.RecordBatchReader</code>, which allows conversions of larger-than-memory files in a streaming manner.</p>
+<h3 id="convert-arrow-to-json">Convert Arrow to JSON<a class="headerlink" href="#convert-arrow-to-json" title="Permanent link">&para;</a></h3>
+<p>Use <a class="autorefs autorefs-internal" href="../api/arrow/#stac_geoparquet.arrow.stac_table_to_ndjson"><code>stac_table_to_ndjson</code></a> to convert a table or stream of Arrow record batches of STAC data to a generator of Python <code>dict</code>s. This accepts either a <code>pyarrow.Table</code> or a <code>pyarrow.RecordBatchReader</code>, which allows conversions of larger-than-memory files in a streaming manner.</p>
+<h2 id="parquet">Parquet<a class="headerlink" href="#parquet" title="Permanent link">&para;</a></h2>
+<p>Use <a class="autorefs autorefs-internal" href="../api/arrow/#stac_geoparquet.arrow.to_parquet"><code>to_parquet</code></a> to write STAC Arrow data in memory. This is a special function to ensure that <a href="https://geoparquet.org/">GeoParquet</a> 1.0 or 1.1 metadata is written to the Parquet file.</p>
+<p><a class="autorefs autorefs-internal" href="../api/arrow/#stac_geoparquet.arrow.parse_stac_ndjson_to_parquet"><code>parse_stac_ndjson_to_parquet</code></a> is a helper that connects reading (newline-delimited) JSON on disk to writing out to a Parquet file.</p>
+<p>No special API is required for reading a STAC GeoParquet file back into Arrow. You can use <a class="autorefs autorefs-external" href="https://arrow.apache.org/docs/python/generated/pyarrow.parquet.read_table.html#pyarrow.parquet.read_table"><code>pyarrow.parquet.read_table</code></a> or <a class="autorefs autorefs-external" href="https://arrow.apache.org/docs/python/generated/pyarrow.parquet.ParquetFile.html#pyarrow.parquet.ParquetFile"><code>pyarrow.parquet.ParquetFile</code></a> directly to read the STAC GeoParquet data back into Arrow.</p>
+<h2 id="delta-lake">Delta Lake<a class="headerlink" href="#delta-lake" title="Permanent link">&para;</a></h2>
+<p>Use <a class="autorefs autorefs-internal" href="../api/arrow/#stac_geoparquet.arrow.parse_stac_ndjson_to_delta_lake"><code>parse_stac_ndjson_to_delta_lake</code></a> to read (newline-delimited) JSON on disk and write out to a Delta Lake table.</p>
+<p>No special API is required for reading a STAC Delta Lake table back into Arrow. You can use the <a class="autorefs autorefs-external" href="https://delta-io.github.io/delta-rs/api/delta_table/#deltalake.DeltaTable"><code>DeltaTable</code></a> class directly to read the data back into Arrow.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Arrow has a null data type, where every value in the column is always null, but Delta Lake does not. This means that for any column inferred to have a <code>null</code> data type, writing to Delta Lake will error with
+<div class="highlight"><pre><span></span><code>_internal.SchemaMismatchError: Invalid data type for Delta Lake: Null
+</code></pre></div></p>
+<p>This is a problem because if all items in a STAC Collection have a <code>null</code> JSON key, it gets inferred as an Arrow <code>null</code> type. For example, in the <code>3dep-lidar-copc</code> collection in the tests, it has <code>start_datetime</code> and <code>end_datetime</code> fields, and so according to the spec, <code>datetime</code> is always <code>null</code>. This column would need to be casted to a timestamp type before being written to Delta Lake.</p>
+<p>This means we cannot write this collection to Delta Lake <strong>solely with automatic schema inference</strong>.</p>
+<p>In such cases, users may need to manually update the inferred schema to cast any <code>null</code> type to another Delta Lake-compatible type.</p>
+</div>
 
 
 

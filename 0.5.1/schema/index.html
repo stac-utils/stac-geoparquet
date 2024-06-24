@@ -10,28 +10,28 @@
       
       
       
-        <link rel="canonical" href="https://stac-utils.github.io/stac-geoparquet/latest/spec/stac-geoparquet-spec/">
+        <link rel="canonical" href="https://stac-utils.github.io/stac-geoparquet/latest/schema/">
       
       
-        <link rel="prev" href="../../schema/">
+        <link rel="prev" href="../usage/">
       
       
-        <link rel="next" href="../../api/arrow/">
+        <link rel="next" href="../spec/stac-geoparquet-spec/">
       
       
-      <link rel="icon" href="../../assets/images/favicon.png">
+      <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.27">
     
     
       
-        <title>Specification - stac-geoparquet</title>
+        <title>Schema considerations - stac-geoparquet</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.6543a935.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.6543a935.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -50,9 +50,9 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -61,11 +61,11 @@
       
         <meta  property="og:type"  content="website" >
       
-        <meta  property="og:title"  content="Specification - stac-geoparquet" >
+        <meta  property="og:title"  content="Schema considerations - stac-geoparquet" >
       
         <meta  property="og:description"  content="Convert STAC items between JSON, GeoParquet, pgstac, and Delta Lake." >
       
-        <meta  property="og:image"  content="https://stac-utils.github.io/stac-geoparquet/latest/assets/images/social/spec/stac-geoparquet-spec.png" >
+        <meta  property="og:image"  content="https://stac-utils.github.io/stac-geoparquet/latest/assets/images/social/schema.png" >
       
         <meta  property="og:image:type"  content="image/png" >
       
@@ -73,15 +73,15 @@
       
         <meta  property="og:image:height"  content="630" >
       
-        <meta  property="og:url"  content="https://stac-utils.github.io/stac-geoparquet/latest/spec/stac-geoparquet-spec/" >
+        <meta  property="og:url"  content="https://stac-utils.github.io/stac-geoparquet/latest/schema/" >
       
         <meta  name="twitter:card"  content="summary_large_image" >
       
-        <meta  name="twitter:title"  content="Specification - stac-geoparquet" >
+        <meta  name="twitter:title"  content="Schema considerations - stac-geoparquet" >
       
         <meta  name="twitter:description"  content="Convert STAC items between JSON, GeoParquet, pgstac, and Delta Lake." >
       
-        <meta  name="twitter:image"  content="https://stac-utils.github.io/stac-geoparquet/latest/assets/images/social/spec/stac-geoparquet-spec.png" >
+        <meta  name="twitter:image"  content="https://stac-utils.github.io/stac-geoparquet/latest/assets/images/social/schema.png" >
       
     
     
@@ -104,7 +104,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#stac-geoparquet-specification" class="md-skip">
+        <a href="#schema-considerations" class="md-skip">
           Skip to content
         </a>
       
@@ -124,7 +124,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="stac-geoparquet" class="md-header__button md-logo" aria-label="stac-geoparquet" data-md-component="logo">
+    <a href=".." title="stac-geoparquet" class="md-header__button md-logo" aria-label="stac-geoparquet" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -144,7 +144,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Specification
+              Schema considerations
             
           </span>
         </div>
@@ -274,7 +274,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="stac-geoparquet" class="md-nav__button md-logo" aria-label="stac-geoparquet" data-md-component="logo">
+    <a href=".." title="stac-geoparquet" class="md-nav__button md-logo" aria-label="stac-geoparquet" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -304,7 +304,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../.." class="md-nav__link">
+      <a href=".." class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -324,31 +324,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../usage/" class="md-nav__link">
+      <a href="../usage/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
     Usage
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../schema/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Schema considerations
   </span>
   
 
@@ -377,7 +357,7 @@
           
   
   <span class="md-ellipsis">
-    Specification
+    Schema considerations
   </span>
   
 
@@ -388,7 +368,7 @@
         
   
   <span class="md-ellipsis">
-    Specification
+    Schema considerations
   </span>
   
 
@@ -410,46 +390,37 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#overview" class="md-nav__link">
+  <a href="#full-scan-over-input-data" class="md-nav__link">
     <span class="md-ellipsis">
-      Overview
+      Full scan over input data
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#use-cases" class="md-nav__link">
+  <a href="#user-provided-schema" class="md-nav__link">
     <span class="md-ellipsis">
-      Use cases
+      User-provided schema
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#guidelines" class="md-nav__link">
+  <a href="#multiple-schemas-per-collection" class="md-nav__link">
     <span class="md-ellipsis">
-      Guidelines
+      Multiple schemas per collection
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Guidelines">
+    <nav class="md-nav" aria-label="Multiple schemas per collection">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#link-struct" class="md-nav__link">
+  <a href="#merging-data-with-schema-mismatch" class="md-nav__link">
     <span class="md-ellipsis">
-      Link Struct
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#asset-struct" class="md-nav__link">
-    <span class="md-ellipsis">
-      Asset Struct
+      Merging data with schema mismatch
     </span>
   </a>
   
@@ -461,27 +432,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#including-a-stac-collection-json-in-a-stac-geoparquet-collection" class="md-nav__link">
+  <a href="#future-work" class="md-nav__link">
     <span class="md-ellipsis">
-      Including a STAC Collection JSON in a STAC Geoparquet Collection
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#referencing-a-stac-geoparquet-collections-in-a-stac-collection-json" class="md-nav__link">
-    <span class="md-ellipsis">
-      Referencing a STAC Geoparquet Collections in a STAC Collection JSON
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#mapping-to-other-geospatial-data-formats" class="md-nav__link">
-    <span class="md-ellipsis">
-      Mapping to other geospatial data formats
+      Future work
     </span>
   </a>
   
@@ -491,6 +444,26 @@
   
 </nav>
       
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../spec/stac-geoparquet-spec/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Specification
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -545,7 +518,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../api/arrow/" class="md-nav__link">
+      <a href="../api/arrow/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -566,7 +539,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../api/legacy/" class="md-nav__link">
+      <a href="../api/legacy/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -587,7 +560,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../api/pgstac/" class="md-nav__link">
+      <a href="../api/pgstac/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -615,7 +588,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../drawbacks/" class="md-nav__link">
+      <a href="../drawbacks/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -655,46 +628,37 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#overview" class="md-nav__link">
+  <a href="#full-scan-over-input-data" class="md-nav__link">
     <span class="md-ellipsis">
-      Overview
+      Full scan over input data
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#use-cases" class="md-nav__link">
+  <a href="#user-provided-schema" class="md-nav__link">
     <span class="md-ellipsis">
-      Use cases
+      User-provided schema
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#guidelines" class="md-nav__link">
+  <a href="#multiple-schemas-per-collection" class="md-nav__link">
     <span class="md-ellipsis">
-      Guidelines
+      Multiple schemas per collection
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Guidelines">
+    <nav class="md-nav" aria-label="Multiple schemas per collection">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#link-struct" class="md-nav__link">
+  <a href="#merging-data-with-schema-mismatch" class="md-nav__link">
     <span class="md-ellipsis">
-      Link Struct
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#asset-struct" class="md-nav__link">
-    <span class="md-ellipsis">
-      Asset Struct
+      Merging data with schema mismatch
     </span>
   </a>
   
@@ -706,27 +670,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#including-a-stac-collection-json-in-a-stac-geoparquet-collection" class="md-nav__link">
+  <a href="#future-work" class="md-nav__link">
     <span class="md-ellipsis">
-      Including a STAC Collection JSON in a STAC Geoparquet Collection
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#referencing-a-stac-geoparquet-collections-in-a-stac-collection-json" class="md-nav__link">
-    <span class="md-ellipsis">
-      Referencing a STAC Geoparquet Collections in a STAC Collection JSON
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#mapping-to-other-geospatial-data-formats" class="md-nav__link">
-    <span class="md-ellipsis">
-      Mapping to other geospatial data formats
+      Future work
     </span>
   </a>
   
@@ -750,219 +696,30 @@
   
 
 
-<h1 id="stac-geoparquet-specification">STAC GeoParquet Specification<a class="headerlink" href="#stac-geoparquet-specification" title="Permanent link">&para;</a></h1>
-<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
-<p>This document specifies how to map a set of <a href="https://github.com/radiantearth/stac-spec/tree/v1.0.0/item-spec">STAC Items</a> into
-<a href="https://geoparquet.org">GeoParquet</a>. It is directly inspired by the <a href="https://github.com/stac-utils/stac-geoparquet">STAC GeoParquet</a>
-library, but aims to provide guidance for anyone putting STAC data into GeoParquet.</p>
-<h2 id="use-cases">Use cases<a class="headerlink" href="#use-cases" title="Permanent link">&para;</a></h2>
-<ul>
-<li>Provide a STAC GeoParquet that mirrors a static Collection as a way to query the whole dataset instead of reading every specific GeoJSON file.</li>
-<li>As an output format for STAC API responses that is more efficient than paging through thousands of pages of GeoJSON.</li>
-<li>Provide efficient access to specific fields of a STAC item, thanks to Parquet's columnar format.</li>
-</ul>
-<h2 id="guidelines">Guidelines<a class="headerlink" href="#guidelines" title="Permanent link">&para;</a></h2>
-<p>Each row in the Parquet Dataset represents a single STAC item. Most all the fields in a STAC Item should be mapped to a column in GeoParquet. We embrace Parquet structures where possible, mapping
-from JSON into nested structures. We do pull the properties to the top level, so that it is easier to query and use them. The names of
-most of the fields should be the same in STAC and in GeoParquet.</p>
-<table>
-<thead>
-<tr>
-<th>Field</th>
-<th>GeoParquet Type</th>
-<th>Required</th>
-<th>Details</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>type</td>
-<td>String</td>
-<td>Optional</td>
-<td>This is just needed for GeoJSON, so it is optional and not recommended to include in GeoParquet</td>
-</tr>
-<tr>
-<td>stac_extensions</td>
-<td>List of Strings</td>
-<td>Required</td>
-<td>This column is required, but can be empty if no STAC extensions were used</td>
-</tr>
-<tr>
-<td>id</td>
-<td>String</td>
-<td>Required</td>
-<td>Required, should be unique within each collection</td>
-</tr>
-<tr>
-<td>geometry</td>
-<td>Binary (WKB)</td>
-<td>Required</td>
-<td>For GeoParquet 1.0 this must be well-known Binary</td>
-</tr>
-<tr>
-<td>bbox</td>
-<td>Struct of Floats</td>
-<td>Required</td>
-<td>Can be a 4 or 6 value struct, depending on dimension of the data. It must conform to the <a href="https://github.com/opengeospatial/geoparquet/blob/main/format-specs/geoparquet.md#bounding-box-columns">"Bounding Box Columns"</a> definition of GeoParquet 1.1.</td>
-</tr>
-<tr>
-<td>links</td>
-<td>List of Link structs</td>
-<td>Required</td>
-<td>See <a href="#link-struct">Link Struct</a> for more info</td>
-</tr>
-<tr>
-<td>assets</td>
-<td>An Assets struct</td>
-<td>Required</td>
-<td>See <a href="#asset-struct">Asset Struct</a> for more info</td>
-</tr>
-<tr>
-<td>collection</td>
-<td>String</td>
-<td>Optional</td>
-<td>The ID of the collection this Item is a part of. See notes below on 'Collection' and 'Collection JSON' in the Parquet metadata</td>
-</tr>
-<tr>
-<td><em>property columns</em></td>
-<td><em>varies</em></td>
-<td>-</td>
-<td>Each property should use the relevant Parquet type, and be pulled out of the properties object to be a top-level Parquet field</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li>Must be valid GeoParquet, with proper metadata. Ideally the geometry types are defined and as narrow as possible.</li>
-<li>Strongly recommend to only have one GeoParquet per STAC 'Collection'. Not doing this will lead to an expanded GeoParquet schema (the union of all the schemas of the collection) with lots of empty data</li>
-<li>Any field in 'properties' of the STAC item should be moved up to be a top-level field in the GeoParquet.</li>
-<li>STAC GeoParquet does not support properties that are named such that they collide with a top-level key.</li>
-<li>datetime columns should be stored as a <a href="https://github.com/apache/parquet-format/blob/master/LogicalTypes.md#timestamp">native timestamp</a>, not as a string</li>
-<li>The Collection JSON should be included in the Parquet metadata. See <a href="#including-a-stac-collection-json-in-a-stac-geoparquet-collection">Collection JSON</a> below.</li>
-<li>Any other properties that would be stored as GeoJSON in a STAC JSON Item (e.g. <code>proj:geometry</code>) should be stored as a binary column with WKB encoding. This simplifies the handling of collections with multiple geometry types.</li>
-</ul>
-<h3 id="link-struct">Link Struct<a class="headerlink" href="#link-struct" title="Permanent link">&para;</a></h3>
-<p>The GeoParquet dataset can contain zero or more Link Structs. Each Link Struct has 2 required fields and 2 optional ones:</p>
-<table>
-<thead>
-<tr>
-<th>Field Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>href</td>
-<td>string</td>
-<td><strong>REQUIRED.</strong> The actual link in the format of an URL. Relative and absolute links are both allowed.</td>
-</tr>
-<tr>
-<td>rel</td>
-<td>string</td>
-<td><strong>REQUIRED.</strong> Relationship between the current document and the linked document. See chapter "Relation types" for more information.</td>
-</tr>
-<tr>
-<td>type</td>
-<td>string</td>
-<td><a href="https://github.com/radiantearth/stac-spec/blob/master/item-spec/item-spec.md#asset-media-type">Media type</a> of the referenced entity.</td>
-</tr>
-<tr>
-<td>title</td>
-<td>string</td>
-<td>A human readable title to be used in rendered displays of the link.</td>
-</tr>
-</tbody>
-</table>
-<p>See <a href="https://github.com/radiantearth/stac-spec/blob/master/item-spec/item-spec.md#link-object">Link Object</a> for more.</p>
-<h3 id="asset-struct">Asset Struct<a class="headerlink" href="#asset-struct" title="Permanent link">&para;</a></h3>
-<p>The GeoParquet dataset can contain zero or more Asset Structs. Each Asset Struct can have the following fields:</p>
-<table>
-<thead>
-<tr>
-<th>Field Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>href</td>
-<td>string</td>
-<td><strong>REQUIRED.</strong> URI to the asset object. Relative and absolute URI are both allowed.</td>
-</tr>
-<tr>
-<td>title</td>
-<td>string</td>
-<td>The displayed title for clients and users.</td>
-</tr>
-<tr>
-<td>description</td>
-<td>string</td>
-<td>A description of the Asset providing additional details, such as how it was processed or created. <a href="http://commonmark.org/">CommonMark 0.29</a> syntax MAY be used for rich text representation.</td>
-</tr>
-<tr>
-<td>type</td>
-<td>string</td>
-<td><a href="https://github.com/radiantearth/stac-spec/blob/master/item-spec/item-spec.md#asset-media-type">Media type</a> of the asset. See the <a href="https://github.com/radiantearth/stac-spec/blob/master/best-practices.md#common-media-types-in-stac">common media types</a> in the best practice doc for commonly used asset types.</td>
-</tr>
-<tr>
-<td>roles</td>
-<td>[string]</td>
-<td>The <a href="https://github.com/radiantearth/stac-spec/blob/master/item-spec/item-spec.md#asset-roles">semantic roles</a> of the asset, similar to the use of <code>rel</code> in links.</td>
-</tr>
-</tbody>
-</table>
-<p>Each struct has each full asset key and object as a sub-struct, it's a direct mapping from the JSON to Parquet</p>
-<p>To take advantage of Parquet's columnar nature and compression, the assets should be uniform so they can be represented by a simple schema, which in turn means every item should probably come from the same STAC collection.</p>
-<p>See <a href="https://github.com/radiantearth/stac-spec/blob/master/item-spec/item-spec.md#asset-object">Asset Object</a> for more.</p>
-<h2 id="including-a-stac-collection-json-in-a-stac-geoparquet-collection">Including a STAC Collection JSON in a STAC Geoparquet Collection<a class="headerlink" href="#including-a-stac-collection-json-in-a-stac-geoparquet-collection" title="Permanent link">&para;</a></h2>
-<p>To make a stac-geoparquet file a fully self-contained representation, you can
-include the Collection JSON in the Parquet metadata. If present in the <a href="https://github.com/apache/parquet-format#metadata">Parquet
-file metadata</a>, the key must be <code>stac:collection</code> and the
-value must be a JSON string with the Collection JSON.</p>
-<h2 id="referencing-a-stac-geoparquet-collections-in-a-stac-collection-json">Referencing a STAC Geoparquet Collections in a STAC Collection JSON<a class="headerlink" href="#referencing-a-stac-geoparquet-collections-in-a-stac-collection-json" title="Permanent link">&para;</a></h2>
-<p>A common use case of stac-geoparquet is to create a mirror of a STAC collection. To refer to this mirror in the original collection, use an <a href="https://github.com/radiantearth/stac-spec/blob/master/collection-spec/collection-spec.md#asset-object">Asset Object</a> at the collection level of the STAC JSON that includes the <code>application/vnd.apache.parquet</code> Media type and <code>collection-mirror</code> Role type to describe the function of the Geoparquet STAC Collection Asset.</p>
-<p>For example:</p>
-<table>
-<thead>
-<tr>
-<th>Field Name</th>
-<th>Type</th>
-<th>Value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>href</td>
-<td>string</td>
-<td>s3://example/uri/to/file.parquet</td>
-</tr>
-<tr>
-<td>title</td>
-<td>string</td>
-<td>An example STAC GeoParquet.</td>
-</tr>
-<tr>
-<td>description</td>
-<td>string</td>
-<td>Example description.</td>
-</tr>
-<tr>
-<td>type</td>
-<td>string</td>
-<td><code>application/vnd.apache.parquet</code></td>
-</tr>
-<tr>
-<td>roles</td>
-<td>[string]</td>
-<td>[collection-mirror]*</td>
-</tr>
-</tbody>
-</table>
-<p>*Note the IANA has not approved the new Media type <code>application/vnd.apache.parquet</code> yet, it's been <a href="https://issues.apache.org/jira/browse/PARQUET-1889">submitted for approval</a>.</p>
-<p>The description should ideally include details about the spatial partitioning method.</p>
-<h2 id="mapping-to-other-geospatial-data-formats">Mapping to other geospatial data formats<a class="headerlink" href="#mapping-to-other-geospatial-data-formats" title="Permanent link">&para;</a></h2>
-<p>The principles here can likely be used to map into other geospatial data formats (GeoPackage, FlatGeobuf, etc), but we embrace Parquet's nested 'structs' for some of the mappings, so other formats will need to do something different. The obvious thing to do is to dump JSON into those fields, but that's outside the scope of this document, and we recommend creating a general document for that.</p>
+<h1 id="schema-considerations">Schema considerations<a class="headerlink" href="#schema-considerations" title="Permanent link">&para;</a></h1>
+<p>A STAC Item is a JSON object to describe an external geospatial dataset. The STAC specification defines a common core, plus a variety of extensions. Additionally, STAC Items may include custom extensions outside the common ones. Crucially, the majority of the specified fields in the core spec and extensions define optional keys. Those keys often differ across STAC collections and may even differ within a single collection across items.</p>
+<p>STAC's flexibility is a blessing and a curse. The flexibility of schemaless JSON allows for very easy writing as each object can be dumped separately to JSON. Every item is allowed to have a different schema. And newer items are free to have a different schema than older items in the same collection. But this write-time flexibility makes it harder to read as there are no guarantees (outside STAC's few required fields) about what fields exist.</p>
+<p>Parquet is the complete opposite of JSON. Parquet has a strict schema that must be known before writing can start. This puts the burden of work onto the writer instead of the reader. Reading Parquet is very efficient because the file's metadata defines the exact schema of every record. This also enables use cases like reading specific columns that would not be possible without a strict schema.</p>
+<p>This conversion from schemaless to strict-schema is the difficult part of converting STAC from JSON to GeoParquet, especially for large input datasets like STAC that are often larger than memory.</p>
+<h2 id="full-scan-over-input-data">Full scan over input data<a class="headerlink" href="#full-scan-over-input-data" title="Permanent link">&para;</a></h2>
+<p>The most foolproof way to convert STAC JSON to GeoParquet is to perform a full scan over input data. This is done automatically by <a class="autorefs autorefs-internal" href="../api/arrow/#stac_geoparquet.arrow.parse_stac_ndjson_to_arrow"><code>parse_stac_ndjson_to_arrow</code></a> when a schema is not provided.</p>
+<p>This is time consuming as it requires two full passes over the input data: once to infer a common schema and again to actually write to Parquet (though items are never fully held in memory, allowing this process to scale).</p>
+<h2 id="user-provided-schema">User-provided schema<a class="headerlink" href="#user-provided-schema" title="Permanent link">&para;</a></h2>
+<p>Alternatively, the user can pass in an Arrow schema themselves using the <code>schema</code> parameter of <a class="autorefs autorefs-internal" href="../api/arrow/#stac_geoparquet.arrow.parse_stac_ndjson_to_arrow"><code>parse_stac_ndjson_to_arrow</code></a>. This <code>schema</code> must match the on-disk schema of the the STAC JSON data.</p>
+<h2 id="multiple-schemas-per-collection">Multiple schemas per collection<a class="headerlink" href="#multiple-schemas-per-collection" title="Permanent link">&para;</a></h2>
+<p>It is also possible to write multiple Parquet files with STAC data where each Parquet file may have a different schema. This simplifies the conversion and writing process but makes reading and using the Parquet data harder.</p>
+<h3 id="merging-data-with-schema-mismatch">Merging data with schema mismatch<a class="headerlink" href="#merging-data-with-schema-mismatch" title="Permanent link">&para;</a></h3>
+<p>If you've created STAC GeoParquet data where the schema has updated, you can use <a class="autorefs autorefs-external" href="https://arrow.apache.org/docs/python/generated/pyarrow.concat_tables.html#pyarrow.concat_tables"><code>pyarrow.concat_tables</code></a> with <code>promote_options="permissive"</code> to combine multiple STAC GeoParquet files.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pyarrow</span> <span class="k">as</span> <span class="nn">pa</span>
+<span class="kn">import</span> <span class="nn">pyarrow.parquet</span> <span class="k">as</span> <span class="nn">pq</span>
+
+<span class="n">table_1</span> <span class="o">=</span> <span class="n">pq</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s2">&quot;stac1.parquet&quot;</span><span class="p">)</span>
+<span class="n">table_2</span> <span class="o">=</span> <span class="n">pq</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s2">&quot;stac2.parquet&quot;</span><span class="p">)</span>
+<span class="n">combined_table</span> <span class="o">=</span> <span class="n">pa</span><span class="o">.</span><span class="n">concat_tables</span><span class="p">([</span><span class="n">table1</span><span class="p">,</span> <span class="n">table2</span><span class="p">],</span> <span class="n">promote_options</span><span class="o">=</span><span class="s2">&quot;permissive&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="future-work">Future work<a class="headerlink" href="#future-work" title="Permanent link">&para;</a></h2>
+<p>Schema operations is an area where future work can improve reliability and ease of use of STAC GeoParquet.</p>
+<p>It's possible that in the future we could automatically infer an Arrow schema from the STAC specification's published JSON Schema files. If you're interested in this, open an issue and discuss.</p>
 
 
 
@@ -1027,10 +784,10 @@ value must be a JSON string with the Collection JSON.</p>
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.annotate", "content.code.copy", "navigation.indexes", "navigation.instant", "navigation.tracking", "search.suggest", "search.share"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["content.code.annotate", "content.code.copy", "navigation.indexes", "navigation.instant", "navigation.tracking", "search.suggest", "search.share"], "search": "../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.ad660dcc.min.js"></script>
+      <script src="../assets/javascripts/bundle.ad660dcc.min.js"></script>
       
     
   </body>
