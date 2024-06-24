@@ -284,13 +284,12 @@ class CollectionConfig:
         """
         Make STAC items out of pgstac records.
 
-        Parameters
-        ----------
-        records: list[tuple]
-            The dehydrated records from pgstac.items table.
-        base_item: dict[str, Any]
-            The base item from the ``collection_base_item`` pgstac function for this
-            collection. Used for rehydration
+        Args:
+            records: list[tuple]
+                The dehydrated records from pgstac.items table.
+            base_item: dict[str, Any]
+                The base item from the ``collection_base_item`` pgstac function for this
+                collection. Used for rehydration
         """
         columns = [
             "id",

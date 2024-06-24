@@ -12,12 +12,6 @@ For analytic questions like "find the items in the Sentinel-2 collection in June
 
 See the [STAC-GeoParquet specification](./spec/stac-geoparquet-spec.md) for details on the exact schema of the written Parquet files.
 
+## Documentation
 
-<!--
-## pgstac integration
-
-`stac_geoparquet.pgstac_reader` has some helpers for working with items coming from a `pgstac.items` table. It takes care of
-
-- Rehydrating the dehydrated items
-- Partitioning by time
-- Injecting dynamic links and assets from a STAC API -->
+[Documentation website](https://stac-utils.github.io/stac-geoparquet/)
