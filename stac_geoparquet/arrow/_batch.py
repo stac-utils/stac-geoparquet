@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import os
+import sys
 from copy import deepcopy
 from pathlib import Path
 from typing import Any, Iterable
@@ -12,7 +13,6 @@ import pyarrow.compute as pc
 import shapely
 import shapely.geometry
 from numpy.typing import NDArray
-from typing_extensions import Self
 
 from stac_geoparquet.arrow._from_arrow import (
     convert_bbox_to_array,
@@ -26,6 +26,11 @@ from stac_geoparquet.arrow._to_arrow import (
     convert_timestamp_columns,
 )
 from stac_geoparquet.arrow._util import convert_tuples_to_lists, set_by_path
+
+if sys.version_info >= (3, 11):
+    from typing import Self
+else:
+    from typing_extensions import Self
 
 
 class StacJsonBatch:

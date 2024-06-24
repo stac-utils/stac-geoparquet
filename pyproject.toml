@@ -22,7 +22,7 @@ dependencies = [
     "pystac",
     "shapely",
     "orjson",
-    "typing_extensions",
+    'typing_extensions; python_version < "3.11"',
 ]
 
 [tool.hatch.version]
