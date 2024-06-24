@@ -23,6 +23,7 @@ nav:
       - api/arrow.md
       - Legacy: api/legacy.md
       # - api/pgstac.md
+  - drawbacks.md
 
 watch:
   - stac_geoparquet
