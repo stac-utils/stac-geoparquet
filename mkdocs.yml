@@ -17,6 +17,7 @@ extra:
 nav:
   - index.md
   - usage.md
+  - schema.md
   - Specification: spec/stac-geoparquet-spec.md
   - API Reference:
       - api/arrow.md
