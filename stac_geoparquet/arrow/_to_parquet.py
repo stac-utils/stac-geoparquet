@@ -76,7 +76,7 @@ def to_parquet(
             [Arrow PyCapsule
             Interface](https://arrow.apache.org/docs/format/CDataInterface/PyCapsuleInterface.html).
             A RecordBatchReader or stream object will not be materialized in memory.
-        where: The destination for saving.
+        output_path: The destination for saving.
 
     Keyword Args:
         schema_version: GeoParquet specification version; if not provided will default
