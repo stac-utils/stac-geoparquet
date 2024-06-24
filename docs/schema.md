@@ -1,10 +1,12 @@
 # Schema considerations
 
-A _schema_ is a set of named fields that describe what data types exist for each column in a tabular dataset.
+A STAC Item is a JSON object to describe an external geospatial dataset. The STAC specification defines a common core, plus a variety of extensions. Additionally, STAC Items may include custom extensions outside the common ones. Crucially, the majority of the specified fields in the core spec and extensions define optional keys. Those keys often differ across STAC collections and may even differ within a single collection across items.
 
-JSON and Arrow/Parquet have opposite expectations around schemas. JSON is fully schemaless; every object in a JSON array may have a completely different schema. Meanwhile Arrow and Parquet require a strict schema upfront, and it is impossible for a row in an Arrow table or Parquet file to not comply with the upfront schema. Trying to write STAC data with mixed schemas to Parquet can easily produce exceptions.
+STAC's flexibility is a blessing and a curse. The flexibility of schemaless JSON allows for very easy writing as each object can be dumped separately to JSON. Every item is allowed to have a different schema. And newer items are free to have a different schema than older items in the same collection. But this write-time flexibility makes it harder to read as there are no guarantees (outside STAC's few required fields) about what fields exist.
 
-Because of these opposite expectations, schema inference is the most difficult part of converting STAC from JSON to GeoParquet.
+Parquet is the complete opposite of JSON. Parquet has a strict schema that must be known before writing can start. This puts the burden of work onto the writer instead of the reader. Reading Parquet is very efficient because the file's metadata defines the exact schema of every record. This also enables use cases like reading specific columns that would not be possible without a strict schema.
+
+This conversion from schemaless to strict-schema is the difficult part of converting STAC from JSON to GeoParquet, especially for large input datasets like STAC that are often larger than memory.
 
 ## Full scan over input data
 
@@ -16,7 +18,11 @@ This is time consuming as it requires two full passes over the input data: once 
 
 Alternatively, the user can pass in an Arrow schema themselves using the `schema` parameter of [`parse_stac_ndjson_to_arrow`][stac_geoparquet.arrow.parse_stac_ndjson_to_arrow]. This `schema` must match the on-disk schema of the the STAC JSON data.
 
-## Merging data with schema mismatch
+## Multiple schemas per collection
+
+It is also possible to write multiple Parquet files with STAC data where each Parquet file may have a different schema. This simplifies the conversion and writing process but makes reading and using the Parquet data harder.
+
+### Merging data with schema mismatch
 
 If you've created STAC GeoParquet data where the schema has updated, you can use [`pyarrow.concat_tables`][pyarrow.concat_tables] with `promote_options="permissive"` to combine multiple STAC GeoParquet files.
 
