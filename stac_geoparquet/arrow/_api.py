@@ -5,6 +5,7 @@ from pathlib import Path
 from typing import Any, Iterable, Iterator
 
 import pyarrow as pa
+import pystac
 
 from stac_geoparquet.arrow._batch import StacArrowBatch, StacJsonBatch
 from stac_geoparquet.arrow._constants import DEFAULT_JSON_CHUNK_SIZE
@@ -14,7 +15,7 @@ from stac_geoparquet.json_reader import read_json_chunked
 
 
 def parse_stac_items_to_arrow(
-    items: Iterable[dict[str, Any]],
+    items: Iterable[pystac.Item | dict[str, Any]],
     *,
     chunk_size: int = 8192,
     schema: pa.Schema | InferredSchema | None = None,
@@ -119,7 +120,7 @@ def stac_table_to_ndjson(
 
 
 def stac_items_to_arrow(
-    items: Iterable[dict[str, Any]], *, schema: pa.Schema | None = None
+    items: Iterable[pystac.Item | dict[str, Any]], *, schema: pa.Schema | None = None
 ) -> pa.RecordBatch:
     """Convert dicts representing STAC Items to Arrow
 

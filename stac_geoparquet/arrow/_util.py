@@ -8,10 +8,13 @@ from typing import (
     List,
     Optional,
     Sequence,
+    TypeVar,
     Union,
 )
 
 import pyarrow as pa
+
+T = TypeVar("T")
 
 
 def update_batch_schema(
@@ -23,8 +26,8 @@ def update_batch_schema(
 
 
 def batched_iter(
-    lst: Iterable[Dict[str, Any]], n: int, *, limit: Optional[int] = None
-) -> Iterable[Sequence[Dict[str, Any]]]:
+    lst: Iterable[T], n: int, *, limit: Optional[int] = None
+) -> Iterable[Sequence[T]]:
     """Yield successive n-sized chunks from iterable."""
     if n < 1:
         raise ValueError("n must be at least one")
