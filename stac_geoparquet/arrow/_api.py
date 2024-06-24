@@ -113,7 +113,6 @@ def parse_stac_ndjson_to_arrow(
     return pa.RecordBatchReader.from_batches(schema, batches)
 
 
-# TODO: change this table input to a PyCapsule interface compliant stream
 def stac_table_to_items(
     table: pa.Table | pa.RecordBatchReader | ArrowStreamExportable,
 ) -> Iterable[dict]:
