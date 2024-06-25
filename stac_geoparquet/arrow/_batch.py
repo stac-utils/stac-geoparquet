@@ -88,7 +88,7 @@ class StacJsonBatch:
         wkb_items = []
         for item in items:
             if isinstance(item, pystac.Item):
-                item = item.to_dict()
+                item = item.to_dict(tranform_hrefs=False)
 
             wkb_item = deepcopy(item)
             wkb_item["geometry"] = shapely.to_wkb(
