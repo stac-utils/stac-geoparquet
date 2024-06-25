@@ -1,6 +1,6 @@
 # Usage
 
-Except for the [legacy API](api/legacy.md), [Apache Arrow](https://arrow.apache.org/) is used as the in-memory interchange format between all formats. While some end-to-end helper functions are provided, the user can go through Arrow objects for maximal flexibility in the conversion process.
+[Apache Arrow](https://arrow.apache.org/) is used as the in-memory interchange format between all formats. While some end-to-end helper functions are provided, the user can go through Arrow objects for maximal flexibility in the conversion process.
 
 All functionality that goes through Arrow is currently exported via the `stac_geoparquet.arrow` namespace.
 
