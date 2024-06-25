@@ -1408,6 +1408,11 @@ A RecordBatchReader or stream object will not be materialized in memory.</p>
     <div class="doc doc-contents ">
 
       <p>Write STAC Arrow to a newline-delimited JSON file.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This function <em>appends</em> to the JSON file at <code>dest</code>; it does not overwrite any
+existing data.</p>
+</div>
 
 
 <p><span class="doc-section-title">Parameters:</span></p>
