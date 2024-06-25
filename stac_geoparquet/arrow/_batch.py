@@ -10,6 +10,7 @@ import numpy as np
 import orjson
 import pyarrow as pa
 import pyarrow.compute as pc
+import pystac
 import shapely
 import shapely.geometry
 from numpy.typing import NDArray
@@ -59,7 +60,10 @@ class StacJsonBatch:
 
     @classmethod
     def from_dicts(
-        cls, items: Iterable[dict[str, Any]], *, schema: pa.Schema | None = None
+        cls,
+        items: Iterable[pystac.Item | dict[str, Any]],
+        *,
+        schema: pa.Schema | None = None,
     ) -> Self:
         """Construct a StacJsonBatch from an iterable of dicts representing STAC items.
 
@@ -83,6 +87,9 @@ class StacJsonBatch:
         # `ArrowInvalid: cannot mix list and non-list, non-null values`
         wkb_items = []
         for item in items:
+            if isinstance(item, pystac.Item):
+                item = item.to_dict(transform_hrefs=False)
+
             wkb_item = deepcopy(item)
             wkb_item["geometry"] = shapely.to_wkb(
                 shapely.geometry.shape(wkb_item["geometry"]), flavor="iso"

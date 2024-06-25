@@ -17,11 +17,13 @@ extra:
 nav:
   - index.md
   - usage.md
+  - schema.md
   - Specification: spec/stac-geoparquet-spec.md
   - API Reference:
       - api/arrow.md
       - Legacy: api/legacy.md
-      # - api/pgstac.md
+      - api/pgstac.md
+  - drawbacks.md
 
 watch:
   - stac_geoparquet
