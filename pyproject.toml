@@ -36,6 +36,7 @@ docs = [
     "black",
     "griffe-inherited-docstrings",
     "mike>=2",
+    "mkdocs-jupyter",
     "mkdocs-material[imaging]>=9.5",
     "mkdocs",
     "mkdocstrings[python]>=0.25.1",

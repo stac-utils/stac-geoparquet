@@ -18,6 +18,8 @@ nav:
   - index.md
   - usage.md
   - schema.md
+  - Examples:
+      - examples/naip.ipynb
   - Specification: spec/stac-geoparquet-spec.md
   - API Reference:
       - api/arrow.md
@@ -31,6 +33,7 @@ watch:
 
 theme:
   name: material
+  custom_dir: docs/overrides
   palette:
     # Palette toggle for automatic mode
     - media: "(prefers-color-scheme)"
@@ -74,6 +77,9 @@ plugins:
   - mike:
       alias_type: "copy"
       canonical_version: "latest"
+  - mkdocs-jupyter:
+      include_source: true
+      ignore: ["**/.ipynb_checkpoints/*.ipynb"]
   - mkdocstrings:
       enable_inventory: true
       handlers:
