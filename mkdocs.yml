@@ -18,6 +18,8 @@ nav:
   - index.md
   - usage.md
   - schema.md
+  - Examples:
+      - examples/naip.ipynb
   - Specification: spec/stac-geoparquet-spec.md
   - API Reference:
       - api/arrow.md
@@ -74,6 +76,9 @@ plugins:
   - mike:
       alias_type: "copy"
       canonical_version: "latest"
+  - mkdocs-jupyter:
+      include_source: true
+      ignore: ["**/.ipynb_checkpoints/*.ipynb"]
   - mkdocstrings:
       enable_inventory: true
       handlers:

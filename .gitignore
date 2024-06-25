@@ -5,3 +5,7 @@ dist
 stac_geoparquet/_version.py
 .cache
 site
+docs/**/*.jsonl
+docs/**/*table
+docs/**/*.parquet
+.ipynb_checkpoints
