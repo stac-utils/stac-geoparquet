@@ -916,7 +916,7 @@
     <span class="o">*</span><span class="p">,</span>
     <span class="n">chunk_size</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></span> <span class="o">=</span> <span class="mi">8192</span><span class="p">,</span>
     <span class="n">schema</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="pyarrow.Schema" href="https://arrow.apache.org/docs/python/generated/pyarrow.Schema.html#pyarrow.Schema">Schema</a></span> <span class="o">|</span> <span class="n"><span title="stac_geoparquet.arrow._schema.models.InferredSchema">InferredSchema</span></span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
-<span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><a class="autorefs autorefs-external" title="typing.Iterable" href="https://docs.python.org/3/library/typing.html#typing.Iterable">Iterable</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" title="pyarrow.RecordBatch" href="https://arrow.apache.org/docs/python/generated/pyarrow.RecordBatch.html#pyarrow.RecordBatch">RecordBatch</a></span><span class="p">]</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><a class="autorefs autorefs-external" title="pyarrow.RecordBatchReader" href="https://arrow.apache.org/docs/python/generated/pyarrow.RecordBatchReader.html#pyarrow.RecordBatchReader">RecordBatchReader</a></span>
 </code></pre></div>
 
     <div class="doc doc-contents ">
@@ -968,10 +968,10 @@ inference. Defaults to None.</p>
 <p><span class="doc-section-title">Returns:</span></p>
     <ul>
         <li class="doc-section-item field-body">
-              <code><a class="autorefs autorefs-external" title="typing.Iterable" href="https://docs.python.org/3/library/typing.html#typing.Iterable">Iterable</a>[<a class="autorefs autorefs-external" title="pyarrow.RecordBatch" href="https://arrow.apache.org/docs/python/generated/pyarrow.RecordBatch.html#pyarrow.RecordBatch">RecordBatch</a>]</code>
+              <code><a class="autorefs autorefs-external" title="pyarrow.RecordBatchReader" href="https://arrow.apache.org/docs/python/generated/pyarrow.RecordBatchReader.html#pyarrow.RecordBatchReader">RecordBatchReader</a></code>
           –
           <div class="doc-md-description">
-            <p>an iterable of pyarrow RecordBatches with the STAC-GeoParquet representation of items.</p>
+            <p>pyarrow RecordBatchReader with a stream of STAC Arrow RecordBatches.</p>
           </div>
         </li>
     </ul>
@@ -994,7 +994,7 @@ inference. Defaults to None.</p>
     <span class="n">chunk_size</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></span> <span class="o">=</span> <span class="n">DEFAULT_JSON_CHUNK_SIZE</span><span class="p">,</span>
     <span class="n">schema</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="pyarrow.Schema" href="https://arrow.apache.org/docs/python/generated/pyarrow.Schema.html#pyarrow.Schema">Schema</a></span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">limit</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
-<span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><a class="autorefs autorefs-external" title="typing.Iterator" href="https://docs.python.org/3/library/typing.html#typing.Iterator">Iterator</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" title="pyarrow.RecordBatch" href="https://arrow.apache.org/docs/python/generated/pyarrow.RecordBatch.html#pyarrow.RecordBatch">RecordBatch</a></span><span class="p">]</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><a class="autorefs autorefs-external" title="pyarrow.RecordBatchReader" href="https://arrow.apache.org/docs/python/generated/pyarrow.RecordBatchReader.html#pyarrow.RecordBatchReader">RecordBatchReader</a></span>
 </code></pre></div>
 
     <div class="doc doc-contents ">
@@ -1054,13 +1054,13 @@ infer a common schema across all data and another to read the data.</p>
     </ul>
 
 
-<p><span class="doc-section-title">Yields:</span></p>
+<p><span class="doc-section-title">Returns:</span></p>
     <ul>
         <li class="doc-section-item field-body">
-              <code><a class="autorefs autorefs-external" title="pyarrow.RecordBatch" href="https://arrow.apache.org/docs/python/generated/pyarrow.RecordBatch.html#pyarrow.RecordBatch">RecordBatch</a></code>
+              <code><a class="autorefs autorefs-external" title="pyarrow.RecordBatchReader" href="https://arrow.apache.org/docs/python/generated/pyarrow.RecordBatchReader.html#pyarrow.RecordBatchReader">RecordBatchReader</a></code>
           –
           <div class="doc-md-description">
-            <p>Arrow RecordBatch with a single chunk of Item data.</p>
+            <p>pyarrow RecordBatchReader with a stream of STAC Arrow RecordBatches.</p>
           </div>
         </li>
     </ul>
@@ -1255,6 +1255,8 @@ to latest supported version.</p>
           </div>
         </li>
     </ul>
+      <p>All other keyword args are passed on to
+<a class="autorefs autorefs-external" href="https://arrow.apache.org/docs/python/generated/pyarrow.parquet.ParquetWriter.html#pyarrow.parquet.ParquetWriter"><code>pyarrow.parquet.ParquetWriter</code></a>.</p>
 
     </div>
 
@@ -1268,12 +1270,43 @@ to latest supported version.</p>
 
 
 <a href="#stac_geoparquet.arrow.stac_table_to_items" class="headerlink" title="Permanent link">&para;</a></h3>
-<div class="doc-signature codehilite"><pre><span></span><code><span class="nf">stac_table_to_items</span><span class="p">(</span><span class="n">table</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="pyarrow.Table" href="https://arrow.apache.org/docs/python/generated/pyarrow.Table.html#pyarrow.Table">Table</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><a class="autorefs autorefs-external" title="typing.Iterable" href="https://docs.python.org/3/library/typing.html#typing.Iterable">Iterable</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#dict">dict</a></span><span class="p">]</span>
+<div class="doc-signature codehilite"><pre><span></span><code><span class="nf">stac_table_to_items</span><span class="p">(</span>
+    <span class="n">table</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="pyarrow.Table" href="https://arrow.apache.org/docs/python/generated/pyarrow.Table.html#pyarrow.Table">Table</a></span> <span class="o">|</span> <span class="n"><a class="autorefs autorefs-external" title="pyarrow.RecordBatchReader" href="https://arrow.apache.org/docs/python/generated/pyarrow.RecordBatchReader.html#pyarrow.RecordBatchReader">RecordBatchReader</a></span> <span class="o">|</span> <span class="n"><span title="stac_geoparquet.arrow.types.ArrowStreamExportable">ArrowStreamExportable</span></span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><a class="autorefs autorefs-external" title="typing.Iterable" href="https://docs.python.org/3/library/typing.html#typing.Iterable">Iterable</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#dict">dict</a></span><span class="p">]</span>
 </code></pre></div>
 
     <div class="doc doc-contents ">
 
-      <p>Convert a STAC Table to a generator of STAC Item <code>dict</code>s</p>
+      <p>Convert STAC Arrow to a generator of STAC Item <code>dict</code>s.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+          <b><code>table</code></b>
+              (<code><a class="autorefs autorefs-external" title="pyarrow.Table" href="https://arrow.apache.org/docs/python/generated/pyarrow.Table.html#pyarrow.Table">Table</a> | <a class="autorefs autorefs-external" title="pyarrow.RecordBatchReader" href="https://arrow.apache.org/docs/python/generated/pyarrow.RecordBatchReader.html#pyarrow.RecordBatchReader">RecordBatchReader</a> | <span title="stac_geoparquet.arrow.types.ArrowStreamExportable">ArrowStreamExportable</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>STAC in Arrow form. This can be a pyarrow Table, a pyarrow
+RecordBatchReader, or any other Arrow stream object exposed through the
+<a href="https://arrow.apache.org/docs/format/CDataInterface/PyCapsuleInterface.html">Arrow PyCapsule
+Interface</a>.
+A RecordBatchReader or stream object will not be materialized in memory.</p>
+          </div>
+        </li>
+    </ul>
+
+
+<p><span class="doc-section-title">Yields:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+              <code><a class="autorefs autorefs-external" title="typing.Iterable" href="https://docs.python.org/3/library/typing.html#typing.Iterable">Iterable</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#dict">dict</a>]</code>
+          –
+          <div class="doc-md-description">
+            <p>A STAC <code>dict</code> for each input row.</p>
+          </div>
+        </li>
+    </ul>
 
     </div>
 
@@ -1287,12 +1320,40 @@ to latest supported version.</p>
 
 
 <a href="#stac_geoparquet.arrow.stac_table_to_ndjson" class="headerlink" title="Permanent link">&para;</a></h3>
-<div class="doc-signature codehilite"><pre><span></span><code><span class="nf">stac_table_to_ndjson</span><span class="p">(</span><span class="n">table</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="pyarrow.Table" href="https://arrow.apache.org/docs/python/generated/pyarrow.Table.html#pyarrow.Table">Table</a></span><span class="p">,</span> <span class="n">dest</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span> <span class="o">|</span> <span class="n"><a class="autorefs autorefs-external" title="pathlib.Path" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path">Path</a></span> <span class="o">|</span> <span class="n"><a class="autorefs autorefs-external" title="os.PathLike" href="https://docs.python.org/3/library/os.html#os.PathLike">PathLike</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#bytes">bytes</a></span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+<div class="doc-signature codehilite"><pre><span></span><code><span class="nf">stac_table_to_ndjson</span><span class="p">(</span>
+    <span class="n">table</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="pyarrow.Table" href="https://arrow.apache.org/docs/python/generated/pyarrow.Table.html#pyarrow.Table">Table</a></span> <span class="o">|</span> <span class="n"><a class="autorefs autorefs-external" title="pyarrow.RecordBatchReader" href="https://arrow.apache.org/docs/python/generated/pyarrow.RecordBatchReader.html#pyarrow.RecordBatchReader">RecordBatchReader</a></span> <span class="o">|</span> <span class="n"><span title="stac_geoparquet.arrow.types.ArrowStreamExportable">ArrowStreamExportable</span></span><span class="p">,</span>
+    <span class="n">dest</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span> <span class="o">|</span> <span class="n"><a class="autorefs autorefs-external" title="pathlib.Path" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path">Path</a></span> <span class="o">|</span> <span class="n"><a class="autorefs autorefs-external" title="os.PathLike" href="https://docs.python.org/3/library/os.html#os.PathLike">PathLike</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#bytes">bytes</a></span><span class="p">],</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
 </code></pre></div>
 
     <div class="doc doc-contents ">
 
-      <p>Write a STAC Table to a newline-delimited JSON file.</p>
+      <p>Write STAC Arrow to a newline-delimited JSON file.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+          <b><code>table</code></b>
+              (<code><a class="autorefs autorefs-external" title="pyarrow.Table" href="https://arrow.apache.org/docs/python/generated/pyarrow.Table.html#pyarrow.Table">Table</a> | <a class="autorefs autorefs-external" title="pyarrow.RecordBatchReader" href="https://arrow.apache.org/docs/python/generated/pyarrow.RecordBatchReader.html#pyarrow.RecordBatchReader">RecordBatchReader</a> | <span title="stac_geoparquet.arrow.types.ArrowStreamExportable">ArrowStreamExportable</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>STAC in Arrow form. This can be a pyarrow Table, a pyarrow
+RecordBatchReader, or any other Arrow stream object exposed through the
+<a href="https://arrow.apache.org/docs/format/CDataInterface/PyCapsuleInterface.html">Arrow PyCapsule
+Interface</a>.
+A RecordBatchReader or stream object will not be materialized in memory.</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+          <b><code>dest</code></b>
+              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a> | <a class="autorefs autorefs-external" title="pathlib.Path" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path">Path</a> | <a class="autorefs autorefs-external" title="os.PathLike" href="https://docs.python.org/3/library/os.html#os.PathLike">PathLike</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#bytes">bytes</a>]</code>)
+          –
+          <div class="doc-md-description">
+            <p>The destination where newline-delimited JSON should be written.</p>
+          </div>
+        </li>
+    </ul>
 
     </div>
 
@@ -1307,8 +1368,8 @@ to latest supported version.</p>
 
 <a href="#stac_geoparquet.arrow.to_parquet" class="headerlink" title="Permanent link">&para;</a></h3>
 <div class="doc-signature codehilite"><pre><span></span><code><span class="nf">to_parquet</span><span class="p">(</span>
-    <span class="n">table</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="pyarrow.Table" href="https://arrow.apache.org/docs/python/generated/pyarrow.Table.html#pyarrow.Table">Table</a></span><span class="p">,</span>
-    <span class="n">where</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="typing.Any" href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a></span><span class="p">,</span>
+    <span class="n">table</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="pyarrow.Table" href="https://arrow.apache.org/docs/python/generated/pyarrow.Table.html#pyarrow.Table">Table</a></span> <span class="o">|</span> <span class="n"><a class="autorefs autorefs-external" title="pyarrow.RecordBatchReader" href="https://arrow.apache.org/docs/python/generated/pyarrow.RecordBatchReader.html#pyarrow.RecordBatchReader">RecordBatchReader</a></span> <span class="o">|</span> <span class="n"><span title="stac_geoparquet.arrow.types.ArrowStreamExportable">ArrowStreamExportable</span></span><span class="p">,</span>
+    <span class="n">output_path</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span> <span class="o">|</span> <span class="n"><a class="autorefs autorefs-external" title="pathlib.Path" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path">Path</a></span><span class="p">,</span>
     <span class="o">*</span><span class="p">,</span>
     <span class="n">schema_version</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-internal" title="stac_geoparquet.arrow._constants.SUPPORTED_PARQUET_SCHEMA_VERSIONS" href="#stac_geoparquet.arrow.SUPPORTED_PARQUET_SCHEMA_VERSIONS">SUPPORTED_PARQUET_SCHEMA_VERSIONS</a></span> <span class="o">=</span> <span class="n">DEFAULT_PARQUET_SCHEMA_VERSION</span><span class="p">,</span>
     <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="typing.Any" href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a></span>
@@ -1325,15 +1386,19 @@ to latest supported version.</p>
     <ul>
         <li class="doc-section-item field-body">
           <b><code>table</code></b>
-              (<code><a class="autorefs autorefs-external" title="pyarrow.Table" href="https://arrow.apache.org/docs/python/generated/pyarrow.Table.html#pyarrow.Table">Table</a></code>)
+              (<code><a class="autorefs autorefs-external" title="pyarrow.Table" href="https://arrow.apache.org/docs/python/generated/pyarrow.Table.html#pyarrow.Table">Table</a> | <a class="autorefs autorefs-external" title="pyarrow.RecordBatchReader" href="https://arrow.apache.org/docs/python/generated/pyarrow.RecordBatchReader.html#pyarrow.RecordBatchReader">RecordBatchReader</a> | <span title="stac_geoparquet.arrow.types.ArrowStreamExportable">ArrowStreamExportable</span></code>)
           –
           <div class="doc-md-description">
-            <p>The table to write to Parquet</p>
+            <p>STAC in Arrow form. This can be a pyarrow Table, a pyarrow
+RecordBatchReader, or any other Arrow stream object exposed through the
+<a href="https://arrow.apache.org/docs/format/CDataInterface/PyCapsuleInterface.html">Arrow PyCapsule
+Interface</a>.
+A RecordBatchReader or stream object will not be materialized in memory.</p>
           </div>
         </li>
         <li class="doc-section-item field-body">
-          <b><code>where</code></b>
-              (<code><a class="autorefs autorefs-external" title="typing.Any" href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a></code>)
+          <b><code>output_path</code></b>
+              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a> | <a class="autorefs autorefs-external" title="pathlib.Path" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path">Path</a></code>)
           –
           <div class="doc-md-description">
             <p>The destination for saving.</p>
@@ -1354,6 +1419,8 @@ to latest supported version.</p>
           </div>
         </li>
     </ul>
+      <p>All other keyword args are passed on to
+<a class="autorefs autorefs-external" href="https://arrow.apache.org/docs/python/generated/pyarrow.parquet.ParquetWriter.html#pyarrow.parquet.ParquetWriter"><code>pyarrow.parquet.ParquetWriter</code></a>.</p>
 
     </div>
 

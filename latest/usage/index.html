@@ -733,19 +733,33 @@
 
 
 <h1 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">&para;</a></h1>
-<p>Except for the <a href="../api/legacy/">legacy API</a>, <a href="https://arrow.apache.org/">Apache Arrow</a> is used as the in-memory interchange format between all formats. While some end-to-end helper functions are provided, the user can go through Arrow objects for maximal flexibility in the conversion process.</p>
+<p><a href="https://arrow.apache.org/">Apache Arrow</a> is used as the in-memory interchange format between all formats. While some end-to-end helper functions are provided, the user can go through Arrow objects for maximal flexibility in the conversion process.</p>
 <p>All functionality that goes through Arrow is currently exported via the <code>stac_geoparquet.arrow</code> namespace.</p>
 <h2 id="dictjson-arrow-conversion"><code>dict</code>/JSON - Arrow conversion<a class="headerlink" href="#dictjson-arrow-conversion" title="Permanent link">&para;</a></h2>
 <h3 id="convert-dicts-to-arrow">Convert <code>dict</code>s to Arrow<a class="headerlink" href="#convert-dicts-to-arrow" title="Permanent link">&para;</a></h3>
 <p>Use <a class="autorefs autorefs-internal" href="../api/arrow/#stac_geoparquet.arrow.parse_stac_items_to_arrow"><code>parse_stac_items_to_arrow</code></a> to convert STAC items either in memory or on disk to a stream of Arrow record batches. This accepts either an iterable of Python <code>dict</code>s or an iterable of <a class="autorefs autorefs-external" href="https://pystac.readthedocs.io/en/stable/api/pystac.html#pystac.Item"><code>pystac.Item</code></a> objects.</p>
+<p>For example:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pyarrow</span> <span class="k">as</span> <span class="nn">pa</span>
+<span class="kn">import</span> <span class="nn">pystac</span>
+
+<span class="kn">import</span> <span class="nn">stac_geoparquet</span>
+
+<span class="n">item</span> <span class="o">=</span> <span class="n">pystac</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span>
+    <span class="s2">&quot;https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-2-l2a/items/S2A_MSIL2A_20230112T104411_R008_T29NPE_20230113T053333&quot;</span>
+<span class="p">)</span>
+<span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">pystac</span><span class="o">.</span><span class="n">Item</span><span class="p">)</span>
+
+<span class="n">record_batch_reader</span> <span class="o">=</span> <span class="n">stac_geoparquet</span><span class="o">.</span><span class="n">arrow</span><span class="o">.</span><span class="n">parse_stac_items_to_arrow</span><span class="p">([</span><span class="n">item</span><span class="p">])</span>
+<span class="n">table</span> <span class="o">=</span> <span class="n">record_batch_reader</span><span class="o">.</span><span class="n">read_all</span><span class="p">()</span>
+</code></pre></div>
 <h3 id="convert-json-to-arrow">Convert JSON to Arrow<a class="headerlink" href="#convert-json-to-arrow" title="Permanent link">&para;</a></h3>
 <p><a class="autorefs autorefs-internal" href="../api/arrow/#stac_geoparquet.arrow.parse_stac_ndjson_to_arrow"><code>parse_stac_ndjson_to_arrow</code></a> is a helper function to take one or more JSON or newline-delimited JSON files on disk, infer the schema from all of them, and convert the data to a stream of Arrow record batches.</p>
 <h3 id="convert-arrow-to-dicts">Convert Arrow to <code>dict</code>s<a class="headerlink" href="#convert-arrow-to-dicts" title="Permanent link">&para;</a></h3>
 <p>Use <a class="autorefs autorefs-internal" href="../api/arrow/#stac_geoparquet.arrow.stac_table_to_items"><code>stac_table_to_items</code></a> to convert a table or stream of Arrow record batches of STAC data to a generator of Python <code>dict</code>s. This accepts either a <code>pyarrow.Table</code> or a <code>pyarrow.RecordBatchReader</code>, which allows conversions of larger-than-memory files in a streaming manner.</p>
 <h3 id="convert-arrow-to-json">Convert Arrow to JSON<a class="headerlink" href="#convert-arrow-to-json" title="Permanent link">&para;</a></h3>
-<p>Use <a class="autorefs autorefs-internal" href="../api/arrow/#stac_geoparquet.arrow.stac_table_to_ndjson"><code>stac_table_to_ndjson</code></a> to convert a table or stream of Arrow record batches of STAC data to a generator of Python <code>dict</code>s. This accepts either a <code>pyarrow.Table</code> or a <code>pyarrow.RecordBatchReader</code>, which allows conversions of larger-than-memory files in a streaming manner.</p>
+<p>Use <a class="autorefs autorefs-internal" href="../api/arrow/#stac_geoparquet.arrow.stac_table_to_ndjson"><code>stac_table_to_ndjson</code></a> to convert a table or stream of Arrow record batches of STAC data to a newline-delimited JSON file. This accepts either a <code>pyarrow.Table</code> or a <code>pyarrow.RecordBatchReader</code>, which allows conversions of larger-than-memory files in a streaming manner.</p>
 <h2 id="parquet">Parquet<a class="headerlink" href="#parquet" title="Permanent link">&para;</a></h2>
-<p>Use <a class="autorefs autorefs-internal" href="../api/arrow/#stac_geoparquet.arrow.to_parquet"><code>to_parquet</code></a> to write STAC Arrow data in memory. This is a special function to ensure that <a href="https://geoparquet.org/">GeoParquet</a> 1.0 or 1.1 metadata is written to the Parquet file.</p>
+<p>Use <a class="autorefs autorefs-internal" href="../api/arrow/#stac_geoparquet.arrow.to_parquet"><code>to_parquet</code></a> to write STAC Arrow data from memory to a path or file-like object. This is a special function to ensure that <a href="https://geoparquet.org/">GeoParquet</a> 1.0 or 1.1 metadata is written to the Parquet file.</p>
 <p><a class="autorefs autorefs-internal" href="../api/arrow/#stac_geoparquet.arrow.parse_stac_ndjson_to_parquet"><code>parse_stac_ndjson_to_parquet</code></a> is a helper that connects reading (newline-delimited) JSON on disk to writing out to a Parquet file.</p>
 <p>No special API is required for reading a STAC GeoParquet file back into Arrow. You can use <a class="autorefs autorefs-external" href="https://arrow.apache.org/docs/python/generated/pyarrow.parquet.read_table.html#pyarrow.parquet.read_table"><code>pyarrow.parquet.read_table</code></a> or <a class="autorefs autorefs-external" href="https://arrow.apache.org/docs/python/generated/pyarrow.parquet.ParquetFile.html#pyarrow.parquet.ParquetFile"><code>pyarrow.parquet.ParquetFile</code></a> directly to read the STAC GeoParquet data back into Arrow.</p>
 <h2 id="delta-lake">Delta Lake<a class="headerlink" href="#delta-lake" title="Permanent link">&para;</a></h2>
