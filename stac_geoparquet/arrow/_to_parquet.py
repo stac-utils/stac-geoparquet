@@ -15,6 +15,7 @@ from stac_geoparquet.arrow._constants import (
 )
 from stac_geoparquet.arrow._crs import WGS84_CRS_JSON
 from stac_geoparquet.arrow._schema.models import InferredSchema
+from stac_geoparquet.arrow.types import ArrowStreamExportable
 
 
 def parse_stac_ndjson_to_parquet(
@@ -43,26 +44,24 @@ def parse_stac_ndjson_to_parquet(
         limit: The maximum number of JSON records to convert.
         schema_version: GeoParquet specification version; if not provided will default
             to latest supported version.
-    """
 
-    batches_iter = parse_stac_ndjson_to_arrow(
+    All other keyword args are passed on to
+    [`pyarrow.parquet.ParquetWriter`][pyarrow.parquet.ParquetWriter].
+    """
+    record_batch_reader = parse_stac_ndjson_to_arrow(
         input_path, chunk_size=chunk_size, schema=schema, limit=limit
     )
-    first_batch = next(batches_iter)
-    schema = first_batch.schema.with_metadata(
-        create_geoparquet_metadata(
-            pa.Table.from_batches([first_batch]), schema_version=schema_version
-        )
+    to_parquet(
+        record_batch_reader,
+        output_path=output_path,
+        schema_version=schema_version,
+        **kwargs,
     )
-    with pq.ParquetWriter(output_path, schema, **kwargs) as writer:
-        writer.write_batch(first_batch)
-        for batch in batches_iter:
-            writer.write_batch(batch)
 
 
 def to_parquet(
-    table: pa.Table,
-    where: Any,
+    table: pa.Table | pa.RecordBatchReader | ArrowStreamExportable,
+    output_path: str | Path,
     *,
     schema_version: SUPPORTED_PARQUET_SCHEMA_VERSIONS = DEFAULT_PARQUET_SCHEMA_VERSION,
     **kwargs: Any,
@@ -72,22 +71,33 @@ def to_parquet(
     This writes metadata compliant with either GeoParquet 1.0 or 1.1.
 
     Args:
-        table: The table to write to Parquet
-        where: The destination for saving.
+        table: STAC in Arrow form. This can be a pyarrow Table, a pyarrow
+            RecordBatchReader, or any other Arrow stream object exposed through the
+            [Arrow PyCapsule
+            Interface](https://arrow.apache.org/docs/format/CDataInterface/PyCapsuleInterface.html).
+            A RecordBatchReader or stream object will not be materialized in memory.
+        output_path: The destination for saving.
 
     Keyword Args:
         schema_version: GeoParquet specification version; if not provided will default
             to latest supported version.
-    """
-    metadata = table.schema.metadata or {}
-    metadata.update(create_geoparquet_metadata(table, schema_version=schema_version))
-    table = table.replace_schema_metadata(metadata)
 
-    pq.write_table(table, where, **kwargs)
+    All other keyword args are passed on to
+    [`pyarrow.parquet.ParquetWriter`][pyarrow.parquet.ParquetWriter].
+    """
+    # Coerce to record batch reader to avoid materializing entire stream
+    reader = pa.RecordBatchReader.from_stream(table)
+
+    schema = reader.schema.with_metadata(
+        create_geoparquet_metadata(reader.schema, schema_version=schema_version)
+    )
+    with pq.ParquetWriter(output_path, schema, **kwargs) as writer:
+        for batch in reader:
+            writer.write_batch(batch)
 
 
 def create_geoparquet_metadata(
-    table: pa.Table,
+    schema: pa.Schema,
     *,
     schema_version: SUPPORTED_PARQUET_SCHEMA_VERSIONS,
 ) -> dict[bytes, bytes]:
@@ -116,7 +126,7 @@ def create_geoparquet_metadata(
         "primary_column": "geometry",
     }
 
-    if "proj:geometry" in table.schema.names:
+    if "proj:geometry" in schema.names:
         # Note we don't include proj:bbox as a covering here for a couple different
         # reasons. For one, it's very common for the projected geometries to have a
         # different CRS in each row, so having statistics for proj:bbox wouldn't be

@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import itertools
 from pathlib import Path
 from typing import TYPE_CHECKING, Any, Iterable
 
@@ -47,14 +46,14 @@ def parse_stac_ndjson_to_delta_lake(
         schema_version: GeoParquet specification version; if not provided will default
             to latest supported version.
     """
-    batches_iter = parse_stac_ndjson_to_arrow(
+    record_batch_reader = parse_stac_ndjson_to_arrow(
         input_path, chunk_size=chunk_size, schema=schema, limit=limit
     )
-    first_batch = next(batches_iter)
-    schema = first_batch.schema.with_metadata(
+    schema = record_batch_reader.schema.with_metadata(
         create_geoparquet_metadata(
-            pa.Table.from_batches([first_batch]), schema_version=schema_version
+            record_batch_reader.schema, schema_version=schema_version
         )
     )
-    combined_iter = itertools.chain([first_batch], batches_iter)
-    write_deltalake(table_or_uri, combined_iter, schema=schema, engine="rust", **kwargs)
+    write_deltalake(
+        table_or_uri, record_batch_reader, schema=schema, engine="rust", **kwargs
+    )
