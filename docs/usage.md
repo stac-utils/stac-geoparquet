@@ -10,6 +10,23 @@ All functionality that goes through Arrow is currently exported via the `stac_ge
 
 Use [`parse_stac_items_to_arrow`][stac_geoparquet.arrow.parse_stac_items_to_arrow] to convert STAC items either in memory or on disk to a stream of Arrow record batches. This accepts either an iterable of Python `dict`s or an iterable of [`pystac.Item`][pystac.Item] objects.
 
+For example:
+
+```py
+import pyarrow as pa
+import pystac
+
+import stac_geoparquet
+
+item = pystac.read_file(
+    "https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-2-l2a/items/S2A_MSIL2A_20230112T104411_R008_T29NPE_20230113T053333"
+)
+assert isinstance(item, pystac.Item)
+
+record_batch_reader = stac_geoparquet.arrow.parse_stac_items_to_arrow([item])
+table = record_batch_reader.read_all()
+```
+
 ### Convert JSON to Arrow
 
 [`parse_stac_ndjson_to_arrow`][stac_geoparquet.arrow.parse_stac_ndjson_to_arrow] is a helper function to take one or more JSON or newline-delimited JSON files on disk, infer the schema from all of them, and convert the data to a stream of Arrow record batches.
