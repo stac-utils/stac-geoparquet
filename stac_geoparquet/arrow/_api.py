@@ -1,8 +1,9 @@
 from __future__ import annotations
 
+import itertools
 import os
 from pathlib import Path
-from typing import Any, Iterable, Iterator
+from typing import Any, Iterable
 
 import pyarrow as pa
 
@@ -10,6 +11,7 @@ from stac_geoparquet.arrow._batch import StacArrowBatch, StacJsonBatch
 from stac_geoparquet.arrow._constants import DEFAULT_JSON_CHUNK_SIZE
 from stac_geoparquet.arrow._schema.models import InferredSchema
 from stac_geoparquet.arrow._util import batched_iter
+from stac_geoparquet.arrow.types import ArrowStreamExportable
 from stac_geoparquet.json_reader import read_json_chunked
 
 
@@ -18,7 +20,7 @@ def parse_stac_items_to_arrow(
     *,
     chunk_size: int = 8192,
     schema: pa.Schema | InferredSchema | None = None,
-) -> Iterable[pa.RecordBatch]:
+) -> pa.RecordBatchReader:
     """
     Parse a collection of STAC Items to an iterable of
     [`pyarrow.RecordBatch`][pyarrow.RecordBatch].
@@ -37,7 +39,7 @@ def parse_stac_items_to_arrow(
             inference. Defaults to None.
 
     Returns:
-        an iterable of pyarrow RecordBatches with the STAC-GeoParquet representation of items.
+        pyarrow RecordBatchReader with a stream of STAC Arrow RecordBatches.
     """
     if schema is not None:
         if isinstance(schema, InferredSchema):
@@ -45,15 +47,19 @@ def parse_stac_items_to_arrow(
 
         # If schema is provided, then for better memory usage we parse input STAC items
         # to Arrow batches in chunks.
-        for chunk in batched_iter(items, chunk_size):
-            yield stac_items_to_arrow(chunk, schema=schema)
+        batches = (
+            stac_items_to_arrow(batch, schema=schema)
+            for batch in batched_iter(items, chunk_size)
+        )
+        return pa.RecordBatchReader.from_batches(schema, batches)
 
     else:
         # If schema is _not_ provided, then we must convert to Arrow all at once, or
         # else it would be possible for a STAC item late in the collection (after the
         # first chunk) to have a different schema and not match the schema inferred for
         # the first chunk.
-        yield stac_items_to_arrow(items)
+        batch = stac_items_to_arrow(items)
+        return pa.RecordBatchReader.from_batches(batch.schema, [batch])
 
 
 def parse_stac_ndjson_to_arrow(
@@ -62,7 +68,7 @@ def parse_stac_ndjson_to_arrow(
     chunk_size: int = DEFAULT_JSON_CHUNK_SIZE,
     schema: pa.Schema | None = None,
     limit: int | None = None,
-) -> Iterator[pa.RecordBatch]:
+) -> pa.RecordBatchReader:
     """
     Convert one or more newline-delimited JSON STAC files to a generator of Arrow
     RecordBatches.
@@ -81,8 +87,8 @@ def parse_stac_ndjson_to_arrow(
     Keyword Args:
         limit: The maximum number of JSON Items to use for schema inference
 
-    Yields:
-        Arrow RecordBatch with a single chunk of Item data.
+    Returns:
+        pyarrow RecordBatchReader with a stream of STAC Arrow RecordBatches.
     """
     # If the schema was not provided, then we need to load all data into memory at once
     # to perform schema resolution.
@@ -90,30 +96,68 @@ def parse_stac_ndjson_to_arrow(
         inferred_schema = InferredSchema()
         inferred_schema.update_from_json(path, chunk_size=chunk_size, limit=limit)
         inferred_schema.manual_updates()
-        yield from parse_stac_ndjson_to_arrow(
+        return parse_stac_ndjson_to_arrow(
             path, chunk_size=chunk_size, schema=inferred_schema
         )
-        return
 
     if isinstance(schema, InferredSchema):
         schema = schema.inner
 
-    for batch in read_json_chunked(path, chunk_size=chunk_size):
-        yield stac_items_to_arrow(batch, schema=schema)
+    batches_iter = (
+        stac_items_to_arrow(batch, schema=schema)
+        for batch in read_json_chunked(path, chunk_size=chunk_size)
+    )
+    first_batch = next(batches_iter)
+    # Need to take this schema from the iterator; the existing `schema` is the schema of
+    # JSON batch
+    resolved_schema = first_batch.schema
+    return pa.RecordBatchReader.from_batches(
+        resolved_schema, itertools.chain([first_batch], batches_iter)
+    )
 
 
-def stac_table_to_items(table: pa.Table) -> Iterable[dict]:
-    """Convert a STAC Table to a generator of STAC Item `dict`s"""
-    for batch in table.to_batches():
+def stac_table_to_items(
+    table: pa.Table | pa.RecordBatchReader | ArrowStreamExportable,
+) -> Iterable[dict]:
+    """Convert STAC Arrow to a generator of STAC Item `dict`s.
+
+    Args:
+        table: STAC in Arrow form. This can be a pyarrow Table, a pyarrow
+            RecordBatchReader, or any other Arrow stream object exposed through the
+            [Arrow PyCapsule
+            Interface](https://arrow.apache.org/docs/format/CDataInterface/PyCapsuleInterface.html).
+            A RecordBatchReader or stream object will not be materialized in memory.
+
+    Yields:
+        A STAC `dict` for each input row.
+    """
+    # Coerce to record batch reader to avoid materializing entire stream
+    reader = pa.RecordBatchReader.from_stream(table)
+
+    for batch in reader:
         clean_batch = StacArrowBatch(batch)
         yield from clean_batch.to_json_batch().iter_dicts()
 
 
 def stac_table_to_ndjson(
-    table: pa.Table, dest: str | Path | os.PathLike[bytes]
+    table: pa.Table | pa.RecordBatchReader | ArrowStreamExportable,
+    dest: str | Path | os.PathLike[bytes],
 ) -> None:
-    """Write a STAC Table to a newline-delimited JSON file."""
-    for batch in table.to_batches():
+    """Write STAC Arrow to a newline-delimited JSON file.
+
+    Args:
+        table: STAC in Arrow form. This can be a pyarrow Table, a pyarrow
+            RecordBatchReader, or any other Arrow stream object exposed through the
+            [Arrow PyCapsule
+            Interface](https://arrow.apache.org/docs/format/CDataInterface/PyCapsuleInterface.html).
+            A RecordBatchReader or stream object will not be materialized in memory.
+        dest: The destination where newline-delimited JSON should be written.
+    """
+
+    # Coerce to record batch reader to avoid materializing entire stream
+    reader = pa.RecordBatchReader.from_stream(table)
+
+    for batch in reader:
         clean_batch = StacArrowBatch(batch)
         clean_batch.to_json_batch().to_ndjson(dest)
 
