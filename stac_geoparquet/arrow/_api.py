@@ -146,6 +146,10 @@ def stac_table_to_ndjson(
 ) -> None:
     """Write STAC Arrow to a newline-delimited JSON file.
 
+    !!! note
+        This function _appends_ to the JSON file at `dest`; it does not overwrite any
+        existing data.
+
     Args:
         table: STAC in Arrow form. This can be a pyarrow Table, a pyarrow
             RecordBatchReader, or any other Arrow stream object exposed through the
