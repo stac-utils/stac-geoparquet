@@ -6,6 +6,6 @@ stac_geoparquet/_version.py
 .cache
 site
 docs/**/*.jsonl
-docs/**/*table
-docs/**/*.parquet
+*table
+*.parquet
 .ipynb_checkpoints
