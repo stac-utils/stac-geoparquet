@@ -20,7 +20,7 @@ Use [`stac_table_to_items`][stac_geoparquet.arrow.stac_table_to_items] to conver
 
 ### Convert Arrow to JSON
 
-Use [`stac_table_to_ndjson`][stac_geoparquet.arrow.stac_table_to_ndjson] to convert a table or stream of Arrow record batches of STAC data to a generator of Python `dict`s. This accepts either a `pyarrow.Table` or a `pyarrow.RecordBatchReader`, which allows conversions of larger-than-memory files in a streaming manner.
+Use [`stac_table_to_ndjson`][stac_geoparquet.arrow.stac_table_to_ndjson] to convert a table or stream of Arrow record batches of STAC data to a newline-delimited JSON file. This accepts either a `pyarrow.Table` or a `pyarrow.RecordBatchReader`, which allows conversions of larger-than-memory files in a streaming manner.
 
 ## Parquet
 
