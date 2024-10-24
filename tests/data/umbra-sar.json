@@ -1,0 +1,224 @@
+[
+{
+    "type": "Feature",
+    "stac_version": "1.0.0",
+    "stac_extensions": [
+      "https://stac-extensions.github.io/view/v1.0.0/schema.json",
+      "https://stac-extensions.github.io/sar/v1.0.0/schema.json"
+    ],
+    "id": "52f2317f-091b-4f90-b385-08c93655e089",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [
+            -79.54925151958344,
+            8.974791994120121,
+            14.312313693418984
+          ],
+          [
+            -79.58251694872273,
+            9.005616405406611,
+            14.318863303708582
+          ],
+          [
+            -79.61351789024071,
+            8.972540909838038,
+            14.312558707495423
+          ],
+          [
+            -79.58025285722145,
+            8.941719234834665,
+            14.318864497230194
+          ],
+          [
+            -79.54925151958344,
+            8.974791994120121,
+            14.312313693418984
+          ]
+        ]
+      ]
+    },
+    "bbox": [
+      -79.61351789024071,
+      8.941719234834665,
+      -79.54925151958344,
+      9.005616405406611
+    ],
+    "properties": {
+      "created": "2024-09-10T10:00:00.425293+00:00",
+      "updated": "2024-09-10T10:00:00.425300+00:00",
+      "platform": "Umbra-08",
+      "end_datetime": "2024-09-10T03:32:32.903484+00:00",
+      "umbra:task_id": "ba1ca3b0-f458-4cd9-8e99-52d2d899d5dd",
+      "start_datetime": "2024-09-10T03:32:23+00:00",
+      "sar:product_type": "GEC",
+      "sar:looks_azimuth": 2,
+      "sar:polarizations": [
+        "VV"
+      ],
+      "umbra:collect_ids": [
+        "7cfa17f0-9b69-4686-949e-5604d24beb3c"
+      ],
+      "sar:frequency_band": "X",
+      "sar:instrument_mode": "SPOTLIGHT",
+      "sar:resolution_range": 0.5,
+      "view:incidence_angle": 23.750572204589844,
+      "sar:resolution_azimuth": 0.25,
+      "umbra:open-data-catalog": true,
+      "umbra:squint_angle_degrees": 120.06241607666016,
+      "umbra:grazing_angle_degrees": 66.24942779541016,
+      "umbra:slant_range_kilometers": 567.7435913085938,
+      "umbra:target_azimuth_angle_degrees": 138.5594940185547,
+      "umbra:squint_angle_engineering_degrees": -30.062416076660156,
+      "umbra:squint_angle_exploitation_degrees": 59.937583923339844,
+      "umbra:squint_angle_degrees_off_broadside": 59.937583923339844,
+      "datetime": null
+    },
+    "links": [
+      {
+        "rel": "collection",
+        "href": "https://api.canopy.umbra.space/archive/collections/umbra-sar",
+        "type": "application/json"
+      },
+      {
+        "rel": "parent",
+        "href": "https://api.canopy.umbra.space/archive/collections/umbra-sar",
+        "type": "application/json"
+      },
+      {
+        "rel": "root",
+        "href": "https://api.canopy.umbra.space/archive/",
+        "type": "application/json",
+        "title": "stac-fastapi"
+      },
+      {
+        "rel": "self",
+        "href": "https://api.canopy.umbra.space/archive/collections/umbra-sar/items/52f2317f-091b-4f90-b385-08c93655e089",
+        "type": "application/geo+json"
+      }
+    ],
+    "assets": {
+      "thumbnail": {
+        "href": "https://api.canopy.umbra.space/archive/thumbnail/52f2317f-091b-4f90-b385-08c93655e089",
+        "type": "image/png",
+        "title": "Thumbnail for 52f2317f-091b-4f90-b385-08c93655e089",
+        "description": "Low-resolution preview PNG thumbnail for 52f2317f-091b-4f90-b385-08c93655e089",
+        "roles": [
+          "thumbnail"
+        ]
+      }
+    },
+    "collection": "umbra-sar"
+  },
+  {
+    "type": "Feature",
+    "stac_version": "1.0.0",
+    "stac_extensions": [
+      "https://stac-extensions.github.io/view/v1.0.0/schema.json",
+      "https://stac-extensions.github.io/sar/v1.0.0/schema.json"
+    ],
+    "id": "192f767c-20f8-4b42-8ea2-d1f60fdaace1",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [
+            -79.55942755490392,
+            8.960346708857864,
+            0
+          ],
+          [
+            -79.56798414722924,
+            8.995497807881366,
+            0
+          ],
+          [
+            -79.60333954966426,
+            8.986988377465938,
+            0
+          ],
+          [
+            -79.59477975406185,
+            8.951838081249301,
+            0
+          ],
+          [
+            -79.55942755490392,
+            8.960346708857864,
+            0
+          ]
+        ]
+      ]
+    },
+    "bbox": [
+      -79.60333954966426,
+      8.951838081249301,
+      -79.55942755490392,
+      8.995497807881366
+    ],
+    "properties": {
+      "platform": "Umbra-05",
+      "end_datetime": "2023-02-01T02:17:12.594980+00:00",
+      "umbra:task_id": "fa8af008-6dc6-4382-8f5a-205f5a6af209",
+      "start_datetime": "2023-02-01T02:17:08.851006+00:00",
+      "sar:product_type": "GEC",
+      "sar:looks_azimuth": 1,
+      "sar:polarizations": [
+        "VV"
+      ],
+      "umbra:collect_ids": [
+        "1b454eab-7958-4755-bb6b-797bde214e8d"
+      ],
+      "sar:frequency_band": "X",
+      "sar:instrument_mode": "SPOTLIGHT",
+      "sar:resolution_range": 0.5,
+      "view:incidence_angle": 59.1085205078125,
+      "sar:resolution_azimuth": 0.5,
+      "umbra:open-data-catalog": true,
+      "umbra:squint_angle_degrees": 180.2089385986328,
+      "umbra:grazing_angle_degrees": 30.8914794921875,
+      "umbra:slant_range_kilometers": 939.5191650390625,
+      "umbra:target_azimuth_angle_degrees": 77.42530059814453,
+      "umbra:squint_angle_engineering_degrees": -90.20893859863281,
+      "umbra:squint_angle_exploitation_degrees": -0.2089385986328125,
+      "umbra:squint_angle_degrees_off_broadside": 0.2089385986328125,
+      "datetime": null
+    },
+    "links": [
+      {
+        "rel": "collection",
+        "href": "https://api.canopy.umbra.space/archive/collections/umbra-sar",
+        "type": "application/json"
+      },
+      {
+        "rel": "parent",
+        "href": "https://api.canopy.umbra.space/archive/collections/umbra-sar",
+        "type": "application/json"
+      },
+      {
+        "rel": "root",
+        "href": "https://api.canopy.umbra.space/archive/",
+        "type": "application/json",
+        "title": "stac-fastapi"
+      },
+      {
+        "rel": "self",
+        "href": "https://api.canopy.umbra.space/archive/collections/umbra-sar/items/192f767c-20f8-4b42-8ea2-d1f60fdaace1",
+        "type": "application/geo+json"
+      }
+    ],
+    "assets": {
+      "thumbnail": {
+        "href": "https://api.canopy.umbra.space/archive/thumbnail/192f767c-20f8-4b42-8ea2-d1f60fdaace1",
+        "type": "image/png",
+        "title": "Thumbnail for 192f767c-20f8-4b42-8ea2-d1f60fdaace1",
+        "description": "512x512 PNG thumbnail for 192f767c-20f8-4b42-8ea2-d1f60fdaace1",
+        "roles": [
+          "thumbnail"
+        ]
+      }
+    },
+    "collection": "umbra-sar"
+  }
+]
