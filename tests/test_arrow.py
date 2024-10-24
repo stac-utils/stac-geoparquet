@@ -21,18 +21,21 @@ from .json_equals import assert_json_value_equal
 HERE = Path(__file__).parent
 
 TEST_COLLECTIONS = [
-    "3dep-lidar-copc",
-    "3dep-lidar-dsm",
-    "cop-dem-glo-30",
-    "io-lulc-annual-v02",
-    "io-lulc",
-    "landsat-c2-l1",
-    "landsat-c2-l2",
-    "naip",
-    "planet-nicfi-analytic",
-    "sentinel-1-rtc",
-    "sentinel-2-l2a",
-    "us-census",
+    # Microsoft Planetary Computer
+    "3dep-lidar-copc-pc",
+    "3dep-lidar-dsm-pc",
+    "cop-dem-glo-30-pc",
+    "io-lulc-annual-v02-pc",
+    "io-lulc-pc",
+    "landsat-c2-l1-pc",
+    "landsat-c2-l2-pc",
+    "naip-pc",
+    "planet-nicfi-analytic-pc",
+    "sentinel-1-rtc-pc",
+    "sentinel-2-l2a-pc",
+    "us-census-pc",
+    # Other
+    "umbra-sar",
 ]
 
 CHUNK_SIZES = [2, DEFAULT_JSON_CHUNK_SIZE]
@@ -42,7 +45,7 @@ CHUNK_SIZES = [2, DEFAULT_JSON_CHUNK_SIZE]
     "collection_id,chunk_size", itertools.product(TEST_COLLECTIONS, CHUNK_SIZES)
 )
 def test_round_trip_read_write(collection_id: str, chunk_size: int):
-    with open(HERE / "data" / f"{collection_id}-pc.json") as f:
+    with open(HERE / "data" / f"{collection_id}.json") as f:
         items = json.load(f)
 
     table = parse_stac_items_to_arrow(items, chunk_size=chunk_size).read_all()
@@ -59,7 +62,7 @@ def test_round_trip_write_read_ndjson(
     collection_id: str, chunk_size: int, tmp_path: Path
 ):
     # First load into a STAC-GeoParquet table
-    path = HERE / "data" / f"{collection_id}-pc.json"
+    path = HERE / "data" / f"{collection_id}.json"
     table = parse_stac_ndjson_to_arrow(path, chunk_size=chunk_size).read_all()
 
     # Then write to disk
@@ -79,7 +82,7 @@ def test_round_trip_write_read_ndjson(
 
 def test_table_contains_geoarrow_metadata():
     collection_id = "naip"
-    with open(HERE / "data" / f"{collection_id}-pc.json") as f:
+    with open(HERE / "data" / f"{collection_id}.json") as f:
         items = json.load(f)
 
     table = parse_stac_items_to_arrow(items).read_all()
@@ -93,11 +96,11 @@ def test_table_contains_geoarrow_metadata():
 
 @pytest.mark.parametrize("collection_id", TEST_COLLECTIONS)
 def test_parse_json_to_arrow(collection_id: str):
-    path = HERE / "data" / f"{collection_id}-pc.json"
+    path = HERE / "data" / f"{collection_id}.json"
     table = pa.Table.from_batches(parse_stac_ndjson_to_arrow(path))
     items_result = list(stac_table_to_items(table))
 
-    with open(HERE / "data" / f"{collection_id}-pc.json") as f:
+    with open(HERE / "data" / f"{collection_id}.json") as f:
         items = json.load(f)
 
     for result, expected in zip(items_result, items):
