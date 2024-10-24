@@ -81,7 +81,7 @@ def test_round_trip_write_read_ndjson(
 
 
 def test_table_contains_geoarrow_metadata():
-    collection_id = "naip"
+    collection_id = "naip-pc"
     with open(HERE / "data" / f"{collection_id}.json") as f:
         items = json.load(f)
 
@@ -125,7 +125,8 @@ def test_to_parquet_two_geometry_columns():
     When writing STAC Items that have a proj:geometry field, there should be two
     geometry columns listed in the GeoParquet metadata.
     """
-    with open(HERE / "data" / "3dep-lidar-copc-pc.json") as f:
+    collection_id = "3dep-lidar-copc-pc"
+    with open(HERE / "data" / f"{collection_id}.json") as f:
         items = json.load(f)
 
     table = parse_stac_items_to_arrow(items).read_all()
