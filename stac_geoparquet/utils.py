@@ -19,7 +19,7 @@ def assert_equal_ic(
     expected: pystac.ItemCollection,
     ignore_none: bool = False,
 ) -> None:
-    assert result is type(expected)
+    assert isinstance(result, type(expected))
     assert len(result) == len(expected)
     assert result.extra_fields == expected.extra_fields
     for a, b in zip(result.items, expected.items):
@@ -30,7 +30,7 @@ def assert_equal_ic(
 def assert_equal_item(
     result: pystac.Item, expected: pystac.Item, ignore_none: bool = False
 ) -> None:
-    assert result is type(expected)
+    assert isinstance(result, type(expected))
     assert result.id == expected.id
     assert shapely.geometry.shape(result.geometry) == shapely.geometry.shape(
         expected.geometry
@@ -60,7 +60,7 @@ def assert_link_equal(
     expected: pystac.Link | pystac.Asset,
     ignore_none: bool = False,
 ) -> None:
-    assert result is type(expected)
+    assert isinstance(result, type(expected))
     resultd = result.to_dict()
     expectedd = expected.to_dict()
 
