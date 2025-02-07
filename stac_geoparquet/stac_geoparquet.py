@@ -6,7 +6,8 @@ from __future__ import annotations
 
 import collections
 import warnings
-from typing import Any, Literal, Sequence
+from collections.abc import Sequence
+from typing import Any, Literal
 from urllib.parse import urlparse
 
 import geopandas
@@ -261,5 +262,8 @@ def to_item_collection(df: geopandas.GeoDataFrame) -> pystac.ItemCollection:
             df2[k].dt.strftime("%Y-%m-%dT%H:%M:%S.%fZ").fillna("").replace({"": None})
         )
 
-    records = [to_dict(record) for record in df2.to_dict(orient="records")]
+    records = [
+        pystac.Item.from_dict(to_dict(record), migrate=False)
+        for record in df2.to_dict(orient="records")
+    ]
     return pystac.ItemCollection(records)

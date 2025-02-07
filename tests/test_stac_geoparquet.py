@@ -255,7 +255,7 @@ def test_to_geodataframe(dtype_backend):
     pandas.testing.assert_frame_equal(result, expected)
 
     ic1 = to_item_collection(result)
-    ic2 = pystac.ItemCollection([ITEM])
+    ic2 = pystac.ItemCollection([pystac.Item.from_dict(ITEM, migrate=False)])
     assert_equal(ic1, ic2)
 
 
@@ -278,7 +278,7 @@ def test_to_geodataframe_with_self_link():
     pandas.testing.assert_frame_equal(result, expected)
 
     ic1 = to_item_collection(result)
-    ic2 = pystac.ItemCollection([ITEM])
+    ic2 = pystac.ItemCollection([pystac.Item.from_dict(ITEM, migrate=False)])
     assert_equal(ic1, ic2)
 
 
@@ -385,7 +385,9 @@ def test_smoke(collection_id):
     df = stac_geoparquet.to_geodataframe(items, dtype_backend="pyarrow")
 
     result = to_item_collection(df)
-    expected = pystac.ItemCollection(items)
+    expected = pystac.ItemCollection(
+        pystac.Item.from_dict(item, migrate=False) for item in items
+    )
     assert_equal(result, expected, ignore_none=True)
 
 

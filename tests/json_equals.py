@@ -1,5 +1,6 @@
 import math
-from typing import Any, Dict, Sequence, Union
+from collections.abc import Sequence
+from typing import Any, Union
 
 from ciso8601 import parse_rfc3339
 
@@ -63,7 +64,7 @@ def assert_sequence_equal(
 ) -> None:
     """Compare two JSON arrays, recursively"""
     assert len(result) == len(expected), (
-        f"List at {key_name} has different lengths." f"{len(result)=}, {len(expected)=}"
+        f"List at {key_name} has different lengths.{len(result)=}, {len(expected)=}"
     )
 
     for i in range(len(result)):
@@ -114,9 +115,9 @@ def assert_string_equal(
         )
 
     except ValueError:
-        assert (
-            result == expected
-        ), f"String at {key_name} not equal. {result=}, {expected=}."
+        assert result == expected, (
+            f"String at {key_name} not equal. {result=}, {expected=}."
+        )
 
 
 def assert_bool_equal(
@@ -130,8 +131,8 @@ def assert_bool_equal(
 
 
 def assert_dict_equal(
-    result: Dict[str, Any],
-    expected: Dict[str, Any],
+    result: dict[str, Any],
+    expected: dict[str, Any],
     *,
     key_name: str,
     precision: float,
@@ -146,15 +147,15 @@ def assert_dict_equal(
     # For any keys that exist in result but not expected, assert that the result value
     # is None
     for key in result_keys - expected_keys:
-        assert (
-            result[key] is None
-        ), f"Expected key at {key_name} to be None in result. Got {result['key']}"
+        assert result[key] is None, (
+            f"Expected key at {key_name} to be None in result. Got {result['key']}"
+        )
 
     # And vice versa
     for key in expected_keys - result_keys:
-        assert (
-            expected[key] is None
-        ), f"Expected key at {key_name} to be None in expected. Got {expected['key']}"
+        assert expected[key] is None, (
+            f"Expected key at {key_name} to be None in expected. Got {expected['key']}"
+        )
 
     # For any overlapping keys, assert that their values are equal
     for key in result_keys & expected_keys:

@@ -1,6 +1,7 @@
 import pathlib
 
 import geopandas
+import pystac
 import pytest
 
 import stac_geoparquet
@@ -31,7 +32,7 @@ def test_to_dict(naip):
                 "href": "https://naipeuwest.blob.core.windows.net/naip/v002/ok/2010/ok_100cm_2010/34099/m_3409901_nw_14_1_20100425.tif",  # noqa: E501
                 "roles": ["data"],
                 "title": "RGBIR COG tile",
-                "type": "image/tiff; application=geotiff; " "profile=cloud-optimized",
+                "type": "image/tiff; application=geotiff; profile=cloud-optimized",
             },
             "rendered_preview": {
                 "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/preview.png?collection=naip&item=ok_m_3409901_nw_14_1_20100425&assets=image&asset_bidx=image%7C1%2C2%2C3",  # noqa: E501
@@ -111,7 +112,7 @@ def test_to_dict(naip):
             "https://stac-extensions.github.io/eo/v1.0.0/schema.json",
             "https://stac-extensions.github.io/projection/v1.0.0/schema.json",
         ],
-        "stac_version": "1.0.0",
+        "stac_version": pystac.get_stac_version(),
         "type": "Feature",
     }
     assert result[0].to_dict() == expected

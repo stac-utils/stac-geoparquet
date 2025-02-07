@@ -1,7 +1,5 @@
 """Convert STAC Items in Arrow Table format to JSON Lines or Python dicts."""
 
-from typing import List
-
 import numpy as np
 import pyarrow as pa
 import pyarrow.compute as pc
@@ -47,8 +45,8 @@ def lower_properties_from_top_level(batch: pa.RecordBatch) -> pa.RecordBatch:
         "assets",
     }
 
-    properties_column_names: List[str] = []
-    properties_column_fields: List[pa.Field] = []
+    properties_column_names: list[str] = []
+    properties_column_fields: list[pa.Field] = []
     for column_idx in range(batch.num_columns):
         column_name = batch.column_names[column_idx]
         if column_name in stac_top_level_keys:
