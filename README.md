@@ -30,4 +30,5 @@ cd stac-geoparquet
 uv sync
 uv run pre-commit install
 uv run pytest
+scripts/lint
 ```
