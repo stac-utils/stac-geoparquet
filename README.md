@@ -1,4 +1,4 @@
-# stac-geoparquet
+# STAC-GeoParquet
 
 Convert [STAC](https://stacspec.org/en) items between JSON, [GeoParquet](https://geoparquet.org/), [pgstac](https://github.com/stac-utils/pgstac), and [Delta Lake](https://delta.io/).
 
