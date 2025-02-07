@@ -1,13 +1,10 @@
 import operator
+from collections.abc import Iterable, Sequence
 from functools import reduce
 from itertools import islice
 from typing import (
     Any,
-    Dict,
-    Iterable,
-    List,
     Optional,
-    Sequence,
     TypeVar,
     Union,
 )
@@ -40,7 +37,7 @@ def batched_iter(
             return
 
 
-def convert_tuples_to_lists(t: Union[list, tuple]) -> List[Any]:
+def convert_tuples_to_lists(t: Union[list, tuple]) -> list[Any]:
     """Convert tuples to lists, recursively
 
     For example, converts:
@@ -77,7 +74,7 @@ def convert_tuples_to_lists(t: Union[list, tuple]) -> List[Any]:
     return list(map(convert_tuples_to_lists, t)) if isinstance(t, (list, tuple)) else t
 
 
-def get_by_path(root: Dict[str, Any], keys: Sequence[str]) -> Any:
+def get_by_path(root: dict[str, Any], keys: Sequence[str]) -> Any:
     """Access a nested object in root by item sequence.
 
     From https://stackoverflow.com/a/14692747
@@ -85,7 +82,7 @@ def get_by_path(root: Dict[str, Any], keys: Sequence[str]) -> Any:
     return reduce(operator.getitem, keys, root)
 
 
-def set_by_path(root: Dict[str, Any], keys: Sequence[str], value: Any) -> None:
+def set_by_path(root: dict[str, Any], keys: Sequence[str], value: Any) -> None:
     """Set a value in a nested object in root by item sequence.
 
     From https://stackoverflow.com/a/14692747

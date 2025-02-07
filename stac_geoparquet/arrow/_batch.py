@@ -2,9 +2,10 @@ from __future__ import annotations
 
 import os
 import sys
+from collections.abc import Iterable
 from copy import deepcopy
 from pathlib import Path
-from typing import Any, Iterable
+from typing import Any
 
 import numpy as np
 import orjson
