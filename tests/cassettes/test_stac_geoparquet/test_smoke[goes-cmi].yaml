@@ -14,74 +14,193 @@ interactions:
     uri: https://planetarycomputer.microsoft.com/api/stac/v1/collections/goes-cmi/items?limit=1
   response:
     body:
-      string: !!binary |
-        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
-        swNzwPjb/wF4KJDO7p0AAA==
+      string: '{"type":"FeatureCollection","features":[{"id":"OR_ABI-L2-C-M6_G18_s20250701546183","bbox":[-184.3764190673828,14.57133960723877,-89.62357330322266,53.50006103515625],"type":"Feature","links":[{"rel":"collection","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/goes-cmi"},{"rel":"parent","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/goes-cmi"},{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"self","type":"application/geo+json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/goes-cmi/items/OR_ABI-L2-C-M6_G18_s20250701546183"},{"rel":"preview","href":"https://planetarycomputer.microsoft.com/api/data/v1/item/map?collection=goes-cmi&item=OR_ABI-L2-C-M6_G18_s20250701546183","title":"Map
+        of item","type":"text/html"}],"assets":{"C01_1km":{"href":"https://goeseuwest.blob.core.windows.net/noaa-goes-cogs/goes-18/ABI-L2-CMIPC/2025/070/15/OR_ABI-L2-CMIPC-M6C01_G18_s20250701546183_e20250701548556_c20250701549044_CMI.tif","proj:shape":[3000,5000],"raster:bands":[{"nodata":-1,"data_type":"int16","spatial_resolution":1000}],"proj:transform":[1002.0086577437705,0.0,-2505021.6335212095,0.0,-1002.0086577437705,4589199.4854017,0.0,0.0,1.0],"goes:end_observation_time":"2025-03-11T15:48:55.600000Z","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","roles":["data"],"title":"Cloud
+        and Moisture Imagery reflectance factor - Band 01 (full resolution)","eo:bands":[{"name":"ABI
+        Band 1","common_name":"blue","description":"Daytime aerosol over land, coastal
+        water mapping","center_wavelength":0.47}]},"C01_2km":{"href":"https://goeseuwest.blob.core.windows.net/noaa-goes-cogs/goes-18/ABI-L2-MCMIPC/2025/070/15/OR_ABI-L2-MCMIPC-M6_G18_s20250701546183_e20250701548562_c20250701549080_CMI_C01.tif","raster:bands":[{"nodata":-1,"data_type":"int16","spatial_resolution":2000}],"goes:end_observation_time":"2025-03-11T15:48:56.200000Z","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Cloud and Moisture
+        Imagery reflectance factor - Band 01","eo:bands":[{"name":"ABI Band 1","common_name":"blue","description":"Daytime
+        aerosol over land, coastal water mapping","center_wavelength":0.47}]},"C02_2km":{"href":"https://goeseuwest.blob.core.windows.net/noaa-goes-cogs/goes-18/ABI-L2-MCMIPC/2025/070/15/OR_ABI-L2-MCMIPC-M6_G18_s20250701546183_e20250701548562_c20250701549080_CMI_C02.tif","raster:bands":[{"nodata":-1,"data_type":"int16","spatial_resolution":2000}],"goes:end_observation_time":"2025-03-11T15:48:56.200000Z","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Cloud and Moisture
+        Imagery reflectance factor - Band 02","eo:bands":[{"name":"ABI Band 2","common_name":"red","description":"Daytime
+        clouds, fog, insolation, winds","center_wavelength":0.64}]},"C03_1km":{"href":"https://goeseuwest.blob.core.windows.net/noaa-goes-cogs/goes-18/ABI-L2-CMIPC/2025/070/15/OR_ABI-L2-CMIPC-M6C03_G18_s20250701546183_e20250701548556_c20250701549066_CMI.tif","proj:shape":[3000,5000],"raster:bands":[{"nodata":-1,"data_type":"int16","spatial_resolution":1000}],"proj:transform":[1002.0086577437705,0.0,-2505021.6335212095,0.0,-1002.0086577437705,4589199.4854017,0.0,0.0,1.0],"goes:end_observation_time":"2025-03-11T15:48:55.600000Z","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","roles":["data"],"title":"Cloud
+        and Moisture Imagery reflectance factor - Band 03 (full resolution)","eo:bands":[{"name":"ABI
+        Band 3","common_name":"nir09","description":"Daytime vegetation, burn scar,
+        aerosol over water, winds","center_wavelength":0.87}]},"C03_2km":{"href":"https://goeseuwest.blob.core.windows.net/noaa-goes-cogs/goes-18/ABI-L2-MCMIPC/2025/070/15/OR_ABI-L2-MCMIPC-M6_G18_s20250701546183_e20250701548562_c20250701549080_CMI_C03.tif","raster:bands":[{"nodata":-1,"data_type":"int16","spatial_resolution":2000}],"goes:end_observation_time":"2025-03-11T15:48:56.200000Z","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Cloud and Moisture
+        Imagery reflectance factor - Band 03","eo:bands":[{"name":"ABI Band 3","common_name":"nir09","description":"Daytime
+        vegetation, burn scar, aerosol over water, winds","center_wavelength":0.87}]},"C04_2km":{"href":"https://goeseuwest.blob.core.windows.net/noaa-goes-cogs/goes-18/ABI-L2-MCMIPC/2025/070/15/OR_ABI-L2-MCMIPC-M6_G18_s20250701546183_e20250701548562_c20250701549080_CMI_C04.tif","raster:bands":[{"nodata":-1,"data_type":"int16","spatial_resolution":2000}],"goes:end_observation_time":"2025-03-11T15:48:56.200000Z","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Cloud and Moisture
+        Imagery reflectance factor - Band 04","eo:bands":[{"name":"ABI Band 4","common_name":"cirrus","description":"Daytime
+        cirrus cloud","center_wavelength":1.38}]},"C05_1km":{"href":"https://goeseuwest.blob.core.windows.net/noaa-goes-cogs/goes-18/ABI-L2-CMIPC/2025/070/15/OR_ABI-L2-CMIPC-M6C05_G18_s20250701546183_e20250701548556_c20250701549024_CMI.tif","proj:shape":[3000,5000],"raster:bands":[{"nodata":-1,"data_type":"int16","spatial_resolution":1000}],"proj:transform":[1002.0086577437705,0.0,-2505021.6335212095,0.0,-1002.0086577437705,4589199.4854017,0.0,0.0,1.0],"goes:end_observation_time":"2025-03-11T15:48:55.600000Z","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","roles":["data"],"title":"Cloud
+        and Moisture Imagery reflectance factor - Band 05 (full resolution)","eo:bands":[{"name":"ABI
+        Band 5","common_name":"swir16","description":"Daytime cloud-top phase and
+        particle size, snow","center_wavelength":1.61}]},"C05_2km":{"href":"https://goeseuwest.blob.core.windows.net/noaa-goes-cogs/goes-18/ABI-L2-MCMIPC/2025/070/15/OR_ABI-L2-MCMIPC-M6_G18_s20250701546183_e20250701548562_c20250701549080_CMI_C05.tif","raster:bands":[{"nodata":-1,"data_type":"int16","spatial_resolution":2000}],"goes:end_observation_time":"2025-03-11T15:48:56.200000Z","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Cloud and Moisture
+        Imagery reflectance factor - Band 05","eo:bands":[{"name":"ABI Band 5","common_name":"swir16","description":"Daytime
+        cloud-top phase and particle size, snow","center_wavelength":1.61}]},"C06_2km":{"href":"https://goeseuwest.blob.core.windows.net/noaa-goes-cogs/goes-18/ABI-L2-MCMIPC/2025/070/15/OR_ABI-L2-MCMIPC-M6_G18_s20250701546183_e20250701548562_c20250701549080_CMI_C06.tif","raster:bands":[{"nodata":-1,"data_type":"int16","spatial_resolution":2000}],"goes:end_observation_time":"2025-03-11T15:48:56.200000Z","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Cloud and Moisture
+        Imagery reflectance factor - Band 06","eo:bands":[{"name":"ABI Band 6","common_name":"swir22","description":"Daytime
+        land, cloud properties, particle size, vegetation, snow","center_wavelength":2.25}]},"C07_2km":{"href":"https://goeseuwest.blob.core.windows.net/noaa-goes-cogs/goes-18/ABI-L2-MCMIPC/2025/070/15/OR_ABI-L2-MCMIPC-M6_G18_s20250701546183_e20250701548562_c20250701549080_CMI_C07.tif","raster:bands":[{"nodata":-1,"data_type":"int16","spatial_resolution":2000}],"goes:end_observation_time":"2025-03-11T15:48:56.200000Z","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Cloud and Moisture
+        Imagery brightness temperature at top of atmosphere - Band 07","eo:bands":[{"name":"ABI
+        Band 7","description":"Surface and cloud, fog at night, fire, winds","center_wavelength":3.89}]},"C08_2km":{"href":"https://goeseuwest.blob.core.windows.net/noaa-goes-cogs/goes-18/ABI-L2-MCMIPC/2025/070/15/OR_ABI-L2-MCMIPC-M6_G18_s20250701546183_e20250701548562_c20250701549080_CMI_C08.tif","raster:bands":[{"nodata":-1,"data_type":"int16","spatial_resolution":2000}],"goes:end_observation_time":"2025-03-11T15:48:56.200000Z","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Cloud and Moisture
+        Imagery brightness temperature at top of atmosphere - Band 08","eo:bands":[{"name":"ABI
+        Band 8","description":"High-level atmospheric water vapor, winds, rainfall","center_wavelength":6.17}]},"C09_2km":{"href":"https://goeseuwest.blob.core.windows.net/noaa-goes-cogs/goes-18/ABI-L2-MCMIPC/2025/070/15/OR_ABI-L2-MCMIPC-M6_G18_s20250701546183_e20250701548562_c20250701549080_CMI_C09.tif","raster:bands":[{"nodata":-1,"data_type":"int16","spatial_resolution":2000}],"goes:end_observation_time":"2025-03-11T15:48:56.200000Z","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Cloud and Moisture
+        Imagery brightness temperature at top of atmosphere - Band 09","eo:bands":[{"name":"ABI
+        Band 9","description":"Midlevel atmospheric water vapor, winds, rainfall","center_wavelength":6.93}]},"C10_2km":{"href":"https://goeseuwest.blob.core.windows.net/noaa-goes-cogs/goes-18/ABI-L2-MCMIPC/2025/070/15/OR_ABI-L2-MCMIPC-M6_G18_s20250701546183_e20250701548562_c20250701549080_CMI_C10.tif","raster:bands":[{"nodata":-1,"data_type":"int16","spatial_resolution":2000}],"goes:end_observation_time":"2025-03-11T15:48:56.200000Z","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Cloud and Moisture
+        Imagery brightness temperature at top of atmosphere - Band 10","eo:bands":[{"name":"ABI
+        Band 10","description":"Lower-level water vapor, winds, and silicon dioxide","center_wavelength":7.34}]},"C11_2km":{"href":"https://goeseuwest.blob.core.windows.net/noaa-goes-cogs/goes-18/ABI-L2-MCMIPC/2025/070/15/OR_ABI-L2-MCMIPC-M6_G18_s20250701546183_e20250701548562_c20250701549080_CMI_C11.tif","raster:bands":[{"nodata":-1,"data_type":"int16","spatial_resolution":2000}],"goes:end_observation_time":"2025-03-11T15:48:56.200000Z","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Cloud and Moisture
+        Imagery brightness temperature at top of atmosphere - Band 11","eo:bands":[{"name":"ABI
+        Band 11","description":"Total water for stability, cloud phase, dust, silicon
+        dioxide, rainfall","center_wavelength":8.44}]},"C12_2km":{"href":"https://goeseuwest.blob.core.windows.net/noaa-goes-cogs/goes-18/ABI-L2-MCMIPC/2025/070/15/OR_ABI-L2-MCMIPC-M6_G18_s20250701546183_e20250701548562_c20250701549080_CMI_C12.tif","raster:bands":[{"nodata":-1,"data_type":"int16","spatial_resolution":2000}],"goes:end_observation_time":"2025-03-11T15:48:56.200000Z","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Cloud and Moisture
+        Imagery brightness temperature at top of atmosphere - Band 12","eo:bands":[{"name":"ABI
+        Band 12","description":"Total ozone, turbulence, winds","center_wavelength":9.61}]},"C13_2km":{"href":"https://goeseuwest.blob.core.windows.net/noaa-goes-cogs/goes-18/ABI-L2-MCMIPC/2025/070/15/OR_ABI-L2-MCMIPC-M6_G18_s20250701546183_e20250701548562_c20250701549080_CMI_C13.tif","raster:bands":[{"nodata":-1,"data_type":"int16","spatial_resolution":2000}],"goes:end_observation_time":"2025-03-11T15:48:56.200000Z","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Cloud and Moisture
+        Imagery brightness temperature at top of atmosphere - Band 13","eo:bands":[{"name":"ABI
+        Band 13","description":"Surface and clouds","center_wavelength":10.33}]},"C14_2km":{"href":"https://goeseuwest.blob.core.windows.net/noaa-goes-cogs/goes-18/ABI-L2-MCMIPC/2025/070/15/OR_ABI-L2-MCMIPC-M6_G18_s20250701546183_e20250701548562_c20250701549080_CMI_C14.tif","raster:bands":[{"nodata":-1,"data_type":"int16","spatial_resolution":2000}],"goes:end_observation_time":"2025-03-11T15:48:56.200000Z","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Cloud and Moisture
+        Imagery brightness temperature at top of atmosphere - Band 14","eo:bands":[{"name":"ABI
+        Band 14","description":"Imagery, sea surface temperature, clouds, rainfall","center_wavelength":11.19}]},"C15_2km":{"href":"https://goeseuwest.blob.core.windows.net/noaa-goes-cogs/goes-18/ABI-L2-MCMIPC/2025/070/15/OR_ABI-L2-MCMIPC-M6_G18_s20250701546183_e20250701548562_c20250701549080_CMI_C15.tif","raster:bands":[{"nodata":-1,"data_type":"int16","spatial_resolution":2000}],"goes:end_observation_time":"2025-03-11T15:48:56.200000Z","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Cloud and Moisture
+        Imagery brightness temperature at top of atmosphere - Band 15","eo:bands":[{"name":"ABI
+        Band 15","description":"Total water, volcanic ash, sea surface temperature","center_wavelength":12.27}]},"C16_2km":{"href":"https://goeseuwest.blob.core.windows.net/noaa-goes-cogs/goes-18/ABI-L2-MCMIPC/2025/070/15/OR_ABI-L2-MCMIPC-M6_G18_s20250701546183_e20250701548562_c20250701549080_CMI_C16.tif","raster:bands":[{"nodata":-1,"data_type":"int16","spatial_resolution":2000}],"goes:end_observation_time":"2025-03-11T15:48:56.200000Z","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Cloud and Moisture
+        Imagery brightness temperature at top of atmosphere - Band 16","eo:bands":[{"name":"ABI
+        Band 16","description":"Air temperature, cloud heights","center_wavelength":13.27}]},"MCMIP-nc":{"href":"https://goeseuwest.blob.core.windows.net/noaa-goes18/ABI-L2-MCMIPC/2025/070/15/OR_ABI-L2-MCMIPC-M6_G18_s20250701546183_e20250701548562_c20250701549080.nc","goes:end_observation_time":"2025-03-11T15:48:56.200000Z","type":"application/netcdf","roles":["data"],"title":"Cloud
+        and Moisture Imagery - Multiband","eo:bands":[{"name":"ABI Band 1","common_name":"blue","description":"Daytime
+        aerosol over land, coastal water mapping","center_wavelength":0.47},{"name":"ABI
+        Band 2","common_name":"red","description":"Daytime clouds, fog, insolation,
+        winds","center_wavelength":0.64},{"name":"ABI Band 3","common_name":"nir09","description":"Daytime
+        vegetation, burn scar, aerosol over water, winds","center_wavelength":0.87},{"name":"ABI
+        Band 4","common_name":"cirrus","description":"Daytime cirrus cloud","center_wavelength":1.38},{"name":"ABI
+        Band 5","common_name":"swir16","description":"Daytime cloud-top phase and
+        particle size, snow","center_wavelength":1.61},{"name":"ABI Band 6","common_name":"swir22","description":"Daytime
+        land, cloud properties, particle size, vegetation, snow","center_wavelength":2.25},{"name":"ABI
+        Band 7","description":"Surface and cloud, fog at night, fire, winds","center_wavelength":3.89},{"name":"ABI
+        Band 8","description":"High-level atmospheric water vapor, winds, rainfall","center_wavelength":6.17},{"name":"ABI
+        Band 9","description":"Midlevel atmospheric water vapor, winds, rainfall","center_wavelength":6.93},{"name":"ABI
+        Band 10","description":"Lower-level water vapor, winds, and silicon dioxide","center_wavelength":7.34},{"name":"ABI
+        Band 11","description":"Total water for stability, cloud phase, dust, silicon
+        dioxide, rainfall","center_wavelength":8.44},{"name":"ABI Band 12","description":"Total
+        ozone, turbulence, winds","center_wavelength":9.61},{"name":"ABI Band 13","description":"Surface
+        and clouds","center_wavelength":10.33},{"name":"ABI Band 14","description":"Imagery,
+        sea surface temperature, clouds, rainfall","center_wavelength":11.19},{"name":"ABI
+        Band 15","description":"Total water, volcanic ash, sea surface temperature","center_wavelength":12.27},{"name":"ABI
+        Band 16","description":"Air temperature, cloud heights","center_wavelength":13.27}],"description":"The
+        Cloud and Moisture Imagery product contains one or more Earth-view images
+        with pixel values identifying ''brightness values'' that are scaled to support
+        visual analysis."},"C02_0.5km":{"href":"https://goeseuwest.blob.core.windows.net/noaa-goes-cogs/goes-18/ABI-L2-CMIPC/2025/070/15/OR_ABI-L2-CMIPC-M6C02_G18_s20250701546183_e20250701548556_c20250701549067_CMI.tif","proj:shape":[6000,10000],"raster:bands":[{"nodata":-1,"data_type":"int16","spatial_resolution":500}],"proj:transform":[501.0043288718852,0.0,-2505021.4937798134,0.0,-501.00432887188526,4589199.612286952,0.0,0.0,1.0],"goes:end_observation_time":"2025-03-11T15:48:55.600000Z","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","roles":["data"],"title":"Cloud
+        and Moisture Imagery reflectance factor - Band 02 (full resolution)","eo:bands":[{"name":"ABI
+        Band 2","common_name":"red","description":"Daytime clouds, fog, insolation,
+        winds","center_wavelength":0.64}]},"C01_2km_wm":{"href":"https://goeseuwest.blob.core.windows.net/noaa-goes-cogs/web/goes-18/ABI-L2-MCMIPC/2025/070/15/OR_ABI-L2-MCMIPC-M6_G18_s20250701546183_e20250701548562_c20250701549080_CMI_C01_wm.tif","proj:bbox":[-20037507.522004433,1639355.378416177,20028714.711135365,7081135.63162303],"proj:epsg":3857,"proj:shape":[488,3594],"raster:bands":[{"nodata":-1,"data_type":"int16","spatial_resolution":2000}],"proj:transform":[11148.086319738397,0.0,-20037507.522004433,0.0,-11151.189043456665,7081135.63162303],"goes:end_observation_time":"2025-03-11T15:48:56.200000Z","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Cloud and Moisture
+        Imagery reflectance factor - Band 01, Web Mercator","eo:bands":[{"name":"ABI
+        Band 1","common_name":"blue","description":"Daytime aerosol over land, coastal
+        water mapping","center_wavelength":0.47}]},"C02_2km_wm":{"href":"https://goeseuwest.blob.core.windows.net/noaa-goes-cogs/web/goes-18/ABI-L2-MCMIPC/2025/070/15/OR_ABI-L2-MCMIPC-M6_G18_s20250701546183_e20250701548562_c20250701549080_CMI_C02_wm.tif","proj:bbox":[-20037507.522004433,1639355.378416177,20028714.711135365,7081135.63162303],"proj:epsg":3857,"proj:shape":[488,3594],"raster:bands":[{"nodata":-1,"data_type":"int16","spatial_resolution":2000}],"proj:transform":[11148.086319738397,0.0,-20037507.522004433,0.0,-11151.189043456665,7081135.63162303],"goes:end_observation_time":"2025-03-11T15:48:56.200000Z","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Cloud and Moisture
+        Imagery reflectance factor - Band 02, Web Mercator","eo:bands":[{"name":"ABI
+        Band 2","common_name":"red","description":"Daytime clouds, fog, insolation,
+        winds","center_wavelength":0.64}]},"C03_2km_wm":{"href":"https://goeseuwest.blob.core.windows.net/noaa-goes-cogs/web/goes-18/ABI-L2-MCMIPC/2025/070/15/OR_ABI-L2-MCMIPC-M6_G18_s20250701546183_e20250701548562_c20250701549080_CMI_C03_wm.tif","proj:bbox":[-20037507.522004433,1639355.378416177,20028714.711135365,7081135.63162303],"proj:epsg":3857,"proj:shape":[488,3594],"raster:bands":[{"nodata":-1,"data_type":"int16","spatial_resolution":2000}],"proj:transform":[11148.086319738397,0.0,-20037507.522004433,0.0,-11151.189043456665,7081135.63162303],"goes:end_observation_time":"2025-03-11T15:48:56.200000Z","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Cloud and Moisture
+        Imagery reflectance factor - Band 03, Web Mercator","eo:bands":[{"name":"ABI
+        Band 3","common_name":"nir09","description":"Daytime vegetation, burn scar,
+        aerosol over water, winds","center_wavelength":0.87}]},"C01_DQF_1km":{"href":"https://goeseuwest.blob.core.windows.net/noaa-goes-cogs/goes-18/ABI-L2-CMIPC/2025/070/15/OR_ABI-L2-CMIPC-M6C01_G18_s20250701546183_e20250701548556_c20250701549044_DQF.tif","proj:shape":[3000,5000],"raster:bands":[{"nodata":-1,"data_type":"int8","spatial_resolution":1000}],"proj:transform":[1002.0086577437705,0.0,-2505021.6335212095,0.0,-1002.0086577437705,4589199.4854017,0.0,0.0,1.0],"type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","roles":["quality-mask"],"title":"Cloud
+        and Moisture Imagery data quality flags - Band 01 (full resolution)"},"C01_DQF_2km":{"href":"https://goeseuwest.blob.core.windows.net/noaa-goes-cogs/goes-18/ABI-L2-MCMIPC/2025/070/15/OR_ABI-L2-MCMIPC-M6_G18_s20250701546183_e20250701548562_c20250701549080_DQF_C01.tif","raster:bands":[{"nodata":-1,"data_type":"int8","spatial_resolution":2000}],"type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Cloud and Moisture
+        Imagery data quality flags - Band 01"},"C02_DQF_2km":{"href":"https://goeseuwest.blob.core.windows.net/noaa-goes-cogs/goes-18/ABI-L2-MCMIPC/2025/070/15/OR_ABI-L2-MCMIPC-M6_G18_s20250701546183_e20250701548562_c20250701549080_DQF_C02.tif","raster:bands":[{"nodata":-1,"data_type":"int8","spatial_resolution":2000}],"type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Cloud and Moisture
+        Imagery data quality flags - Band 02"},"C03_DQF_1km":{"href":"https://goeseuwest.blob.core.windows.net/noaa-goes-cogs/goes-18/ABI-L2-CMIPC/2025/070/15/OR_ABI-L2-CMIPC-M6C03_G18_s20250701546183_e20250701548556_c20250701549066_DQF.tif","proj:shape":[3000,5000],"raster:bands":[{"nodata":-1,"data_type":"int8","spatial_resolution":1000}],"proj:transform":[1002.0086577437705,0.0,-2505021.6335212095,0.0,-1002.0086577437705,4589199.4854017,0.0,0.0,1.0],"type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","roles":["quality-mask"],"title":"Cloud
+        and Moisture Imagery data quality flags - Band 03 (full resolution)"},"C03_DQF_2km":{"href":"https://goeseuwest.blob.core.windows.net/noaa-goes-cogs/goes-18/ABI-L2-MCMIPC/2025/070/15/OR_ABI-L2-MCMIPC-M6_G18_s20250701546183_e20250701548562_c20250701549080_DQF_C03.tif","raster:bands":[{"nodata":-1,"data_type":"int8","spatial_resolution":2000}],"type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Cloud and Moisture
+        Imagery data quality flags - Band 03"},"C04_DQF_2km":{"href":"https://goeseuwest.blob.core.windows.net/noaa-goes-cogs/goes-18/ABI-L2-MCMIPC/2025/070/15/OR_ABI-L2-MCMIPC-M6_G18_s20250701546183_e20250701548562_c20250701549080_DQF_C04.tif","raster:bands":[{"nodata":-1,"data_type":"int8","spatial_resolution":2000}],"type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Cloud and Moisture
+        Imagery data quality flags - Band 04"},"C05_DQF_1km":{"href":"https://goeseuwest.blob.core.windows.net/noaa-goes-cogs/goes-18/ABI-L2-CMIPC/2025/070/15/OR_ABI-L2-CMIPC-M6C05_G18_s20250701546183_e20250701548556_c20250701549024_DQF.tif","proj:shape":[3000,5000],"raster:bands":[{"nodata":-1,"data_type":"int8","spatial_resolution":1000}],"proj:transform":[1002.0086577437705,0.0,-2505021.6335212095,0.0,-1002.0086577437705,4589199.4854017,0.0,0.0,1.0],"type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","roles":["quality-mask"],"title":"Cloud
+        and Moisture Imagery data quality flags - Band 05 (full resolution)"},"C05_DQF_2km":{"href":"https://goeseuwest.blob.core.windows.net/noaa-goes-cogs/goes-18/ABI-L2-MCMIPC/2025/070/15/OR_ABI-L2-MCMIPC-M6_G18_s20250701546183_e20250701548562_c20250701549080_DQF_C05.tif","raster:bands":[{"nodata":-1,"data_type":"int8","spatial_resolution":2000}],"type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Cloud and Moisture
+        Imagery data quality flags - Band 05"},"C06_DQF_2km":{"href":"https://goeseuwest.blob.core.windows.net/noaa-goes-cogs/goes-18/ABI-L2-MCMIPC/2025/070/15/OR_ABI-L2-MCMIPC-M6_G18_s20250701546183_e20250701548562_c20250701549080_DQF_C06.tif","raster:bands":[{"nodata":-1,"data_type":"int8","spatial_resolution":2000}],"type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Cloud and Moisture
+        Imagery data quality flags - Band 06"},"C07_DQF_2km":{"href":"https://goeseuwest.blob.core.windows.net/noaa-goes-cogs/goes-18/ABI-L2-MCMIPC/2025/070/15/OR_ABI-L2-MCMIPC-M6_G18_s20250701546183_e20250701548562_c20250701549080_DQF_C07.tif","raster:bands":[{"nodata":-1,"data_type":"int8","spatial_resolution":2000}],"type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Cloud and Moisture
+        Imagery data quality flags - Band 07"},"C08_DQF_2km":{"href":"https://goeseuwest.blob.core.windows.net/noaa-goes-cogs/goes-18/ABI-L2-MCMIPC/2025/070/15/OR_ABI-L2-MCMIPC-M6_G18_s20250701546183_e20250701548562_c20250701549080_DQF_C08.tif","raster:bands":[{"nodata":-1,"data_type":"int8","spatial_resolution":2000}],"type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Cloud and Moisture
+        Imagery data quality flags - Band 08"},"C09_DQF_2km":{"href":"https://goeseuwest.blob.core.windows.net/noaa-goes-cogs/goes-18/ABI-L2-MCMIPC/2025/070/15/OR_ABI-L2-MCMIPC-M6_G18_s20250701546183_e20250701548562_c20250701549080_DQF_C09.tif","raster:bands":[{"nodata":-1,"data_type":"int8","spatial_resolution":2000}],"type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Cloud and Moisture
+        Imagery data quality flags - Band 09"},"C10_DQF_2km":{"href":"https://goeseuwest.blob.core.windows.net/noaa-goes-cogs/goes-18/ABI-L2-MCMIPC/2025/070/15/OR_ABI-L2-MCMIPC-M6_G18_s20250701546183_e20250701548562_c20250701549080_DQF_C10.tif","raster:bands":[{"nodata":-1,"data_type":"int8","spatial_resolution":2000}],"type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Cloud and Moisture
+        Imagery data quality flags - Band 10"},"C11_DQF_2km":{"href":"https://goeseuwest.blob.core.windows.net/noaa-goes-cogs/goes-18/ABI-L2-MCMIPC/2025/070/15/OR_ABI-L2-MCMIPC-M6_G18_s20250701546183_e20250701548562_c20250701549080_DQF_C11.tif","raster:bands":[{"nodata":-1,"data_type":"int8","spatial_resolution":2000}],"type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Cloud and Moisture
+        Imagery data quality flags - Band 11"},"C12_DQF_2km":{"href":"https://goeseuwest.blob.core.windows.net/noaa-goes-cogs/goes-18/ABI-L2-MCMIPC/2025/070/15/OR_ABI-L2-MCMIPC-M6_G18_s20250701546183_e20250701548562_c20250701549080_DQF_C12.tif","raster:bands":[{"nodata":-1,"data_type":"int8","spatial_resolution":2000}],"type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Cloud and Moisture
+        Imagery data quality flags - Band 12"},"C13_DQF_2km":{"href":"https://goeseuwest.blob.core.windows.net/noaa-goes-cogs/goes-18/ABI-L2-MCMIPC/2025/070/15/OR_ABI-L2-MCMIPC-M6_G18_s20250701546183_e20250701548562_c20250701549080_DQF_C13.tif","raster:bands":[{"nodata":-1,"data_type":"int8","spatial_resolution":2000}],"type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Cloud and Moisture
+        Imagery data quality flags - Band 13"},"C14_DQF_2km":{"href":"https://goeseuwest.blob.core.windows.net/noaa-goes-cogs/goes-18/ABI-L2-MCMIPC/2025/070/15/OR_ABI-L2-MCMIPC-M6_G18_s20250701546183_e20250701548562_c20250701549080_DQF_C14.tif","raster:bands":[{"nodata":-1,"data_type":"int8","spatial_resolution":2000}],"type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Cloud and Moisture
+        Imagery data quality flags - Band 14"},"C15_DQF_2km":{"href":"https://goeseuwest.blob.core.windows.net/noaa-goes-cogs/goes-18/ABI-L2-MCMIPC/2025/070/15/OR_ABI-L2-MCMIPC-M6_G18_s20250701546183_e20250701548562_c20250701549080_DQF_C15.tif","raster:bands":[{"nodata":-1,"data_type":"int8","spatial_resolution":2000}],"type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Cloud and Moisture
+        Imagery data quality flags - Band 15"},"C16_DQF_2km":{"href":"https://goeseuwest.blob.core.windows.net/noaa-goes-cogs/goes-18/ABI-L2-MCMIPC/2025/070/15/OR_ABI-L2-MCMIPC-M6_G18_s20250701546183_e20250701548562_c20250701549080_DQF_C16.tif","raster:bands":[{"nodata":-1,"data_type":"int8","spatial_resolution":2000}],"type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Cloud and Moisture
+        Imagery data quality flags - Band 16"},"CMIP_C01-nc":{"href":"https://goeseuwest.blob.core.windows.net/noaa-goes18/ABI-L2-CMIPC/2025/070/15/OR_ABI-L2-CMIPC-M6C01_G18_s20250701546183_e20250701548556_c20250701549044.nc","raster:bands":[{"nodata":-1,"data_type":"int16","spatial_resolution":1000}],"goes:end_observation_time":"2025-03-11T15:48:55.600000Z","type":"application/netcdf","roles":["data"],"title":"Cloud
+        and Moisture Imagery reflectance factor - Band 01","eo:bands":[{"name":"ABI
+        Band 1","common_name":"blue","description":"Daytime aerosol over land, coastal
+        water mapping","center_wavelength":0.47}]},"CMIP_C02-nc":{"href":"https://goeseuwest.blob.core.windows.net/noaa-goes18/ABI-L2-CMIPC/2025/070/15/OR_ABI-L2-CMIPC-M6C02_G18_s20250701546183_e20250701548556_c20250701549067.nc","raster:bands":[{"nodata":-1,"data_type":"int16","spatial_resolution":500}],"goes:end_observation_time":"2025-03-11T15:48:55.600000Z","type":"application/netcdf","roles":["data"],"title":"Cloud
+        and Moisture Imagery reflectance factor - Band 02","eo:bands":[{"name":"ABI
+        Band 2","common_name":"red","description":"Daytime clouds, fog, insolation,
+        winds","center_wavelength":0.64}]},"CMIP_C03-nc":{"href":"https://goeseuwest.blob.core.windows.net/noaa-goes18/ABI-L2-CMIPC/2025/070/15/OR_ABI-L2-CMIPC-M6C03_G18_s20250701546183_e20250701548556_c20250701549066.nc","raster:bands":[{"nodata":-1,"data_type":"int16","spatial_resolution":1000}],"goes:end_observation_time":"2025-03-11T15:48:55.600000Z","type":"application/netcdf","roles":["data"],"title":"Cloud
+        and Moisture Imagery reflectance factor - Band 03","eo:bands":[{"name":"ABI
+        Band 3","common_name":"nir09","description":"Daytime vegetation, burn scar,
+        aerosol over water, winds","center_wavelength":0.87}]},"CMIP_C04-nc":{"href":"https://goeseuwest.blob.core.windows.net/noaa-goes18/ABI-L2-CMIPC/2025/070/15/OR_ABI-L2-CMIPC-M6C04_G18_s20250701546183_e20250701548556_c20250701549024.nc","raster:bands":[{"nodata":-1,"data_type":"int16","spatial_resolution":2000}],"goes:end_observation_time":"2025-03-11T15:48:55.600000Z","type":"application/netcdf","roles":["data"],"title":"Cloud
+        and Moisture Imagery reflectance factor - Band 04","eo:bands":[{"name":"ABI
+        Band 4","common_name":"cirrus","description":"Daytime cirrus cloud","center_wavelength":1.38}]},"CMIP_C05-nc":{"href":"https://goeseuwest.blob.core.windows.net/noaa-goes18/ABI-L2-CMIPC/2025/070/15/OR_ABI-L2-CMIPC-M6C05_G18_s20250701546183_e20250701548556_c20250701549024.nc","raster:bands":[{"nodata":-1,"data_type":"int16","spatial_resolution":1000}],"goes:end_observation_time":"2025-03-11T15:48:55.600000Z","type":"application/netcdf","roles":["data"],"title":"Cloud
+        and Moisture Imagery reflectance factor - Band 05","eo:bands":[{"name":"ABI
+        Band 5","common_name":"swir16","description":"Daytime cloud-top phase and
+        particle size, snow","center_wavelength":1.61}]},"CMIP_C06-nc":{"href":"https://goeseuwest.blob.core.windows.net/noaa-goes18/ABI-L2-CMIPC/2025/070/15/OR_ABI-L2-CMIPC-M6C06_G18_s20250701546183_e20250701548562_c20250701549024.nc","raster:bands":[{"nodata":-1,"data_type":"int16","spatial_resolution":2000}],"goes:end_observation_time":"2025-03-11T15:48:56.200000Z","type":"application/netcdf","roles":["data"],"title":"Cloud
+        and Moisture Imagery reflectance factor - Band 06","eo:bands":[{"name":"ABI
+        Band 6","common_name":"swir22","description":"Daytime land, cloud properties,
+        particle size, vegetation, snow","center_wavelength":2.25}]},"CMIP_C07-nc":{"href":"https://goeseuwest.blob.core.windows.net/noaa-goes18/ABI-L2-CMIPC/2025/070/15/OR_ABI-L2-CMIPC-M6C07_G18_s20250701546183_e20250701548568_c20250701549039.nc","raster:bands":[{"nodata":-1,"data_type":"int16","spatial_resolution":2000}],"goes:end_observation_time":"2025-03-11T15:48:56.800000Z","type":"application/netcdf","roles":["data"],"title":"Cloud
+        and Moisture Imagery brightness temperature at top of atmosphere - Band 07","eo:bands":[{"name":"ABI
+        Band 7","description":"Surface and cloud, fog at night, fire, winds","center_wavelength":3.89}]},"CMIP_C08-nc":{"href":"https://goeseuwest.blob.core.windows.net/noaa-goes18/ABI-L2-CMIPC/2025/070/15/OR_ABI-L2-CMIPC-M6C08_G18_s20250701546183_e20250701548556_c20250701549066.nc","raster:bands":[{"nodata":-1,"data_type":"int16","spatial_resolution":2000}],"goes:end_observation_time":"2025-03-11T15:48:55.600000Z","type":"application/netcdf","roles":["data"],"title":"Cloud
+        and Moisture Imagery brightness temperature at top of atmosphere - Band 08","eo:bands":[{"name":"ABI
+        Band 8","description":"High-level atmospheric water vapor, winds, rainfall","center_wavelength":6.17}]},"CMIP_C09-nc":{"href":"https://goeseuwest.blob.core.windows.net/noaa-goes18/ABI-L2-CMIPC/2025/070/15/OR_ABI-L2-CMIPC-M6C09_G18_s20250701546183_e20250701548562_c20250701549067.nc","raster:bands":[{"nodata":-1,"data_type":"int16","spatial_resolution":2000}],"goes:end_observation_time":"2025-03-11T15:48:56.200000Z","type":"application/netcdf","roles":["data"],"title":"Cloud
+        and Moisture Imagery brightness temperature at top of atmosphere - Band 09","eo:bands":[{"name":"ABI
+        Band 9","description":"Midlevel atmospheric water vapor, winds, rainfall","center_wavelength":6.93}]},"CMIP_C10-nc":{"href":"https://goeseuwest.blob.core.windows.net/noaa-goes18/ABI-L2-CMIPC/2025/070/15/OR_ABI-L2-CMIPC-M6C10_G18_s20250701546183_e20250701548568_c20250701549019.nc","raster:bands":[{"nodata":-1,"data_type":"int16","spatial_resolution":2000}],"goes:end_observation_time":"2025-03-11T15:48:56.800000Z","type":"application/netcdf","roles":["data"],"title":"Cloud
+        and Moisture Imagery brightness temperature at top of atmosphere - Band 10","eo:bands":[{"name":"ABI
+        Band 10","description":"Lower-level water vapor, winds, and silicon dioxide","center_wavelength":7.34}]},"CMIP_C11-nc":{"href":"https://goeseuwest.blob.core.windows.net/noaa-goes18/ABI-L2-CMIPC/2025/070/15/OR_ABI-L2-CMIPC-M6C11_G18_s20250701546183_e20250701548556_c20250701549067.nc","raster:bands":[{"nodata":-1,"data_type":"int16","spatial_resolution":2000}],"goes:end_observation_time":"2025-03-11T15:48:55.600000Z","type":"application/netcdf","roles":["data"],"title":"Cloud
+        and Moisture Imagery brightness temperature at top of atmosphere - Band 11","eo:bands":[{"name":"ABI
+        Band 11","description":"Total water for stability, cloud phase, dust, silicon
+        dioxide, rainfall","center_wavelength":8.44}]},"CMIP_C12-nc":{"href":"https://goeseuwest.blob.core.windows.net/noaa-goes18/ABI-L2-CMIPC/2025/070/15/OR_ABI-L2-CMIPC-M6C12_G18_s20250701546183_e20250701548562_c20250701549067.nc","raster:bands":[{"nodata":-1,"data_type":"int16","spatial_resolution":2000}],"goes:end_observation_time":"2025-03-11T15:48:56.200000Z","type":"application/netcdf","roles":["data"],"title":"Cloud
+        and Moisture Imagery brightness temperature at top of atmosphere - Band 12","eo:bands":[{"name":"ABI
+        Band 12","description":"Total ozone, turbulence, winds","center_wavelength":9.61}]},"CMIP_C13-nc":{"href":"https://goeseuwest.blob.core.windows.net/noaa-goes18/ABI-L2-CMIPC/2025/070/15/OR_ABI-L2-CMIPC-M6C13_G18_s20250701546183_e20250701548568_c20250701549065.nc","raster:bands":[{"nodata":-1,"data_type":"int16","spatial_resolution":2000}],"goes:end_observation_time":"2025-03-11T15:48:56.800000Z","type":"application/netcdf","roles":["data"],"title":"Cloud
+        and Moisture Imagery brightness temperature at top of atmosphere - Band 13","eo:bands":[{"name":"ABI
+        Band 13","description":"Surface and clouds","center_wavelength":10.33}]},"CMIP_C14-nc":{"href":"https://goeseuwest.blob.core.windows.net/noaa-goes18/ABI-L2-CMIPC/2025/070/15/OR_ABI-L2-CMIPC-M6C14_G18_s20250701546183_e20250701548556_c20250701549070.nc","raster:bands":[{"nodata":-1,"data_type":"int16","spatial_resolution":2000}],"goes:end_observation_time":"2025-03-11T15:48:55.600000Z","type":"application/netcdf","roles":["data"],"title":"Cloud
+        and Moisture Imagery brightness temperature at top of atmosphere - Band 14","eo:bands":[{"name":"ABI
+        Band 14","description":"Imagery, sea surface temperature, clouds, rainfall","center_wavelength":11.19}]},"CMIP_C15-nc":{"href":"https://goeseuwest.blob.core.windows.net/noaa-goes18/ABI-L2-CMIPC/2025/070/15/OR_ABI-L2-CMIPC-M6C15_G18_s20250701546183_e20250701548562_c20250701549080.nc","raster:bands":[{"nodata":-1,"data_type":"int16","spatial_resolution":2000}],"goes:end_observation_time":"2025-03-11T15:48:56.200000Z","type":"application/netcdf","roles":["data"],"title":"Cloud
+        and Moisture Imagery brightness temperature at top of atmosphere - Band 15","eo:bands":[{"name":"ABI
+        Band 15","description":"Total water, volcanic ash, sea surface temperature","center_wavelength":12.27}]},"CMIP_C16-nc":{"href":"https://goeseuwest.blob.core.windows.net/noaa-goes18/ABI-L2-CMIPC/2025/070/15/OR_ABI-L2-CMIPC-M6C16_G18_s20250701546183_e20250701548568_c20250701549068.nc","raster:bands":[{"nodata":-1,"data_type":"int16","spatial_resolution":2000}],"goes:end_observation_time":"2025-03-11T15:48:56.800000Z","type":"application/netcdf","roles":["data"],"title":"Cloud
+        and Moisture Imagery brightness temperature at top of atmosphere - Band 16","eo:bands":[{"name":"ABI
+        Band 16","description":"Air temperature, cloud heights","center_wavelength":13.27}]},"C02_DQF_0.5km":{"href":"https://goeseuwest.blob.core.windows.net/noaa-goes-cogs/goes-18/ABI-L2-CMIPC/2025/070/15/OR_ABI-L2-CMIPC-M6C02_G18_s20250701546183_e20250701548556_c20250701549067_DQF.tif","proj:shape":[6000,10000],"raster:bands":[{"nodata":-1,"data_type":"int8","spatial_resolution":500}],"proj:transform":[501.0043288718852,0.0,-2505021.4937798134,0.0,-501.00432887188526,4589199.612286952,0.0,0.0,1.0],"type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","roles":["quality-mask"],"title":"Cloud
+        and Moisture Imagery data quality flags - Band 02 (full resolution)"},"tilejson":{"title":"TileJSON
+        with default rendering","href":"https://planetarycomputer.microsoft.com/api/data/v1/item/tilejson.json?collection=goes-cmi&item=OR_ABI-L2-C-M6_G18_s20250701546183&expression=C02_2km_wm%3B0.45%2AC02_2km_wm%2B0.1%2AC03_2km_wm%2B0.45%2AC01_2km_wm%3BC01_2km_wm&nodata=-1&rescale=1%2C1000&color_formula=Gamma+RGB+2.5+Saturation+1.4+Sigmoidal+RGB+2+0.7&asset_as_band=True&resampling=bilinear&format=png","type":"application/json","roles":["tiles"]},"rendered_preview":{"title":"Rendered
+        preview","rel":"preview","href":"https://planetarycomputer.microsoft.com/api/data/v1/item/preview.png?collection=goes-cmi&item=OR_ABI-L2-C-M6_G18_s20250701546183&expression=C02_2km_wm%3B0.45%2AC02_2km_wm%2B0.1%2AC03_2km_wm%2B0.45%2AC01_2km_wm%3BC01_2km_wm&nodata=-1&rescale=1%2C1000&color_formula=Gamma+RGB+2.5+Saturation+1.4+Sigmoidal+RGB+2+0.7&asset_as_band=True&resampling=bilinear&format=png","roles":["overview"],"type":"image/png"}},"geometry":{"type":"Polygon","coordinates":[[[-184.37643168004777,53.50006622301628],[-161.56938551945106,14.805178982805629],[-112.43061452442826,14.805178981983541],[-89.62356845329138,53.50006620864096],[-184.37643168004777,53.50006622301628]]]},"collection":"goes-cmi","properties":{"datetime":"2025-03-11T15:46:18.300000Z","platform":"GOES-18","goes:mode":"6","proj:bbox":[-2504019.637719609,4588197.756226748,2504019.6336837565,1584175.8003109242],"proj:epsg":null,"proj:wkt2":"PROJCRS[\"undefined\",BASEGEOGCRS[\"undefined\",DATUM[\"undefined\",ELLIPSOID[\"GRS
+        1980(IUGG, 1980)\",6378137,298.257222101,LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]]]],PRIMEM[\"Greenwich\",0,ANGLEUNIT[\"degree\",0.0174532925199433],ID[\"EPSG\",8901]]],CONVERSION[\"unknown\",METHOD[\"Geostationary
+        Satellite (Sweep X)\"],PARAMETER[\"Satellite height\",35786023,LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]]],PARAMETER[\"Latitude
+        of natural origin\",0,ANGLEUNIT[\"degree\",0.0174532925199433],ID[\"EPSG\",8801]],PARAMETER[\"Longitude
+        of natural origin\",-137,ANGLEUNIT[\"degree\",0.0174532925199433],ID[\"EPSG\",8802]],PARAMETER[\"False
+        easting\",0,LENGTHUNIT[\"metre\",1],ID[\"EPSG\",8806]],PARAMETER[\"False northing\",0,LENGTHUNIT[\"metre\",1],ID[\"EPSG\",8807]]],CS[Cartesian,2],AXIS[\"(E)\",east,ORDER[1],LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]]],AXIS[\"(N)\",north,ORDER[2],LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]]]]","proj:shape":[1500,2500],"instruments":["ABI"],"proj:transform":[2004.017315487541,0,-2505021.6463773525,0,-2004.017315487541,4589199.764884492],"goes:image-type":"CONUS","processing:software":{"stactools-goes":"0.1.6"},"goes:processing-level":"L2","goes:system-environment":"OR"},"stac_extensions":["https://stac-extensions.github.io/processing/v1.0.0/schema.json","https://stac-extensions.github.io/projection/v1.1.0/schema.json","https://stac-extensions.github.io/eo/v1.1.0/schema.json","https://stac-extensions.github.io/raster/v1.1.0/schema.json"],"stac_version":"1.0.0"}],"links":[{"rel":"collection","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/goes-cmi"},{"rel":"parent","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/goes-cmi"},{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"self","type":"application/geo+json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/goes-cmi/items"},{"rel":"next","type":"application/geo+json","method":"GET","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/goes-cmi/items?limit=1&token=next:goes-cmi:OR_ABI-L2-C-M6_G18_s20250701546183"}]}'
     headers:
       Accept-Ranges:
       - bytes
@@ -102,7 +221,7 @@ interactions:
       Content-Type:
       - application/geo+json
       Date:
-      - Wed, 12 Mar 2025 11:38:46 GMT
+      - Wed, 12 Mar 2025 12:11:22 GMT
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Cache:
@@ -112,7 +231,7 @@ interactions:
       vary:
       - Accept-Encoding
       x-azure-ref:
-      - 20250312T113846Z-15d554846c6xq45fhC1DEN2svg00000006b0000000001vgs
+      - 20250312T121122Z-15d554846c6khzqphC1DENmtf400000003xg0000000014h5
     status:
       code: 200
       message: OK
@@ -124,14 +243,14 @@ interactions:
       Host:
       - planetarycomputer.microsoft.com
       User-Agent:
-      - Python-urllib/3.9
+      - Python-urllib/3.10
     method: GET
     uri: https://planetarycomputer.microsoft.com/api/stac/v1/
   response:
     body:
       string: '{"type":"Catalog","id":"microsoft-pc","title":"Microsoft Planetary
         Computer STAC API","description":"Searchable spatiotemporal metadata describing
-        Earth science datasets hosted by the Microsoft Planetary Computer","stac_version":"1.0.0","conformsTo":["http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core","http://www.opengis.net/spec/ogcapi-features-3/1.0/conf/filter","https://api.stacspec.org/v1.0.0/ogcapi-features","http://www.opengis.net/spec/cql2/1.0/conf/cql2-text","https://api.stacspec.org/v1.0.0/item-search","https://api.stacspec.org/v1.0.0/collections","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30","https://api.stacspec.org/v1.0.0/item-search#query","https://api.stacspec.org/v1.0.0/item-search#sort","https://api.stacspec.org/v1.0.0/item-search#fields","https://api.stacspec.org/v1.0.0-rc.2/item-search#filter","http://www.opengis.net/spec/cql2/1.0/conf/cql2-json","http://www.opengis.net/spec/cql2/1.0/conf/basic-cql2","https://api.stacspec.org/v1.0.0/core","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/geojson"],"links":[{"rel":"self","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"data","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections"},{"rel":"conformance","type":"application/json","title":"STAC/OGC
+        Earth science datasets hosted by the Microsoft Planetary Computer","stac_version":"1.0.0","conformsTo":["https://api.stacspec.org/v1.0.0/ogcapi-features","https://api.stacspec.org/v1.0.0/collections","https://api.stacspec.org/v1.0.0/item-search#fields","http://www.opengis.net/spec/cql2/1.0/conf/basic-cql2","http://www.opengis.net/spec/cql2/1.0/conf/cql2-text","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30","https://api.stacspec.org/v1.0.0/core","https://api.stacspec.org/v1.0.0/item-search","https://api.stacspec.org/v1.0.0-rc.2/item-search#filter","http://www.opengis.net/spec/cql2/1.0/conf/cql2-json","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/geojson","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core","https://api.stacspec.org/v1.0.0/item-search#sort","https://api.stacspec.org/v1.0.0/item-search#query","http://www.opengis.net/spec/ogcapi-features-3/1.0/conf/filter"],"links":[{"rel":"self","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"data","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections"},{"rel":"conformance","type":"application/json","title":"STAC/OGC
         conformance classes implemented by this server","href":"https://planetarycomputer.microsoft.com/api/stac/v1/conformance"},{"rel":"search","type":"application/geo+json","title":"STAC
         search","href":"https://planetarycomputer.microsoft.com/api/stac/v1/search","method":"GET"},{"rel":"search","type":"application/geo+json","title":"STAC
         search","href":"https://planetarycomputer.microsoft.com/api/stac/v1/search","method":"POST"},{"rel":"http://www.opengis.net/def/rel/ogc/1.0/queryables","type":"application/schema+json","title":"Queryables","href":"https://planetarycomputer.microsoft.com/api/stac/v1/queryables","method":"GET"},{"rel":"child","type":"application/json","title":"Daymet
@@ -158,8 +277,7 @@ interactions:
         Annual Land Use Land Cover (9-class) V2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc-annual-v02"},{"rel":"child","type":"application/json","title":"CONUS404","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/conus404"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Intensity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-intensity"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Source","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-pointsourceid"},{"rel":"child","type":"application/json","title":"MTBS:
-        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"Landsat
-        8 Collection 2 Level-2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-8-c2-l2"},{"rel":"child","type":"application/json","title":"C-CAP
+        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"C-CAP
         Regional Land Cover and Change","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-c-cap"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Cloud","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-copc"},{"rel":"child","type":"application/json","title":"MODIS
         Burned Area Monthly","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-64A1-061"},{"rel":"child","type":"application/json","title":"ALOS
@@ -277,17 +395,17 @@ interactions:
       Connection:
       - close
       Content-Length:
-      - '25050'
+      - '24878'
       Content-Type:
       - application/json
       Date:
-      - Wed, 12 Mar 2025 11:38:47 GMT
+      - Wed, 12 Mar 2025 12:11:23 GMT
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Cache:
       - CONFIG_NOCACHE
       x-azure-ref:
-      - 20250312T113846Z-15d554846c682hm7hC1DENkggs00000003bg0000000030qk
+      - 20250312T121123Z-15d554846c682hm7hC1DENkggs00000003hg000000000k33
     status:
       code: 200
       message: OK
@@ -299,14 +417,14 @@ interactions:
       Host:
       - planetarycomputer.microsoft.com
       User-Agent:
-      - Python-urllib/3.9
+      - Python-urllib/3.10
     method: GET
     uri: https://planetarycomputer.microsoft.com/api/stac/v1/
   response:
     body:
       string: '{"type":"Catalog","id":"microsoft-pc","title":"Microsoft Planetary
         Computer STAC API","description":"Searchable spatiotemporal metadata describing
-        Earth science datasets hosted by the Microsoft Planetary Computer","stac_version":"1.0.0","conformsTo":["http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core","http://www.opengis.net/spec/ogcapi-features-3/1.0/conf/filter","https://api.stacspec.org/v1.0.0/ogcapi-features","http://www.opengis.net/spec/cql2/1.0/conf/cql2-text","https://api.stacspec.org/v1.0.0/item-search","https://api.stacspec.org/v1.0.0/collections","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30","https://api.stacspec.org/v1.0.0/item-search#query","https://api.stacspec.org/v1.0.0/item-search#sort","https://api.stacspec.org/v1.0.0/item-search#fields","https://api.stacspec.org/v1.0.0-rc.2/item-search#filter","http://www.opengis.net/spec/cql2/1.0/conf/cql2-json","http://www.opengis.net/spec/cql2/1.0/conf/basic-cql2","https://api.stacspec.org/v1.0.0/core","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/geojson"],"links":[{"rel":"self","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"data","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections"},{"rel":"conformance","type":"application/json","title":"STAC/OGC
+        Earth science datasets hosted by the Microsoft Planetary Computer","stac_version":"1.0.0","conformsTo":["https://api.stacspec.org/v1.0.0/ogcapi-features","https://api.stacspec.org/v1.0.0/collections","https://api.stacspec.org/v1.0.0/item-search#fields","http://www.opengis.net/spec/cql2/1.0/conf/basic-cql2","http://www.opengis.net/spec/cql2/1.0/conf/cql2-text","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30","https://api.stacspec.org/v1.0.0/core","https://api.stacspec.org/v1.0.0/item-search","https://api.stacspec.org/v1.0.0-rc.2/item-search#filter","http://www.opengis.net/spec/cql2/1.0/conf/cql2-json","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/geojson","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core","https://api.stacspec.org/v1.0.0/item-search#sort","https://api.stacspec.org/v1.0.0/item-search#query","http://www.opengis.net/spec/ogcapi-features-3/1.0/conf/filter"],"links":[{"rel":"self","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"data","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections"},{"rel":"conformance","type":"application/json","title":"STAC/OGC
         conformance classes implemented by this server","href":"https://planetarycomputer.microsoft.com/api/stac/v1/conformance"},{"rel":"search","type":"application/geo+json","title":"STAC
         search","href":"https://planetarycomputer.microsoft.com/api/stac/v1/search","method":"GET"},{"rel":"search","type":"application/geo+json","title":"STAC
         search","href":"https://planetarycomputer.microsoft.com/api/stac/v1/search","method":"POST"},{"rel":"http://www.opengis.net/def/rel/ogc/1.0/queryables","type":"application/schema+json","title":"Queryables","href":"https://planetarycomputer.microsoft.com/api/stac/v1/queryables","method":"GET"},{"rel":"child","type":"application/json","title":"Daymet
@@ -333,8 +451,7 @@ interactions:
         Annual Land Use Land Cover (9-class) V2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc-annual-v02"},{"rel":"child","type":"application/json","title":"CONUS404","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/conus404"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Intensity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-intensity"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Source","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-pointsourceid"},{"rel":"child","type":"application/json","title":"MTBS:
-        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"Landsat
-        8 Collection 2 Level-2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-8-c2-l2"},{"rel":"child","type":"application/json","title":"C-CAP
+        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"C-CAP
         Regional Land Cover and Change","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-c-cap"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Cloud","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-copc"},{"rel":"child","type":"application/json","title":"MODIS
         Burned Area Monthly","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-64A1-061"},{"rel":"child","type":"application/json","title":"ALOS
@@ -452,17 +569,17 @@ interactions:
       Connection:
       - close
       Content-Length:
-      - '25050'
+      - '24878'
       Content-Type:
       - application/json
       Date:
-      - Wed, 12 Mar 2025 11:38:47 GMT
+      - Wed, 12 Mar 2025 12:11:24 GMT
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Cache:
       - CONFIG_NOCACHE
       x-azure-ref:
-      - 20250312T113847Z-15d554846c6k9t6rhC1DENetdw00000004x0000000000muu
+      - 20250312T121123Z-15d554846c6fksz6hC1DEN88en00000004e0000000003uxv
     status:
       code: 200
       message: OK

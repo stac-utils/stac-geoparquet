@@ -14,70 +14,143 @@ interactions:
     uri: https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-c2-l2/items?limit=1
   response:
     body:
-      string: !!binary |
-        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
-        /fgv++v2kl1dAAA=
+      string: '{"type":"FeatureCollection","features":[{"id":"LC09_L2SP_090091_20250310_02_T1","bbox":[145.1488175084047,-45.66959495096117,148.18002559076484,-43.53328504903883],"type":"Feature","links":[{"rel":"collection","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-c2-l2"},{"rel":"parent","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-c2-l2"},{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"self","type":"application/geo+json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-c2-l2/items/LC09_L2SP_090091_20250310_02_T1"},{"rel":"cite-as","href":"https://doi.org/10.5066/P9OGBGM6","title":"Landsat
+        8-9 OLI/TIRS Collection 2 Level-2"},{"rel":"via","href":"https://landsatlook.usgs.gov/stac-server/collections/landsat-c2l2-sr/items/LC09_L2SP_090091_20250310_20250311_02_T1_SR","type":"application/json","title":"USGS
+        STAC Item"},{"rel":"via","href":"https://landsatlook.usgs.gov/stac-server/collections/landsat-c2l2-st/items/LC09_L2SP_090091_20250310_20250311_02_T1_ST","type":"application/json","title":"USGS
+        STAC Item"},{"rel":"preview","href":"https://planetarycomputer.microsoft.com/api/data/v1/item/map?collection=landsat-c2-l2&item=LC09_L2SP_090091_20250310_02_T1","title":"Map
+        of item","type":"text/html"}],"assets":{"qa":{"href":"https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2025/090/091/LC09_L2SP_090091_20250310_20250311_02_T1/LC09_L2SP_090091_20250310_20250311_02_T1_ST_QA.TIF","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","roles":["data"],"title":"Surface
+        Temperature Quality Assessment Band","description":"Collection 2 Level-2 Quality
+        Assessment Band (ST_QA) Surface Temperature Product","raster:bands":[{"unit":"kelvin","scale":0.01,"nodata":-9999,"data_type":"int16","spatial_resolution":30}]},"ang":{"href":"https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2025/090/091/LC09_L2SP_090091_20250310_20250311_02_T1/LC09_L2SP_090091_20250310_20250311_02_T1_ANG.txt","type":"text/plain","roles":["metadata"],"title":"Angle
+        Coefficients File","description":"Collection 2 Level-1 Angle Coefficients
+        File"},"red":{"href":"https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2025/090/091/LC09_L2SP_090091_20250310_20250311_02_T1/LC09_L2SP_090091_20250310_20250311_02_T1_SR_B4.TIF","eo:bands":[{"name":"OLI_B4","center_wavelength":0.65,"full_width_half_max":0.04,"common_name":"red","description":"Visible
+        red"}],"description":"Collection 2 Level-2 Red Band (SR_B4) Surface Reflectance","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","roles":["data","reflectance"],"title":"Red
+        Band","raster:bands":[{"scale":0.0000275,"nodata":0,"offset":-0.2,"data_type":"uint16","spatial_resolution":30}]},"blue":{"href":"https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2025/090/091/LC09_L2SP_090091_20250310_20250311_02_T1/LC09_L2SP_090091_20250310_20250311_02_T1_SR_B2.TIF","eo:bands":[{"name":"OLI_B2","center_wavelength":0.48,"full_width_half_max":0.06,"common_name":"blue","description":"Visible
+        blue"}],"description":"Collection 2 Level-2 Blue Band (SR_B2) Surface Reflectance","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","roles":["data","reflectance"],"title":"Blue
+        Band","raster:bands":[{"scale":0.0000275,"nodata":0,"offset":-0.2,"data_type":"uint16","spatial_resolution":30}]},"drad":{"href":"https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2025/090/091/LC09_L2SP_090091_20250310_20250311_02_T1/LC09_L2SP_090091_20250310_20250311_02_T1_ST_DRAD.TIF","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","roles":["data"],"title":"Downwelled
+        Radiance Band","description":"Collection 2 Level-2 Downwelled Radiance Band
+        (ST_DRAD) Surface Temperature Product","raster:bands":[{"unit":"watt/steradian/square_meter/micrometer","scale":0.001,"nodata":-9999,"data_type":"int16","spatial_resolution":30}]},"emis":{"href":"https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2025/090/091/LC09_L2SP_090091_20250310_20250311_02_T1/LC09_L2SP_090091_20250310_20250311_02_T1_ST_EMIS.TIF","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","roles":["data"],"title":"Emissivity
+        Band","description":"Collection 2 Level-2 Emissivity Band (ST_EMIS) Surface
+        Temperature Product","raster:bands":[{"unit":"emissivity coefficient","scale":0.0001,"nodata":-9999,"data_type":"int16","spatial_resolution":30}]},"emsd":{"href":"https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2025/090/091/LC09_L2SP_090091_20250310_20250311_02_T1/LC09_L2SP_090091_20250310_20250311_02_T1_ST_EMSD.TIF","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","roles":["data"],"title":"Emissivity
+        Standard Deviation Band","description":"Collection 2 Level-2 Emissivity Standard
+        Deviation Band (ST_EMSD) Surface Temperature Product","raster:bands":[{"unit":"emissivity
+        coefficient","scale":0.0001,"nodata":-9999,"data_type":"int16","spatial_resolution":30}]},"trad":{"href":"https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2025/090/091/LC09_L2SP_090091_20250310_20250311_02_T1/LC09_L2SP_090091_20250310_20250311_02_T1_ST_TRAD.TIF","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","roles":["data"],"title":"Thermal
+        Radiance Band","description":"Collection 2 Level-2 Thermal Radiance Band (ST_TRAD)
+        Surface Temperature Product","raster:bands":[{"unit":"watt/steradian/square_meter/micrometer","scale":0.001,"nodata":-9999,"data_type":"int16","spatial_resolution":30}]},"urad":{"href":"https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2025/090/091/LC09_L2SP_090091_20250310_20250311_02_T1/LC09_L2SP_090091_20250310_20250311_02_T1_ST_URAD.TIF","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","roles":["data"],"title":"Upwelled
+        Radiance Band","description":"Collection 2 Level-2 Upwelled Radiance Band
+        (ST_URAD) Surface Temperature Product","raster:bands":[{"unit":"watt/steradian/square_meter/micrometer","scale":0.001,"nodata":-9999,"data_type":"int16","spatial_resolution":30}]},"atran":{"href":"https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2025/090/091/LC09_L2SP_090091_20250310_20250311_02_T1/LC09_L2SP_090091_20250310_20250311_02_T1_ST_ATRAN.TIF","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","roles":["data"],"title":"Atmospheric
+        Transmittance Band","description":"Collection 2 Level-2 Atmospheric Transmittance
+        Band (ST_ATRAN) Surface Temperature Product","raster:bands":[{"scale":0.0001,"nodata":-9999,"data_type":"int16","spatial_resolution":30}]},"cdist":{"href":"https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2025/090/091/LC09_L2SP_090091_20250310_20250311_02_T1/LC09_L2SP_090091_20250310_20250311_02_T1_ST_CDIST.TIF","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","roles":["data"],"title":"Cloud
+        Distance Band","description":"Collection 2 Level-2 Cloud Distance Band (ST_CDIST)
+        Surface Temperature Product","raster:bands":[{"unit":"kilometer","scale":0.01,"nodata":-9999,"data_type":"int16","spatial_resolution":30}]},"green":{"href":"https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2025/090/091/LC09_L2SP_090091_20250310_20250311_02_T1/LC09_L2SP_090091_20250310_20250311_02_T1_SR_B3.TIF","eo:bands":[{"name":"OLI_B3","full_width_half_max":0.06,"common_name":"green","description":"Visible
+        green","center_wavelength":0.56}],"description":"Collection 2 Level-2 Green
+        Band (SR_B3) Surface Reflectance","type":"image/tiff; application=geotiff;
+        profile=cloud-optimized","roles":["data","reflectance"],"title":"Green Band","raster:bands":[{"scale":0.0000275,"nodata":0,"offset":-0.2,"data_type":"uint16","spatial_resolution":30}]},"nir08":{"href":"https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2025/090/091/LC09_L2SP_090091_20250310_20250311_02_T1/LC09_L2SP_090091_20250310_20250311_02_T1_SR_B5.TIF","eo:bands":[{"name":"OLI_B5","center_wavelength":0.87,"full_width_half_max":0.03,"common_name":"nir08","description":"Near
+        infrared"}],"description":"Collection 2 Level-2 Near Infrared Band 0.8 (SR_B5)
+        Surface Reflectance","type":"image/tiff; application=geotiff; profile=cloud-optimized","roles":["data","reflectance"],"title":"Near
+        Infrared Band 0.8","raster:bands":[{"scale":0.0000275,"nodata":0,"offset":-0.2,"data_type":"uint16","spatial_resolution":30}]},"lwir11":{"href":"https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2025/090/091/LC09_L2SP_090091_20250310_20250311_02_T1/LC09_L2SP_090091_20250310_20250311_02_T1_ST_B10.TIF","gsd":100,"type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","roles":["data","temperature"],"title":"Surface
+        Temperature Band","eo:bands":[{"name":"TIRS_B10","common_name":"lwir11","description":"Long-wave
+        infrared","center_wavelength":10.9,"full_width_half_max":0.59}],"description":"Collection
+        2 Level-2 Thermal Infrared Band (ST_B10) Surface Temperature","raster:bands":[{"unit":"kelvin","scale":0.00341802,"nodata":0,"offset":149.0,"data_type":"uint16","spatial_resolution":30}]},"swir16":{"href":"https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2025/090/091/LC09_L2SP_090091_20250310_20250311_02_T1/LC09_L2SP_090091_20250310_20250311_02_T1_SR_B6.TIF","eo:bands":[{"name":"OLI_B6","center_wavelength":1.61,"full_width_half_max":0.09,"common_name":"swir16","description":"Short-wave
+        infrared"}],"description":"Collection 2 Level-2 Short-wave Infrared Band 1.6
+        (SR_B6) Surface Reflectance","type":"image/tiff; application=geotiff; profile=cloud-optimized","roles":["data","reflectance"],"title":"Short-wave
+        Infrared Band 1.6","raster:bands":[{"scale":0.0000275,"nodata":0,"offset":-0.2,"data_type":"uint16","spatial_resolution":30}]},"swir22":{"href":"https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2025/090/091/LC09_L2SP_090091_20250310_20250311_02_T1/LC09_L2SP_090091_20250310_20250311_02_T1_SR_B7.TIF","eo:bands":[{"name":"OLI_B7","center_wavelength":2.2,"full_width_half_max":0.19,"common_name":"swir22","description":"Short-wave
+        infrared"}],"type":"image/tiff; application=geotiff; profile=cloud-optimized","roles":["data","reflectance"],"title":"Short-wave
+        Infrared Band 2.2","description":"Collection 2 Level-2 Short-wave Infrared
+        Band 2.2 (SR_B7) Surface Reflectance","raster:bands":[{"scale":0.0000275,"nodata":0,"offset":-0.2,"data_type":"uint16","spatial_resolution":30}]},"coastal":{"href":"https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2025/090/091/LC09_L2SP_090091_20250310_20250311_02_T1/LC09_L2SP_090091_20250310_20250311_02_T1_SR_B1.TIF","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","roles":["data","reflectance"],"title":"Coastal/Aerosol
+        Band","eo:bands":[{"name":"OLI_B1","common_name":"coastal","description":"Coastal/Aerosol","center_wavelength":0.44,"full_width_half_max":0.02}],"description":"Collection
+        2 Level-2 Coastal/Aerosol Band (SR_B1) Surface Reflectance","raster:bands":[{"scale":0.0000275,"nodata":0,"offset":-0.2,"data_type":"uint16","spatial_resolution":30}]},"mtl.txt":{"href":"https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2025/090/091/LC09_L2SP_090091_20250310_20250311_02_T1/LC09_L2SP_090091_20250310_20250311_02_T1_MTL.txt","type":"text/plain","roles":["metadata"],"title":"Product
+        Metadata File (txt)","description":"Collection 2 Level-2 Product Metadata
+        File (txt)"},"mtl.xml":{"href":"https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2025/090/091/LC09_L2SP_090091_20250310_20250311_02_T1/LC09_L2SP_090091_20250310_20250311_02_T1_MTL.xml","type":"application/xml","roles":["metadata"],"title":"Product
+        Metadata File (xml)","description":"Collection 2 Level-2 Product Metadata
+        File (xml)"},"mtl.json":{"href":"https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2025/090/091/LC09_L2SP_090091_20250310_20250311_02_T1/LC09_L2SP_090091_20250310_20250311_02_T1_MTL.json","type":"application/json","roles":["metadata"],"title":"Product
+        Metadata File (json)","description":"Collection 2 Level-2 Product Metadata
+        File (json)"},"qa_pixel":{"href":"https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2025/090/091/LC09_L2SP_090091_20250310_20250311_02_T1/LC09_L2SP_090091_20250310_20250311_02_T1_QA_PIXEL.TIF","classification:bitfields":[{"name":"fill","length":1,"offset":0,"classes":[{"name":"not_fill","value":0,"description":"Image
+        data"},{"name":"fill","value":1,"description":"Fill data"}],"description":"Image
+        or fill data"},{"name":"dilated_cloud","length":1,"offset":1,"classes":[{"name":"not_dilated","value":0,"description":"Cloud
+        is not dilated or no cloud"},{"name":"dilated","value":1,"description":"Cloud
+        dilation"}],"description":"Dilated cloud"},{"name":"cirrus","length":1,"offset":2,"classes":[{"name":"not_cirrus","value":0,"description":"Cirrus
+        confidence is not high"},{"name":"cirrus","value":1,"description":"High confidence
+        cirrus"}],"description":"Cirrus mask"},{"name":"cloud","length":1,"offset":3,"classes":[{"name":"not_cloud","value":0,"description":"Cloud
+        confidence is not high"},{"name":"cloud","value":1,"description":"High confidence
+        cloud"}],"description":"Cloud mask"},{"name":"cloud_shadow","length":1,"offset":4,"classes":[{"name":"not_shadow","value":0,"description":"Cloud
+        shadow confidence is not high"},{"name":"shadow","value":1,"description":"High
+        confidence cloud shadow"}],"description":"Cloud shadow mask"},{"name":"snow","length":1,"offset":5,"classes":[{"name":"not_snow","value":0,"description":"Snow/Ice
+        confidence is not high"},{"name":"snow","value":1,"description":"High confidence
+        snow cover"}],"description":"Snow/Ice mask"},{"name":"clear","length":1,"offset":6,"classes":[{"name":"not_clear","value":0,"description":"Cloud
+        or dilated cloud bits are set"},{"name":"clear","value":1,"description":"Cloud
+        and dilated cloud bits are not set"}],"description":"Clear mask"},{"name":"water","length":1,"offset":7,"classes":[{"name":"not_water","value":0,"description":"Land
+        or cloud"},{"name":"water","value":1,"description":"Water"}],"description":"Water
+        mask"},{"name":"cloud_confidence","length":2,"offset":8,"classes":[{"name":"not_set","value":0,"description":"No
+        confidence level set"},{"name":"low","value":1,"description":"Low confidence
+        cloud"},{"name":"medium","value":2,"description":"Medium confidence cloud"},{"name":"high","value":3,"description":"High
+        confidence cloud"}],"description":"Cloud confidence levels"},{"name":"cloud_shadow_confidence","length":2,"offset":10,"classes":[{"name":"not_set","value":0,"description":"No
+        confidence level set"},{"name":"low","value":1,"description":"Low confidence
+        cloud shadow"},{"name":"reserved","value":2,"description":"Reserved - value
+        not used"},{"name":"high","value":3,"description":"High confidence cloud shadow"}],"description":"Cloud
+        shadow confidence levels"},{"name":"snow_confidence","length":2,"offset":12,"classes":[{"name":"not_set","value":0,"description":"No
+        confidence level set"},{"name":"low","value":1,"description":"Low confidence
+        snow/ice"},{"name":"reserved","value":2,"description":"Reserved - value not
+        used"},{"name":"high","value":3,"description":"High confidence snow/ice"}],"description":"Snow/Ice
+        confidence levels"},{"name":"cirrus_confidence","length":2,"offset":14,"classes":[{"name":"not_set","value":0,"description":"No
+        confidence level set"},{"name":"low","value":1,"description":"Low confidence
+        cirrus"},{"name":"reserved","value":2,"description":"Reserved - value not
+        used"},{"name":"high","value":3,"description":"High confidence cirrus"}],"description":"Cirrus
+        confidence levels"}],"type":"image/tiff; application=geotiff; profile=cloud-optimized","roles":["cloud","cloud-shadow","snow-ice","water-mask"],"title":"Pixel
+        Quality Assessment Band","description":"Collection 2 Level-1 Pixel Quality
+        Assessment Band (QA_PIXEL)","raster:bands":[{"unit":"bit index","nodata":1,"data_type":"uint16","spatial_resolution":30}]},"qa_radsat":{"href":"https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2025/090/091/LC09_L2SP_090091_20250310_20250311_02_T1/LC09_L2SP_090091_20250310_20250311_02_T1_QA_RADSAT.TIF","title":"Radiometric
+        Saturation and Terrain Occlusion Quality Assessment Band","description":"Collection
+        2 Level-1 Radiometric Saturation and Terrain Occlusion Quality Assessment
+        Band (QA_RADSAT)","classification:bitfields":[{"name":"band1","length":1,"offset":0,"classes":[{"name":"not_saturated","value":0,"description":"Band
+        1 not saturated"},{"name":"saturated","value":1,"description":"Band 1 saturated"}],"description":"Band
+        1 radiometric saturation"},{"name":"band2","length":1,"offset":1,"classes":[{"name":"not_saturated","value":0,"description":"Band
+        2 not saturated"},{"name":"saturated","value":1,"description":"Band 2 saturated"}],"description":"Band
+        2 radiometric saturation"},{"name":"band3","length":1,"offset":2,"classes":[{"name":"not_saturated","value":0,"description":"Band
+        3 not saturated"},{"name":"saturated","value":1,"description":"Band 3 saturated"}],"description":"Band
+        3 radiometric saturation"},{"name":"band4","length":1,"offset":3,"classes":[{"name":"not_saturated","value":0,"description":"Band
+        4 not saturated"},{"name":"saturated","value":1,"description":"Band 4 saturated"}],"description":"Band
+        4 radiometric saturation"},{"name":"band5","length":1,"offset":4,"classes":[{"name":"not_saturated","value":0,"description":"Band
+        5 not saturated"},{"name":"saturated","value":1,"description":"Band 5 saturated"}],"description":"Band
+        5 radiometric saturation"},{"name":"band6","length":1,"offset":5,"classes":[{"name":"not_saturated","value":0,"description":"Band
+        6 not saturated"},{"name":"saturated","value":1,"description":"Band 6 saturated"}],"description":"Band
+        6 radiometric saturation"},{"name":"band7","length":1,"offset":6,"classes":[{"name":"not_saturated","value":0,"description":"Band
+        7 not saturated"},{"name":"saturated","value":1,"description":"Band 7 saturated"}],"description":"Band
+        7 radiometric saturation"},{"name":"band9","length":1,"offset":8,"classes":[{"name":"not_saturated","value":0,"description":"Band
+        9 not saturated"},{"name":"saturated","value":1,"description":"Band 9 saturated"}],"description":"Band
+        9 radiometric saturation"},{"name":"occlusion","length":1,"offset":11,"classes":[{"name":"not_occluded","value":0,"description":"Terrain
+        is not occluded"},{"name":"occluded","value":1,"description":"Terrain is occluded"}],"description":"Terrain
+        not visible from sensor due to intervening terrain"}],"type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","roles":["saturation"],"raster:bands":[{"unit":"bit
+        index","data_type":"uint16","spatial_resolution":30}]},"qa_aerosol":{"href":"https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2025/090/091/LC09_L2SP_090091_20250310_20250311_02_T1/LC09_L2SP_090091_20250310_20250311_02_T1_SR_QA_AEROSOL.TIF","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","roles":["data-mask","water-mask"],"title":"Aerosol
+        Quality Assessment Band","description":"Collection 2 Level-2 Aerosol Quality
+        Assessment Band (SR_QA_AEROSOL) Surface Reflectance Product","raster:bands":[{"unit":"bit
+        index","nodata":1,"data_type":"uint8","spatial_resolution":30}],"classification:bitfields":[{"name":"fill","length":1,"offset":0,"classes":[{"name":"not_fill","value":0,"description":"Pixel
+        is not fill"},{"name":"fill","value":1,"description":"Pixel is fill"}],"description":"Image
+        or fill data"},{"name":"retrieval","length":1,"offset":1,"classes":[{"name":"not_valid","value":0,"description":"Pixel
+        retrieval is not valid"},{"name":"valid","value":1,"description":"Pixel retrieval
+        is valid"}],"description":"Valid aerosol retrieval"},{"name":"water","length":1,"offset":2,"classes":[{"name":"not_water","value":0,"description":"Pixel
+        is not water"},{"name":"water","value":1,"description":"Pixel is water"}],"description":"Water
+        mask"},{"name":"interpolated","length":1,"offset":5,"classes":[{"name":"not_interpolated","value":0,"description":"Pixel
+        is not interpolated aerosol"},{"name":"interpolated","value":1,"description":"Pixel
+        is interpolated aerosol"}],"description":"Aerosol interpolation"},{"name":"level","length":2,"offset":6,"classes":[{"name":"climatology","value":0,"description":"No
+        aerosol correction applied"},{"name":"low","value":1,"description":"Low aerosol
+        level"},{"name":"medium","value":2,"description":"Medium aerosol level"},{"name":"high","value":3,"description":"High
+        aerosol level"}],"description":"Aerosol level"}]},"tilejson":{"title":"TileJSON
+        with default rendering","href":"https://planetarycomputer.microsoft.com/api/data/v1/item/tilejson.json?collection=landsat-c2-l2&item=LC09_L2SP_090091_20250310_02_T1&assets=red&assets=green&assets=blue&color_formula=gamma+RGB+2.7%2C+saturation+1.5%2C+sigmoidal+RGB+15+0.55&format=png","type":"application/json","roles":["tiles"]},"rendered_preview":{"title":"Rendered
+        preview","rel":"preview","href":"https://planetarycomputer.microsoft.com/api/data/v1/item/preview.png?collection=landsat-c2-l2&item=LC09_L2SP_090091_20250310_02_T1&assets=red&assets=green&assets=blue&color_formula=gamma+RGB+2.7%2C+saturation+1.5%2C+sigmoidal+RGB+15+0.55&format=png","roles":["overview"],"type":"image/png"}},"geometry":{"type":"Polygon","coordinates":[[[145.83047890311937,-43.54771601648122],[145.19264189969172,-45.24255815140259],[147.55260801027643,-45.667868797661214],[148.12365582641297,-43.962531763552626],[145.83047890311937,-43.54771601648122]]]},"collection":"landsat-c2-l2","properties":{"gsd":30,"created":"2025-03-12T09:20:11.670692Z","sci:doi":"10.5066/P9OGBGM6","datetime":"2025-03-10T23:53:08.935246Z","platform":"landsat-9","proj:epsg":32655,"proj:shape":[7881,7871],"description":"Landsat
+        Collection 2 Level-2","instruments":["oli","tirs"],"eo:cloud_cover":70.85,"proj:transform":[30.0,0.0,355785.0,0.0,-30.0,-4821585.0],"view:off_nadir":0,"landsat:wrs_row":"091","landsat:scene_id":"LC90900912025069LGN00","landsat:wrs_path":"090","landsat:wrs_type":"2","view:sun_azimuth":50.04066196,"landsat:correction":"L2SP","view:sun_elevation":37.48534944,"landsat:cloud_cover_land":32.19,"landsat:collection_number":"02","landsat:collection_category":"T1"},"stac_extensions":["https://stac-extensions.github.io/raster/v1.1.0/schema.json","https://stac-extensions.github.io/eo/v1.0.0/schema.json","https://stac-extensions.github.io/view/v1.0.0/schema.json","https://stac-extensions.github.io/projection/v1.1.0/schema.json","https://landsat.usgs.gov/stac/landsat-extension/v1.1.1/schema.json","https://stac-extensions.github.io/classification/v1.0.0/schema.json","https://stac-extensions.github.io/scientific/v1.0.0/schema.json"],"stac_version":"1.0.0"}],"links":[{"rel":"collection","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-c2-l2"},{"rel":"parent","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-c2-l2"},{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"self","type":"application/geo+json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-c2-l2/items"},{"rel":"next","type":"application/geo+json","method":"GET","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-c2-l2/items?limit=1&token=next:landsat-c2-l2:LC09_L2SP_090091_20250310_02_T1"}]}'
     headers:
       Accept-Ranges:
       - bytes
@@ -98,7 +171,7 @@ interactions:
       Content-Type:
       - application/geo+json
       Date:
-      - Wed, 12 Mar 2025 11:38:57 GMT
+      - Wed, 12 Mar 2025 12:11:34 GMT
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Cache:
@@ -108,7 +181,7 @@ interactions:
       vary:
       - Accept-Encoding
       x-azure-ref:
-      - 20250312T113857Z-15d554846c6d76lhhC1DENuxvn00000006z0000000001bt5
+      - 20250312T121133Z-15d554846c6fksz6hC1DEN88en00000004d0000000004xc8
     status:
       code: 200
       message: OK
@@ -120,14 +193,14 @@ interactions:
       Host:
       - planetarycomputer.microsoft.com
       User-Agent:
-      - Python-urllib/3.9
+      - Python-urllib/3.10
     method: GET
     uri: https://planetarycomputer.microsoft.com/api/stac/v1/
   response:
     body:
       string: '{"type":"Catalog","id":"microsoft-pc","title":"Microsoft Planetary
         Computer STAC API","description":"Searchable spatiotemporal metadata describing
-        Earth science datasets hosted by the Microsoft Planetary Computer","stac_version":"1.0.0","conformsTo":["http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core","http://www.opengis.net/spec/ogcapi-features-3/1.0/conf/filter","https://api.stacspec.org/v1.0.0/ogcapi-features","http://www.opengis.net/spec/cql2/1.0/conf/cql2-text","https://api.stacspec.org/v1.0.0/item-search","https://api.stacspec.org/v1.0.0/collections","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30","https://api.stacspec.org/v1.0.0/item-search#query","https://api.stacspec.org/v1.0.0/item-search#sort","https://api.stacspec.org/v1.0.0/item-search#fields","https://api.stacspec.org/v1.0.0-rc.2/item-search#filter","http://www.opengis.net/spec/cql2/1.0/conf/cql2-json","http://www.opengis.net/spec/cql2/1.0/conf/basic-cql2","https://api.stacspec.org/v1.0.0/core","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/geojson"],"links":[{"rel":"self","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"data","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections"},{"rel":"conformance","type":"application/json","title":"STAC/OGC
+        Earth science datasets hosted by the Microsoft Planetary Computer","stac_version":"1.0.0","conformsTo":["http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core","https://api.stacspec.org/v1.0.0/item-search#sort","https://api.stacspec.org/v1.0.0/collections","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/geojson","https://api.stacspec.org/v1.0.0/item-search#query","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30","https://api.stacspec.org/v1.0.0/ogcapi-features","http://www.opengis.net/spec/cql2/1.0/conf/basic-cql2","https://api.stacspec.org/v1.0.0/item-search","https://api.stacspec.org/v1.0.0/core","http://www.opengis.net/spec/cql2/1.0/conf/cql2-json","https://api.stacspec.org/v1.0.0-rc.2/item-search#filter","http://www.opengis.net/spec/cql2/1.0/conf/cql2-text","https://api.stacspec.org/v1.0.0/item-search#fields","http://www.opengis.net/spec/ogcapi-features-3/1.0/conf/filter"],"links":[{"rel":"self","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"data","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections"},{"rel":"conformance","type":"application/json","title":"STAC/OGC
         conformance classes implemented by this server","href":"https://planetarycomputer.microsoft.com/api/stac/v1/conformance"},{"rel":"search","type":"application/geo+json","title":"STAC
         search","href":"https://planetarycomputer.microsoft.com/api/stac/v1/search","method":"GET"},{"rel":"search","type":"application/geo+json","title":"STAC
         search","href":"https://planetarycomputer.microsoft.com/api/stac/v1/search","method":"POST"},{"rel":"http://www.opengis.net/def/rel/ogc/1.0/queryables","type":"application/schema+json","title":"Queryables","href":"https://planetarycomputer.microsoft.com/api/stac/v1/queryables","method":"GET"},{"rel":"child","type":"application/json","title":"Daymet
@@ -154,8 +227,7 @@ interactions:
         Annual Land Use Land Cover (9-class) V2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc-annual-v02"},{"rel":"child","type":"application/json","title":"CONUS404","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/conus404"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Intensity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-intensity"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Source","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-pointsourceid"},{"rel":"child","type":"application/json","title":"MTBS:
-        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"Landsat
-        8 Collection 2 Level-2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-8-c2-l2"},{"rel":"child","type":"application/json","title":"C-CAP
+        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"C-CAP
         Regional Land Cover and Change","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-c-cap"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Cloud","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-copc"},{"rel":"child","type":"application/json","title":"MODIS
         Burned Area Monthly","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-64A1-061"},{"rel":"child","type":"application/json","title":"ALOS
@@ -273,17 +345,17 @@ interactions:
       Connection:
       - close
       Content-Length:
-      - '25050'
+      - '24878'
       Content-Type:
       - application/json
       Date:
-      - Wed, 12 Mar 2025 11:38:58 GMT
+      - Wed, 12 Mar 2025 12:11:34 GMT
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Cache:
       - CONFIG_NOCACHE
       x-azure-ref:
-      - 20250312T113857Z-15d554846c6wdzdbhC1DENgn2g00000001pg00000000178y
+      - 20250312T121134Z-15d554846c6xq45fhC1DEN2svg0000000690000000004dt4
     status:
       code: 200
       message: OK
@@ -295,14 +367,14 @@ interactions:
       Host:
       - planetarycomputer.microsoft.com
       User-Agent:
-      - Python-urllib/3.9
+      - Python-urllib/3.10
     method: GET
     uri: https://planetarycomputer.microsoft.com/api/stac/v1/
   response:
     body:
       string: '{"type":"Catalog","id":"microsoft-pc","title":"Microsoft Planetary
         Computer STAC API","description":"Searchable spatiotemporal metadata describing
-        Earth science datasets hosted by the Microsoft Planetary Computer","stac_version":"1.0.0","conformsTo":["http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core","http://www.opengis.net/spec/ogcapi-features-3/1.0/conf/filter","https://api.stacspec.org/v1.0.0/ogcapi-features","http://www.opengis.net/spec/cql2/1.0/conf/cql2-text","https://api.stacspec.org/v1.0.0/item-search","https://api.stacspec.org/v1.0.0/collections","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30","https://api.stacspec.org/v1.0.0/item-search#query","https://api.stacspec.org/v1.0.0/item-search#sort","https://api.stacspec.org/v1.0.0/item-search#fields","https://api.stacspec.org/v1.0.0-rc.2/item-search#filter","http://www.opengis.net/spec/cql2/1.0/conf/cql2-json","http://www.opengis.net/spec/cql2/1.0/conf/basic-cql2","https://api.stacspec.org/v1.0.0/core","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/geojson"],"links":[{"rel":"self","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"data","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections"},{"rel":"conformance","type":"application/json","title":"STAC/OGC
+        Earth science datasets hosted by the Microsoft Planetary Computer","stac_version":"1.0.0","conformsTo":["http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core","https://api.stacspec.org/v1.0.0/item-search#sort","https://api.stacspec.org/v1.0.0/collections","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/geojson","https://api.stacspec.org/v1.0.0/item-search#query","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30","https://api.stacspec.org/v1.0.0/ogcapi-features","http://www.opengis.net/spec/cql2/1.0/conf/basic-cql2","https://api.stacspec.org/v1.0.0/item-search","https://api.stacspec.org/v1.0.0/core","http://www.opengis.net/spec/cql2/1.0/conf/cql2-json","https://api.stacspec.org/v1.0.0-rc.2/item-search#filter","http://www.opengis.net/spec/cql2/1.0/conf/cql2-text","https://api.stacspec.org/v1.0.0/item-search#fields","http://www.opengis.net/spec/ogcapi-features-3/1.0/conf/filter"],"links":[{"rel":"self","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"data","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections"},{"rel":"conformance","type":"application/json","title":"STAC/OGC
         conformance classes implemented by this server","href":"https://planetarycomputer.microsoft.com/api/stac/v1/conformance"},{"rel":"search","type":"application/geo+json","title":"STAC
         search","href":"https://planetarycomputer.microsoft.com/api/stac/v1/search","method":"GET"},{"rel":"search","type":"application/geo+json","title":"STAC
         search","href":"https://planetarycomputer.microsoft.com/api/stac/v1/search","method":"POST"},{"rel":"http://www.opengis.net/def/rel/ogc/1.0/queryables","type":"application/schema+json","title":"Queryables","href":"https://planetarycomputer.microsoft.com/api/stac/v1/queryables","method":"GET"},{"rel":"child","type":"application/json","title":"Daymet
@@ -329,8 +401,7 @@ interactions:
         Annual Land Use Land Cover (9-class) V2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc-annual-v02"},{"rel":"child","type":"application/json","title":"CONUS404","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/conus404"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Intensity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-intensity"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Source","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-pointsourceid"},{"rel":"child","type":"application/json","title":"MTBS:
-        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"Landsat
-        8 Collection 2 Level-2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-8-c2-l2"},{"rel":"child","type":"application/json","title":"C-CAP
+        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"C-CAP
         Regional Land Cover and Change","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-c-cap"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Cloud","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-copc"},{"rel":"child","type":"application/json","title":"MODIS
         Burned Area Monthly","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-64A1-061"},{"rel":"child","type":"application/json","title":"ALOS
@@ -448,17 +519,17 @@ interactions:
       Connection:
       - close
       Content-Length:
-      - '25050'
+      - '24878'
       Content-Type:
       - application/json
       Date:
-      - Wed, 12 Mar 2025 11:38:58 GMT
+      - Wed, 12 Mar 2025 12:11:35 GMT
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Cache:
       - CONFIG_NOCACHE
       x-azure-ref:
-      - 20250312T113858Z-15d554846c6tdftqhC1DENy1rn00000002eg000000004g6y
+      - 20250312T121135Z-15d554846c6rv5hvhC1DEN6g180000000aa0000000003a73
     status:
       code: 200
       message: OK

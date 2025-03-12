@@ -14,48 +14,92 @@ interactions:
     uri: https://planetarycomputer.microsoft.com/api/stac/v1/collections/gbif/items?limit=1
   response:
     body:
-      string: !!binary |
-        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
-        N3v8DyEWqOHSKAAA
+      string: '{"type":"FeatureCollection","features":[{"id":"gbif-2024-10-01","bbox":[-180,-90,180,90],"type":"Feature","links":[{"rel":"collection","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/gbif"},{"rel":"parent","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/gbif"},{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"self","type":"application/geo+json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/gbif/items/gbif-2024-10-01"}],"assets":{"data":{"href":"az://gbif/occurrence/2024-10-01/occurrence.parquet","type":"application/x-parquet","roles":["data"],"title":"Dataset
+        root","table:storage_options":{"account_name":"ai4edataeuwest"}}},"geometry":{"type":"Polygon","coordinates":[[[180,-90],[180,90],[-180,90],[-180,-90],[180,-90]]]},"collection":"gbif","properties":{"datetime":"2024-10-01T00:00:00Z","table:columns":[{"name":"gbifid","type":"byte_array","description":"GBIF''s
+        identifier for the occurrence"},{"name":"datasetkey","type":"byte_array","description":"GBIF''s
+        UUID for the [dataset](https://www.gbif.org/developer/registry#datasets) containing
+        this occurrence"},{"name":"occurrenceid","type":"byte_array","description":"See
+        [dwc:occurrenceID](https://dwc.tdwg.org/terms/#occurrenceID)."},{"name":"kingdom","type":"byte_array","description":"See
+        [dwc:kingdom](https://dwc.tdwg.org/terms/#kingdom).  This field has been aligned
+        with the [GBIF backbone taxonomy](https://doi.org/10.15468/39omei)."},{"name":"phylum","type":"byte_array","description":"See
+        [dwc:phylum](https://dwc.tdwg.org/terms/#phylum).  This field has been aligned
+        with the GBIF backbone taxonomy."},{"name":"class","type":"byte_array","description":"See
+        [dwc:class](https://dwc.tdwg.org/terms/#class).  This field has been aligned
+        with the GBIF backbone taxonomy."},{"name":"order","type":"byte_array","description":"See
+        [dwc:order](https://dwc.tdwg.org/terms/#order).  This field has been aligned
+        with the GBIF backbone taxonomy."},{"name":"family","type":"byte_array","description":"See
+        [dwc:family](https://dwc.tdwg.org/terms/#family).  This field has been aligned
+        with the GBIF backbone taxonomy."},{"name":"genus","type":"byte_array","description":"See
+        [dwc:genus](https://dwc.tdwg.org/terms/#genus).  This field has been aligned
+        with the GBIF backbone taxonomy."},{"name":"species","type":"byte_array","description":"See
+        [dwc:species](https://dwc.tdwg.org/terms/#species).  This field has been aligned
+        with the GBIF backbone taxonomy."},{"name":"infraspecificepithet","type":"byte_array","description":"See
+        [dwc:infraspecificEpithet](https://dwc.tdwg.org/terms/#infraspecificEpithet).  This
+        field has been aligned with the GBIF backbone taxonomy."},{"name":"taxonrank","type":"byte_array","description":"See
+        [dwc:taxonRank](https://dwc.tdwg.org/terms/#taxonRank).  This field has been
+        aligned with the GBIF backbone taxonomy."},{"name":"scientificname","type":"byte_array","description":"See
+        [dwc:scientificName](https://dwc.tdwg.org/terms/#scientificName).  This field
+        has been aligned with the GBIF backbone taxonomy."},{"name":"verbatimscientificname","type":"byte_array","description":"The
+        scientific name as provided by the data publisher"},{"name":"verbatimscientificnameauthorship","type":"byte_array","description":"The
+        scientific name authorship provided by the data publisher."},{"name":"countrycode","type":"byte_array","description":"See
+        [dwc:countryCode](https://dwc.tdwg.org/terms/#countryCode).  GBIF''s interpretation
+        has set this to an ISO 3166-2 code."},{"name":"locality","type":"byte_array","description":"See
+        [dwc:locality](https://dwc.tdwg.org/terms/#locality)."},{"name":"stateprovince","type":"byte_array","description":"See
+        [dwc:stateProvince](https://dwc.tdwg.org/terms/#stateProvince)."},{"name":"occurrencestatus","type":"byte_array","description":"See
+        [dwc:occurrenceStatus](https://dwc.tdwg.org/terms/#occurrenceStatus). Either
+        the value `PRESENT` or `ABSENT`.  **Many users will wish to filter for `PRESENT`
+        data.**"},{"name":"individualcount","type":"int32","description":"See [dwc:individualCount](https://dwc.tdwg.org/terms/#individualCount)."},{"name":"publishingorgkey","type":"byte_array","description":"GBIF''s
+        UUID for the [organization](https://www.gbif.org/developer/registry#organizations)
+        publishing this occurrence."},{"name":"decimallatitude","type":"double","description":"See
+        [dwc:decimalLatitude](https://dwc.tdwg.org/terms/#decimalLatitude).  GBIF''s
+        interpretation has normalized this to a WGS84 coordinate."},{"name":"decimallongitude","type":"double","description":"See
+        [dwc:decimalLongitude](https://dwc.tdwg.org/terms/#decimalLongitude).  GBIF''s
+        interpretation has normalized this to a WGS84 coordinate."},{"name":"coordinateuncertaintyinmeters","type":"double","description":"See
+        [dwc:coordinateUncertaintyInMeters](https://dwc.tdwg.org/terms/#coordinateUncertaintyInMeters)."},{"name":"coordinateprecision","type":"double","description":"See
+        [dwc:coordinatePrecision](https://dwc.tdwg.org/terms/#coordinatePrecision)."},{"name":"elevation","type":"double","description":"See
+        [dwc:elevation](https://dwc.tdwg.org/terms/#elevation).  If provided by the
+        data publisher, GBIF''s interpretation has normalized this value to metres."},{"name":"elevationaccuracy","type":"double","description":"See
+        [dwc:elevationAccuracy](https://dwc.tdwg.org/terms/#elevationAccuracy).  If
+        provided by the data publisher, GBIF''s interpretation has normalized this
+        value to metres."},{"name":"depth","type":"double","description":"See [dwc:depth](https://dwc.tdwg.org/terms/#depth).  If
+        provided by the data publisher, GBIF''s interpretation has normalized this
+        value to metres."},{"name":"depthaccuracy","type":"double","description":"See
+        [dwc:depthAccuracy](https://dwc.tdwg.org/terms/#depthAccuracy).  If provided
+        by the data publisher, GBIF''s interpretation has normalized this value to
+        metres."},{"name":"eventdate","type":"int64","description":"See [dwc:eventDate](https://dwc.tdwg.org/terms/#eventDate).  GBIF''s
+        interpretation has normalized this value to an ISO 8601 date with a local
+        time."},{"name":"day","type":"int32","description":"See [dwc:day](https://dwc.tdwg.org/terms/#day)."},{"name":"month","type":"int32","description":"See
+        [dwc:month](https://dwc.tdwg.org/terms/#month)."},{"name":"year","type":"int32","description":"See
+        [dwc:year](https://dwc.tdwg.org/terms/#year)."},{"name":"taxonkey","type":"int32","description":"The
+        numeric identifier for the [taxon](https://www.gbif.org/developer/species#nameUsages)
+        in GBIF''s backbone taxonomy corresponding to `scientificname`."},{"name":"specieskey","type":"int32","description":"The
+        numeric identifier for the taxon in GBIF''s backbone taxonomy corresponding
+        to `species`."},{"name":"basisofrecord","type":"byte_array","description":"See
+        [dwc:basisOfRecord](https://dwc.tdwg.org/terms/#basisOfRecord).  One of `PRESERVED_SPECIMEN`,
+        `FOSSIL_SPECIMEN`, `LIVING_SPECIMEN`, `OBSERVATION`, `HUMAN_OBSERVATION`,
+        `MACHINE_OBSERVATION`, `MATERIAL_SAMPLE`, `LITERATURE`, `UNKNOWN`."},{"name":"institutioncode","type":"byte_array","description":"See
+        [dwc:institutionCode](https://dwc.tdwg.org/terms/#institutionCode)."},{"name":"collectioncode","type":"byte_array","description":"See
+        [dwc:collectionCode](https://dwc.tdwg.org/terms/#collectionCode)."},{"name":"catalognumber","type":"byte_array","description":"See
+        [dwc:catalogNumber](https://dwc.tdwg.org/terms/#catalogNumber)."},{"name":"recordnumber","type":"byte_array","description":"See
+        [dwc:recordNumber](https://dwc.tdwg.org/terms/#recordNumber)."},{"name":"identifiedby","type":"byte_array","description":"See
+        [dwc:identifiedBy](https://dwc.tdwg.org/terms/#identifiedBy)."},{"name":"dateidentified","type":"int64","description":"See
+        [dwc:dateIdentified](https://dwc.tdwg.org/terms/#dateIdentified). An ISO 8601
+        date."},{"name":"license","type":"byte_array","description":"See [dwc:license](https://dwc.tdwg.org/terms/#license).
+        Either [`CC0_1_0`](https://creativecommons.org/publicdomain/zero/1.0/), [`CC_BY_4_0`](https://creativecommons.org/licenses/by/4.0/),
+        or (`CC_BY_NC_4_0`)[https://creativecommons.org/licenses/by-nc/4.0/]."},{"name":"rightsholder","type":"byte_array","description":"See
+        [dwc:rightsHolder](https://dwc.tdwg.org/terms/#rightsHolder)."},{"name":"recordedby","type":"byte_array","description":"See
+        [dwc:recordedBy](https://dwc.tdwg.org/terms/#recordedBy)."},{"name":"typestatus","type":"byte_array","description":"See
+        [dwc:typeStatus](https://dwc.tdwg.org/terms/#typeStatus)."},{"name":"establishmentmeans","type":"byte_array","description":"See
+        [dwc:establishmentMeans](https://dwc.tdwg.org/terms/#establishmentMeans)."},{"name":"lastinterpreted","type":"int64","description":"The
+        ISO 8601 date when the record was last processed by GBIF. Data are reprocessed
+        for several reasons, including changes to the backbone taxonomy, so this date
+        is not necessarily the date the occurrence record last changed."},{"name":"mediatype","type":"byte_array","description":"See
+        [dwc:mediaType](https://dwc.tdwg.org/terms/#mediaType).  May contain `StillImage`,
+        `MovingImage` or `Sound` (from [enumeration](http://api.gbif.org/v1/enumeration/basic/MediaType),
+        detailing whether the occurrence has this media available."},{"name":"issue","type":"byte_array","description":"A
+        list of [issues](https://gbif.github.io/gbif-api/apidocs/org/gbif/api/vocabulary/OccurrenceIssue.html)
+        encountered by GBIF in processing this record. More details are available
+        on these issues and flags in [this blog post](https://data-blog.gbif.org/post/issues-and-flags/)."}]},"stac_extensions":["https://stac-extensions.github.io/table/v1.2.0/schema.json"],"stac_version":"1.0.0"}],"links":[{"rel":"collection","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/gbif"},{"rel":"parent","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/gbif"},{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"self","type":"application/geo+json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/gbif/items"},{"rel":"next","type":"application/geo+json","method":"GET","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/gbif/items?limit=1&token=next:gbif:gbif-2024-10-01"}]}'
     headers:
       Accept-Ranges:
       - bytes
@@ -76,7 +120,7 @@ interactions:
       Content-Type:
       - application/geo+json
       Date:
-      - Wed, 12 Mar 2025 11:38:41 GMT
+      - Wed, 12 Mar 2025 12:11:17 GMT
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Cache:
@@ -86,7 +130,7 @@ interactions:
       vary:
       - Accept-Encoding
       x-azure-ref:
-      - 20250312T113840Z-15d554846c6ddck5hC1DENuhew00000008h0000000001vk6
+      - 20250312T121116Z-15d554846c6khzqphC1DENmtf400000003u0000000003a33
     status:
       code: 200
       message: OK
@@ -98,14 +142,14 @@ interactions:
       Host:
       - planetarycomputer.microsoft.com
       User-Agent:
-      - Python-urllib/3.9
+      - Python-urllib/3.10
     method: GET
     uri: https://planetarycomputer.microsoft.com/api/stac/v1/
   response:
     body:
       string: '{"type":"Catalog","id":"microsoft-pc","title":"Microsoft Planetary
         Computer STAC API","description":"Searchable spatiotemporal metadata describing
-        Earth science datasets hosted by the Microsoft Planetary Computer","stac_version":"1.0.0","conformsTo":["http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core","http://www.opengis.net/spec/ogcapi-features-3/1.0/conf/filter","https://api.stacspec.org/v1.0.0/ogcapi-features","http://www.opengis.net/spec/cql2/1.0/conf/cql2-text","https://api.stacspec.org/v1.0.0/item-search","https://api.stacspec.org/v1.0.0/collections","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30","https://api.stacspec.org/v1.0.0/item-search#query","https://api.stacspec.org/v1.0.0/item-search#sort","https://api.stacspec.org/v1.0.0/item-search#fields","https://api.stacspec.org/v1.0.0-rc.2/item-search#filter","http://www.opengis.net/spec/cql2/1.0/conf/cql2-json","http://www.opengis.net/spec/cql2/1.0/conf/basic-cql2","https://api.stacspec.org/v1.0.0/core","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/geojson"],"links":[{"rel":"self","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"data","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections"},{"rel":"conformance","type":"application/json","title":"STAC/OGC
+        Earth science datasets hosted by the Microsoft Planetary Computer","stac_version":"1.0.0","conformsTo":["https://api.stacspec.org/v1.0.0/ogcapi-features","https://api.stacspec.org/v1.0.0/collections","https://api.stacspec.org/v1.0.0/item-search#fields","http://www.opengis.net/spec/cql2/1.0/conf/basic-cql2","http://www.opengis.net/spec/cql2/1.0/conf/cql2-text","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30","https://api.stacspec.org/v1.0.0/core","https://api.stacspec.org/v1.0.0/item-search","https://api.stacspec.org/v1.0.0-rc.2/item-search#filter","http://www.opengis.net/spec/cql2/1.0/conf/cql2-json","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/geojson","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core","https://api.stacspec.org/v1.0.0/item-search#sort","https://api.stacspec.org/v1.0.0/item-search#query","http://www.opengis.net/spec/ogcapi-features-3/1.0/conf/filter"],"links":[{"rel":"self","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"data","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections"},{"rel":"conformance","type":"application/json","title":"STAC/OGC
         conformance classes implemented by this server","href":"https://planetarycomputer.microsoft.com/api/stac/v1/conformance"},{"rel":"search","type":"application/geo+json","title":"STAC
         search","href":"https://planetarycomputer.microsoft.com/api/stac/v1/search","method":"GET"},{"rel":"search","type":"application/geo+json","title":"STAC
         search","href":"https://planetarycomputer.microsoft.com/api/stac/v1/search","method":"POST"},{"rel":"http://www.opengis.net/def/rel/ogc/1.0/queryables","type":"application/schema+json","title":"Queryables","href":"https://planetarycomputer.microsoft.com/api/stac/v1/queryables","method":"GET"},{"rel":"child","type":"application/json","title":"Daymet
@@ -132,8 +176,7 @@ interactions:
         Annual Land Use Land Cover (9-class) V2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc-annual-v02"},{"rel":"child","type":"application/json","title":"CONUS404","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/conus404"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Intensity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-intensity"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Source","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-pointsourceid"},{"rel":"child","type":"application/json","title":"MTBS:
-        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"Landsat
-        8 Collection 2 Level-2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-8-c2-l2"},{"rel":"child","type":"application/json","title":"C-CAP
+        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"C-CAP
         Regional Land Cover and Change","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-c-cap"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Cloud","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-copc"},{"rel":"child","type":"application/json","title":"MODIS
         Burned Area Monthly","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-64A1-061"},{"rel":"child","type":"application/json","title":"ALOS
@@ -251,17 +294,17 @@ interactions:
       Connection:
       - close
       Content-Length:
-      - '25050'
+      - '24878'
       Content-Type:
       - application/json
       Date:
-      - Wed, 12 Mar 2025 11:38:41 GMT
+      - Wed, 12 Mar 2025 12:11:17 GMT
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Cache:
       - CONFIG_NOCACHE
       x-azure-ref:
-      - 20250312T113841Z-15d554846c6g8tgbhC1DENs71800000002a0000000002p3f
+      - 20250312T121117Z-15d554846c6k9t6rhC1DENetdw00000004yg0000000011wu
     status:
       code: 200
       message: OK
@@ -273,14 +316,14 @@ interactions:
       Host:
       - planetarycomputer.microsoft.com
       User-Agent:
-      - Python-urllib/3.9
+      - Python-urllib/3.10
     method: GET
     uri: https://planetarycomputer.microsoft.com/api/stac/v1/
   response:
     body:
       string: '{"type":"Catalog","id":"microsoft-pc","title":"Microsoft Planetary
         Computer STAC API","description":"Searchable spatiotemporal metadata describing
-        Earth science datasets hosted by the Microsoft Planetary Computer","stac_version":"1.0.0","conformsTo":["http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core","http://www.opengis.net/spec/ogcapi-features-3/1.0/conf/filter","https://api.stacspec.org/v1.0.0/ogcapi-features","http://www.opengis.net/spec/cql2/1.0/conf/cql2-text","https://api.stacspec.org/v1.0.0/item-search","https://api.stacspec.org/v1.0.0/collections","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30","https://api.stacspec.org/v1.0.0/item-search#query","https://api.stacspec.org/v1.0.0/item-search#sort","https://api.stacspec.org/v1.0.0/item-search#fields","https://api.stacspec.org/v1.0.0-rc.2/item-search#filter","http://www.opengis.net/spec/cql2/1.0/conf/cql2-json","http://www.opengis.net/spec/cql2/1.0/conf/basic-cql2","https://api.stacspec.org/v1.0.0/core","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/geojson"],"links":[{"rel":"self","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"data","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections"},{"rel":"conformance","type":"application/json","title":"STAC/OGC
+        Earth science datasets hosted by the Microsoft Planetary Computer","stac_version":"1.0.0","conformsTo":["https://api.stacspec.org/v1.0.0/ogcapi-features","https://api.stacspec.org/v1.0.0/collections","https://api.stacspec.org/v1.0.0/item-search#fields","http://www.opengis.net/spec/cql2/1.0/conf/basic-cql2","http://www.opengis.net/spec/cql2/1.0/conf/cql2-text","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30","https://api.stacspec.org/v1.0.0/core","https://api.stacspec.org/v1.0.0/item-search","https://api.stacspec.org/v1.0.0-rc.2/item-search#filter","http://www.opengis.net/spec/cql2/1.0/conf/cql2-json","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/geojson","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core","https://api.stacspec.org/v1.0.0/item-search#sort","https://api.stacspec.org/v1.0.0/item-search#query","http://www.opengis.net/spec/ogcapi-features-3/1.0/conf/filter"],"links":[{"rel":"self","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"data","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections"},{"rel":"conformance","type":"application/json","title":"STAC/OGC
         conformance classes implemented by this server","href":"https://planetarycomputer.microsoft.com/api/stac/v1/conformance"},{"rel":"search","type":"application/geo+json","title":"STAC
         search","href":"https://planetarycomputer.microsoft.com/api/stac/v1/search","method":"GET"},{"rel":"search","type":"application/geo+json","title":"STAC
         search","href":"https://planetarycomputer.microsoft.com/api/stac/v1/search","method":"POST"},{"rel":"http://www.opengis.net/def/rel/ogc/1.0/queryables","type":"application/schema+json","title":"Queryables","href":"https://planetarycomputer.microsoft.com/api/stac/v1/queryables","method":"GET"},{"rel":"child","type":"application/json","title":"Daymet
@@ -307,8 +350,7 @@ interactions:
         Annual Land Use Land Cover (9-class) V2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc-annual-v02"},{"rel":"child","type":"application/json","title":"CONUS404","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/conus404"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Intensity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-intensity"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Source","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-pointsourceid"},{"rel":"child","type":"application/json","title":"MTBS:
-        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"Landsat
-        8 Collection 2 Level-2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-8-c2-l2"},{"rel":"child","type":"application/json","title":"C-CAP
+        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"C-CAP
         Regional Land Cover and Change","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-c-cap"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Cloud","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-copc"},{"rel":"child","type":"application/json","title":"MODIS
         Burned Area Monthly","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-64A1-061"},{"rel":"child","type":"application/json","title":"ALOS
@@ -426,17 +468,17 @@ interactions:
       Connection:
       - close
       Content-Length:
-      - '25050'
+      - '24878'
       Content-Type:
       - application/json
       Date:
-      - Wed, 12 Mar 2025 11:38:42 GMT
+      - Wed, 12 Mar 2025 12:11:18 GMT
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Cache:
       - CONFIG_NOCACHE
       x-azure-ref:
-      - 20250312T113842Z-15d554846c6d76lhhC1DENuxvn00000006xg000000002qaa
+      - 20250312T121117Z-15d554846c6btfv6hC1DEN3ezc00000006a00000000066wp
     status:
       code: 200
       message: OK

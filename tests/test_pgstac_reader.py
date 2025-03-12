@@ -1,6 +1,7 @@
 import datetime
 import json
 import pathlib
+import sys
 
 import dateutil
 import pandas as pd
@@ -15,6 +16,9 @@ HERE = pathlib.Path(__file__).parent
 
 
 @pytest.mark.vcr
+@pytest.mark.skipif(
+    sys.version_info < (3, 10), reason="vcr tests require python3.10 or higher"
+)
 def test_naip_item():
     base_item = {
         "type": "Feature",
@@ -117,6 +121,9 @@ def test_naip_item():
 
 
 @pytest.mark.vcr
+@pytest.mark.skipif(
+    sys.version_info < (3, 10), reason="vcr tests require python3.10 or higher"
+)
 def test_sentinel2_l2a():
     record = json.loads(HERE.joinpath("record_sentinel2_l2a.json").read_text())
     base_item = json.loads(HERE.joinpath("base_sentinel2_l2a.json").read_text())
@@ -144,6 +151,9 @@ def test_sentinel2_l2a():
 
 
 @pytest.mark.vcr
+@pytest.mark.skipif(
+    sys.version_info < (3, 10), reason="vcr tests require python3.10 or higher"
+)
 def test_generate_endpoints():
     cfg = stac_geoparquet.pgstac_reader.CollectionConfig(
         collection_id="naip", partition_frequency="YS"

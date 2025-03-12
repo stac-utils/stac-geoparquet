@@ -14,38 +14,36 @@ interactions:
     uri: https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-21A2-061/items?limit=1
   response:
     body:
-      string: !!binary |
-        H4sIAHJy0WcC/+1ZC2/bNhD+K4KABR0mSyIV2ZYHo/AcN03bxGmsDmtTw2Bk2mIjiYJI5dEi/31H
-        yq84adOmTWJgK4IEJe943328O1LHL6a8zKnZMl9QIsuCdnmS0EgynpmWOanGhNk6/mKyMUjtv9/B
-        qIPtDnax7/oNO/b8M+Tabh3Zeqhedz2/gTFon5zwC9BEDWxvNwLPqqHARk23YcEvG217dasW2EHD
-        94bWGghQTlh2WtktaAIz0SqumTTJ84RFRA06n4SeiQs6gZlYyly0HCdPSEYlKS4jnualpIWdsqjg
-        gk+kDUMOyZkjJImcM+QsLQgn5WMmasrTGnhmXllzGDkpaCafFELB+YMBWDEjaDK53cyU8j8e0leH
-        SZoK5/tDbWV7CnrG6Pn9kI2JJAqZMu+kJH++hNi+jnBLibR/JBckk4nicZ/kBp8YSn9JrqQX0oll
-        mphXkApECCoh9L+Y8Xii/1x3RUOh5TkV0j5J+AngL6h9zrIxPxc2eDmjUzE5g+h4voNcZ4bz+5m1
-        FYJbY+CiVk0VPNHlwVTkmcOlowNeFhE11LAR8UwSlrFsapAkMU5INhawaebb7miHXP6ci7WIT8XP
-        +jmqkNiSrbjLUjKlDgxN/jRWXG9D+FeDecEnLKHtKOHluMZzyVL2mY6/xQoYMd6WJGHy0ugCKyCo
-        xImAiGxVvKiSp9RGMxgly2QThEQO5kkygnLMk1IXwhZyXfdqCEz2UiZGONgEKmdQHp7LzhktYFUD
-        OHUO2DSWxl9AoIEDgwIEwc6A5NvIFRFR+oDdxdY9qfbQxlDtoSej2kOPQTXeHKrx01GNH5ZqKIDa
-        2oYUY43l4cmuCH6IgpzCZUNbe/Lz275Ik6+c4XpiQc4C8gpBL+gYwjExdimfFiSPWQSBCSd6l6cp
-        k5JS49mL3Z3u78b+XBl8fzMI1Wk6Qq/3NyGcVuA8zgH/RiXsoCwmBC5AIU1zoHD2VXMjsMqMQc6Z
-        r2lyxtSFepnGt2Qxqt8VdspXHdSbRP4C0GMl9BNuwN/w9TEKWUo35WZ7DdDjxL+ypj5y+ieCFmdk
-        9s3+NeZfwoeCWCUe3eP40l52smmyWbwvED0O8erT1/hMgdfYIMr0N2jfodOCKoH7ca0jamNuDGuQ
-        HqvOPG2gbxb7K5gei/7HCXcJ2HS3C5ie2w9h7NWgf2CcK9tjOiFlIo2CZnBbYtn0F7Sf5lZt9euX
-        NaK2qt5Se+VKtKUsjSa8SIls59l0C2yp/+SjjKS0/YnKLaBFhWwb+/5vuOshd2sp/s1G5GL/lA1h
-        KjYrjuh4NO/UrbB6NJszll28X93Vm61kA/LNJnVBHYfvQe38cC2jlNwVMAp5BDf3Qh96M4FDnlxO
-        9Q5EnBdjlhGpFzvWvfg6xk3deW969aG11p6v17EaWzToZy17LQcqQeAvm/Y3VxuqLV7p1LfMtS62
-        BXvJ4TomGdUdzqiggE09LChKa65Xcxuh67X8RgvjDyBe5uN1gWaIvJaLWqhuBx5kqfuhSmsKhQO8
-        z8okATMJkYpQUKyMfmrRXEwX02rg/FRixdZR/1V3cPwRSoXanfFH09rt9Xf10LvsNOPnmWpjlqlx
-        QgREZ5nzzJAxNaJSSJ4aIo9pwZnS2+mE7/ZB7YBLGKYRmzBQeFbpgdaaxu+gMjh82Tvq7+2AVvfG
-        enWvAXWoAVuALHc4tA6P9vZ7ysAuFLPsnEUxCLlD693BXgijY13k1JDtosa27+EA+ygItj3P6rwL
-        X/aP9sL3INc7HOyC1EczQBh/NId65f6rXjfc6x/A/IBlpQAEJIFJ67Bz1Nnvhb0jmEl4NmWyHNMR
-        n4wimkHKVQhWhSYkEXREoRJDLfzadMYLGS/mZw7AV6ReEA2tzj97agN6i1V6nUG4GD5Yah/0j8KX
-        w+F8l0VMVA4cI+y6lvoFecMyIYsyBbgqC2AACs1oGTHL0PJDDLEXwI+KKR27LZXKNf325SNIeBe5
-        c1M/lHmABMECge3521YNY+wFLrJdL/A8lUrXpxH8C3zXhs2r13XyNQPXQ37Tbnqwmd73SNxhYm1a
-        Z672ShYkE1XqHAe4Dgnuw4Ku7zdhVQgsa92SGqutSm5DmWjehGgKqNTyJu+4huuh67b0z5L3M1Ul
-        oETW1Aao83g+EfOCfVYvCvMpz7/Si0cjeiFpJtSTkiqd81NCTdWWUzZEcFye2Iw7yuGqVMEJYQMZ
-        johimhJ7/rx15wrVfeM27eEME/ghqloIErarn3j+f9z8jz9urkDJIK7uhAJ1JuaqBu32wodF9jyB
-        67dsoy3JT2nWVuha1+VaP/AwO7z6F37xkIJgIAAA
+      string: '{"type":"FeatureCollection","features":[{"id":"MYD21A2.A2025057.h35v10.061.2025066035722","bbox":[172.4793,-19.1807,180.1436,-9.9753],"type":"Feature","links":[{"rel":"collection","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-21A2-061"},{"rel":"parent","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-21A2-061"},{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"self","type":"application/geo+json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-21A2-061/items/MYD21A2.A2025057.h35v10.061.2025066035722"},{"rel":"preview","href":"https://planetarycomputer.microsoft.com/api/data/v1/item/map?collection=modis-21A2-061&item=MYD21A2.A2025057.h35v10.061.2025066035722","title":"Map
+        of item","type":"text/html"}],"assets":{"hdf":{"href":"https://modiseuwest.blob.core.windows.net/modis-061/MYD21A2/35/10/2025057/MYD21A2.A2025057.h35v10.061.2025066035722.hdf","type":"application/x-hdf","roles":["data"],"title":"Source
+        data containing all bands"},"QC_Day":{"href":"https://modiseuwest.blob.core.windows.net/modis-061-cogs/MYD21A2/35/10/2025057/MYD21A2.A2025057.h35v10.061.2025066035722_QC_Day.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","roles":["data"],"title":"Day
+        Quality Control","raster:bands":[{"data_type":"uint8","spatial_resolution":1000}]},"Emis_29":{"href":"https://modiseuwest.blob.core.windows.net/modis-061-cogs/MYD21A2/35/10/2025057/MYD21A2.A2025057.h35v10.061.2025066035722_Emis_29.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","roles":["data"],"title":"Average
+        Day/Night Band 29 emissivity","raster:bands":[{"scale":0.002,"data_type":"uint8","spatial_resolution":1000}]},"Emis_31":{"href":"https://modiseuwest.blob.core.windows.net/modis-061-cogs/MYD21A2/35/10/2025057/MYD21A2.A2025057.h35v10.061.2025066035722_Emis_31.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","roles":["data"],"title":"Average
+        Day/Night Band 31 emissivity","raster:bands":[{"scale":0.002,"data_type":"uint8","spatial_resolution":1000}]},"Emis_32":{"href":"https://modiseuwest.blob.core.windows.net/modis-061-cogs/MYD21A2/35/10/2025057/MYD21A2.A2025057.h35v10.061.2025066035722_Emis_32.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","roles":["data"],"title":"Average
+        Day/Night Band 32 emissivity","raster:bands":[{"scale":0.002,"data_type":"uint8","spatial_resolution":1000}]},"QC_Night":{"href":"https://modiseuwest.blob.core.windows.net/modis-061-cogs/MYD21A2/35/10/2025057/MYD21A2.A2025057.h35v10.061.2025066035722_QC_Night.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","roles":["data"],"title":"Night
+        Quality Control","raster:bands":[{"data_type":"uint8","spatial_resolution":1000}]},"metadata":{"href":"https://modiseuwest.blob.core.windows.net/modis-061/MYD21A2/35/10/2025057/MYD21A2.A2025057.h35v10.061.2025066035722.hdf.xml","type":"application/xml","roles":["metadata"],"title":"Federal
+        Geographic Data Committee (FGDC) Metadata"},"LST_Day_1KM":{"href":"https://modiseuwest.blob.core.windows.net/modis-061-cogs/MYD21A2/35/10/2025057/MYD21A2.A2025057.h35v10.061.2025066035722_LST_Day_1KM.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","roles":["data"],"title":"Day
+        Land Surface Temperature","raster:bands":[{"unit":"Kelvin","scale":0.02,"data_type":"uint16","spatial_resolution":1000}]},"LST_Night_1KM":{"href":"https://modiseuwest.blob.core.windows.net/modis-061-cogs/MYD21A2/35/10/2025057/MYD21A2.A2025057.h35v10.061.2025066035722_LST_Night_1KM.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","roles":["data"],"title":"Night
+        Land Surface Temperature","raster:bands":[{"unit":"Kelvin","scale":0.02,"data_type":"uint16","spatial_resolution":1000}]},"View_Time_Day":{"href":"https://modiseuwest.blob.core.windows.net/modis-061-cogs/MYD21A2/35/10/2025057/MYD21A2.A2025057.h35v10.061.2025066035722_View_Time_Day.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","roles":["data"],"title":"Day
+        Time of Observation","raster:bands":[{"unit":"Hours","scale":0.1,"data_type":"uint8","spatial_resolution":1000}]},"View_Angle_Day":{"href":"https://modiseuwest.blob.core.windows.net/modis-061-cogs/MYD21A2/35/10/2025057/MYD21A2.A2025057.h35v10.061.2025066035722_View_Angle_Day.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","roles":["data"],"title":"Day
+        view zenith angle","raster:bands":[{"unit":"Degree","data_type":"uint8","spatial_resolution":1000}]},"View_Time_Night":{"href":"https://modiseuwest.blob.core.windows.net/modis-061-cogs/MYD21A2/35/10/2025057/MYD21A2.A2025057.h35v10.061.2025066035722_View_Time_Night.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","roles":["data"],"title":"Night
+        Time of Observation","raster:bands":[{"unit":"Hours","scale":0.1,"data_type":"uint8","spatial_resolution":1000}]},"View_Angle_Night":{"href":"https://modiseuwest.blob.core.windows.net/modis-061-cogs/MYD21A2/35/10/2025057/MYD21A2.A2025057.h35v10.061.2025066035722_View_Angle_Night.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","roles":["data"],"title":"Night
+        view zenith angle","raster:bands":[{"unit":"Degree","data_type":"uint8","spatial_resolution":1000}]},"tilejson":{"title":"TileJSON
+        with default rendering","href":"https://planetarycomputer.microsoft.com/api/data/v1/item/tilejson.json?collection=modis-21A2-061&item=MYD21A2.A2025057.h35v10.061.2025066035722&assets=LST_Day_1KM&tile_format=png&colormap_name=jet&rescale=255%2C310&format=png","type":"application/json","roles":["tiles"]},"rendered_preview":{"title":"Rendered
+        preview","rel":"preview","href":"https://planetarycomputer.microsoft.com/api/data/v1/item/preview.png?collection=modis-21A2-061&item=MYD21A2.A2025057.h35v10.061.2025066035722&assets=LST_Day_1KM&tile_format=png&colormap_name=jet&rescale=255%2C310&format=png","roles":["overview"],"type":"image/png"}},"geometry":{"type":"Polygon","coordinates":[[[172.6228,-9.9836],[172.4793,-19.1662],[180.1436,-19.1807],[179.9995,-9.9753],[172.6228,-9.9836]]]},"collection":"modis-21A2-061","properties":{"created":"2025-03-07T03:57:22Z","updated":"2025-03-08T13:01:16.930000Z","datetime":null,"platform":"","proj:epsg":null,"proj:wkt2":"PROJCS[\"unnamed\",GEOGCS[\"Unknown
+        datum based upon the custom spheroid\",DATUM[\"Not specified (based on custom
+        spheroid)\",SPHEROID[\"Custom spheroid\",6371007.181,0]],PRIMEM[\"Greenwich\",0],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]]],PROJECTION[\"Sinusoidal\"],PARAMETER[\"longitude_of_center\",0],PARAMETER[\"false_easting\",0],PARAMETER[\"false_northing\",0],UNIT[\"Meter\",1],AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH]]","proj:shape":[1200,1200],"instruments":[],"end_datetime":"2025-03-05T23:59:59Z","modis:tile-id":"51035010","proj:geometry":{"type":"Polygon","coordinates":[[[20015109.354,-2223901.039333],[20015109.354,-1111950.519667],[18903158.834333,-1111950.519667],[18903158.834333,-2223901.039333],[20015109.354,-2223901.039333]]]},"proj:transform":[926.625433055833,0.0,18903158.834333,0.0,-926.6254330549998,-1111950.519667],"start_datetime":"2025-02-26T00:00:00Z","modis:vertical-tile":10,"modis:horizontal-tile":35},"stac_extensions":["https://stac-extensions.github.io/projection/v1.1.0/schema.json","https://stac-extensions.github.io/raster/v1.1.0/schema.json"],"stac_version":"1.0.0"}],"links":[{"rel":"collection","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-21A2-061"},{"rel":"parent","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-21A2-061"},{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"self","type":"application/geo+json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-21A2-061/items"},{"rel":"next","type":"application/geo+json","method":"GET","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-21A2-061/items?limit=1&token=next:modis-21A2-061:MYD21A2.A2025057.h35v10.061.2025066035722"}]}'
     headers:
       Accept-Ranges:
       - bytes
@@ -66,7 +64,7 @@ interactions:
       Content-Type:
       - application/geo+json
       Date:
-      - Wed, 12 Mar 2025 11:39:30 GMT
+      - Wed, 12 Mar 2025 12:12:05 GMT
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Cache:
@@ -76,7 +74,7 @@ interactions:
       vary:
       - Accept-Encoding
       x-azure-ref:
-      - 20250312T113930Z-15d554846c6d76lhhC1DENuxvn00000006wg000000003dpp
+      - 20250312T121204Z-15d554846c6fdjcvhC1DENh6wg00000002q00000000034nw
     status:
       code: 200
       message: OK
@@ -88,14 +86,14 @@ interactions:
       Host:
       - planetarycomputer.microsoft.com
       User-Agent:
-      - Python-urllib/3.9
+      - Python-urllib/3.10
     method: GET
     uri: https://planetarycomputer.microsoft.com/api/stac/v1/
   response:
     body:
       string: '{"type":"Catalog","id":"microsoft-pc","title":"Microsoft Planetary
         Computer STAC API","description":"Searchable spatiotemporal metadata describing
-        Earth science datasets hosted by the Microsoft Planetary Computer","stac_version":"1.0.0","conformsTo":["http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core","http://www.opengis.net/spec/ogcapi-features-3/1.0/conf/filter","https://api.stacspec.org/v1.0.0/ogcapi-features","http://www.opengis.net/spec/cql2/1.0/conf/cql2-text","https://api.stacspec.org/v1.0.0/item-search","https://api.stacspec.org/v1.0.0/collections","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30","https://api.stacspec.org/v1.0.0/item-search#query","https://api.stacspec.org/v1.0.0/item-search#sort","https://api.stacspec.org/v1.0.0/item-search#fields","https://api.stacspec.org/v1.0.0-rc.2/item-search#filter","http://www.opengis.net/spec/cql2/1.0/conf/cql2-json","http://www.opengis.net/spec/cql2/1.0/conf/basic-cql2","https://api.stacspec.org/v1.0.0/core","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/geojson"],"links":[{"rel":"self","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"data","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections"},{"rel":"conformance","type":"application/json","title":"STAC/OGC
+        Earth science datasets hosted by the Microsoft Planetary Computer","stac_version":"1.0.0","conformsTo":["http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/geojson","https://api.stacspec.org/v1.0.0/item-search#sort","http://www.opengis.net/spec/ogcapi-features-3/1.0/conf/filter","https://api.stacspec.org/v1.0.0-rc.2/item-search#filter","http://www.opengis.net/spec/cql2/1.0/conf/cql2-json","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core","https://api.stacspec.org/v1.0.0/item-search#query","http://www.opengis.net/spec/cql2/1.0/conf/cql2-text","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30","https://api.stacspec.org/v1.0.0/item-search#fields","https://api.stacspec.org/v1.0.0/item-search","http://www.opengis.net/spec/cql2/1.0/conf/basic-cql2","https://api.stacspec.org/v1.0.0/core","https://api.stacspec.org/v1.0.0/collections","https://api.stacspec.org/v1.0.0/ogcapi-features"],"links":[{"rel":"self","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"data","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections"},{"rel":"conformance","type":"application/json","title":"STAC/OGC
         conformance classes implemented by this server","href":"https://planetarycomputer.microsoft.com/api/stac/v1/conformance"},{"rel":"search","type":"application/geo+json","title":"STAC
         search","href":"https://planetarycomputer.microsoft.com/api/stac/v1/search","method":"GET"},{"rel":"search","type":"application/geo+json","title":"STAC
         search","href":"https://planetarycomputer.microsoft.com/api/stac/v1/search","method":"POST"},{"rel":"http://www.opengis.net/def/rel/ogc/1.0/queryables","type":"application/schema+json","title":"Queryables","href":"https://planetarycomputer.microsoft.com/api/stac/v1/queryables","method":"GET"},{"rel":"child","type":"application/json","title":"Daymet
@@ -122,8 +120,7 @@ interactions:
         Annual Land Use Land Cover (9-class) V2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc-annual-v02"},{"rel":"child","type":"application/json","title":"CONUS404","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/conus404"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Intensity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-intensity"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Source","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-pointsourceid"},{"rel":"child","type":"application/json","title":"MTBS:
-        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"Landsat
-        8 Collection 2 Level-2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-8-c2-l2"},{"rel":"child","type":"application/json","title":"C-CAP
+        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"C-CAP
         Regional Land Cover and Change","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-c-cap"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Cloud","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-copc"},{"rel":"child","type":"application/json","title":"MODIS
         Burned Area Monthly","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-64A1-061"},{"rel":"child","type":"application/json","title":"ALOS
@@ -241,17 +238,17 @@ interactions:
       Connection:
       - close
       Content-Length:
-      - '25050'
+      - '24878'
       Content-Type:
       - application/json
       Date:
-      - Wed, 12 Mar 2025 11:39:31 GMT
+      - Wed, 12 Mar 2025 12:12:06 GMT
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Cache:
       - CONFIG_NOCACHE
       x-azure-ref:
-      - 20250312T113931Z-15d554846c6f5vzshC1DENcnd400000004eg000000004ecy
+      - 20250312T121205Z-15d554846c6hkjt5hC1DENqudc00000005yg000000002akg
     status:
       code: 200
       message: OK
@@ -263,14 +260,14 @@ interactions:
       Host:
       - planetarycomputer.microsoft.com
       User-Agent:
-      - Python-urllib/3.9
+      - Python-urllib/3.10
     method: GET
     uri: https://planetarycomputer.microsoft.com/api/stac/v1/
   response:
     body:
       string: '{"type":"Catalog","id":"microsoft-pc","title":"Microsoft Planetary
         Computer STAC API","description":"Searchable spatiotemporal metadata describing
-        Earth science datasets hosted by the Microsoft Planetary Computer","stac_version":"1.0.0","conformsTo":["http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core","http://www.opengis.net/spec/ogcapi-features-3/1.0/conf/filter","https://api.stacspec.org/v1.0.0/ogcapi-features","http://www.opengis.net/spec/cql2/1.0/conf/cql2-text","https://api.stacspec.org/v1.0.0/item-search","https://api.stacspec.org/v1.0.0/collections","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30","https://api.stacspec.org/v1.0.0/item-search#query","https://api.stacspec.org/v1.0.0/item-search#sort","https://api.stacspec.org/v1.0.0/item-search#fields","https://api.stacspec.org/v1.0.0-rc.2/item-search#filter","http://www.opengis.net/spec/cql2/1.0/conf/cql2-json","http://www.opengis.net/spec/cql2/1.0/conf/basic-cql2","https://api.stacspec.org/v1.0.0/core","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/geojson"],"links":[{"rel":"self","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"data","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections"},{"rel":"conformance","type":"application/json","title":"STAC/OGC
+        Earth science datasets hosted by the Microsoft Planetary Computer","stac_version":"1.0.0","conformsTo":["http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/geojson","https://api.stacspec.org/v1.0.0/item-search#sort","http://www.opengis.net/spec/ogcapi-features-3/1.0/conf/filter","https://api.stacspec.org/v1.0.0-rc.2/item-search#filter","http://www.opengis.net/spec/cql2/1.0/conf/cql2-json","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core","https://api.stacspec.org/v1.0.0/item-search#query","http://www.opengis.net/spec/cql2/1.0/conf/cql2-text","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30","https://api.stacspec.org/v1.0.0/item-search#fields","https://api.stacspec.org/v1.0.0/item-search","http://www.opengis.net/spec/cql2/1.0/conf/basic-cql2","https://api.stacspec.org/v1.0.0/core","https://api.stacspec.org/v1.0.0/collections","https://api.stacspec.org/v1.0.0/ogcapi-features"],"links":[{"rel":"self","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"data","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections"},{"rel":"conformance","type":"application/json","title":"STAC/OGC
         conformance classes implemented by this server","href":"https://planetarycomputer.microsoft.com/api/stac/v1/conformance"},{"rel":"search","type":"application/geo+json","title":"STAC
         search","href":"https://planetarycomputer.microsoft.com/api/stac/v1/search","method":"GET"},{"rel":"search","type":"application/geo+json","title":"STAC
         search","href":"https://planetarycomputer.microsoft.com/api/stac/v1/search","method":"POST"},{"rel":"http://www.opengis.net/def/rel/ogc/1.0/queryables","type":"application/schema+json","title":"Queryables","href":"https://planetarycomputer.microsoft.com/api/stac/v1/queryables","method":"GET"},{"rel":"child","type":"application/json","title":"Daymet
@@ -297,8 +294,7 @@ interactions:
         Annual Land Use Land Cover (9-class) V2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc-annual-v02"},{"rel":"child","type":"application/json","title":"CONUS404","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/conus404"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Intensity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-intensity"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Source","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-pointsourceid"},{"rel":"child","type":"application/json","title":"MTBS:
-        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"Landsat
-        8 Collection 2 Level-2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-8-c2-l2"},{"rel":"child","type":"application/json","title":"C-CAP
+        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"C-CAP
         Regional Land Cover and Change","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-c-cap"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Cloud","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-copc"},{"rel":"child","type":"application/json","title":"MODIS
         Burned Area Monthly","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-64A1-061"},{"rel":"child","type":"application/json","title":"ALOS
@@ -416,17 +412,17 @@ interactions:
       Connection:
       - close
       Content-Length:
-      - '25050'
+      - '24878'
       Content-Type:
       - application/json
       Date:
-      - Wed, 12 Mar 2025 11:39:31 GMT
+      - Wed, 12 Mar 2025 12:12:06 GMT
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Cache:
       - CONFIG_NOCACHE
       x-azure-ref:
-      - 20250312T113931Z-15d554846c6ddck5hC1DENuhew00000008h0000000001x9q
+      - 20250312T121206Z-15d554846c6cpsh8hC1DENyvsn00000005eg0000000045y9
     status:
       code: 200
       message: OK

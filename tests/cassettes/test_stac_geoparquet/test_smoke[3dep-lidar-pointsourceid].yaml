@@ -14,43 +14,29 @@ interactions:
     uri: https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-pointsourceid/items?limit=1
   response:
     body:
-      string: !!binary |
-        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
-        QjmHD+0YPvPh+mT1B3pzBQVWIgAA
+      string: '{"type":"FeatureCollection","features":[{"id":"UT_StatewideSouth_2_2020-pointsourceid-5m-0-3","bbox":[-114.0513092,38.1453163,-113.9757914,38.154431],"type":"Feature","links":[{"rel":"collection","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-pointsourceid"},{"rel":"parent","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-pointsourceid"},{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"self","type":"application/geo+json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-pointsourceid/items/UT_StatewideSouth_2_2020-pointsourceid-5m-0-3"},{"rel":"alternate","href":"https://rockyweb.usgs.gov/vdelivery/Datasets/Staged/Elevation/LPC/Projects/UT_StatewideSouth_2020_A20/UT_StatewideSouth_2_2020/metadata/","type":"application/xml","title":"USGS
+        Metadata"},{"rel":"derived_from","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-copc/items/USGS_LPC_UT_StatewideSouth_2020_A20_11SQC5826","title":"USGS_LPC_UT_StatewideSouth_2020_A20_11SQC5826"},{"rel":"derived_from","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-copc/items/USGS_LPC_UT_StatewideSouth_2020_A20_11SQC5926","title":"USGS_LPC_UT_StatewideSouth_2020_A20_11SQC5926"},{"rel":"derived_from","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-copc/items/USGS_LPC_UT_StatewideSouth_2020_A20_11SQC6026","title":"USGS_LPC_UT_StatewideSouth_2020_A20_11SQC6026"},{"rel":"derived_from","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-copc/items/USGS_LPC_UT_StatewideSouth_2020_A20_11SQC6126","title":"USGS_LPC_UT_StatewideSouth_2020_A20_11SQC6126"},{"rel":"derived_from","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-copc/items/USGS_LPC_UT_StatewideSouth_2020_A20_11SQC6127","title":"USGS_LPC_UT_StatewideSouth_2020_A20_11SQC6127"},{"rel":"derived_from","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-copc/items/USGS_LPC_UT_StatewideSouth_2020_A20_11SQC6226","title":"USGS_LPC_UT_StatewideSouth_2020_A20_11SQC6226"},{"rel":"derived_from","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-copc/items/USGS_LPC_UT_StatewideSouth_2020_A20_11SQC6227","title":"USGS_LPC_UT_StatewideSouth_2020_A20_11SQC6227"},{"rel":"derived_from","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-copc/items/USGS_LPC_UT_StatewideSouth_2020_A20_12STH6326","title":"USGS_LPC_UT_StatewideSouth_2020_A20_12STH6326"},{"rel":"preview","href":"https://planetarycomputer.microsoft.com/api/data/v1/item/map?collection=3dep-lidar-pointsourceid&item=UT_StatewideSouth_2_2020-pointsourceid-5m-0-3","title":"Map
+        of item","type":"text/html"}],"assets":{"data":{"href":"https://usgslidareuwest.blob.core.windows.net/usgs-3dep-cogs/usgs-cogs/UT_StatewideSouth_2_2020/pointsourceid/UT_StatewideSouth_2_2020-pointsourceid-5m-0-3.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","roles":["data"],"title":"COG
+        data"},"thumbnail":{"href":"https://usgslidareuwest.blob.core.windows.net/usgs-3dep-cogs/usgs-cogs/UT_StatewideSouth_2_2020/pointsourceid/thumbnails/UT_StatewideSouth_2_2020-pointsourceid-5m-0-3-thumbnail.png","type":"image/png","roles":["thumbnail"],"title":"3DEP
+        Lidar COG"},"tilejson":{"title":"TileJSON with default rendering","href":"https://planetarycomputer.microsoft.com/api/data/v1/item/tilejson.json?collection=3dep-lidar-pointsourceid&item=UT_StatewideSouth_2_2020-pointsourceid-5m-0-3&assets=data&nodata=-9999&format=png","type":"application/json","roles":["tiles"]},"rendered_preview":{"title":"Rendered
+        preview","rel":"preview","href":"https://planetarycomputer.microsoft.com/api/data/v1/item/preview.png?collection=3dep-lidar-pointsourceid&item=UT_StatewideSouth_2_2020-pointsourceid-5m-0-3&assets=data&nodata=-9999&format=png","roles":["overview"],"type":"image/png"}},"geometry":{"type":"Polygon","coordinates":[[[-114.051019,38.154431],[-114.0513092,38.1472305],[-113.9760889,38.1453163],[-113.9757914,38.1525164],[-114.051019,38.154431]]]},"collection":"3dep-lidar-pointsourceid","properties":{"datetime":null,"proj:epsg":null,"proj:shape":[160,1320],"3dep:usgs_id":"UT_StatewideSouth_2_2020","end_datetime":"2020-12-31T00:00:00Z","raster:bands":{"unit":"metre","nodata":"nan","sampling":"point","data_type":"Int32","histogram":{"max":120.00196078431372,"min":118.99803921568628,"count":256,"buckets":[28889,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,137208]},"statistics":{"mean":"119.82607151243","stddev":"0.37904797688699","maximum":"120","minimum":"119","valid_percent":"78.64"},"pdal_pipeline":[{"tag":"noise_remover","type":"filters.range","limits":"Classification![7:7]"},{"tag":"gdal_writer","type":"writers.gdal","filename":null,"data_type":"int32","dimension":"PointSourceId","resolution":null,"output_type":"min","window_size":3,"pdal_metadata":true}],"spatial_resolution":211200},"proj:geometry":{"type":"Polygon","coordinates":[[[-114.051019,38.154431],[-114.0513092,38.1472305],[-113.9760889,38.1453163],[-113.9757914,38.1525164],[-114.051019,38.154431]]]},"proj:projjson":{"name":"NAD83
+        / UTM zone 11N + NAVD88 height","type":"CompoundCRS","$schema":"https://proj.org/schemas/v0.4/projjson.schema.json","components":[{"id":{"code":26911,"authority":"EPSG"},"name":"NAD83
+        / UTM zone 11N","type":"ProjectedCRS","base_crs":{"id":{"code":4269,"authority":"EPSG"},"name":"NAD83","datum":{"name":"North
+        American Datum 1983","type":"GeodeticReferenceFrame","ellipsoid":{"name":"GRS
+        1980","semi_major_axis":6378137,"inverse_flattening":298.257222101}},"coordinate_system":{"axis":[{"name":"Geodetic
+        latitude","unit":"degree","direction":"north","abbreviation":"Lat"},{"name":"Geodetic
+        longitude","unit":"degree","direction":"east","abbreviation":"Lon"}],"subtype":"ellipsoidal"}},"conversion":{"name":"UTM
+        zone 11N","method":{"id":{"code":9807,"authority":"EPSG"},"name":"Transverse
+        Mercator"},"parameters":[{"id":{"code":8801,"authority":"EPSG"},"name":"Latitude
+        of natural origin","unit":"degree","value":0},{"id":{"code":8802,"authority":"EPSG"},"name":"Longitude
+        of natural origin","unit":"degree","value":-117},{"id":{"code":8805,"authority":"EPSG"},"name":"Scale
+        factor at natural origin","unit":"unity","value":0.9996},{"id":{"code":8806,"authority":"EPSG"},"name":"False
+        easting","unit":"metre","value":500000},{"id":{"code":8807,"authority":"EPSG"},"name":"False
+        northing","unit":"metre","value":0}]},"coordinate_system":{"axis":[{"name":"Easting","unit":"metre","direction":"east","abbreviation":""},{"name":"Northing","unit":"metre","direction":"north","abbreviation":""}],"subtype":"Cartesian"}},{"id":{"code":5703,"authority":"EPSG"},"name":"NAVD88
+        height","type":"VerticalCRS","datum":{"name":"North American Vertical Datum
+        1988","type":"VerticalReferenceFrame"},"coordinate_system":{"axis":[{"name":"Gravity-related
+        height","unit":"metre","direction":"up","abbreviation":""}],"subtype":"vertical"}}]},"proj:transform":[5.0,0.0,758397.0,0.0,-5.0,4227059.0,0,0,1],"start_datetime":"2020-01-01T00:00:00Z"},"stac_extensions":["https://stac-extensions.github.io/projection/v1.0.0/schema.json","https://stac-extensions.github.io/raster/v1.1.0/schema.json","https://stac-extensions.github.io/classification/v1.0.0/schema.json"],"stac_version":"1.0.0"}],"links":[{"rel":"collection","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-pointsourceid"},{"rel":"parent","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-pointsourceid"},{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"self","type":"application/geo+json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-pointsourceid/items"},{"rel":"next","type":"application/geo+json","method":"GET","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-pointsourceid/items?limit=1&token=next:3dep-lidar-pointsourceid:UT_StatewideSouth_2_2020-pointsourceid-5m-0-3"}]}'
     headers:
       Accept-Ranges:
       - bytes
@@ -71,7 +57,7 @@ interactions:
       Content-Type:
       - application/geo+json
       Date:
-      - Wed, 12 Mar 2025 11:38:04 GMT
+      - Wed, 12 Mar 2025 12:10:42 GMT
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Cache:
@@ -81,7 +67,7 @@ interactions:
       vary:
       - Accept-Encoding
       x-azure-ref:
-      - 20250312T113803Z-15d554846c6btfv6hC1DEN3ezc00000006dg000000001au7
+      - 20250312T121041Z-15d554846c6d76lhhC1DENuxvn00000006zg000000002zw0
     status:
       code: 200
       message: OK
@@ -93,14 +79,14 @@ interactions:
       Host:
       - planetarycomputer.microsoft.com
       User-Agent:
-      - Python-urllib/3.9
+      - Python-urllib/3.10
     method: GET
     uri: https://planetarycomputer.microsoft.com/api/stac/v1/
   response:
     body:
       string: '{"type":"Catalog","id":"microsoft-pc","title":"Microsoft Planetary
         Computer STAC API","description":"Searchable spatiotemporal metadata describing
-        Earth science datasets hosted by the Microsoft Planetary Computer","stac_version":"1.0.0","conformsTo":["http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/geojson","https://api.stacspec.org/v1.0.0/core","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30","https://api.stacspec.org/v1.0.0/item-search#query","https://api.stacspec.org/v1.0.0-rc.2/item-search#filter","https://api.stacspec.org/v1.0.0/item-search#sort","https://api.stacspec.org/v1.0.0/collections","https://api.stacspec.org/v1.0.0/item-search","http://www.opengis.net/spec/ogcapi-features-3/1.0/conf/filter","http://www.opengis.net/spec/cql2/1.0/conf/cql2-text","https://api.stacspec.org/v1.0.0/item-search#fields","http://www.opengis.net/spec/cql2/1.0/conf/basic-cql2","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core","https://api.stacspec.org/v1.0.0/ogcapi-features","http://www.opengis.net/spec/cql2/1.0/conf/cql2-json"],"links":[{"rel":"self","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"data","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections"},{"rel":"conformance","type":"application/json","title":"STAC/OGC
+        Earth science datasets hosted by the Microsoft Planetary Computer","stac_version":"1.0.0","conformsTo":["https://api.stacspec.org/v1.0.0/item-search#sort","https://api.stacspec.org/v1.0.0-rc.2/item-search#filter","https://api.stacspec.org/v1.0.0/item-search#query","https://api.stacspec.org/v1.0.0/ogcapi-features","https://api.stacspec.org/v1.0.0/core","https://api.stacspec.org/v1.0.0/collections","http://www.opengis.net/spec/ogcapi-features-3/1.0/conf/filter","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core","https://api.stacspec.org/v1.0.0/item-search#fields","http://www.opengis.net/spec/cql2/1.0/conf/cql2-text","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/geojson","https://api.stacspec.org/v1.0.0/item-search","http://www.opengis.net/spec/cql2/1.0/conf/cql2-json","http://www.opengis.net/spec/cql2/1.0/conf/basic-cql2"],"links":[{"rel":"self","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"data","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections"},{"rel":"conformance","type":"application/json","title":"STAC/OGC
         conformance classes implemented by this server","href":"https://planetarycomputer.microsoft.com/api/stac/v1/conformance"},{"rel":"search","type":"application/geo+json","title":"STAC
         search","href":"https://planetarycomputer.microsoft.com/api/stac/v1/search","method":"GET"},{"rel":"search","type":"application/geo+json","title":"STAC
         search","href":"https://planetarycomputer.microsoft.com/api/stac/v1/search","method":"POST"},{"rel":"http://www.opengis.net/def/rel/ogc/1.0/queryables","type":"application/schema+json","title":"Queryables","href":"https://planetarycomputer.microsoft.com/api/stac/v1/queryables","method":"GET"},{"rel":"child","type":"application/json","title":"Daymet
@@ -127,8 +113,7 @@ interactions:
         Annual Land Use Land Cover (9-class) V2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc-annual-v02"},{"rel":"child","type":"application/json","title":"CONUS404","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/conus404"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Intensity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-intensity"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Source","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-pointsourceid"},{"rel":"child","type":"application/json","title":"MTBS:
-        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"Landsat
-        8 Collection 2 Level-2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-8-c2-l2"},{"rel":"child","type":"application/json","title":"C-CAP
+        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"C-CAP
         Regional Land Cover and Change","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-c-cap"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Cloud","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-copc"},{"rel":"child","type":"application/json","title":"MODIS
         Burned Area Monthly","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-64A1-061"},{"rel":"child","type":"application/json","title":"ALOS
@@ -246,17 +231,17 @@ interactions:
       Connection:
       - close
       Content-Length:
-      - '25050'
+      - '24878'
       Content-Type:
       - application/json
       Date:
-      - Wed, 12 Mar 2025 11:38:04 GMT
+      - Wed, 12 Mar 2025 12:10:42 GMT
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Cache:
       - CONFIG_NOCACHE
       x-azure-ref:
-      - 20250312T113804Z-15d554846c6tdftqhC1DENy1rn00000002mg00000000146c
+      - 20250312T121042Z-15d554846c6b5hxkhC1DENmvhs000000073g000000005s9k
     status:
       code: 200
       message: OK
@@ -268,14 +253,14 @@ interactions:
       Host:
       - planetarycomputer.microsoft.com
       User-Agent:
-      - Python-urllib/3.9
+      - Python-urllib/3.10
     method: GET
     uri: https://planetarycomputer.microsoft.com/api/stac/v1/
   response:
     body:
       string: '{"type":"Catalog","id":"microsoft-pc","title":"Microsoft Planetary
         Computer STAC API","description":"Searchable spatiotemporal metadata describing
-        Earth science datasets hosted by the Microsoft Planetary Computer","stac_version":"1.0.0","conformsTo":["http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/geojson","https://api.stacspec.org/v1.0.0/core","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30","https://api.stacspec.org/v1.0.0/item-search#query","https://api.stacspec.org/v1.0.0-rc.2/item-search#filter","https://api.stacspec.org/v1.0.0/item-search#sort","https://api.stacspec.org/v1.0.0/collections","https://api.stacspec.org/v1.0.0/item-search","http://www.opengis.net/spec/ogcapi-features-3/1.0/conf/filter","http://www.opengis.net/spec/cql2/1.0/conf/cql2-text","https://api.stacspec.org/v1.0.0/item-search#fields","http://www.opengis.net/spec/cql2/1.0/conf/basic-cql2","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core","https://api.stacspec.org/v1.0.0/ogcapi-features","http://www.opengis.net/spec/cql2/1.0/conf/cql2-json"],"links":[{"rel":"self","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"data","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections"},{"rel":"conformance","type":"application/json","title":"STAC/OGC
+        Earth science datasets hosted by the Microsoft Planetary Computer","stac_version":"1.0.0","conformsTo":["https://api.stacspec.org/v1.0.0/item-search#sort","https://api.stacspec.org/v1.0.0-rc.2/item-search#filter","https://api.stacspec.org/v1.0.0/item-search#query","https://api.stacspec.org/v1.0.0/ogcapi-features","https://api.stacspec.org/v1.0.0/core","https://api.stacspec.org/v1.0.0/collections","http://www.opengis.net/spec/ogcapi-features-3/1.0/conf/filter","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core","https://api.stacspec.org/v1.0.0/item-search#fields","http://www.opengis.net/spec/cql2/1.0/conf/cql2-text","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/geojson","https://api.stacspec.org/v1.0.0/item-search","http://www.opengis.net/spec/cql2/1.0/conf/cql2-json","http://www.opengis.net/spec/cql2/1.0/conf/basic-cql2"],"links":[{"rel":"self","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"data","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections"},{"rel":"conformance","type":"application/json","title":"STAC/OGC
         conformance classes implemented by this server","href":"https://planetarycomputer.microsoft.com/api/stac/v1/conformance"},{"rel":"search","type":"application/geo+json","title":"STAC
         search","href":"https://planetarycomputer.microsoft.com/api/stac/v1/search","method":"GET"},{"rel":"search","type":"application/geo+json","title":"STAC
         search","href":"https://planetarycomputer.microsoft.com/api/stac/v1/search","method":"POST"},{"rel":"http://www.opengis.net/def/rel/ogc/1.0/queryables","type":"application/schema+json","title":"Queryables","href":"https://planetarycomputer.microsoft.com/api/stac/v1/queryables","method":"GET"},{"rel":"child","type":"application/json","title":"Daymet
@@ -302,8 +287,7 @@ interactions:
         Annual Land Use Land Cover (9-class) V2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc-annual-v02"},{"rel":"child","type":"application/json","title":"CONUS404","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/conus404"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Intensity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-intensity"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Source","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-pointsourceid"},{"rel":"child","type":"application/json","title":"MTBS:
-        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"Landsat
-        8 Collection 2 Level-2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-8-c2-l2"},{"rel":"child","type":"application/json","title":"C-CAP
+        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"C-CAP
         Regional Land Cover and Change","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-c-cap"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Cloud","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-copc"},{"rel":"child","type":"application/json","title":"MODIS
         Burned Area Monthly","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-64A1-061"},{"rel":"child","type":"application/json","title":"ALOS
@@ -421,17 +405,17 @@ interactions:
       Connection:
       - close
       Content-Length:
-      - '25050'
+      - '24878'
       Content-Type:
       - application/json
       Date:
-      - Wed, 12 Mar 2025 11:38:05 GMT
+      - Wed, 12 Mar 2025 12:10:43 GMT
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Cache:
       - CONFIG_NOCACHE
       x-azure-ref:
-      - 20250312T113804Z-15d554846c6cpsh8hC1DENyvsn00000005e0000000002dpu
+      - 20250312T121042Z-15d554846c6cpsh8hC1DENyvsn00000005f0000000003nyb
     status:
       code: 200
       message: OK

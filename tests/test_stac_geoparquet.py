@@ -1,5 +1,6 @@
 import json
 import pathlib
+import sys
 
 import geopandas
 import pandas as pd
@@ -18,6 +19,9 @@ HERE = pathlib.Path(__file__).parent
 
 
 @pytest.mark.vcr
+@pytest.mark.skipif(
+    sys.version_info < (3, 10), reason="vcr tests require python3.10 or higher"
+)
 def test_assert_equal():
     a = pystac.read_file(
         "https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-2-l2a/items/S2B_MSIL2A_20220612T182919_R027_T24XWR_20220613T123251"  # noqa: E501
@@ -241,6 +245,9 @@ EXPECTED_GDF = geopandas.GeoDataFrame(
 
 @pytest.mark.parametrize("dtype_backend", ["numpy_nullable", "pyarrow"])
 @pytest.mark.vcr
+@pytest.mark.skipif(
+    sys.version_info < (3, 10), reason="vcr tests require python3.10 or higher"
+)
 def test_to_geodataframe(dtype_backend):
     result = stac_geoparquet.to_geodataframe([ITEM], dtype_backend=dtype_backend)
     expected = EXPECTED_GDF.copy()
@@ -267,6 +274,9 @@ def test_dtype_backend_warns():
 
 
 @pytest.mark.vcr
+@pytest.mark.skipif(
+    sys.version_info < (3, 10), reason="vcr tests require python3.10 or higher"
+)
 def test_to_geodataframe_with_self_link():
     result = stac_geoparquet.to_geodataframe(
         [ITEM], add_self_link=True, dtype_backend="pyarrow"
@@ -286,6 +296,9 @@ def test_to_geodataframe_with_self_link():
 
 
 @pytest.mark.vcr
+@pytest.mark.skipif(
+    sys.version_info < (3, 10), reason="vcr tests require python3.10 or higher"
+)
 def test_s1_grd():
     # item = requests.get("https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-1-grd/items/S1A_EW_GRDM_1SSH_20150129T081916_20150129T081938_004383_005598").json()  # noqa: E501
     item = requests.get(
@@ -381,6 +394,9 @@ def test_s1_grd():
     ],
 )
 @pytest.mark.vcr
+@pytest.mark.skipif(
+    sys.version_info < (3, 10), reason="vcr tests require python3.10 or higher"
+)
 def test_smoke(collection_id):
     r = requests.get(
         f"https://planetarycomputer.microsoft.com/api/stac/v1/collections/{collection_id}/items?limit=1"

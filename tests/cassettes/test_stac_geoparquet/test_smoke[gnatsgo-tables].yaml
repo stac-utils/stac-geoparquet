@@ -14,59 +14,262 @@ interactions:
     uri: https://planetarycomputer.microsoft.com/api/stac/v1/collections/gnatsgo-tables/items?limit=1
   response:
     body:
-      string: !!binary |
-        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
+      string: "{\"type\":\"FeatureCollection\",\"features\":[{\"id\":\"valu1\",\"bbox\":[-170.8513,-14.3799,171.9169,71.4567],\"type\":\"Feature\",\"links\":[{\"rel\":\"collection\",\"type\":\"application/json\",\"href\":\"https://planetarycomputer.microsoft.com/api/stac/v1/collections/gnatsgo-tables\"},{\"rel\":\"parent\",\"type\":\"application/json\",\"href\":\"https://planetarycomputer.microsoft.com/api/stac/v1/collections/gnatsgo-tables\"},{\"rel\":\"root\",\"type\":\"application/json\",\"href\":\"https://planetarycomputer.microsoft.com/api/stac/v1/\"},{\"rel\":\"self\",\"type\":\"application/geo+json\",\"href\":\"https://planetarycomputer.microsoft.com/api/stac/v1/collections/gnatsgo-tables/items/valu1\"}],\"assets\":{\"data\":{\"href\":\"abfs://gnatsgo/july2020/parquet/valu1.parquet\",\"title\":\"Valu1\",\"type\":\"application/x-parquet\",\"roles\":[\"data\"],\"table:storage_options\":{\"account_name\":\"soils\"}}},\"geometry\":{\"type\":\"Polygon\",\"coordinates\":[[[171.9169,-14.3799],[171.9169,71.4567],[-170.8513,71.4567],[-170.8513,-14.3799],[171.9169,-14.3799]]]},\"collection\":\"gnatsgo-tables\",\"properties\":{\"datetime\":\"2020-07-01T00:00:00Z\",\"table:columns\":[{\"name\":\"aws0_5\",\"type\":\"float\",\"description\":\"Available
+        water storage estimate (AWS) in a standard zone 1 (0-5 cm depth), expressed
+        in mm. The volume of plant available water that the soil can store in this
+        layer based on all map unit components (weighted average). NULL values are
+        presented where data are incomplete or not available.\"},{\"name\":\"aws5_20\",\"type\":\"float\",\"description\":\"Available
+        water storage estimate (AWS) in standard layer 2 (5-20 cm depth), expressed
+        in mm. The volume of plant available water that the soil can store in this
+        layer based on all map unit components (weighted average). NULL values are
+        presented where data are incomplete or not available.\"},{\"name\":\"aws20_50\",\"type\":\"float\",\"description\":\"Available
+        water storage estimate (AWS) in standard layer 3 (20-50 cm depth), expressed
+        in mm. The volume of plant available water that the soil can store in this
+        layer based on all map unit components (weighted average). NULL values are
+        presented where data are incomplete or not available.\"},{\"name\":\"aws50_100\",\"type\":\"float\",\"description\":\"Available
+        water storage estimate (AWS) in standard layer 3 (50-100 cm depth), expressed
+        in mm. The volume of plant available water that the soil can store in this
+        layer based on all map unit components (weighted average). NULL values are
+        presented where data are incomplete or not available.\"},{\"name\":\"aws100_150\",\"type\":\"float\",\"description\":\"Available
+        water storage estimate (AWS) in standard layer 5 (100-150 cm depth), expressed
+        in mm. The volume of plant available water that the soil can store in this
+        layer based on all map unit components (weighted average). NULL values are
+        presented where data are incomplete or not available.\"},{\"name\":\"aws150_999\",\"type\":\"float\",\"description\":\"Available
+        water storage estimate (AWS) in standard layer 6 (150 cm to the reported depth
+        of the soil profile), expressed in mm. The volume of plant available water
+        that the soil can store in this layer based on all map unit components (weighted
+        average). NULL values are presented where data are incomplete or not available.\"},{\"name\":\"aws0_20\",\"type\":\"float\",\"description\":\"Available
+        water storage estimate (AWS) in standard zone 2 (0-20 cm depth), expressed
+        in mm. The volume of plant available water that the soil can store in this
+        zone based on all map unit components (weighted average). NULL values are
+        presented where data are incomplete or not available.\"},{\"name\":\"aws0_30\",\"type\":\"float\",\"description\":\"Available
+        water storage estimate (AWS) in standard zone 3 (0-30 cm depth), expressed
+        in mm. The volume of plant available water that the soil can store in this
+        zone based on all map unit components (weighted average). NULL values are
+        presented where data are incomplete or not available.\"},{\"name\":\"aws0_100\",\"type\":\"float\",\"description\":\"Available
+        water storage estimate (AWS) in standard zone 4 (0-100 cm depth), expressed
+        in mm. The volume of plant available water that the soil can store in this
+        zone based on all map unit components (weighted average). NULL values are
+        presented where data are incomplete or not available.\"},{\"name\":\"aws0_150\",\"type\":\"float\",\"description\":\"Available
+        water storage estimate (AWS) in standard zone 5 (0-150 cm depth), expressed
+        in mm. The volume of plant available water that the soil can store in this
+        zone based on all map unit components (weighted average). NULL values are
+        presented where data are incomplete or not available.\"},{\"name\":\"aws0_999\",\"type\":\"float\",\"description\":\"Available
+        water storage estimate (AWS) in total soil profile (0 cm to the reported depth
+        of the soil profile), expressed in mm. The volume of plant available water
+        that the soil can store in this layer based on all map unit components (weighted
+        average). NULL values are presented where data are incomplete or not available.\"},{\"name\":\"tk0_5a\",\"type\":\"float\",\"description\":\"Thickness
+        of soil components used in standard layer 1 or standard zone 1 (0-5 cm) expressed
+        in cm (weighted average) for the available water storage calculation. NULL
+        values are presented where data are incomplete or not available.\"},{\"name\":\"tk5_20a\",\"type\":\"float\",\"description\":\"Thickness
+        of soil components used in standard layer 2 (5-20 cm) expressed in cm (weighted
+        average) for the available water storage calculation. NULL values are presented
+        where data are incomplete or not available.\"},{\"name\":\"tk20_50a\",\"type\":\"float\",\"description\":\"Thickness
+        of soil components used in standard layer 3 (20-50 cm) expressed in cm (weighted
+        average) for the available water storage calculation. NULL values are presented
+        where data are incomplete or not available.\"},{\"name\":\"tk50_100a\",\"type\":\"float\",\"description\":\"Thickness
+        of soil components used in standard layer 4 (50-100 cm) expressed in cm (weighted
+        average) for the available water storage calculation. NULL values are presented
+        where data are incomplete or not available.\"},{\"name\":\"tk100_150a\",\"type\":\"float\",\"description\":\"Thickness
+        of soil components used in standard layer 5 (100-150 cm) expressed in cm (weighted
+        average) for the available water storage calculation. NULL values are presented
+        where data are incomplete or not available.\"},{\"name\":\"tk150_999a\",\"type\":\"float\",\"description\":\"Thickness
+        of soil components used in standard layer 6 (150 cm to the reported depth
+        of the soil profile) expressed in cm (weighted average) for the available
+        water storage calculation. NULL values are presented where data are incomplete
+        or not available.\"},{\"name\":\"tk0_20a\",\"type\":\"float\",\"description\":\"Thickness
+        of soil components used in standard zone 2 (0-20 cm) expressed in cm (weighted
+        average) for the available water storage calculation. NULL values are presented
+        where data are incomplete or not available.\"},{\"name\":\"tk0_30a\",\"type\":\"float\",\"description\":\"Thickness
+        of soil components used in standard zone 3 (0-30 cm) expressed in cm (weighted
+        average) for the available water storage calculation. NULL values are presented
+        where data are incomplete or not available.\"},{\"name\":\"tk0_100a\",\"type\":\"float\",\"description\":\"Thickness
+        of soil components used in standard zone 4 (0-100 cm) expressed in cm (weighted
+        average) for the available water storage calculation. NULL values are presented
+        where data are incomplete or not available.\"},{\"name\":\"tk0_150a\",\"type\":\"float\",\"description\":\"Thickness
+        of soil components used in standard zone 5 (0-150 cm) expressed in cm (weighted
+        average) for the available water storage calculation. NULL values are presented
+        where data are incomplete or not available.\"},{\"name\":\"tk0_999a\",\"type\":\"float\",\"description\":\"Thickness
+        of soil components used in total soil profile (0 cm to the reported depth
+        of the soil profile) expressed in cm (weighted average) for the available
+        water storage calculation. NULL values are presented where data are incomplete
+        or not available.\"},{\"name\":\"musumcpcta\",\"type\":\"int32\",\"description\":\"The
+        sum of the comppct_r (SSURGO component table) values used in the available
+        water storage calculation for the map unit. Useful metadata information. NULL
+        values are presented where data are incomplete or not available.\"},{\"name\":\"soc0_5\",\"type\":\"float\",\"description\":\"Soil
+        organic carbon stock estimate (SOC) in standard layer 1 or standard zone 1
+        (0-5 cm depth). The concentration of organic carbon present in the soil expressed
+        in grams C per square meter to a depth of 5 cm. NULL values are presented
+        where data are incomplete or not available.\"},{\"name\":\"soc5_20\",\"type\":\"float\",\"description\":\"Soil
+        organic carbon stock estimate (SOC) in standard layer 2 (5-20 cm depth). The
+        concentration of organic carbon present in the soil expressed in grams C per
+        square meter for the 5-20 cm layer. NULL values are presented where data are
+        incomplete or not available.\"},{\"name\":\"soc20_50\",\"type\":\"float\",\"description\":\"Soil
+        organic carbon stock estimate (SOC) in standard layer 3 (20-50 cm depth).
+        The concentration of organic carbon present in the soil expressed in grams
+        C per square meter for the 20-50 cm layer. NULL values are presented where
+        data are incomplete or not available.\"},{\"name\":\"soc50_100\",\"type\":\"float\",\"description\":\"Soil
+        organic carbon stock estimate (SOC) in standard layer 4 (50-100 cm depth).
+        The concentration of organic carbon present in the soil expressed in grams
+        C per square meter for the 50-100 cm layer. NULL values are presented where
+        data are incomplete or not available.\"},{\"name\":\"soc100_150\",\"type\":\"float\",\"description\":\"Soil
+        organic carbon stock estimate (SOC) in standard layer 5 (100-150 cm depth).
+        The concentration of organic carbon present in the soil expressed in grams
+        C per square meter for the 100-150 cm layer. NULL values are presented where
+        data are incomplete or not available.\"},{\"name\":\"soc150_999\",\"type\":\"float\",\"description\":\"Soil
+        organic carbon stock estimate (SOC) in standard layer 6 (150 cm to the reported
+        depth of the soil profile). The concentration of organic carbon present in
+        the soil expressed in grams C per square meter for the 150 cm and greater
+        depth layer. NULL values are presented where data are incomplete or not available.\"},{\"name\":\"soc0_20\",\"type\":\"float\",\"description\":\"Soil
+        organic carbon stock estimate (SOC) in standard zone 2 (0-20 cm depth). The
+        concentration of organic carbon present in the soil expressed in grams C per
+        square meter to a depth of 20 cm. NULL values are presented where data are
+        incomplete or not available.\"},{\"name\":\"soc0_30\",\"type\":\"float\",\"description\":\"Soil
+        organic carbon stock estimate (SOC) in standard zone 3 (0-30 cm depth). The
+        concentration of organic carbon present in the soil expressed in grams C per
+        square meter to a depth of 30 cm. NULL values are presented where data are
+        incomplete or not available.\"},{\"name\":\"soc0_100\",\"type\":\"float\",\"description\":\"Soil
+        organic carbon stock estimate (SOC) in standard zone 4 (0-100 cm depth). The
+        concentration of organic carbon present in the soil expressed in grams C per
+        square meter to a depth of 100 cm. NULL values are presented where data are
+        incomplete or not available.\"},{\"name\":\"soc0_150\",\"type\":\"float\",\"description\":\"Soil
+        organic carbon stock estimate (SOC) in standard zone 5 (0-150 cm depth). The
+        concentration of organic carbon present in the soil expressed in grams C per
+        square meter to a depth of 150 cm. NULL values are presented where data are
+        incomplete or not available.\"},{\"name\":\"soc0_999\",\"type\":\"float\",\"description\":\"Soil
+        organic carbon stock estimate (SOC) in total soil profile (0 cm to the reported
+        depth of the soil profile). The concentration of organic carbon present in
+        the soil expressed in grams C per square meter for the total reported soil
+        profile depth. NULL values are presented where data are incomplete or not
+        available.\"},{\"name\":\"tk0_5s\",\"type\":\"float\",\"description\":\"Thickness
+        of soil components used in standard layer 1 or standard zone 1 (0-5 cm) expressed
+        in cm (weighted average) for the Soil Organic Carbon calculation. NULL values
+        are presented where data are incomplete or not available.\"},{\"name\":\"tk5_20s\",\"type\":\"float\",\"description\":\"Thickness
+        of soil components used in standard layer 2 (5-20 cm) expressed in cm (weighted
+        average) for the Soil Organic Carbon calculation. NULL values are presented
+        where data are incomplete or not available.\"},{\"name\":\"tk20_50s\",\"type\":\"float\",\"description\":\"Thickness
+        of soil components used in standard layer 3 (20-50 cm) expressed in cm (weighted
+        average) for the Soil Organic Carbon calculation. NULL values are presented
+        where data are incomplete or not available.\"},{\"name\":\"tk50_100s\",\"type\":\"float\",\"description\":\"Thickness
+        of soil components used in standard layer 4 (50-100 cm) expressed in cm (weighted
+        average) for the Soil Organic Carbon calculation. NULL values are presented
+        where data are incomplete or not available.\"},{\"name\":\"tk100_150s\",\"type\":\"float\",\"description\":\"Thickness
+        of soil components used in standard layer 5 (100-150 cm) expressed in cm (weighted
+        average) for the Soil Organic Carbon calculation. NULL values are presented
+        where data are incomplete or not available.\"},{\"name\":\"tk150_999s\",\"type\":\"float\",\"description\":\"Thickness
+        of soil components used in standard layer 6 (150 cm to the reported depth
+        of the soil profile) expressed in cm (weighted average) for the Soil Organic
+        Carbon calculation. NULL values are presented where data are incomplete or
+        not available.\"},{\"name\":\"tk0_20s\",\"type\":\"float\",\"description\":\"Thickness
+        of soil components used in standard zone 2 (0-20 cm) expressed in cm (weighted
+        average) for the Soil Organic Carbon calculation. NULL values are presented
+        where data are incomplete or not available.\"},{\"name\":\"tk0_30s\",\"type\":\"float\",\"description\":\"Thickness
+        of soil components used in standard zone 3 (0-30 cm) expressed in cm (weighted
+        average) for the Soil Organic Carbon calculation. NULL values are presented
+        where data are incomplete or not available.\"},{\"name\":\"tk0_100s\",\"type\":\"float\",\"description\":\"Thickness
+        of soil components used in standard zone 4 (0-100 cm) expressed in cm (weighted
+        average) for the Soil Organic Carbon calculation. NULL values are presented
+        where data are incomplete or not available.\"},{\"name\":\"tk0_150s\",\"type\":\"float\",\"description\":\"Thickness
+        of soil components used in standard zone 5 (0-150 cm) expressed in cm (weighted
+        average) for the Soil Organic Carbon calculation. NULL values are presented
+        where data are incomplete or not available.\"},{\"name\":\"tk0_999s\",\"type\":\"float\",\"description\":\"Thickness
+        of soil components used in total soil profile (0 cm to the reported depth
+        of the soil profile) expressed in cm (weighted average) for the Soil Organic
+        Carbon calculation. NULL values are presented where data are incomplete or
+        not available.\"},{\"name\":\"musumcpcts\",\"type\":\"int32\",\"description\":\"The
+        sum of the comppct_r (SSURGO component table) values used in the soil organic
+        carbon calculation for the map unit. Useful metadata information. NULL values
+        are presented where data are incomplete or not available.\"},{\"name\":\"nccpi3corn\",\"type\":\"float\",\"description\":\"National
+        Commodity Crop Productivity Index for Corn (weighted average) for major earthy
+        components. Values range from .01 (low productivity) to .99 (high productivity).
+        Earthy components are those soil series or higher level taxa components that
+        can support crop growth (Dobos et al., 2012). Major components are those soil
+        components where the majorcompflag = 'Yes' (SSURGO component table). NULL
+        values are presented where data are incomplete or not available.\"},{\"name\":\"nccpi3soy\",\"type\":\"float\",\"description\":\"National
+        Commodity Crop Productivity Index for Soybeans (weighted average) for major
+        earthy components. Values range from .01 (low productivity) to .99 (high productivity).
+        Earthy components are those soil series or higher level taxa components that
+        can support crop growth (Dobos et al., 2012). Major components are those soil
+        components where the majorcompflag = 'Yes' (SSURGO component table). NULL
+        values are presented where data are incomplete or not available.\"},{\"name\":\"nccpi3cot\",\"type\":\"float\",\"description\":\"National
+        Commodity Crop Productivity Index for Cotton (weighted average) for major
+        earthy components. Values range from .01 (low productivity) to .99 (high productivity).
+        Earthy components are those soil series or higher level taxa components that
+        can support crop growth (Dobos et al., 2012). Major components are those soil
+        components where the majorcompflag = 'Yes' (SSURGO component table). NULL
+        values are presented where data are incomplete or not available.\"},{\"name\":\"nccpi3sg\",\"type\":\"float\",\"description\":\"National
+        Commodity Crop Productivity Index for Small Grains (weighted average) for
+        major earthy components. Values range from .01 (low productivity) to .99 (high
+        productivity). Earthy components are those soil series or higher level taxa
+        components that can support crop growth (Dobos et al., 2012). Major components
+        are those soil components where the majorcompflag = 'Yes' (SSURGO component
+        table). NULL values are presented where data are incomplete or not available.\"},{\"name\":\"nccpi3all\",\"type\":\"float\",\"description\":\"National
+        Commodity Crop Productivity Index that has the highest value among Corn and
+        Soybeans, Small Grains, or Cotton (weighted average) for major earthy components.
+        Values range from .01 (low productivity) to .99 (high productivity). Earthy
+        components are those soil series or higher level taxa components that can
+        support crop growth (Dobos et al., 2012). Major components are those soil
+        components where the majorcompflag = 'Yes' (SSURGO component table). NULL
+        values are presented where data are incomplete or not available.\"},{\"name\":\"pctearthmc\",\"type\":\"int32\",\"description\":\"The
+        National Commodity Crop Productivity Index map unit percent earthy is the
+        map unit summed comppct_r for major earthy components. Earthy components are
+        those soil series or higher level taxa components that can support crop growth
+        (Dobos et al., 2012). Major components are those soil components where the
+        majorcompflag = 'Yes' (SSURGO component table). Useful metadata information.
+        NULL values are presented where data are incomplete or not available.\"},{\"name\":\"rootznemc\",\"type\":\"int32\",\"description\":\"Root
+        zone depth is the depth within the soil profile that commodity crop (cc) roots
+        can effectively extract water and nutrients for growth. Root zone depth influences
+        soil productivity significantly. Soil component horizon criteria for root-limiting
+        depth include: presence of hard bedrock, soft bedrock, a fragipan, a duripan,
+        sulfuric material, a dense layer, a layer having a pH of less than 3.5, or
+        a layer having an electrical conductivity of more than 12 within the component
+        soil profile. If no root-restricting zone is identified, a depth of 150 cm
+        is used to approximate the root zone depth (Dobos et al., 2012). Root zone
+        depth is computed for all map unit major earthy components (weighted average).
+        Earthy components are those soil series or higher level taxa components that
+        can support crop growth (Dobos et al., 2012). Major components are those soil
+        components where the majorcompflag = 'Yes' (SSURGO component table). NULL
+        values are presented where data are incomplete or not available.\"},{\"name\":\"rootznaws\",\"type\":\"int32\",\"description\":\"Root
+        zone (commodity crop) available water storage estimate (RZAWS) , expressed
+        in mm, is the volume of plant available water that the soil can store within
+        the root zone based on all map unit earthy major components (weighted average).
+        Earthy components are those soil series or higher level taxa components that
+        can support crop growth (Dobos et al., 2012). Major components are those soil
+        components where the majorcompflag = 'Yes' (SSURGO component table). NULL
+        values are presented where data are incomplete or not available.\"},{\"name\":\"droughty\",\"type\":\"int32\",\"description\":\"zone
+        for commodity crops that is less than or equal to 6 inches (152 mm) expressed
+        as \\\"1\\\" for a drought vulnerable soil landscape map unit or \\\"0\\\"
+        for a non-droughty soil landscape map unit or NULL for miscellaneous areas
+        (includes water bodies) or where data were not available. It is computed as
+        a weighted average for major earthy components. Earthy components are those
+        soil series or higher level taxa components that can support crop growth (Dobos
+        et al., 2012). Major components are those soil components where the majorcompflag
+        = 'Yes'\"},{\"name\":\"pwsl1pomu\",\"type\":\"int32\",\"description\":\"Potential
+        Wetland Soil Landscapes (PWSL) is expressed as the percentage of the map unit
+        that meets the PWSL criteria. The hydric rating (soil component variable \u201Chydricrating\u201D)
+        is an indicator of wet soils. For version 1 (pwsl1), those soil components
+        that meet the following criteria are tagged as PWSL and their comppct_r values
+        are summed for each map unit. Soil components with hydricrating = 'YES' are
+        considered PWSL. Soil components with hydricrating = \u201CNO\u201D are not
+        PWSL. Soil components with hydricrating = 'UNRANKED' are tested using other
+        attributes, and will be considered PWSL if any of the following conditions
+        are met: drainagecl = 'Poorly drained' or 'Very poorly drained' or the localphase
+        or the otherph data fields contain any of the phrases \\\"drained\\\" or \\\"undrained\\\"
+        or \\\"channeled\\\" or \\\"protected\\\" or \\\"ponded\\\" or \\\"flooded\\\".
+        If these criteria do not determine the PWSL for a component and hydricrating
+        = 'UNRANKED', then the map unit will be classified as PWSL if the map unit
+        name contains any of the phrases \\\"drained\\\" or \\\"undrained\\\" or \\\"channeled\\\"
+        or \\\"protected\\\" or \\\"ponded\\\" or \\\"flooded\\\". For version 1 (pwsl1),
+        waterbodies are identified as \\\"999\\\" when map unit names match a list
+        of terms that identify water or intermittent water or map units have a sum
+        of the comppct_r for \\\"Water\\\" that is 80% or greater. NULL values are
+        presented where data are incomplete or not available.\"},{\"name\":\"musumcpct\",\"type\":\"int32\",\"description\":\"The
+        sum of the comppct_r (SSURGO component table) values for all listed components
+        in the map unit. Useful metadata information. NULL values are presented where
+        data are incomplete or not available.\"},{\"name\":\"mukey\",\"type\":\"int64\",\"description\":\"Map
+        unit key is the unique identifier of a record in the Mapunit table. Use this
+        column to join the Component table to the Mapunit table and the valu1 table
+        to the MapUnitRaster_10m raster map layer to map valu1 themes.\"}]},\"stac_extensions\":[\"https://stac-extensions.github.io/table/v1.2.0/schema.json\"],\"stac_version\":\"1.0.0\"}],\"links\":[{\"rel\":\"collection\",\"type\":\"application/json\",\"href\":\"https://planetarycomputer.microsoft.com/api/stac/v1/collections/gnatsgo-tables\"},{\"rel\":\"parent\",\"type\":\"application/json\",\"href\":\"https://planetarycomputer.microsoft.com/api/stac/v1/collections/gnatsgo-tables\"},{\"rel\":\"root\",\"type\":\"application/json\",\"href\":\"https://planetarycomputer.microsoft.com/api/stac/v1/\"},{\"rel\":\"self\",\"type\":\"application/geo+json\",\"href\":\"https://planetarycomputer.microsoft.com/api/stac/v1/collections/gnatsgo-tables/items\"},{\"rel\":\"next\",\"type\":\"application/geo+json\",\"method\":\"GET\",\"href\":\"https://planetarycomputer.microsoft.com/api/stac/v1/collections/gnatsgo-tables/items?limit=1&token=next:gnatsgo-tables:valu1\"}]}"
     headers:
       Accept-Ranges:
       - bytes
@@ -87,7 +290,7 @@ interactions:
       Content-Type:
       - application/geo+json
       Date:
-      - Wed, 12 Mar 2025 11:38:45 GMT
+      - Wed, 12 Mar 2025 12:11:21 GMT
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Cache:
@@ -97,7 +300,7 @@ interactions:
       vary:
       - Accept-Encoding
       x-azure-ref:
-      - 20250312T113844Z-15d554846c6fksz6hC1DEN88en00000004hg0000000001bh
+      - 20250312T121120Z-15d554846c6kj68hhC1DEN5nmg00000009f0000000004w2v
     status:
       code: 200
       message: OK
@@ -109,14 +312,14 @@ interactions:
       Host:
       - planetarycomputer.microsoft.com
       User-Agent:
-      - Python-urllib/3.9
+      - Python-urllib/3.10
     method: GET
     uri: https://planetarycomputer.microsoft.com/api/stac/v1/
   response:
     body:
       string: '{"type":"Catalog","id":"microsoft-pc","title":"Microsoft Planetary
         Computer STAC API","description":"Searchable spatiotemporal metadata describing
-        Earth science datasets hosted by the Microsoft Planetary Computer","stac_version":"1.0.0","conformsTo":["http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core","http://www.opengis.net/spec/ogcapi-features-3/1.0/conf/filter","https://api.stacspec.org/v1.0.0/ogcapi-features","http://www.opengis.net/spec/cql2/1.0/conf/cql2-text","https://api.stacspec.org/v1.0.0/item-search","https://api.stacspec.org/v1.0.0/collections","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30","https://api.stacspec.org/v1.0.0/item-search#query","https://api.stacspec.org/v1.0.0/item-search#sort","https://api.stacspec.org/v1.0.0/item-search#fields","https://api.stacspec.org/v1.0.0-rc.2/item-search#filter","http://www.opengis.net/spec/cql2/1.0/conf/cql2-json","http://www.opengis.net/spec/cql2/1.0/conf/basic-cql2","https://api.stacspec.org/v1.0.0/core","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/geojson"],"links":[{"rel":"self","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"data","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections"},{"rel":"conformance","type":"application/json","title":"STAC/OGC
+        Earth science datasets hosted by the Microsoft Planetary Computer","stac_version":"1.0.0","conformsTo":["https://api.stacspec.org/v1.0.0/ogcapi-features","https://api.stacspec.org/v1.0.0/collections","https://api.stacspec.org/v1.0.0/item-search#fields","http://www.opengis.net/spec/cql2/1.0/conf/basic-cql2","http://www.opengis.net/spec/cql2/1.0/conf/cql2-text","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30","https://api.stacspec.org/v1.0.0/core","https://api.stacspec.org/v1.0.0/item-search","https://api.stacspec.org/v1.0.0-rc.2/item-search#filter","http://www.opengis.net/spec/cql2/1.0/conf/cql2-json","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/geojson","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core","https://api.stacspec.org/v1.0.0/item-search#sort","https://api.stacspec.org/v1.0.0/item-search#query","http://www.opengis.net/spec/ogcapi-features-3/1.0/conf/filter"],"links":[{"rel":"self","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"data","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections"},{"rel":"conformance","type":"application/json","title":"STAC/OGC
         conformance classes implemented by this server","href":"https://planetarycomputer.microsoft.com/api/stac/v1/conformance"},{"rel":"search","type":"application/geo+json","title":"STAC
         search","href":"https://planetarycomputer.microsoft.com/api/stac/v1/search","method":"GET"},{"rel":"search","type":"application/geo+json","title":"STAC
         search","href":"https://planetarycomputer.microsoft.com/api/stac/v1/search","method":"POST"},{"rel":"http://www.opengis.net/def/rel/ogc/1.0/queryables","type":"application/schema+json","title":"Queryables","href":"https://planetarycomputer.microsoft.com/api/stac/v1/queryables","method":"GET"},{"rel":"child","type":"application/json","title":"Daymet
@@ -143,8 +346,7 @@ interactions:
         Annual Land Use Land Cover (9-class) V2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc-annual-v02"},{"rel":"child","type":"application/json","title":"CONUS404","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/conus404"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Intensity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-intensity"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Source","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-pointsourceid"},{"rel":"child","type":"application/json","title":"MTBS:
-        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"Landsat
-        8 Collection 2 Level-2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-8-c2-l2"},{"rel":"child","type":"application/json","title":"C-CAP
+        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"C-CAP
         Regional Land Cover and Change","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-c-cap"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Cloud","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-copc"},{"rel":"child","type":"application/json","title":"MODIS
         Burned Area Monthly","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-64A1-061"},{"rel":"child","type":"application/json","title":"ALOS
@@ -262,17 +464,17 @@ interactions:
       Connection:
       - close
       Content-Length:
-      - '25050'
+      - '24878'
       Content-Type:
       - application/json
       Date:
-      - Wed, 12 Mar 2025 11:38:45 GMT
+      - Wed, 12 Mar 2025 12:11:21 GMT
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Cache:
       - CONFIG_NOCACHE
       x-azure-ref:
-      - 20250312T113845Z-15d554846c6zhfckhC1DEN2szc0000000ae00000000041yh
+      - 20250312T121121Z-15d554846c682hm7hC1DENkggs00000003h00000000017rd
     status:
       code: 200
       message: OK
@@ -284,14 +486,14 @@ interactions:
       Host:
       - planetarycomputer.microsoft.com
       User-Agent:
-      - Python-urllib/3.9
+      - Python-urllib/3.10
     method: GET
     uri: https://planetarycomputer.microsoft.com/api/stac/v1/
   response:
     body:
       string: '{"type":"Catalog","id":"microsoft-pc","title":"Microsoft Planetary
         Computer STAC API","description":"Searchable spatiotemporal metadata describing
-        Earth science datasets hosted by the Microsoft Planetary Computer","stac_version":"1.0.0","conformsTo":["http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core","http://www.opengis.net/spec/ogcapi-features-3/1.0/conf/filter","https://api.stacspec.org/v1.0.0/ogcapi-features","http://www.opengis.net/spec/cql2/1.0/conf/cql2-text","https://api.stacspec.org/v1.0.0/item-search","https://api.stacspec.org/v1.0.0/collections","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30","https://api.stacspec.org/v1.0.0/item-search#query","https://api.stacspec.org/v1.0.0/item-search#sort","https://api.stacspec.org/v1.0.0/item-search#fields","https://api.stacspec.org/v1.0.0-rc.2/item-search#filter","http://www.opengis.net/spec/cql2/1.0/conf/cql2-json","http://www.opengis.net/spec/cql2/1.0/conf/basic-cql2","https://api.stacspec.org/v1.0.0/core","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/geojson"],"links":[{"rel":"self","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"data","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections"},{"rel":"conformance","type":"application/json","title":"STAC/OGC
+        Earth science datasets hosted by the Microsoft Planetary Computer","stac_version":"1.0.0","conformsTo":["https://api.stacspec.org/v1.0.0/ogcapi-features","https://api.stacspec.org/v1.0.0/collections","https://api.stacspec.org/v1.0.0/item-search#fields","http://www.opengis.net/spec/cql2/1.0/conf/basic-cql2","http://www.opengis.net/spec/cql2/1.0/conf/cql2-text","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30","https://api.stacspec.org/v1.0.0/core","https://api.stacspec.org/v1.0.0/item-search","https://api.stacspec.org/v1.0.0-rc.2/item-search#filter","http://www.opengis.net/spec/cql2/1.0/conf/cql2-json","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/geojson","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core","https://api.stacspec.org/v1.0.0/item-search#sort","https://api.stacspec.org/v1.0.0/item-search#query","http://www.opengis.net/spec/ogcapi-features-3/1.0/conf/filter"],"links":[{"rel":"self","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"data","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections"},{"rel":"conformance","type":"application/json","title":"STAC/OGC
         conformance classes implemented by this server","href":"https://planetarycomputer.microsoft.com/api/stac/v1/conformance"},{"rel":"search","type":"application/geo+json","title":"STAC
         search","href":"https://planetarycomputer.microsoft.com/api/stac/v1/search","method":"GET"},{"rel":"search","type":"application/geo+json","title":"STAC
         search","href":"https://planetarycomputer.microsoft.com/api/stac/v1/search","method":"POST"},{"rel":"http://www.opengis.net/def/rel/ogc/1.0/queryables","type":"application/schema+json","title":"Queryables","href":"https://planetarycomputer.microsoft.com/api/stac/v1/queryables","method":"GET"},{"rel":"child","type":"application/json","title":"Daymet
@@ -318,8 +520,7 @@ interactions:
         Annual Land Use Land Cover (9-class) V2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc-annual-v02"},{"rel":"child","type":"application/json","title":"CONUS404","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/conus404"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Intensity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-intensity"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Source","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-pointsourceid"},{"rel":"child","type":"application/json","title":"MTBS:
-        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"Landsat
-        8 Collection 2 Level-2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-8-c2-l2"},{"rel":"child","type":"application/json","title":"C-CAP
+        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"C-CAP
         Regional Land Cover and Change","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-c-cap"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Cloud","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-copc"},{"rel":"child","type":"application/json","title":"MODIS
         Burned Area Monthly","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-64A1-061"},{"rel":"child","type":"application/json","title":"ALOS
@@ -437,17 +638,17 @@ interactions:
       Connection:
       - close
       Content-Length:
-      - '25050'
+      - '24878'
       Content-Type:
       - application/json
       Date:
-      - Wed, 12 Mar 2025 11:38:45 GMT
+      - Wed, 12 Mar 2025 12:11:22 GMT
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Cache:
       - CONFIG_NOCACHE
       x-azure-ref:
-      - 20250312T113845Z-15d554846c6zhfckhC1DEN2szc0000000an0000000000fa9
+      - 20250312T121121Z-15d554846c6wdzdbhC1DENgn2g00000001rg0000000013gy
     status:
       code: 200
       message: OK

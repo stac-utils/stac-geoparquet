@@ -7,7 +7,7 @@ interactions:
       Host:
       - planetarycomputer.microsoft.com
       User-Agent:
-      - Python-urllib/3.9
+      - Python-urllib/3.10
     method: GET
     uri: https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip
   response:
@@ -57,13 +57,13 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Wed, 12 Mar 2025 11:43:11 GMT
+      - Wed, 12 Mar 2025 12:10:21 GMT
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Cache:
       - CONFIG_NOCACHE
       x-azure-ref:
-      - 20250312T114310Z-15d554846c64pv6bhC1DENrdk8000000088g000000002w9k
+      - 20250312T121021Z-15d554846c6n6z89hC1DENyy0g00000008h00000000065k5
     status:
       code: 200
       message: OK

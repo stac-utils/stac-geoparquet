@@ -14,129 +14,366 @@ interactions:
     uri: https://planetarycomputer.microsoft.com/api/stac/v1/collections/gap/items?limit=1
   response:
     body:
-      string: !!binary |
-        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
+      string: '{"type":"FeatureCollection","features":[{"id":"gap_landfire_nationalterrestrialecosystems2011_938865_862215_1238865_562215","bbox":[-86.50614200788456,27.3898603199775,-83.094706715818,30.39956432670431],"type":"Feature","links":[{"rel":"collection","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/gap"},{"rel":"parent","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/gap"},{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"self","type":"application/geo+json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/gap/items/gap_landfire_nationalterrestrialecosystems2011_938865_862215_1238865_562215"},{"rel":"preview","href":"https://planetarycomputer.microsoft.com/api/data/v1/item/map?collection=gap&item=gap_landfire_nationalterrestrialecosystems2011_938865_862215_1238865_562215","title":"Map
+        of item","type":"text/html"}],"assets":{"data":{"href":"https://ai4edataeuwest.blob.core.windows.net/usgs-gap/conus/gap_landfire_nationalterrestrialecosystems2011_938865_862215_1238865_562215.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","roles":["data"],"title":"GeoTIFF
+        data"},"tilejson":{"title":"TileJSON with default rendering","href":"https://planetarycomputer.microsoft.com/api/data/v1/item/tilejson.json?collection=gap&item=gap_landfire_nationalterrestrialecosystems2011_938865_862215_1238865_562215&assets=data&tile_format=png&colormap_name=gap-lulc&format=png","type":"application/json","roles":["tiles"]},"rendered_preview":{"title":"Rendered
+        preview","rel":"preview","href":"https://planetarycomputer.microsoft.com/api/data/v1/item/preview.png?collection=gap&item=gap_landfire_nationalterrestrialecosystems2011_938865_862215_1238865_562215&assets=data&tile_format=png&colormap_name=gap-lulc&format=png","roles":["overview"],"type":"image/png"}},"geometry":{"type":"Polygon","coordinates":[[[-83.50321552,27.38986032],[-83.09470672,30.07742972],[-86.19419859,30.39956433],[-86.50614201,27.70391617],[-83.50321552,27.38986032]]]},"collection":"gap","properties":{"datetime":"2011-12-31T00:00:00Z","proj:wkt2":"PROJCS[\"NAD83
+        / Conus Albers\",GEOGCS[\"NAD83\",DATUM[\"North_American_Datum_1983\",SPHEROID[\"GRS
+        1980\",6378137,298.257222101,AUTHORITY[\"EPSG\",\"7019\"]],AUTHORITY[\"EPSG\",\"6269\"]],PRIMEM[\"Greenwich\",0,AUTHORITY[\"EPSG\",\"8901\"]],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]],AUTHORITY[\"EPSG\",\"4269\"]],PROJECTION[\"Albers_Conic_Equal_Area\"],PARAMETER[\"latitude_of_center\",23],PARAMETER[\"longitude_of_center\",-96],PARAMETER[\"standard_parallel_1\",29.5],PARAMETER[\"standard_parallel_2\",45.5],PARAMETER[\"false_easting\",0],PARAMETER[\"false_northing\",0],UNIT[\"metre\",1,AUTHORITY[\"EPSG\",\"9001\"]],AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH],AUTHORITY[\"EPSG\",\"5070\"]]","label:type":"raster","proj:shape":[10000,10000],"end_datetime":"2011-12-31T00:00:00+00:00","label:classes":[{"name":"","classes":["0","South
+        Florida Bayhead Swamp","South Florida Cypress Dome","South Florida Dwarf Cypress
+        Savanna","South Florida Mangrove Swamp","South Florida Hardwood Hammock","Southeast
+        Florida Coastal Strand and Maritime Hammock","Southwest Florida Coastal Strand
+        and Maritime Hammock","South Florida Pine Rockland","Atlantic Coastal Plain
+        Fall-line Sandhills Longleaf Pine Woodland - Open Understory","Atlantic Coastal
+        Plain Fall-line Sandhills Longleaf Pine Woodland - Scrub/Shrub Understory","Atlantic
+        Coastal Plain Upland Longleaf Pine Woodland","Atlantic Coastal Plain Xeric
+        River Dune","East Gulf Coastal Plain Interior Upland Longleaf Pine Woodland
+        - Open Understory Modifier","East Gulf Coastal Plain Interior Upland Longleaf
+        Pine Woodland - Scrub/Shrub Modifier","Florida Longleaf Pine Sandhill - Scrub/Shrub
+        Understory Modifier","Florida Longleaf Pine Sandhill- Open Understory Modifier","West
+        Gulf Coastal Plain Upland Longleaf Pine Forest and Woodland","Atlantic Coastal
+        Plain Central Maritime Forest","Atlantic Coastal Plain Southern Maritime Forest","Central
+        and South Texas Coastal Fringe Forest and Woodland","East Gulf Coastal Plain
+        Limestone Forest","East Gulf Coastal Plain Maritime Forest","East Gulf Coastal
+        Plain Southern Loess Bluff Forest","East Gulf Coastal Plain Southern Mesic
+        Slope Forest","Mississippi Delta Maritime Forest","Southern Coastal Plain
+        Dry Upland Hardwood Forest","Southern Coastal Plain Oak Dome and Hammock","West
+        Gulf Coastal Plain Chenier and Upper Texas Coastal Fringe Forest and Woodland","West
+        Gulf Coastal Plain Mesic Hardwood Forest","East-Central Texas Plains Pine
+        Forest and Woodland","West Gulf Coastal Plain Pine-Hardwood Forest","West
+        Gulf Coastal Plain Sandhill Oak and Shortleaf Pine Forest and Woodland","Atlantic
+        Coastal Plain Fall-Line Sandhills Longleaf Pine Woodland - Loblolly Modifier","Deciduous
+        Plantations","East Gulf Coastal Plain Interior Upland Longleaf Pine Woodland
+        - Loblolly Modifier","East Gulf Coastal Plain Interior Upland Longleaf Pine
+        Woodland - Offsite Hardwood Modifier","East Gulf Coastal Plain Near-Coast
+        Pine Flatwoods - Offsite Hardwood Modifier","Evergreen Plantation or Managed
+        Pine","California Central Valley Mixed Oak Savanna","California Coastal Closed-Cone
+        Conifer Forest and Woodland","California Coastal Live Oak Woodland and Savanna","California
+        Lower Montane Blue Oak-Foothill Pine Woodland and Savanna","Central and Southern
+        California Mixed Evergreen Woodland","Mediterranean California Lower Montane
+        Black Oak-Conifer Forest and Woodland","Southern California Oak Woodland and
+        Savanna","Madrean Encinal","Madrean Pinyon-Juniper Woodland","Madrean Pine-Oak
+        Forest and Woodland","Madrean Upper Montane Conifer-Oak Forest and Woodland","Edwards
+        Plateau Dry-Mesic Slope Forest and Woodland","Edwards Plateau Limestone Savanna
+        and Woodland","Edwards Plateau Mesic Canyon","Llano Uplift Acidic Forest,
+        Woodland and Glade","East Cascades Oak-Ponderosa Pine Forest and Woodland","Mediterranean
+        California Mixed Evergreen Forest","Mediterranean California Mixed Oak Woodland","North
+        Pacific Dry Douglas-fir-(Madrone) Forest and Woodland","North Pacific Oak
+        Woodland","Edwards Plateau Limestone Shrubland","Allegheny-Cumberland Dry
+        Oak Forest and Woodland - Hardwood","Allegheny-Cumberland Dry Oak Forest and
+        Woodland - Pine Modifier","Central and Southern Appalachian Montane Oak Forest","Central
+        and Southern Appalachian Northern Hardwood Forest","Central Appalachian Oak
+        and Pine Forest","Crosstimbers Oak Forest and Woodland","East Gulf Coastal
+        Plain Black Belt Calcareous Prairie and Woodland - Woodland Modifier","East
+        Gulf Coastal Plain Northern Dry Upland Hardwood Forest","East Gulf Coastal
+        Plain Northern Loess Plain Oak-Hickory Upland - Hardwood Modifier","East Gulf
+        Coastal Plain Northern Loess Plain Oak-Hickory Upland - Juniper Modifier","East-Central
+        Texas Plains Post Oak Savanna and Woodland","Lower Mississippi River Dune
+        Woodland and Forest","Mississippi River Alluvial Plain Dry-Mesic Loess Slope
+        Forest","North-Central Interior Dry Oak Forest and Woodland","North-Central
+        Interior Dry-Mesic Oak Forest and Woodland","Northeastern Interior Dry Oak
+        Forest - Mixed Modifier","Northeastern Interior Dry Oak Forest - Virginia/Pitch
+        Pine Modifier","Northeastern Interior Dry Oak Forest-Hardwood Modifier","Northeastern
+        Interior Dry-Mesic Oak Forest","Northern Atlantic Coastal Plain Dry Hardwood
+        Forest","Crowleys Ridge Sand Forest","Ouachita Montane Oak Forest","Ozark-Ouachita
+        Dry Oak Woodland","Ozark-Ouachita Dry-Mesic Oak Forest","Southern and Central
+        Appalachian Oak Forest","Southern and Central Appalachian Oak Forest - Xeric","Southern
+        Interior Low Plateau Dry-Mesic Oak Forest","Southern Ridge and Valley Dry
+        Calcareous Forest","Southern Ridge and Valley Dry Calcareous Forest - Pine
+        modifier","East Gulf Coastal Plain Northern Dry Upland Hardwood Forest - Offsite
+        Pine Modifier","Managed Tree Plantation","Ruderal forest","Southern Piedmont
+        Dry Oak-(Pine) Forest - Loblolly Pine Modifier","Acadian Low-Elevation Spruce-Fir-Hardwood
+        Forest","Acadian-Appalachian Montane Spruce-Fir Forest","Appalachian Hemlock-Hardwood
+        Forest","Central and Southern Appalachian Spruce-Fir Forest","0","Laurentian-Acadian
+        Northern Hardwoods Forest","Laurentian-Acadian Northern Pine-(Oak) Forest","Laurentian-Acadian
+        Pine-Hemlock-Hardwood Forest","Paleozoic Plateau Bluff and Talus","Southern
+        Appalachian Northern Hardwood Forest","Atlantic Coastal Plain Dry and Dry-Mesic
+        Oak Forest","Atlantic Coastal Plain Fall-line Sandhills Longleaf Pine Woodland
+        - Offsite Hardwood","East Gulf Coastal Plain Interior Shortleaf Pine-Oak Forest
+        - Hardwood Modifier","East Gulf Coastal Plain Interior Shortleaf Pine-Oak
+        Forest - Mixed Modifier","Ozark-Ouachita Shortleaf Pine-Bluestem Woodland","Ozark-Ouachita
+        Shortleaf Pine-Oak Forest and Woodland","Southeastern Interior Longleaf Pine
+        Woodland","Southern Appalachian Low Mountain Pine Forest","Southern Piedmont
+        Dry Oak-(Pine) Forest","Southern Piedmont Dry Oak-(Pine) Forest - Hardwood
+        Modifier","Southern Piedmont Dry Oak-(Pine) Forest - Mixed Modifier","Southern
+        Piedmont Dry Oak-Heath Forest - Mixed Modifier","Eastern Great Plains Tallgrass
+        Aspen Parkland","Northwestern Great Plains Aspen Forest and Parkland","Northwestern
+        Great Plains Shrubland","Western Great Plains Dry Bur Oak Forest and Woodland","Western
+        Great Plains Wooded Draw and Ravine","Southern Atlantic Coastal Plain Mesic
+        Hardwood Forest","East Gulf Coastal Plain Northern Loess Bluff Forest","East
+        Gulf Coastal Plain Northern Mesic Hardwood Forest","North-Central Interior
+        Beech-Maple Forest","North-Central Interior Maple-Basswood Forest","Ozark-Ouachita
+        Mesic Hardwood Forest","South-Central Interior Mesophytic Forest","Southern
+        and Central Appalachian Cove Forest","Crowleys Ridge Mesic Loess Slope Forest","Southern
+        Piedmont Mesic Forest","Appalachian Shale Barrens","Atlantic Coastal Plain
+        Northern Maritime Forest","Laurentian Pine-Oak Barrens","Northeastern Interior
+        Pine Barrens","Northern Atlantic Coastal Plain Pitch Pine Barrens","Southern
+        Appalachian Montane Pine Forest and Woodland","East Cascades Mesic Montane
+        Mixed-Conifer Forest and Woodland","Middle Rocky Mountain Montane Douglas-fir
+        Forest and Woodland","Northern Rocky Mountain Dry-Mesic Montane Mixed Conifer
+        Forest","Northern Rocky Mountain Foothill Conifer Wooded Steppe","Northern
+        Rocky Mountain Mesic Montane Mixed Conifer Forest","Northern Rocky Mountain
+        Ponderosa Pine Woodland and Savanna","Northern Rocky Mountain Western Larch
+        Savanna","Northwestern Great Plains - Black Hills Ponderosa Pine Woodland
+        and Savanna","Rocky Mountain Foothill Limber Pine-Juniper Woodland","Inter-Mountain
+        Basins Aspen-Mixed Conifer Forest and Woodland","Inter-Mountain Basins Subalpine
+        Limber-Bristlecone Pine Woodland","Northern Rocky Mountain Subalpine Woodland
+        and Parkland","Rocky Mountain Aspen Forest and Woodland","Rocky Mountain Lodgepole
+        Pine Forest","Rocky Mountain Poor-Site Lodgepole Pine Forest","Rocky Mountain
+        Subalpine Dry-Mesic Spruce-Fir Forest and Woodland","Rocky Mountain Subalpine
+        Mesic Spruce-Fir Forest and Woodland","Rocky Mountain Subalpine-Montane Limber-Bristlecone
+        Pine Woodland","Rocky Mountain Bigtooth Maple Ravine Woodland","Southern Rocky
+        Mountain Dry-Mesic Montane Mixed Conifer Forest and Woodland","Southern Rocky
+        Mountain Mesic Montane Mixed Conifer Forest and Woodland","Southern Rocky
+        Mountain Ponderosa Pine Savanna","Southern Rocky Mountain Ponderosa Pine Woodland","California
+        Montane Jeffrey Pine-(Ponderosa Pine) Woodland","Klamath-Siskiyou Lower Montane
+        Serpentine Mixed Conifer Woodland","Klamath-Siskiyou Upper Montane Serpentine
+        Mixed Conifer Woodland","Mediterranean California Dry-Mesic Mixed Conifer
+        Forest and Woodland","Mediterranean California Mesic Mixed Conifer Forest
+        and Woodland","Sierran-Intermontane Desert Western White Pine-White Fir Woodland","California
+        Coastal Redwood Forest","North Pacific Broadleaf Landslide Forest and Shrubland","North
+        Pacific Dry-Mesic Silver Fir-Western Hemlock-Douglas-fir Forest","North Pacific
+        Hypermaritime Sitka Spruce Forest","North Pacific Hypermaritime Western Red-cedar-Western
+        Hemlock Forest","North Pacific Lowland Mixed Hardwood-Conifer Forest and Woodland","North
+        Pacific Maritime Dry-Mesic Douglas-fir-Western Hemlock Forest","North Pacific
+        Maritime Mesic-Wet Douglas-fir-Western Hemlock Forest","North Pacific Mesic
+        Western Hemlock-Silver Fir Forest","North Pacific Wooded Volcanic Flowage","Mediterranean
+        California Red Fir Forest","Mediterranean California Subalpine Woodland","North
+        Pacific Maritime Mesic Subalpine Parkland","North Pacific Mountain Hemlock
+        Forest","Northern California Mesic Subalpine Woodland","Northern Pacific Mesic
+        Subalpine Woodland","Sierra Nevada Subalpine Lodgepole Pine Forest and Woodland","Columbia
+        Plateau Western Juniper Woodland and Savanna","Great Basin Pinyon-Juniper
+        Woodland","Inter-Mountain Basins Curl-leaf Mountain Mahogany Woodland and
+        Shrubland","Inter-Mountain Basins Juniper Savanna","Colorado Plateau Pinyon-Juniper
+        Shrubland","Colorado Plateau Pinyon-Juniper Woodland","Southern Rocky Mountain
+        Juniper Woodland and Savanna","Southern Rocky Mountain Pinyon-Juniper Woodland","Northwestern
+        Great Plains Floodplain","Northwestern Great Plains Riparian","Western Great
+        Plains Floodplain","Western Great Plains Floodplain Systems","Western Great
+        Plains Riparian Woodland and Shrubland","Central Appalachian Floodplain -
+        Forest Modifier","Central Appalachian Riparian - Forest Modifier","Central
+        Interior and Appalachian Floodplain Systems","Central Interior and Appalachian
+        Riparian Systems","Laurentian-Acadian Floodplain Systems","Ozark-Ouachita
+        Riparian","South-Central Interior Large Floodplain","South-Central Interior
+        Large Floodplain - Forest Modifier","South-Central Interior Small Stream and
+        Riparian","North-Central Interior and Appalachian Rich Swamp","0","0","Laurentian-Acadian
+        Swamp Systems","North-Central Interior Wet Flatwoods","0","South-Central Interior
+        / Upper Coastal Plain Wet Flatwoods","0","Southern Piedmont/Ridge and Valley
+        Upland Depression Swamp","Atlantic Coastal Plain Blackwater Stream Floodplain
+        Forest - Forest Modifier","Atlantic Coastal Plain Brownwater Stream Floodplain
+        Forest","Atlantic Coastal Plain Northern Tidal Wooded Swamp","Atlantic Coastal
+        Plain Small Blackwater River Floodplain Forest","Atlantic Coastal Plain Small
+        Brownwater River Floodplain Forest","Atlantic Coastal Plain Southern Tidal
+        Wooded Swamp","East Gulf Coastal Plain Large River Floodplain Forest - Forest
+        Modifier","East Gulf Coastal Plain Small Stream and River Floodplain Forest","East
+        Gulf Coastal Plain Tidal Wooded Swamp","0","Southeastern Great Plains Riparian
+        Forest","Southeastern Great Plains Floodplain Forest","Mississippi River Bottomland
+        Depression","Mississippi River Floodplain and Riparian Forest","Mississippi
+        River Low Floodplain (Bottomland) Forest","Mississippi River Riparian Forest","Red
+        River Large Floodplain Forest","Southern Coastal Plain Blackwater River Floodplain
+        Forest","Southern Piedmont Large Floodplain Forest - Forest Modifier","Southern
+        Piedmont Small Floodplain and Riparian Forest","West Gulf Coastal Plain Large
+        River Floodplain Forest","West Gulf Coastal Plain Near-Coast Large River Swamp","West
+        Gulf Coastal Plain Small Stream and River Forest","Atlantic Coastal Plain
+        Streamhead Seepage Swamp -  Pocosin -  and Baygall","Gulf and Atlantic Coastal
+        Plain Swamp Systems","Southern Coastal Plain Hydric Hammock","Southern Coastal
+        Plain Seepage Swamp and Baygall","West Gulf Coastal Plain Seepage Swamp and
+        Baygall","Atlantic Coastal Plain Nonriverine Swamp and Wet Hardwood Forest  -
+        Taxodium/Nyssa Modifier","Atlantic Coastal Plain Nonriverine Swamp and Wet
+        Hardwood Forest - Oak Dominated Modifier","East Gulf Coastal Plain Southern
+        Loblolly-Hardwood Flatwoods","Lower Mississippi River Bottomland Depressions
+        - Forest Modifier","Lower Mississippi River Flatwoods","Northern Atlantic
+        Coastal Plain Basin Swamp and Wet Hardwood Forest","Southern Coastal Plain
+        Nonriverine Basin Swamp","Southern Coastal Plain Nonriverine Basin Swamp -
+        Okefenokee Bay/Gum Modifier","Southern Coastal Plain Nonriverine Basin Swamp
+        - Okefenokee Pine Modifier","Southern Coastal Plain Nonriverine Basin Swamp
+        - Okefenokee Taxodium Modifier","West Gulf Coastal Plain Nonriverine Wet Hardwood
+        Flatwoods","West Gulf Coastal Plain Pine-Hardwood Flatwoods","Edwards Plateau
+        Riparian","Atlantic Coastal Plain Clay-Based Carolina Bay Forested Wetland","Atlantic
+        Coastal Plain Clay-Based Carolina Bay Herbaceous Wetland","Atlantic Coastal
+        Plain Southern Wet Pine Savanna and Flatwoods","Central Atlantic Coastal Plain
+        Wet Longleaf Pine Savanna and Flatwoods","Central Florida Pine Flatwoods","East
+        Gulf Coastal Plain Near-Coast Pine Flatwoods","East Gulf Coastal Plain Near-Coast
+        Pine Flatwoods - Open Understory Modifier","East Gulf Coastal Plain Near-Coast
+        Pine Flatwoods - Scrub/Shrub Understory Modifier","South Florida Pine Flatwoods","Southern
+        Coastal Plain Nonriverine Cypress Dome","West Gulf Coastal Plain Wet Longleaf
+        Pine Savanna and Flatwoods","Columbia Basin Foothill Riparian Woodland and
+        Shrubland","Great Basin Foothill and Lower Montane Riparian Woodland and Shrubland","0","Northern
+        Rocky Mountain Conifer Swamp","Northern Rocky Mountain Lower Montane Riparian
+        Woodland and Shrubland","Rocky Mountain Lower Montane Riparian Woodland and
+        Shrubland","Rocky Mountain Montane Riparian Systems","Rocky Mountain Subalpine-Montane
+        Riparian Woodland","North Pacific Hardwood-Conifer Swamp","North Pacific Lowland
+        Riparian Forest and Shrubland","North Pacific Montane Riparian Woodland and
+        Shrubland","North Pacific Shrub Swamp","California Central Valley Riparian
+        Woodland and Shrubland","Mediterranean California Foothill and Lower Montane
+        Riparian Woodland","Mediterranean California Serpentine Foothill and Lower
+        Montane Riparian Woodland and Seep","North American Warm Desert Lower Montane
+        Riparian Woodland and Shrubland","North American Warm Desert Riparian Systems","North
+        American Warm Desert Riparian Woodland and Shrubland","Tamaulipan Floodplain","Tamaulipan
+        Riparian Systems","Boreal Aspen-Birch Forest","Boreal Jack Pine-Black Spruce
+        Forest","Boreal White Spruce-Fir-Hardwood Forest","Boreal-Laurentian Conifer
+        Acidic Swamp and Treed Poor Fen","Eastern Boreal Floodplain","South Florida
+        Shell Hash Beach","Southeast Florida Beach","Southwest Florida Beach","South
+        Florida Everglades Sawgrass Marsh","South Florida Freshwater Slough and Gator
+        Hole","South Florida Wet Marl Prairie","California Maritime Chaparral","California
+        Mesic Chaparral","California Xeric Serpentine Chaparral","Klamath-Siskiyou
+        Xeromorphic Serpentine Savanna and Chaparral","Mediterranean California Mesic
+        Serpentine Woodland and Chaparral","Northern and Central California Dry-Mesic
+        Chaparral","Southern California Dry-Mesic Chaparral","Southern California
+        Coastal Scrub","California Central Valley and Southern Coastal Grassland","California
+        Mesic Serpentine Grassland","Columbia Basin Foothill and Canyon Dry Grassland","Columbia
+        Basin Palouse Prairie","North Pacific Alpine and Subalpine Dry Grassland","North
+        Pacific Montane Grassland","North Pacific Montane Shrubland","Northern Rocky
+        Mountain Lower Montane, Foothill and Valley Grassland","Northern Rocky Mountain
+        Montane-Foothill Deciduous Shrubland","Northern Rocky Mountain Subalpine Deciduous
+        Shrubland","Northern Rocky Mountain Subalpine-Upper Montane Grassland","Southern
+        Rocky Mountain Montane-Subalpine Grassland","Rocky Mountain Gambel Oak-Mixed
+        Montane Shrubland","Rocky Mountain Lower Montane-Foothill Shrubland","California
+        Northern Coastal Grassland","North Pacific Herbaceous Bald and Bluff","North
+        Pacific Hypermaritime Shrub and Herbaceous Headland","Willamette Valley Upland
+        Prairie and Savanna","Mediterranean California Subalpine Meadow","Rocky Mountain
+        Subalpine-Montane Mesic Meadow","Central Mixedgrass Prairie","Northwestern
+        Great Plains Mixedgrass Prairie","Western Great Plains Foothill and Piedmont
+        Grassland","Western Great Plains Tallgrass Prairie","Western Great Plains
+        Sand Prairie","Western Great Plains Sandhill Steppe","Western Great Plains
+        Mesquite Woodland and Shrubland","Western Great Plains Shortgrass Prairie","Arkansas
+        Valley Prairie and Woodland","Central Tallgrass Prairie","North-Central Interior
+        Oak Savanna","North-Central Interior Sand and Gravel Tallgrass Prairie","North-Central
+        Oak Barrens","Northern Tallgrass Prairie","Southeastern Great Plains Tallgrass
+        Prairie","Texas Blackland Tallgrass Prairie","Texas-Louisiana Coastal Prairie","Central
+        Appalachian Pine-Oak Rocky Woodland","Southern Appalachian Grass and Shrub
+        Bald","Southern Appalachian Grass and Shrub Bald - Herbaceous Modifier","Southern
+        Appalachian Grass and Shrub Bald - Shrub Modifier","Central Appalachian Alkaline
+        Glade and Woodland","Central Interior Highlands Calcareous Glade and Barrens","Central
+        Interior Highlands Dry Acidic Glade and Barrens","Cumberland Sandstone Glade
+        and Barrens","Great Lakes Alvar","Nashville Basin Limestone Glade","Southern
+        Ridge and Valley / Cumberland Dry Calcareous Forest","Southern Piedmont Glade
+        and Barrens","East Gulf Coastal Plain Black Belt Calcareous Prairie and Woodland
+        - Herbaceous Modifier","East Gulf Coastal Plain Jackson Prairie and Woodland","Eastern
+        Highland Rim Prairie and Barrens - Dry Modifier","Coahuilan Chaparral","Madrean
+        Oriental Chaparral","Mogollon Chaparral","Sonora-Mojave Semi-Desert Chaparral","California
+        Montane Woodland and Chaparral","Great Basin Semi-Desert Chaparral","Florida
+        Dry Prairie","Florida Peninsula Inland Scrub","West Gulf Coastal Plain Catahoula
+        Barrens","West Gulf Coastal Plain Nepheline Syenite Glade","East Gulf Coastal
+        Plain Jackson Plain Dry Flatwoods - Open Understory Modifier","West Gulf Coastal
+        Plain Northern Calcareous Prairie","West Gulf Coastal Plain Southern Calcareous
+        Prairie","Acadian-Appalachian Subalpine Woodland and Heath-Krummholz","Atlantic
+        and Gulf Coastal Plain Interdunal Wetland","Atlantic Coastal Plain Southern
+        Dune and Maritime Grassland","Central and Upper Texas Coast Dune and Coastal
+        Grassland","East Gulf Coastal Plain Dune and Coastal Grassland","Great Lakes
+        Dune","Northern Atlantic Coastal Plain Dune and Swale","Northern Atlantic
+        Coastal Plain Heathland and Grassland","South Texas Dune and Coastal Grassland","South
+        Texas Sand Sheet Grassland","Southwest Florida Dune and Coastal Grassland","North
+        Pacific Coastal Cliff and Bluff","North Pacific Maritime Coastal Sand Dune
+        and Strand","Northern California Coastal Scrub","Mediterranean California
+        Coastal Bluff","Mediterranean California Northern Coastal Dune","Mediterranean
+        California Southern Coastal Dune","Atlantic Coastal Plain Northern Sandy Beach","Atlantic
+        Coastal Plain Sea Island Beach","Atlantic Coastal Plain Southern Beach","Florida
+        Panhandle Beach Vegetation","Louisiana Beach","Northern Atlantic Coastal Plain
+        Sandy Beach","Texas Coastal Bend Beach","Upper Texas Coast Beach","0","Mediterranean
+        California Serpentine Fen","Mediterranean California Subalpine-Montane Fen","North
+        Pacific Bog and Fen","Rocky Mountain Subalpine-Montane Fen","Atlantic Coastal
+        Plain Peatland Pocosin","Southern and Central Appalachian Bog and Fen","Atlantic
+        Coastal Plain Central Fresh-Oligohaline Tidal Marsh","Atlantic Coastal Plain
+        Embayed Region Tidal Freshwater Marsh","Atlantic Coastal Plain Northern Fresh
+        and Oligohaline Tidal Marsh","Florida Big Bend Fresh-Oligohaline Tidal Marsh","Atlantic
+        Coastal Plain Depression Pondshore","Atlantic Coastal Plain Large Natural
+        Lakeshore","Central Florida Herbaceous Pondshore","Central Florida Herbaceous
+        Seep","East Gulf Coastal Plain Savanna and Wet Prairie","East Gulf Coastal
+        Plain Depression Pondshore","Floridian Highlands Freshwater Marsh","Southern
+        Coastal Plain Herbaceous Seepage Bog","Southern Coastal Plain Nonriverine
+        Basin Swamp - Okefenokee Clethra Modifier","Southern Coastal Plain Nonriverine
+        Basin Swamp - Okefenokee Nupea Modifier","Texas-Louisiana Coastal Prairie
+        Slough","Central Interior and Appalachian Shrub-Herbaceous Wetland Systems","Great
+        Lakes Coastal Marsh Systems","0","0","Laurentian-Acadian Shrub-Herbaceous
+        Wetland Systems","0","Eastern Great Plains Wet Meadow, Prairie  and Marsh","Great
+        Lakes Wet-Mesic Lakeplain Prairie","Great Plains Prairie Pothole","Western
+        Great Plains Closed Depression Wetland","Western Great Plains Depressional
+        Wetland Systems","Western Great Plains Open Freshwater Depression Wetland","Cumberland
+        Riverscour","Inter-Mountain Basins Interdunal Swale Wetland","North Pacific
+        Avalanche Chute Shrubland","North Pacific Intertidal Freshwater Wetland","Temperate
+        Pacific Freshwater Emergent Marsh","Temperate Pacific Freshwater Mudflat","Columbia
+        Plateau Vernal Pool","Northern California Claypan Vernal Pool","Northern Rocky
+        Mountain Wooded Vernal Pool","Columbia Plateau Silver Sagebrush Seasonally
+        Flooded Shrub-Steppe","Rocky Mountain Alpine-Montane Wet Meadow","Rocky Mountain
+        Subalpine-Montane Riparian Shrubland","Temperate Pacific Montane Wet Meadow","Willamette
+        Valley Wet Prairie","Chihuahuan-Sonoran Desert Bottomland and Swale Grassland","North
+        American Arid West Emergent Marsh","North American Warm Desert Riparian Mesquite
+        Bosque","Western Great Plains Saline Depression Wetland","Acadian Salt Marsh
+        and Estuary Systems","Atlantic Coastal Plain Central Salt and Brackish Tidal
+        Marsh","Atlantic Coastal Plain Embayed Region Tidal Salt and Brackish Marsh","Atlantic
+        Coastal Plain Indian River Lagoon Tidal Marsh","Atlantic Coastal Plain Northern
+        Tidal Salt Marsh","Florida Big Bend Salt-Brackish Tidal Marsh","Gulf and Atlantic
+        Coastal Plain Tidal Marsh Systems","Mississippi Sound Salt and Brackish Tidal
+        Marsh","Texas Saline Coastal Prairie","Temperate Pacific Tidal Salt and Brackish
+        Marsh","Inter-Mountain Basins Alkaline Closed Depression","Inter-Mountain
+        Basins Greasewood Flat","Inter-Mountain Basins Playa","North American Warm
+        Desert Playa","Apacherian-Chihuahuan Mesquite Upland Scrub","Apacherian-Chihuahuan
+        Semi-Desert Grassland and Steppe","Chihuahuan Creosotebush, Mixed Desert and
+        Thorn Scrub","Chihuahuan Gypsophilous Grassland and Steppe","Chihuahuan Loamy
+        Plains Desert Grassland","Chihuahuan Mixed Desert and Thorn Scrub","Chihuahuan
+        Sandy Plains Semi-Desert Grassland","Chihuahuan Stabilized Coppice Dune and
+        Sand Flat Scrub","Chihuahuan Succulent Desert Scrub","Madrean Juniper Savanna","Mojave
+        Mid-Elevation Mixed Desert Scrub","North American Warm Desert Active and Stabilized
+        Dune","Sonora-Mojave Creosotebush-White Bursage Desert Scrub","Sonoran Mid-Elevation
+        Desert Scrub","Sonoran Paloverde-Mixed Cacti Desert Scrub","Chihuahuan Mixed
+        Salt Desert Scrub","Sonora-Mojave Mixed Salt Desert Scrub","North American
+        Warm Desert Wash","South Texas Lomas","Tamaulipan Calcareous Thornscrub","Tamaulipan
+        Clay Grassland","Tamaulipan Mesquite Upland Scrub","Tamaulipan Mixed Deciduous
+        Thornscrub","Tamaulipan Savanna Grassland","Inter-Mountain Basins Mat Saltbush
+        Shrubland","Inter-Mountain Basins Mixed Salt Desert Scrub","Inter-Mountain
+        Basins Wash","Columbia Plateau Steppe and Grassland","Great Basin Xeric Mixed
+        Sagebrush Shrubland","Inter-Mountain Basins Big Sagebrush Shrubland","Inter-Mountain
+        Basins Big Sagebrush Steppe","Inter-Mountain Basins Montane Sagebrush Steppe","Colorado
+        Plateau Mixed Low Sagebrush Shrubland","Columbia Plateau Low Sagebrush Steppe","Columbia
+        Plateau Scabland Shrubland","Wyoming Basins Dwarf Sagebrush Shrubland and
+        Steppe","Colorado Plateau Blackbrush-Mormon-tea Shrubland","Inter-Mountain
+        Basins Semi-Desert Grassland","Inter-Mountain Basins Semi-Desert Shrub Steppe","Southern
+        Colorado Plateau Sand Shrubland","Acadian-Appalachian Alpine Tundra","Rocky
+        Mountain Alpine Dwarf-Shrubland","Rocky Mountain Alpine Fell-Field","Rocky
+        Mountain Alpine Turf","Mediterranean California Alpine Dry Tundra","Mediterranean
+        California Alpine Fell-Field","North Pacific Dry and Mesic Alpine Dwarf-Shrubland,
+        Fell-field and Meadow","Rocky Mountain Alpine Tundra/Fell-field/Dwarf-shrub
+        Map Unit","Temperate Pacific Intertidal Mudflat","Mediterranean California
+        Eelgrass Bed","North Pacific Maritime Eelgrass Bed","South-Central Interior
+        Large Floodplain - Herbaceous Modifier","East Gulf Coastal Plain Large River
+        Floodplain Forest - Herbaceous Modifier","Temperate Pacific Freshwater Aquatic
+        Bed","Central California Coast Ranges Cliff and Canyon","Mediterranean California
+        Serpentine Barrens","Southern California Coast Ranges Cliff and Canyon","Central
+        Interior Acidic Cliff and Talus","Central Interior Calcareous Cliff and Talus","East
+        Gulf Coastal Plain Dry Chalk Bluff","North-Central Appalachian Acidic Cliff
+        and Talus","North-Central Appalachian Circumneutral Cliff and Talus","Southern
+        Appalachian Montane Cliff","Southern Interior Acid Cliff","Southern Interior
+        Calcareous Cliff","Southern Piedmont Cliff","Southern Appalachian Granitic
+        Dome","Southern Appalachian Rocky Summit","Southern Piedmont Granite Flatrock","Rocky
+        Mountain Cliff, Canyon and Massive Bedrock","Klamath-Siskiyou Cliff and Outcrop","North
+        Pacific Montane Massive Bedrock, Cliff and Talus","North Pacific Serpentine
+        Barren","North Pacific Active Volcanic Rock and Cinder Land","Sierra Nevada
+        Cliff and Canyon","Western Great Plains Badland","Southwestern Great Plains
+        Canyon","Western Great Plains Cliff and Outcrop","North American Warm Desert
+        Badland","North American Warm Desert Bedrock Cliff and Outcrop","North American
+        Warm Desert Pavement","North American Warm Desert Volcanic Rockland","Colorado
+        Plateau Mixed Bedrock Canyon and Tableland","Columbia Plateau Ash and Tuff
+        Badland","Geysers and Hot Springs","Inter-Mountain Basins Active and Stabilized
+        Dune","Inter-Mountain Basins Cliff and Canyon","Inter-Mountain Basins Shale
+        Badland","Inter-Mountain Basins Volcanic Rock and Cinder Land","Rocky Mountain
+        Alpine Bedrock and Scree","Mediterranean California Alpine Bedrock and Scree","North
+        Pacific Alpine and Subalpine Bedrock and Scree","Unconsolidated Shore","Undifferentiated
+        Barren Land","North American Alpine Ice Field","Orchards Vineyards and Other
+        High Structure Agriculture","Cultivated Cropland","Pasture/Hay","Introduced
+        Upland Vegetation - Annual Grassland","Introduced Upland Vegetation - Perennial
+        Grassland and Forbland","Modified/Managed Southern Tall Grassland","Introduced
+        Upland Vegetation - Shrub","Introduced Riparian and Wetland Vegetation","Introduced
+        Upland Vegetation - Treed","0","Disturbed, Non-specific","Recently Logged
+        Areas","Harvested Forest - Grass/Forb Regeneration","Harvested Forest-Shrub
+        Regeneration","Harvested Forest - Northwestern Conifer Regeneration","Recently
+        Burned","Recently burned grassland","Recently burned shrubland","Recently
+        burned forest","Disturbed/Successional - Grass/Forb Regeneration","Disturbed/Successional
+        - Shrub Regeneration","Disturbed/Successional - Recently Chained Pinyon-Juniper","Open
+        Water (Aquaculture)","Open Water (Brackish/Salt)","Open Water (Fresh)","Quarries,
+        Mines, Gravel Pits and Oil Wells","Developed, Open Space","Developed, Low
+        Intensity","Developed, Medium Intensity","Developed, High Intensity"]}],"proj:transform":[30.0,0.0,938865.0,0.0,-30.0,862215.0,0.0,0.0,1.0],"start_datetime":"2010-01-01T00:00:00+00:00","label:description":"USGS
+        GAP/LANDFIRE"},"stac_extensions":["https://stac-extensions.github.io/projection/v1.0.0/schema.json","https://stac-extensions.github.io/label/v1.0.0/schema.json"],"stac_version":"1.0.0"}],"links":[{"rel":"collection","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/gap"},{"rel":"parent","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/gap"},{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"self","type":"application/geo+json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/gap/items"},{"rel":"next","type":"application/geo+json","method":"GET","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/gap/items?limit=1&token=next:gap:gap_landfire_nationalterrestrialecosystems2011_938865_862215_1238865_562215"}]}'
     headers:
       Accept-Ranges:
       - bytes
@@ -157,7 +394,7 @@ interactions:
       Content-Type:
       - application/geo+json
       Date:
-      - Wed, 12 Mar 2025 11:38:39 GMT
+      - Wed, 12 Mar 2025 12:11:15 GMT
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Cache:
@@ -167,7 +404,7 @@ interactions:
       vary:
       - Accept-Encoding
       x-azure-ref:
-      - 20250312T113838Z-15d554846c6zhfckhC1DEN2szc0000000afg000000003f3v
+      - 20250312T121115Z-15d554846c6hstv4hC1DEN36c0000000015g0000000048wp
     status:
       code: 200
       message: OK
@@ -179,14 +416,14 @@ interactions:
       Host:
       - planetarycomputer.microsoft.com
       User-Agent:
-      - Python-urllib/3.9
+      - Python-urllib/3.10
     method: GET
     uri: https://planetarycomputer.microsoft.com/api/stac/v1/
   response:
     body:
       string: '{"type":"Catalog","id":"microsoft-pc","title":"Microsoft Planetary
         Computer STAC API","description":"Searchable spatiotemporal metadata describing
-        Earth science datasets hosted by the Microsoft Planetary Computer","stac_version":"1.0.0","conformsTo":["http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core","http://www.opengis.net/spec/ogcapi-features-3/1.0/conf/filter","https://api.stacspec.org/v1.0.0/ogcapi-features","http://www.opengis.net/spec/cql2/1.0/conf/cql2-text","https://api.stacspec.org/v1.0.0/item-search","https://api.stacspec.org/v1.0.0/collections","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30","https://api.stacspec.org/v1.0.0/item-search#query","https://api.stacspec.org/v1.0.0/item-search#sort","https://api.stacspec.org/v1.0.0/item-search#fields","https://api.stacspec.org/v1.0.0-rc.2/item-search#filter","http://www.opengis.net/spec/cql2/1.0/conf/cql2-json","http://www.opengis.net/spec/cql2/1.0/conf/basic-cql2","https://api.stacspec.org/v1.0.0/core","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/geojson"],"links":[{"rel":"self","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"data","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections"},{"rel":"conformance","type":"application/json","title":"STAC/OGC
+        Earth science datasets hosted by the Microsoft Planetary Computer","stac_version":"1.0.0","conformsTo":["https://api.stacspec.org/v1.0.0/ogcapi-features","https://api.stacspec.org/v1.0.0/collections","https://api.stacspec.org/v1.0.0/item-search#fields","http://www.opengis.net/spec/cql2/1.0/conf/basic-cql2","http://www.opengis.net/spec/cql2/1.0/conf/cql2-text","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30","https://api.stacspec.org/v1.0.0/core","https://api.stacspec.org/v1.0.0/item-search","https://api.stacspec.org/v1.0.0-rc.2/item-search#filter","http://www.opengis.net/spec/cql2/1.0/conf/cql2-json","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/geojson","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core","https://api.stacspec.org/v1.0.0/item-search#sort","https://api.stacspec.org/v1.0.0/item-search#query","http://www.opengis.net/spec/ogcapi-features-3/1.0/conf/filter"],"links":[{"rel":"self","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"data","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections"},{"rel":"conformance","type":"application/json","title":"STAC/OGC
         conformance classes implemented by this server","href":"https://planetarycomputer.microsoft.com/api/stac/v1/conformance"},{"rel":"search","type":"application/geo+json","title":"STAC
         search","href":"https://planetarycomputer.microsoft.com/api/stac/v1/search","method":"GET"},{"rel":"search","type":"application/geo+json","title":"STAC
         search","href":"https://planetarycomputer.microsoft.com/api/stac/v1/search","method":"POST"},{"rel":"http://www.opengis.net/def/rel/ogc/1.0/queryables","type":"application/schema+json","title":"Queryables","href":"https://planetarycomputer.microsoft.com/api/stac/v1/queryables","method":"GET"},{"rel":"child","type":"application/json","title":"Daymet
@@ -213,8 +450,7 @@ interactions:
         Annual Land Use Land Cover (9-class) V2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc-annual-v02"},{"rel":"child","type":"application/json","title":"CONUS404","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/conus404"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Intensity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-intensity"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Source","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-pointsourceid"},{"rel":"child","type":"application/json","title":"MTBS:
-        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"Landsat
-        8 Collection 2 Level-2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-8-c2-l2"},{"rel":"child","type":"application/json","title":"C-CAP
+        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"C-CAP
         Regional Land Cover and Change","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-c-cap"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Cloud","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-copc"},{"rel":"child","type":"application/json","title":"MODIS
         Burned Area Monthly","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-64A1-061"},{"rel":"child","type":"application/json","title":"ALOS
@@ -332,17 +568,17 @@ interactions:
       Connection:
       - close
       Content-Length:
-      - '25050'
+      - '24878'
       Content-Type:
       - application/json
       Date:
-      - Wed, 12 Mar 2025 11:38:39 GMT
+      - Wed, 12 Mar 2025 12:11:16 GMT
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Cache:
       - CONFIG_NOCACHE
       x-azure-ref:
-      - 20250312T113839Z-15d554846c6n6z89hC1DENyy0g00000008m00000000036rc
+      - 20250312T121115Z-15d554846c6b5hxkhC1DENmvhs000000075000000000405k
     status:
       code: 200
       message: OK
@@ -354,14 +590,14 @@ interactions:
       Host:
       - planetarycomputer.microsoft.com
       User-Agent:
-      - Python-urllib/3.9
+      - Python-urllib/3.10
     method: GET
     uri: https://planetarycomputer.microsoft.com/api/stac/v1/
   response:
     body:
       string: '{"type":"Catalog","id":"microsoft-pc","title":"Microsoft Planetary
         Computer STAC API","description":"Searchable spatiotemporal metadata describing
-        Earth science datasets hosted by the Microsoft Planetary Computer","stac_version":"1.0.0","conformsTo":["http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core","http://www.opengis.net/spec/ogcapi-features-3/1.0/conf/filter","https://api.stacspec.org/v1.0.0/ogcapi-features","http://www.opengis.net/spec/cql2/1.0/conf/cql2-text","https://api.stacspec.org/v1.0.0/item-search","https://api.stacspec.org/v1.0.0/collections","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30","https://api.stacspec.org/v1.0.0/item-search#query","https://api.stacspec.org/v1.0.0/item-search#sort","https://api.stacspec.org/v1.0.0/item-search#fields","https://api.stacspec.org/v1.0.0-rc.2/item-search#filter","http://www.opengis.net/spec/cql2/1.0/conf/cql2-json","http://www.opengis.net/spec/cql2/1.0/conf/basic-cql2","https://api.stacspec.org/v1.0.0/core","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/geojson"],"links":[{"rel":"self","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"data","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections"},{"rel":"conformance","type":"application/json","title":"STAC/OGC
+        Earth science datasets hosted by the Microsoft Planetary Computer","stac_version":"1.0.0","conformsTo":["https://api.stacspec.org/v1.0.0/ogcapi-features","https://api.stacspec.org/v1.0.0/collections","https://api.stacspec.org/v1.0.0/item-search#fields","http://www.opengis.net/spec/cql2/1.0/conf/basic-cql2","http://www.opengis.net/spec/cql2/1.0/conf/cql2-text","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30","https://api.stacspec.org/v1.0.0/core","https://api.stacspec.org/v1.0.0/item-search","https://api.stacspec.org/v1.0.0-rc.2/item-search#filter","http://www.opengis.net/spec/cql2/1.0/conf/cql2-json","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/geojson","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core","https://api.stacspec.org/v1.0.0/item-search#sort","https://api.stacspec.org/v1.0.0/item-search#query","http://www.opengis.net/spec/ogcapi-features-3/1.0/conf/filter"],"links":[{"rel":"self","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"data","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections"},{"rel":"conformance","type":"application/json","title":"STAC/OGC
         conformance classes implemented by this server","href":"https://planetarycomputer.microsoft.com/api/stac/v1/conformance"},{"rel":"search","type":"application/geo+json","title":"STAC
         search","href":"https://planetarycomputer.microsoft.com/api/stac/v1/search","method":"GET"},{"rel":"search","type":"application/geo+json","title":"STAC
         search","href":"https://planetarycomputer.microsoft.com/api/stac/v1/search","method":"POST"},{"rel":"http://www.opengis.net/def/rel/ogc/1.0/queryables","type":"application/schema+json","title":"Queryables","href":"https://planetarycomputer.microsoft.com/api/stac/v1/queryables","method":"GET"},{"rel":"child","type":"application/json","title":"Daymet
@@ -388,8 +624,7 @@ interactions:
         Annual Land Use Land Cover (9-class) V2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc-annual-v02"},{"rel":"child","type":"application/json","title":"CONUS404","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/conus404"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Intensity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-intensity"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Source","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-pointsourceid"},{"rel":"child","type":"application/json","title":"MTBS:
-        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"Landsat
-        8 Collection 2 Level-2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-8-c2-l2"},{"rel":"child","type":"application/json","title":"C-CAP
+        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"C-CAP
         Regional Land Cover and Change","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-c-cap"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Cloud","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-copc"},{"rel":"child","type":"application/json","title":"MODIS
         Burned Area Monthly","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-64A1-061"},{"rel":"child","type":"application/json","title":"ALOS
@@ -507,17 +742,17 @@ interactions:
       Connection:
       - close
       Content-Length:
-      - '25050'
+      - '24878'
       Content-Type:
       - application/json
       Date:
-      - Wed, 12 Mar 2025 11:38:40 GMT
+      - Wed, 12 Mar 2025 12:11:16 GMT
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Cache:
       - CONFIG_NOCACHE
       x-azure-ref:
-      - 20250312T113840Z-15d554846c6khzqphC1DENmtf400000003u0000000001kxc
+      - 20250312T121116Z-15d554846c6d76lhhC1DENuxvn0000000710000000001z8x
     status:
       code: 200
       message: OK

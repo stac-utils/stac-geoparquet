@@ -14,42 +14,185 @@ interactions:
     uri: https://planetarycomputer.microsoft.com/api/stac/v1/collections/us-census/items?limit=1
   response:
     body:
-      string: !!binary |
-        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
-        cMm87SFMD38CKKFNui1MAAA=
+      string: '{"type":"FeatureCollection","features":[{"id":"2020-census-blocks-population","bbox":[-179.148909,-14.548699,179.77847,71.365162],"type":"Feature","links":[{"rel":"collection","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/us-census"},{"rel":"parent","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/us-census"},{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"self","type":"application/geo+json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/us-census/items/2020-census-blocks-population"}],"assets":{"data":{"href":"abfs://us-census/2020/census_blocks_population.parquet","type":"application/x-parquet","roles":["data"],"title":"Dataset
+        root","table:storage_options":{"account_name":"ai4edataeuwest"}}},"geometry":{"type":"MultiPolygon","coordinates":[[[[144.956712,13.234189],[144.618068,13.234189],[144.618068,13.654383],[144.956712,13.654383],[144.956712,13.234189]]],[[[146.064818,14.110472],[144.886331,14.110472],[144.886331,20.553802],[146.064818,20.553802],[146.064818,14.110472]]],[[[-64.564907,17.673976],[-65.085452,17.673976],[-65.085452,18.412655],[-64.564907,18.412655],[-64.564907,17.673976]]],[[[-65.220703,17.88328],[-67.945404,17.88328],[-67.945404,18.515683],[-65.220703,18.515683],[-65.220703,17.88328]]],[[[-168.1433,-14.548699],[-171.089874,-14.548699],[-171.089874,-11.046934],[-168.1433,-11.046934],[-168.1433,-14.548699]]],[[[-154.806773,18.910361],[-178.334698,18.910361],[-178.334698,28.402123],[-154.806773,28.402123],[-154.806773,18.910361]]],[[[-66.949895,24.523096],[-124.763068,24.523096],[-124.763068,49.384358],[-66.949895,49.384358],[-66.949895,24.523096]]],[[[172.461667,53.01075],[179.77847,53.01075],[179.77847,51.357688],[172.461667,51.357688],[172.461667,53.01075]]],[[[-179.148909,71.365162],[-129.974167,71.365162],[-129.974167,51.214183],[-179.148909,51.214183],[-179.148909,71.365162]]]]},"collection":"us-census","properties":{"datetime":"2021-08-01T00:00:00Z","table:columns":[{"name":"P0010001","type":"int64","description":"Total:"},{"name":"P0010002","type":"int64","description":"Population
+        of one race:"},{"name":"P0010003","type":"int64","description":"White alone"},{"name":"P0010004","type":"int64","description":"Black
+        or African American alone"},{"name":"P0010005","type":"int64","description":"American
+        Indian and Alaska Native alone"},{"name":"P0010006","type":"int64","description":"Asian
+        alone"},{"name":"P0010007","type":"int64","description":"Native Hawaiian and
+        Other Pacific Islander alone"},{"name":"P0010008","type":"int64","description":"Some
+        Other Race alone"},{"name":"P0010009","type":"int64","description":"Population
+        of two or more races:"},{"name":"P0010010","type":"int64","description":"Population
+        of two races:"},{"name":"P0010011","type":"int64","description":"White; Black
+        or African American"},{"name":"P0010012","type":"int64","description":"White;
+        American Indian and Alaska Native"},{"name":"P0010013","type":"int64","description":"White;
+        Asian"},{"name":"P0010014","type":"int64","description":"White; Native Hawaiian
+        and Other Pacific Islander"},{"name":"P0010015","type":"int64","description":"White;
+        Some Other Race"},{"name":"P0010016","type":"int64","description":"Black or
+        African American; American Indian and Alaska Native"},{"name":"P0010017","type":"int64","description":"Black
+        or African American; Asian"},{"name":"P0010018","type":"int64","description":"Black
+        or African American; Native Hawaiian and Other Pacific Islander"},{"name":"P0010019","type":"int64","description":"Black
+        or African American; Some Other Race"},{"name":"P0010020","type":"int64","description":"American
+        Indian and Alaska Native; Asian"},{"name":"P0010021","type":"int64","description":"American
+        Indian and Alaska Native; Native Hawaiian and Other Pacific Islander"},{"name":"P0010022","type":"int64","description":"American
+        Indian and Alaska Native; Some Other Race"},{"name":"P0010023","type":"int64","description":"Asian;
+        Native Hawaiian and Other Pacific Islander"},{"name":"P0010024","type":"int64","description":"Asian;
+        Some Other Race"},{"name":"P0010025","type":"int64","description":"Native
+        Hawaiian and Other Pacific Islander; Some Other Race"},{"name":"P0010026","type":"int64","description":"Population
+        of three races:"},{"name":"P0010027","type":"int64","description":"White;
+        Black or African American; American Indian and Alaska Native"},{"name":"P0010028","type":"int64","description":"White;
+        Black or African American; Asian"},{"name":"P0010029","type":"int64","description":"White;
+        Black or African American; Native Hawaiian and Other Pacific Islander"},{"name":"P0010030","type":"int64","description":"White;
+        Black or African American; Some Other Race"},{"name":"P0010031","type":"int64","description":"White;
+        American Indian and Alaska Native; Asian"},{"name":"P0010032","type":"int64","description":"White;
+        American Indian and Alaska Native; Native Hawaiian and Other Pacific Islander"},{"name":"P0010033","type":"int64","description":"White;
+        American Indian and Alaska Native; Some Other Race"},{"name":"P0010034","type":"int64","description":"White;
+        Asian; Native Hawaiian and Other Pacific Islander"},{"name":"P0010035","type":"int64","description":"White;
+        Asian; Some Other Race"},{"name":"P0010036","type":"int64","description":"White;
+        Native Hawaiian and Other Pacific Islander; Some Other Race"},{"name":"P0010037","type":"int64","description":"Black
+        or African American; American Indian and Alaska Native; Asian"},{"name":"P0010038","type":"int64","description":"Black
+        or African American; American Indian and Alaska Native; Native Hawaiian and
+        Other Pacific Islander"},{"name":"P0010039","type":"int64","description":"Black
+        or African American; American Indian and Alaska Native; Some Other Race"},{"name":"P0010040","type":"int64","description":"Black
+        or African American; Asian; Native Hawaiian and Other Pacific Islander"},{"name":"P0010041","type":"int64","description":"Black
+        or African American; Asian; Some Other Race"},{"name":"P0010042","type":"int64","description":"Black
+        or African American; Native Hawaiian and Other Pacific Islander; Some Other
+        Race"},{"name":"P0010043","type":"int64","description":"American Indian and
+        Alaska Native; Asian; Native Hawaiian and Other Pacific Islander"},{"name":"P0010044","type":"int64","description":"American
+        Indian and Alaska Native; Asian; Some Other Race"},{"name":"P0010045","type":"int64","description":"American
+        Indian and Alaska Native; Native Hawaiian and Other Pacific Islander; Some
+        Other Race"},{"name":"P0010046","type":"int64","description":"Asian; Native
+        Hawaiian and Other Pacific Islander; Some Other Race"},{"name":"P0010047","type":"int64","description":"Population
+        of four races:"},{"name":"P0010048","type":"int64","description":"White; Black
+        or African American; American Indian and Alaska Native; Asian"},{"name":"P0010049","type":"int64","description":"White;
+        Black or African American; American Indian and Alaska Native; Native Hawaiian
+        and Other Pacific Islander"},{"name":"P0010050","type":"int64","description":"White;
+        Black or African American; American Indian and Alaska Native; Some Other Race"},{"name":"P0010051","type":"int64","description":"White;
+        Black or African American; Asian; Native Hawaiian and Other Pacific Islander"},{"name":"P0010052","type":"int64","description":"White;
+        Black or African American; Asian; Some Other Race"},{"name":"P0010053","type":"int64","description":"White;
+        Black or African American; Native Hawaiian and Other Pacific Islander; Some
+        Other Race"},{"name":"P0010054","type":"int64","description":"White; American
+        Indian and Alaska Native; Asian; Native Hawaiian and Other Pacific Islander"},{"name":"P0010055","type":"int64","description":"White;
+        American Indian and Alaska Native; Asian; Some Other Race"},{"name":"P0010056","type":"int64","description":"White;
+        American Indian and Alaska Native; Native Hawaiian and Other Pacific Islander;
+        Some Other Race"},{"name":"P0010057","type":"int64","description":"White;
+        Asian; Native Hawaiian and Other Pacific Islander; Some Other Race"},{"name":"P0010058","type":"int64","description":"Black
+        or African American; American Indian and Alaska Native; Asian; Native Hawaiian
+        and Other Pacific Islander"},{"name":"P0010059","type":"int64","description":"Black
+        or African American; American Indian and Alaska Native; Asian; Some Other
+        Race"},{"name":"P0010060","type":"int64","description":"Black or African American;
+        American Indian and Alaska Native; Native Hawaiian and Other Pacific Islander;
+        Some Other Race"},{"name":"P0010061","type":"int64","description":"Black or
+        African American; Asian; Native Hawaiian and Other Pacific Islander; Some
+        Other Race"},{"name":"P0010062","type":"int64","description":"American Indian
+        and Alaska Native; Asian; Native Hawaiian and Other Pacific Islander; Some
+        Other Race"},{"name":"P0010063","type":"int64","description":"Population of
+        five races:"},{"name":"P0010064","type":"int64","description":"White; Black
+        or African American; American Indian and Alaska Native; Asian; Native Hawaiian
+        and Other Pacific Islander"},{"name":"P0010065","type":"int64","description":"White;
+        Black or African American; American Indian and Alaska Native; Asian; Some
+        Other Race"},{"name":"P0010066","type":"int64","description":"White; Black
+        or African American; American Indian and Alaska Native; Native Hawaiian and
+        Other Pacific Islander; Some Other Race"},{"name":"P0010067","type":"int64","description":"White;
+        Black or African American; Asian; Native Hawaiian and Other Pacific Islander;
+        Some Other Race"},{"name":"P0010068","type":"int64","description":"White;
+        American Indian and Alaska Native; Asian; Native Hawaiian and Other Pacific
+        Islander; Some Other Race"},{"name":"P0010069","type":"int64","description":"Black
+        or African American; American Indian and Alaska Native; Asian; Native Hawaiian
+        and Other Pacific Islander; Some Other Race"},{"name":"P0010070","type":"int64","description":"Population
+        of six races:"},{"name":"P0010071","type":"int64","description":"White; Black
+        or African American; American Indian and Alaska Native; Asian; Native Hawaiian
+        and Other Pacific Islander; Some Other Race"},{"name":"P0020001","type":"int64","description":"Total:"},{"name":"P0020002","type":"int64","description":"Hispanic
+        or Latino"},{"name":"P0020003","type":"int64","description":"Not Hispanic
+        or Latino:"},{"name":"P0020004","type":"int64","description":"Population of
+        one race:"},{"name":"P0020005","type":"int64","description":"White alone"},{"name":"P0020006","type":"int64","description":"Black
+        or African American alone"},{"name":"P0020007","type":"int64","description":"American
+        Indian and Alaska Native alone"},{"name":"P0020008","type":"int64","description":"Asian
+        alone"},{"name":"P0020009","type":"int64","description":"Native Hawaiian and
+        Other Pacific Islander alone"},{"name":"P0020010","type":"int64","description":"Some
+        Other Race alone"},{"name":"P0020011","type":"int64","description":"Population
+        of two or more races:"},{"name":"P0020012","type":"int64","description":"Population
+        of two races:"},{"name":"P0020013","type":"int64","description":"White; Black
+        or African American"},{"name":"P0020014","type":"int64","description":"White;
+        American Indian and Alaska Native"},{"name":"P0020015","type":"int64","description":"White;
+        Asian"},{"name":"P0020016","type":"int64","description":"White; Native Hawaiian
+        and Other Pacific Islander"},{"name":"P0020017","type":"int64","description":"White;
+        Some Other Race"},{"name":"P0020018","type":"int64","description":"Black or
+        African American; American Indian and Alaska Native"},{"name":"P0020019","type":"int64","description":"Black
+        or African American; Asian"},{"name":"P0020020","type":"int64","description":"Black
+        or African American; Native Hawaiian and Other Pacific Islander"},{"name":"P0020021","type":"int64","description":"Black
+        or African American; Some Other Race"},{"name":"P0020022","type":"int64","description":"American
+        Indian and Alaska Native; Asian"},{"name":"P0020023","type":"int64","description":"American
+        Indian and Alaska Native; Native Hawaiian and Other Pacific Islander"},{"name":"P0020024","type":"int64","description":"American
+        Indian and Alaska Native; Some Other Race"},{"name":"P0020025","type":"int64","description":"Asian;
+        Native Hawaiian and Other Pacific Islander"},{"name":"P0020026","type":"int64","description":"Asian;
+        Some Other Race"},{"name":"P0020027","type":"int64","description":"Native
+        Hawaiian and Other Pacific Islander; Some Other Race"},{"name":"P0020028","type":"int64","description":"Population
+        of three races:"},{"name":"P0020029","type":"int64","description":"White;
+        Black or African American; American Indian and Alaska Native"},{"name":"P0020030","type":"int64","description":"White;
+        Black or African American; Asian"},{"name":"P0020031","type":"int64","description":"White;
+        Black or African American; Native Hawaiian and Other Pacific Islander"},{"name":"P0020032","type":"int64","description":"White;
+        Black or African American; Some Other Race"},{"name":"P0020033","type":"int64","description":"White;
+        American Indian and Alaska Native; Asian"},{"name":"P0020034","type":"int64","description":"White;
+        American Indian and Alaska Native; Native Hawaiian and Other Pacific Islander"},{"name":"P0020035","type":"int64","description":"White;
+        American Indian and Alaska Native; Some Other Race"},{"name":"P0020036","type":"int64","description":"White;
+        Asian; Native Hawaiian and Other Pacific Islander"},{"name":"P0020037","type":"int64","description":"White;
+        Asian; Some Other Race"},{"name":"P0020038","type":"int64","description":"White;
+        Native Hawaiian and Other Pacific Islander; Some Other Race"},{"name":"P0020039","type":"int64","description":"Black
+        or African American; American Indian and Alaska Native; Asian"},{"name":"P0020040","type":"int64","description":"Black
+        or African American; American Indian and Alaska Native; Native Hawaiian and
+        Other Pacific Islander"},{"name":"P0020041","type":"int64","description":"Black
+        or African American; American Indian and Alaska Native; Some Other Race"},{"name":"P0020042","type":"int64","description":"Black
+        or African American; Asian; Native Hawaiian and Other Pacific Islander"},{"name":"P0020043","type":"int64","description":"Black
+        or African American; Asian; Some Other Race"},{"name":"P0020044","type":"int64","description":"Black
+        or African American; Native Hawaiian and Other Pacific Islander; Some Other
+        Race"},{"name":"P0020045","type":"int64","description":"American Indian and
+        Alaska Native; Asian; Native Hawaiian and Other Pacific Islander"},{"name":"P0020046","type":"int64","description":"American
+        Indian and Alaska Native; Asian; Some Other Race"},{"name":"P0020047","type":"int64","description":"American
+        Indian and Alaska Native; Native Hawaiian and Other Pacific Islander; Some
+        Other Race"},{"name":"P0020048","type":"int64","description":"Asian; Native
+        Hawaiian and Other Pacific Islander; Some Other Race"},{"name":"P0020049","type":"int64","description":"Population
+        of four races:"},{"name":"P0020050","type":"int64","description":"White; Black
+        or African American; American Indian and Alaska Native; Asian"},{"name":"P0020051","type":"int64","description":"White;
+        Black or African American; American Indian and Alaska Native; Native Hawaiian
+        and Other Pacific Islander"},{"name":"P0020052","type":"int64","description":"White;
+        Black or African American; American Indian and Alaska Native; Some Other Race"},{"name":"P0020053","type":"int64","description":"White;
+        Black or African American; Asian; Native Hawaiian and Other Pacific Islander"},{"name":"P0020054","type":"int64","description":"White;
+        Black or African American; Asian; Some Other Race"},{"name":"P0020055","type":"int64","description":"White;
+        Black or African American; Native Hawaiian and Other Pacific Islander; Some
+        Other Race"},{"name":"P0020056","type":"int64","description":"White; American
+        Indian and Alaska Native; Asian; Native Hawaiian and Other Pacific Islander"},{"name":"P0020057","type":"int64","description":"White;
+        American Indian and Alaska Native; Asian; Some Other Race"},{"name":"P0020058","type":"int64","description":"White;
+        American Indian and Alaska Native; Native Hawaiian and Other Pacific Islander;
+        Some Other Race"},{"name":"P0020059","type":"int64","description":"White;
+        Asian; Native Hawaiian and Other Pacific Islander; Some Other Race"},{"name":"P0020060","type":"int64","description":"Black
+        or African American; American Indian and Alaska Native; Asian; Native Hawaiian
+        and Other Pacific Islander"},{"name":"P0020061","type":"int64","description":"Black
+        or African American; American Indian and Alaska Native; Asian; Some Other
+        Race"},{"name":"P0020062","type":"int64","description":"Black or African American;
+        American Indian and Alaska Native; Native Hawaiian and Other Pacific Islander;
+        Some Other Race"},{"name":"P0020063","type":"int64","description":"Black or
+        African American; Asian; Native Hawaiian and Other Pacific Islander; Some
+        Other Race"},{"name":"P0020064","type":"int64","description":"American Indian
+        and Alaska Native; Asian; Native Hawaiian and Other Pacific Islander; Some
+        Other Race"},{"name":"P0020065","type":"int64","description":"Population of
+        five races:"},{"name":"P0020066","type":"int64","description":"White; Black
+        or African American; American Indian and Alaska Native; Asian; Native Hawaiian
+        and Other Pacific Islander"},{"name":"P0020067","type":"int64","description":"White;
+        Black or African American; American Indian and Alaska Native; Asian; Some
+        Other Race"},{"name":"P0020068","type":"int64","description":"White; Black
+        or African American; American Indian and Alaska Native; Native Hawaiian and
+        Other Pacific Islander; Some Other Race"},{"name":"P0020069","type":"int64","description":"White;
+        Black or African American; Asian; Native Hawaiian and Other Pacific Islander;
+        Some Other Race"},{"name":"P0020070","type":"int64","description":"White;
+        American Indian and Alaska Native; Asian; Native Hawaiian and Other Pacific
+        Islander; Some Other Race"},{"name":"P0020071","type":"int64","description":"Black
+        or African American; American Indian and Alaska Native; Asian; Native Hawaiian
+        and Other Pacific Islander; Some Other Race"},{"name":"P0020072","type":"int64","description":"Population
+        of six races:"},{"name":"P0020073","type":"int64","description":"White; Black
+        or African American; American Indian and Alaska Native; Asian; Native Hawaiian
+        and Other Pacific Islander; Some Other Race"},{"name":"GEOID","type":"byte_array","description":"Geographic
+        record identifier"}]},"stac_extensions":["https://stac-extensions.github.io/table/v1.2.0/schema.json"],"stac_version":"1.0.0"}],"links":[{"rel":"collection","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/us-census"},{"rel":"parent","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/us-census"},{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"self","type":"application/geo+json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/us-census/items"},{"rel":"next","type":"application/geo+json","method":"GET","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/us-census/items?limit=1&token=next:us-census:2020-census-blocks-population"}]}'
     headers:
       Accept-Ranges:
       - bytes
@@ -70,7 +213,7 @@ interactions:
       Content-Type:
       - application/geo+json
       Date:
-      - Wed, 12 Mar 2025 11:40:00 GMT
+      - Wed, 12 Mar 2025 12:12:32 GMT
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Cache:
@@ -80,7 +223,7 @@ interactions:
       vary:
       - Accept-Encoding
       x-azure-ref:
-      - 20250312T113959Z-15d554846c6d76lhhC1DENuxvn00000006zg0000000013we
+      - 20250312T121231Z-15d554846c6ddck5hC1DENuhew00000008m000000000256q
     status:
       code: 200
       message: OK
@@ -92,14 +235,14 @@ interactions:
       Host:
       - planetarycomputer.microsoft.com
       User-Agent:
-      - Python-urllib/3.9
+      - Python-urllib/3.10
     method: GET
     uri: https://planetarycomputer.microsoft.com/api/stac/v1/
   response:
     body:
       string: '{"type":"Catalog","id":"microsoft-pc","title":"Microsoft Planetary
         Computer STAC API","description":"Searchable spatiotemporal metadata describing
-        Earth science datasets hosted by the Microsoft Planetary Computer","stac_version":"1.0.0","conformsTo":["http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core","http://www.opengis.net/spec/ogcapi-features-3/1.0/conf/filter","https://api.stacspec.org/v1.0.0/ogcapi-features","http://www.opengis.net/spec/cql2/1.0/conf/cql2-text","https://api.stacspec.org/v1.0.0/item-search","https://api.stacspec.org/v1.0.0/collections","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30","https://api.stacspec.org/v1.0.0/item-search#query","https://api.stacspec.org/v1.0.0/item-search#sort","https://api.stacspec.org/v1.0.0/item-search#fields","https://api.stacspec.org/v1.0.0-rc.2/item-search#filter","http://www.opengis.net/spec/cql2/1.0/conf/cql2-json","http://www.opengis.net/spec/cql2/1.0/conf/basic-cql2","https://api.stacspec.org/v1.0.0/core","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/geojson"],"links":[{"rel":"self","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"data","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections"},{"rel":"conformance","type":"application/json","title":"STAC/OGC
+        Earth science datasets hosted by the Microsoft Planetary Computer","stac_version":"1.0.0","conformsTo":["https://api.stacspec.org/v1.0.0/item-search#sort","http://www.opengis.net/spec/cql2/1.0/conf/cql2-json","https://api.stacspec.org/v1.0.0/item-search#fields","https://api.stacspec.org/v1.0.0/item-search","http://www.opengis.net/spec/ogcapi-features-3/1.0/conf/filter","https://api.stacspec.org/v1.0.0/ogcapi-features","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core","http://www.opengis.net/spec/cql2/1.0/conf/basic-cql2","https://api.stacspec.org/v1.0.0/item-search#query","https://api.stacspec.org/v1.0.0/core","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/geojson","http://www.opengis.net/spec/cql2/1.0/conf/cql2-text","https://api.stacspec.org/v1.0.0-rc.2/item-search#filter","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30","https://api.stacspec.org/v1.0.0/collections"],"links":[{"rel":"self","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"data","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections"},{"rel":"conformance","type":"application/json","title":"STAC/OGC
         conformance classes implemented by this server","href":"https://planetarycomputer.microsoft.com/api/stac/v1/conformance"},{"rel":"search","type":"application/geo+json","title":"STAC
         search","href":"https://planetarycomputer.microsoft.com/api/stac/v1/search","method":"GET"},{"rel":"search","type":"application/geo+json","title":"STAC
         search","href":"https://planetarycomputer.microsoft.com/api/stac/v1/search","method":"POST"},{"rel":"http://www.opengis.net/def/rel/ogc/1.0/queryables","type":"application/schema+json","title":"Queryables","href":"https://planetarycomputer.microsoft.com/api/stac/v1/queryables","method":"GET"},{"rel":"child","type":"application/json","title":"Daymet
@@ -126,8 +269,7 @@ interactions:
         Annual Land Use Land Cover (9-class) V2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc-annual-v02"},{"rel":"child","type":"application/json","title":"CONUS404","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/conus404"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Intensity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-intensity"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Source","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-pointsourceid"},{"rel":"child","type":"application/json","title":"MTBS:
-        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"Landsat
-        8 Collection 2 Level-2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-8-c2-l2"},{"rel":"child","type":"application/json","title":"C-CAP
+        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"C-CAP
         Regional Land Cover and Change","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-c-cap"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Cloud","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-copc"},{"rel":"child","type":"application/json","title":"MODIS
         Burned Area Monthly","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-64A1-061"},{"rel":"child","type":"application/json","title":"ALOS
@@ -245,17 +387,17 @@ interactions:
       Connection:
       - close
       Content-Length:
-      - '25050'
+      - '24878'
       Content-Type:
       - application/json
       Date:
-      - Wed, 12 Mar 2025 11:40:00 GMT
+      - Wed, 12 Mar 2025 12:12:32 GMT
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Cache:
       - CONFIG_NOCACHE
       x-azure-ref:
-      - 20250312T114000Z-15d554846c6qjzmxhC1DEN0a0w0000000a90000000000xsk
+      - 20250312T121232Z-15d554846c6zhfckhC1DEN2szc0000000ang0000000024uz
     status:
       code: 200
       message: OK
@@ -267,14 +409,14 @@ interactions:
       Host:
       - planetarycomputer.microsoft.com
       User-Agent:
-      - Python-urllib/3.9
+      - Python-urllib/3.10
     method: GET
     uri: https://planetarycomputer.microsoft.com/api/stac/v1/
   response:
     body:
       string: '{"type":"Catalog","id":"microsoft-pc","title":"Microsoft Planetary
         Computer STAC API","description":"Searchable spatiotemporal metadata describing
-        Earth science datasets hosted by the Microsoft Planetary Computer","stac_version":"1.0.0","conformsTo":["http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core","http://www.opengis.net/spec/ogcapi-features-3/1.0/conf/filter","https://api.stacspec.org/v1.0.0/ogcapi-features","http://www.opengis.net/spec/cql2/1.0/conf/cql2-text","https://api.stacspec.org/v1.0.0/item-search","https://api.stacspec.org/v1.0.0/collections","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30","https://api.stacspec.org/v1.0.0/item-search#query","https://api.stacspec.org/v1.0.0/item-search#sort","https://api.stacspec.org/v1.0.0/item-search#fields","https://api.stacspec.org/v1.0.0-rc.2/item-search#filter","http://www.opengis.net/spec/cql2/1.0/conf/cql2-json","http://www.opengis.net/spec/cql2/1.0/conf/basic-cql2","https://api.stacspec.org/v1.0.0/core","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/geojson"],"links":[{"rel":"self","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"data","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections"},{"rel":"conformance","type":"application/json","title":"STAC/OGC
+        Earth science datasets hosted by the Microsoft Planetary Computer","stac_version":"1.0.0","conformsTo":["https://api.stacspec.org/v1.0.0/item-search#sort","http://www.opengis.net/spec/cql2/1.0/conf/cql2-json","https://api.stacspec.org/v1.0.0/item-search#fields","https://api.stacspec.org/v1.0.0/item-search","http://www.opengis.net/spec/ogcapi-features-3/1.0/conf/filter","https://api.stacspec.org/v1.0.0/ogcapi-features","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core","http://www.opengis.net/spec/cql2/1.0/conf/basic-cql2","https://api.stacspec.org/v1.0.0/item-search#query","https://api.stacspec.org/v1.0.0/core","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/geojson","http://www.opengis.net/spec/cql2/1.0/conf/cql2-text","https://api.stacspec.org/v1.0.0-rc.2/item-search#filter","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30","https://api.stacspec.org/v1.0.0/collections"],"links":[{"rel":"self","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"data","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections"},{"rel":"conformance","type":"application/json","title":"STAC/OGC
         conformance classes implemented by this server","href":"https://planetarycomputer.microsoft.com/api/stac/v1/conformance"},{"rel":"search","type":"application/geo+json","title":"STAC
         search","href":"https://planetarycomputer.microsoft.com/api/stac/v1/search","method":"GET"},{"rel":"search","type":"application/geo+json","title":"STAC
         search","href":"https://planetarycomputer.microsoft.com/api/stac/v1/search","method":"POST"},{"rel":"http://www.opengis.net/def/rel/ogc/1.0/queryables","type":"application/schema+json","title":"Queryables","href":"https://planetarycomputer.microsoft.com/api/stac/v1/queryables","method":"GET"},{"rel":"child","type":"application/json","title":"Daymet
@@ -301,8 +443,7 @@ interactions:
         Annual Land Use Land Cover (9-class) V2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc-annual-v02"},{"rel":"child","type":"application/json","title":"CONUS404","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/conus404"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Intensity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-intensity"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Source","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-pointsourceid"},{"rel":"child","type":"application/json","title":"MTBS:
-        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"Landsat
-        8 Collection 2 Level-2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-8-c2-l2"},{"rel":"child","type":"application/json","title":"C-CAP
+        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"C-CAP
         Regional Land Cover and Change","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-c-cap"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Cloud","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-copc"},{"rel":"child","type":"application/json","title":"MODIS
         Burned Area Monthly","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-64A1-061"},{"rel":"child","type":"application/json","title":"ALOS
@@ -420,17 +561,17 @@ interactions:
       Connection:
       - close
       Content-Length:
-      - '25050'
+      - '24878'
       Content-Type:
       - application/json
       Date:
-      - Wed, 12 Mar 2025 11:40:01 GMT
+      - Wed, 12 Mar 2025 12:12:33 GMT
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Cache:
       - CONFIG_NOCACHE
       x-azure-ref:
-      - 20250312T114001Z-15d554846c6ddck5hC1DENuhew00000008h0000000001y9d
+      - 20250312T121232Z-15d554846c6ddck5hC1DENuhew00000008kg000000002tek
     status:
       code: 200
       message: OK

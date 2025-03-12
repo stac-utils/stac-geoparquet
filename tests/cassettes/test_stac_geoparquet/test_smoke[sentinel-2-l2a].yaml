@@ -14,54 +14,62 @@ interactions:
     uri: https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-2-l2a/items?limit=1
   response:
     body:
-      string: !!binary |
-        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
-        L0EAAA==
+      string: '{"type":"FeatureCollection","features":[{"id":"S2B_MSIL2A_20250312T014549_R074_T53NKG_20250312T041213","bbox":[132.2919967,5.3337874,133.1949724,5.5732075],"type":"Feature","links":[{"rel":"collection","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-2-l2a"},{"rel":"parent","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-2-l2a"},{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"self","type":"application/geo+json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-2-l2a/items/S2B_MSIL2A_20250312T014549_R074_T53NKG_20250312T041213"},{"rel":"license","href":"https://sentinel.esa.int/documents/247904/690755/Sentinel_Data_Legal_Notice"},{"rel":"preview","href":"https://planetarycomputer.microsoft.com/api/data/v1/item/map?collection=sentinel-2-l2a&item=S2B_MSIL2A_20250312T014549_R074_T53NKG_20250312T041213","title":"Map
+        of item","type":"text/html"}],"assets":{"AOT":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/53/N/KG/2025/03/12/S2B_MSIL2A_20250312T014549_N0511_R074_T53NKG_20250312T041213.SAFE/GRANULE/L2A_T53NKG_A041856_20250312T014547/IMG_DATA/R10m/T53NKG_20250312T014549_AOT_10m.tif","proj:bbox":[199980.0,590220.0,309780.0,700020.0],"proj:shape":[10980,10980],"proj:transform":[10.0,0.0,199980.0,0.0,-10.0,700020.0],"gsd":10.0,"type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","roles":["data"],"title":"Aerosol
+        optical thickness (AOT)"},"B01":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/53/N/KG/2025/03/12/S2B_MSIL2A_20250312T014549_N0511_R074_T53NKG_20250312T041213.SAFE/GRANULE/L2A_T53NKG_A041856_20250312T014547/IMG_DATA/R60m/T53NKG_20250312T014549_B01_60m.tif","proj:bbox":[199980.0,590220.0,309780.0,700020.0],"proj:shape":[1830,1830],"proj:transform":[60.0,0.0,199980.0,0.0,-60.0,700020.0],"gsd":60.0,"type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","roles":["data"],"title":"Band
+        1 - Coastal aerosol - 60m","eo:bands":[{"name":"B01","common_name":"coastal","description":"Band
+        1 - Coastal aerosol","center_wavelength":0.443,"full_width_half_max":0.027}]},"B02":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/53/N/KG/2025/03/12/S2B_MSIL2A_20250312T014549_N0511_R074_T53NKG_20250312T041213.SAFE/GRANULE/L2A_T53NKG_A041856_20250312T014547/IMG_DATA/R10m/T53NKG_20250312T014549_B02_10m.tif","proj:bbox":[199980.0,590220.0,309780.0,700020.0],"proj:shape":[10980,10980],"proj:transform":[10.0,0.0,199980.0,0.0,-10.0,700020.0],"gsd":10.0,"type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","roles":["data"],"title":"Band
+        2 - Blue - 10m","eo:bands":[{"name":"B02","common_name":"blue","description":"Band
+        2 - Blue","center_wavelength":0.49,"full_width_half_max":0.098}]},"B03":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/53/N/KG/2025/03/12/S2B_MSIL2A_20250312T014549_N0511_R074_T53NKG_20250312T041213.SAFE/GRANULE/L2A_T53NKG_A041856_20250312T014547/IMG_DATA/R10m/T53NKG_20250312T014549_B03_10m.tif","proj:bbox":[199980.0,590220.0,309780.0,700020.0],"proj:shape":[10980,10980],"proj:transform":[10.0,0.0,199980.0,0.0,-10.0,700020.0],"gsd":10.0,"type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","roles":["data"],"title":"Band
+        3 - Green - 10m","eo:bands":[{"name":"B03","common_name":"green","description":"Band
+        3 - Green","center_wavelength":0.56,"full_width_half_max":0.045}]},"B04":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/53/N/KG/2025/03/12/S2B_MSIL2A_20250312T014549_N0511_R074_T53NKG_20250312T041213.SAFE/GRANULE/L2A_T53NKG_A041856_20250312T014547/IMG_DATA/R10m/T53NKG_20250312T014549_B04_10m.tif","proj:bbox":[199980.0,590220.0,309780.0,700020.0],"proj:shape":[10980,10980],"proj:transform":[10.0,0.0,199980.0,0.0,-10.0,700020.0],"gsd":10.0,"type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","roles":["data"],"title":"Band
+        4 - Red - 10m","eo:bands":[{"name":"B04","common_name":"red","description":"Band
+        4 - Red","center_wavelength":0.665,"full_width_half_max":0.038}]},"B05":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/53/N/KG/2025/03/12/S2B_MSIL2A_20250312T014549_N0511_R074_T53NKG_20250312T041213.SAFE/GRANULE/L2A_T53NKG_A041856_20250312T014547/IMG_DATA/R20m/T53NKG_20250312T014549_B05_20m.tif","proj:bbox":[199980.0,590220.0,309780.0,700020.0],"proj:shape":[5490,5490],"proj:transform":[20.0,0.0,199980.0,0.0,-20.0,700020.0],"gsd":20.0,"type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","roles":["data"],"title":"Band
+        5 - Vegetation red edge 1 - 20m","eo:bands":[{"name":"B05","common_name":"rededge","description":"Band
+        5 - Vegetation red edge 1","center_wavelength":0.704,"full_width_half_max":0.019}]},"B06":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/53/N/KG/2025/03/12/S2B_MSIL2A_20250312T014549_N0511_R074_T53NKG_20250312T041213.SAFE/GRANULE/L2A_T53NKG_A041856_20250312T014547/IMG_DATA/R20m/T53NKG_20250312T014549_B06_20m.tif","proj:bbox":[199980.0,590220.0,309780.0,700020.0],"proj:shape":[5490,5490],"proj:transform":[20.0,0.0,199980.0,0.0,-20.0,700020.0],"gsd":20.0,"type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","roles":["data"],"title":"Band
+        6 - Vegetation red edge 2 - 20m","eo:bands":[{"name":"B06","common_name":"rededge","description":"Band
+        6 - Vegetation red edge 2","center_wavelength":0.74,"full_width_half_max":0.018}]},"B07":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/53/N/KG/2025/03/12/S2B_MSIL2A_20250312T014549_N0511_R074_T53NKG_20250312T041213.SAFE/GRANULE/L2A_T53NKG_A041856_20250312T014547/IMG_DATA/R20m/T53NKG_20250312T014549_B07_20m.tif","proj:bbox":[199980.0,590220.0,309780.0,700020.0],"proj:shape":[5490,5490],"proj:transform":[20.0,0.0,199980.0,0.0,-20.0,700020.0],"gsd":20.0,"type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","roles":["data"],"title":"Band
+        7 - Vegetation red edge 3 - 20m","eo:bands":[{"name":"B07","common_name":"rededge","description":"Band
+        7 - Vegetation red edge 3","center_wavelength":0.783,"full_width_half_max":0.028}]},"B08":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/53/N/KG/2025/03/12/S2B_MSIL2A_20250312T014549_N0511_R074_T53NKG_20250312T041213.SAFE/GRANULE/L2A_T53NKG_A041856_20250312T014547/IMG_DATA/R10m/T53NKG_20250312T014549_B08_10m.tif","proj:bbox":[199980.0,590220.0,309780.0,700020.0],"proj:shape":[10980,10980],"proj:transform":[10.0,0.0,199980.0,0.0,-10.0,700020.0],"gsd":10.0,"type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","roles":["data"],"title":"Band
+        8 - NIR - 10m","eo:bands":[{"name":"B08","common_name":"nir","description":"Band
+        8 - NIR","center_wavelength":0.842,"full_width_half_max":0.145}]},"B09":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/53/N/KG/2025/03/12/S2B_MSIL2A_20250312T014549_N0511_R074_T53NKG_20250312T041213.SAFE/GRANULE/L2A_T53NKG_A041856_20250312T014547/IMG_DATA/R60m/T53NKG_20250312T014549_B09_60m.tif","proj:bbox":[199980.0,590220.0,309780.0,700020.0],"proj:shape":[1830,1830],"proj:transform":[60.0,0.0,199980.0,0.0,-60.0,700020.0],"gsd":60.0,"type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","roles":["data"],"title":"Band
+        9 - Water vapor - 60m","eo:bands":[{"name":"B09","description":"Band 9 - Water
+        vapor","center_wavelength":0.945,"full_width_half_max":0.026}]},"B11":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/53/N/KG/2025/03/12/S2B_MSIL2A_20250312T014549_N0511_R074_T53NKG_20250312T041213.SAFE/GRANULE/L2A_T53NKG_A041856_20250312T014547/IMG_DATA/R20m/T53NKG_20250312T014549_B11_20m.tif","proj:bbox":[199980.0,590220.0,309780.0,700020.0],"proj:shape":[5490,5490],"proj:transform":[20.0,0.0,199980.0,0.0,-20.0,700020.0],"gsd":20.0,"type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","roles":["data"],"title":"Band
+        11 - SWIR (1.6) - 20m","eo:bands":[{"name":"B11","common_name":"swir16","description":"Band
+        11 - SWIR (1.6)","center_wavelength":1.61,"full_width_half_max":0.143}]},"B12":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/53/N/KG/2025/03/12/S2B_MSIL2A_20250312T014549_N0511_R074_T53NKG_20250312T041213.SAFE/GRANULE/L2A_T53NKG_A041856_20250312T014547/IMG_DATA/R20m/T53NKG_20250312T014549_B12_20m.tif","proj:bbox":[199980.0,590220.0,309780.0,700020.0],"proj:shape":[5490,5490],"proj:transform":[20.0,0.0,199980.0,0.0,-20.0,700020.0],"gsd":20.0,"type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","roles":["data"],"title":"Band
+        12 - SWIR (2.2) - 20m","eo:bands":[{"name":"B12","common_name":"swir22","description":"Band
+        12 - SWIR (2.2)","center_wavelength":2.19,"full_width_half_max":0.242}]},"B8A":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/53/N/KG/2025/03/12/S2B_MSIL2A_20250312T014549_N0511_R074_T53NKG_20250312T041213.SAFE/GRANULE/L2A_T53NKG_A041856_20250312T014547/IMG_DATA/R20m/T53NKG_20250312T014549_B8A_20m.tif","proj:bbox":[199980.0,590220.0,309780.0,700020.0],"proj:shape":[5490,5490],"proj:transform":[20.0,0.0,199980.0,0.0,-20.0,700020.0],"gsd":20.0,"type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","roles":["data"],"title":"Band
+        8A - Vegetation red edge 4 - 20m","eo:bands":[{"name":"B8A","common_name":"rededge","description":"Band
+        8A - Vegetation red edge 4","center_wavelength":0.865,"full_width_half_max":0.033}]},"SCL":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/53/N/KG/2025/03/12/S2B_MSIL2A_20250312T014549_N0511_R074_T53NKG_20250312T041213.SAFE/GRANULE/L2A_T53NKG_A041856_20250312T014547/IMG_DATA/R20m/T53NKG_20250312T014549_SCL_20m.tif","proj:bbox":[199980.0,590220.0,309780.0,700020.0],"proj:shape":[5490,5490],"proj:transform":[20.0,0.0,199980.0,0.0,-20.0,700020.0],"gsd":20.0,"type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","roles":["data"],"title":"Scene
+        classfication map (SCL)"},"WVP":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/53/N/KG/2025/03/12/S2B_MSIL2A_20250312T014549_N0511_R074_T53NKG_20250312T041213.SAFE/GRANULE/L2A_T53NKG_A041856_20250312T014547/IMG_DATA/R10m/T53NKG_20250312T014549_WVP_10m.tif","proj:bbox":[199980.0,590220.0,309780.0,700020.0],"proj:shape":[10980,10980],"proj:transform":[10.0,0.0,199980.0,0.0,-10.0,700020.0],"gsd":10.0,"type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","roles":["data"],"title":"Water
+        vapour (WVP)"},"visual":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/53/N/KG/2025/03/12/S2B_MSIL2A_20250312T014549_N0511_R074_T53NKG_20250312T041213.SAFE/GRANULE/L2A_T53NKG_A041856_20250312T014547/IMG_DATA/R10m/T53NKG_20250312T014549_TCI_10m.tif","proj:bbox":[199980.0,590220.0,309780.0,700020.0],"proj:shape":[10980,10980],"proj:transform":[10.0,0.0,199980.0,0.0,-10.0,700020.0],"gsd":10.0,"type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","roles":["data"],"title":"True
+        color image","eo:bands":[{"name":"B04","common_name":"red","description":"Band
+        4 - Red","center_wavelength":0.665,"full_width_half_max":0.038},{"name":"B03","common_name":"green","description":"Band
+        3 - Green","center_wavelength":0.56,"full_width_half_max":0.045},{"name":"B02","common_name":"blue","description":"Band
+        2 - Blue","center_wavelength":0.49,"full_width_half_max":0.098}]},"safe-manifest":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/53/N/KG/2025/03/12/S2B_MSIL2A_20250312T014549_N0511_R074_T53NKG_20250312T041213.SAFE/manifest.safe","type":"application/xml","roles":["metadata"],"title":"SAFE
+        manifest"},"granule-metadata":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/53/N/KG/2025/03/12/S2B_MSIL2A_20250312T014549_N0511_R074_T53NKG_20250312T041213.SAFE/GRANULE/L2A_T53NKG_A041856_20250312T014547/MTD_TL.xml","type":"application/xml","roles":["metadata"],"title":"Granule
+        metadata"},"inspire-metadata":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/53/N/KG/2025/03/12/S2B_MSIL2A_20250312T014549_N0511_R074_T53NKG_20250312T041213.SAFE/INSPIRE.xml","type":"application/xml","roles":["metadata"],"title":"INSPIRE
+        metadata"},"product-metadata":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/53/N/KG/2025/03/12/S2B_MSIL2A_20250312T014549_N0511_R074_T53NKG_20250312T041213.SAFE/MTD_MSIL2A.xml","type":"application/xml","roles":["metadata"],"title":"Product
+        metadata"},"datastrip-metadata":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/53/N/KG/2025/03/12/S2B_MSIL2A_20250312T014549_N0511_R074_T53NKG_20250312T041213.SAFE/DATASTRIP/DS_2BPS_20250312T041213_S20250312T014547/MTD_DS.xml","type":"application/xml","roles":["metadata"],"title":"Datastrip
+        metadata"},"tilejson":{"title":"TileJSON with default rendering","href":"https://planetarycomputer.microsoft.com/api/data/v1/item/tilejson.json?collection=sentinel-2-l2a&item=S2B_MSIL2A_20250312T014549_R074_T53NKG_20250312T041213&assets=visual&asset_bidx=visual%7C1%2C2%2C3&nodata=0&format=png","type":"application/json","roles":["tiles"]},"rendered_preview":{"title":"Rendered
+        preview","rel":"preview","href":"https://planetarycomputer.microsoft.com/api/data/v1/item/preview.png?collection=sentinel-2-l2a&item=S2B_MSIL2A_20250312T014549_R074_T53NKG_20250312T041213&assets=visual&asset_bidx=visual%7C1%2C2%2C3&nodata=0&format=png","roles":["overview"],"type":"image/png"}},"geometry":{"type":"Polygon","coordinates":[[[132.9626162,5.4001586],[132.9626528,5.4003226],[132.9629242,5.400253],[132.9635165,5.4029098],[133.1949724,5.3388266],[133.1945719,5.3370323],[132.2931459,5.3337874],[132.2919967,5.5732075],[132.3167862,5.5673604],[132.3341989,5.5632406],[132.3337905,5.5614027],[132.3340571,5.561338],[132.3339685,5.5609389],[132.3339938,5.5609328],[132.3336072,5.559193],[132.3336981,5.559171],[132.3336977,5.5591696],[132.3396656,5.5577314],[132.5326578,5.5111745],[132.5326683,5.5112213],[132.5328178,5.5111853],[132.5334992,5.5142501],[132.7522608,5.4583834],[132.7586084,5.4567575],[132.7582728,5.4552518],[132.7584524,5.4552052],[132.7584314,5.4551106],[132.7585904,5.4550691],[132.7584847,5.4545948],[132.7587616,5.4545227],[132.7586593,5.4540635],[132.7587695,5.454035],[132.7587377,5.4538921],[132.7589223,5.4538443],[132.7588462,5.4535025],[132.7588799,5.4534938],[132.7586752,5.4525751],[132.9626162,5.4001586]]]},"collection":"sentinel-2-l2a","properties":{"datetime":"2025-03-12T01:45:49.024000Z","platform":"Sentinel-2B","proj:epsg":32653,"instruments":["msi"],"s2:mgrs_tile":"53NKG","constellation":"Sentinel
+        2","s2:granule_id":"S2B_OPER_MSI_L2A_TL_2BPS_20250312T041213_A041856_T53NKG_N05.11","eo:cloud_cover":9.976021,"s2:datatake_id":"GS2B_20250312T014549_041856_N05.11","s2:product_uri":"S2B_MSIL2A_20250312T014549_N0511_R074_T53NKG_20250312T041213.SAFE","s2:datastrip_id":"S2B_OPER_MSI_L2A_DS_2BPS_20250312T041213_S20250312T014547_N05.11","s2:product_type":"S2MSI2A","sat:orbit_state":"descending","s2:datatake_type":"INS-NOBS","s2:generation_time":"2025-03-12T04:12:13.000000Z","sat:relative_orbit":74,"s2:water_percentage":90.021819,"s2:mean_solar_zenith":24.9051515704102,"s2:mean_solar_azimuth":110.879111106638,"s2:processing_baseline":"05.11","s2:snow_ice_percentage":0.0,"s2:vegetation_percentage":0.00003,"s2:thin_cirrus_percentage":6.804678,"s2:cloud_shadow_percentage":0.0,"s2:nodata_pixel_percentage":88.772982,"s2:unclassified_percentage":0.0,"s2:not_vegetated_percentage":0.002128,"s2:degraded_msi_data_percentage":0.0183,"s2:high_proba_clouds_percentage":0.810678,"s2:reflectance_conversion_factor":1.01534679316045,"s2:medium_proba_clouds_percentage":2.360665,"s2:saturated_defective_pixel_percentage":0.0},"stac_extensions":["https://stac-extensions.github.io/eo/v1.0.0/schema.json","https://stac-extensions.github.io/sat/v1.0.0/schema.json","https://stac-extensions.github.io/projection/v1.0.0/schema.json"],"stac_version":"1.0.0"}],"links":[{"rel":"collection","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-2-l2a"},{"rel":"parent","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-2-l2a"},{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"self","type":"application/geo+json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-2-l2a/items"},{"rel":"next","type":"application/geo+json","method":"GET","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-2-l2a/items?limit=1&token=next:sentinel-2-l2a:S2B_MSIL2A_20250312T014549_R074_T53NKG_20250312T041213"}]}'
     headers:
       Accept-Ranges:
       - bytes
@@ -82,7 +90,7 @@ interactions:
       Content-Type:
       - application/geo+json
       Date:
-      - Wed, 12 Mar 2025 11:39:58 GMT
+      - Wed, 12 Mar 2025 12:12:29 GMT
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Cache:
@@ -92,7 +100,7 @@ interactions:
       vary:
       - Accept-Encoding
       x-azure-ref:
-      - 20250312T113957Z-15d554846c6wswhphC1DENc4b000000001zg000000002msg
+      - 20250312T121229Z-15d554846c62kdknhC1DEN8tnn000000097g000000004fb1
     status:
       code: 200
       message: OK
@@ -104,14 +112,14 @@ interactions:
       Host:
       - planetarycomputer.microsoft.com
       User-Agent:
-      - Python-urllib/3.9
+      - Python-urllib/3.10
     method: GET
     uri: https://planetarycomputer.microsoft.com/api/stac/v1/
   response:
     body:
       string: '{"type":"Catalog","id":"microsoft-pc","title":"Microsoft Planetary
         Computer STAC API","description":"Searchable spatiotemporal metadata describing
-        Earth science datasets hosted by the Microsoft Planetary Computer","stac_version":"1.0.0","conformsTo":["http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core","http://www.opengis.net/spec/ogcapi-features-3/1.0/conf/filter","https://api.stacspec.org/v1.0.0/ogcapi-features","http://www.opengis.net/spec/cql2/1.0/conf/cql2-text","https://api.stacspec.org/v1.0.0/item-search","https://api.stacspec.org/v1.0.0/collections","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30","https://api.stacspec.org/v1.0.0/item-search#query","https://api.stacspec.org/v1.0.0/item-search#sort","https://api.stacspec.org/v1.0.0/item-search#fields","https://api.stacspec.org/v1.0.0-rc.2/item-search#filter","http://www.opengis.net/spec/cql2/1.0/conf/cql2-json","http://www.opengis.net/spec/cql2/1.0/conf/basic-cql2","https://api.stacspec.org/v1.0.0/core","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/geojson"],"links":[{"rel":"self","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"data","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections"},{"rel":"conformance","type":"application/json","title":"STAC/OGC
+        Earth science datasets hosted by the Microsoft Planetary Computer","stac_version":"1.0.0","conformsTo":["https://api.stacspec.org/v1.0.0/item-search#sort","http://www.opengis.net/spec/cql2/1.0/conf/cql2-json","https://api.stacspec.org/v1.0.0/item-search#fields","https://api.stacspec.org/v1.0.0/item-search","http://www.opengis.net/spec/ogcapi-features-3/1.0/conf/filter","https://api.stacspec.org/v1.0.0/ogcapi-features","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core","http://www.opengis.net/spec/cql2/1.0/conf/basic-cql2","https://api.stacspec.org/v1.0.0/item-search#query","https://api.stacspec.org/v1.0.0/core","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/geojson","http://www.opengis.net/spec/cql2/1.0/conf/cql2-text","https://api.stacspec.org/v1.0.0-rc.2/item-search#filter","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30","https://api.stacspec.org/v1.0.0/collections"],"links":[{"rel":"self","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"data","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections"},{"rel":"conformance","type":"application/json","title":"STAC/OGC
         conformance classes implemented by this server","href":"https://planetarycomputer.microsoft.com/api/stac/v1/conformance"},{"rel":"search","type":"application/geo+json","title":"STAC
         search","href":"https://planetarycomputer.microsoft.com/api/stac/v1/search","method":"GET"},{"rel":"search","type":"application/geo+json","title":"STAC
         search","href":"https://planetarycomputer.microsoft.com/api/stac/v1/search","method":"POST"},{"rel":"http://www.opengis.net/def/rel/ogc/1.0/queryables","type":"application/schema+json","title":"Queryables","href":"https://planetarycomputer.microsoft.com/api/stac/v1/queryables","method":"GET"},{"rel":"child","type":"application/json","title":"Daymet
@@ -138,8 +146,7 @@ interactions:
         Annual Land Use Land Cover (9-class) V2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc-annual-v02"},{"rel":"child","type":"application/json","title":"CONUS404","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/conus404"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Intensity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-intensity"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Source","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-pointsourceid"},{"rel":"child","type":"application/json","title":"MTBS:
-        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"Landsat
-        8 Collection 2 Level-2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-8-c2-l2"},{"rel":"child","type":"application/json","title":"C-CAP
+        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"C-CAP
         Regional Land Cover and Change","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-c-cap"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Cloud","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-copc"},{"rel":"child","type":"application/json","title":"MODIS
         Burned Area Monthly","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-64A1-061"},{"rel":"child","type":"application/json","title":"ALOS
@@ -257,17 +264,17 @@ interactions:
       Connection:
       - close
       Content-Length:
-      - '25050'
+      - '24878'
       Content-Type:
       - application/json
       Date:
-      - Wed, 12 Mar 2025 11:39:58 GMT
+      - Wed, 12 Mar 2025 12:12:30 GMT
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Cache:
       - CONFIG_NOCACHE
       x-azure-ref:
-      - 20250312T113958Z-15d554846c64pv6bhC1DENrdk80000000840000000005t7v
+      - 20250312T121230Z-15d554846c6kj68hhC1DEN5nmg00000009q00000000001q8
     status:
       code: 200
       message: OK
@@ -279,14 +286,14 @@ interactions:
       Host:
       - planetarycomputer.microsoft.com
       User-Agent:
-      - Python-urllib/3.9
+      - Python-urllib/3.10
     method: GET
     uri: https://planetarycomputer.microsoft.com/api/stac/v1/
   response:
     body:
       string: '{"type":"Catalog","id":"microsoft-pc","title":"Microsoft Planetary
         Computer STAC API","description":"Searchable spatiotemporal metadata describing
-        Earth science datasets hosted by the Microsoft Planetary Computer","stac_version":"1.0.0","conformsTo":["http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core","http://www.opengis.net/spec/ogcapi-features-3/1.0/conf/filter","https://api.stacspec.org/v1.0.0/ogcapi-features","http://www.opengis.net/spec/cql2/1.0/conf/cql2-text","https://api.stacspec.org/v1.0.0/item-search","https://api.stacspec.org/v1.0.0/collections","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30","https://api.stacspec.org/v1.0.0/item-search#query","https://api.stacspec.org/v1.0.0/item-search#sort","https://api.stacspec.org/v1.0.0/item-search#fields","https://api.stacspec.org/v1.0.0-rc.2/item-search#filter","http://www.opengis.net/spec/cql2/1.0/conf/cql2-json","http://www.opengis.net/spec/cql2/1.0/conf/basic-cql2","https://api.stacspec.org/v1.0.0/core","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/geojson"],"links":[{"rel":"self","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"data","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections"},{"rel":"conformance","type":"application/json","title":"STAC/OGC
+        Earth science datasets hosted by the Microsoft Planetary Computer","stac_version":"1.0.0","conformsTo":["https://api.stacspec.org/v1.0.0/item-search#sort","http://www.opengis.net/spec/cql2/1.0/conf/cql2-json","https://api.stacspec.org/v1.0.0/item-search#fields","https://api.stacspec.org/v1.0.0/item-search","http://www.opengis.net/spec/ogcapi-features-3/1.0/conf/filter","https://api.stacspec.org/v1.0.0/ogcapi-features","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core","http://www.opengis.net/spec/cql2/1.0/conf/basic-cql2","https://api.stacspec.org/v1.0.0/item-search#query","https://api.stacspec.org/v1.0.0/core","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/geojson","http://www.opengis.net/spec/cql2/1.0/conf/cql2-text","https://api.stacspec.org/v1.0.0-rc.2/item-search#filter","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30","https://api.stacspec.org/v1.0.0/collections"],"links":[{"rel":"self","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"data","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections"},{"rel":"conformance","type":"application/json","title":"STAC/OGC
         conformance classes implemented by this server","href":"https://planetarycomputer.microsoft.com/api/stac/v1/conformance"},{"rel":"search","type":"application/geo+json","title":"STAC
         search","href":"https://planetarycomputer.microsoft.com/api/stac/v1/search","method":"GET"},{"rel":"search","type":"application/geo+json","title":"STAC
         search","href":"https://planetarycomputer.microsoft.com/api/stac/v1/search","method":"POST"},{"rel":"http://www.opengis.net/def/rel/ogc/1.0/queryables","type":"application/schema+json","title":"Queryables","href":"https://planetarycomputer.microsoft.com/api/stac/v1/queryables","method":"GET"},{"rel":"child","type":"application/json","title":"Daymet
@@ -313,8 +320,7 @@ interactions:
         Annual Land Use Land Cover (9-class) V2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc-annual-v02"},{"rel":"child","type":"application/json","title":"CONUS404","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/conus404"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Intensity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-intensity"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Source","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-pointsourceid"},{"rel":"child","type":"application/json","title":"MTBS:
-        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"Landsat
-        8 Collection 2 Level-2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-8-c2-l2"},{"rel":"child","type":"application/json","title":"C-CAP
+        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"C-CAP
         Regional Land Cover and Change","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-c-cap"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Cloud","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-copc"},{"rel":"child","type":"application/json","title":"MODIS
         Burned Area Monthly","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-64A1-061"},{"rel":"child","type":"application/json","title":"ALOS
@@ -432,17 +438,17 @@ interactions:
       Connection:
       - close
       Content-Length:
-      - '25050'
+      - '24878'
       Content-Type:
       - application/json
       Date:
-      - Wed, 12 Mar 2025 11:39:59 GMT
+      - Wed, 12 Mar 2025 12:12:31 GMT
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Cache:
       - CONFIG_NOCACHE
       x-azure-ref:
-      - 20250312T113958Z-15d554846c6zhfckhC1DEN2szc0000000ahg000000002nm8
+      - 20250312T121230Z-15d554846c6sqwkmhC1DENpeq0000000051g000000004y5r
     status:
       code: 200
       message: OK

@@ -14,92 +14,14 @@ interactions:
     uri: https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc-9-class/items?limit=1
   response:
     body:
-      string: !!binary |
-        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
+      string: '{"type":"FeatureCollection","features":[{"id":"60W-2022","bbox":[174.0,64.0,180.0,71.63584468488295],"type":"Feature","links":[{"rel":"collection","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc-9-class"},{"rel":"parent","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc-9-class"},{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"self","type":"application/geo+json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc-9-class/items/60W-2022"},{"rel":"preview","href":"https://planetarycomputer.microsoft.com/api/data/v1/item/map?collection=io-lulc-9-class&item=60W-2022","title":"Map
+        of item","type":"text/html"}],"assets":{"data":{"href":"https://ai4edataeuwest.blob.core.windows.net/io-lulc/nine-class/60W_20220101-20230101.tif","file:size":68031971,"raster:bands":[{"nodata":0,"spatial_resolution":10}],"type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","roles":["data"],"file:values":[{"values":[0],"summary":"No
+        Data"},{"values":[1],"summary":"Water"},{"values":[2],"summary":"Trees"},{"values":[4],"summary":"Flooded
+        vegetation"},{"values":[5],"summary":"Crops"},{"values":[7],"summary":"Built
+        area"},{"values":[8],"summary":"Bare ground"},{"values":[9],"summary":"Snow/ice"},{"values":[10],"summary":"Clouds"},{"values":[11],"summary":"Rangeland"}]},"tilejson":{"title":"TileJSON
+        with default rendering","href":"https://planetarycomputer.microsoft.com/api/data/v1/item/tilejson.json?collection=io-lulc-9-class&item=60W-2022&assets=data&colormap_name=io-lulc-9-class&format=png","type":"application/json","roles":["tiles"]},"rendered_preview":{"title":"Rendered
+        preview","rel":"preview","href":"https://planetarycomputer.microsoft.com/api/data/v1/item/preview.png?collection=io-lulc-9-class&item=60W-2022&assets=data&colormap_name=io-lulc-9-class&format=png","roles":["overview"],"type":"image/png"}},"geometry":{"type":"MultiPolygon","coordinates":[[[[174.00148031992939,70.00787697749283],[174.03544244336354,70.00899678292501],[174.09739974072724,70.00566919810065],[174.11365752857603,70.00336820864909],[174.14333621944573,69.99378836076015],[174.15810002973097,69.99121726700969],[174.1730822780342,69.9908813310154],[174.20373594966588,69.99341530941372],[174.2555273446557,69.98868401359725],[174.31549911448596,69.97843064407697],[174.34596431577825,69.96872295547512],[174.46383999620363,69.94524740796624],[174.47909673661084,69.94515611146801],[174.5180359779002,69.94907964007801],[174.605807158492,69.94185306456228],[174.74143910595728,69.93946318323363],[174.77223941233848,69.9404671357267],[174.82870753226786,69.93557906144513],[174.93519200802277,69.93733007708471],[174.9777439158735,69.93961518662684],[175.01121223554497,69.9433545312893],[175.05075605248297,69.9381962391501],[175.12109458859047,69.93754614275723],[175.3280418605574,69.95163902405316],[175.4914953710121,69.96545547591829],[175.62713264543527,69.97042734563273],[175.75527183403804,69.97837300945726],[175.83408069178233,69.975268947139],[175.93080019111446,69.96650049692393],[175.98204975807312,69.96908497902952],[176.06852458022902,69.97721958420972],[176.10344794234828,69.9765194681497],[176.13037398774668,69.97351177236197],[176.15422599130702,69.968501579837],[176.1783722828923,69.96004772942554],[176.2843735414724,69.90426098810212],[176.3810379333914,69.86129488256272],[176.42038818869082,69.85022977657212],[176.45982463939313,69.83352297463033],[176.52225686766107,69.82382740644034],[176.59711991688204,69.80309567501502],[176.6399993532186,69.79951664131971],[176.70911458149712,69.7825383248399],[176.90571574432337,69.7431665604444],[176.9997882286413,69.729395716769],[177.07825482861952,69.72053659043753],[177.13461394238183,69.71045465301619],[177.1921363089857,69.70307605585741],[177.23415491248963,69.70179216073763],[177.32663153571033,69.70291176937928],[177.38433876014744,69.69977007728077],[177.41521232807037,69.69973042918211],[177.52092032216197,69.6858316862421],[177.5534795087227,69.67957470984705],[177.611417394186,69.66312206395922],[177.65528422778976,69.65404109438728],[177.7214234533672,69.63414842033993],[177.83651103292286,69.604597156342],[177.97296853050273,69.57542183554305],[178.07045312648464,69.560815825393],[178.1057827677986,69.55675103115065],[178.13764392106677,69.55745348961068],[178.19935552489557,69.55222577217634],[178.27547023102787,69.55383606189362],[178.3340002729409,69.55825672982964],[178.37190667753475,69.55893460217536],[178.4472048443418,69.55581560697026],[178.55625632469335,69.54311100261667],[178.63744888461872,69.53003831194118],[178.78370968077934,69.50198523501767],[178.894931769945,69.47575641957208],[179.132734419059,69.41241994088524],[179.34211182633078,69.35350437666693],[179.4386910186629,69.32399228330598],[179.5011425771948,69.29684731532593],[179.59170458512102,69.26065476297333],[179.73903206689272,69.19345146036224],[179.84004759969145,69.14960043239621],[180,69.08462228242679],[180,64.93286746019272],[179.97640316739975,64.92587923865565],[179.9316468630135,64.91783618282334],[179.89185295596272,64.90472979315543],[179.87499106002338,64.89712963952407],[179.8350159203939,64.8726526305608],[179.81249310520585,64.8526982914795],[179.7996814119684,64.84369600036771],[179.75817740642196,64.82123418728403],[179.7218703578966,64.80439979131012],[179.6597609488211,64.77217003435777],[179.6163880291968,64.74728384424454],[179.5748159947545,64.71526567842334],[179.5446397072018,64.70175411689127],[179.52828391341356,64.69763629897791],[179.4950663607047,64.69305148967567],[179.47339625250524,64.6931541663115],[179.4367773743611,64.69658914252163],[179.35338648022915,64.68919227819526],[179.30411923236346,64.68668909814312],[179.21851382243375,64.66821981518497],[179.16058235343453,64.66220112470742],[179.10049440989152,64.64437151802929],[179.0565252000817,64.62897597058694],[178.9343222291914,64.57641326068702],[178.88907620587807,64.55863298852933],[178.8213589678142,64.53476335605093],[178.77835888728796,64.5214690851405],[178.7412555218563,64.51301683108177],[178.69210626038506,64.49415736289095],[178.63947987154776,64.4785550087865],[178.55794841945283,64.45993587295165],[178.53833708436287,64.45207625353441],[178.52495475297917,64.44356675256078],[178.5130859505236,64.43304867629402],[178.50302917547896,64.42078655266943],[178.49286863233564,64.40226247524497],[178.48793300724088,64.38719137691051],[178.48516755374135,64.36624548594507],[178.48602261101146,64.35040985279865],[178.48937033435132,64.33490852548377],[178.49755713779518,64.31543150490141],[178.518347350731,64.28685619947339],[178.54446115340087,64.25606894757365],[178.5812313605782,64.21724314680223],[178.61394489794313,64.18831111352394],[178.6605416551664,64.14091429183736],[178.67720567606293,64.1274856291168],[178.7125316307105,64.10848434896758],[178.72863486697983,64.09484902064015],[178.74129966199482,64.07851250162801],[178.75411094212205,64.05398743648875],[178.77369188662925,64.02259867298041],[178.78485886579324,64],[174,64],[174,70.0079441383046],[174.00148031992939,70.00787697749283]]],[[[178.52813716920258,71.08897072474429],[178.53243233197034,71.10477330495478],[178.5419796843711,71.12424066451219],[178.55445596416575,71.14037071770207],[178.57114506500628,71.15455617904107],[178.5931444514064,71.16767822244707],[178.6171625150741,71.1775033119468],[178.64885962226668,71.19342207672],[178.70420310676457,71.21167906414763],[178.71749237871362,71.2179999769714],[178.74540183264435,71.2349641745865],[178.78177809589099,71.24682668854295],[178.79577254793497,71.25300327951301],[178.81265868769455,71.26441456025333],[178.8329122843138,71.28520649684691],[178.84740622545502,71.29722950689106],[178.87272418750572,71.31080396762805],[178.8984994662482,71.31845730880289],[179.0322552843005,71.34509599157516],[179.0883310255317,71.3505274416787],[179.1387522866837,71.36057995555853],[179.16680650176585,71.37137289126917],[179.19966276042953,71.39430879787066],[179.21800625969283,71.40388636263843],[179.24713120877087,71.41479923869925],[179.31044912408163,71.43278752468932],[179.42077454247598,71.48848457800518],[179.46281366131697,71.50570366296813],[179.48925313415106,71.51204570709433],[179.52723402366271,71.5170561613595],[179.55951762631514,71.52336050275477],[179.64494405071756,71.54880442133901],[179.71088812587442,71.56227111327271],[179.78769777126305,71.58597520331415],[179.82752427234956,71.59987318135883],[179.88009980248071,71.6117741967582],[179.95961089720058,71.63244247075079],[180,71.63584468488295],[180,70.8756926325927],[179.948726141341,70.87161683707937],[179.9272158882787,70.86813407751013],[179.91260758725164,70.86334714395821],[179.8576110844929,70.8373268212291],[179.805633326438,70.8189409551337],[179.6852204984411,70.78527876694002],[179.57876974619856,70.76353759306636],[179.49831194022718,70.75285913365921],[179.4453487055192,70.75118074560278],[179.3728478054144,70.7587300103488],[179.35260985188256,70.76369767459303],[179.33220514386093,70.77096981626252],[179.31601637516184,70.7740890454759],[179.2832113267083,70.77403719779386],[179.24112695565074,70.77102483991217],[179.1805167863625,70.76459197140859],[179.0641299580489,70.74545372701078],[179.0083903341369,70.733257043221],[178.89623678647746,70.70293725943613],[178.83995403066353,70.69040110589013],[178.79127102795618,70.68278585321485],[178.74839107558353,70.68364201524622],[178.73138199746788,70.68758694085503],[178.71245758267384,70.6958660508036],[178.6953289688471,70.70793096983394],[178.6811011904863,70.72315882353104],[178.672674162481,70.73631412376949],[178.66483520195672,70.75548188608278],[178.66111659353044,70.77582671384786],[178.66100752074513,70.79913377977196],[178.6589787326126,70.81485480741135],[178.6544912700884,70.83005774697642],[178.64765788815862,70.84436059923489],[178.63154700310972,70.86523646092203],[178.60198385758562,70.88784261610806],[178.5817580179018,70.90744649864219],[178.54588423081088,70.96332323029445],[178.53487434895862,70.98920031359202],[178.5288199995769,71.0135310274153],[178.52612127208866,71.06685588650582],[178.52813716920258,71.08897072474429]]]]},"collection":"io-lulc-9-class","properties":{"datetime":null,"proj:bbox":[353310.0,7097021.1319483295,646690.0,7991501.1319483295],"proj:epsg":32660,"io:tile_id":"60W","proj:shape":[89448,29338],"end_datetime":"2023-01-01T00:00:00Z","proj:transform":[10.0,0.0,353310.0,0.0,-10.0,7991501.1319483295],"start_datetime":"2022-01-01T00:00:00Z","io:supercell_id":"60W"},"stac_extensions":["https://stac-extensions.github.io/projection/v1.1.0/schema.json","https://stac-extensions.github.io/file/v2.0.0/schema.json","https://stac-extensions.github.io/raster/v1.1.0/schema.json"],"stac_version":"1.0.0"}],"links":[{"rel":"collection","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc-9-class"},{"rel":"parent","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc-9-class"},{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"self","type":"application/geo+json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc-9-class/items"},{"rel":"next","type":"application/geo+json","method":"GET","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc-9-class/items?limit=1&token=next:io-lulc-9-class:60W-2022"}]}'
     headers:
       Accept-Ranges:
       - bytes
@@ -120,7 +42,7 @@ interactions:
       Content-Type:
       - application/geo+json
       Date:
-      - Wed, 12 Mar 2025 11:38:52 GMT
+      - Wed, 12 Mar 2025 12:11:28 GMT
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Cache:
@@ -130,7 +52,7 @@ interactions:
       vary:
       - Accept-Encoding
       x-azure-ref:
-      - 20250312T113851Z-15d554846c6g8tgbhC1DENs71800000002c0000000001yce
+      - 20250312T121128Z-15d554846c6khzqphC1DENmtf400000003z000000000010d
     status:
       code: 200
       message: OK
@@ -142,14 +64,14 @@ interactions:
       Host:
       - planetarycomputer.microsoft.com
       User-Agent:
-      - Python-urllib/3.9
+      - Python-urllib/3.10
     method: GET
     uri: https://planetarycomputer.microsoft.com/api/stac/v1/
   response:
     body:
       string: '{"type":"Catalog","id":"microsoft-pc","title":"Microsoft Planetary
         Computer STAC API","description":"Searchable spatiotemporal metadata describing
-        Earth science datasets hosted by the Microsoft Planetary Computer","stac_version":"1.0.0","conformsTo":["http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core","http://www.opengis.net/spec/ogcapi-features-3/1.0/conf/filter","https://api.stacspec.org/v1.0.0/ogcapi-features","http://www.opengis.net/spec/cql2/1.0/conf/cql2-text","https://api.stacspec.org/v1.0.0/item-search","https://api.stacspec.org/v1.0.0/collections","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30","https://api.stacspec.org/v1.0.0/item-search#query","https://api.stacspec.org/v1.0.0/item-search#sort","https://api.stacspec.org/v1.0.0/item-search#fields","https://api.stacspec.org/v1.0.0-rc.2/item-search#filter","http://www.opengis.net/spec/cql2/1.0/conf/cql2-json","http://www.opengis.net/spec/cql2/1.0/conf/basic-cql2","https://api.stacspec.org/v1.0.0/core","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/geojson"],"links":[{"rel":"self","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"data","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections"},{"rel":"conformance","type":"application/json","title":"STAC/OGC
+        Earth science datasets hosted by the Microsoft Planetary Computer","stac_version":"1.0.0","conformsTo":["https://api.stacspec.org/v1.0.0/ogcapi-features","https://api.stacspec.org/v1.0.0/collections","https://api.stacspec.org/v1.0.0/item-search#fields","http://www.opengis.net/spec/cql2/1.0/conf/basic-cql2","http://www.opengis.net/spec/cql2/1.0/conf/cql2-text","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30","https://api.stacspec.org/v1.0.0/core","https://api.stacspec.org/v1.0.0/item-search","https://api.stacspec.org/v1.0.0-rc.2/item-search#filter","http://www.opengis.net/spec/cql2/1.0/conf/cql2-json","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/geojson","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core","https://api.stacspec.org/v1.0.0/item-search#sort","https://api.stacspec.org/v1.0.0/item-search#query","http://www.opengis.net/spec/ogcapi-features-3/1.0/conf/filter"],"links":[{"rel":"self","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"data","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections"},{"rel":"conformance","type":"application/json","title":"STAC/OGC
         conformance classes implemented by this server","href":"https://planetarycomputer.microsoft.com/api/stac/v1/conformance"},{"rel":"search","type":"application/geo+json","title":"STAC
         search","href":"https://planetarycomputer.microsoft.com/api/stac/v1/search","method":"GET"},{"rel":"search","type":"application/geo+json","title":"STAC
         search","href":"https://planetarycomputer.microsoft.com/api/stac/v1/search","method":"POST"},{"rel":"http://www.opengis.net/def/rel/ogc/1.0/queryables","type":"application/schema+json","title":"Queryables","href":"https://planetarycomputer.microsoft.com/api/stac/v1/queryables","method":"GET"},{"rel":"child","type":"application/json","title":"Daymet
@@ -176,8 +98,7 @@ interactions:
         Annual Land Use Land Cover (9-class) V2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc-annual-v02"},{"rel":"child","type":"application/json","title":"CONUS404","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/conus404"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Intensity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-intensity"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Source","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-pointsourceid"},{"rel":"child","type":"application/json","title":"MTBS:
-        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"Landsat
-        8 Collection 2 Level-2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-8-c2-l2"},{"rel":"child","type":"application/json","title":"C-CAP
+        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"C-CAP
         Regional Land Cover and Change","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-c-cap"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Cloud","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-copc"},{"rel":"child","type":"application/json","title":"MODIS
         Burned Area Monthly","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-64A1-061"},{"rel":"child","type":"application/json","title":"ALOS
@@ -295,17 +216,17 @@ interactions:
       Connection:
       - close
       Content-Length:
-      - '25050'
+      - '24878'
       Content-Type:
       - application/json
       Date:
-      - Wed, 12 Mar 2025 11:38:52 GMT
+      - Wed, 12 Mar 2025 12:11:29 GMT
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Cache:
       - CONFIG_NOCACHE
       x-azure-ref:
-      - 20250312T113852Z-15d554846c6cpsh8hC1DENyvsn00000005g0000000001f6z
+      - 20250312T121128Z-15d554846c6kj68hhC1DEN5nmg00000009q00000000000kv
     status:
       code: 200
       message: OK
@@ -317,14 +238,14 @@ interactions:
       Host:
       - planetarycomputer.microsoft.com
       User-Agent:
-      - Python-urllib/3.9
+      - Python-urllib/3.10
     method: GET
     uri: https://planetarycomputer.microsoft.com/api/stac/v1/
   response:
     body:
       string: '{"type":"Catalog","id":"microsoft-pc","title":"Microsoft Planetary
         Computer STAC API","description":"Searchable spatiotemporal metadata describing
-        Earth science datasets hosted by the Microsoft Planetary Computer","stac_version":"1.0.0","conformsTo":["http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core","http://www.opengis.net/spec/ogcapi-features-3/1.0/conf/filter","https://api.stacspec.org/v1.0.0/ogcapi-features","http://www.opengis.net/spec/cql2/1.0/conf/cql2-text","https://api.stacspec.org/v1.0.0/item-search","https://api.stacspec.org/v1.0.0/collections","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30","https://api.stacspec.org/v1.0.0/item-search#query","https://api.stacspec.org/v1.0.0/item-search#sort","https://api.stacspec.org/v1.0.0/item-search#fields","https://api.stacspec.org/v1.0.0-rc.2/item-search#filter","http://www.opengis.net/spec/cql2/1.0/conf/cql2-json","http://www.opengis.net/spec/cql2/1.0/conf/basic-cql2","https://api.stacspec.org/v1.0.0/core","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/geojson"],"links":[{"rel":"self","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"data","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections"},{"rel":"conformance","type":"application/json","title":"STAC/OGC
+        Earth science datasets hosted by the Microsoft Planetary Computer","stac_version":"1.0.0","conformsTo":["https://api.stacspec.org/v1.0.0/ogcapi-features","https://api.stacspec.org/v1.0.0/collections","https://api.stacspec.org/v1.0.0/item-search#fields","http://www.opengis.net/spec/cql2/1.0/conf/basic-cql2","http://www.opengis.net/spec/cql2/1.0/conf/cql2-text","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30","https://api.stacspec.org/v1.0.0/core","https://api.stacspec.org/v1.0.0/item-search","https://api.stacspec.org/v1.0.0-rc.2/item-search#filter","http://www.opengis.net/spec/cql2/1.0/conf/cql2-json","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/geojson","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core","https://api.stacspec.org/v1.0.0/item-search#sort","https://api.stacspec.org/v1.0.0/item-search#query","http://www.opengis.net/spec/ogcapi-features-3/1.0/conf/filter"],"links":[{"rel":"self","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"data","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections"},{"rel":"conformance","type":"application/json","title":"STAC/OGC
         conformance classes implemented by this server","href":"https://planetarycomputer.microsoft.com/api/stac/v1/conformance"},{"rel":"search","type":"application/geo+json","title":"STAC
         search","href":"https://planetarycomputer.microsoft.com/api/stac/v1/search","method":"GET"},{"rel":"search","type":"application/geo+json","title":"STAC
         search","href":"https://planetarycomputer.microsoft.com/api/stac/v1/search","method":"POST"},{"rel":"http://www.opengis.net/def/rel/ogc/1.0/queryables","type":"application/schema+json","title":"Queryables","href":"https://planetarycomputer.microsoft.com/api/stac/v1/queryables","method":"GET"},{"rel":"child","type":"application/json","title":"Daymet
@@ -351,8 +272,7 @@ interactions:
         Annual Land Use Land Cover (9-class) V2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc-annual-v02"},{"rel":"child","type":"application/json","title":"CONUS404","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/conus404"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Intensity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-intensity"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Source","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-pointsourceid"},{"rel":"child","type":"application/json","title":"MTBS:
-        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"Landsat
-        8 Collection 2 Level-2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-8-c2-l2"},{"rel":"child","type":"application/json","title":"C-CAP
+        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"C-CAP
         Regional Land Cover and Change","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-c-cap"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Cloud","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-copc"},{"rel":"child","type":"application/json","title":"MODIS
         Burned Area Monthly","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-64A1-061"},{"rel":"child","type":"application/json","title":"ALOS
@@ -470,17 +390,17 @@ interactions:
       Connection:
       - close
       Content-Length:
-      - '25050'
+      - '24878'
       Content-Type:
       - application/json
       Date:
-      - Wed, 12 Mar 2025 11:38:53 GMT
+      - Wed, 12 Mar 2025 12:11:29 GMT
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Cache:
       - CONFIG_NOCACHE
       x-azure-ref:
-      - 20250312T113852Z-15d554846c6f5vzshC1DENcnd400000004q000000000000b
+      - 20250312T121129Z-15d554846c6zhfckhC1DEN2szc0000000an00000000023g0
     status:
       code: 200
       message: OK

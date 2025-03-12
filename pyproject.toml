@@ -55,7 +55,7 @@ dev = [
     "types-python-dateutil",
     "types-requests",
     "pytest-recording>=0.13.2",
-    "urllib3<2; python_version < '3.10'",
+    "vcrpy>=7.0.0",
 ]
 docs = [
     "griffe-inherited-docstrings",

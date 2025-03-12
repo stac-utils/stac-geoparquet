@@ -14,55 +14,73 @@ interactions:
     uri: https://planetarycomputer.microsoft.com/api/stac/v1/collections/nrcan-landcover/items?limit=1
   response:
     body:
-      string: !!binary |
-        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
+      string: "{\"type\":\"FeatureCollection\",\"features\":[{\"id\":\"CAN_LC_2015_CAL_16_13\",\"bbox\":[-83.63591543,39.87203697,-79.52714012,42.96045456],\"type\":\"Feature\",\"links\":[{\"rel\":\"collection\",\"type\":\"application/json\",\"href\":\"https://planetarycomputer.microsoft.com/api/stac/v1/collections/nrcan-landcover\"},{\"rel\":\"parent\",\"type\":\"application/json\",\"href\":\"https://planetarycomputer.microsoft.com/api/stac/v1/collections/nrcan-landcover\"},{\"rel\":\"root\",\"type\":\"application/json\",\"href\":\"https://planetarycomputer.microsoft.com/api/stac/v1/\"},{\"rel\":\"self\",\"type\":\"application/geo+json\",\"href\":\"https://planetarycomputer.microsoft.com/api/stac/v1/collections/nrcan-landcover/items/CAN_LC_2015_CAL_16_13\"},{\"rel\":\"cite-as\",\"href\":\"https://doi.org/10.4095/315659\"},{\"rel\":\"preview\",\"href\":\"https://planetarycomputer.microsoft.com/api/data/v1/item/map?collection=nrcan-landcover&item=CAN_LC_2015_CAL_16_13\",\"title\":\"Map
+        of item\",\"type\":\"text/html\"}],\"assets\":{\"metadata\":{\"href\":\"https://nrcanlandcovereuwest.blob.core.windows.net/landcover/assets/4e615eae-b90c-420b-adee-2ca35896caf6.jsonld\",\"type\":\"application/json\",\"roles\":[\"metadata\"],\"title\":\"Land
+        cover of Canada metadata\"},\"landcover\":{\"href\":\"https://nrcanlandcovereuwest.blob.core.windows.net/landcover/assets/cogs/CAN_LC_2015_CAL_16_13_cog.tif\",\"file:size\":1307648,\"proj:bbox\":[1000330.0,-885090.0,1300360.0,-585510.0],\"proj:wkt2\":\"PROJCRS[\\\"NAD83
+        / Canada Atlas Lambert\\\",BASEGEOGCRS[\\\"NAD83\\\",DATUM[\\\"North American
+        Datum 1983\\\",ELLIPSOID[\\\"GRS 1980\\\",6378137,298.257222101,LENGTHUNIT[\\\"metre\\\",1]]],PRIMEM[\\\"Greenwich\\\",0,ANGLEUNIT[\\\"degree\\\",0.0174532925199433]],ID[\\\"EPSG\\\",4269]],CONVERSION[\\\"Canada
+        Atlas Lambert\\\",METHOD[\\\"Lambert Conic Conformal (2SP)\\\",ID[\\\"EPSG\\\",9802]],PARAMETER[\\\"Latitude
+        of false origin\\\",49,ANGLEUNIT[\\\"degree\\\",0.0174532925199433],ID[\\\"EPSG\\\",8821]],PARAMETER[\\\"Longitude
+        of false origin\\\",-95,ANGLEUNIT[\\\"degree\\\",0.0174532925199433],ID[\\\"EPSG\\\",8822]],PARAMETER[\\\"Latitude
+        of 1st standard parallel\\\",49,ANGLEUNIT[\\\"degree\\\",0.0174532925199433],ID[\\\"EPSG\\\",8823]],PARAMETER[\\\"Latitude
+        of 2nd standard parallel\\\",77,ANGLEUNIT[\\\"degree\\\",0.0174532925199433],ID[\\\"EPSG\\\",8824]],PARAMETER[\\\"Easting
+        at false origin\\\",0,LENGTHUNIT[\\\"metre\\\",1],ID[\\\"EPSG\\\",8826]],PARAMETER[\\\"Northing
+        at false origin\\\",0,LENGTHUNIT[\\\"metre\\\",1],ID[\\\"EPSG\\\",8827]]],CS[Cartesian,2],AXIS[\\\"(E)\\\",east,ORDER[1],LENGTHUNIT[\\\"metre\\\",1]],AXIS[\\\"(N)\\\",north,ORDER[2],LENGTHUNIT[\\\"metre\\\",1]],USAGE[SCOPE[\\\"Transformation
+        of coordinates at 5m level of accuracy.\\\"],AREA[\\\"Canada - onshore and
+        offshore - Alberta; British Columbia; Manitoba; New Brunswick; Newfoundland
+        and Labrador; Northwest Territories; Nova Scotia; Nunavut; Ontario; Prince
+        Edward Island; Quebec; Saskatchewan; Yukon.\\\"],BBOX[38.21,-141.01,86.46,-40.73]],ID[\\\"EPSG\\\",3978]]\",\"proj:shape\":[9986,10001],\"proj:transform\":[30.0,0.0,1000330.0,0.0,-30.0,-585510.0,0.0,0.0,1.0],\"type\":\"image/tiff;
+        application=geotiff; profile=cloud-optimized\",\"roles\":[\"data\",\"labels\",\"labels-raster\"],\"title\":\"Land
+        cover of Canada COG\",\"proj:epsg\":3978,\"file:values\":[{\"values\":[1],\"summary\":\"Temperate
+        or sub-polar needleleaf forest\"},{\"values\":[2],\"summary\":\"Sub-polar
+        taiga needleleaf forest\"},{\"values\":[5],\"summary\":\"Temperate or sub-polar
+        broadleaf deciduous forest\"},{\"values\":[6],\"summary\":\"Mixed forest\"},{\"values\":[8],\"summary\":\"Temperate
+        or sub-polar shrubland\"},{\"values\":[10],\"summary\":\"Temperate or sub-polar
+        grassland\"},{\"values\":[11],\"summary\":\"Sub-polar or polar shrubland-lichen-moss\"},{\"values\":[12],\"summary\":\"Sub-polar
+        or polar grassland-lichen-moss\"},{\"values\":[13],\"summary\":\"Sub-polar
+        or polar barren-lichen-moss\"},{\"values\":[14],\"summary\":\"Wetland\"},{\"values\":[15],\"summary\":\"Cropland\"},{\"values\":[16],\"summary\":\"Barren
+        lands\"},{\"values\":[17],\"summary\":\"Urban\"},{\"values\":[18],\"summary\":\"Water\"},{\"values\":[19],\"summary\":\"Snow
+        and Ice\"}],\"raster:bands\":[{\"nodata\":0,\"sampling\":\"area\",\"data_type\":\"uint8\",\"spatial_resolution\":30}]},\"tilejson\":{\"title\":\"TileJSON
+        with default rendering\",\"href\":\"https://planetarycomputer.microsoft.com/api/data/v1/item/tilejson.json?collection=nrcan-landcover&item=CAN_LC_2015_CAL_16_13&assets=landcover&colormap_name=nrcan-lulc&format=png\",\"type\":\"application/json\",\"roles\":[\"tiles\"]},\"rendered_preview\":{\"title\":\"Rendered
+        preview\",\"rel\":\"preview\",\"href\":\"https://planetarycomputer.microsoft.com/api/data/v1/item/preview.png?collection=nrcan-landcover&item=CAN_LC_2015_CAL_16_13&assets=landcover&colormap_name=nrcan-lulc&format=png\",\"roles\":[\"overview\"],\"type\":\"image/png\"}},\"geometry\":{\"type\":\"Polygon\",\"coordinates\":[[[-79.5271401,39.872037],[-79.5271401,42.9604546],[-83.6359154,42.9604546],[-83.6359154,39.872037],[-79.5271401,39.872037]]]},\"collection\":\"nrcan-landcover\",\"properties\":{\"title\":\"2015
+        Land Cover of Canada\",\"sci:doi\":\"10.4095/315659\",\"datetime\":\"2015-01-01T00:00:00Z\",\"proj:bbox\":[1000330.0,-885090.0,1300360.0,-585510.0],\"proj:epsg\":3978,\"proj:wkt2\":\"PROJCRS[\\\"NAD83
+        / Canada Atlas Lambert\\\",BASEGEOGCRS[\\\"NAD83\\\",DATUM[\\\"North American
+        Datum 1983\\\",ELLIPSOID[\\\"GRS 1980\\\",6378137,298.257222101,LENGTHUNIT[\\\"metre\\\",1]]],PRIMEM[\\\"Greenwich\\\",0,ANGLEUNIT[\\\"degree\\\",0.0174532925199433]],ID[\\\"EPSG\\\",4269]],CONVERSION[\\\"Canada
+        Atlas Lambert\\\",METHOD[\\\"Lambert Conic Conformal (2SP)\\\",ID[\\\"EPSG\\\",9802]],PARAMETER[\\\"Latitude
+        of false origin\\\",49,ANGLEUNIT[\\\"degree\\\",0.0174532925199433],ID[\\\"EPSG\\\",8821]],PARAMETER[\\\"Longitude
+        of false origin\\\",-95,ANGLEUNIT[\\\"degree\\\",0.0174532925199433],ID[\\\"EPSG\\\",8822]],PARAMETER[\\\"Latitude
+        of 1st standard parallel\\\",49,ANGLEUNIT[\\\"degree\\\",0.0174532925199433],ID[\\\"EPSG\\\",8823]],PARAMETER[\\\"Latitude
+        of 2nd standard parallel\\\",77,ANGLEUNIT[\\\"degree\\\",0.0174532925199433],ID[\\\"EPSG\\\",8824]],PARAMETER[\\\"Easting
+        at false origin\\\",0,LENGTHUNIT[\\\"metre\\\",1],ID[\\\"EPSG\\\",8826]],PARAMETER[\\\"Northing
+        at false origin\\\",0,LENGTHUNIT[\\\"metre\\\",1],ID[\\\"EPSG\\\",8827]]],CS[Cartesian,2],AXIS[\\\"(E)\\\",east,ORDER[1],LENGTHUNIT[\\\"metre\\\",1]],AXIS[\\\"(N)\\\",north,ORDER[2],LENGTHUNIT[\\\"metre\\\",1]],USAGE[SCOPE[\\\"Transformation
+        of coordinates at 5m level of accuracy.\\\"],AREA[\\\"Canada - onshore and
+        offshore - Alberta; British Columbia; Manitoba; New Brunswick; Newfoundland
+        and Labrador; Northwest Territories; Nova Scotia; Nunavut; Ontario; Prince
+        Edward Island; Quebec; Saskatchewan; Yukon.\\\"],BBOX[38.21,-141.01,86.46,-40.73]],ID[\\\"EPSG\\\",3978]]\",\"label:type\":\"raster\",\"proj:shape\":[9986,10001],\"description\":\"Land
+        cover information is necessary for a large range of environmental applications
+        related to climate impacts and adaption, emergency response, wildlife habitat,
+        etc. In Canada, a 2008 user survey indicated that the most practical land
+        cover data is provided in a nationwide 30 m spatial resolution format, with
+        an update frequency of five years. In response to this need, the Canada Centre
+        for Remote Sensing (CCRS) has generated a 30 m land cover map of Canada for
+        the base year 2010, as well as this 2015 land cover map. This land cover dataset
+        is also the Canadian contribution to the 30 m spatial resolution 2015 Land
+        Cover Map of North America, which is produced by Mexican, American and Canadian
+        government institutions under a collaboration called the North American Land
+        Change Monitoring System (NALCMS). This land cover dataset for Canada is produced
+        using observation from Operational Land Imager (OLI) Landsat sensor. An accuracy
+        assessment based on 806 randomly distributed samples shows that land cover
+        data produced with this new approach has achieved 79.90% accuracy with no
+        marked spatial disparities.  \\\\\\\\\\\\\\\\n  \\\\\\\\\\\\\\\\n  - [Land
+        Cover of Canada - Cartographic Product Collection](https://open.canada.ca/data/en/dataset/11990a35-912e-4002-b197-d57dd88836d7)\",\"label:tasks\":[\"classification\"],\"end_datetime\":\"2020-01-01T00:00:00Z\",\"sci:citation\":\"Latifovic,
+        R., 2019. Canada\u2019s land cover; Natural Resources Canada, General Information
+        Product 119e, version 2015, 1 poster.\",\"label:classes\":[{\"name\":\"\",\"classes\":[\"Temperate
+        or sub-polar needleleaf forest\",\"Sub-polar taiga needleleaf forest\",\"Temperate
+        or sub-polar broadleaf deciduous forest\",\"Mixed forest\",\"Temperate or
+        sub-polar shrubland\",\"Temperate or sub-polar grassland\",\"Sub-polar or
+        polar shrubland-lichen-moss\",\"Sub-polar or polar grassland-lichen-moss\",\"Sub-polar
+        or polar barren-lichen-moss\",\"Wetland\",\"Cropland\",\"Barren lands\",\"Urban\",\"Water\",\"Snow
+        and Ice\"]}],\"proj:transform\":[30.0,0.0,1000330.0,0.0,-30.0,-585510.0,0.0,0.0,1.0],\"start_datetime\":\"2015-01-01T00:00:00Z\",\"label:properties\":null,\"label:description\":\"\"},\"stac_extensions\":[\"https://stac-extensions.github.io/projection/v1.0.0/schema.json\",\"https://stac-extensions.github.io/label/v1.0.0/schema.json\",\"https://stac-extensions.github.io/scientific/v1.0.0/schema.json\",\"https://stac-extensions.github.io/file/v2.0.0/schema.json\",\"https://stac-extensions.github.io/raster/v1.0.0/schema.json\"],\"stac_version\":\"1.0.0\"}],\"links\":[{\"rel\":\"collection\",\"type\":\"application/json\",\"href\":\"https://planetarycomputer.microsoft.com/api/stac/v1/collections/nrcan-landcover\"},{\"rel\":\"parent\",\"type\":\"application/json\",\"href\":\"https://planetarycomputer.microsoft.com/api/stac/v1/collections/nrcan-landcover\"},{\"rel\":\"root\",\"type\":\"application/json\",\"href\":\"https://planetarycomputer.microsoft.com/api/stac/v1/\"},{\"rel\":\"self\",\"type\":\"application/geo+json\",\"href\":\"https://planetarycomputer.microsoft.com/api/stac/v1/collections/nrcan-landcover/items\"},{\"rel\":\"next\",\"type\":\"application/geo+json\",\"method\":\"GET\",\"href\":\"https://planetarycomputer.microsoft.com/api/stac/v1/collections/nrcan-landcover/items?limit=1&token=next:nrcan-landcover:CAN_LC_2015_CAL_16_13\"}]}"
     headers:
       Accept-Ranges:
       - bytes
@@ -83,7 +101,7 @@ interactions:
       Content-Type:
       - application/geo+json
       Date:
-      - Wed, 12 Mar 2025 11:39:46 GMT
+      - Wed, 12 Mar 2025 12:12:20 GMT
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Cache:
@@ -93,7 +111,7 @@ interactions:
       vary:
       - Accept-Encoding
       x-azure-ref:
-      - 20250312T113946Z-15d554846c6cpsh8hC1DENyvsn00000005e0000000002gas
+      - 20250312T121219Z-15d554846c6hkjt5hC1DENqudc00000005u0000000005ary
     status:
       code: 200
       message: OK
@@ -105,14 +123,14 @@ interactions:
       Host:
       - planetarycomputer.microsoft.com
       User-Agent:
-      - Python-urllib/3.9
+      - Python-urllib/3.10
     method: GET
     uri: https://planetarycomputer.microsoft.com/api/stac/v1/
   response:
     body:
       string: '{"type":"Catalog","id":"microsoft-pc","title":"Microsoft Planetary
         Computer STAC API","description":"Searchable spatiotemporal metadata describing
-        Earth science datasets hosted by the Microsoft Planetary Computer","stac_version":"1.0.0","conformsTo":["http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core","http://www.opengis.net/spec/ogcapi-features-3/1.0/conf/filter","https://api.stacspec.org/v1.0.0/ogcapi-features","http://www.opengis.net/spec/cql2/1.0/conf/cql2-text","https://api.stacspec.org/v1.0.0/item-search","https://api.stacspec.org/v1.0.0/collections","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30","https://api.stacspec.org/v1.0.0/item-search#query","https://api.stacspec.org/v1.0.0/item-search#sort","https://api.stacspec.org/v1.0.0/item-search#fields","https://api.stacspec.org/v1.0.0-rc.2/item-search#filter","http://www.opengis.net/spec/cql2/1.0/conf/cql2-json","http://www.opengis.net/spec/cql2/1.0/conf/basic-cql2","https://api.stacspec.org/v1.0.0/core","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/geojson"],"links":[{"rel":"self","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"data","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections"},{"rel":"conformance","type":"application/json","title":"STAC/OGC
+        Earth science datasets hosted by the Microsoft Planetary Computer","stac_version":"1.0.0","conformsTo":["http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/geojson","https://api.stacspec.org/v1.0.0/item-search#sort","http://www.opengis.net/spec/ogcapi-features-3/1.0/conf/filter","https://api.stacspec.org/v1.0.0-rc.2/item-search#filter","http://www.opengis.net/spec/cql2/1.0/conf/cql2-json","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core","https://api.stacspec.org/v1.0.0/item-search#query","http://www.opengis.net/spec/cql2/1.0/conf/cql2-text","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30","https://api.stacspec.org/v1.0.0/item-search#fields","https://api.stacspec.org/v1.0.0/item-search","http://www.opengis.net/spec/cql2/1.0/conf/basic-cql2","https://api.stacspec.org/v1.0.0/core","https://api.stacspec.org/v1.0.0/collections","https://api.stacspec.org/v1.0.0/ogcapi-features"],"links":[{"rel":"self","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"data","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections"},{"rel":"conformance","type":"application/json","title":"STAC/OGC
         conformance classes implemented by this server","href":"https://planetarycomputer.microsoft.com/api/stac/v1/conformance"},{"rel":"search","type":"application/geo+json","title":"STAC
         search","href":"https://planetarycomputer.microsoft.com/api/stac/v1/search","method":"GET"},{"rel":"search","type":"application/geo+json","title":"STAC
         search","href":"https://planetarycomputer.microsoft.com/api/stac/v1/search","method":"POST"},{"rel":"http://www.opengis.net/def/rel/ogc/1.0/queryables","type":"application/schema+json","title":"Queryables","href":"https://planetarycomputer.microsoft.com/api/stac/v1/queryables","method":"GET"},{"rel":"child","type":"application/json","title":"Daymet
@@ -139,8 +157,7 @@ interactions:
         Annual Land Use Land Cover (9-class) V2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc-annual-v02"},{"rel":"child","type":"application/json","title":"CONUS404","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/conus404"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Intensity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-intensity"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Source","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-pointsourceid"},{"rel":"child","type":"application/json","title":"MTBS:
-        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"Landsat
-        8 Collection 2 Level-2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-8-c2-l2"},{"rel":"child","type":"application/json","title":"C-CAP
+        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"C-CAP
         Regional Land Cover and Change","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-c-cap"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Cloud","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-copc"},{"rel":"child","type":"application/json","title":"MODIS
         Burned Area Monthly","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-64A1-061"},{"rel":"child","type":"application/json","title":"ALOS
@@ -258,17 +275,17 @@ interactions:
       Connection:
       - close
       Content-Length:
-      - '25050'
+      - '24878'
       Content-Type:
       - application/json
       Date:
-      - Wed, 12 Mar 2025 11:39:47 GMT
+      - Wed, 12 Mar 2025 12:12:20 GMT
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Cache:
       - CONFIG_NOCACHE
       x-azure-ref:
-      - 20250312T113946Z-15d554846c62kdknhC1DEN8tnn000000094g000000004c5u
+      - 20250312T121220Z-15d554846c6fdjcvhC1DENh6wg00000002q000000000352e
     status:
       code: 200
       message: OK
@@ -280,14 +297,14 @@ interactions:
       Host:
       - planetarycomputer.microsoft.com
       User-Agent:
-      - Python-urllib/3.9
+      - Python-urllib/3.10
     method: GET
     uri: https://planetarycomputer.microsoft.com/api/stac/v1/
   response:
     body:
       string: '{"type":"Catalog","id":"microsoft-pc","title":"Microsoft Planetary
         Computer STAC API","description":"Searchable spatiotemporal metadata describing
-        Earth science datasets hosted by the Microsoft Planetary Computer","stac_version":"1.0.0","conformsTo":["http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core","http://www.opengis.net/spec/ogcapi-features-3/1.0/conf/filter","https://api.stacspec.org/v1.0.0/ogcapi-features","http://www.opengis.net/spec/cql2/1.0/conf/cql2-text","https://api.stacspec.org/v1.0.0/item-search","https://api.stacspec.org/v1.0.0/collections","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30","https://api.stacspec.org/v1.0.0/item-search#query","https://api.stacspec.org/v1.0.0/item-search#sort","https://api.stacspec.org/v1.0.0/item-search#fields","https://api.stacspec.org/v1.0.0-rc.2/item-search#filter","http://www.opengis.net/spec/cql2/1.0/conf/cql2-json","http://www.opengis.net/spec/cql2/1.0/conf/basic-cql2","https://api.stacspec.org/v1.0.0/core","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/geojson"],"links":[{"rel":"self","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"data","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections"},{"rel":"conformance","type":"application/json","title":"STAC/OGC
+        Earth science datasets hosted by the Microsoft Planetary Computer","stac_version":"1.0.0","conformsTo":["http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/geojson","https://api.stacspec.org/v1.0.0/item-search#sort","http://www.opengis.net/spec/ogcapi-features-3/1.0/conf/filter","https://api.stacspec.org/v1.0.0-rc.2/item-search#filter","http://www.opengis.net/spec/cql2/1.0/conf/cql2-json","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core","https://api.stacspec.org/v1.0.0/item-search#query","http://www.opengis.net/spec/cql2/1.0/conf/cql2-text","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30","https://api.stacspec.org/v1.0.0/item-search#fields","https://api.stacspec.org/v1.0.0/item-search","http://www.opengis.net/spec/cql2/1.0/conf/basic-cql2","https://api.stacspec.org/v1.0.0/core","https://api.stacspec.org/v1.0.0/collections","https://api.stacspec.org/v1.0.0/ogcapi-features"],"links":[{"rel":"self","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"data","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections"},{"rel":"conformance","type":"application/json","title":"STAC/OGC
         conformance classes implemented by this server","href":"https://planetarycomputer.microsoft.com/api/stac/v1/conformance"},{"rel":"search","type":"application/geo+json","title":"STAC
         search","href":"https://planetarycomputer.microsoft.com/api/stac/v1/search","method":"GET"},{"rel":"search","type":"application/geo+json","title":"STAC
         search","href":"https://planetarycomputer.microsoft.com/api/stac/v1/search","method":"POST"},{"rel":"http://www.opengis.net/def/rel/ogc/1.0/queryables","type":"application/schema+json","title":"Queryables","href":"https://planetarycomputer.microsoft.com/api/stac/v1/queryables","method":"GET"},{"rel":"child","type":"application/json","title":"Daymet
@@ -314,8 +331,7 @@ interactions:
         Annual Land Use Land Cover (9-class) V2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc-annual-v02"},{"rel":"child","type":"application/json","title":"CONUS404","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/conus404"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Intensity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-intensity"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Source","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-pointsourceid"},{"rel":"child","type":"application/json","title":"MTBS:
-        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"Landsat
-        8 Collection 2 Level-2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-8-c2-l2"},{"rel":"child","type":"application/json","title":"C-CAP
+        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"C-CAP
         Regional Land Cover and Change","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-c-cap"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Cloud","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-copc"},{"rel":"child","type":"application/json","title":"MODIS
         Burned Area Monthly","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-64A1-061"},{"rel":"child","type":"application/json","title":"ALOS
@@ -433,17 +449,17 @@ interactions:
       Connection:
       - close
       Content-Length:
-      - '25050'
+      - '24878'
       Content-Type:
       - application/json
       Date:
-      - Wed, 12 Mar 2025 11:39:47 GMT
+      - Wed, 12 Mar 2025 12:12:22 GMT
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Cache:
       - CONFIG_NOCACHE
       x-azure-ref:
-      - 20250312T113947Z-15d554846c6wdzdbhC1DENgn2g00000001fg0000000052t9
+      - 20250312T121221Z-15d554846c6fl54mhC1DENf2e800000007m0000000003rd4
     status:
       code: 200
       message: OK

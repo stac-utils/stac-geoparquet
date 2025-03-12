@@ -7,7 +7,7 @@ interactions:
       Host:
       - planetarycomputer.microsoft.com
       User-Agent:
-      - Python-urllib/3.9
+      - Python-urllib/3.10
     method: GET
     uri: https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-2-l2a/items/S2B_MSIL2A_20220612T182919_R027_T24XWR_20220613T123251
   response:
@@ -89,13 +89,13 @@ interactions:
       Content-Type:
       - application/geo+json
       Date:
-      - Wed, 12 Mar 2025 11:43:11 GMT
+      - Wed, 12 Mar 2025 12:10:22 GMT
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Cache:
       - CONFIG_NOCACHE
       x-azure-ref:
-      - 20250312T114311Z-15d554846c6n6z89hC1DENyy0g00000008q0000000000mrt
+      - 20250312T121021Z-15d554846c6qjzmxhC1DEN0a0w0000000a500000000056tk
     status:
       code: 200
       message: OK
@@ -107,7 +107,7 @@ interactions:
       Host:
       - planetarycomputer.microsoft.com
       User-Agent:
-      - Python-urllib/3.9
+      - Python-urllib/3.10
     method: GET
     uri: https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-c2-l2/items/LC08_L2SP_202033_20220327_02_T1
   response:
@@ -269,13 +269,13 @@ interactions:
       Content-Type:
       - application/geo+json
       Date:
-      - Wed, 12 Mar 2025 11:43:12 GMT
+      - Wed, 12 Mar 2025 12:10:22 GMT
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Cache:
       - CONFIG_NOCACHE
       x-azure-ref:
-      - 20250312T114311Z-15d554846c6n6z89hC1DENyy0g00000008r000000000007z
+      - 20250312T121022Z-15d554846c6fksz6hC1DEN88en00000004m0000000000cyp
     status:
       code: 200
       message: OK
