@@ -1,0 +1,503 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.32.3
+    method: GET
+    uri: https://planetarycomputer.microsoft.com/api/stac/v1/collections/aster-l1t/items?limit=1
+  response:
+    body:
+      string: !!binary |
+        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
+        ARpfcY1SSwAA
+    headers:
+      Accept-Ranges:
+      - bytes
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Headers:
+      - X-PC-Request-Entity,DNT,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization
+      Access-Control-Allow-Methods:
+      - PUT, GET, POST, OPTIONS
+      Access-Control-Allow-Origin:
+      - '*'
+      Access-Control-Max-Age:
+      - '1728000'
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '5709'
+      Content-Type:
+      - application/geo+json
+      Date:
+      - Wed, 12 Mar 2025 11:38:16 GMT
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      X-Cache:
+      - CONFIG_NOCACHE
+      content-encoding:
+      - gzip
+      vary:
+      - Accept-Encoding
+      x-azure-ref:
+      - 20250312T113816Z-15d554846c6f5vzshC1DENcnd400000004kg000000002060
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Connection:
+      - close
+      Host:
+      - planetarycomputer.microsoft.com
+      User-Agent:
+      - Python-urllib/3.9
+    method: GET
+    uri: https://planetarycomputer.microsoft.com/api/stac/v1/
+  response:
+    body:
+      string: '{"type":"Catalog","id":"microsoft-pc","title":"Microsoft Planetary
+        Computer STAC API","description":"Searchable spatiotemporal metadata describing
+        Earth science datasets hosted by the Microsoft Planetary Computer","stac_version":"1.0.0","conformsTo":["http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/geojson","https://api.stacspec.org/v1.0.0/core","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30","https://api.stacspec.org/v1.0.0/item-search#query","https://api.stacspec.org/v1.0.0-rc.2/item-search#filter","https://api.stacspec.org/v1.0.0/item-search#sort","https://api.stacspec.org/v1.0.0/collections","https://api.stacspec.org/v1.0.0/item-search","http://www.opengis.net/spec/ogcapi-features-3/1.0/conf/filter","http://www.opengis.net/spec/cql2/1.0/conf/cql2-text","https://api.stacspec.org/v1.0.0/item-search#fields","http://www.opengis.net/spec/cql2/1.0/conf/basic-cql2","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core","https://api.stacspec.org/v1.0.0/ogcapi-features","http://www.opengis.net/spec/cql2/1.0/conf/cql2-json"],"links":[{"rel":"self","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"data","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections"},{"rel":"conformance","type":"application/json","title":"STAC/OGC
+        conformance classes implemented by this server","href":"https://planetarycomputer.microsoft.com/api/stac/v1/conformance"},{"rel":"search","type":"application/geo+json","title":"STAC
+        search","href":"https://planetarycomputer.microsoft.com/api/stac/v1/search","method":"GET"},{"rel":"search","type":"application/geo+json","title":"STAC
+        search","href":"https://planetarycomputer.microsoft.com/api/stac/v1/search","method":"POST"},{"rel":"http://www.opengis.net/def/rel/ogc/1.0/queryables","type":"application/schema+json","title":"Queryables","href":"https://planetarycomputer.microsoft.com/api/stac/v1/queryables","method":"GET"},{"rel":"child","type":"application/json","title":"Daymet
+        Annual Puerto Rico","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/daymet-annual-pr"},{"rel":"child","type":"application/json","title":"Daymet
+        Daily Hawaii","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/daymet-daily-hi"},{"rel":"child","type":"application/json","title":"USGS
+        3DEP Seamless DEMs","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-seamless"},{"rel":"child","type":"application/json","title":"USGS
+        3DEP Lidar Digital Surface Model","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-dsm"},{"rel":"child","type":"application/json","title":"Forest
+        Inventory and Analysis","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/fia"},{"rel":"child","type":"application/json","title":"Sentinel
+        1 Radiometrically Terrain Corrected (RTC)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-1-rtc"},{"rel":"child","type":"application/json","title":"gridMET","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/gridmet"},{"rel":"child","type":"application/json","title":"Daymet
+        Annual North America","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/daymet-annual-na"},{"rel":"child","type":"application/json","title":"Daymet
+        Monthly North America","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/daymet-monthly-na"},{"rel":"child","type":"application/json","title":"Daymet
+        Annual Hawaii","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/daymet-annual-hi"},{"rel":"child","type":"application/json","title":"Daymet
+        Monthly Hawaii","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/daymet-monthly-hi"},{"rel":"child","type":"application/json","title":"Daymet
+        Monthly Puerto Rico","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/daymet-monthly-pr"},{"rel":"child","type":"application/json","title":"gNATSGO
+        Soil Database - Tables","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/gnatsgo-tables"},{"rel":"child","type":"application/json","title":"HGB:
+        Harmonized Global Biomass for 2010","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/hgb"},{"rel":"child","type":"application/json","title":"Copernicus
+        DEM GLO-30","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/cop-dem-glo-30"},{"rel":"child","type":"application/json","title":"Copernicus
+        DEM GLO-90","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/cop-dem-glo-90"},{"rel":"child","type":"application/json","title":"GOES-R
+        Cloud & Moisture Imagery","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/goes-cmi"},{"rel":"child","type":"application/json","title":"TerraClimate","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/terraclimate"},{"rel":"child","type":"application/json","title":"Earth
+        Exchange Global Daily Downscaled Projections (NEX-GDDP-CMIP6)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/nasa-nex-gddp-cmip6"},{"rel":"child","type":"application/json","title":"GPM
+        IMERG","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/gpm-imerg-hhr"},{"rel":"child","type":"application/json","title":"gNATSGO
+        Soil Database - Rasters","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/gnatsgo-rasters"},{"rel":"child","type":"application/json","title":"USGS
+        3DEP Lidar Height above Ground","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-hag"},{"rel":"child","type":"application/json","title":"10m
+        Annual Land Use Land Cover (9-class) V2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc-annual-v02"},{"rel":"child","type":"application/json","title":"CONUS404","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/conus404"},{"rel":"child","type":"application/json","title":"USGS
+        3DEP Lidar Intensity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-intensity"},{"rel":"child","type":"application/json","title":"USGS
+        3DEP Lidar Point Source","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-pointsourceid"},{"rel":"child","type":"application/json","title":"MTBS:
+        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"Landsat
+        8 Collection 2 Level-2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-8-c2-l2"},{"rel":"child","type":"application/json","title":"C-CAP
+        Regional Land Cover and Change","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-c-cap"},{"rel":"child","type":"application/json","title":"USGS
+        3DEP Lidar Point Cloud","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-copc"},{"rel":"child","type":"application/json","title":"MODIS
+        Burned Area Monthly","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-64A1-061"},{"rel":"child","type":"application/json","title":"ALOS
+        Forest/Non-Forest Annual Mosaic","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/alos-fnf-mosaic"},{"rel":"child","type":"application/json","title":"USGS
+        3DEP Lidar Returns","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-returns"},{"rel":"child","type":"application/json","title":"MoBI:
+        Map of Biodiversity Importance","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mobi"},{"rel":"child","type":"application/json","title":"Landsat
+        Collection 2 Level-2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-c2-l2"},{"rel":"child","type":"application/json","title":"ERA5
+        - PDS","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/era5-pds"},{"rel":"child","type":"application/json","title":"Chloris
+        Biomass","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/chloris-biomass"},{"rel":"child","type":"application/json","title":"HydroForecast
+        - Kwando & Upper Zambezi Rivers","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/kaza-hydroforecast"},{"rel":"child","type":"application/json","title":"Planet-NICFI
+        Basemaps (Analytic)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/planet-nicfi-analytic"},{"rel":"child","type":"application/json","title":"MODIS
+        Gross Primary Productivity 8-Day","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-17A2H-061"},{"rel":"child","type":"application/json","title":"MODIS
+        Land Surface Temperature/Emissivity 8-Day","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-11A2-061"},{"rel":"child","type":"application/json","title":"Daymet
+        Daily Puerto Rico","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/daymet-daily-pr"},{"rel":"child","type":"application/json","title":"USGS
+        3DEP Lidar Digital Terrain Model (Native)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-dtm-native"},{"rel":"child","type":"application/json","title":"USGS
+        3DEP Lidar Classification","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-classification"},{"rel":"child","type":"application/json","title":"USGS
+        3DEP Lidar Digital Terrain Model","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-dtm"},{"rel":"child","type":"application/json","title":"USGS
+        Gap Land Cover","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/gap"},{"rel":"child","type":"application/json","title":"MODIS
+        Gross Primary Productivity 8-Day Gap-Filled","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-17A2HGF-061"},{"rel":"child","type":"application/json","title":"Planet-NICFI
+        Basemaps (Visual)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/planet-nicfi-visual"},{"rel":"child","type":"application/json","title":"Global
+        Biodiversity Information Facility (GBIF)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/gbif"},{"rel":"child","type":"application/json","title":"MODIS
+        Net Primary Production Yearly Gap-Filled","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-17A3HGF-061"},{"rel":"child","type":"application/json","title":"MODIS
+        Surface Reflectance 8-Day (500m)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-09A1-061"},{"rel":"child","type":"application/json","title":"ALOS
+        World 3D-30m","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/alos-dem"},{"rel":"child","type":"application/json","title":"ALOS
+        PALSAR Annual Mosaic","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/alos-palsar-mosaic"},{"rel":"child","type":"application/json","title":"Deltares
+        Global Water Availability","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/deltares-water-availability"},{"rel":"child","type":"application/json","title":"MODIS
+        Net Evapotranspiration Yearly Gap-Filled","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-16A3GF-061"},{"rel":"child","type":"application/json","title":"MODIS
+        Land Surface Temperature/3-Band Emissivity 8-Day","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-21A2-061"},{"rel":"child","type":"application/json","title":"US
+        Census","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/us-census"},{"rel":"child","type":"application/json","title":"JRC
+        Global Surface Water","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/jrc-gsw"},{"rel":"child","type":"application/json","title":"Deltares
+        Global Flood Maps","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/deltares-floods"},{"rel":"child","type":"application/json","title":"MODIS
+        Nadir BRDF-Adjusted Reflectance (NBAR) Daily","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-43A4-061"},{"rel":"child","type":"application/json","title":"MODIS
+        Surface Reflectance 8-Day (250m)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-09Q1-061"},{"rel":"child","type":"application/json","title":"MODIS
+        Thermal Anomalies/Fire Daily","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-14A1-061"},{"rel":"child","type":"application/json","title":"HREA:
+        High Resolution Electricity Access","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/hrea"},{"rel":"child","type":"application/json","title":"MODIS
+        Vegetation Indices 16-Day (250m)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-13Q1-061"},{"rel":"child","type":"application/json","title":"MODIS
+        Thermal Anomalies/Fire 8-Day","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-14A2-061"},{"rel":"child","type":"application/json","title":"Sentinel-2
+        Level-2A","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-2-l2a"},{"rel":"child","type":"application/json","title":"MODIS
+        Leaf Area Index/FPAR 8-Day","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-15A2H-061"},{"rel":"child","type":"application/json","title":"MODIS
+        Land Surface Temperature/Emissivity Daily","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-11A1-061"},{"rel":"child","type":"application/json","title":"MODIS
+        Leaf Area Index/FPAR 4-Day","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-15A3H-061"},{"rel":"child","type":"application/json","title":"MODIS
+        Vegetation Indices 16-Day (500m)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-13A1-061"},{"rel":"child","type":"application/json","title":"Daymet
+        Daily North America","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/daymet-daily-na"},{"rel":"child","type":"application/json","title":"Land
+        Cover of Canada","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/nrcan-landcover"},{"rel":"child","type":"application/json","title":"MODIS
+        Snow Cover 8-day","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-10A2-061"},{"rel":"child","type":"application/json","title":"ECMWF
+        Open Data (real-time)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/ecmwf-forecast"},{"rel":"child","type":"application/json","title":"NOAA
+        MRMS QPE 24-Hour Pass 2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-mrms-qpe-24h-pass2"},{"rel":"child","type":"application/json","title":"Sentinel
+        1 Level-1 Ground Range Detected (GRD)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-1-grd"},{"rel":"child","type":"application/json","title":"NASADEM
+        HGT v001","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/nasadem"},{"rel":"child","type":"application/json","title":"Esri
+        10-Meter Land Cover (10-class)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc"},{"rel":"child","type":"application/json","title":"Landsat
+        Collection 2 Level-1","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-c2-l1"},{"rel":"child","type":"application/json","title":"Denver
+        Regional Council of Governments Land Use Land Cover","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/drcog-lulc"},{"rel":"child","type":"application/json","title":"Chesapeake
+        Land Cover (7-class)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/chesapeake-lc-7"},{"rel":"child","type":"application/json","title":"Chesapeake
+        Land Cover (13-class)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/chesapeake-lc-13"},{"rel":"child","type":"application/json","title":"Chesapeake
+        Land Use","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/chesapeake-lu"},{"rel":"child","type":"application/json","title":"NOAA
+        MRMS QPE 1-Hour Pass 1","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-mrms-qpe-1h-pass1"},{"rel":"child","type":"application/json","title":"NOAA
+        MRMS QPE 1-Hour Pass 2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-mrms-qpe-1h-pass2"},{"rel":"child","type":"application/json","title":"Monthly
+        NOAA U.S. Climate Gridded Dataset (NClimGrid)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-nclimgrid-monthly"},{"rel":"child","type":"application/json","title":"GOES-R
+        Lightning Detection","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/goes-glm"},{"rel":"child","type":"application/json","title":"USDA
+        Cropland Data Layers (CDLs)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/usda-cdl"},{"rel":"child","type":"application/json","title":"Urban
+        Innovation Eclipse Sensor Data","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/eclipse"},{"rel":"child","type":"application/json","title":"ESA
+        Climate Change Initiative Land Cover Maps (Cloud Optimized GeoTIFF)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/esa-cci-lc"},{"rel":"child","type":"application/json","title":"ESA
+        Climate Change Initiative Land Cover Maps (NetCDF)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/esa-cci-lc-netcdf"},{"rel":"child","type":"application/json","title":"FWS
+        National Wetlands Inventory","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/fws-nwi"},{"rel":"child","type":"application/json","title":"USGS
+        LCMAP CONUS Collection 1.3","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/usgs-lcmap-conus-v13"},{"rel":"child","type":"application/json","title":"USGS
+        LCMAP Hawaii Collection 1.0","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/usgs-lcmap-hawaii-v10"},{"rel":"child","type":"application/json","title":"NOAA
+        US Tabular Climate Normals","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-climate-normals-tabular"},{"rel":"child","type":"application/json","title":"NOAA
+        US Gridded Climate Normals (NetCDF)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-climate-normals-netcdf"},{"rel":"child","type":"application/json","title":"NOAA
+        US Gridded Climate Normals (Cloud-Optimized GeoTIFF)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-climate-normals-gridded"},{"rel":"child","type":"application/json","title":"ASTER
+        L1T","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/aster-l1t"},{"rel":"child","type":"application/json","title":"CIL
+        Global Downscaled Projections for Climate Impacts Research (CC-BY-SA-4.0)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/cil-gdpcir-cc-by-sa"},{"rel":"child","type":"application/json","title":"NAIP:
+        National Agriculture Imagery Program","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip"},{"rel":"child","type":"application/json","title":"10m
+        Annual Land Use Land Cover (9-class) V1","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc-9-class"},{"rel":"child","type":"application/json","title":"Biodiversity
+        Intactness","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-biodiversity"},{"rel":"child","type":"application/json","title":"Sea
+        Surface Temperature - WHOI CDR","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-cdr-sea-surface-temperature-whoi"},{"rel":"child","type":"application/json","title":"Global
+        Ocean Heat Content CDR","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-cdr-ocean-heat-content"},{"rel":"child","type":"application/json","title":"CIL
+        Global Downscaled Projections for Climate Impacts Research (CC0-1.0)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/cil-gdpcir-cc0"},{"rel":"child","type":"application/json","title":"CIL
+        Global Downscaled Projections for Climate Impacts Research (CC-BY-4.0)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/cil-gdpcir-cc-by"},{"rel":"child","type":"application/json","title":"Sea
+        Surface Temperature - WHOI CDR NetCDFs","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-cdr-sea-surface-temperature-whoi-netcdf"},{"rel":"child","type":"application/json","title":"Sea
+        Surface Temperature - Optimum Interpolation CDR","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-cdr-sea-surface-temperature-optimum-interpolation"},{"rel":"child","type":"application/json","title":"MODIS
+        Snow Cover Daily","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-10A1-061"},{"rel":"child","type":"application/json","title":"Sentinel-5P
+        Level-2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-5p-l2-netcdf"},{"rel":"child","type":"application/json","title":"Sentinel-3
+        Water (Full Resolution)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-3-olci-wfr-l2-netcdf"},{"rel":"child","type":"application/json","title":"Global
+        Ocean Heat Content CDR NetCDFs","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-cdr-ocean-heat-content-netcdf"},{"rel":"child","type":"application/json","title":"Harmonized
+        Landsat Sentinel-2 (HLS) Version 2.0, Landsat Portion","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/hls2-l30"},{"rel":"child","type":"application/json","title":"Sentinel-3
+        Global Aerosol","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-3-synergy-aod-l2-netcdf"},{"rel":"child","type":"application/json","title":"Sentinel-3
+        10-Day Surface Reflectance and NDVI (SPOT VEGETATION)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-3-synergy-v10-l2-netcdf"},{"rel":"child","type":"application/json","title":"Sentinel-3
+        Land (Full Resolution)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-3-olci-lfr-l2-netcdf"},{"rel":"child","type":"application/json","title":"Sentinel-3
+        Land Radar Altimetry","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-3-sral-lan-l2-netcdf"},{"rel":"child","type":"application/json","title":"Sentinel-3
+        Land Surface Temperature","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-3-slstr-lst-l2-netcdf"},{"rel":"child","type":"application/json","title":"Sentinel-3
+        Sea Surface Temperature","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-3-slstr-wst-l2-netcdf"},{"rel":"child","type":"application/json","title":"Sentinel-3
+        Ocean Radar Altimetry","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-3-sral-wat-l2-netcdf"},{"rel":"child","type":"application/json","title":"Harmonized
+        Landsat Sentinel-2 (HLS) Version 2.0, Sentinel-2 Portion","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/hls2-s30"},{"rel":"child","type":"application/json","title":"Microsoft
+        Building Footprints","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/ms-buildings"},{"rel":"child","type":"application/json","title":"Sentinel-3
+        Fire Radiative Power","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-3-slstr-frp-l2-netcdf"},{"rel":"child","type":"application/json","title":"Sentinel-3
+        Land Surface Reflectance and Aerosol","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-3-synergy-syn-l2-netcdf"},{"rel":"child","type":"application/json","title":"Sentinel-3
+        Top of Atmosphere Reflectance (SPOT VEGETATION)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-3-synergy-vgp-l2-netcdf"},{"rel":"child","type":"application/json","title":"Sentinel-3
+        1-Day Surface Reflectance and NDVI (SPOT VEGETATION)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-3-synergy-vg1-l2-netcdf"},{"rel":"child","type":"application/json","title":"ESA
+        WorldCover","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/esa-worldcover"},{"rel":"service-desc","type":"application/vnd.oai.openapi+json;version=3.0","title":"OpenAPI
+        service description","href":"https://planetarycomputer.microsoft.com/api/stac/v1/openapi.json"},{"rel":"service-doc","type":"text/html","title":"OpenAPI
+        service documentation","href":"https://planetarycomputer.microsoft.com/api/stac/v1/docs"}],"stac_extensions":[]}'
+    headers:
+      Accept-Ranges:
+      - bytes
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Headers:
+      - X-PC-Request-Entity,DNT,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization
+      Access-Control-Allow-Methods:
+      - PUT, GET, POST, OPTIONS
+      Access-Control-Allow-Origin:
+      - '*'
+      Access-Control-Max-Age:
+      - '1728000'
+      Connection:
+      - close
+      Content-Length:
+      - '25050'
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 12 Mar 2025 11:38:17 GMT
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      X-Cache:
+      - CONFIG_NOCACHE
+      x-azure-ref:
+      - 20250312T113816Z-15d554846c6btfv6hC1DEN3ezc00000006e0000000000tnw
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Connection:
+      - close
+      Host:
+      - planetarycomputer.microsoft.com
+      User-Agent:
+      - Python-urllib/3.9
+    method: GET
+    uri: https://planetarycomputer.microsoft.com/api/stac/v1/
+  response:
+    body:
+      string: '{"type":"Catalog","id":"microsoft-pc","title":"Microsoft Planetary
+        Computer STAC API","description":"Searchable spatiotemporal metadata describing
+        Earth science datasets hosted by the Microsoft Planetary Computer","stac_version":"1.0.0","conformsTo":["http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/geojson","https://api.stacspec.org/v1.0.0/core","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30","https://api.stacspec.org/v1.0.0/item-search#query","https://api.stacspec.org/v1.0.0-rc.2/item-search#filter","https://api.stacspec.org/v1.0.0/item-search#sort","https://api.stacspec.org/v1.0.0/collections","https://api.stacspec.org/v1.0.0/item-search","http://www.opengis.net/spec/ogcapi-features-3/1.0/conf/filter","http://www.opengis.net/spec/cql2/1.0/conf/cql2-text","https://api.stacspec.org/v1.0.0/item-search#fields","http://www.opengis.net/spec/cql2/1.0/conf/basic-cql2","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core","https://api.stacspec.org/v1.0.0/ogcapi-features","http://www.opengis.net/spec/cql2/1.0/conf/cql2-json"],"links":[{"rel":"self","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"data","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections"},{"rel":"conformance","type":"application/json","title":"STAC/OGC
+        conformance classes implemented by this server","href":"https://planetarycomputer.microsoft.com/api/stac/v1/conformance"},{"rel":"search","type":"application/geo+json","title":"STAC
+        search","href":"https://planetarycomputer.microsoft.com/api/stac/v1/search","method":"GET"},{"rel":"search","type":"application/geo+json","title":"STAC
+        search","href":"https://planetarycomputer.microsoft.com/api/stac/v1/search","method":"POST"},{"rel":"http://www.opengis.net/def/rel/ogc/1.0/queryables","type":"application/schema+json","title":"Queryables","href":"https://planetarycomputer.microsoft.com/api/stac/v1/queryables","method":"GET"},{"rel":"child","type":"application/json","title":"Daymet
+        Annual Puerto Rico","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/daymet-annual-pr"},{"rel":"child","type":"application/json","title":"Daymet
+        Daily Hawaii","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/daymet-daily-hi"},{"rel":"child","type":"application/json","title":"USGS
+        3DEP Seamless DEMs","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-seamless"},{"rel":"child","type":"application/json","title":"USGS
+        3DEP Lidar Digital Surface Model","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-dsm"},{"rel":"child","type":"application/json","title":"Forest
+        Inventory and Analysis","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/fia"},{"rel":"child","type":"application/json","title":"Sentinel
+        1 Radiometrically Terrain Corrected (RTC)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-1-rtc"},{"rel":"child","type":"application/json","title":"gridMET","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/gridmet"},{"rel":"child","type":"application/json","title":"Daymet
+        Annual North America","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/daymet-annual-na"},{"rel":"child","type":"application/json","title":"Daymet
+        Monthly North America","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/daymet-monthly-na"},{"rel":"child","type":"application/json","title":"Daymet
+        Annual Hawaii","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/daymet-annual-hi"},{"rel":"child","type":"application/json","title":"Daymet
+        Monthly Hawaii","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/daymet-monthly-hi"},{"rel":"child","type":"application/json","title":"Daymet
+        Monthly Puerto Rico","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/daymet-monthly-pr"},{"rel":"child","type":"application/json","title":"gNATSGO
+        Soil Database - Tables","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/gnatsgo-tables"},{"rel":"child","type":"application/json","title":"HGB:
+        Harmonized Global Biomass for 2010","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/hgb"},{"rel":"child","type":"application/json","title":"Copernicus
+        DEM GLO-30","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/cop-dem-glo-30"},{"rel":"child","type":"application/json","title":"Copernicus
+        DEM GLO-90","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/cop-dem-glo-90"},{"rel":"child","type":"application/json","title":"GOES-R
+        Cloud & Moisture Imagery","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/goes-cmi"},{"rel":"child","type":"application/json","title":"TerraClimate","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/terraclimate"},{"rel":"child","type":"application/json","title":"Earth
+        Exchange Global Daily Downscaled Projections (NEX-GDDP-CMIP6)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/nasa-nex-gddp-cmip6"},{"rel":"child","type":"application/json","title":"GPM
+        IMERG","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/gpm-imerg-hhr"},{"rel":"child","type":"application/json","title":"gNATSGO
+        Soil Database - Rasters","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/gnatsgo-rasters"},{"rel":"child","type":"application/json","title":"USGS
+        3DEP Lidar Height above Ground","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-hag"},{"rel":"child","type":"application/json","title":"10m
+        Annual Land Use Land Cover (9-class) V2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc-annual-v02"},{"rel":"child","type":"application/json","title":"CONUS404","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/conus404"},{"rel":"child","type":"application/json","title":"USGS
+        3DEP Lidar Intensity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-intensity"},{"rel":"child","type":"application/json","title":"USGS
+        3DEP Lidar Point Source","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-pointsourceid"},{"rel":"child","type":"application/json","title":"MTBS:
+        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"Landsat
+        8 Collection 2 Level-2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-8-c2-l2"},{"rel":"child","type":"application/json","title":"C-CAP
+        Regional Land Cover and Change","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-c-cap"},{"rel":"child","type":"application/json","title":"USGS
+        3DEP Lidar Point Cloud","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-copc"},{"rel":"child","type":"application/json","title":"MODIS
+        Burned Area Monthly","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-64A1-061"},{"rel":"child","type":"application/json","title":"ALOS
+        Forest/Non-Forest Annual Mosaic","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/alos-fnf-mosaic"},{"rel":"child","type":"application/json","title":"USGS
+        3DEP Lidar Returns","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-returns"},{"rel":"child","type":"application/json","title":"MoBI:
+        Map of Biodiversity Importance","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mobi"},{"rel":"child","type":"application/json","title":"Landsat
+        Collection 2 Level-2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-c2-l2"},{"rel":"child","type":"application/json","title":"ERA5
+        - PDS","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/era5-pds"},{"rel":"child","type":"application/json","title":"Chloris
+        Biomass","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/chloris-biomass"},{"rel":"child","type":"application/json","title":"HydroForecast
+        - Kwando & Upper Zambezi Rivers","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/kaza-hydroforecast"},{"rel":"child","type":"application/json","title":"Planet-NICFI
+        Basemaps (Analytic)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/planet-nicfi-analytic"},{"rel":"child","type":"application/json","title":"MODIS
+        Gross Primary Productivity 8-Day","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-17A2H-061"},{"rel":"child","type":"application/json","title":"MODIS
+        Land Surface Temperature/Emissivity 8-Day","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-11A2-061"},{"rel":"child","type":"application/json","title":"Daymet
+        Daily Puerto Rico","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/daymet-daily-pr"},{"rel":"child","type":"application/json","title":"USGS
+        3DEP Lidar Digital Terrain Model (Native)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-dtm-native"},{"rel":"child","type":"application/json","title":"USGS
+        3DEP Lidar Classification","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-classification"},{"rel":"child","type":"application/json","title":"USGS
+        3DEP Lidar Digital Terrain Model","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-dtm"},{"rel":"child","type":"application/json","title":"USGS
+        Gap Land Cover","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/gap"},{"rel":"child","type":"application/json","title":"MODIS
+        Gross Primary Productivity 8-Day Gap-Filled","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-17A2HGF-061"},{"rel":"child","type":"application/json","title":"Planet-NICFI
+        Basemaps (Visual)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/planet-nicfi-visual"},{"rel":"child","type":"application/json","title":"Global
+        Biodiversity Information Facility (GBIF)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/gbif"},{"rel":"child","type":"application/json","title":"MODIS
+        Net Primary Production Yearly Gap-Filled","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-17A3HGF-061"},{"rel":"child","type":"application/json","title":"MODIS
+        Surface Reflectance 8-Day (500m)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-09A1-061"},{"rel":"child","type":"application/json","title":"ALOS
+        World 3D-30m","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/alos-dem"},{"rel":"child","type":"application/json","title":"ALOS
+        PALSAR Annual Mosaic","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/alos-palsar-mosaic"},{"rel":"child","type":"application/json","title":"Deltares
+        Global Water Availability","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/deltares-water-availability"},{"rel":"child","type":"application/json","title":"MODIS
+        Net Evapotranspiration Yearly Gap-Filled","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-16A3GF-061"},{"rel":"child","type":"application/json","title":"MODIS
+        Land Surface Temperature/3-Band Emissivity 8-Day","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-21A2-061"},{"rel":"child","type":"application/json","title":"US
+        Census","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/us-census"},{"rel":"child","type":"application/json","title":"JRC
+        Global Surface Water","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/jrc-gsw"},{"rel":"child","type":"application/json","title":"Deltares
+        Global Flood Maps","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/deltares-floods"},{"rel":"child","type":"application/json","title":"MODIS
+        Nadir BRDF-Adjusted Reflectance (NBAR) Daily","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-43A4-061"},{"rel":"child","type":"application/json","title":"MODIS
+        Surface Reflectance 8-Day (250m)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-09Q1-061"},{"rel":"child","type":"application/json","title":"MODIS
+        Thermal Anomalies/Fire Daily","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-14A1-061"},{"rel":"child","type":"application/json","title":"HREA:
+        High Resolution Electricity Access","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/hrea"},{"rel":"child","type":"application/json","title":"MODIS
+        Vegetation Indices 16-Day (250m)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-13Q1-061"},{"rel":"child","type":"application/json","title":"MODIS
+        Thermal Anomalies/Fire 8-Day","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-14A2-061"},{"rel":"child","type":"application/json","title":"Sentinel-2
+        Level-2A","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-2-l2a"},{"rel":"child","type":"application/json","title":"MODIS
+        Leaf Area Index/FPAR 8-Day","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-15A2H-061"},{"rel":"child","type":"application/json","title":"MODIS
+        Land Surface Temperature/Emissivity Daily","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-11A1-061"},{"rel":"child","type":"application/json","title":"MODIS
+        Leaf Area Index/FPAR 4-Day","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-15A3H-061"},{"rel":"child","type":"application/json","title":"MODIS
+        Vegetation Indices 16-Day (500m)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-13A1-061"},{"rel":"child","type":"application/json","title":"Daymet
+        Daily North America","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/daymet-daily-na"},{"rel":"child","type":"application/json","title":"Land
+        Cover of Canada","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/nrcan-landcover"},{"rel":"child","type":"application/json","title":"MODIS
+        Snow Cover 8-day","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-10A2-061"},{"rel":"child","type":"application/json","title":"ECMWF
+        Open Data (real-time)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/ecmwf-forecast"},{"rel":"child","type":"application/json","title":"NOAA
+        MRMS QPE 24-Hour Pass 2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-mrms-qpe-24h-pass2"},{"rel":"child","type":"application/json","title":"Sentinel
+        1 Level-1 Ground Range Detected (GRD)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-1-grd"},{"rel":"child","type":"application/json","title":"NASADEM
+        HGT v001","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/nasadem"},{"rel":"child","type":"application/json","title":"Esri
+        10-Meter Land Cover (10-class)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc"},{"rel":"child","type":"application/json","title":"Landsat
+        Collection 2 Level-1","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-c2-l1"},{"rel":"child","type":"application/json","title":"Denver
+        Regional Council of Governments Land Use Land Cover","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/drcog-lulc"},{"rel":"child","type":"application/json","title":"Chesapeake
+        Land Cover (7-class)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/chesapeake-lc-7"},{"rel":"child","type":"application/json","title":"Chesapeake
+        Land Cover (13-class)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/chesapeake-lc-13"},{"rel":"child","type":"application/json","title":"Chesapeake
+        Land Use","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/chesapeake-lu"},{"rel":"child","type":"application/json","title":"NOAA
+        MRMS QPE 1-Hour Pass 1","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-mrms-qpe-1h-pass1"},{"rel":"child","type":"application/json","title":"NOAA
+        MRMS QPE 1-Hour Pass 2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-mrms-qpe-1h-pass2"},{"rel":"child","type":"application/json","title":"Monthly
+        NOAA U.S. Climate Gridded Dataset (NClimGrid)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-nclimgrid-monthly"},{"rel":"child","type":"application/json","title":"GOES-R
+        Lightning Detection","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/goes-glm"},{"rel":"child","type":"application/json","title":"USDA
+        Cropland Data Layers (CDLs)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/usda-cdl"},{"rel":"child","type":"application/json","title":"Urban
+        Innovation Eclipse Sensor Data","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/eclipse"},{"rel":"child","type":"application/json","title":"ESA
+        Climate Change Initiative Land Cover Maps (Cloud Optimized GeoTIFF)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/esa-cci-lc"},{"rel":"child","type":"application/json","title":"ESA
+        Climate Change Initiative Land Cover Maps (NetCDF)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/esa-cci-lc-netcdf"},{"rel":"child","type":"application/json","title":"FWS
+        National Wetlands Inventory","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/fws-nwi"},{"rel":"child","type":"application/json","title":"USGS
+        LCMAP CONUS Collection 1.3","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/usgs-lcmap-conus-v13"},{"rel":"child","type":"application/json","title":"USGS
+        LCMAP Hawaii Collection 1.0","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/usgs-lcmap-hawaii-v10"},{"rel":"child","type":"application/json","title":"NOAA
+        US Tabular Climate Normals","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-climate-normals-tabular"},{"rel":"child","type":"application/json","title":"NOAA
+        US Gridded Climate Normals (NetCDF)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-climate-normals-netcdf"},{"rel":"child","type":"application/json","title":"NOAA
+        US Gridded Climate Normals (Cloud-Optimized GeoTIFF)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-climate-normals-gridded"},{"rel":"child","type":"application/json","title":"ASTER
+        L1T","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/aster-l1t"},{"rel":"child","type":"application/json","title":"CIL
+        Global Downscaled Projections for Climate Impacts Research (CC-BY-SA-4.0)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/cil-gdpcir-cc-by-sa"},{"rel":"child","type":"application/json","title":"NAIP:
+        National Agriculture Imagery Program","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip"},{"rel":"child","type":"application/json","title":"10m
+        Annual Land Use Land Cover (9-class) V1","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc-9-class"},{"rel":"child","type":"application/json","title":"Biodiversity
+        Intactness","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-biodiversity"},{"rel":"child","type":"application/json","title":"Sea
+        Surface Temperature - WHOI CDR","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-cdr-sea-surface-temperature-whoi"},{"rel":"child","type":"application/json","title":"Global
+        Ocean Heat Content CDR","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-cdr-ocean-heat-content"},{"rel":"child","type":"application/json","title":"CIL
+        Global Downscaled Projections for Climate Impacts Research (CC0-1.0)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/cil-gdpcir-cc0"},{"rel":"child","type":"application/json","title":"CIL
+        Global Downscaled Projections for Climate Impacts Research (CC-BY-4.0)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/cil-gdpcir-cc-by"},{"rel":"child","type":"application/json","title":"Sea
+        Surface Temperature - WHOI CDR NetCDFs","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-cdr-sea-surface-temperature-whoi-netcdf"},{"rel":"child","type":"application/json","title":"Sea
+        Surface Temperature - Optimum Interpolation CDR","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-cdr-sea-surface-temperature-optimum-interpolation"},{"rel":"child","type":"application/json","title":"MODIS
+        Snow Cover Daily","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-10A1-061"},{"rel":"child","type":"application/json","title":"Sentinel-5P
+        Level-2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-5p-l2-netcdf"},{"rel":"child","type":"application/json","title":"Sentinel-3
+        Water (Full Resolution)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-3-olci-wfr-l2-netcdf"},{"rel":"child","type":"application/json","title":"Global
+        Ocean Heat Content CDR NetCDFs","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-cdr-ocean-heat-content-netcdf"},{"rel":"child","type":"application/json","title":"Harmonized
+        Landsat Sentinel-2 (HLS) Version 2.0, Landsat Portion","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/hls2-l30"},{"rel":"child","type":"application/json","title":"Sentinel-3
+        Global Aerosol","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-3-synergy-aod-l2-netcdf"},{"rel":"child","type":"application/json","title":"Sentinel-3
+        10-Day Surface Reflectance and NDVI (SPOT VEGETATION)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-3-synergy-v10-l2-netcdf"},{"rel":"child","type":"application/json","title":"Sentinel-3
+        Land (Full Resolution)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-3-olci-lfr-l2-netcdf"},{"rel":"child","type":"application/json","title":"Sentinel-3
+        Land Radar Altimetry","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-3-sral-lan-l2-netcdf"},{"rel":"child","type":"application/json","title":"Sentinel-3
+        Land Surface Temperature","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-3-slstr-lst-l2-netcdf"},{"rel":"child","type":"application/json","title":"Sentinel-3
+        Sea Surface Temperature","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-3-slstr-wst-l2-netcdf"},{"rel":"child","type":"application/json","title":"Sentinel-3
+        Ocean Radar Altimetry","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-3-sral-wat-l2-netcdf"},{"rel":"child","type":"application/json","title":"Harmonized
+        Landsat Sentinel-2 (HLS) Version 2.0, Sentinel-2 Portion","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/hls2-s30"},{"rel":"child","type":"application/json","title":"Microsoft
+        Building Footprints","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/ms-buildings"},{"rel":"child","type":"application/json","title":"Sentinel-3
+        Fire Radiative Power","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-3-slstr-frp-l2-netcdf"},{"rel":"child","type":"application/json","title":"Sentinel-3
+        Land Surface Reflectance and Aerosol","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-3-synergy-syn-l2-netcdf"},{"rel":"child","type":"application/json","title":"Sentinel-3
+        Top of Atmosphere Reflectance (SPOT VEGETATION)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-3-synergy-vgp-l2-netcdf"},{"rel":"child","type":"application/json","title":"Sentinel-3
+        1-Day Surface Reflectance and NDVI (SPOT VEGETATION)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-3-synergy-vg1-l2-netcdf"},{"rel":"child","type":"application/json","title":"ESA
+        WorldCover","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/esa-worldcover"},{"rel":"service-desc","type":"application/vnd.oai.openapi+json;version=3.0","title":"OpenAPI
+        service description","href":"https://planetarycomputer.microsoft.com/api/stac/v1/openapi.json"},{"rel":"service-doc","type":"text/html","title":"OpenAPI
+        service documentation","href":"https://planetarycomputer.microsoft.com/api/stac/v1/docs"}],"stac_extensions":[]}'
+    headers:
+      Accept-Ranges:
+      - bytes
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Headers:
+      - X-PC-Request-Entity,DNT,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization
+      Access-Control-Allow-Methods:
+      - PUT, GET, POST, OPTIONS
+      Access-Control-Allow-Origin:
+      - '*'
+      Access-Control-Max-Age:
+      - '1728000'
+      Connection:
+      - close
+      Content-Length:
+      - '25050'
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 12 Mar 2025 11:38:17 GMT
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      X-Cache:
+      - CONFIG_NOCACHE
+      x-azure-ref:
+      - 20250312T113817Z-15d554846c6wdzdbhC1DENgn2g00000001p0000000001a8n
+    status:
+      code: 200
+      message: OK
+version: 1
