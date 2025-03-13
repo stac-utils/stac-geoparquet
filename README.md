@@ -16,6 +16,14 @@ For analytic questions like "find the items in the Sentinel-2 collection in June
 
 See the [STAC-GeoParquet specification](./spec/stac-geoparquet-spec.md) for details on the exact schema of the written Parquet files.
 
+
+## Installation
+
+Install via `pip` or `conda`:
+
+* `pip install stac-geoparquet`
+* `conda install conda-forge::stac-geoparquet`
+
 ## Documentation
 
 [Documentation website](https://stac-utils.github.io/stac-geoparquet/)
