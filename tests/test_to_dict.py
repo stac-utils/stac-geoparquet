@@ -83,7 +83,6 @@ def test_to_dict(naip):
             {
                 "href": "https://planetarycomputer.microsoft.com/api/stac/v1/",
                 "rel": "root",
-                "title": "Microsoft Planetary Computer STAC API",
                 "type": "application/json",
             },
             {
@@ -115,7 +114,7 @@ def test_to_dict(naip):
         "stac_version": pystac.get_stac_version(),
         "type": "Feature",
     }
-    assert result[0].to_dict() == expected
+    assert result[0].to_dict(transform_hrefs=False) == expected
 
 
 def test_to_dict_optional_asset():

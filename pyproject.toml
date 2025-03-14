@@ -54,6 +54,8 @@ dev = [
     "stac-geoparquet[pgstac]",
     "types-python-dateutil",
     "types-requests",
+    "pytest-recording>=0.13.2",
+    "vcrpy>=7.0.0",
 ]
 docs = [
     "griffe-inherited-docstrings",

@@ -1,6 +1,7 @@
 import datetime
 import json
 import pathlib
+import sys
 
 import dateutil
 import pandas as pd
@@ -14,6 +15,10 @@ from stac_geoparquet.utils import assert_equal
 HERE = pathlib.Path(__file__).parent
 
 
+@pytest.mark.vcr
+@pytest.mark.skipif(
+    sys.version_info < (3, 10), reason="vcr tests require python3.10 or higher"
+)
 def test_naip_item():
     base_item = {
         "type": "Feature",
@@ -115,6 +120,10 @@ def test_naip_item():
     assert_equal(result, expected, ignore_none=True)
 
 
+@pytest.mark.vcr
+@pytest.mark.skipif(
+    sys.version_info < (3, 10), reason="vcr tests require python3.10 or higher"
+)
 def test_sentinel2_l2a():
     record = json.loads(HERE.joinpath("record_sentinel2_l2a.json").read_text())
     base_item = json.loads(HERE.joinpath("base_sentinel2_l2a.json").read_text())
@@ -141,9 +150,13 @@ def test_sentinel2_l2a():
     assert_equal(result, expected, ignore_none=True)
 
 
+@pytest.mark.vcr
+@pytest.mark.skipif(
+    sys.version_info < (3, 10), reason="vcr tests require python3.10 or higher"
+)
 def test_generate_endpoints():
     cfg = stac_geoparquet.pgstac_reader.CollectionConfig(
-        collection_id="naip", partition_frequency="AS"
+        collection_id="naip", partition_frequency="YS"
     )
     endpoints = cfg.generate_endpoints()
     assert endpoints[0][0] == pd.Timestamp("2010-01-01 00:00:00+0000", tz="utc")

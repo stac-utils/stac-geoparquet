@@ -1,0 +1,759 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.32.3
+    method: GET
+    uri: https://planetarycomputer.microsoft.com/api/stac/v1/collections/gap/items?limit=1
+  response:
+    body:
+      string: '{"type":"FeatureCollection","features":[{"id":"gap_landfire_nationalterrestrialecosystems2011_938865_862215_1238865_562215","bbox":[-86.50614200788456,27.3898603199775,-83.094706715818,30.39956432670431],"type":"Feature","links":[{"rel":"collection","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/gap"},{"rel":"parent","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/gap"},{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"self","type":"application/geo+json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/gap/items/gap_landfire_nationalterrestrialecosystems2011_938865_862215_1238865_562215"},{"rel":"preview","href":"https://planetarycomputer.microsoft.com/api/data/v1/item/map?collection=gap&item=gap_landfire_nationalterrestrialecosystems2011_938865_862215_1238865_562215","title":"Map
+        of item","type":"text/html"}],"assets":{"data":{"href":"https://ai4edataeuwest.blob.core.windows.net/usgs-gap/conus/gap_landfire_nationalterrestrialecosystems2011_938865_862215_1238865_562215.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","roles":["data"],"title":"GeoTIFF
+        data"},"tilejson":{"title":"TileJSON with default rendering","href":"https://planetarycomputer.microsoft.com/api/data/v1/item/tilejson.json?collection=gap&item=gap_landfire_nationalterrestrialecosystems2011_938865_862215_1238865_562215&assets=data&tile_format=png&colormap_name=gap-lulc&format=png","type":"application/json","roles":["tiles"]},"rendered_preview":{"title":"Rendered
+        preview","rel":"preview","href":"https://planetarycomputer.microsoft.com/api/data/v1/item/preview.png?collection=gap&item=gap_landfire_nationalterrestrialecosystems2011_938865_862215_1238865_562215&assets=data&tile_format=png&colormap_name=gap-lulc&format=png","roles":["overview"],"type":"image/png"}},"geometry":{"type":"Polygon","coordinates":[[[-83.50321552,27.38986032],[-83.09470672,30.07742972],[-86.19419859,30.39956433],[-86.50614201,27.70391617],[-83.50321552,27.38986032]]]},"collection":"gap","properties":{"datetime":"2011-12-31T00:00:00Z","proj:wkt2":"PROJCS[\"NAD83
+        / Conus Albers\",GEOGCS[\"NAD83\",DATUM[\"North_American_Datum_1983\",SPHEROID[\"GRS
+        1980\",6378137,298.257222101,AUTHORITY[\"EPSG\",\"7019\"]],AUTHORITY[\"EPSG\",\"6269\"]],PRIMEM[\"Greenwich\",0,AUTHORITY[\"EPSG\",\"8901\"]],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]],AUTHORITY[\"EPSG\",\"4269\"]],PROJECTION[\"Albers_Conic_Equal_Area\"],PARAMETER[\"latitude_of_center\",23],PARAMETER[\"longitude_of_center\",-96],PARAMETER[\"standard_parallel_1\",29.5],PARAMETER[\"standard_parallel_2\",45.5],PARAMETER[\"false_easting\",0],PARAMETER[\"false_northing\",0],UNIT[\"metre\",1,AUTHORITY[\"EPSG\",\"9001\"]],AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH],AUTHORITY[\"EPSG\",\"5070\"]]","label:type":"raster","proj:shape":[10000,10000],"end_datetime":"2011-12-31T00:00:00+00:00","label:classes":[{"name":"","classes":["0","South
+        Florida Bayhead Swamp","South Florida Cypress Dome","South Florida Dwarf Cypress
+        Savanna","South Florida Mangrove Swamp","South Florida Hardwood Hammock","Southeast
+        Florida Coastal Strand and Maritime Hammock","Southwest Florida Coastal Strand
+        and Maritime Hammock","South Florida Pine Rockland","Atlantic Coastal Plain
+        Fall-line Sandhills Longleaf Pine Woodland - Open Understory","Atlantic Coastal
+        Plain Fall-line Sandhills Longleaf Pine Woodland - Scrub/Shrub Understory","Atlantic
+        Coastal Plain Upland Longleaf Pine Woodland","Atlantic Coastal Plain Xeric
+        River Dune","East Gulf Coastal Plain Interior Upland Longleaf Pine Woodland
+        - Open Understory Modifier","East Gulf Coastal Plain Interior Upland Longleaf
+        Pine Woodland - Scrub/Shrub Modifier","Florida Longleaf Pine Sandhill - Scrub/Shrub
+        Understory Modifier","Florida Longleaf Pine Sandhill- Open Understory Modifier","West
+        Gulf Coastal Plain Upland Longleaf Pine Forest and Woodland","Atlantic Coastal
+        Plain Central Maritime Forest","Atlantic Coastal Plain Southern Maritime Forest","Central
+        and South Texas Coastal Fringe Forest and Woodland","East Gulf Coastal Plain
+        Limestone Forest","East Gulf Coastal Plain Maritime Forest","East Gulf Coastal
+        Plain Southern Loess Bluff Forest","East Gulf Coastal Plain Southern Mesic
+        Slope Forest","Mississippi Delta Maritime Forest","Southern Coastal Plain
+        Dry Upland Hardwood Forest","Southern Coastal Plain Oak Dome and Hammock","West
+        Gulf Coastal Plain Chenier and Upper Texas Coastal Fringe Forest and Woodland","West
+        Gulf Coastal Plain Mesic Hardwood Forest","East-Central Texas Plains Pine
+        Forest and Woodland","West Gulf Coastal Plain Pine-Hardwood Forest","West
+        Gulf Coastal Plain Sandhill Oak and Shortleaf Pine Forest and Woodland","Atlantic
+        Coastal Plain Fall-Line Sandhills Longleaf Pine Woodland - Loblolly Modifier","Deciduous
+        Plantations","East Gulf Coastal Plain Interior Upland Longleaf Pine Woodland
+        - Loblolly Modifier","East Gulf Coastal Plain Interior Upland Longleaf Pine
+        Woodland - Offsite Hardwood Modifier","East Gulf Coastal Plain Near-Coast
+        Pine Flatwoods - Offsite Hardwood Modifier","Evergreen Plantation or Managed
+        Pine","California Central Valley Mixed Oak Savanna","California Coastal Closed-Cone
+        Conifer Forest and Woodland","California Coastal Live Oak Woodland and Savanna","California
+        Lower Montane Blue Oak-Foothill Pine Woodland and Savanna","Central and Southern
+        California Mixed Evergreen Woodland","Mediterranean California Lower Montane
+        Black Oak-Conifer Forest and Woodland","Southern California Oak Woodland and
+        Savanna","Madrean Encinal","Madrean Pinyon-Juniper Woodland","Madrean Pine-Oak
+        Forest and Woodland","Madrean Upper Montane Conifer-Oak Forest and Woodland","Edwards
+        Plateau Dry-Mesic Slope Forest and Woodland","Edwards Plateau Limestone Savanna
+        and Woodland","Edwards Plateau Mesic Canyon","Llano Uplift Acidic Forest,
+        Woodland and Glade","East Cascades Oak-Ponderosa Pine Forest and Woodland","Mediterranean
+        California Mixed Evergreen Forest","Mediterranean California Mixed Oak Woodland","North
+        Pacific Dry Douglas-fir-(Madrone) Forest and Woodland","North Pacific Oak
+        Woodland","Edwards Plateau Limestone Shrubland","Allegheny-Cumberland Dry
+        Oak Forest and Woodland - Hardwood","Allegheny-Cumberland Dry Oak Forest and
+        Woodland - Pine Modifier","Central and Southern Appalachian Montane Oak Forest","Central
+        and Southern Appalachian Northern Hardwood Forest","Central Appalachian Oak
+        and Pine Forest","Crosstimbers Oak Forest and Woodland","East Gulf Coastal
+        Plain Black Belt Calcareous Prairie and Woodland - Woodland Modifier","East
+        Gulf Coastal Plain Northern Dry Upland Hardwood Forest","East Gulf Coastal
+        Plain Northern Loess Plain Oak-Hickory Upland - Hardwood Modifier","East Gulf
+        Coastal Plain Northern Loess Plain Oak-Hickory Upland - Juniper Modifier","East-Central
+        Texas Plains Post Oak Savanna and Woodland","Lower Mississippi River Dune
+        Woodland and Forest","Mississippi River Alluvial Plain Dry-Mesic Loess Slope
+        Forest","North-Central Interior Dry Oak Forest and Woodland","North-Central
+        Interior Dry-Mesic Oak Forest and Woodland","Northeastern Interior Dry Oak
+        Forest - Mixed Modifier","Northeastern Interior Dry Oak Forest - Virginia/Pitch
+        Pine Modifier","Northeastern Interior Dry Oak Forest-Hardwood Modifier","Northeastern
+        Interior Dry-Mesic Oak Forest","Northern Atlantic Coastal Plain Dry Hardwood
+        Forest","Crowleys Ridge Sand Forest","Ouachita Montane Oak Forest","Ozark-Ouachita
+        Dry Oak Woodland","Ozark-Ouachita Dry-Mesic Oak Forest","Southern and Central
+        Appalachian Oak Forest","Southern and Central Appalachian Oak Forest - Xeric","Southern
+        Interior Low Plateau Dry-Mesic Oak Forest","Southern Ridge and Valley Dry
+        Calcareous Forest","Southern Ridge and Valley Dry Calcareous Forest - Pine
+        modifier","East Gulf Coastal Plain Northern Dry Upland Hardwood Forest - Offsite
+        Pine Modifier","Managed Tree Plantation","Ruderal forest","Southern Piedmont
+        Dry Oak-(Pine) Forest - Loblolly Pine Modifier","Acadian Low-Elevation Spruce-Fir-Hardwood
+        Forest","Acadian-Appalachian Montane Spruce-Fir Forest","Appalachian Hemlock-Hardwood
+        Forest","Central and Southern Appalachian Spruce-Fir Forest","0","Laurentian-Acadian
+        Northern Hardwoods Forest","Laurentian-Acadian Northern Pine-(Oak) Forest","Laurentian-Acadian
+        Pine-Hemlock-Hardwood Forest","Paleozoic Plateau Bluff and Talus","Southern
+        Appalachian Northern Hardwood Forest","Atlantic Coastal Plain Dry and Dry-Mesic
+        Oak Forest","Atlantic Coastal Plain Fall-line Sandhills Longleaf Pine Woodland
+        - Offsite Hardwood","East Gulf Coastal Plain Interior Shortleaf Pine-Oak Forest
+        - Hardwood Modifier","East Gulf Coastal Plain Interior Shortleaf Pine-Oak
+        Forest - Mixed Modifier","Ozark-Ouachita Shortleaf Pine-Bluestem Woodland","Ozark-Ouachita
+        Shortleaf Pine-Oak Forest and Woodland","Southeastern Interior Longleaf Pine
+        Woodland","Southern Appalachian Low Mountain Pine Forest","Southern Piedmont
+        Dry Oak-(Pine) Forest","Southern Piedmont Dry Oak-(Pine) Forest - Hardwood
+        Modifier","Southern Piedmont Dry Oak-(Pine) Forest - Mixed Modifier","Southern
+        Piedmont Dry Oak-Heath Forest - Mixed Modifier","Eastern Great Plains Tallgrass
+        Aspen Parkland","Northwestern Great Plains Aspen Forest and Parkland","Northwestern
+        Great Plains Shrubland","Western Great Plains Dry Bur Oak Forest and Woodland","Western
+        Great Plains Wooded Draw and Ravine","Southern Atlantic Coastal Plain Mesic
+        Hardwood Forest","East Gulf Coastal Plain Northern Loess Bluff Forest","East
+        Gulf Coastal Plain Northern Mesic Hardwood Forest","North-Central Interior
+        Beech-Maple Forest","North-Central Interior Maple-Basswood Forest","Ozark-Ouachita
+        Mesic Hardwood Forest","South-Central Interior Mesophytic Forest","Southern
+        and Central Appalachian Cove Forest","Crowleys Ridge Mesic Loess Slope Forest","Southern
+        Piedmont Mesic Forest","Appalachian Shale Barrens","Atlantic Coastal Plain
+        Northern Maritime Forest","Laurentian Pine-Oak Barrens","Northeastern Interior
+        Pine Barrens","Northern Atlantic Coastal Plain Pitch Pine Barrens","Southern
+        Appalachian Montane Pine Forest and Woodland","East Cascades Mesic Montane
+        Mixed-Conifer Forest and Woodland","Middle Rocky Mountain Montane Douglas-fir
+        Forest and Woodland","Northern Rocky Mountain Dry-Mesic Montane Mixed Conifer
+        Forest","Northern Rocky Mountain Foothill Conifer Wooded Steppe","Northern
+        Rocky Mountain Mesic Montane Mixed Conifer Forest","Northern Rocky Mountain
+        Ponderosa Pine Woodland and Savanna","Northern Rocky Mountain Western Larch
+        Savanna","Northwestern Great Plains - Black Hills Ponderosa Pine Woodland
+        and Savanna","Rocky Mountain Foothill Limber Pine-Juniper Woodland","Inter-Mountain
+        Basins Aspen-Mixed Conifer Forest and Woodland","Inter-Mountain Basins Subalpine
+        Limber-Bristlecone Pine Woodland","Northern Rocky Mountain Subalpine Woodland
+        and Parkland","Rocky Mountain Aspen Forest and Woodland","Rocky Mountain Lodgepole
+        Pine Forest","Rocky Mountain Poor-Site Lodgepole Pine Forest","Rocky Mountain
+        Subalpine Dry-Mesic Spruce-Fir Forest and Woodland","Rocky Mountain Subalpine
+        Mesic Spruce-Fir Forest and Woodland","Rocky Mountain Subalpine-Montane Limber-Bristlecone
+        Pine Woodland","Rocky Mountain Bigtooth Maple Ravine Woodland","Southern Rocky
+        Mountain Dry-Mesic Montane Mixed Conifer Forest and Woodland","Southern Rocky
+        Mountain Mesic Montane Mixed Conifer Forest and Woodland","Southern Rocky
+        Mountain Ponderosa Pine Savanna","Southern Rocky Mountain Ponderosa Pine Woodland","California
+        Montane Jeffrey Pine-(Ponderosa Pine) Woodland","Klamath-Siskiyou Lower Montane
+        Serpentine Mixed Conifer Woodland","Klamath-Siskiyou Upper Montane Serpentine
+        Mixed Conifer Woodland","Mediterranean California Dry-Mesic Mixed Conifer
+        Forest and Woodland","Mediterranean California Mesic Mixed Conifer Forest
+        and Woodland","Sierran-Intermontane Desert Western White Pine-White Fir Woodland","California
+        Coastal Redwood Forest","North Pacific Broadleaf Landslide Forest and Shrubland","North
+        Pacific Dry-Mesic Silver Fir-Western Hemlock-Douglas-fir Forest","North Pacific
+        Hypermaritime Sitka Spruce Forest","North Pacific Hypermaritime Western Red-cedar-Western
+        Hemlock Forest","North Pacific Lowland Mixed Hardwood-Conifer Forest and Woodland","North
+        Pacific Maritime Dry-Mesic Douglas-fir-Western Hemlock Forest","North Pacific
+        Maritime Mesic-Wet Douglas-fir-Western Hemlock Forest","North Pacific Mesic
+        Western Hemlock-Silver Fir Forest","North Pacific Wooded Volcanic Flowage","Mediterranean
+        California Red Fir Forest","Mediterranean California Subalpine Woodland","North
+        Pacific Maritime Mesic Subalpine Parkland","North Pacific Mountain Hemlock
+        Forest","Northern California Mesic Subalpine Woodland","Northern Pacific Mesic
+        Subalpine Woodland","Sierra Nevada Subalpine Lodgepole Pine Forest and Woodland","Columbia
+        Plateau Western Juniper Woodland and Savanna","Great Basin Pinyon-Juniper
+        Woodland","Inter-Mountain Basins Curl-leaf Mountain Mahogany Woodland and
+        Shrubland","Inter-Mountain Basins Juniper Savanna","Colorado Plateau Pinyon-Juniper
+        Shrubland","Colorado Plateau Pinyon-Juniper Woodland","Southern Rocky Mountain
+        Juniper Woodland and Savanna","Southern Rocky Mountain Pinyon-Juniper Woodland","Northwestern
+        Great Plains Floodplain","Northwestern Great Plains Riparian","Western Great
+        Plains Floodplain","Western Great Plains Floodplain Systems","Western Great
+        Plains Riparian Woodland and Shrubland","Central Appalachian Floodplain -
+        Forest Modifier","Central Appalachian Riparian - Forest Modifier","Central
+        Interior and Appalachian Floodplain Systems","Central Interior and Appalachian
+        Riparian Systems","Laurentian-Acadian Floodplain Systems","Ozark-Ouachita
+        Riparian","South-Central Interior Large Floodplain","South-Central Interior
+        Large Floodplain - Forest Modifier","South-Central Interior Small Stream and
+        Riparian","North-Central Interior and Appalachian Rich Swamp","0","0","Laurentian-Acadian
+        Swamp Systems","North-Central Interior Wet Flatwoods","0","South-Central Interior
+        / Upper Coastal Plain Wet Flatwoods","0","Southern Piedmont/Ridge and Valley
+        Upland Depression Swamp","Atlantic Coastal Plain Blackwater Stream Floodplain
+        Forest - Forest Modifier","Atlantic Coastal Plain Brownwater Stream Floodplain
+        Forest","Atlantic Coastal Plain Northern Tidal Wooded Swamp","Atlantic Coastal
+        Plain Small Blackwater River Floodplain Forest","Atlantic Coastal Plain Small
+        Brownwater River Floodplain Forest","Atlantic Coastal Plain Southern Tidal
+        Wooded Swamp","East Gulf Coastal Plain Large River Floodplain Forest - Forest
+        Modifier","East Gulf Coastal Plain Small Stream and River Floodplain Forest","East
+        Gulf Coastal Plain Tidal Wooded Swamp","0","Southeastern Great Plains Riparian
+        Forest","Southeastern Great Plains Floodplain Forest","Mississippi River Bottomland
+        Depression","Mississippi River Floodplain and Riparian Forest","Mississippi
+        River Low Floodplain (Bottomland) Forest","Mississippi River Riparian Forest","Red
+        River Large Floodplain Forest","Southern Coastal Plain Blackwater River Floodplain
+        Forest","Southern Piedmont Large Floodplain Forest - Forest Modifier","Southern
+        Piedmont Small Floodplain and Riparian Forest","West Gulf Coastal Plain Large
+        River Floodplain Forest","West Gulf Coastal Plain Near-Coast Large River Swamp","West
+        Gulf Coastal Plain Small Stream and River Forest","Atlantic Coastal Plain
+        Streamhead Seepage Swamp -  Pocosin -  and Baygall","Gulf and Atlantic Coastal
+        Plain Swamp Systems","Southern Coastal Plain Hydric Hammock","Southern Coastal
+        Plain Seepage Swamp and Baygall","West Gulf Coastal Plain Seepage Swamp and
+        Baygall","Atlantic Coastal Plain Nonriverine Swamp and Wet Hardwood Forest  -
+        Taxodium/Nyssa Modifier","Atlantic Coastal Plain Nonriverine Swamp and Wet
+        Hardwood Forest - Oak Dominated Modifier","East Gulf Coastal Plain Southern
+        Loblolly-Hardwood Flatwoods","Lower Mississippi River Bottomland Depressions
+        - Forest Modifier","Lower Mississippi River Flatwoods","Northern Atlantic
+        Coastal Plain Basin Swamp and Wet Hardwood Forest","Southern Coastal Plain
+        Nonriverine Basin Swamp","Southern Coastal Plain Nonriverine Basin Swamp -
+        Okefenokee Bay/Gum Modifier","Southern Coastal Plain Nonriverine Basin Swamp
+        - Okefenokee Pine Modifier","Southern Coastal Plain Nonriverine Basin Swamp
+        - Okefenokee Taxodium Modifier","West Gulf Coastal Plain Nonriverine Wet Hardwood
+        Flatwoods","West Gulf Coastal Plain Pine-Hardwood Flatwoods","Edwards Plateau
+        Riparian","Atlantic Coastal Plain Clay-Based Carolina Bay Forested Wetland","Atlantic
+        Coastal Plain Clay-Based Carolina Bay Herbaceous Wetland","Atlantic Coastal
+        Plain Southern Wet Pine Savanna and Flatwoods","Central Atlantic Coastal Plain
+        Wet Longleaf Pine Savanna and Flatwoods","Central Florida Pine Flatwoods","East
+        Gulf Coastal Plain Near-Coast Pine Flatwoods","East Gulf Coastal Plain Near-Coast
+        Pine Flatwoods - Open Understory Modifier","East Gulf Coastal Plain Near-Coast
+        Pine Flatwoods - Scrub/Shrub Understory Modifier","South Florida Pine Flatwoods","Southern
+        Coastal Plain Nonriverine Cypress Dome","West Gulf Coastal Plain Wet Longleaf
+        Pine Savanna and Flatwoods","Columbia Basin Foothill Riparian Woodland and
+        Shrubland","Great Basin Foothill and Lower Montane Riparian Woodland and Shrubland","0","Northern
+        Rocky Mountain Conifer Swamp","Northern Rocky Mountain Lower Montane Riparian
+        Woodland and Shrubland","Rocky Mountain Lower Montane Riparian Woodland and
+        Shrubland","Rocky Mountain Montane Riparian Systems","Rocky Mountain Subalpine-Montane
+        Riparian Woodland","North Pacific Hardwood-Conifer Swamp","North Pacific Lowland
+        Riparian Forest and Shrubland","North Pacific Montane Riparian Woodland and
+        Shrubland","North Pacific Shrub Swamp","California Central Valley Riparian
+        Woodland and Shrubland","Mediterranean California Foothill and Lower Montane
+        Riparian Woodland","Mediterranean California Serpentine Foothill and Lower
+        Montane Riparian Woodland and Seep","North American Warm Desert Lower Montane
+        Riparian Woodland and Shrubland","North American Warm Desert Riparian Systems","North
+        American Warm Desert Riparian Woodland and Shrubland","Tamaulipan Floodplain","Tamaulipan
+        Riparian Systems","Boreal Aspen-Birch Forest","Boreal Jack Pine-Black Spruce
+        Forest","Boreal White Spruce-Fir-Hardwood Forest","Boreal-Laurentian Conifer
+        Acidic Swamp and Treed Poor Fen","Eastern Boreal Floodplain","South Florida
+        Shell Hash Beach","Southeast Florida Beach","Southwest Florida Beach","South
+        Florida Everglades Sawgrass Marsh","South Florida Freshwater Slough and Gator
+        Hole","South Florida Wet Marl Prairie","California Maritime Chaparral","California
+        Mesic Chaparral","California Xeric Serpentine Chaparral","Klamath-Siskiyou
+        Xeromorphic Serpentine Savanna and Chaparral","Mediterranean California Mesic
+        Serpentine Woodland and Chaparral","Northern and Central California Dry-Mesic
+        Chaparral","Southern California Dry-Mesic Chaparral","Southern California
+        Coastal Scrub","California Central Valley and Southern Coastal Grassland","California
+        Mesic Serpentine Grassland","Columbia Basin Foothill and Canyon Dry Grassland","Columbia
+        Basin Palouse Prairie","North Pacific Alpine and Subalpine Dry Grassland","North
+        Pacific Montane Grassland","North Pacific Montane Shrubland","Northern Rocky
+        Mountain Lower Montane, Foothill and Valley Grassland","Northern Rocky Mountain
+        Montane-Foothill Deciduous Shrubland","Northern Rocky Mountain Subalpine Deciduous
+        Shrubland","Northern Rocky Mountain Subalpine-Upper Montane Grassland","Southern
+        Rocky Mountain Montane-Subalpine Grassland","Rocky Mountain Gambel Oak-Mixed
+        Montane Shrubland","Rocky Mountain Lower Montane-Foothill Shrubland","California
+        Northern Coastal Grassland","North Pacific Herbaceous Bald and Bluff","North
+        Pacific Hypermaritime Shrub and Herbaceous Headland","Willamette Valley Upland
+        Prairie and Savanna","Mediterranean California Subalpine Meadow","Rocky Mountain
+        Subalpine-Montane Mesic Meadow","Central Mixedgrass Prairie","Northwestern
+        Great Plains Mixedgrass Prairie","Western Great Plains Foothill and Piedmont
+        Grassland","Western Great Plains Tallgrass Prairie","Western Great Plains
+        Sand Prairie","Western Great Plains Sandhill Steppe","Western Great Plains
+        Mesquite Woodland and Shrubland","Western Great Plains Shortgrass Prairie","Arkansas
+        Valley Prairie and Woodland","Central Tallgrass Prairie","North-Central Interior
+        Oak Savanna","North-Central Interior Sand and Gravel Tallgrass Prairie","North-Central
+        Oak Barrens","Northern Tallgrass Prairie","Southeastern Great Plains Tallgrass
+        Prairie","Texas Blackland Tallgrass Prairie","Texas-Louisiana Coastal Prairie","Central
+        Appalachian Pine-Oak Rocky Woodland","Southern Appalachian Grass and Shrub
+        Bald","Southern Appalachian Grass and Shrub Bald - Herbaceous Modifier","Southern
+        Appalachian Grass and Shrub Bald - Shrub Modifier","Central Appalachian Alkaline
+        Glade and Woodland","Central Interior Highlands Calcareous Glade and Barrens","Central
+        Interior Highlands Dry Acidic Glade and Barrens","Cumberland Sandstone Glade
+        and Barrens","Great Lakes Alvar","Nashville Basin Limestone Glade","Southern
+        Ridge and Valley / Cumberland Dry Calcareous Forest","Southern Piedmont Glade
+        and Barrens","East Gulf Coastal Plain Black Belt Calcareous Prairie and Woodland
+        - Herbaceous Modifier","East Gulf Coastal Plain Jackson Prairie and Woodland","Eastern
+        Highland Rim Prairie and Barrens - Dry Modifier","Coahuilan Chaparral","Madrean
+        Oriental Chaparral","Mogollon Chaparral","Sonora-Mojave Semi-Desert Chaparral","California
+        Montane Woodland and Chaparral","Great Basin Semi-Desert Chaparral","Florida
+        Dry Prairie","Florida Peninsula Inland Scrub","West Gulf Coastal Plain Catahoula
+        Barrens","West Gulf Coastal Plain Nepheline Syenite Glade","East Gulf Coastal
+        Plain Jackson Plain Dry Flatwoods - Open Understory Modifier","West Gulf Coastal
+        Plain Northern Calcareous Prairie","West Gulf Coastal Plain Southern Calcareous
+        Prairie","Acadian-Appalachian Subalpine Woodland and Heath-Krummholz","Atlantic
+        and Gulf Coastal Plain Interdunal Wetland","Atlantic Coastal Plain Southern
+        Dune and Maritime Grassland","Central and Upper Texas Coast Dune and Coastal
+        Grassland","East Gulf Coastal Plain Dune and Coastal Grassland","Great Lakes
+        Dune","Northern Atlantic Coastal Plain Dune and Swale","Northern Atlantic
+        Coastal Plain Heathland and Grassland","South Texas Dune and Coastal Grassland","South
+        Texas Sand Sheet Grassland","Southwest Florida Dune and Coastal Grassland","North
+        Pacific Coastal Cliff and Bluff","North Pacific Maritime Coastal Sand Dune
+        and Strand","Northern California Coastal Scrub","Mediterranean California
+        Coastal Bluff","Mediterranean California Northern Coastal Dune","Mediterranean
+        California Southern Coastal Dune","Atlantic Coastal Plain Northern Sandy Beach","Atlantic
+        Coastal Plain Sea Island Beach","Atlantic Coastal Plain Southern Beach","Florida
+        Panhandle Beach Vegetation","Louisiana Beach","Northern Atlantic Coastal Plain
+        Sandy Beach","Texas Coastal Bend Beach","Upper Texas Coast Beach","0","Mediterranean
+        California Serpentine Fen","Mediterranean California Subalpine-Montane Fen","North
+        Pacific Bog and Fen","Rocky Mountain Subalpine-Montane Fen","Atlantic Coastal
+        Plain Peatland Pocosin","Southern and Central Appalachian Bog and Fen","Atlantic
+        Coastal Plain Central Fresh-Oligohaline Tidal Marsh","Atlantic Coastal Plain
+        Embayed Region Tidal Freshwater Marsh","Atlantic Coastal Plain Northern Fresh
+        and Oligohaline Tidal Marsh","Florida Big Bend Fresh-Oligohaline Tidal Marsh","Atlantic
+        Coastal Plain Depression Pondshore","Atlantic Coastal Plain Large Natural
+        Lakeshore","Central Florida Herbaceous Pondshore","Central Florida Herbaceous
+        Seep","East Gulf Coastal Plain Savanna and Wet Prairie","East Gulf Coastal
+        Plain Depression Pondshore","Floridian Highlands Freshwater Marsh","Southern
+        Coastal Plain Herbaceous Seepage Bog","Southern Coastal Plain Nonriverine
+        Basin Swamp - Okefenokee Clethra Modifier","Southern Coastal Plain Nonriverine
+        Basin Swamp - Okefenokee Nupea Modifier","Texas-Louisiana Coastal Prairie
+        Slough","Central Interior and Appalachian Shrub-Herbaceous Wetland Systems","Great
+        Lakes Coastal Marsh Systems","0","0","Laurentian-Acadian Shrub-Herbaceous
+        Wetland Systems","0","Eastern Great Plains Wet Meadow, Prairie  and Marsh","Great
+        Lakes Wet-Mesic Lakeplain Prairie","Great Plains Prairie Pothole","Western
+        Great Plains Closed Depression Wetland","Western Great Plains Depressional
+        Wetland Systems","Western Great Plains Open Freshwater Depression Wetland","Cumberland
+        Riverscour","Inter-Mountain Basins Interdunal Swale Wetland","North Pacific
+        Avalanche Chute Shrubland","North Pacific Intertidal Freshwater Wetland","Temperate
+        Pacific Freshwater Emergent Marsh","Temperate Pacific Freshwater Mudflat","Columbia
+        Plateau Vernal Pool","Northern California Claypan Vernal Pool","Northern Rocky
+        Mountain Wooded Vernal Pool","Columbia Plateau Silver Sagebrush Seasonally
+        Flooded Shrub-Steppe","Rocky Mountain Alpine-Montane Wet Meadow","Rocky Mountain
+        Subalpine-Montane Riparian Shrubland","Temperate Pacific Montane Wet Meadow","Willamette
+        Valley Wet Prairie","Chihuahuan-Sonoran Desert Bottomland and Swale Grassland","North
+        American Arid West Emergent Marsh","North American Warm Desert Riparian Mesquite
+        Bosque","Western Great Plains Saline Depression Wetland","Acadian Salt Marsh
+        and Estuary Systems","Atlantic Coastal Plain Central Salt and Brackish Tidal
+        Marsh","Atlantic Coastal Plain Embayed Region Tidal Salt and Brackish Marsh","Atlantic
+        Coastal Plain Indian River Lagoon Tidal Marsh","Atlantic Coastal Plain Northern
+        Tidal Salt Marsh","Florida Big Bend Salt-Brackish Tidal Marsh","Gulf and Atlantic
+        Coastal Plain Tidal Marsh Systems","Mississippi Sound Salt and Brackish Tidal
+        Marsh","Texas Saline Coastal Prairie","Temperate Pacific Tidal Salt and Brackish
+        Marsh","Inter-Mountain Basins Alkaline Closed Depression","Inter-Mountain
+        Basins Greasewood Flat","Inter-Mountain Basins Playa","North American Warm
+        Desert Playa","Apacherian-Chihuahuan Mesquite Upland Scrub","Apacherian-Chihuahuan
+        Semi-Desert Grassland and Steppe","Chihuahuan Creosotebush, Mixed Desert and
+        Thorn Scrub","Chihuahuan Gypsophilous Grassland and Steppe","Chihuahuan Loamy
+        Plains Desert Grassland","Chihuahuan Mixed Desert and Thorn Scrub","Chihuahuan
+        Sandy Plains Semi-Desert Grassland","Chihuahuan Stabilized Coppice Dune and
+        Sand Flat Scrub","Chihuahuan Succulent Desert Scrub","Madrean Juniper Savanna","Mojave
+        Mid-Elevation Mixed Desert Scrub","North American Warm Desert Active and Stabilized
+        Dune","Sonora-Mojave Creosotebush-White Bursage Desert Scrub","Sonoran Mid-Elevation
+        Desert Scrub","Sonoran Paloverde-Mixed Cacti Desert Scrub","Chihuahuan Mixed
+        Salt Desert Scrub","Sonora-Mojave Mixed Salt Desert Scrub","North American
+        Warm Desert Wash","South Texas Lomas","Tamaulipan Calcareous Thornscrub","Tamaulipan
+        Clay Grassland","Tamaulipan Mesquite Upland Scrub","Tamaulipan Mixed Deciduous
+        Thornscrub","Tamaulipan Savanna Grassland","Inter-Mountain Basins Mat Saltbush
+        Shrubland","Inter-Mountain Basins Mixed Salt Desert Scrub","Inter-Mountain
+        Basins Wash","Columbia Plateau Steppe and Grassland","Great Basin Xeric Mixed
+        Sagebrush Shrubland","Inter-Mountain Basins Big Sagebrush Shrubland","Inter-Mountain
+        Basins Big Sagebrush Steppe","Inter-Mountain Basins Montane Sagebrush Steppe","Colorado
+        Plateau Mixed Low Sagebrush Shrubland","Columbia Plateau Low Sagebrush Steppe","Columbia
+        Plateau Scabland Shrubland","Wyoming Basins Dwarf Sagebrush Shrubland and
+        Steppe","Colorado Plateau Blackbrush-Mormon-tea Shrubland","Inter-Mountain
+        Basins Semi-Desert Grassland","Inter-Mountain Basins Semi-Desert Shrub Steppe","Southern
+        Colorado Plateau Sand Shrubland","Acadian-Appalachian Alpine Tundra","Rocky
+        Mountain Alpine Dwarf-Shrubland","Rocky Mountain Alpine Fell-Field","Rocky
+        Mountain Alpine Turf","Mediterranean California Alpine Dry Tundra","Mediterranean
+        California Alpine Fell-Field","North Pacific Dry and Mesic Alpine Dwarf-Shrubland,
+        Fell-field and Meadow","Rocky Mountain Alpine Tundra/Fell-field/Dwarf-shrub
+        Map Unit","Temperate Pacific Intertidal Mudflat","Mediterranean California
+        Eelgrass Bed","North Pacific Maritime Eelgrass Bed","South-Central Interior
+        Large Floodplain - Herbaceous Modifier","East Gulf Coastal Plain Large River
+        Floodplain Forest - Herbaceous Modifier","Temperate Pacific Freshwater Aquatic
+        Bed","Central California Coast Ranges Cliff and Canyon","Mediterranean California
+        Serpentine Barrens","Southern California Coast Ranges Cliff and Canyon","Central
+        Interior Acidic Cliff and Talus","Central Interior Calcareous Cliff and Talus","East
+        Gulf Coastal Plain Dry Chalk Bluff","North-Central Appalachian Acidic Cliff
+        and Talus","North-Central Appalachian Circumneutral Cliff and Talus","Southern
+        Appalachian Montane Cliff","Southern Interior Acid Cliff","Southern Interior
+        Calcareous Cliff","Southern Piedmont Cliff","Southern Appalachian Granitic
+        Dome","Southern Appalachian Rocky Summit","Southern Piedmont Granite Flatrock","Rocky
+        Mountain Cliff, Canyon and Massive Bedrock","Klamath-Siskiyou Cliff and Outcrop","North
+        Pacific Montane Massive Bedrock, Cliff and Talus","North Pacific Serpentine
+        Barren","North Pacific Active Volcanic Rock and Cinder Land","Sierra Nevada
+        Cliff and Canyon","Western Great Plains Badland","Southwestern Great Plains
+        Canyon","Western Great Plains Cliff and Outcrop","North American Warm Desert
+        Badland","North American Warm Desert Bedrock Cliff and Outcrop","North American
+        Warm Desert Pavement","North American Warm Desert Volcanic Rockland","Colorado
+        Plateau Mixed Bedrock Canyon and Tableland","Columbia Plateau Ash and Tuff
+        Badland","Geysers and Hot Springs","Inter-Mountain Basins Active and Stabilized
+        Dune","Inter-Mountain Basins Cliff and Canyon","Inter-Mountain Basins Shale
+        Badland","Inter-Mountain Basins Volcanic Rock and Cinder Land","Rocky Mountain
+        Alpine Bedrock and Scree","Mediterranean California Alpine Bedrock and Scree","North
+        Pacific Alpine and Subalpine Bedrock and Scree","Unconsolidated Shore","Undifferentiated
+        Barren Land","North American Alpine Ice Field","Orchards Vineyards and Other
+        High Structure Agriculture","Cultivated Cropland","Pasture/Hay","Introduced
+        Upland Vegetation - Annual Grassland","Introduced Upland Vegetation - Perennial
+        Grassland and Forbland","Modified/Managed Southern Tall Grassland","Introduced
+        Upland Vegetation - Shrub","Introduced Riparian and Wetland Vegetation","Introduced
+        Upland Vegetation - Treed","0","Disturbed, Non-specific","Recently Logged
+        Areas","Harvested Forest - Grass/Forb Regeneration","Harvested Forest-Shrub
+        Regeneration","Harvested Forest - Northwestern Conifer Regeneration","Recently
+        Burned","Recently burned grassland","Recently burned shrubland","Recently
+        burned forest","Disturbed/Successional - Grass/Forb Regeneration","Disturbed/Successional
+        - Shrub Regeneration","Disturbed/Successional - Recently Chained Pinyon-Juniper","Open
+        Water (Aquaculture)","Open Water (Brackish/Salt)","Open Water (Fresh)","Quarries,
+        Mines, Gravel Pits and Oil Wells","Developed, Open Space","Developed, Low
+        Intensity","Developed, Medium Intensity","Developed, High Intensity"]}],"proj:transform":[30.0,0.0,938865.0,0.0,-30.0,862215.0,0.0,0.0,1.0],"start_datetime":"2010-01-01T00:00:00+00:00","label:description":"USGS
+        GAP/LANDFIRE"},"stac_extensions":["https://stac-extensions.github.io/projection/v1.0.0/schema.json","https://stac-extensions.github.io/label/v1.0.0/schema.json"],"stac_version":"1.0.0"}],"links":[{"rel":"collection","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/gap"},{"rel":"parent","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/gap"},{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"self","type":"application/geo+json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/gap/items"},{"rel":"next","type":"application/geo+json","method":"GET","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/gap/items?limit=1&token=next:gap:gap_landfire_nationalterrestrialecosystems2011_938865_862215_1238865_562215"}]}'
+    headers:
+      Accept-Ranges:
+      - bytes
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Headers:
+      - X-PC-Request-Entity,DNT,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization
+      Access-Control-Allow-Methods:
+      - PUT, GET, POST, OPTIONS
+      Access-Control-Allow-Origin:
+      - '*'
+      Access-Control-Max-Age:
+      - '1728000'
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '6937'
+      Content-Type:
+      - application/geo+json
+      Date:
+      - Wed, 12 Mar 2025 12:11:15 GMT
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      X-Cache:
+      - CONFIG_NOCACHE
+      content-encoding:
+      - gzip
+      vary:
+      - Accept-Encoding
+      x-azure-ref:
+      - 20250312T121115Z-15d554846c6hstv4hC1DEN36c0000000015g0000000048wp
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Connection:
+      - close
+      Host:
+      - planetarycomputer.microsoft.com
+      User-Agent:
+      - Python-urllib/3.10
+    method: GET
+    uri: https://planetarycomputer.microsoft.com/api/stac/v1/
+  response:
+    body:
+      string: '{"type":"Catalog","id":"microsoft-pc","title":"Microsoft Planetary
+        Computer STAC API","description":"Searchable spatiotemporal metadata describing
+        Earth science datasets hosted by the Microsoft Planetary Computer","stac_version":"1.0.0","conformsTo":["https://api.stacspec.org/v1.0.0/ogcapi-features","https://api.stacspec.org/v1.0.0/collections","https://api.stacspec.org/v1.0.0/item-search#fields","http://www.opengis.net/spec/cql2/1.0/conf/basic-cql2","http://www.opengis.net/spec/cql2/1.0/conf/cql2-text","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30","https://api.stacspec.org/v1.0.0/core","https://api.stacspec.org/v1.0.0/item-search","https://api.stacspec.org/v1.0.0-rc.2/item-search#filter","http://www.opengis.net/spec/cql2/1.0/conf/cql2-json","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/geojson","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core","https://api.stacspec.org/v1.0.0/item-search#sort","https://api.stacspec.org/v1.0.0/item-search#query","http://www.opengis.net/spec/ogcapi-features-3/1.0/conf/filter"],"links":[{"rel":"self","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"data","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections"},{"rel":"conformance","type":"application/json","title":"STAC/OGC
+        conformance classes implemented by this server","href":"https://planetarycomputer.microsoft.com/api/stac/v1/conformance"},{"rel":"search","type":"application/geo+json","title":"STAC
+        search","href":"https://planetarycomputer.microsoft.com/api/stac/v1/search","method":"GET"},{"rel":"search","type":"application/geo+json","title":"STAC
+        search","href":"https://planetarycomputer.microsoft.com/api/stac/v1/search","method":"POST"},{"rel":"http://www.opengis.net/def/rel/ogc/1.0/queryables","type":"application/schema+json","title":"Queryables","href":"https://planetarycomputer.microsoft.com/api/stac/v1/queryables","method":"GET"},{"rel":"child","type":"application/json","title":"Daymet
+        Annual Puerto Rico","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/daymet-annual-pr"},{"rel":"child","type":"application/json","title":"Daymet
+        Daily Hawaii","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/daymet-daily-hi"},{"rel":"child","type":"application/json","title":"USGS
+        3DEP Seamless DEMs","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-seamless"},{"rel":"child","type":"application/json","title":"USGS
+        3DEP Lidar Digital Surface Model","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-dsm"},{"rel":"child","type":"application/json","title":"Forest
+        Inventory and Analysis","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/fia"},{"rel":"child","type":"application/json","title":"Sentinel
+        1 Radiometrically Terrain Corrected (RTC)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-1-rtc"},{"rel":"child","type":"application/json","title":"gridMET","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/gridmet"},{"rel":"child","type":"application/json","title":"Daymet
+        Annual North America","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/daymet-annual-na"},{"rel":"child","type":"application/json","title":"Daymet
+        Monthly North America","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/daymet-monthly-na"},{"rel":"child","type":"application/json","title":"Daymet
+        Annual Hawaii","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/daymet-annual-hi"},{"rel":"child","type":"application/json","title":"Daymet
+        Monthly Hawaii","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/daymet-monthly-hi"},{"rel":"child","type":"application/json","title":"Daymet
+        Monthly Puerto Rico","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/daymet-monthly-pr"},{"rel":"child","type":"application/json","title":"gNATSGO
+        Soil Database - Tables","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/gnatsgo-tables"},{"rel":"child","type":"application/json","title":"HGB:
+        Harmonized Global Biomass for 2010","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/hgb"},{"rel":"child","type":"application/json","title":"Copernicus
+        DEM GLO-30","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/cop-dem-glo-30"},{"rel":"child","type":"application/json","title":"Copernicus
+        DEM GLO-90","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/cop-dem-glo-90"},{"rel":"child","type":"application/json","title":"GOES-R
+        Cloud & Moisture Imagery","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/goes-cmi"},{"rel":"child","type":"application/json","title":"TerraClimate","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/terraclimate"},{"rel":"child","type":"application/json","title":"Earth
+        Exchange Global Daily Downscaled Projections (NEX-GDDP-CMIP6)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/nasa-nex-gddp-cmip6"},{"rel":"child","type":"application/json","title":"GPM
+        IMERG","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/gpm-imerg-hhr"},{"rel":"child","type":"application/json","title":"gNATSGO
+        Soil Database - Rasters","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/gnatsgo-rasters"},{"rel":"child","type":"application/json","title":"USGS
+        3DEP Lidar Height above Ground","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-hag"},{"rel":"child","type":"application/json","title":"10m
+        Annual Land Use Land Cover (9-class) V2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc-annual-v02"},{"rel":"child","type":"application/json","title":"CONUS404","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/conus404"},{"rel":"child","type":"application/json","title":"USGS
+        3DEP Lidar Intensity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-intensity"},{"rel":"child","type":"application/json","title":"USGS
+        3DEP Lidar Point Source","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-pointsourceid"},{"rel":"child","type":"application/json","title":"MTBS:
+        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"C-CAP
+        Regional Land Cover and Change","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-c-cap"},{"rel":"child","type":"application/json","title":"USGS
+        3DEP Lidar Point Cloud","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-copc"},{"rel":"child","type":"application/json","title":"MODIS
+        Burned Area Monthly","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-64A1-061"},{"rel":"child","type":"application/json","title":"ALOS
+        Forest/Non-Forest Annual Mosaic","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/alos-fnf-mosaic"},{"rel":"child","type":"application/json","title":"USGS
+        3DEP Lidar Returns","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-returns"},{"rel":"child","type":"application/json","title":"MoBI:
+        Map of Biodiversity Importance","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mobi"},{"rel":"child","type":"application/json","title":"Landsat
+        Collection 2 Level-2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-c2-l2"},{"rel":"child","type":"application/json","title":"ERA5
+        - PDS","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/era5-pds"},{"rel":"child","type":"application/json","title":"Chloris
+        Biomass","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/chloris-biomass"},{"rel":"child","type":"application/json","title":"HydroForecast
+        - Kwando & Upper Zambezi Rivers","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/kaza-hydroforecast"},{"rel":"child","type":"application/json","title":"Planet-NICFI
+        Basemaps (Analytic)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/planet-nicfi-analytic"},{"rel":"child","type":"application/json","title":"MODIS
+        Gross Primary Productivity 8-Day","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-17A2H-061"},{"rel":"child","type":"application/json","title":"MODIS
+        Land Surface Temperature/Emissivity 8-Day","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-11A2-061"},{"rel":"child","type":"application/json","title":"Daymet
+        Daily Puerto Rico","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/daymet-daily-pr"},{"rel":"child","type":"application/json","title":"USGS
+        3DEP Lidar Digital Terrain Model (Native)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-dtm-native"},{"rel":"child","type":"application/json","title":"USGS
+        3DEP Lidar Classification","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-classification"},{"rel":"child","type":"application/json","title":"USGS
+        3DEP Lidar Digital Terrain Model","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-dtm"},{"rel":"child","type":"application/json","title":"USGS
+        Gap Land Cover","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/gap"},{"rel":"child","type":"application/json","title":"MODIS
+        Gross Primary Productivity 8-Day Gap-Filled","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-17A2HGF-061"},{"rel":"child","type":"application/json","title":"Planet-NICFI
+        Basemaps (Visual)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/planet-nicfi-visual"},{"rel":"child","type":"application/json","title":"Global
+        Biodiversity Information Facility (GBIF)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/gbif"},{"rel":"child","type":"application/json","title":"MODIS
+        Net Primary Production Yearly Gap-Filled","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-17A3HGF-061"},{"rel":"child","type":"application/json","title":"MODIS
+        Surface Reflectance 8-Day (500m)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-09A1-061"},{"rel":"child","type":"application/json","title":"ALOS
+        World 3D-30m","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/alos-dem"},{"rel":"child","type":"application/json","title":"ALOS
+        PALSAR Annual Mosaic","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/alos-palsar-mosaic"},{"rel":"child","type":"application/json","title":"Deltares
+        Global Water Availability","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/deltares-water-availability"},{"rel":"child","type":"application/json","title":"MODIS
+        Net Evapotranspiration Yearly Gap-Filled","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-16A3GF-061"},{"rel":"child","type":"application/json","title":"MODIS
+        Land Surface Temperature/3-Band Emissivity 8-Day","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-21A2-061"},{"rel":"child","type":"application/json","title":"US
+        Census","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/us-census"},{"rel":"child","type":"application/json","title":"JRC
+        Global Surface Water","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/jrc-gsw"},{"rel":"child","type":"application/json","title":"Deltares
+        Global Flood Maps","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/deltares-floods"},{"rel":"child","type":"application/json","title":"MODIS
+        Nadir BRDF-Adjusted Reflectance (NBAR) Daily","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-43A4-061"},{"rel":"child","type":"application/json","title":"MODIS
+        Surface Reflectance 8-Day (250m)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-09Q1-061"},{"rel":"child","type":"application/json","title":"MODIS
+        Thermal Anomalies/Fire Daily","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-14A1-061"},{"rel":"child","type":"application/json","title":"HREA:
+        High Resolution Electricity Access","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/hrea"},{"rel":"child","type":"application/json","title":"MODIS
+        Vegetation Indices 16-Day (250m)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-13Q1-061"},{"rel":"child","type":"application/json","title":"MODIS
+        Thermal Anomalies/Fire 8-Day","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-14A2-061"},{"rel":"child","type":"application/json","title":"Sentinel-2
+        Level-2A","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-2-l2a"},{"rel":"child","type":"application/json","title":"MODIS
+        Leaf Area Index/FPAR 8-Day","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-15A2H-061"},{"rel":"child","type":"application/json","title":"MODIS
+        Land Surface Temperature/Emissivity Daily","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-11A1-061"},{"rel":"child","type":"application/json","title":"MODIS
+        Leaf Area Index/FPAR 4-Day","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-15A3H-061"},{"rel":"child","type":"application/json","title":"MODIS
+        Vegetation Indices 16-Day (500m)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-13A1-061"},{"rel":"child","type":"application/json","title":"Daymet
+        Daily North America","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/daymet-daily-na"},{"rel":"child","type":"application/json","title":"Land
+        Cover of Canada","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/nrcan-landcover"},{"rel":"child","type":"application/json","title":"MODIS
+        Snow Cover 8-day","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-10A2-061"},{"rel":"child","type":"application/json","title":"ECMWF
+        Open Data (real-time)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/ecmwf-forecast"},{"rel":"child","type":"application/json","title":"NOAA
+        MRMS QPE 24-Hour Pass 2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-mrms-qpe-24h-pass2"},{"rel":"child","type":"application/json","title":"Sentinel
+        1 Level-1 Ground Range Detected (GRD)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-1-grd"},{"rel":"child","type":"application/json","title":"NASADEM
+        HGT v001","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/nasadem"},{"rel":"child","type":"application/json","title":"Esri
+        10-Meter Land Cover (10-class)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc"},{"rel":"child","type":"application/json","title":"Landsat
+        Collection 2 Level-1","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-c2-l1"},{"rel":"child","type":"application/json","title":"Denver
+        Regional Council of Governments Land Use Land Cover","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/drcog-lulc"},{"rel":"child","type":"application/json","title":"Chesapeake
+        Land Cover (7-class)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/chesapeake-lc-7"},{"rel":"child","type":"application/json","title":"Chesapeake
+        Land Cover (13-class)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/chesapeake-lc-13"},{"rel":"child","type":"application/json","title":"Chesapeake
+        Land Use","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/chesapeake-lu"},{"rel":"child","type":"application/json","title":"NOAA
+        MRMS QPE 1-Hour Pass 1","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-mrms-qpe-1h-pass1"},{"rel":"child","type":"application/json","title":"NOAA
+        MRMS QPE 1-Hour Pass 2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-mrms-qpe-1h-pass2"},{"rel":"child","type":"application/json","title":"Monthly
+        NOAA U.S. Climate Gridded Dataset (NClimGrid)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-nclimgrid-monthly"},{"rel":"child","type":"application/json","title":"GOES-R
+        Lightning Detection","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/goes-glm"},{"rel":"child","type":"application/json","title":"USDA
+        Cropland Data Layers (CDLs)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/usda-cdl"},{"rel":"child","type":"application/json","title":"Urban
+        Innovation Eclipse Sensor Data","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/eclipse"},{"rel":"child","type":"application/json","title":"ESA
+        Climate Change Initiative Land Cover Maps (Cloud Optimized GeoTIFF)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/esa-cci-lc"},{"rel":"child","type":"application/json","title":"ESA
+        Climate Change Initiative Land Cover Maps (NetCDF)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/esa-cci-lc-netcdf"},{"rel":"child","type":"application/json","title":"FWS
+        National Wetlands Inventory","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/fws-nwi"},{"rel":"child","type":"application/json","title":"USGS
+        LCMAP CONUS Collection 1.3","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/usgs-lcmap-conus-v13"},{"rel":"child","type":"application/json","title":"USGS
+        LCMAP Hawaii Collection 1.0","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/usgs-lcmap-hawaii-v10"},{"rel":"child","type":"application/json","title":"NOAA
+        US Tabular Climate Normals","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-climate-normals-tabular"},{"rel":"child","type":"application/json","title":"NOAA
+        US Gridded Climate Normals (NetCDF)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-climate-normals-netcdf"},{"rel":"child","type":"application/json","title":"NOAA
+        US Gridded Climate Normals (Cloud-Optimized GeoTIFF)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-climate-normals-gridded"},{"rel":"child","type":"application/json","title":"ASTER
+        L1T","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/aster-l1t"},{"rel":"child","type":"application/json","title":"CIL
+        Global Downscaled Projections for Climate Impacts Research (CC-BY-SA-4.0)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/cil-gdpcir-cc-by-sa"},{"rel":"child","type":"application/json","title":"NAIP:
+        National Agriculture Imagery Program","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip"},{"rel":"child","type":"application/json","title":"10m
+        Annual Land Use Land Cover (9-class) V1","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc-9-class"},{"rel":"child","type":"application/json","title":"Biodiversity
+        Intactness","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-biodiversity"},{"rel":"child","type":"application/json","title":"Sea
+        Surface Temperature - WHOI CDR","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-cdr-sea-surface-temperature-whoi"},{"rel":"child","type":"application/json","title":"Global
+        Ocean Heat Content CDR","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-cdr-ocean-heat-content"},{"rel":"child","type":"application/json","title":"CIL
+        Global Downscaled Projections for Climate Impacts Research (CC0-1.0)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/cil-gdpcir-cc0"},{"rel":"child","type":"application/json","title":"CIL
+        Global Downscaled Projections for Climate Impacts Research (CC-BY-4.0)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/cil-gdpcir-cc-by"},{"rel":"child","type":"application/json","title":"Sea
+        Surface Temperature - WHOI CDR NetCDFs","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-cdr-sea-surface-temperature-whoi-netcdf"},{"rel":"child","type":"application/json","title":"Sea
+        Surface Temperature - Optimum Interpolation CDR","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-cdr-sea-surface-temperature-optimum-interpolation"},{"rel":"child","type":"application/json","title":"MODIS
+        Snow Cover Daily","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-10A1-061"},{"rel":"child","type":"application/json","title":"Sentinel-5P
+        Level-2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-5p-l2-netcdf"},{"rel":"child","type":"application/json","title":"Sentinel-3
+        Water (Full Resolution)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-3-olci-wfr-l2-netcdf"},{"rel":"child","type":"application/json","title":"Global
+        Ocean Heat Content CDR NetCDFs","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-cdr-ocean-heat-content-netcdf"},{"rel":"child","type":"application/json","title":"Harmonized
+        Landsat Sentinel-2 (HLS) Version 2.0, Landsat Portion","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/hls2-l30"},{"rel":"child","type":"application/json","title":"Sentinel-3
+        Global Aerosol","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-3-synergy-aod-l2-netcdf"},{"rel":"child","type":"application/json","title":"Sentinel-3
+        10-Day Surface Reflectance and NDVI (SPOT VEGETATION)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-3-synergy-v10-l2-netcdf"},{"rel":"child","type":"application/json","title":"Sentinel-3
+        Land (Full Resolution)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-3-olci-lfr-l2-netcdf"},{"rel":"child","type":"application/json","title":"Sentinel-3
+        Land Radar Altimetry","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-3-sral-lan-l2-netcdf"},{"rel":"child","type":"application/json","title":"Sentinel-3
+        Land Surface Temperature","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-3-slstr-lst-l2-netcdf"},{"rel":"child","type":"application/json","title":"Sentinel-3
+        Sea Surface Temperature","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-3-slstr-wst-l2-netcdf"},{"rel":"child","type":"application/json","title":"Sentinel-3
+        Ocean Radar Altimetry","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-3-sral-wat-l2-netcdf"},{"rel":"child","type":"application/json","title":"Harmonized
+        Landsat Sentinel-2 (HLS) Version 2.0, Sentinel-2 Portion","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/hls2-s30"},{"rel":"child","type":"application/json","title":"Microsoft
+        Building Footprints","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/ms-buildings"},{"rel":"child","type":"application/json","title":"Sentinel-3
+        Fire Radiative Power","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-3-slstr-frp-l2-netcdf"},{"rel":"child","type":"application/json","title":"Sentinel-3
+        Land Surface Reflectance and Aerosol","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-3-synergy-syn-l2-netcdf"},{"rel":"child","type":"application/json","title":"Sentinel-3
+        Top of Atmosphere Reflectance (SPOT VEGETATION)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-3-synergy-vgp-l2-netcdf"},{"rel":"child","type":"application/json","title":"Sentinel-3
+        1-Day Surface Reflectance and NDVI (SPOT VEGETATION)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-3-synergy-vg1-l2-netcdf"},{"rel":"child","type":"application/json","title":"ESA
+        WorldCover","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/esa-worldcover"},{"rel":"service-desc","type":"application/vnd.oai.openapi+json;version=3.0","title":"OpenAPI
+        service description","href":"https://planetarycomputer.microsoft.com/api/stac/v1/openapi.json"},{"rel":"service-doc","type":"text/html","title":"OpenAPI
+        service documentation","href":"https://planetarycomputer.microsoft.com/api/stac/v1/docs"}],"stac_extensions":[]}'
+    headers:
+      Accept-Ranges:
+      - bytes
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Headers:
+      - X-PC-Request-Entity,DNT,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization
+      Access-Control-Allow-Methods:
+      - PUT, GET, POST, OPTIONS
+      Access-Control-Allow-Origin:
+      - '*'
+      Access-Control-Max-Age:
+      - '1728000'
+      Connection:
+      - close
+      Content-Length:
+      - '24878'
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 12 Mar 2025 12:11:16 GMT
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      X-Cache:
+      - CONFIG_NOCACHE
+      x-azure-ref:
+      - 20250312T121115Z-15d554846c6b5hxkhC1DENmvhs000000075000000000405k
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Connection:
+      - close
+      Host:
+      - planetarycomputer.microsoft.com
+      User-Agent:
+      - Python-urllib/3.10
+    method: GET
+    uri: https://planetarycomputer.microsoft.com/api/stac/v1/
+  response:
+    body:
+      string: '{"type":"Catalog","id":"microsoft-pc","title":"Microsoft Planetary
+        Computer STAC API","description":"Searchable spatiotemporal metadata describing
+        Earth science datasets hosted by the Microsoft Planetary Computer","stac_version":"1.0.0","conformsTo":["https://api.stacspec.org/v1.0.0/ogcapi-features","https://api.stacspec.org/v1.0.0/collections","https://api.stacspec.org/v1.0.0/item-search#fields","http://www.opengis.net/spec/cql2/1.0/conf/basic-cql2","http://www.opengis.net/spec/cql2/1.0/conf/cql2-text","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30","https://api.stacspec.org/v1.0.0/core","https://api.stacspec.org/v1.0.0/item-search","https://api.stacspec.org/v1.0.0-rc.2/item-search#filter","http://www.opengis.net/spec/cql2/1.0/conf/cql2-json","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/geojson","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core","https://api.stacspec.org/v1.0.0/item-search#sort","https://api.stacspec.org/v1.0.0/item-search#query","http://www.opengis.net/spec/ogcapi-features-3/1.0/conf/filter"],"links":[{"rel":"self","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"data","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections"},{"rel":"conformance","type":"application/json","title":"STAC/OGC
+        conformance classes implemented by this server","href":"https://planetarycomputer.microsoft.com/api/stac/v1/conformance"},{"rel":"search","type":"application/geo+json","title":"STAC
+        search","href":"https://planetarycomputer.microsoft.com/api/stac/v1/search","method":"GET"},{"rel":"search","type":"application/geo+json","title":"STAC
+        search","href":"https://planetarycomputer.microsoft.com/api/stac/v1/search","method":"POST"},{"rel":"http://www.opengis.net/def/rel/ogc/1.0/queryables","type":"application/schema+json","title":"Queryables","href":"https://planetarycomputer.microsoft.com/api/stac/v1/queryables","method":"GET"},{"rel":"child","type":"application/json","title":"Daymet
+        Annual Puerto Rico","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/daymet-annual-pr"},{"rel":"child","type":"application/json","title":"Daymet
+        Daily Hawaii","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/daymet-daily-hi"},{"rel":"child","type":"application/json","title":"USGS
+        3DEP Seamless DEMs","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-seamless"},{"rel":"child","type":"application/json","title":"USGS
+        3DEP Lidar Digital Surface Model","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-dsm"},{"rel":"child","type":"application/json","title":"Forest
+        Inventory and Analysis","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/fia"},{"rel":"child","type":"application/json","title":"Sentinel
+        1 Radiometrically Terrain Corrected (RTC)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-1-rtc"},{"rel":"child","type":"application/json","title":"gridMET","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/gridmet"},{"rel":"child","type":"application/json","title":"Daymet
+        Annual North America","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/daymet-annual-na"},{"rel":"child","type":"application/json","title":"Daymet
+        Monthly North America","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/daymet-monthly-na"},{"rel":"child","type":"application/json","title":"Daymet
+        Annual Hawaii","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/daymet-annual-hi"},{"rel":"child","type":"application/json","title":"Daymet
+        Monthly Hawaii","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/daymet-monthly-hi"},{"rel":"child","type":"application/json","title":"Daymet
+        Monthly Puerto Rico","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/daymet-monthly-pr"},{"rel":"child","type":"application/json","title":"gNATSGO
+        Soil Database - Tables","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/gnatsgo-tables"},{"rel":"child","type":"application/json","title":"HGB:
+        Harmonized Global Biomass for 2010","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/hgb"},{"rel":"child","type":"application/json","title":"Copernicus
+        DEM GLO-30","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/cop-dem-glo-30"},{"rel":"child","type":"application/json","title":"Copernicus
+        DEM GLO-90","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/cop-dem-glo-90"},{"rel":"child","type":"application/json","title":"GOES-R
+        Cloud & Moisture Imagery","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/goes-cmi"},{"rel":"child","type":"application/json","title":"TerraClimate","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/terraclimate"},{"rel":"child","type":"application/json","title":"Earth
+        Exchange Global Daily Downscaled Projections (NEX-GDDP-CMIP6)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/nasa-nex-gddp-cmip6"},{"rel":"child","type":"application/json","title":"GPM
+        IMERG","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/gpm-imerg-hhr"},{"rel":"child","type":"application/json","title":"gNATSGO
+        Soil Database - Rasters","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/gnatsgo-rasters"},{"rel":"child","type":"application/json","title":"USGS
+        3DEP Lidar Height above Ground","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-hag"},{"rel":"child","type":"application/json","title":"10m
+        Annual Land Use Land Cover (9-class) V2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc-annual-v02"},{"rel":"child","type":"application/json","title":"CONUS404","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/conus404"},{"rel":"child","type":"application/json","title":"USGS
+        3DEP Lidar Intensity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-intensity"},{"rel":"child","type":"application/json","title":"USGS
+        3DEP Lidar Point Source","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-pointsourceid"},{"rel":"child","type":"application/json","title":"MTBS:
+        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"C-CAP
+        Regional Land Cover and Change","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-c-cap"},{"rel":"child","type":"application/json","title":"USGS
+        3DEP Lidar Point Cloud","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-copc"},{"rel":"child","type":"application/json","title":"MODIS
+        Burned Area Monthly","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-64A1-061"},{"rel":"child","type":"application/json","title":"ALOS
+        Forest/Non-Forest Annual Mosaic","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/alos-fnf-mosaic"},{"rel":"child","type":"application/json","title":"USGS
+        3DEP Lidar Returns","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-returns"},{"rel":"child","type":"application/json","title":"MoBI:
+        Map of Biodiversity Importance","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mobi"},{"rel":"child","type":"application/json","title":"Landsat
+        Collection 2 Level-2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-c2-l2"},{"rel":"child","type":"application/json","title":"ERA5
+        - PDS","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/era5-pds"},{"rel":"child","type":"application/json","title":"Chloris
+        Biomass","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/chloris-biomass"},{"rel":"child","type":"application/json","title":"HydroForecast
+        - Kwando & Upper Zambezi Rivers","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/kaza-hydroforecast"},{"rel":"child","type":"application/json","title":"Planet-NICFI
+        Basemaps (Analytic)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/planet-nicfi-analytic"},{"rel":"child","type":"application/json","title":"MODIS
+        Gross Primary Productivity 8-Day","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-17A2H-061"},{"rel":"child","type":"application/json","title":"MODIS
+        Land Surface Temperature/Emissivity 8-Day","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-11A2-061"},{"rel":"child","type":"application/json","title":"Daymet
+        Daily Puerto Rico","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/daymet-daily-pr"},{"rel":"child","type":"application/json","title":"USGS
+        3DEP Lidar Digital Terrain Model (Native)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-dtm-native"},{"rel":"child","type":"application/json","title":"USGS
+        3DEP Lidar Classification","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-classification"},{"rel":"child","type":"application/json","title":"USGS
+        3DEP Lidar Digital Terrain Model","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-dtm"},{"rel":"child","type":"application/json","title":"USGS
+        Gap Land Cover","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/gap"},{"rel":"child","type":"application/json","title":"MODIS
+        Gross Primary Productivity 8-Day Gap-Filled","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-17A2HGF-061"},{"rel":"child","type":"application/json","title":"Planet-NICFI
+        Basemaps (Visual)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/planet-nicfi-visual"},{"rel":"child","type":"application/json","title":"Global
+        Biodiversity Information Facility (GBIF)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/gbif"},{"rel":"child","type":"application/json","title":"MODIS
+        Net Primary Production Yearly Gap-Filled","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-17A3HGF-061"},{"rel":"child","type":"application/json","title":"MODIS
+        Surface Reflectance 8-Day (500m)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-09A1-061"},{"rel":"child","type":"application/json","title":"ALOS
+        World 3D-30m","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/alos-dem"},{"rel":"child","type":"application/json","title":"ALOS
+        PALSAR Annual Mosaic","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/alos-palsar-mosaic"},{"rel":"child","type":"application/json","title":"Deltares
+        Global Water Availability","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/deltares-water-availability"},{"rel":"child","type":"application/json","title":"MODIS
+        Net Evapotranspiration Yearly Gap-Filled","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-16A3GF-061"},{"rel":"child","type":"application/json","title":"MODIS
+        Land Surface Temperature/3-Band Emissivity 8-Day","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-21A2-061"},{"rel":"child","type":"application/json","title":"US
+        Census","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/us-census"},{"rel":"child","type":"application/json","title":"JRC
+        Global Surface Water","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/jrc-gsw"},{"rel":"child","type":"application/json","title":"Deltares
+        Global Flood Maps","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/deltares-floods"},{"rel":"child","type":"application/json","title":"MODIS
+        Nadir BRDF-Adjusted Reflectance (NBAR) Daily","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-43A4-061"},{"rel":"child","type":"application/json","title":"MODIS
+        Surface Reflectance 8-Day (250m)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-09Q1-061"},{"rel":"child","type":"application/json","title":"MODIS
+        Thermal Anomalies/Fire Daily","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-14A1-061"},{"rel":"child","type":"application/json","title":"HREA:
+        High Resolution Electricity Access","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/hrea"},{"rel":"child","type":"application/json","title":"MODIS
+        Vegetation Indices 16-Day (250m)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-13Q1-061"},{"rel":"child","type":"application/json","title":"MODIS
+        Thermal Anomalies/Fire 8-Day","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-14A2-061"},{"rel":"child","type":"application/json","title":"Sentinel-2
+        Level-2A","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-2-l2a"},{"rel":"child","type":"application/json","title":"MODIS
+        Leaf Area Index/FPAR 8-Day","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-15A2H-061"},{"rel":"child","type":"application/json","title":"MODIS
+        Land Surface Temperature/Emissivity Daily","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-11A1-061"},{"rel":"child","type":"application/json","title":"MODIS
+        Leaf Area Index/FPAR 4-Day","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-15A3H-061"},{"rel":"child","type":"application/json","title":"MODIS
+        Vegetation Indices 16-Day (500m)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-13A1-061"},{"rel":"child","type":"application/json","title":"Daymet
+        Daily North America","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/daymet-daily-na"},{"rel":"child","type":"application/json","title":"Land
+        Cover of Canada","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/nrcan-landcover"},{"rel":"child","type":"application/json","title":"MODIS
+        Snow Cover 8-day","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-10A2-061"},{"rel":"child","type":"application/json","title":"ECMWF
+        Open Data (real-time)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/ecmwf-forecast"},{"rel":"child","type":"application/json","title":"NOAA
+        MRMS QPE 24-Hour Pass 2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-mrms-qpe-24h-pass2"},{"rel":"child","type":"application/json","title":"Sentinel
+        1 Level-1 Ground Range Detected (GRD)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-1-grd"},{"rel":"child","type":"application/json","title":"NASADEM
+        HGT v001","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/nasadem"},{"rel":"child","type":"application/json","title":"Esri
+        10-Meter Land Cover (10-class)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc"},{"rel":"child","type":"application/json","title":"Landsat
+        Collection 2 Level-1","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-c2-l1"},{"rel":"child","type":"application/json","title":"Denver
+        Regional Council of Governments Land Use Land Cover","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/drcog-lulc"},{"rel":"child","type":"application/json","title":"Chesapeake
+        Land Cover (7-class)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/chesapeake-lc-7"},{"rel":"child","type":"application/json","title":"Chesapeake
+        Land Cover (13-class)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/chesapeake-lc-13"},{"rel":"child","type":"application/json","title":"Chesapeake
+        Land Use","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/chesapeake-lu"},{"rel":"child","type":"application/json","title":"NOAA
+        MRMS QPE 1-Hour Pass 1","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-mrms-qpe-1h-pass1"},{"rel":"child","type":"application/json","title":"NOAA
+        MRMS QPE 1-Hour Pass 2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-mrms-qpe-1h-pass2"},{"rel":"child","type":"application/json","title":"Monthly
+        NOAA U.S. Climate Gridded Dataset (NClimGrid)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-nclimgrid-monthly"},{"rel":"child","type":"application/json","title":"GOES-R
+        Lightning Detection","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/goes-glm"},{"rel":"child","type":"application/json","title":"USDA
+        Cropland Data Layers (CDLs)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/usda-cdl"},{"rel":"child","type":"application/json","title":"Urban
+        Innovation Eclipse Sensor Data","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/eclipse"},{"rel":"child","type":"application/json","title":"ESA
+        Climate Change Initiative Land Cover Maps (Cloud Optimized GeoTIFF)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/esa-cci-lc"},{"rel":"child","type":"application/json","title":"ESA
+        Climate Change Initiative Land Cover Maps (NetCDF)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/esa-cci-lc-netcdf"},{"rel":"child","type":"application/json","title":"FWS
+        National Wetlands Inventory","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/fws-nwi"},{"rel":"child","type":"application/json","title":"USGS
+        LCMAP CONUS Collection 1.3","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/usgs-lcmap-conus-v13"},{"rel":"child","type":"application/json","title":"USGS
+        LCMAP Hawaii Collection 1.0","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/usgs-lcmap-hawaii-v10"},{"rel":"child","type":"application/json","title":"NOAA
+        US Tabular Climate Normals","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-climate-normals-tabular"},{"rel":"child","type":"application/json","title":"NOAA
+        US Gridded Climate Normals (NetCDF)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-climate-normals-netcdf"},{"rel":"child","type":"application/json","title":"NOAA
+        US Gridded Climate Normals (Cloud-Optimized GeoTIFF)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-climate-normals-gridded"},{"rel":"child","type":"application/json","title":"ASTER
+        L1T","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/aster-l1t"},{"rel":"child","type":"application/json","title":"CIL
+        Global Downscaled Projections for Climate Impacts Research (CC-BY-SA-4.0)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/cil-gdpcir-cc-by-sa"},{"rel":"child","type":"application/json","title":"NAIP:
+        National Agriculture Imagery Program","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip"},{"rel":"child","type":"application/json","title":"10m
+        Annual Land Use Land Cover (9-class) V1","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc-9-class"},{"rel":"child","type":"application/json","title":"Biodiversity
+        Intactness","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-biodiversity"},{"rel":"child","type":"application/json","title":"Sea
+        Surface Temperature - WHOI CDR","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-cdr-sea-surface-temperature-whoi"},{"rel":"child","type":"application/json","title":"Global
+        Ocean Heat Content CDR","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-cdr-ocean-heat-content"},{"rel":"child","type":"application/json","title":"CIL
+        Global Downscaled Projections for Climate Impacts Research (CC0-1.0)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/cil-gdpcir-cc0"},{"rel":"child","type":"application/json","title":"CIL
+        Global Downscaled Projections for Climate Impacts Research (CC-BY-4.0)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/cil-gdpcir-cc-by"},{"rel":"child","type":"application/json","title":"Sea
+        Surface Temperature - WHOI CDR NetCDFs","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-cdr-sea-surface-temperature-whoi-netcdf"},{"rel":"child","type":"application/json","title":"Sea
+        Surface Temperature - Optimum Interpolation CDR","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-cdr-sea-surface-temperature-optimum-interpolation"},{"rel":"child","type":"application/json","title":"MODIS
+        Snow Cover Daily","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-10A1-061"},{"rel":"child","type":"application/json","title":"Sentinel-5P
+        Level-2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-5p-l2-netcdf"},{"rel":"child","type":"application/json","title":"Sentinel-3
+        Water (Full Resolution)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-3-olci-wfr-l2-netcdf"},{"rel":"child","type":"application/json","title":"Global
+        Ocean Heat Content CDR NetCDFs","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-cdr-ocean-heat-content-netcdf"},{"rel":"child","type":"application/json","title":"Harmonized
+        Landsat Sentinel-2 (HLS) Version 2.0, Landsat Portion","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/hls2-l30"},{"rel":"child","type":"application/json","title":"Sentinel-3
+        Global Aerosol","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-3-synergy-aod-l2-netcdf"},{"rel":"child","type":"application/json","title":"Sentinel-3
+        10-Day Surface Reflectance and NDVI (SPOT VEGETATION)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-3-synergy-v10-l2-netcdf"},{"rel":"child","type":"application/json","title":"Sentinel-3
+        Land (Full Resolution)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-3-olci-lfr-l2-netcdf"},{"rel":"child","type":"application/json","title":"Sentinel-3
+        Land Radar Altimetry","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-3-sral-lan-l2-netcdf"},{"rel":"child","type":"application/json","title":"Sentinel-3
+        Land Surface Temperature","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-3-slstr-lst-l2-netcdf"},{"rel":"child","type":"application/json","title":"Sentinel-3
+        Sea Surface Temperature","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-3-slstr-wst-l2-netcdf"},{"rel":"child","type":"application/json","title":"Sentinel-3
+        Ocean Radar Altimetry","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-3-sral-wat-l2-netcdf"},{"rel":"child","type":"application/json","title":"Harmonized
+        Landsat Sentinel-2 (HLS) Version 2.0, Sentinel-2 Portion","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/hls2-s30"},{"rel":"child","type":"application/json","title":"Microsoft
+        Building Footprints","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/ms-buildings"},{"rel":"child","type":"application/json","title":"Sentinel-3
+        Fire Radiative Power","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-3-slstr-frp-l2-netcdf"},{"rel":"child","type":"application/json","title":"Sentinel-3
+        Land Surface Reflectance and Aerosol","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-3-synergy-syn-l2-netcdf"},{"rel":"child","type":"application/json","title":"Sentinel-3
+        Top of Atmosphere Reflectance (SPOT VEGETATION)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-3-synergy-vgp-l2-netcdf"},{"rel":"child","type":"application/json","title":"Sentinel-3
+        1-Day Surface Reflectance and NDVI (SPOT VEGETATION)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-3-synergy-vg1-l2-netcdf"},{"rel":"child","type":"application/json","title":"ESA
+        WorldCover","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/esa-worldcover"},{"rel":"service-desc","type":"application/vnd.oai.openapi+json;version=3.0","title":"OpenAPI
+        service description","href":"https://planetarycomputer.microsoft.com/api/stac/v1/openapi.json"},{"rel":"service-doc","type":"text/html","title":"OpenAPI
+        service documentation","href":"https://planetarycomputer.microsoft.com/api/stac/v1/docs"}],"stac_extensions":[]}'
+    headers:
+      Accept-Ranges:
+      - bytes
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Headers:
+      - X-PC-Request-Entity,DNT,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization
+      Access-Control-Allow-Methods:
+      - PUT, GET, POST, OPTIONS
+      Access-Control-Allow-Origin:
+      - '*'
+      Access-Control-Max-Age:
+      - '1728000'
+      Connection:
+      - close
+      Content-Length:
+      - '24878'
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 12 Mar 2025 12:11:16 GMT
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      X-Cache:
+      - CONFIG_NOCACHE
+      x-azure-ref:
+      - 20250312T121116Z-15d554846c6d76lhhC1DENuxvn0000000710000000001z8x
+    status:
+      code: 200
+      message: OK
+version: 1
