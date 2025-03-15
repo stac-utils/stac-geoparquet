@@ -31,11 +31,11 @@ most of the fields should be the same in STAC and in GeoParquet.
 | _property columns_ | _varies_             | -        | Each property should use the relevant Parquet type, and be pulled out of the properties object to be a top-level Parquet field                                                                                                                          |
 
 - Must be valid GeoParquet, with proper metadata. Ideally the geometry types are defined and as narrow as possible.
-- Strongly recommend to only have one GeoParquet per STAC 'Collection'. Not doing this will lead to an expanded GeoParquet schema (the union of all the schemas of the collection) with lots of empty data
+- Recommend to only have one GeoParquet per STAC 'Collection'. Not doing this will lead to an expanded GeoParquet schema (the union of all the schemas of the collection) with lots of empty data
 - Any field in 'properties' of the STAC item should be moved up to be a top-level field in the GeoParquet.
 - STAC GeoParquet does not support properties that are named such that they collide with a top-level key.
 - datetime columns should be stored as a [native timestamp][timestamp], not as a string
-- The Collection JSON should be included in the Parquet metadata. See [Collection JSON](#including-a-stac-collection-json-in-a-stac-geoparquet-collection) below.
+- The Collection(s) JSON should be included in the Parquet metadata. See [Collection JSON](#including-one-or-more-stac-collection-json-in-a-stac-geoparquet-collection) below.
 - Any other properties that would be stored as GeoJSON in a STAC JSON Item (e.g. `proj:geometry`) should be stored as a binary column with WKB encoding. This simplifies the handling of collections with multiple geometry types.
 
 ### Link Struct
@@ -69,12 +69,30 @@ To take advantage of Parquet's columnar nature and compression, the assets shoul
 
 See [Asset Object][asset] for more.
 
-## Including a STAC Collection JSON in a STAC Geoparquet Collection
+## Including one or more STAC Collection JSON in a STAC Geoparquet Collection
 
 To make a stac-geoparquet file a fully self-contained representation, you can
-include the Collection JSON in the Parquet metadata. If present in the [Parquet
-file metadata][parquet-metadata], the key must be `stac:collection` and the
-value must be a JSON string with the Collection JSON.
+include one or more Collection JSON in the Parquet metadata. If present in the [Parquet
+file metadata][parquet-metadata], the key must be `stac:collections` and the
+value must be a JSON string with the Collections JSON as an object, keyed by the collection id.
+
+Abbreviated example in JSON form:
+
+```json
+{
+    "stac:collections": "{\"collection-a\":{\"id\":\"collection-a\",...}}"
+}
+```
+
+### Deprecations in v1.1
+
+Prior to stac-geoparquet v1.1, this specification recommended storing a single STAC collection in a `stac:collection` metadata field.
+If possible, clients should continue to support this field (with a warning) for backwards compatibility.
+**If both `stac:collection` and `stac:collections` are present in the stac-geoparquet metadata, it is an error.**
+
+`stac:collection` will be removed from this specification in the next breaking release.
+
+See [this RFC](https://github.com/stac-utils/stac-geoparquet/issues/88) for details.
 
 ## Referencing a STAC Geoparquet Collections in a STAC Collection JSON
 
