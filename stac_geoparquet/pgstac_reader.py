@@ -353,8 +353,8 @@ def _build_output_path(
     a, b = start_datetime, end_datetime
     base_output_path = base_output_path.rstrip("/")
     file_extensions = {
-        "geoparquet": ".parquet",
-        "ndjson": ".ndjson",
+        "geoparquet": "parquet",
+        "ndjson": "ndjson",
     }
 
     if part_number is not None and total is not None:
