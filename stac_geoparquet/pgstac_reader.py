@@ -7,10 +7,11 @@ import hashlib
 import itertools
 import logging
 import textwrap
-from typing import Any
+from typing import Any, Literal
 
 import dateutil.tz
 import fsspec
+import orjson
 import pandas as pd
 import pyarrow.fs
 import pypgstac.db
@@ -22,7 +23,6 @@ import tqdm.auto
 from stac_geoparquet import to_geodataframe
 
 logger = logging.getLogger(__name__)
-
 
 def _pairwise(
     iterable: collections.abc.Iterable,
@@ -148,6 +148,7 @@ class CollectionConfig:
         storage_options: dict[str, Any] | None = None,
         rewrite: bool = False,
         skip_empty_partitions: bool = False,
+        format: Literal["geoparquet", "ndjson"] = "geoparquet",
     ) -> str | None:
         storage_options = storage_options or {}
         az_fs = fsspec.filesystem(output_protocol, **storage_options)
@@ -155,26 +156,23 @@ class CollectionConfig:
             logger.debug("Path %s already exists.", output_path)
             return output_path
 
-        db = pypgstac.db.PgstacDB(conninfo)
-        with db:
-            assert db.connection is not None
-            db.connection.execute("set statement_timeout = 300000;")
-            # logger.debug("Reading base item")
-            # TODO: proper escaping
-            base_item = db.query_one(
-                f"select * from collection_base_item('{self.collection_id}');"
-            )
-            records = list(db.query(query))
+        base_item, records = _enumerate_db_items(self.collection_id, conninfo, query)
 
         if skip_empty_partitions and len(records) == 0:
             logger.debug("No records found for query %s.", query)
             return None
 
         items = self.make_pgstac_items(records, base_item)  # type: ignore[arg-type]
-        df = to_geodataframe(items)
-        filesystem = pyarrow.fs.PyFileSystem(pyarrow.fs.FSSpecHandler(az_fs))
-        df.to_parquet(output_path, index=False, filesystem=filesystem)
+        if format == "geoparquet":
+            df = to_geodataframe(items)
+            filesystem = pyarrow.fs.PyFileSystem(pyarrow.fs.FSSpecHandler(az_fs))
+            df.to_parquet(output_path, index=False, filesystem=filesystem)
+        elif format == "ndjson":
+            _write_ndjson(output_path, az_fs, items)
+        else:
+            raise ValueError(f"Unsupported export format: {format}")
         return output_path
+
 
     def export_partition_for_endpoints(
         self,
@@ -357,3 +355,28 @@ def _build_output_path(
             f"{base_output_path}/part-{token}_{a.isoformat()}_{b.isoformat()}.parquet"
         )
     return output_path
+
+def _enumerate_db_items(
+        collection_id: str,
+        conninfo: str,
+        query: str) -> tuple[Any, list[Any]]:
+    db = pypgstac.db.PgstacDB(conninfo)
+    with db:
+        assert db.connection is not None
+        db.connection.execute("set statement_timeout = 300000;")
+        # logger.debug("Reading base item")
+        # TODO: proper escaping
+        base_item = db.query_one(
+            f"select * from collection_base_item('{collection_id}');"
+        )
+        records = list(db.query(query))
+    return base_item, records
+
+def _write_ndjson(
+        output_path: str,
+        fs: fsspec.AbstractFileSystem,
+        items: list[dict]) -> None:
+    with fs.open(output_path, "wb") as f:
+        for item in items:
+            f.write(orjson.dumps(item))
+            f.write(b"\n")
