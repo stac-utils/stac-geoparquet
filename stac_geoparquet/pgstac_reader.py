@@ -347,21 +347,26 @@ def _build_output_path(
     total: int | None,
     start_datetime: datetime.datetime,
     end_datetime: datetime.datetime,
+    format: EXPORT_FORMAT = "geoparquet",
 ) -> str:
     a, b = start_datetime, end_datetime
     base_output_path = base_output_path.rstrip("/")
+    file_extensions = {
+        "geoparquet": ".parquet",
+        "ndjson": ".ndjson",
+    }
 
     if part_number is not None and total is not None:
         output_path = (
             f"{base_output_path}/part-{part_number:0{len(str(total * 10))}}_"
-            f"{a.isoformat()}_{b.isoformat()}.parquet"
+            f"{a.isoformat()}_{b.isoformat()}.{file_extensions[format]}"
         )
     else:
         token = hashlib.md5(
             "".join([a.isoformat(), b.isoformat()]).encode()
         ).hexdigest()
         output_path = (
-            f"{base_output_path}/part-{token}_{a.isoformat()}_{b.isoformat()}.parquet"
+            f"{base_output_path}/part-{token}_{a.isoformat()}_{b.isoformat()}.{file_extensions[format]}"
         )
     return output_path
 
