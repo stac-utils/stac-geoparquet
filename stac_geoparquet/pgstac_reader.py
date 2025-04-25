@@ -24,6 +24,8 @@ from stac_geoparquet import to_geodataframe
 
 logger = logging.getLogger(__name__)
 
+EXPORT_FORMAT = Literal["geoparquet", "ndjson"]
+
 def _pairwise(
     iterable: collections.abc.Iterable,
 ) -> Any:
@@ -148,7 +150,7 @@ class CollectionConfig:
         storage_options: dict[str, Any] | None = None,
         rewrite: bool = False,
         skip_empty_partitions: bool = False,
-        format: Literal["geoparquet", "ndjson"] = "geoparquet",
+        format: EXPORT_FORMAT = "geoparquet",
     ) -> str | None:
         storage_options = storage_options or {}
         az_fs = fsspec.filesystem(output_protocol, **storage_options)
@@ -185,6 +187,7 @@ class CollectionConfig:
         total: int | None = None,
         rewrite: bool = False,
         skip_empty_partitions: bool = False,
+        format: EXPORT_FORMAT = "geoparquet",
     ) -> str | None:
         """
         Export results for a pair of endpoints.
@@ -212,6 +215,7 @@ class CollectionConfig:
             storage_options=storage_options,
             rewrite=rewrite,
             skip_empty_partitions=skip_empty_partitions,
+            format=format,
         )
 
     def export_collection(
@@ -222,6 +226,7 @@ class CollectionConfig:
         storage_options: dict[str, Any],
         rewrite: bool = False,
         skip_empty_partitions: bool = False,
+        format: EXPORT_FORMAT = "geoparquet",
     ) -> list[str | None]:
         base_query = textwrap.dedent(
             f"""\
@@ -244,6 +249,7 @@ class CollectionConfig:
                     output_path,
                     storage_options=storage_options,
                     rewrite=rewrite,
+                    format=format,
                 )
             ]
 
@@ -267,6 +273,7 @@ class CollectionConfig:
                         skip_empty_partitions=skip_empty_partitions,
                         part_number=i,
                         total=total,
+                        format=format,
                     )
                 )
 
