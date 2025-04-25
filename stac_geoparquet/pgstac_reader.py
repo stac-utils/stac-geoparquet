@@ -165,6 +165,8 @@ class CollectionConfig:
             return None
 
         items = self.make_pgstac_items(records, base_item)  # type: ignore[arg-type]
+
+        logger.debug("Exporting %d items as %s to %s", len(items), format, output_path)
         if format == "geoparquet":
             df = to_geodataframe(items)
             filesystem = pyarrow.fs.PyFileSystem(pyarrow.fs.FSSpecHandler(az_fs))
