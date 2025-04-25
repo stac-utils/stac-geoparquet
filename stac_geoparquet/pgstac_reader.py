@@ -177,7 +177,6 @@ class CollectionConfig:
             raise ValueError(f"Unsupported export format: {format}")
         return output_path
 
-
     def export_partition_for_endpoints(
         self,
         endpoints: tuple[datetime.datetime, datetime.datetime],
@@ -208,7 +207,9 @@ class CollectionConfig:
             + f"and datetime >= '{a.isoformat()}' and datetime < '{b.isoformat()}'"
         )
 
-        partition_path = _build_output_path(output_path, part_number, total, a, b)
+        partition_path = _build_output_path(
+            output_path, part_number, total, a, b, format=format
+        )
         return self.export_partition(
             conninfo,
             query,
