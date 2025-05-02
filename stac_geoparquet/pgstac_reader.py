@@ -13,18 +13,19 @@ import dateutil.tz
 import fsspec
 import orjson
 import pandas as pd
-import pyarrow.fs
 import pypgstac.db
 import pypgstac.hydration
 import pystac
 import shapely.wkb
 import tqdm.auto
+from tenacity import before_sleep_log, retry, stop_after_attempt, wait_fixed
 
-from stac_geoparquet import to_geodataframe
+from stac_geoparquet.arrow import parse_stac_ndjson_to_parquet
 
 logger = logging.getLogger(__name__)
 
 EXPORT_FORMAT = Literal["geoparquet", "ndjson"]
+
 
 def _pairwise(
     iterable: collections.abc.Iterable,
@@ -153,10 +154,7 @@ class CollectionConfig:
         format: EXPORT_FORMAT = "geoparquet",
     ) -> str | None:
         storage_options = storage_options or {}
-        az_fs = fsspec.filesystem(output_protocol, **storage_options)
-        if az_fs.exists(output_path) and not rewrite:
-            logger.debug("Path %s already exists.", output_path)
-            return output_path
+        fs = fsspec.filesystem(output_protocol, **storage_options)
 
         base_item, records = _enumerate_db_items(self.collection_id, conninfo, query)
 
@@ -167,14 +165,7 @@ class CollectionConfig:
         items = self.make_pgstac_items(records, base_item)  # type: ignore[arg-type]
 
         logger.debug("Exporting %d items as %s to %s", len(items), format, output_path)
-        if format == "geoparquet":
-            df = to_geodataframe(items)
-            filesystem = pyarrow.fs.PyFileSystem(pyarrow.fs.FSSpecHandler(az_fs))
-            df.to_parquet(output_path, index=False, filesystem=filesystem)
-        elif format == "ndjson":
-            _write_ndjson(output_path, az_fs, items)
-        else:
-            raise ValueError(f"Unsupported export format: {format}")
+        _write_ndjson(output_path, fs, items)
         return output_path
 
     def export_partition_for_endpoints(
@@ -238,47 +229,77 @@ class CollectionConfig:
         where collection = '{self.collection_id}'
         """
         )
-        if output_protocol:
-            output_path = f"{output_protocol}://{output_path}"
 
+        intermediate_path = f"/tmp/{self.collection_id}.ndjson"
+        results: list[str | None] = []
         if not self.partition_frequency:
-            logger.info("Exporting single-partition collection %s", self.collection_id)
+            logger.info(
+                "Exporting single-partition collection %s to ndjson", self.collection_id
+            )
             logger.debug("query=%s", base_query)
-            results = [
-                self.export_partition(
-                    conninfo,
-                    base_query,
-                    output_protocol,
-                    output_path,
-                    storage_options=storage_options,
-                    rewrite=rewrite,
-                    format=format,
-                )
-            ]
-
+            # First write NDJSON to disk
+            self.export_partition(
+                conninfo,
+                base_query,
+                "file",
+                intermediate_path,
+                storage_options={"auto_mkdir": True},
+                rewrite=rewrite,
+                format="ndjson",
+            )
+            if output_protocol:
+                output_path = f"{output_protocol}://{output_path}.parquet"
+            logger.debug("Writing geoparquet to %s", output_path)
+            results.append(intermediate_path)
+            parse_stac_ndjson_to_parquet(
+                results,
+                output_path,
+                filesystem=fsspec.filesystem(output_protocol, **storage_options),
+            )
         else:
             endpoints = self.generate_endpoints()
             total = len(endpoints)
+            if output_protocol:
+                output_path = f"{output_protocol}://{output_path}.parquet"
             logger.info(
                 "Exporting %d partitions for collection %s", total, self.collection_id
             )
-
-            results = []
             for i, endpoint in tqdm.auto.tqdm(enumerate(endpoints), total=total):
-                results.append(
-                    self.export_partition_for_endpoints(
-                        endpoints=endpoint,
-                        conninfo=conninfo,
-                        output_protocol=output_protocol,
-                        output_path=output_path,
-                        storage_options=storage_options,
-                        rewrite=rewrite,
-                        skip_empty_partitions=skip_empty_partitions,
-                        part_number=i,
-                        total=total,
-                        format=format,
-                    )
+                partition = self.export_partition_for_endpoints(
+                    endpoints=endpoint,
+                    conninfo=conninfo,
+                    output_protocol="file",
+                    output_path=intermediate_path,
+                    storage_options={"auto_mkdir": True},
+                    rewrite=rewrite,
+                    skip_empty_partitions=skip_empty_partitions,
+                    part_number=i,
+                    total=total,
+                    format="ndjson",
                 )
+                if partition:
+                    results.append(partition)
+                    partition_path = _build_output_path(
+                        output_path,
+                        i,
+                        total,
+                        endpoint[0],
+                        endpoint[1],
+                        format="geoparquet",
+                    )
+                    logger.debug("Writing geoparquet to %s", partition_path)
+                    parse_stac_ndjson_to_parquet(
+                        partition,
+                        partition_path,
+                        filesystem=fsspec.filesystem(
+                            output_protocol, **storage_options
+                        ),
+                    )
+
+        # delete every file in the results list
+        for result in results:
+            logger.debug("Cleaning up %s", result)
+            fsspec.filesystem("file").rm(result, recursive=True)
 
         return results
 
@@ -366,15 +387,17 @@ def _build_output_path(
         token = hashlib.md5(
             "".join([a.isoformat(), b.isoformat()]).encode()
         ).hexdigest()
-        output_path = (
-            f"{base_output_path}/part-{token}_{a.isoformat()}_{b.isoformat()}.{file_extensions[format]}"
-        )
+        output_path = f"{base_output_path}/part-{token}_{a.isoformat()}_{b.isoformat()}.{file_extensions[format]}"
     return output_path
 
+
+@retry(
+        stop=stop_after_attempt(3),
+        wait=wait_fixed(2),
+        before_sleep=before_sleep_log(logger, logging.DEBUG))
 def _enumerate_db_items(
-        collection_id: str,
-        conninfo: str,
-        query: str) -> tuple[Any, list[Any]]:
+    collection_id: str, conninfo: str, query: str
+) -> tuple[Any, list[Any]]:
     db = pypgstac.db.PgstacDB(conninfo)
     with db:
         assert db.connection is not None
@@ -387,10 +410,10 @@ def _enumerate_db_items(
         records = list(db.query(query))
     return base_item, records
 
+
 def _write_ndjson(
-        output_path: str,
-        fs: fsspec.AbstractFileSystem,
-        items: list[dict]) -> None:
+    output_path: str, fs: fsspec.AbstractFileSystem, items: list[dict]
+) -> None:
     with fs.open(output_path, "wb") as f:
         for item in items:
             f.write(orjson.dumps(item))
