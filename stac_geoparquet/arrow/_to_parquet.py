@@ -90,14 +90,14 @@ def to_parquet(
     reader = pa.RecordBatchReader.from_stream(table)
 
     schema = reader.schema.with_metadata(
-        create_geoparquet_metadata(reader.schema, schema_version=schema_version)
+        create_parquet_metadata(reader.schema, schema_version=schema_version)
     )
     with pq.ParquetWriter(output_path, schema, **kwargs) as writer:
         for batch in reader:
             writer.write_batch(batch)
 
 
-def create_geoparquet_metadata(
+def create_parquet_metadata(
     schema: pa.Schema,
     *,
     schema_version: SUPPORTED_PARQUET_SCHEMA_VERSIONS,
@@ -141,7 +141,7 @@ def create_geoparquet_metadata(
             "crs": None,
         }
 
-    return {b"geo": json.dumps(geo_meta).encode("utf-8")}
+    return {b"geo": json.dumps(geo_meta).encode("utf-8"), b"stac:geoparquet_version": "1.0.0"}
 
 
 def schema_version_has_bbox_mapping(

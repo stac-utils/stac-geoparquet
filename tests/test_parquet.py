@@ -51,3 +51,18 @@ def test_round_trip_via_parquet(collection_id: str, tmp_path: Path):
 
     for result, expected in zip(items_result, items):
         assert_json_value_equal(result, expected, precision=0)
+
+
+def test_metadata(tmp_path: Path):
+    collection_id = "3dep-lidar-copc"
+    path = HERE / "data" / f"{collection_id}-pc.json"
+    out_path = tmp_path / "file.parquet"
+    # Convert to Parquet
+    parse_stac_ndjson_to_parquet(path, out_path)
+    table = pq.read_table(out_path)
+
+    metadata = table.schema.metadata
+    assert metadata[b"stac:geoparquet_version"] == b"1.0.0"
+    geo = json.loads(metadata[b"geo"])
+    assert geo["version"] == "1.1.0"
+    assert set(geo) == {"version", "columns", "primary_column"}

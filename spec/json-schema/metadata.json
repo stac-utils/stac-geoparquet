@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://stac-utils.github.io/stac-geoparquet/json-schema/metadata.json",
+  "title": "STAC GeoParquet Metadata",
+  "description": "JSON Schema for STAC GeoParquet metadata stored in Parquet file metadata",
+  "type": "object",
+  "properties": {
+    "stac:geoparquet_version": {
+      "type": "string",
+      "enum": ["1.0.0"],
+      "description": "The stac-geoparquet metadata version."
+    },
+    "stac:collections": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "https://schemas.stacspec.org/v1.1.0/collection-spec/json-schema/collection.json"
+      },
+      "description": "A mapping of collection IDs to STAC Collection objects"
+    },
+    "stac:collection": {
+      "$ref": "https://schemas.stacspec.org/v1.1.0/collection-spec/json-schema/collection.json",
+      "description": "DEPRECATED. Use stac:collections instead. A STAC Collection object.",
+      "deprecated": true
+    }
+  },
+  "required": ["stac:geoparquet_version"]
+}
