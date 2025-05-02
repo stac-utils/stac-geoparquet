@@ -141,7 +141,10 @@ def create_parquet_metadata(
             "crs": None,
         }
 
-    return {b"geo": json.dumps(geo_meta).encode("utf-8"), b"stac:geoparquet_version": "1.0.0"}
+    return {
+        b"geo": json.dumps(geo_meta).encode("utf-8"),
+        b"stac:geoparquet_version": "1.0.0",
+    }
 
 
 def schema_version_has_bbox_mapping(
