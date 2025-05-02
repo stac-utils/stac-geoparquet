@@ -143,7 +143,7 @@ def create_parquet_metadata(
 
     return {
         b"geo": json.dumps(geo_meta).encode("utf-8"),
-        b"stac:geoparquet_version": "1.0.0",
+        b"stac:geoparquet_version": b"1.0.0",
     }
 
 
