@@ -73,11 +73,10 @@ See [Asset Object][asset] for more.
 
 stac-geoparquet uses Parquet [File Metadata](https://parquet.apache.org/docs/file-format/metadata/) to store metadata about the dataset.
 
-See [example-metadata.json](./example-metadata.json) for an example.
+See [`example-metadata.json`](https://github.com/stac-utils/stac-geoparquet/blob/main/spec/example-metadata.json) for an example.
 
-A jsonschema schema file is provided at
-[json-schema/metadata.json](json-scehma/metadata.json) tools to validate
-against.
+A [jsonschema schema file](https://github.com/stac-utils/stac-geoparquet/blob/main/spec/json-schema/metadata.json) is provided
+for tools to validate against.
 
 | Field Name | Type | Description |
 | ---------- | ---- | ----------- |
