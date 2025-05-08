@@ -1,295 +1,57 @@
-from __future__ import annotations
-
-import collections.abc
-import dataclasses
 import datetime
-import hashlib
-import itertools
+import functools
 import logging
-import textwrap
-from typing import Any
+from typing import Any, Iterator
 
-import dateutil.tz
-import fsspec
-import pandas as pd
+import orjson
+import psycopg
+import pyarrow as pa
 import pyarrow.fs
-import pypgstac.db
 import pypgstac.hydration
-import pystac
 import shapely.wkb
-import tqdm.auto
+from psycopg.types.json import set_json_dumps, set_json_loads
 
-from stac_geoparquet import to_geodataframe
+from stac_geoparquet.arrow import (
+    DEFAULT_JSON_CHUNK_SIZE,
+    DEFAULT_PARQUET_SCHEMA_VERSION,
+    SUPPORTED_PARQUET_SCHEMA_VERSIONS,
+    parse_stac_items_to_arrow,
+    to_parquet,
+)
+from stac_geoparquet.arrow._schema.models import InferredSchema
+import random
+import string
+
+
+def dumps(data: dict) -> str:
+    """
+    Custom JSON dumps function for psycopg.
+    """
+    return orjson.dumps(data).decode()
+
+
+set_json_dumps(dumps)
+set_json_loads(orjson.loads)
 
 logger = logging.getLogger(__name__)
 
 
-def _pairwise(
-    iterable: collections.abc.Iterable,
-) -> Any:
-    # pairwise('ABCDEFG') --> AB BC CD DE EF FG
-    a, b = itertools.tee(iterable)
-    next(b, None)
-    return zip(a, b)
-
-
-@dataclasses.dataclass
-class CollectionConfig:
+class PgstacRowFactory:
     """
-    Additional collection-based configuration to inject, matching the
-    dynamic properties from the API.
+    Custom row factory for psycopg to return a tuple of the columns.
     """
 
-    collection_id: str
-    partition_frequency: str | None = None
-    stac_api: str = "https://planetarycomputer.microsoft.com/api/stac/v1"
-    should_inject_dynamic_properties: bool = True
-    render_config: str | None = None
+    def __init__(self, cursor: psycopg.Cursor[Any]) -> None:
+        self.cursor = cursor
 
-    def __post_init__(self) -> None:
-        self._collection: pystac.Collection | None = None
-
-    @property
-    def collection(self) -> pystac.Collection:
-        if self._collection is None:
-            self._collection = pystac.read_file(
-                f"{self.stac_api}/collections/{self.collection_id}"
-            )  # type: ignore
-        assert self._collection is not None
-        return self._collection
-
-    def inject_links(self, item: dict[str, Any]) -> None:
-        item["links"] = [
-            {
-                "rel": "collection",
-                "type": "application/json",
-                "href": f"https://planetarycomputer.microsoft.com/api/stac/v1/collections/{self.collection_id}",  # noqa: E501
-            },
-            {
-                "rel": "parent",
-                "type": "application/json",
-                "href": f"https://planetarycomputer.microsoft.com/api/stac/v1/collections/{self.collection_id}",  # noqa: E501
-            },
-            {
-                "rel": "root",
-                "type": "application/json",
-                "href": "https://planetarycomputer.microsoft.com/api/stac/v1/",
-            },
-            {
-                "rel": "self",
-                "type": "application/geo+json",
-                "href": f"https://planetarycomputer.microsoft.com/api/stac/v1/collections/{self.collection_id}/items/{item['id']}",  # noqa: E501
-            },
-            {
-                "rel": "preview",
-                "href": f"https://planetarycomputer.microsoft.com/api/data/v1/item/map?collection={self.collection_id}&item={item['id']}",  # noqa: E501
-                "title": "Map of item",
-                "type": "text/html",
-            },
-        ]
-
-    def inject_assets(self, item: dict[str, Any]) -> None:
-        item["assets"]["tilejson"] = {
-            "href": f"https://planetarycomputer.microsoft.com/api/data/v1/item/tilejson.json?collection={self.collection_id}&item={item['id']}&{self.render_config}",  # noqa: E501
-            "roles": ["tiles"],
-            "title": "TileJSON with default rendering",
-            "type": "application/json",
-        }
-        item["assets"]["rendered_preview"] = {
-            "href": f"https://planetarycomputer.microsoft.com/api/data/v1/item/preview.png?collection={self.collection_id}&item={item['id']}&{self.render_config}",  # noqa: E501
-            "rel": "preview",
-            "roles": ["overview"],
-            "title": "Rendered preview",
-            "type": "image/png",
-        }
-
-    def generate_endpoints(
-        self, since: datetime.datetime | None = None
-    ) -> list[tuple[datetime.datetime, datetime.datetime]]:
-        if self.partition_frequency is None:
-            raise ValueError("Set partition_frequency")
-
-        start_datetime, end_datetime = self.collection.extent.temporal.intervals[0]
-
-        # https://github.com/dateutil/dateutil/issues/349
-        if start_datetime and start_datetime.tzinfo == dateutil.tz.tz.tzlocal():
-            start_datetime = start_datetime.astimezone(datetime.timezone.utc)
-
-        if end_datetime and end_datetime.tzinfo == dateutil.tz.tz.tzlocal():
-            end_datetime = end_datetime.astimezone(datetime.timezone.utc)
-
-        if end_datetime is None:
-            end_datetime = pd.Timestamp.utcnow()
-
-        # we need to ensure that the `end_datetime` is past the end of the last partition
-        # to avoid missing out on the last partition of data.
-        offset = pd.tseries.frequencies.to_offset(self.partition_frequency)
-
-        if not offset.is_on_offset(start_datetime):
-            start_datetime = start_datetime - offset
-
-        if not offset.is_on_offset(end_datetime):
-            end_datetime = end_datetime + offset
-
-        idx = pd.date_range(start_datetime, end_datetime, freq=self.partition_frequency)
-
-        if since:
-            idx = idx[idx >= since]
-
-        pairs = _pairwise(idx)
-        return list(pairs)
-
-    def export_partition(
+    def __call__(
         self,
-        conninfo: str,
-        query: str,
-        output_protocol: str,
-        output_path: str,
-        storage_options: dict[str, Any] | None = None,
-        rewrite: bool = False,
-        skip_empty_partitions: bool = False,
-    ) -> str | None:
-        storage_options = storage_options or {}
-        az_fs = fsspec.filesystem(output_protocol, **storage_options)
-        if az_fs.exists(output_path) and not rewrite:
-            logger.debug("Path %s already exists.", output_path)
-            return output_path
-
-        db = pypgstac.db.PgstacDB(conninfo)
-        with db:
-            assert db.connection is not None
-            db.connection.execute("set statement_timeout = 300000;")
-            # logger.debug("Reading base item")
-            # TODO: proper escaping
-            base_item = db.query_one(
-                f"select * from collection_base_item('{self.collection_id}');"
-            )
-            records = list(db.query(query))
-
-        if skip_empty_partitions and len(records) == 0:
-            logger.debug("No records found for query %s.", query)
-            return None
-
-        items = self.make_pgstac_items(records, base_item)  # type: ignore[arg-type]
-        df = to_geodataframe(items)
-        filesystem = pyarrow.fs.PyFileSystem(pyarrow.fs.FSSpecHandler(az_fs))
-        df.to_parquet(output_path, index=False, filesystem=filesystem)
-        return output_path
-
-    def export_partition_for_endpoints(
-        self,
-        endpoints: tuple[datetime.datetime, datetime.datetime],
-        conninfo: str,
-        output_protocol: str,
-        output_path: str,
-        storage_options: dict[str, Any],
-        part_number: int | None = None,
-        total: int | None = None,
-        rewrite: bool = False,
-        skip_empty_partitions: bool = False,
-    ) -> str | None:
-        """
-        Export results for a pair of endpoints.
-        """
-        a, b = endpoints
-        base_query = textwrap.dedent(
-            f"""\
-        select *
-        from pgstac.items
-        where collection = '{self.collection_id}'
-        """
-        )
-
-        query = (
-            base_query
-            + f"and datetime >= '{a.isoformat()}' and datetime < '{b.isoformat()}'"
-        )
-
-        partition_path = _build_output_path(output_path, part_number, total, a, b)
-        return self.export_partition(
-            conninfo,
-            query,
-            output_protocol=output_protocol,
-            output_path=partition_path,
-            storage_options=storage_options,
-            rewrite=rewrite,
-            skip_empty_partitions=skip_empty_partitions,
-        )
-
-    def export_collection(
-        self,
-        conninfo: str,
-        output_protocol: str,
-        output_path: str,
-        storage_options: dict[str, Any],
-        rewrite: bool = False,
-        skip_empty_partitions: bool = False,
-    ) -> list[str | None]:
-        base_query = textwrap.dedent(
-            f"""\
-        select *
-        from pgstac.items
-        where collection = '{self.collection_id}'
-        """
-        )
-        if output_protocol:
-            output_path = f"{output_protocol}://{output_path}"
-
-        if not self.partition_frequency:
-            logger.info("Exporting single-partition collection %s", self.collection_id)
-            logger.debug("query=%s", base_query)
-            results = [
-                self.export_partition(
-                    conninfo,
-                    base_query,
-                    output_protocol,
-                    output_path,
-                    storage_options=storage_options,
-                    rewrite=rewrite,
-                )
-            ]
-
-        else:
-            endpoints = self.generate_endpoints()
-            total = len(endpoints)
-            logger.info(
-                "Exporting %d partitions for collection %s", total, self.collection_id
-            )
-
-            results = []
-            for i, endpoint in tqdm.auto.tqdm(enumerate(endpoints), total=total):
-                results.append(
-                    self.export_partition_for_endpoints(
-                        endpoints=endpoint,
-                        conninfo=conninfo,
-                        output_protocol=output_protocol,
-                        output_path=output_path,
-                        storage_options=storage_options,
-                        rewrite=rewrite,
-                        skip_empty_partitions=skip_empty_partitions,
-                        part_number=i,
-                        total=total,
-                    )
-                )
-
-        return results
-
-    def make_pgstac_items(
-        self,
-        records: list[
-            tuple[str, str, str, datetime.datetime, datetime.datetime, dict[str, Any]]
+        values: tuple[
+            str, str, str, datetime.datetime, datetime.datetime, dict[str, Any]
         ],
-        base_item: dict[str, Any],
-    ) -> list[dict[str, Any]]:
+    ) -> dict[str, Any]:
         """
-        Make STAC items out of pgstac records.
-
-        Args:
-            records: list[tuple]
-                The dehydrated records from pgstac.items table.
-            base_item: dict[str, Any]
-                The base item from the ``collection_base_item`` pgstac function for this
-                collection. Used for rehydration
+        Convert the values to a dictionary.
         """
         columns = [
             "id",
@@ -299,61 +61,179 @@ class CollectionConfig:
             "end_datetime",
             "content",
         ]
+        item: dict[str, Any] = dict(zip(columns, values))
+        # datetime is in the content too
+        item.pop("datetime")
+        item.pop("end_datetime")
 
-        items = []
+        geom = shapely.wkb.loads(item["geometry"], hex=True)
 
-        for record in records:
-            item = dict(zip(columns, record))
-            # datetime is in the content too
-            item.pop("datetime")
-            item.pop("end_datetime")
+        item["geometry"] = geom.__geo_interface__
+        content = item.pop("content")
+        assert isinstance(content, dict)
+        if "bbox" in content:
+            item["bbox"] = content["bbox"]
+        else:
+            item["bbox"] = list(geom.bounds)
 
-            geom = shapely.wkb.loads(item["geometry"], hex=True)
+        item["assets"] = content["assets"]
+        if "stac_extensions" in content:
+            item["stac_extensions"] = content["stac_extensions"]
+        item["properties"] = content["properties"]
 
-            item["geometry"] = geom.__geo_interface__
-            content = item.pop("content")
-            assert isinstance(content, dict)
-            if "bbox" in content:
-                item["bbox"] = content["bbox"]
-            else:
-                item["bbox"] = list(geom.bounds)
+        # Ensure that properties known to often come in mixed string/numeric
+        # types are consistent across all items.
+        if "naip:year" in item["properties"]:
+            item["properties"]["naip:year"] = int(item["properties"]["naip:year"])
+        if "proj:epsg" in item["properties"]:
+            item["properties"]["proj:epsg"] = int(item["properties"]["proj:epsg"])
+        base_item = self.get_baseitem(item["collection"])
+        pypgstac.hydration.hydrate(base_item, item)
+        return item
 
-            item["assets"] = content["assets"]
-            if "stac_extensions" in content:
-                item["stac_extensions"] = content["stac_extensions"]
-            item["properties"] = content["properties"]
+    @functools.lru_cache(maxsize=256)
+    def get_baseitem(self, collection: str) -> dict[str, Any]:
+        """
+        Get the base item for the collection.
+        """
+        conninfo = self.cursor.connection.info
+        dsn = conninfo.dsn
+        password = conninfo.password
+        with psycopg.connect(dsn, password=password) as conn:
+            with conn.cursor() as cur:
+                cur.execute(
+                    "select collection_base_item(%s);",
+                    (collection,),
+                )
+                base_item = cur.fetchone()
+                if base_item is None:
+                    raise ValueError(f"Collection {collection} not found")
+        return base_item[0]
 
-            pypgstac.hydration.hydrate(base_item, item)
 
-            if self.should_inject_dynamic_properties:
-                self.inject_links(item)
-                self.inject_assets(item)
+def pgstac_dsn(conninfo: str | None, statement_timeout: int | None) -> str:
+    """
+    Get the DSN from the connection info.
+    """
+    if conninfo is None:
+        conninfo = ""
+    connd = psycopg.conninfo.conninfo_to_dict(conninfo)
+    options: str = str(connd.get("options", ""))
+    options += " -c search_path=pgstac,public"
+    if statement_timeout is not None:
+        options += f" -c statement_timeout={statement_timeout}"
+    connd["options"] = options
+    conninfo = psycopg.conninfo.make_conninfo("", **connd)
+    return conninfo
 
-            items.append(item)
 
-        return items
+def pgstac_to_iter(
+    conninfo: str | None,
+    collection: str | None = None,
+    start_datetime: datetime.datetime | None = None,
+    end_datetime: datetime.datetime | None = None,
+    search: dict[str, Any] | None = None,
+    statement_timeout: int | None = None,
+    cursor_itersize: int = 10000,
+) -> Iterator[dict[str, Any]]:
+    conninfo = pgstac_dsn(conninfo, statement_timeout)
 
+    if search is not None and (
+        collection is not None or start_datetime is not None or end_datetime is not None
+    ):
+        raise ValueError("Cannot use search and collection/datetime at the same time")
+    if start_datetime is not None and end_datetime is None:
+        end_datetime = datetime.datetime.now(datetime.timezone.utc)
 
-def _build_output_path(
-    base_output_path: str,
-    part_number: int | None,
-    total: int | None,
-    start_datetime: datetime.datetime,
-    end_datetime: datetime.datetime,
-) -> str:
-    a, b = start_datetime, end_datetime
-    base_output_path = base_output_path.rstrip("/")
+    query: str
+    args: Any
 
-    if part_number is not None and total is not None:
-        output_path = (
-            f"{base_output_path}/part-{part_number:0{len(str(total * 10))}}_"
-            f"{a.isoformat()}_{b.isoformat()}.parquet"
-        )
+    if search is not None:
+        query = "SELECT * FROM search(%s);"
+        args = (search,)
+    elif (
+        collection is not None
+        and start_datetime is not None
+        and end_datetime is not None
+    ):
+        query = "SELECT * FROM items WHERE collection = %s AND datetime >= %s AND datetime < %s;"
+        args = (collection, start_datetime, end_datetime)
+    elif collection is not None:
+        query = "SELECT * FROM items WHERE collection = %s;"
+        args = (collection,)
     else:
-        token = hashlib.md5(
-            "".join([a.isoformat(), b.isoformat()]).encode()
-        ).hexdigest()
-        output_path = (
-            f"{base_output_path}/part-{token}_{a.isoformat()}_{b.isoformat()}.parquet"
-        )
+        query = "SELECT * FROM items;"
+        args = ()
+    curname = "".join(random.choices(string.ascii_lowercase, k=32))
+    with psycopg.connect(conninfo) as conn:
+        with conn.cursor(curname, row_factory=PgstacRowFactory) as cur:
+            cur.itersize = cursor_itersize
+            cur.execute(query, args)
+            for rec in cur:
+                yield rec
+
+
+def pgstac_to_arrow(
+    conninfo: str,
+    collection: str | None = None,
+    start_datetime: datetime.datetime | None = None,
+    end_datetime: datetime.datetime | None = None,
+    search: dict[str, Any] | None = None,
+    chunk_size: int = DEFAULT_JSON_CHUNK_SIZE,
+    schema: pa.Schema | InferredSchema | None = None,
+    statement_timeout: int | None = None,
+    cursor_itersize: int = 10000,
+) -> pa.RecordBatchReader:
+    """
+    Convert pgstac items to an arrow record batch reader.
+    """
+    items = pgstac_to_iter(
+        conninfo,
+        collection,
+        start_datetime,
+        end_datetime,
+        search,
+        statement_timeout=statement_timeout,
+        cursor_itersize=cursor_itersize,
+    )
+    return parse_stac_items_to_arrow(items, chunk_size=chunk_size, schema=schema)
+
+
+def pgstac_to_parquet(
+    conninfo: str,
+    output_path: str,
+    collection: str | None = None,
+    start_datetime: datetime.datetime | None = None,
+    end_datetime: datetime.datetime | None = None,
+    search: dict[str, Any] | None = None,
+    chunk_size: int = DEFAULT_JSON_CHUNK_SIZE,
+    schema: pa.Schema | InferredSchema | None = None,
+    statement_timeout: int | None = None,
+    cursor_itersize: int = 10000,
+    schema_version: SUPPORTED_PARQUET_SCHEMA_VERSIONS = DEFAULT_PARQUET_SCHEMA_VERSION,
+    filesystem: pyarrow.fs.FileSystem | None = None,
+    **kwargs: Any,
+) -> str:
+    """
+    Convert pgstac items to a parquet file.
+    """
+    record_batch_reader = pgstac_to_arrow(
+        conninfo,
+        collection,
+        start_datetime,
+        end_datetime,
+        search,
+        chunk_size,
+        schema,
+        statement_timeout=statement_timeout,
+        cursor_itersize=cursor_itersize,
+    )
+
+    to_parquet(
+        record_batch_reader,
+        output_path=output_path,
+        filesystem=filesystem,
+        schema_version=schema_version,
+        **kwargs,
+    )
     return output_path
