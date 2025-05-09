@@ -31,7 +31,7 @@ most of the fields should be the same in STAC and in GeoParquet.
 | _property columns_ | _varies_             | -        | Each property should use the relevant Parquet type, and be pulled out of the properties object to be a top-level Parquet field                                                                                                                          |
 
 - Must be valid GeoParquet, with proper metadata. Ideally the geometry types are defined and as narrow as possible.
-- Strongly recommend storing items that are mostly homogenous (i.e. have the same field). Parquet is a columnar format; storing items with many different fields will lead to an expanded parquet Schema with lots of empty data. In practice, this means storing a single collection or only collections with very similar item properties in a single stac-geoparquet dataset.
+- Strongly recommend storing items that are mostly homogeneous (i.e. have the same fields). Parquet is a columnar format; storing items with many different fields will lead to an expanded parquet Schema with lots of empty data. In practice, this means storing a single collection or only collections with very similar item properties in a single stac-geoparquet dataset.
 - Any field in 'properties' of the STAC item should be moved up to be a top-level field in the GeoParquet.
 - STAC GeoParquet does not support properties that are named such that they collide with a top-level key.
 - datetime columns should be stored as a [native timestamp][timestamp], not as a string
