@@ -68,9 +68,7 @@ def test_metadata(tmp_path: Path):
     assert geo["version"] == "1.1.0"
     assert set(geo) == {"version", "columns", "primary_column"}
 
-    instance = {
-        k.decode("utf-8"): v.decode("utf-8") for k, v in metadata.items()
-    }
+    instance = {k.decode("utf-8"): v.decode("utf-8") for k, v in metadata.items()}
 
     schema = json.loads((HERE / "../spec/json-schema/metadata.json").read_text())
     jsonschema.validate(instance, schema)
