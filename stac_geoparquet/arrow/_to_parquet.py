@@ -18,7 +18,6 @@ from stac_geoparquet.arrow._crs import WGS84_CRS_JSON
 from stac_geoparquet.arrow._schema.models import InferredSchema
 from stac_geoparquet.arrow.types import ArrowStreamExportable
 
-
 STAC_GEOPARQUET_VERSION: Literal["1.0.0"] = "1.0.0"
 
 
