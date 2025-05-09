@@ -24,8 +24,6 @@ dependencies = [
     "shapely",
     "orjson",
     'typing_extensions; python_version < "3.11"',
-    "ibis>=3.3.0",
-    "duckdb>=1.2.2",
 ]
 
 [tool.hatch.version]
