@@ -78,18 +78,17 @@ See [`example-metadata.json`](https://github.com/stac-utils/stac-geoparquet/blob
 A [jsonschema schema file](https://github.com/stac-utils/stac-geoparquet/blob/main/spec/json-schema/metadata.json) is provided
 for tools to validate against.
 
-| Field Name | Type | Description |
-| ---------- | ---- | ----------- |
-| `stac:geoparquet_version` | string | The stac-geoparquet metadata version. Currently just "1.0.0" is allowed |
-| `stac:collections` | Struct of STAC Collection Objects | STAC Collection metadata |
-| `stac:collection` | STAC Collection object | **Deprecated**. Use `stac:collections` instead. |
+| Field Name                | Type                   | Description                                                             |
+| ------------------------- | -----------------------| ----------------------------------------------------------------------- |
+| `stac_geoparquet:version` | string                 | The stac-geoparquet metadata version. Currently just "1.0.0" is allowed |
+| `stac:collection`         | STAC Collection object | STAC Collection metadata.                                               |
 
 Note that this metadata is distinct from the file metadata required by
 [geoparquet].
 
 #### Geoparquet Version
 
-The field `stac:geoparquet_version` stores the version of the stac-geoparquet
+The field `stac_geoparquet:version` stores the version of the stac-geoparquet
 spec the data complies with. Readers can use this field to understand what
 features and fields are available.
 
@@ -98,16 +97,8 @@ Currently, the only allowed value is the string `"1.0.0"`.
 #### STAC Collection Objects
 
 To make a stac-geoparquet file a fully self-contained representation, you can
-include the Collection JSON documents in the Parquet metadata under the
-`stac:collections` key. This should contain a mapping of STAC Collection IDs to
-[Collection] objects. As usual, the collection ID in the mapping keys must match
-the `id` in the Collection object.
-
-Note that a previous version of this spec allowed storing a single collection
-under the `stac:collection` (singular) key. This field is deprecated in favor of
-`stac:collections`. Readers aiming for maximum compatibility should first check
-`stac:collections` for collection information and fall back to the deprecated
-`stac:collection` field.
+include the Collection JSON document in the Parquet metadata under the
+`stac:collection` key. This should contain a STAC [Collection] object.
 
 ## Referencing a STAC Geoparquet Collections in a STAC Collection JSON
 
