@@ -24,6 +24,8 @@ dependencies = [
     "shapely",
     "orjson",
     'typing_extensions; python_version < "3.11"',
+    "ibis>=3.3.0",
+    "duckdb>=1.2.2",
 ]
 
 [tool.hatch.version]
@@ -45,6 +47,7 @@ pc = ["adlfs", "azure-data-tables", "psycopg[binary,pool]", "pypgstac", "tqdm"]
 [dependency-groups]
 dev = [
     "check-jsonschema",
+    "jsonschema",
     "mypy",
     "numpy>=2",
     "pre-commit",

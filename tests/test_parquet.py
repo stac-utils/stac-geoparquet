@@ -1,6 +1,7 @@
 import json
 from pathlib import Path
 
+import jsonschema
 import pyarrow.parquet as pq
 import pytest
 
@@ -62,7 +63,14 @@ def test_metadata(tmp_path: Path):
     table = pq.read_table(out_path)
 
     metadata = table.schema.metadata
-    assert metadata[b"stac:geoparquet_version"] == b"1.0.0"
+    assert metadata[b"stac_geoparquet:version"] == b"1.0.0"
     geo = json.loads(metadata[b"geo"])
     assert geo["version"] == "1.1.0"
     assert set(geo) == {"version", "columns", "primary_column"}
+
+    instance = {
+        k.decode("utf-8"): v.decode("utf-8") for k, v in metadata.items()
+    }
+
+    schema = json.loads((HERE / "../spec/json-schema/metadata.json").read_text())
+    jsonschema.validate(instance, schema)

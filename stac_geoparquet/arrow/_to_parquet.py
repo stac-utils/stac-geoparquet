@@ -3,7 +3,7 @@ from __future__ import annotations
 import json
 from collections.abc import Iterable
 from pathlib import Path
-from typing import Any
+from typing import Any, Literal
 
 import pyarrow as pa
 import pyarrow.parquet as pq
@@ -17,6 +17,9 @@ from stac_geoparquet.arrow._constants import (
 from stac_geoparquet.arrow._crs import WGS84_CRS_JSON
 from stac_geoparquet.arrow._schema.models import InferredSchema
 from stac_geoparquet.arrow.types import ArrowStreamExportable
+
+
+STAC_GEOPARQUET_VERSION: Literal["1.0.0"] = "1.0.0"
 
 
 def parse_stac_ndjson_to_parquet(
@@ -143,7 +146,7 @@ def create_parquet_metadata(
 
     return {
         b"geo": json.dumps(geo_meta).encode("utf-8"),
-        b"stac:geoparquet_version": b"1.0.0",
+        b"stac_geoparquet:version": STAC_GEOPARQUET_VERSION.encode(),
     }
 
 
