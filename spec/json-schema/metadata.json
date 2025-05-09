@@ -12,7 +12,7 @@
     },
     "stac:collection": {
       "$ref": "https://schemas.stacspec.org/v1.1.0/collection-spec/json-schema/collection.json",
-      "description": "DEPRECATED. Use stac:collections instead. A STAC Collection object.",
+      "description": "This object represents a Collection in a SpatioTemporal Asset Catalog.",
       "deprecated": true
     }
   },
