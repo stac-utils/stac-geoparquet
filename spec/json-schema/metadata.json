@@ -5,9 +5,9 @@
   "description": "JSON Schema for STAC GeoParquet metadata stored in Parquet file metadata",
   "type": "object",
   "properties": {
-    "stac_geoparquet:version": {
+    "version": {
       "type": "string",
-      "enum": ["1.0.0"],
+      "const": "1.0.0",
       "description": "The stac-geoparquet metadata version."
     },
     "stac:collection": {
@@ -16,5 +16,5 @@
       "deprecated": true
     }
   },
-  "required": ["stac_geoparquet:version"]
+  "required": ["version"]
 }

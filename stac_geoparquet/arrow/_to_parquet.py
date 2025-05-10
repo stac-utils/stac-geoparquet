@@ -19,6 +19,7 @@ from stac_geoparquet.arrow._schema.models import InferredSchema
 from stac_geoparquet.arrow.types import ArrowStreamExportable
 
 STAC_GEOPARQUET_VERSION: Literal["1.0.0"] = "1.0.0"
+STAC_GEOPARQUET_METADATA_KEY = b"stac-geoparquet"
 
 
 def parse_stac_ndjson_to_parquet(
@@ -29,6 +30,7 @@ def parse_stac_ndjson_to_parquet(
     schema: pa.Schema | InferredSchema | None = None,
     limit: int | None = None,
     schema_version: SUPPORTED_PARQUET_SCHEMA_VERSIONS = DEFAULT_PARQUET_SCHEMA_VERSION,
+    collection_metadata: dict[str, Any] | None = None,
     **kwargs: Any,
 ) -> None:
     """Convert one or more newline-delimited JSON STAC files to GeoParquet
@@ -47,6 +49,9 @@ def parse_stac_ndjson_to_parquet(
         limit: The maximum number of JSON records to convert.
         schema_version: GeoParquet specification version; if not provided will default
             to latest supported version.
+        collection_metadata: A dictionary representing a Collection in a SpatioTemporal
+            Asset Catalog. This will be stored under the key `stac-geoparquet` in the
+            parquet file metadata, under the key `stac:collection`.
 
     All other keyword args are passed on to
     [`pyarrow.parquet.ParquetWriter`][pyarrow.parquet.ParquetWriter].
@@ -59,6 +64,7 @@ def parse_stac_ndjson_to_parquet(
         output_path=output_path,
         schema_version=schema_version,
         **kwargs,
+        collection_metadata=collection_metadata,
     )
 
 
@@ -67,6 +73,7 @@ def to_parquet(
     output_path: str | Path,
     *,
     schema_version: SUPPORTED_PARQUET_SCHEMA_VERSIONS = DEFAULT_PARQUET_SCHEMA_VERSION,
+    collection_metadata: dict[str, Any] | None = None,
     **kwargs: Any,
 ) -> None:
     """Write an Arrow table with STAC data to GeoParquet
@@ -84,6 +91,9 @@ def to_parquet(
     Keyword Args:
         schema_version: GeoParquet specification version; if not provided will default
             to latest supported version.
+        collection_metadata: A dictionary representing a Collection in a SpatioTemporal
+            Asset Catalog. This will be stored under the key `stac-geoparquet` in the
+            parquet file metadata, under the key `stac:collection`.
 
     All other keyword args are passed on to
     [`pyarrow.parquet.ParquetWriter`][pyarrow.parquet.ParquetWriter].
@@ -92,7 +102,11 @@ def to_parquet(
     reader = pa.RecordBatchReader.from_stream(table)
 
     schema = reader.schema.with_metadata(
-        create_parquet_metadata(reader.schema, schema_version=schema_version)
+        create_parquet_metadata(
+            reader.schema,
+            schema_version=schema_version,
+            collection_metadata=collection_metadata,
+        )
     )
     with pq.ParquetWriter(output_path, schema, **kwargs) as writer:
         for batch in reader:
@@ -103,6 +117,7 @@ def create_parquet_metadata(
     schema: pa.Schema,
     *,
     schema_version: SUPPORTED_PARQUET_SCHEMA_VERSIONS,
+    collection_metadata: dict[str, Any] | None = None,
 ) -> dict[bytes, bytes]:
     # TODO: include bbox of geometries
     column_meta = {
@@ -143,9 +158,11 @@ def create_parquet_metadata(
             "crs": None,
         }
 
+    geoparquet_metadata = create_stac_geoparquet_metadata(collection_metadata)
+
     return {
         b"geo": json.dumps(geo_meta).encode("utf-8"),
-        b"stac_geoparquet:version": STAC_GEOPARQUET_VERSION.encode(),
+        STAC_GEOPARQUET_METADATA_KEY: json.dumps(geoparquet_metadata).encode("utf-8"),
     }
 
 
@@ -157,3 +174,20 @@ def schema_version_has_bbox_mapping(
     metadata.
     """
     return int(schema_version.split(".")[1]) >= 1
+
+
+def create_stac_geoparquet_metadata(
+    collection_metadata: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    """
+    Create the stac-geoparquet metadata object for the Parquet file.
+
+    This will be stored under the key `stac-geoparquet` in the Parquet file metadata.
+    It must be compatible with the metadata spec.
+    """
+    result: dict[str, Any] = {
+        "version": STAC_GEOPARQUET_VERSION,
+    }
+    if collection_metadata:
+        result["stac:collection"] = collection_metadata
+    return result
