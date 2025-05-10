@@ -1,5 +1,5 @@
 {
-    "stac_geoparquet:version": "1.0.0",
+    "version": "1.0.0",
     "stac:collection": {
         "id": "simple-collection",
         "type": "Collection",

@@ -72,29 +72,34 @@ See [Asset Object][asset] for more.
 ### Parquet Metadata
 
 stac-geoparquet uses Parquet [File Metadata](https://parquet.apache.org/docs/file-format/metadata/) to store metadata about the dataset.
+All stac-geoparquet metadata is stored under the key `stac-geoparquet` in the parquet file metadata.
 
 See [`example-metadata.json`](https://github.com/stac-utils/stac-geoparquet/blob/main/spec/example-metadata.json) for an example.
 
 A [jsonschema schema file](https://github.com/stac-utils/stac-geoparquet/blob/main/spec/json-schema/metadata.json) is provided
 for tools to validate against.
 
-| Field Name                | Type                   | Description                                                             |
-| ------------------------- | -----------------------| ----------------------------------------------------------------------- |
-| `stac_geoparquet:version` | string                 | The stac-geoparquet metadata version. Currently just "1.0.0" is allowed |
-| `stac:collection`         | STAC Collection object | STAC Collection metadata.                                               |
+| Field Name        | Type                   | Description                                                             |
+| ----------------- | -----------------------| ----------------------------------------------------------------------- |
+| `version`         | string                 | The stac-geoparquet metadata version. Currently just "1.0.0" is allowed |
+| `stac:collection` | STAC Collection object | STAC Collection metadata.                                               |
 
 Note that this metadata is distinct from the file metadata required by
 [geoparquet].
 
 #### Geoparquet Version
 
-The field `stac_geoparquet:version` stores the version of the stac-geoparquet
-spec the data complies with. Readers can use this field to understand what
+The field `version` stores the version of the stac-geoparquet
+specification the data complies with. Readers can use this field to understand what
 features and fields are available.
 
 Currently, the only allowed value is the string `"1.0.0"`.
 
-#### STAC Collection Objects
+Note: early versions of this specificaiton didn't include a `version` field. Readers
+aiming for maximum compatibility may attempt to read files without this key present,
+despite it being required from 1.0.0 onwards.
+
+#### STAC Collection Object
 
 To make a stac-geoparquet file a fully self-contained representation, you can
 include the Collection JSON document in the Parquet metadata under the
