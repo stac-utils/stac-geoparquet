@@ -1,7 +1,7 @@
-import datetime
 import functools
 import logging
-from typing import Any, Iterator
+from typing import Any, Callable, Iterator, Tuple
+from pathlib import Path
 
 import orjson
 import psycopg
@@ -10,6 +10,9 @@ import pyarrow.fs
 import pypgstac.hydration
 import shapely.wkb
 from psycopg.types.json import set_json_dumps, set_json_loads
+from dataclasses import dataclass
+from datetime import datetime, timezone
+
 
 from stac_geoparquet.arrow import (
     DEFAULT_JSON_CHUNK_SIZE,
@@ -47,7 +50,7 @@ class PgstacRowFactory:
     def __call__(
         self,
         values: tuple[
-            str, str, str, datetime.datetime, datetime.datetime, dict[str, Any]
+            str, str, str, datetime, datetime, dict[str, Any]
         ],
     ) -> dict[str, Any]:
         """
@@ -83,8 +86,7 @@ class PgstacRowFactory:
 
         # Ensure that properties known to often come in mixed string/numeric
         # types are consistent across all items.
-        if "naip:year" in item["properties"]:
-            item["properties"]["naip:year"] = int(item["properties"]["naip:year"])
+
         if "proj:epsg" in item["properties"]:
             item["properties"]["proj:epsg"] = int(item["properties"]["proj:epsg"])
         base_item = self.get_baseitem(item["collection"])
@@ -130,11 +132,12 @@ def pgstac_dsn(conninfo: str | None, statement_timeout: int | None) -> str:
 def pgstac_to_iter(
     conninfo: str | None,
     collection: str | None = None,
-    start_datetime: datetime.datetime | None = None,
-    end_datetime: datetime.datetime | None = None,
+    start_datetime: datetime | None = None,
+    end_datetime: datetime | None = None,
     search: dict[str, Any] | None = None,
     statement_timeout: int | None = None,
     cursor_itersize: int = 10000,
+    row_func: Callable | None = None,
 ) -> Iterator[dict[str, Any]]:
     conninfo = pgstac_dsn(conninfo, statement_timeout)
 
@@ -143,7 +146,7 @@ def pgstac_to_iter(
     ):
         raise ValueError("Cannot use search and collection/datetime at the same time")
     if start_datetime is not None and end_datetime is None:
-        end_datetime = datetime.datetime.now(datetime.timezone.utc)
+        end_datetime = datetime.now(timezone.utc)
 
     query: str
     args: Any
@@ -170,19 +173,22 @@ def pgstac_to_iter(
             cur.itersize = cursor_itersize
             cur.execute(query, args)
             for rec in cur:
+                if row_func is not None:
+                    rec = row_func(rec)
                 yield rec
 
 
 def pgstac_to_arrow(
     conninfo: str,
     collection: str | None = None,
-    start_datetime: datetime.datetime | None = None,
-    end_datetime: datetime.datetime | None = None,
+    start_datetime: datetime | None = None,
+    end_datetime: datetime | None = None,
     search: dict[str, Any] | None = None,
     chunk_size: int = DEFAULT_JSON_CHUNK_SIZE,
     schema: pa.Schema | InferredSchema | None = None,
     statement_timeout: int | None = None,
     cursor_itersize: int = 10000,
+    row_func: Callable | None = None,
 ) -> pa.RecordBatchReader:
     """
     Convert pgstac items to an arrow record batch reader.
@@ -195,28 +201,33 @@ def pgstac_to_arrow(
         search,
         statement_timeout=statement_timeout,
         cursor_itersize=cursor_itersize,
+        row_func=row_func,
     )
     return parse_stac_items_to_arrow(items, chunk_size=chunk_size, schema=schema)
 
 
 def pgstac_to_parquet(
     conninfo: str,
-    output_path: str,
+    output_path: str | Path,
     collection: str | None = None,
-    start_datetime: datetime.datetime | None = None,
-    end_datetime: datetime.datetime | None = None,
+    start_datetime: datetime | None = None,
+    end_datetime: datetime | None = None,
     search: dict[str, Any] | None = None,
     chunk_size: int = DEFAULT_JSON_CHUNK_SIZE,
     schema: pa.Schema | InferredSchema | None = None,
     statement_timeout: int | None = None,
     cursor_itersize: int = 10000,
+    row_func: Callable | None = None,
     schema_version: SUPPORTED_PARQUET_SCHEMA_VERSIONS = DEFAULT_PARQUET_SCHEMA_VERSION,
     filesystem: pyarrow.fs.FileSystem | None = None,
     **kwargs: Any,
-) -> str:
+) -> Path:
     """
     Convert pgstac items to a parquet file.
     """
+    if isinstance(output_path, str):
+        output_path = Path(output_path)
+
     record_batch_reader = pgstac_to_arrow(
         conninfo,
         collection,
@@ -227,6 +238,7 @@ def pgstac_to_parquet(
         schema,
         statement_timeout=statement_timeout,
         cursor_itersize=cursor_itersize,
+        row_func=row_func,
     )
 
     to_parquet(
@@ -237,3 +249,82 @@ def pgstac_to_parquet(
         **kwargs,
     )
     return output_path
+
+
+@dataclass
+class Partition:
+    collection: str
+    partition: str
+    start: datetime
+    end: datetime
+    last_updated: datetime
+
+def get_pgstac_partitions(conninfo: str, updated_after: datetime | None = None) -> Iterator[Partition]:
+    db = pgstac_dsn(conninfo, None)
+    with psycopg.connect(db) as conn:
+        with conn.cursor(row_factory=psycopg.rows.class_row(Partition)) as cur:
+            q = """
+                SELECT
+                    collection,
+                    CASE WHEN lower(partition_dtrange) = '-infinity' OR upper(partition_dtrange) = 'infinity' THEN
+                        'items.parquet'
+                    ELSE
+                        format(
+                            'items_%%s_%%s.parquet',
+                            to_char(lower(partition_dtrange),'YYYYMMDD'),
+                            to_char(upper(partition_dtrange),'YYYYMMDD')
+                        )
+                    END AS partition,
+                    lower(dtrange) as start,
+                    upper(dtrange) as end,
+                    last_updated
+                FROM partitions_view
+                """
+            args: Any = ()
+            if updated_after is not None:
+                q += " WHERE last_updated >= %s"
+                args = (updated_after,)
+            q += " ORDER BY last_updated asc"
+            cur.execute(q, args)
+            for row in cur:
+                yield row
+
+def sync_pgstac_to_parquet(
+    conninfo: str,
+    output_path: str | Path,
+    updated_after: datetime | None = None,
+    chunk_size: int = DEFAULT_JSON_CHUNK_SIZE,
+    schema: pa.Schema | InferredSchema | None = None,
+    statement_timeout: int | None = None,
+    cursor_itersize: int = 10000,
+    row_func: Callable | None = None,
+    schema_version: SUPPORTED_PARQUET_SCHEMA_VERSIONS = DEFAULT_PARQUET_SCHEMA_VERSION,
+    filesystem: pyarrow.fs.FileSystem | None = None,
+    **kwargs: Any,
+) -> Path:
+    """
+    Use the last_updated partition metadata in pgstac to sync only changed
+    items to parquet.
+    """
+    output_dir = Path(output_path)
+    for p in get_pgstac_partitions(conninfo, updated_after):
+        od = output_dir / p.collection
+        od.mkdir(parents=True, exist_ok=True)
+        of = od / p.partition
+
+        pgstac_to_parquet(
+            conninfo,
+            output_path = of,
+            collection = p.collection,
+            start_datetime = p.start,
+            end_datetime = p.end,
+            row_func=row_func,
+            chunk_size=chunk_size,
+            schema=schema,
+            statement_timeout=statement_timeout,
+            cursor_itersize=cursor_itersize,
+            schema_version=schema_version,
+            filesystem=filesystem,
+            **kwargs,
+        )
+    return output_dir
