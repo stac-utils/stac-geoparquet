@@ -10,7 +10,7 @@
       "const": "1.0.0",
       "description": "The stac-geoparquet metadata version."
     },
-    "stac:collection": {
+    "collection": {
       "$ref": "https://schemas.stacspec.org/v1.1.0/collection-spec/json-schema/collection.json",
       "description": "This object represents a Collection in a SpatioTemporal Asset Catalog.",
       "deprecated": true

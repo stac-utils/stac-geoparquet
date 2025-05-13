@@ -51,7 +51,7 @@ def parse_stac_ndjson_to_parquet(
             to latest supported version.
         collection_metadata: A dictionary representing a Collection in a SpatioTemporal
             Asset Catalog. This will be stored under the key `stac-geoparquet` in the
-            parquet file metadata, under the key `stac:collection`.
+            parquet file metadata, under the key `collection`.
 
     All other keyword args are passed on to
     [`pyarrow.parquet.ParquetWriter`][pyarrow.parquet.ParquetWriter].
@@ -93,7 +93,7 @@ def to_parquet(
             to latest supported version.
         collection_metadata: A dictionary representing a Collection in a SpatioTemporal
             Asset Catalog. This will be stored under the key `stac-geoparquet` in the
-            parquet file metadata, under the key `stac:collection`.
+            parquet file metadata, under the key `collection`.
 
     All other keyword args are passed on to
     [`pyarrow.parquet.ParquetWriter`][pyarrow.parquet.ParquetWriter].
@@ -189,5 +189,5 @@ def create_stac_geoparquet_metadata(
         "version": STAC_GEOPARQUET_VERSION,
     }
     if collection_metadata:
-        result["stac:collection"] = collection_metadata
+        result["collection"] = collection_metadata
     return result

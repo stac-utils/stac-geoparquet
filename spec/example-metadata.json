@@ -1,6 +1,6 @@
 {
     "version": "1.0.0",
-    "stac:collection": {
+    "collection": {
         "id": "simple-collection",
         "type": "Collection",
         "stac_extensions": [],

@@ -71,7 +71,7 @@ def test_metadata(tmp_path: Path):
     stac_geoparquet_metadata = json.loads(metadata[b"stac-geoparquet"])
     expected_stac_geoparquet_metadata = {
         "version": "1.0.0",
-        "stac:collection": collection_metadata,
+        "collection": collection_metadata,
     }
     assert stac_geoparquet_metadata == expected_stac_geoparquet_metadata
     geo = json.loads(metadata[b"geo"])
@@ -84,6 +84,6 @@ def test_metadata(tmp_path: Path):
     # The jsonschema we provide embeds a reference to the jsonschema
     # for STAC collections. But that is versioned, and the version
     # must match. Do we do it dynamically, based on the version on
-    # stac:collection?
-    stac_geoparquet_metadata.pop("stac:collection")
+    # collection?
+    stac_geoparquet_metadata.pop("collection")
     jsonschema.validate(stac_geoparquet_metadata, schema)
