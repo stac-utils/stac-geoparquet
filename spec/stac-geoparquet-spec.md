@@ -106,7 +106,8 @@ despite it being required from 1.0.0 onwards.
 
 To make a stac-geoparquet file a fully self-contained representation, you can
 include the Collection JSON document in the Parquet metadata under the
-`stac:collection` key. This should contain a STAC [Collection] o
+`collection` key. This should contain a STAC [Collection].
+
 ## Referencing a STAC Geoparquet Collections in a STAC Collection JSON
 
 A common use case of stac-geoparquet is to create a mirror of a STAC collection. To refer to this mirror in the original collection, use an [Asset Object](https://github.com/radiantearth/stac-spec/blob/master/collection-spec/collection-spec.md#asset-object) at the collection level of the STAC JSON that includes the `application/vnd.apache.parquet` Media type and `collection-mirror` Role type to describe the function of the Geoparquet STAC Co
