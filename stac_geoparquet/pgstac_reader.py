@@ -84,11 +84,6 @@ class PgstacRowFactory:
             item["stac_extensions"] = content["stac_extensions"]
         item["properties"] = content["properties"]
 
-        # Ensure that properties known to often come in mixed string/numeric
-        # types are consistent across all items.
-
-        if "proj:epsg" in item["properties"]:
-            item["properties"]["proj:epsg"] = int(item["properties"]["proj:epsg"])
         base_item = self.get_baseitem(item["collection"])
         pypgstac.hydration.hydrate(base_item, item)
         return item
