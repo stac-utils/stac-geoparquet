@@ -11,9 +11,8 @@
       "description": "The stac-geoparquet metadata version."
     },
     "collection": {
-      "$ref": "https://schemas.stacspec.org/v1.1.0/collection-spec/json-schema/collection.json",
-      "description": "This object represents a Collection in a SpatioTemporal Asset Catalog.",
-      "deprecated": true
+      "type": "object",
+      "description": "This object represents a Collection in a SpatioTemporal Asset Catalog. Note that this object is not validated against the STAC Collection schema. You'll need to validate it separately from stac-geoparquet."
     }
   },
   "required": ["version"]

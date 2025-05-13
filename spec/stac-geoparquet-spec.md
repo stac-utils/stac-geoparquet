@@ -76,8 +76,11 @@ All stac-geoparquet metadata is stored under the key `stac-geoparquet` in the pa
 
 See [`example-metadata.json`](https://github.com/stac-utils/stac-geoparquet/blob/main/spec/example-metadata.json) for an example.
 
-A [jsonschema schema file](https://github.com/stac-utils/stac-geoparquet/blob/main/spec/json-schema/metadata.json) is provided
-for tools to validate against.
+A [jsonschema schema file][schema] is provided for tools to validate against.
+Note that the json-schema for stac-geoparquet does *not* validate the
+`collection` object against the STAC json-schema. You'll need to validate that
+separately.
+
 
 | Field Name   | Type                   | Description                                                             |
 | -------------| -----------------------| ----------------------------------------------------------------------- |
@@ -103,7 +106,7 @@ despite it being required from 1.0.0 onwards.
 
 To make a stac-geoparquet file a fully self-contained representation, you can
 include the Collection JSON document in the Parquet metadata under the
-`collection` key. This should contain a STAC [Collection] o
+`stac:collection` key. This should contain a STAC [Collection] o
 ## Referencing a STAC Geoparquet Collections in a STAC Collection JSON
 
 A common use case of stac-geoparquet is to create a mirror of a STAC collection. To refer to this mirror in the original collection, use an [Asset Object](https://github.com/radiantearth/stac-spec/blob/master/collection-spec/collection-spec.md#asset-object) at the collection level of the STAC JSON that includes the `application/vnd.apache.parquet` Media type and `collection-mirror` Role type to describe the function of the Geoparquet STAC Co
@@ -133,3 +136,4 @@ The principles here can likely be used to map into other geospatial data formats
 [timestamp]: https://github.com/apache/parquet-format/blob/master/LogicalTypes.md#timestamp
 [parquet-metadata]: https://github.com/apache/parquet-format#metadata
 [Collection]: https://github.com/radiantearth/stac-spec/blob/master/collection-spec/collection-spec.md#
+[schema]: https://github.com/stac-utils/stac-geoparquet/blob/main/spec/json-schema/metadata.json
