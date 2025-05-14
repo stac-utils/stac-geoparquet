@@ -12,7 +12,7 @@ from stac_geoparquet.arrow._constants import DEFAULT_JSON_CHUNK_SIZE
 from stac_geoparquet.arrow._to_parquet import (
     DEFAULT_PARQUET_SCHEMA_VERSION,
     SUPPORTED_PARQUET_SCHEMA_VERSIONS,
-    create_geoparquet_metadata,
+    create_parquet_metadata,
 )
 
 if TYPE_CHECKING:
@@ -51,7 +51,7 @@ def parse_stac_ndjson_to_delta_lake(
         input_path, chunk_size=chunk_size, schema=schema, limit=limit
     )
     schema = record_batch_reader.schema.with_metadata(
-        create_geoparquet_metadata(
+        create_parquet_metadata(
             record_batch_reader.schema, schema_version=schema_version
         )
     )

@@ -40,3 +40,9 @@ uv run pre-commit install
 uv run pytest
 scripts/lint
 ```
+
+Validate the example collection metadata against the jsonschema:
+
+```shell
+check-jsonschema --schemafile spec/json-schema/metadata.json spec/example-metadata.json
+```

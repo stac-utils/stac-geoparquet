@@ -44,17 +44,19 @@ pc = ["adlfs", "azure-data-tables", "psycopg[binary,pool]", "pypgstac", "tqdm"]
 
 [dependency-groups]
 dev = [
+    "check-jsonschema",
+    "jsonschema",
     "mypy",
     "numpy>=2",
-    "ruff",
     "pre-commit",
+    "pytest-recording>=0.13.2",
     "pytest",
     "requests",
+    "ruff",
     "stac-geoparquet[pc]",
     "stac-geoparquet[pgstac]",
     "types-python-dateutil",
     "types-requests",
-    "pytest-recording>=0.13.2",
     "vcrpy>=7.0.0",
 ]
 docs = [

@@ -1,6 +1,7 @@
 import json
 from pathlib import Path
 
+import jsonschema
 import pyarrow.parquet as pq
 import pytest
 
@@ -51,3 +52,38 @@ def test_round_trip_via_parquet(collection_id: str, tmp_path: Path):
 
     for result, expected in zip(items_result, items):
         assert_json_value_equal(result, expected, precision=0)
+
+
+def test_metadata(tmp_path: Path):
+    collection_id = "3dep-lidar-copc"
+    path = HERE / "data" / f"{collection_id}-pc.json"
+    collection_metadata = json.loads(
+        (HERE / f"data/{collection_id}-pc-collection.json").read_text()
+    )
+    out_path = tmp_path / "file.parquet"
+    # Convert to Parquet
+    parse_stac_ndjson_to_parquet(
+        path, out_path, collection_metadata=collection_metadata
+    )
+    table = pq.read_table(out_path)
+
+    metadata = table.schema.metadata
+    stac_geoparquet_metadata = json.loads(metadata[b"stac-geoparquet"])
+    expected_stac_geoparquet_metadata = {
+        "version": "1.0.0",
+        "collection": collection_metadata,
+    }
+    assert stac_geoparquet_metadata == expected_stac_geoparquet_metadata
+    geo = json.loads(metadata[b"geo"])
+    assert geo["version"] == "1.1.0"
+    assert set(geo) == {"version", "columns", "primary_column"}
+
+    schema = json.loads((HERE / "../spec/json-schema/metadata.json").read_text())
+
+    # TODO: determine how to version this.
+    # The jsonschema we provide embeds a reference to the jsonschema
+    # for STAC collections. But that is versioned, and the version
+    # must match. Do we do it dynamically, based on the version on
+    # collection?
+    stac_geoparquet_metadata.pop("collection")
+    jsonschema.validate(stac_geoparquet_metadata, schema)

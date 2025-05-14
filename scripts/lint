@@ -2,6 +2,5 @@
 
 set -e
 
-uv run ruff check
-uv run ruff format --check
+uv run pre-commit run --all-files
 uv run mypy stac_geoparquet
