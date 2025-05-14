@@ -17,8 +17,8 @@ dependencies = [
     "packaging",
     "pandas",
     # Needed for RecordBatch.append_column
-    # Below 19 b/c https://github.com/apache/arrow/issues/45283
-    "pyarrow>=16,<19",
+    # !=19.0.0 b/c https://github.com/apache/arrow/issues/45283
+    "pyarrow>=16,!=19.0.0",
     "pyproj",
     "pystac",
     "shapely",
