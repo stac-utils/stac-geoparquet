@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+
+set -e
+
+uv run pytest tests -v
