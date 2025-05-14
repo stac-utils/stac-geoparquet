@@ -8,5 +8,5 @@ This is a list of changes to `stac-geoparquet`.
     - All fields are placed under the `stac-geoparquet` key in the parquet file metadata.
     - Added a `version` field.
     - Added json-schema for the metadata parquet file metadata.
-
 - Fixed `ValueError` when converting some strings to dates (https://github.com/stac-utils/stac-geoparquet/issues/79)
+- Removed upper bound on pyarrow dependency (https://github.com/stac-utils/stac-geoparquet/pull/102)
