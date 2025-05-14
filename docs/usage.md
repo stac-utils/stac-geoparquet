@@ -41,7 +41,9 @@ Use [`stac_table_to_ndjson`][stac_geoparquet.arrow.stac_table_to_ndjson] to conv
 
 ## Parquet
 
-Use [`to_parquet`][stac_geoparquet.arrow.to_parquet] to write STAC Arrow data from memory to a path or file-like object. This is a special function to ensure that [GeoParquet](https://geoparquet.org/) 1.0 or 1.1 metadata is written to the Parquet file.
+Use [`to_parquet`][stac_geoparquet.arrow.to_parquet] to write STAC Arrow data from memory to a path or file-like object. This is a special function to ensure that [GeoParquet](https://geoparquet.org/) 1.0 or 1.1 metadata is written to the Parquet file. Additionally, file metadata following the [STAC GeoParquet Specification][spec].
+
+Use the `collection_metadata` keyword to include STAC Collection metadata in the Parquet metadata.
 
 [`parse_stac_ndjson_to_parquet`][stac_geoparquet.arrow.parse_stac_ndjson_to_parquet] is a helper that connects reading (newline-delimited) JSON on disk to writing out to a Parquet file.
 
@@ -65,3 +67,6 @@ No special API is required for reading a STAC Delta Lake table back into Arrow. 
     This means we cannot write this collection to Delta Lake **solely with automatic schema inference**.
 
     In such cases, users may need to manually update the inferred schema to cast any `null` type to another Delta Lake-compatible type.
+
+
+[spec]: https://github.com/stac-utils/stac-geoparquet/blob/main/spec/stac-geoparquet-spec.md#parquet-metadata

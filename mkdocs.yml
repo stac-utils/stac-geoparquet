@@ -26,6 +26,7 @@ nav:
       - Legacy: api/legacy.md
       - api/pgstac.md
   - drawbacks.md
+  - changelog.md
 
 watch:
   - stac_geoparquet
