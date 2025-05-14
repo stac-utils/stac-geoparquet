@@ -34,11 +34,8 @@ version-file = "stac_geoparquet/_version.py"
 
 [project.optional-dependencies]
 pgstac = [
-    "fsspec",
-    "psycopg[binary,pool]",
+    "psycopg[binary]",
     "pypgstac",
-    "python-dateutil",
-    "tqdm",
 ]
 pc = ["adlfs", "azure-data-tables", "psycopg[binary,pool]", "pypgstac", "tqdm"]
 
