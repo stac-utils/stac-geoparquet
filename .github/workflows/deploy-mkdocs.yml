@@ -20,14 +20,12 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v5
-        with:
-          python-version: ${{ matrix.python-version }}
+      - uses: astral-sh/setup-uv@v5
 
       - name: Install dependencies
         run: python -m pip install -e .[pgstac,pc,test,docs]
-
+      - name: Sync
+        run: uv sync --all-extras
       - name: Deploy docs
         env:
           GIT_COMMITTER_NAME: CI
