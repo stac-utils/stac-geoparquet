@@ -82,10 +82,11 @@ Note that the json-schema for stac-geoparquet does *not* validate the
 separately.
 
 
-| Field Name   | Type                   | Description                                                             |
-| -------------| -----------------------| ----------------------------------------------------------------------- |
-| `version`    | string                 | The stac-geoparquet metadata version. Currently just "1.0.0" is allowed |
-| `collection` | STAC Collection object | STAC Collection metadata.                                               |
+| Field Name    | Type                    | Description                                                                                |
+| --------------| ------------------------| ------------------------------------------------------------------------------------------ |
+| `version`     | string                  | The stac-geoparquet metadata version. The stac-geoparquet version this dataset implements. |
+| `collections` | Map<string, Collection> | A mapping from collection ID to STAC collection objects.                                   |
+| `collection`  | STAC Collection object  | **deprecated**. Use `collections` instead.                                                 |
 
 Note that this metadata is distinct from the file metadata required by
 [geoparquet].
@@ -96,17 +97,31 @@ The field `version` stores the version of the stac-geoparquet
 specification the data complies with. Readers can use this field to understand what
 features and fields are available.
 
-Currently, the only allowed value is the string `"1.0.0"`.
+Currently, the only allowed values are `"1.1.0"` and `"1.0.0"`.
 
-Note: early versions of this specificaiton didn't include a `version` field. Readers
+Note: early versions of this specification didn't include a `version` field. Readers
 aiming for maximum compatibility may attempt to read files without this key present,
 despite it being required from 1.0.0 onwards.
 
-#### STAC Collection Object
+#### STAC Collection Objects
 
 To make a stac-geoparquet file a fully self-contained representation, you can
-include the Collection JSON document in the Parquet metadata under the
-`collection` key. This should contain a STAC [Collection].
+include [STAC Collection][Collection] JSON objects in the Parquet metadata
+under the `collections` key. This should be a mapping from Collection ID to
+Collection object. As usual, the ID used as the key of the mapping must match
+the ID in the Collection object.
+
+Because parquet is a columnar format and stores the union of all the fields from
+all the items, we recommend only storing STAC collections with the same or
+mostly the same fields in the same stac-geoparquet dataset. STAC collections
+with very different schemas should likely be distributed in separate
+stac-geoparquet datasets.
+
+#### STAC Collection Object
+
+Version 1.0.0 of this specification included a singular `collection` field that
+stored a single STAC collection object. In version 1.1.0, this field is
+deprecated in favor of `collections`.
 
 ## Referencing a STAC Geoparquet Collections in a STAC Collection JSON
 

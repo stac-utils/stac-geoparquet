@@ -1,5 +1,7 @@
+import contextlib
 import json
 from pathlib import Path
+from typing import Any
 
 import jsonschema
 import pyarrow.parquet as pq
@@ -54,7 +56,8 @@ def test_round_trip_via_parquet(collection_id: str, tmp_path: Path):
         assert_json_value_equal(result, expected, precision=0)
 
 
-def test_metadata(tmp_path: Path):
+@pytest.mark.parametrize("write_collections", [True, False])
+def test_metadata(tmp_path: Path, *, write_collections: bool) -> None:
     collection_id = "3dep-lidar-copc"
     path = HERE / "data" / f"{collection_id}-pc.json"
     collection_metadata = json.loads(
@@ -62,28 +65,38 @@ def test_metadata(tmp_path: Path):
     )
     out_path = tmp_path / "file.parquet"
     # Convert to Parquet
-    parse_stac_ndjson_to_parquet(
-        path, out_path, collection_metadata=collection_metadata
-    )
+
+    if write_collections:
+        kwargs = {"collections": {collection_id: collection_metadata}}
+        warns = contextlib.nullcontext()
+    else:
+        kwargs = {"collection_metadata": collection_metadata}
+        warns = pytest.warns(FutureWarning, match="collections")
+
+    with warns:
+        parse_stac_ndjson_to_parquet(
+            path,
+            out_path,
+            **kwargs,
+        )
     table = pq.read_table(out_path)
 
     metadata = table.schema.metadata
     stac_geoparquet_metadata = json.loads(metadata[b"stac-geoparquet"])
-    expected_stac_geoparquet_metadata = {
+    expected_stac_geoparquet_metadata: dict[str, Any] = {
         "version": "1.0.0",
-        "collection": collection_metadata,
     }
+    if write_collections:
+        expected_stac_geoparquet_metadata["collections"] = {
+            collection_id: collection_metadata,
+        }
+    else:
+        expected_stac_geoparquet_metadata["collection"] = collection_metadata
+
     assert stac_geoparquet_metadata == expected_stac_geoparquet_metadata
     geo = json.loads(metadata[b"geo"])
     assert geo["version"] == "1.1.0"
     assert set(geo) == {"version", "columns", "primary_column"}
 
     schema = json.loads((HERE / "../spec/json-schema/metadata.json").read_text())
-
-    # TODO: determine how to version this.
-    # The jsonschema we provide embeds a reference to the jsonschema
-    # for STAC collections. But that is versioned, and the version
-    # must match. Do we do it dynamically, based on the version on
-    # collection?
-    stac_geoparquet_metadata.pop("collection")
     jsonschema.validate(stac_geoparquet_metadata, schema)
