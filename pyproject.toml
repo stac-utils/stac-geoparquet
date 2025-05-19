@@ -12,7 +12,6 @@ dynamic = ["version", "description"]
 requires-python = ">=3.9"
 dependencies = [
     "ciso8601",
-    "deltalake",
     "geopandas",
     "packaging",
     "pandas",
@@ -33,6 +32,10 @@ source = "vcs"
 version-file = "stac_geoparquet/_version.py"
 
 [project.optional-dependencies]
+deltalake = [
+    "deltalake",
+]
+
 pgstac = [
     "fsspec",
     "psycopg[binary,pool]",
@@ -40,7 +43,14 @@ pgstac = [
     "python-dateutil",
     "tqdm",
 ]
-pc = ["adlfs", "azure-data-tables", "psycopg[binary,pool]", "pypgstac", "tqdm"]
+
+pc = [
+    "adlfs",
+    "azure-data-tables",
+    "psycopg[binary,pool]",
+    "pypgstac",
+    "tqdm"
+]
 
 [dependency-groups]
 dev = [
@@ -53,6 +63,7 @@ dev = [
     "pytest",
     "requests",
     "ruff",
+    "stac-geoparquet[deltalake]",
     "stac-geoparquet[pc]",
     "stac-geoparquet[pgstac]",
     "types-python-dateutil",
