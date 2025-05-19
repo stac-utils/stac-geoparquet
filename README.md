@@ -30,14 +30,18 @@ Install via `pip` or `conda`:
 
 ## Development
 
-Get [uv](https://docs.astral.sh/uv/getting-started/installation/), then:
+1. Create a Python virtual environment
+1. Get [uv](https://docs.astral.sh/uv/getting-started/installation/):
+1. Get [cargo](https://doc.rust-lang.org/cargo/getting-started/installation.html):
+
+Then run:
 
 ```shell
 git clone git@github.com:stac-utils/stac-geoparquet.git
 cd stac-geoparquet
-uv sync
+scripts/install
 uv run pre-commit install
-uv run pytest
+scripts/test
 scripts/lint
 ```
 
