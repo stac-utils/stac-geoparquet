@@ -17,6 +17,7 @@ jobs:
           - "3.10"
           - "3.11"
           - "3.12"
+          - "3.13"
     steps:
       - uses: actions/checkout@v2
       - uses: astral-sh/setup-uv@v5
@@ -32,3 +33,5 @@ jobs:
         run: uv run pytest tests -v
       - name: Check docs
         run: uv run mkdocs build --strict
+      - name: Check jsonschema
+        run: check-jsonschema --schemafile spec/json-schema/metadata.json spec/example-metadata.json

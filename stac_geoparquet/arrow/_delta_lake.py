@@ -5,14 +5,20 @@ from pathlib import Path
 from typing import TYPE_CHECKING, Any
 
 import pyarrow as pa
-from deltalake import write_deltalake
+
+try:
+    from deltalake import write_deltalake
+
+    _deltalake_installed = True
+except ImportError:
+    _deltalake_installed = False
 
 from stac_geoparquet.arrow._api import parse_stac_ndjson_to_arrow
 from stac_geoparquet.arrow._constants import DEFAULT_JSON_CHUNK_SIZE
 from stac_geoparquet.arrow._to_parquet import (
     DEFAULT_PARQUET_SCHEMA_VERSION,
     SUPPORTED_PARQUET_SCHEMA_VERSIONS,
-    create_geoparquet_metadata,
+    create_parquet_metadata,
 )
 
 if TYPE_CHECKING:
@@ -47,11 +53,16 @@ def parse_stac_ndjson_to_delta_lake(
         schema_version: GeoParquet specification version; if not provided will default
             to latest supported version.
     """
+    if not _deltalake_installed:
+        raise ImportError(
+            "The `deltalake` package is required to use parse_stac_ndjson_to_delta_lake"
+            "Enable with `pip install stac_geoparquet[deltalake]`."
+        )
     record_batch_reader = parse_stac_ndjson_to_arrow(
         input_path, chunk_size=chunk_size, schema=schema, limit=limit
     )
     schema = record_batch_reader.schema.with_metadata(
-        create_geoparquet_metadata(
+        create_parquet_metadata(
             record_batch_reader.schema, schema_version=schema_version
         )
     )

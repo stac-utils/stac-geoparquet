@@ -12,13 +12,12 @@ dynamic = ["version", "description"]
 requires-python = ">=3.9"
 dependencies = [
     "ciso8601",
-    "deltalake",
     "geopandas",
     "packaging",
     "pandas",
     # Needed for RecordBatch.append_column
-    # Below 19 b/c https://github.com/apache/arrow/issues/45283
-    "pyarrow>=16,<19",
+    # !=19.0.0 b/c https://github.com/apache/arrow/issues/45283
+    "pyarrow>=16,!=19.0.0",
     "pyproj",
     "pystac",
     "shapely",
@@ -33,6 +32,10 @@ source = "vcs"
 version-file = "stac_geoparquet/_version.py"
 
 [project.optional-dependencies]
+deltalake = [
+    "deltalake",
+]
+
 pgstac = [
     "psycopg[binary]",
     "pypgstac",
@@ -40,17 +43,20 @@ pgstac = [
 
 [dependency-groups]
 dev = [
+    "check-jsonschema",
+    "jsonschema",
     "mypy",
     "numpy>=2",
-    "ruff",
     "pre-commit",
+    "pytest-recording>=0.13.2",
     "pytest",
     "requests",
+    "ruff",
+    "stac-geoparquet[deltalake]",
     "stac-geoparquet[pc]",
     "stac-geoparquet[pgstac]",
     "types-python-dateutil",
     "types-requests",
-    "pytest-recording>=0.13.2",
     "vcrpy>=7.0.0",
 ]
 docs = [
