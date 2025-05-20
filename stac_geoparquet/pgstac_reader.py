@@ -227,12 +227,19 @@ def pgstac_to_parquet(
     schema_version: SUPPORTED_PARQUET_SCHEMA_VERSIONS = DEFAULT_PARQUET_SCHEMA_VERSION,
     filesystem: pyarrow.fs.FileSystem | None = None,
     **kwargs: Any,
-) -> Path:
+) -> str:
     """
     Convert pgstac items to a parquet file.
     """
-    if isinstance(output_path, str):
-        output_path = Path(output_path)
+    if filesystem is None:
+        filesystem, filepath = pyarrow.fs.FileSystem.from_uri(output_path)
+    else:
+        filepath = output_path
+
+    filedir = Path(filepath).parent
+    filesystem.create_dir(filedir, recursive=True)
+
+    logger.info(f"Exporting PgSTAC to {filesystem} {filepath}")
 
     record_batch_reader = pgstac_to_arrow(
         conninfo,
@@ -249,12 +256,12 @@ def pgstac_to_parquet(
 
     to_parquet(
         record_batch_reader,
-        output_path=output_path,
+        output_path=filepath,
         filesystem=filesystem,
         schema_version=schema_version,
         **kwargs,
     )
-    return output_path
+    return str(filepath)
 
 
 @dataclass
@@ -308,19 +315,23 @@ def sync_pgstac_to_parquet(
     schema_version: SUPPORTED_PARQUET_SCHEMA_VERSIONS = DEFAULT_PARQUET_SCHEMA_VERSION,
     filesystem: pyarrow.fs.FileSystem | None = None,
     **kwargs: Any,
-) -> Path:
+) -> str:
     """
     Use the last_updated partition metadata in pgstac to sync only changed
     items to parquet.
     """
-    output_dir = Path(output_path)
-    logger.info(f"Syncing PgSTAC partitions that have been updated since {updated_after} to {output_dir}.")
-    for p in get_pgstac_partitions(conninfo, updated_after):
-        od = output_dir / p.collection
-        od.mkdir(parents=True, exist_ok=True)
-        of = od / p.partition
-        logger.info(f"Creating Parquet File {of}.")
 
+    if filesystem is None:
+        filesystem, filepath = pyarrow.fs.FileSystem.from_uri(output_path)
+    else:
+        filepath = output_path
+
+    filedir = Path(filepath)
+    filesystem.create_dir(filedir, recursive=True)
+
+    logger.info(f"Syncing PgSTAC partitions that have been updated since {updated_after} to {output_path} on filesystem {filesystem}.")
+    for p in get_pgstac_partitions(conninfo, updated_after):
+        of = filedir / p.collection / p.partition
         pgstac_to_parquet(
             conninfo,
             output_path = of,
@@ -336,4 +347,4 @@ def sync_pgstac_to_parquet(
             filesystem=filesystem,
             **kwargs,
         )
-    return output_dir
+    return str(of)
