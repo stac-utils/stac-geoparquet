@@ -235,7 +235,7 @@ def pgstac_to_parquet(
         filepath = output_path
 
     filedir = Path(filepath).parent
-    filesystem.create_dir(filedir, recursive=True)
+    filesystem.create_dir(str(filedir), recursive=True)
 
     logger.info(f"Exporting PgSTAC to {filesystem} {filepath}")
 
@@ -329,7 +329,7 @@ def sync_pgstac_to_parquet(
         filepath = output_path
 
     filedir = Path(filepath)
-    filesystem.create_dir(filedir, recursive=True)
+    filesystem.create_dir(str(filedir), recursive=True)
 
     logger.info(
         f"Syncing PgSTAC partitions that have been updated since {updated_after} to {output_path} on filesystem {filesystem}."
