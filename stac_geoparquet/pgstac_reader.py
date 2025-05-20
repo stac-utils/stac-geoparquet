@@ -25,6 +25,10 @@ from stac_geoparquet.arrow._schema.models import InferredSchema
 import random
 import string
 
+impoort logging
+
+logger = logging.getLogger(__name__)
+
 
 def dumps(data: dict) -> str:
     """
@@ -86,6 +90,7 @@ class PgstacRowFactory:
 
         base_item = self.get_baseitem(item["collection"])
         pypgstac.hydration.hydrate(base_item, item)
+        logger.debug(item)
         return item
 
     @functools.lru_cache(maxsize=256)
@@ -93,6 +98,7 @@ class PgstacRowFactory:
         """
         Get the base item for the collection.
         """
+        logger.info(f"Getting Base Item for {collection}")
         conninfo = self.cursor.connection.info
         dsn = conninfo.dsn
         password = conninfo.password
@@ -134,6 +140,7 @@ def pgstac_to_iter(
     cursor_itersize: int = 10000,
     row_func: Callable | None = None,
 ) -> Iterator[dict[str, Any]]:
+    logger.info("Fetching Data from PGStac Into an Iterator of Items")
     conninfo = pgstac_dsn(conninfo, statement_timeout)
 
     if search is not None and (
@@ -147,6 +154,7 @@ def pgstac_to_iter(
     args: Any
 
     if search is not None:
+        logger.info(f"Using CQL2 Filter {search}")
         query = "SELECT * FROM search(%s);"
         args = (search,)
     elif (
@@ -154,12 +162,15 @@ def pgstac_to_iter(
         and start_datetime is not None
         and end_datetime is not None
     ):
+        logger.info(f"Using Collection {collection}, Start {start_datetime}, End {end_datetime}")
         query = "SELECT * FROM items WHERE collection = %s AND datetime >= %s AND datetime < %s;"
         args = (collection, start_datetime, end_datetime)
     elif collection is not None:
+        logger.info(f"Using Collection {collection}")
         query = "SELECT * FROM items WHERE collection = %s;"
         args = (collection,)
     else:
+        logger.info("With no filter, fetching all items")
         query = "SELECT * FROM items;"
         args = ()
     curname = "".join(random.choices(string.ascii_lowercase, k=32))
@@ -282,6 +293,7 @@ def get_pgstac_partitions(conninfo: str, updated_after: datetime | None = None) 
             q += " ORDER BY last_updated asc"
             cur.execute(q, args)
             for row in cur:
+                logger.info(f"Found PgSTAC Partition: {row}")
                 yield row
 
 def sync_pgstac_to_parquet(
@@ -302,10 +314,12 @@ def sync_pgstac_to_parquet(
     items to parquet.
     """
     output_dir = Path(output_path)
+    logger.info(f"Syncing PgSTAC partitions that have been updated since {updated_after} to {output_dir}.")
     for p in get_pgstac_partitions(conninfo, updated_after):
         od = output_dir / p.collection
         od.mkdir(parents=True, exist_ok=True)
         of = od / p.partition
+        logger.info(f"Creating Parquet File {of}.")
 
         pgstac_to_parquet(
             conninfo,
