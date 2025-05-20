@@ -2,11 +2,11 @@ import functools
 import logging
 import random
 import string
+from collections.abc import Iterator
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Callable
-from collections.abc import Iterator
 
 import orjson
 import psycopg
