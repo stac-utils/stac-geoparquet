@@ -1,7 +1,12 @@
 import functools
 import logging
-from typing import Any, Callable, Iterator, Tuple
+import random
+import string
+from dataclasses import dataclass
+from datetime import datetime, timezone
 from pathlib import Path
+from typing import Any, Callable
+from collections.abc import Iterator
 
 import orjson
 import psycopg
@@ -10,9 +15,6 @@ import pyarrow.fs
 import pypgstac.hydration
 import shapely.wkb
 from psycopg.types.json import set_json_dumps, set_json_loads
-from dataclasses import dataclass
-from datetime import datetime, timezone
-
 
 from stac_geoparquet.arrow import (
     DEFAULT_JSON_CHUNK_SIZE,
@@ -22,10 +24,6 @@ from stac_geoparquet.arrow import (
     to_parquet,
 )
 from stac_geoparquet.arrow._schema.models import InferredSchema
-import random
-import string
-
-impoort logging
 
 logger = logging.getLogger(__name__)
 
@@ -53,9 +51,7 @@ class PgstacRowFactory:
 
     def __call__(
         self,
-        values: tuple[
-            str, str, str, datetime, datetime, dict[str, Any]
-        ],
+        values: tuple[str, str, str, datetime, datetime, dict[str, Any]],
     ) -> dict[str, Any]:
         """
         Convert the values to a dictionary.
@@ -162,7 +158,9 @@ def pgstac_to_iter(
         and start_datetime is not None
         and end_datetime is not None
     ):
-        logger.info(f"Using Collection {collection}, Start {start_datetime}, End {end_datetime}")
+        logger.info(
+            f"Using Collection {collection}, Start {start_datetime}, End {end_datetime}"
+        )
         query = "SELECT * FROM items WHERE collection = %s AND datetime >= %s AND datetime < %s;"
         args = (collection, start_datetime, end_datetime)
     elif collection is not None:
@@ -272,7 +270,10 @@ class Partition:
     end: datetime
     last_updated: datetime
 
-def get_pgstac_partitions(conninfo: str, updated_after: datetime | None = None) -> Iterator[Partition]:
+
+def get_pgstac_partitions(
+    conninfo: str, updated_after: datetime | None = None
+) -> Iterator[Partition]:
     db = pgstac_dsn(conninfo, None)
     with psycopg.connect(db) as conn:
         with conn.cursor(row_factory=psycopg.rows.class_row(Partition)) as cur:
@@ -303,6 +304,7 @@ def get_pgstac_partitions(conninfo: str, updated_after: datetime | None = None) 
                 logger.info(f"Found PgSTAC Partition: {row}")
                 yield row
 
+
 def sync_pgstac_to_parquet(
     conninfo: str,
     output_path: str | Path,
@@ -329,15 +331,17 @@ def sync_pgstac_to_parquet(
     filedir = Path(filepath)
     filesystem.create_dir(filedir, recursive=True)
 
-    logger.info(f"Syncing PgSTAC partitions that have been updated since {updated_after} to {output_path} on filesystem {filesystem}.")
+    logger.info(
+        f"Syncing PgSTAC partitions that have been updated since {updated_after} to {output_path} on filesystem {filesystem}."
+    )
     for p in get_pgstac_partitions(conninfo, updated_after):
         of = filedir / p.collection / p.partition
         pgstac_to_parquet(
             conninfo,
-            output_path = of,
-            collection = p.collection,
-            start_datetime = p.start,
-            end_datetime = p.end,
+            output_path=of,
+            collection=p.collection,
+            start_datetime=p.start,
+            end_datetime=p.end,
             row_func=row_func,
             chunk_size=chunk_size,
             schema=schema,
