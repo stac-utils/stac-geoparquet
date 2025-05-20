@@ -37,19 +37,8 @@ deltalake = [
 ]
 
 pgstac = [
-    "fsspec",
-    "psycopg[binary,pool]",
+    "psycopg[binary]",
     "pypgstac",
-    "python-dateutil",
-    "tqdm",
-]
-
-pc = [
-    "adlfs",
-    "azure-data-tables",
-    "psycopg[binary,pool]",
-    "pypgstac",
-    "tqdm"
 ]
 
 [dependency-groups]
@@ -86,8 +75,6 @@ default-groups = ["dev", "docs"]
 [project.urls]
 Home = "https://github.com/stac-utils/stac-geoparquet"
 
-[project.scripts]
-pc-geoparquet = "stac_geoparquet.cli:main"
 
 [tool.pytest.ini_options]
 minversion = "6.0"
