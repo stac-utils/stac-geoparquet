@@ -38,6 +38,7 @@ deltalake = [
 
 pgstac = [
     "psycopg[binary]",
+    "psycopg-pool",
     "pypgstac",
 ]
 
