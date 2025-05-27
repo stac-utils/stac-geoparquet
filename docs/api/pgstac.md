@@ -5,7 +5,3 @@
 - Rehydrating the dehydrated items
 - Partitioning by time
 - Injecting dynamic links and assets from a STAC API
-
-::: stac_geoparquet.pgstac_reader.CollectionConfig
-    options:
-        show_if_no_docstring: true
