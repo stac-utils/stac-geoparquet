@@ -58,6 +58,7 @@ dev = [
     "types-python-dateutil",
     "types-requests",
     "vcrpy>=7.0.0",
+    "docker",
 ]
 docs = [
     "griffe-inherited-docstrings",
