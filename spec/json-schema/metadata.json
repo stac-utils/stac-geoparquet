@@ -10,10 +10,21 @@
       "const": "1.0.0",
       "description": "The stac-geoparquet metadata version."
     },
+    "collections": {
+      "type": "object",
+      "description": "A mapping from Collection ID to Collection object. As usual, the Collection ID used as the key of the mapping must match the ID in the Collection object.",
+      "additionalProperties": {
+        "type": "object",
+        "description": "This object represents a Collection in a SpatioTemporal Asset Catalog. Note that this object is not validated against the STAC Collection schema. You'll need to validate it separately from stac-geoparquet."
+      }
+    },
     "collection": {
       "type": "object",
-      "description": "This object represents a Collection in a SpatioTemporal Asset Catalog. Note that this object is not validated against the STAC Collection schema. You'll need to validate it separately from stac-geoparquet."
+      "description": "This object represents a Collection in a SpatioTemporal Asset Catalog. Note that this object is not validated against the STAC Collection schema. You'll need to validate it separately from stac-geoparquet.",
+      "deprecated": true
     }
   },
-  "required": ["version"]
+  "required": [
+    "version"
+  ]
 }
