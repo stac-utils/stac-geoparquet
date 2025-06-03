@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import json
 import warnings
-from collections.abc import Iterable
+from collections.abc import Iterable, Mapping
 from pathlib import Path
 from typing import Any, Literal
 
@@ -31,8 +31,8 @@ def parse_stac_ndjson_to_parquet(
     schema: pa.Schema | InferredSchema | None = None,
     limit: int | None = None,
     schema_version: SUPPORTED_PARQUET_SCHEMA_VERSIONS = DEFAULT_PARQUET_SCHEMA_VERSION,
-    collections: dict[str, dict[str, Any]] | None = None,
-    collection_metadata: dict[str, Any] | None = None,
+    collections: Mapping[str, Mapping[str, Any]] | None = None,
+    collection_metadata: Mapping[str, Any] | None = None,
     **kwargs: Any,
 ) -> None:
     """Convert one or more newline-delimited JSON STAC files to GeoParquet
@@ -83,8 +83,8 @@ def to_parquet(
     output_path: str | Path,
     *,
     schema_version: SUPPORTED_PARQUET_SCHEMA_VERSIONS = DEFAULT_PARQUET_SCHEMA_VERSION,
-    collections: dict[str, dict[str, Any]] | None = None,
-    collection_metadata: dict[str, Any] | None = None,
+    collections: Mapping[str, Mapping[str, Any]] | None = None,
+    collection_metadata: Mapping[str, Any] | None = None,
     **kwargs: Any,
 ) -> None:
     """Write an Arrow table with STAC data to GeoParquet
@@ -135,8 +135,8 @@ def create_parquet_metadata(
     schema: pa.Schema,
     *,
     schema_version: SUPPORTED_PARQUET_SCHEMA_VERSIONS,
-    collections: dict[str, dict[str, Any]] | None = None,
-    collection_metadata: dict[str, Any] | None = None,
+    collections: Mapping[str, Mapping[str, Any]] | None = None,
+    collection_metadata: Mapping[str, Any] | None = None,
 ) -> dict[bytes, bytes]:
     # TODO: include bbox of geometries
 
@@ -199,8 +199,8 @@ def schema_version_has_bbox_mapping(
 
 
 def create_stac_geoparquet_metadata(
-    collections: dict[str, dict[str, Any]] | None = None,
-    collection_metadata: dict[str, Any] | None = None,
+    collections: Mapping[str, Mapping[str, Any]] | None = None,
+    collection_metadata: Mapping[str, Any] | None = None,
 ) -> dict[str, Any]:
     """
     Create the stac-geoparquet metadata object for the Parquet file.
