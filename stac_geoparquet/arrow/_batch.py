@@ -162,6 +162,14 @@ class StacJsonBatch:
                 )
                 set_by_path(row_dict, geometry_path, geojson_g)
 
+            assets = row_dict.get("assets", {})
+            if assets and isinstance(
+                assets, dict
+            ):  # the isinstance should never fail but better safe than sorry
+                row_dict["assets"] = {
+                    key: value for key, value in assets.items() if value is not None
+                }
+
             yield row_dict
 
     def to_arrow_batch(self) -> StacArrowBatch:
