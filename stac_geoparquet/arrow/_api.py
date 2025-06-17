@@ -162,18 +162,17 @@ def stac_table_to_ndjson(
             a 'type' field will be added where each record is 'Feature'.
         dest: The destination where newline-delimited JSON should be written.
     """
-
-    if (
-        isinstance(table, (pa.Table, pa.RecordBatch))
-        and "type" not in table.schema.names
-    ):
-        arr = pa.array(["Feature"] * len(table), type=pa.string())
-        table = table.add_column(0, "type", arr)
-
     # Coerce to record batch reader to avoid materializing entire stream
     reader = pa.RecordBatchReader.from_stream(table)
 
     for batch in reader:
+        if "type" not in batch.schema.names:
+            type_arr = pa.DictionaryArray.from_arrays(
+                indices=pa.array([0] * len(batch), type=pa.int8()),
+                dictionary=pa.array(["Feature"], type=pa.string()),
+            )
+            batch = batch.add_column(0, "type", type_arr)
+
         clean_batch = StacArrowBatch(batch)
         clean_batch.to_json_batch().to_ndjson(dest)
 

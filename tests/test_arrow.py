@@ -59,14 +59,25 @@ def test_round_trip_read_write(collection_id: str, chunk_size: int):
     "collection_id,chunk_size", itertools.product(TEST_COLLECTIONS, CHUNK_SIZES)
 )
 @pytest.mark.parametrize("drop_type", [True, False])
+@pytest.mark.parametrize("input_as_batches", [True, False])
 def test_round_trip_write_read_ndjson(
-    collection_id: str, chunk_size: int, tmp_path: Path, drop_type: bool
+    collection_id: str,
+    chunk_size: int,
+    tmp_path: Path,
+    drop_type: bool,
+    input_as_batches: bool,
 ) -> None:
     # First load into a STAC-GeoParquet table
     path = HERE / "data" / f"{collection_id}.json"
-    table = parse_stac_ndjson_to_arrow(path, chunk_size=chunk_size).read_all()
+    table: pa.Table | pa.RecordBatchReader = parse_stac_ndjson_to_arrow(
+        path, chunk_size=chunk_size
+    ).read_all()
     if drop_type:
         table = table.drop(["type"])
+
+    if input_as_batches:
+        table = pa.RecordBatchReader.from_batches(table.schema, table.to_batches())
+
     # Then write to disk
     stac_table_to_ndjson(table, tmp_path / "tmp.ndjson")
 
