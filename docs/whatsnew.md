@@ -2,9 +2,10 @@
 
 This is a list of changes to `stac-geoparquet`.
 
-## 0.8.0
+## 0.8.0 (Unreleased)
 
 - Make `deltalake` an optional dependency (https://github.com/stac-utils/stac-geoparquet/pull/106)
+- Fixed `stac_table_to_ndjson` to always insert a `type` field if one isn't already present (https://github.com/stac-utils/stac-geoparquet/pull/105)
 
 ## 0.7.0
 
