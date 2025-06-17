@@ -1,7 +1,9 @@
 from __future__ import annotations
 
 import itertools
+import logging
 import os
+import tempfile
 from collections.abc import Iterable
 from pathlib import Path
 from typing import Any
@@ -9,12 +11,106 @@ from typing import Any
 import pyarrow as pa
 import pystac
 
+from stac_geoparquet.arrow import (
+    DEFAULT_JSON_CHUNK_SIZE,
+    DEFAULT_PARQUET_SCHEMA_VERSION,
+    SUPPORTED_PARQUET_SCHEMA_VERSIONS,
+    to_parquet,
+)
 from stac_geoparquet.arrow._batch import StacArrowBatch, StacJsonBatch
-from stac_geoparquet.arrow._constants import DEFAULT_JSON_CHUNK_SIZE
 from stac_geoparquet.arrow._schema.models import InferredSchema
 from stac_geoparquet.arrow._util import batched_iter
 from stac_geoparquet.arrow.types import ArrowStreamExportable
 from stac_geoparquet.json_reader import read_json_chunked
+
+logger = logging.getLogger(__name__)
+
+
+def parse_stac_items_parquet(
+    items: Iterable[pystac.Item | dict[str, Any]],
+    *,
+    chunk_size: int = DEFAULT_JSON_CHUNK_SIZE,
+    chunks_to_disk: bool = False,
+    schema: pa.Schema | InferredSchema | None = None,
+    output_path: str | Path,
+    schema_version: SUPPORTED_PARQUET_SCHEMA_VERSIONS = DEFAULT_PARQUET_SCHEMA_VERSION,
+    filesystem: pa.fs.FileSystem | None = None,
+    **kwargs: Any,
+) -> str:
+    """
+    Parse an iterable of Stac Items into Parquet.
+    If a schema is defined, this will create a RecordBatchReader
+    with chunked recordbatches. If the schema is not defined, this
+    will first create temporary parquet files for each RecordBatch
+    and will then merge those files at the end merging
+    the schema from each batch failing if the schemas cannot
+    be merged.
+    """
+    if filesystem is None:
+        filesystem, filepath = pa.fs.FileSystem.from_uri(output_path)
+    else:
+        filepath = output_path
+
+    filedir = Path(filepath).parent
+    filesystem.create_dir(str(filedir), recursive=True)
+
+    logger.info(f"Exporting PgSTAC to {filesystem} {filepath}")
+
+    if schema is not None:
+        if isinstance(schema, InferredSchema):
+            schema = schema.inner
+
+        # If schema is provided, then for better memory usage we parse input STAC items
+        # to Arrow batches in chunks.
+        batches = (
+            stac_items_to_arrow(batch, schema=schema)
+            for batch in batched_iter(items, chunk_size)
+        )
+        record_batch_reader = pa.RecordBatchReader.from_batches(schema, batches)
+
+    elif not chunks_to_disk:
+        # If schema is _not_ provided, then we must convert to Arrow all at once, or
+        # else it would be possible for a STAC item late in the collection (after the
+        # first chunk) to have a different schema and not match the schema inferred for
+        # the first chunk.
+        batch = stac_items_to_arrow(items)
+        record_batch_reader = pa.RecordBatchReader.from_batches(batch.schema, [batch])
+
+    else:
+        schemas = []
+        fcount = 0
+        # Write each chunk to disk first and then merge
+        with tempfile.TemporaryDirectory() as dir:
+            for batch in batched_iter(items, chunk_size):
+                fcount += 1
+                fname = f"{dir}/{fcount}.parquet"
+                chunk = stac_items_to_arrow(batch)
+                schemas.push(batch.schema)
+                reader = pa.RecordBatchReader.from_batches(batch.schema, [chunk])
+                to_parquet(
+                    reader, outputpath=fname, schema_version=schema_version, **kwargs
+                )
+
+            schema = pa.unify_schemas(schemas, promote_options="permissive")
+            ds = pa.dataset.dataset(dir, schema=schema, format="parquet")
+            record_batch_reader = ds.to_batches()
+            to_parquet(
+                record_batch_reader,
+                output_path=filepath,
+                filesystem=filesystem,
+                schema_version=schema_version,
+                **kwargs,
+            )
+            return str(filepath)
+
+    to_parquet(
+        record_batch_reader,
+        output_path=filepath,
+        filesystem=filesystem,
+        schema_version=schema_version,
+        **kwargs,
+    )
+    return str(filepath)
 
 
 def parse_stac_items_to_arrow(
