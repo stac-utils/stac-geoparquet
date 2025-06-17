@@ -12,7 +12,6 @@ dynamic = ["version", "description"]
 requires-python = ">=3.9"
 dependencies = [
     "ciso8601",
-    "deltalake",
     "geopandas",
     "packaging",
     "pandas",
@@ -33,14 +32,15 @@ source = "vcs"
 version-file = "stac_geoparquet/_version.py"
 
 [project.optional-dependencies]
-pgstac = [
-    "fsspec",
-    "psycopg[binary,pool]",
-    "pypgstac",
-    "python-dateutil",
-    "tqdm",
+deltalake = [
+    "deltalake",
 ]
-pc = ["adlfs", "azure-data-tables", "psycopg[binary,pool]", "pypgstac", "tqdm"]
+
+pgstac = [
+    "psycopg[binary]",
+    "psycopg-pool",
+    "pypgstac",
+]
 
 [dependency-groups]
 dev = [
@@ -53,11 +53,13 @@ dev = [
     "pytest",
     "requests",
     "ruff",
+    "stac-geoparquet[deltalake]",
     "stac-geoparquet[pc]",
     "stac-geoparquet[pgstac]",
     "types-python-dateutil",
     "types-requests",
     "vcrpy>=7.0.0",
+    "docker",
 ]
 docs = [
     "griffe-inherited-docstrings",
@@ -75,8 +77,6 @@ default-groups = ["dev", "docs"]
 [project.urls]
 Home = "https://github.com/stac-utils/stac-geoparquet"
 
-[project.scripts]
-pc-geoparquet = "stac_geoparquet.cli:main"
 
 [tool.pytest.ini_options]
 minversion = "6.0"

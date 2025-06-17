@@ -1,7 +1,8 @@
 from __future__ import annotations
 
 import json
-from collections.abc import Iterable
+import warnings
+from collections.abc import Iterable, Mapping
 from pathlib import Path
 from typing import Any, Literal
 
@@ -30,7 +31,8 @@ def parse_stac_ndjson_to_parquet(
     schema: pa.Schema | InferredSchema | None = None,
     limit: int | None = None,
     schema_version: SUPPORTED_PARQUET_SCHEMA_VERSIONS = DEFAULT_PARQUET_SCHEMA_VERSION,
-    collection_metadata: dict[str, Any] | None = None,
+    collections: Mapping[str, Mapping[str, Any]] | None = None,
+    collection_metadata: Mapping[str, Any] | None = None,
     **kwargs: Any,
 ) -> None:
     """Convert one or more newline-delimited JSON STAC files to GeoParquet
@@ -49,9 +51,16 @@ def parse_stac_ndjson_to_parquet(
         limit: The maximum number of JSON records to convert.
         schema_version: GeoParquet specification version; if not provided will default
             to latest supported version.
+        collections: A dictionary mapping collection IDs to
+            dictionaries representing a Collection in a SpatioTemporal
+            Asset Catalog. This will be stored under the key `stac-geoparquet` in the
+            parquet file metadata, under the key `collections`.
+
         collection_metadata: A dictionary representing a Collection in a SpatioTemporal
             Asset Catalog. This will be stored under the key `stac-geoparquet` in the
             parquet file metadata, under the key `collection`.
+
+            Deprecated in favor of `collections`.
 
     All other keyword args are passed on to
     [`pyarrow.parquet.ParquetWriter`][pyarrow.parquet.ParquetWriter].
@@ -64,6 +73,7 @@ def parse_stac_ndjson_to_parquet(
         output_path=output_path,
         schema_version=schema_version,
         **kwargs,
+        collections=collections,
         collection_metadata=collection_metadata,
     )
 
@@ -73,7 +83,8 @@ def to_parquet(
     output_path: str | Path,
     *,
     schema_version: SUPPORTED_PARQUET_SCHEMA_VERSIONS = DEFAULT_PARQUET_SCHEMA_VERSION,
-    collection_metadata: dict[str, Any] | None = None,
+    collections: Mapping[str, Mapping[str, Any]] | None = None,
+    collection_metadata: Mapping[str, Any] | None = None,
     **kwargs: Any,
 ) -> None:
     """Write an Arrow table with STAC data to GeoParquet
@@ -91,9 +102,15 @@ def to_parquet(
     Keyword Args:
         schema_version: GeoParquet specification version; if not provided will default
             to latest supported version.
+        collections: A dictionary mapping collection IDs to
+            dictionaries representing a Collection in a SpatioTemporal
+            Asset Catalog. This will be stored under the key `stac-geoparquet` in the
+            parquet file metadata, under the key `collections`.
         collection_metadata: A dictionary representing a Collection in a SpatioTemporal
             Asset Catalog. This will be stored under the key `stac-geoparquet` in the
             parquet file metadata, under the key `collection`.
+
+            Deprecated in favor of `collections`.
 
     All other keyword args are passed on to
     [`pyarrow.parquet.ParquetWriter`][pyarrow.parquet.ParquetWriter].
@@ -105,6 +122,7 @@ def to_parquet(
         create_parquet_metadata(
             reader.schema,
             schema_version=schema_version,
+            collections=collections,
             collection_metadata=collection_metadata,
         )
     )
@@ -117,9 +135,11 @@ def create_parquet_metadata(
     schema: pa.Schema,
     *,
     schema_version: SUPPORTED_PARQUET_SCHEMA_VERSIONS,
-    collection_metadata: dict[str, Any] | None = None,
+    collections: Mapping[str, Mapping[str, Any]] | None = None,
+    collection_metadata: Mapping[str, Any] | None = None,
 ) -> dict[bytes, bytes]:
     # TODO: include bbox of geometries
+
     column_meta = {
         "encoding": "WKB",
         # TODO: specify known geometry types
@@ -158,7 +178,9 @@ def create_parquet_metadata(
             "crs": None,
         }
 
-    geoparquet_metadata = create_stac_geoparquet_metadata(collection_metadata)
+    geoparquet_metadata = create_stac_geoparquet_metadata(
+        collections, collection_metadata
+    )
 
     return {
         b"geo": json.dumps(geo_meta).encode("utf-8"),
@@ -177,7 +199,8 @@ def schema_version_has_bbox_mapping(
 
 
 def create_stac_geoparquet_metadata(
-    collection_metadata: dict[str, Any] | None = None,
+    collections: Mapping[str, Mapping[str, Any]] | None = None,
+    collection_metadata: Mapping[str, Any] | None = None,
 ) -> dict[str, Any]:
     """
     Create the stac-geoparquet metadata object for the Parquet file.
@@ -188,6 +211,17 @@ def create_stac_geoparquet_metadata(
     result: dict[str, Any] = {
         "version": STAC_GEOPARQUET_VERSION,
     }
+
+    if collection_metadata is not None:
+        msg = (
+            "'collection_metadata' is deprecated. Provide the STAC Collection metadata as a "
+            "dictionary of '{{collection_id: collection}}' using the 'collections' keyword instead."
+        )
+        warnings.warn(msg, FutureWarning, stacklevel=3)
+
     if collection_metadata:
         result["collection"] = collection_metadata
+    if collections:
+        result["collections"] = collections
+
     return result
