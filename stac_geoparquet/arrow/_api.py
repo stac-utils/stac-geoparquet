@@ -67,6 +67,34 @@ def parse_stac_items_to_arrow(
     ) = "FullFile",
     tmpdir: str | None = None,
 ) -> pa.RecordBatchReader:
+    """
+    Parse a collection of STAC Items to an iterable of
+    [`pyarrow.RecordBatch`][pyarrow.RecordBatch].
+
+    The objects under `properties` are moved up to the top-level of the
+    Table, similar to
+    [`geopandas.GeoDataFrame.from_features`][geopandas.GeoDataFrame.from_features].
+
+    Args:
+        items: the STAC Items to convert
+        chunk_size: The chunk size to use for Arrow record batches. This only takes
+            effect if `schema` is not None. When `schema` is None, the input will be
+            parsed into a single contiguous record batch. Defaults to 8192.
+        schema: The schema of the input data. If provided, can improve memory use;
+            otherwise all items need to be parsed into a single array for schema
+            inference. This can also be set to a string value of "FullFile" which
+            will scan the entire input in memory to get the schema, "FirstBatch" which
+            will use the first batch of items to infer the schema, or "ChunksToDisk"
+            which will write each chunk of items to disk as a Parquet file and then read
+            them back in to unify the schema. Defaults to "FullFile".
+        tmpdir: A temporary directory to use when `schema` is set to "ChunksToDisk".
+            This directory will be used to store intermediate Parquet files for each
+            chunk of items. If not provided, an exception will be raised when using
+            "ChunksToDisk" schema.
+
+    Returns:
+        pyarrow RecordBatchReader with a stream of STAC Arrow RecordBatches.
+    """
     memlog("parse_stac_items_to_arrow start")
 
     if isinstance(schema, InferredSchema):
