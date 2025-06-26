@@ -3,35 +3,127 @@ from __future__ import annotations
 import itertools
 import logging
 import os
+import sys
 import tempfile
-from collections.abc import Iterable
+from collections.abc import Iterable, Mapping
 from pathlib import Path
-from typing import Any
+from typing import Any, Literal
 
+import psutil
 import pyarrow as pa
 import pystac
 
-from stac_geoparquet.arrow import (
+from stac_geoparquet.arrow._batch import StacArrowBatch, StacJsonBatch
+from stac_geoparquet.arrow._constants import (
     DEFAULT_JSON_CHUNK_SIZE,
     DEFAULT_PARQUET_SCHEMA_VERSION,
     SUPPORTED_PARQUET_SCHEMA_VERSIONS,
-    to_parquet,
 )
-from stac_geoparquet.arrow._batch import StacArrowBatch, StacJsonBatch
 from stac_geoparquet.arrow._schema.models import InferredSchema
+from stac_geoparquet.arrow._to_parquet import to_parquet
 from stac_geoparquet.arrow._util import batched_iter
 from stac_geoparquet.arrow.types import ArrowStreamExportable
 from stac_geoparquet.json_reader import read_json_chunked
 
+logging.basicConfig(level=logging.INFO, stream=sys.stdout)
 logger = logging.getLogger(__name__)
 
+PID = psutil.Process(os.getpid())
 
-def parse_stac_items_parquet(
+
+def memlog(msg: str) -> None:
+    """Log Memory and CPU usage of the current process."""
+    with PID.oneshot():
+        logger.info(
+            f"{msg} | CPU%: {PID.cpu_percent()} | CPU_USER_TIME: {PID.cpu_times().user:.3f} | RSS(MB):{PID.memory_full_info().rss / 1024 / 1024:.2f} | USS(MB):{PID.memory_full_info().uss / 1024 / 1024:.2f}"
+        )
+
+
+def from_batches(batches: Iterable[pa.RecordBatch]) -> pa.RecordBatchReader:
+    batches = iter(batches)
+    init = next(batches)
+
+    def check_batches(
+        s: pa.Schema, batches: Iterable[pa.RecordBatch]
+    ) -> Iterable[pa.RecordBatch]:
+        for c, b in enumerate(batches):
+            memlog(f"Batch {c}")
+            if not s.equals(b.schema):
+                raise ValueError("Batch Schemas Not Equal")
+            if b.num_rows < 1:
+                logger.warning("Batch had no rows.")
+            else:
+                yield b
+
+    checked = check_batches(init.schema, itertools.chain([init], batches))
+    return pa.RecordBatchReader.from_batches(init.schema, checked)
+
+
+def parse_stac_items_to_arrow(
+    items: Iterable[pystac.Item | dict[str, Any]],
+    chunk_size: int = DEFAULT_JSON_CHUNK_SIZE,
+    schema: (
+        pa.Schema | InferredSchema | Literal["FirstBatch", "FullFile", "ChunksToDisk"]
+    ) = "FirstBatch",
+    tmpdir: str | None = None,
+) -> pa.RecordBatchReader:
+    memlog("parse_stac_items_to_arrow start")
+
+    if isinstance(schema, InferredSchema):
+        schema = schema.inner
+
+    if isinstance(schema, pa.Schema):
+        # If schema is provided, then for better memory usage we parse input STAC items
+        # to Arrow batches in chunks.
+        batches = (
+            stac_items_to_arrow(batch, schema=schema)
+            for batch in batched_iter(items, chunk_size)
+        )
+        return pa.RecordBatchReader.from_batches(schema, batches)
+
+    elif schema == "FullFile":
+        batch = stac_items_to_arrow(items)
+        logger.debug(batch.schema, batch)
+        return pa.RecordBatchReader.from_batches(batch.schema, [batch])
+
+    elif schema == "FirstBatch":
+        batches = (
+            stac_items_to_arrow(batch) for batch in batched_iter(items, chunk_size)
+        )
+        return from_batches(batches)
+
+    else:
+        if tmpdir is None:
+            raise Exception("Temp Directory Must Be Set When Using ChunksToDisk")
+        for cnt, chunk in enumerate(batched_iter(items, chunk_size)):
+            batch = stac_items_to_arrow(chunk)
+            if not isinstance(schema, pa.Schema):
+                schema = batch.schema
+            elif not schema.equals(batch.schema):
+                logger.info("Unifying schema...")
+                schema = pa.unify_schemas(
+                    schema, [batch.schema], promote_options="permissive"
+                )
+            fname = f"{tmpdir}/{cnt}.parquet"
+            to_parquet(
+                pa.RecordBatchReader.from_batches(schema, [batch]),
+                output_path=fname,
+            )
+            memlog(f"Batch {cnt}")
+        ds = pa.dataset.dataset(tmpdir, schema=schema, format="parquet")
+        memlog("Created Dataset")
+        batches = ds.to_batches()
+        memlog("Created Batches")
+        return pa.RecordBatchReader.from_batches(schema, batches)
+
+
+def parse_stac_items_to_parquet(
     items: Iterable[pystac.Item | dict[str, Any]],
     *,
     chunk_size: int = DEFAULT_JSON_CHUNK_SIZE,
-    chunks_to_disk: bool = False,
-    schema: pa.Schema | InferredSchema | None = None,
+    schema: (
+        pa.Schema | InferredSchema | Literal["FirstBatch", "FullFile", "ChunksToDisk"]
+    ) = "FirstBatch",
     output_path: str | Path,
     schema_version: SUPPORTED_PARQUET_SCHEMA_VERSIONS = DEFAULT_PARQUET_SCHEMA_VERSION,
     filesystem: pa.fs.FileSystem | None = None,
@@ -39,13 +131,9 @@ def parse_stac_items_parquet(
 ) -> str:
     """
     Parse an iterable of Stac Items into Parquet.
-    If a schema is defined, this will create a RecordBatchReader
-    with chunked recordbatches. If the schema is not defined, this
-    will first create temporary parquet files for each RecordBatch
-    and will then merge those files at the end merging
-    the schema from each batch failing if the schemas cannot
-    be merged.
     """
+    logger.info("Saving STAC Items to Parquet")
+
     if filesystem is None:
         filesystem, filepath = pa.fs.FileSystem.from_uri(output_path)
     else:
@@ -56,108 +144,20 @@ def parse_stac_items_parquet(
 
     logger.info(f"Exporting PgSTAC to {filesystem} {filepath}")
 
-    if schema is not None:
-        if isinstance(schema, InferredSchema):
-            schema = schema.inner
-
-        # If schema is provided, then for better memory usage we parse input STAC items
-        # to Arrow batches in chunks.
-        batches = (
-            stac_items_to_arrow(batch, schema=schema)
-            for batch in batched_iter(items, chunk_size)
+    with tempfile.TemporaryDirectory() as tmpdir:
+        reader = parse_stac_items_to_arrow(
+            items=items, chunk_size=chunk_size, schema=schema, tmpdir=tmpdir
         )
-        record_batch_reader = pa.RecordBatchReader.from_batches(schema, batches)
-
-    elif not chunks_to_disk:
-        # If schema is _not_ provided, then we must convert to Arrow all at once, or
-        # else it would be possible for a STAC item late in the collection (after the
-        # first chunk) to have a different schema and not match the schema inferred for
-        # the first chunk.
-        batch = stac_items_to_arrow(items)
-        record_batch_reader = pa.RecordBatchReader.from_batches(batch.schema, [batch])
-
-    else:
-        schemas = []
-        fcount = 0
-        # Write each chunk to disk first and then merge
-        with tempfile.TemporaryDirectory() as dir:
-            for batch in batched_iter(items, chunk_size):
-                fcount += 1
-                fname = f"{dir}/{fcount}.parquet"
-                chunk = stac_items_to_arrow(batch)
-                schemas.push(batch.schema)
-                reader = pa.RecordBatchReader.from_batches(batch.schema, [chunk])
-                to_parquet(
-                    reader, outputpath=fname, schema_version=schema_version, **kwargs
-                )
-
-            schema = pa.unify_schemas(schemas, promote_options="permissive")
-            ds = pa.dataset.dataset(dir, schema=schema, format="parquet")
-            record_batch_reader = ds.to_batches()
-            to_parquet(
-                record_batch_reader,
-                output_path=filepath,
-                filesystem=filesystem,
-                schema_version=schema_version,
-                **kwargs,
-            )
-            return str(filepath)
-
-    to_parquet(
-        record_batch_reader,
-        output_path=filepath,
-        filesystem=filesystem,
-        schema_version=schema_version,
-        **kwargs,
-    )
-    return str(filepath)
-
-
-def parse_stac_items_to_arrow(
-    items: Iterable[pystac.Item | dict[str, Any]],
-    *,
-    chunk_size: int = 8192,
-    schema: pa.Schema | InferredSchema | None = None,
-) -> pa.RecordBatchReader:
-    """
-    Parse a collection of STAC Items to an iterable of
-    [`pyarrow.RecordBatch`][pyarrow.RecordBatch].
-
-    The objects under `properties` are moved up to the top-level of the
-    Table, similar to
-    [`geopandas.GeoDataFrame.from_features`][geopandas.GeoDataFrame.from_features].
-
-    Args:
-        items: the STAC Items to convert
-        chunk_size: The chunk size to use for Arrow record batches. This only takes
-            effect if `schema` is not None. When `schema` is None, the input will be
-            parsed into a single contiguous record batch. Defaults to 8192.
-        schema: The schema of the input data. If provided, can improve memory use;
-            otherwise all items need to be parsed into a single array for schema
-            inference. Defaults to None.
-
-    Returns:
-        pyarrow RecordBatchReader with a stream of STAC Arrow RecordBatches.
-    """
-    if schema is not None:
-        if isinstance(schema, InferredSchema):
-            schema = schema.inner
-
-        # If schema is provided, then for better memory usage we parse input STAC items
-        # to Arrow batches in chunks.
-        batches = (
-            stac_items_to_arrow(batch, schema=schema)
-            for batch in batched_iter(items, chunk_size)
+        memlog("Parsed to arrow")
+        to_parquet(
+            reader,
+            output_path=filepath,
+            filesystem=filesystem,
+            schema_version=schema_version,
+            **kwargs,
         )
-        return pa.RecordBatchReader.from_batches(schema, batches)
-
-    else:
-        # If schema is _not_ provided, then we must convert to Arrow all at once, or
-        # else it would be possible for a STAC item late in the collection (after the
-        # first chunk) to have a different schema and not match the schema inferred for
-        # the first chunk.
-        batch = stac_items_to_arrow(items)
-        return pa.RecordBatchReader.from_batches(batch.schema, [batch])
+        memlog("Written to parquet")
+        return str(filepath)
 
 
 def parse_stac_ndjson_to_arrow(
@@ -211,6 +211,61 @@ def parse_stac_ndjson_to_arrow(
     resolved_schema = first_batch.schema
     return pa.RecordBatchReader.from_batches(
         resolved_schema, itertools.chain([first_batch], batches_iter)
+    )
+
+
+def parse_stac_ndjson_to_parquet(
+    input_path: str | Path | Iterable[str | Path],
+    output_path: str | Path,
+    *,
+    chunk_size: int = DEFAULT_JSON_CHUNK_SIZE,
+    schema: pa.Schema | InferredSchema | None = None,
+    limit: int | None = None,
+    schema_version: SUPPORTED_PARQUET_SCHEMA_VERSIONS = DEFAULT_PARQUET_SCHEMA_VERSION,
+    collections: Mapping[str, Mapping[str, Any]] | None = None,
+    collection_metadata: Mapping[str, Any] | None = None,
+    **kwargs: Any,
+) -> None:
+    """Convert one or more newline-delimited JSON STAC files to GeoParquet
+
+    Args:
+        input_path: One or more paths to files with STAC items.
+        output_path: A path to the output Parquet file.
+
+    Keyword Args:
+        chunk_size: The chunk size. Defaults to 65536.
+        schema: The schema to represent the input STAC data. Defaults to None, in which
+            case the schema will first be inferred via a full pass over the input data.
+            In this case, there will be two full passes over the input data: one to
+            infer a common schema across all data and another to read the data and
+            iteratively convert to GeoParquet.
+        limit: The maximum number of JSON records to convert.
+        schema_version: GeoParquet specification version; if not provided will default
+            to latest supported version.
+        collections: A dictionary mapping collection IDs to
+            dictionaries representing a Collection in a SpatioTemporal
+            Asset Catalog. This will be stored under the key `stac-geoparquet` in the
+            parquet file metadata, under the key `collections`.
+
+        collection_metadata: A dictionary representing a Collection in a SpatioTemporal
+            Asset Catalog. This will be stored under the key `stac-geoparquet` in the
+            parquet file metadata, under the key `collection`.
+
+            Deprecated in favor of `collections`.
+
+    All other keyword args are passed on to
+    [`pyarrow.parquet.ParquetWriter`][pyarrow.parquet.ParquetWriter].
+    """
+    record_batch_reader = parse_stac_ndjson_to_arrow(
+        input_path, chunk_size=chunk_size, schema=schema, limit=limit
+    )
+    to_parquet(
+        record_batch_reader,
+        output_path=output_path,
+        schema_version=schema_version,
+        **kwargs,
+        collections=collections,
+        collection_metadata=collection_metadata,
     )
 
 
