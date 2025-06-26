@@ -64,7 +64,7 @@ def parse_stac_items_to_arrow(
     chunk_size: int = DEFAULT_JSON_CHUNK_SIZE,
     schema: (
         pa.Schema | InferredSchema | Literal["FirstBatch", "FullFile", "ChunksToDisk"]
-    ) = "FirstBatch",
+    ) = "FullFile",
     tmpdir: str | None = None,
 ) -> pa.RecordBatchReader:
     memlog("parse_stac_items_to_arrow start")
