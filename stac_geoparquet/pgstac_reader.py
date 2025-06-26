@@ -6,7 +6,7 @@ from collections.abc import Iterator
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any, Callable, Union
+from typing import Any, Callable, Literal, Union
 
 import orjson
 import psycopg
@@ -21,8 +21,8 @@ from stac_geoparquet.arrow import (
     DEFAULT_PARQUET_SCHEMA_VERSION,
     SUPPORTED_PARQUET_SCHEMA_VERSIONS,
     parse_stac_items_to_arrow,
-    to_parquet,
 )
+from stac_geoparquet.arrow._api import parse_stac_items_to_parquet
 from stac_geoparquet.arrow._schema.models import InferredSchema
 
 logger = logging.getLogger(__name__)
@@ -122,8 +122,7 @@ def pgstac_dsn(conninfo: Union[str, None], statement_timeout: Union[int, None]) 
     if statement_timeout is not None:
         options += f" -c statement_timeout={statement_timeout}"
     connd["options"] = options
-    conninfo = psycopg.conninfo.make_conninfo("", **connd)
-    return conninfo
+    return psycopg.conninfo.make_conninfo("", **connd)
 
 
 def pgstac_to_iter(
@@ -176,6 +175,7 @@ def pgstac_to_iter(
         with conn.cursor(curname, row_factory=PgstacRowFactory) as cur:
             cur.itersize = cursor_itersize
             cur.execute(query, args)
+            logger.debug(f"Query: {query}, Args: {args}")
             for rec in cur:
                 if row_func is not None:
                     rec = row_func(rec)
@@ -189,9 +189,10 @@ def pgstac_to_arrow(
     end_datetime: Union[datetime, None] = None,
     search: Union[dict[str, Any], None] = None,
     chunk_size: int = DEFAULT_JSON_CHUNK_SIZE,
-    schema: Union[pa.Schema, InferredSchema, None] = None,
+    schema: Union[
+        pa.Schema, InferredSchema, Literal["FirstBatch", "FullFile", "ChunksToDisk"]
+    ] = "FirstBatch",
     statement_timeout: Union[int, None] = None,
-    cursor_itersize: int = 10000,
     row_func: Union[Callable, None] = None,
 ) -> pa.RecordBatchReader:
     """
@@ -204,7 +205,7 @@ def pgstac_to_arrow(
         end_datetime,
         search,
         statement_timeout=statement_timeout,
-        cursor_itersize=cursor_itersize,
+        cursor_itersize=chunk_size,
         row_func=row_func,
     )
     return parse_stac_items_to_arrow(items, chunk_size=chunk_size, schema=schema)
@@ -218,9 +219,10 @@ def pgstac_to_parquet(
     end_datetime: Union[datetime, None] = None,
     search: Union[dict[str, Any], None] = None,
     chunk_size: int = DEFAULT_JSON_CHUNK_SIZE,
-    schema: Union[pa.Schema, InferredSchema, None] = None,
+    schema: Union[
+        pa.Schema, InferredSchema, Literal["FirstBatch", "FullFile", "ChunksToDisk"]
+    ] = "FirstBatch",
     statement_timeout: Union[int, None] = None,
-    cursor_itersize: int = 10000,
     row_func: Union[Callable, None] = None,
     schema_version: SUPPORTED_PARQUET_SCHEMA_VERSIONS = DEFAULT_PARQUET_SCHEMA_VERSION,
     filesystem: Union[pyarrow.fs.FileSystem, None] = None,
@@ -237,29 +239,28 @@ def pgstac_to_parquet(
     filedir = Path(filepath).parent
     filesystem.create_dir(str(filedir), recursive=True)
 
-    logger.info(f"Exporting PgSTAC to {filesystem} {filepath}")
+    logger.debug(f"Exporting PgSTAC items to {filepath}")
 
-    record_batch_reader = pgstac_to_arrow(
+    items = pgstac_to_iter(
         conninfo,
         collection,
         start_datetime,
         end_datetime,
         search,
-        chunk_size,
-        schema,
         statement_timeout=statement_timeout,
-        cursor_itersize=cursor_itersize,
+        cursor_itersize=chunk_size,
         row_func=row_func,
     )
 
-    to_parquet(
-        record_batch_reader,
-        output_path=filepath,
-        filesystem=filesystem,
+    return parse_stac_items_to_parquet(
+        items,
+        chunk_size=chunk_size,
+        schema=schema,
+        output_path=output_path,
         schema_version=schema_version,
+        filesystem=filesystem,
         **kwargs,
     )
-    return str(filepath)
 
 
 @dataclass
@@ -290,7 +291,7 @@ def get_pgstac_partitions(
                         )
                     END AS partition,
                     lower(dtrange) as start,
-                    upper(dtrange) as end,
+                    upper(dtrange) + '.000001 seconds' as end,
                     last_updated
                 FROM partitions_view
                 """
@@ -301,7 +302,7 @@ def get_pgstac_partitions(
             q += " ORDER BY last_updated asc"
             cur.execute(q, args)
             for row in cur:
-                logger.info(f"Found PgSTAC Partition: {row}")
+                logger.debug(f"Found PgSTAC Partition: {row}")
                 yield row
 
 
@@ -310,9 +311,10 @@ def sync_pgstac_to_parquet(
     output_path: Union[str, Path],
     updated_after: Union[datetime, None] = None,
     chunk_size: int = DEFAULT_JSON_CHUNK_SIZE,
-    schema: Union[pa.Schema, InferredSchema, None] = None,
+    schema: Union[
+        pa.Schema, InferredSchema, Literal["FirstBatch", "FullFile", "ChunksToDisk"]
+    ] = "FirstBatch",
     statement_timeout: Union[int, None] = None,
-    cursor_itersize: int = 10000,
     row_func: Union[Callable, None] = None,
     schema_version: SUPPORTED_PARQUET_SCHEMA_VERSIONS = DEFAULT_PARQUET_SCHEMA_VERSION,
     filesystem: Union[pyarrow.fs.FileSystem, None] = None,
@@ -336,6 +338,8 @@ def sync_pgstac_to_parquet(
     )
     for p in get_pgstac_partitions(conninfo, updated_after):
         of = filedir / p.collection / p.partition
+        logger.debug(of)
+
         pgstac_to_parquet(
             conninfo,
             output_path=of,
@@ -346,7 +350,6 @@ def sync_pgstac_to_parquet(
             chunk_size=chunk_size,
             schema=schema,
             statement_timeout=statement_timeout,
-            cursor_itersize=cursor_itersize,
             schema_version=schema_version,
             filesystem=filesystem,
             **kwargs,

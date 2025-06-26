@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import logging
 import os
 import sys
 from collections.abc import Iterable
@@ -33,6 +34,9 @@ if sys.version_info >= (3, 11):
     from typing import Self
 else:
     from typing_extensions import Self
+
+
+logger = logging.getLogger(__name__)
 
 
 class StacJsonBatch:
@@ -112,6 +116,10 @@ class StacJsonBatch:
                     )
 
             wkb_items.append(wkb_item)
+        logger.info(f"Items Length: {len(wkb_items)}")
+
+        if len(wkb_items) == 0:
+            raise ValueError("No items provided to StacJsonBatch.from_dicts")
 
         if schema is not None:
             array = pa.array(wkb_items, type=pa.struct(schema))
