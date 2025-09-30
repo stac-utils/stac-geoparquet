@@ -65,7 +65,6 @@ def parse_stac_items_to_arrow(
     schema: (
         pa.Schema | InferredSchema | Literal["FirstBatch", "FullFile", "ChunksToDisk"]
     ) = "FullFile",
-    tmpdir: str | None = None,
 ) -> pa.RecordBatchReader:
     """
     Parse a collection of STAC Items to an iterable of
@@ -87,10 +86,6 @@ def parse_stac_items_to_arrow(
             will use the first batch of items to infer the schema, or "ChunksToDisk"
             which will write each chunk of items to disk as a Parquet file and then read
             them back in to unify the schema. Defaults to "FullFile".
-        tmpdir: A temporary directory to use when `schema` is set to "ChunksToDisk".
-            This directory will be used to store intermediate Parquet files for each
-            chunk of items. If not provided, an exception will be raised when using
-            "ChunksToDisk" schema.
 
     Returns:
         pyarrow RecordBatchReader with a stream of STAC Arrow RecordBatches.
@@ -121,28 +116,28 @@ def parse_stac_items_to_arrow(
         return from_batches(batches)
 
     else:
-        if tmpdir is None:
-            raise Exception("Temp Directory Must Be Set When Using ChunksToDisk")
-        for cnt, chunk in enumerate(batched_iter(items, chunk_size)):
-            batch = stac_items_to_arrow(chunk)
-            if not isinstance(schema, pa.Schema):
-                schema = batch.schema
-            elif not schema.equals(batch.schema):
-                logger.info("Unifying schema...")
-                schema = pa.unify_schemas(
-                    schema, [batch.schema], promote_options="permissive"
+        with tempfile.TemporaryDirectory() as tmpdir:
+            logger.info(f"Using temporary directory {tmpdir} for chunked schema")
+            for cnt, chunk in enumerate(batched_iter(items, chunk_size)):
+                batch = stac_items_to_arrow(chunk)
+                if not isinstance(schema, pa.Schema):
+                    schema = batch.schema
+                elif not schema.equals(batch.schema):
+                    logger.info("Unifying schema...")
+                    schema = pa.unify_schemas(
+                        [schema, batch.schema], promote_options="permissive"
+                    )
+                fname = f"{tmpdir}/{cnt}.parquet"
+                to_parquet(
+                    pa.RecordBatchReader.from_batches(batch.schema, [batch]),
+                    output_path=fname,
                 )
-            fname = f"{tmpdir}/{cnt}.parquet"
-            to_parquet(
-                pa.RecordBatchReader.from_batches(schema, [batch]),
-                output_path=fname,
-            )
-            memlog(f"Batch {cnt}")
-        ds = pa.dataset.dataset(tmpdir, schema=schema, format="parquet")
-        memlog("Created Dataset")
-        batches = ds.to_batches()
-        memlog("Created Batches")
-        return pa.RecordBatchReader.from_batches(schema, batches)
+                memlog(f"Batch {cnt}")
+            ds = pa.dataset.dataset(tmpdir, schema=schema, format="parquet")
+            memlog("Created Dataset")
+            batches = ds.to_batches()
+            memlog("Created Batches")
+            return pa.RecordBatchReader.from_batches(schema, batches)
 
 
 def parse_stac_items_to_parquet(
@@ -172,20 +167,19 @@ def parse_stac_items_to_parquet(
 
     logger.info(f"Exporting PgSTAC to {filesystem} {filepath}")
 
-    with tempfile.TemporaryDirectory() as tmpdir:
-        reader = parse_stac_items_to_arrow(
-            items=items, chunk_size=chunk_size, schema=schema, tmpdir=tmpdir
-        )
-        memlog("Parsed to arrow")
-        to_parquet(
-            reader,
-            output_path=filepath,
-            filesystem=filesystem,
-            schema_version=schema_version,
-            **kwargs,
-        )
-        memlog("Written to parquet")
-        return str(filepath)
+    reader = parse_stac_items_to_arrow(
+        items=items, chunk_size=chunk_size, schema=schema
+    )
+    memlog("Parsed to arrow")
+    to_parquet(
+        reader,
+        output_path=filepath,
+        filesystem=filesystem,
+        schema_version=schema_version,
+        **kwargs,
+    )
+    memlog("Written to parquet")
+    return str(filepath)
 
 
 def parse_stac_ndjson_to_arrow(
