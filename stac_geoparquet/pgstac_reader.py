@@ -172,7 +172,7 @@ def pgstac_to_iter(
         args = ()
     curname = "".join(random.choices(string.ascii_lowercase, k=32))
     with psycopg.connect(conninfo) as conn:
-        with conn.cursor(curname, row_factory=PgstacRowFactory) as cur:
+        with conn.cursor(curname, row_factory=PgstacRowFactory) as cur:  # type: ignore
             cur.itersize = cursor_itersize
             cur.execute(query, args)
             logger.debug(f"Query: {query}, Args: {args}")

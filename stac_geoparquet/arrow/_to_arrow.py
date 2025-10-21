@@ -82,7 +82,7 @@ def _convert_single_timestamp_column(column: pa.Array) -> pa.TimestampArray:
 
 def _is_bbox_3d(bbox_col: pa.Array) -> bool:
     """Infer whether the bounding box column represents 2d or 3d bounding boxes."""
-    offsets_set = set()
+    offsets_set: set[int] = set()
     offsets = bbox_col.offsets.to_numpy()
     offsets_set.update(np.unique(offsets[1:] - offsets[:-1]))
 

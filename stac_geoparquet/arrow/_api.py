@@ -356,13 +356,22 @@ def stac_table_to_ndjson(
             [Arrow PyCapsule
             Interface](https://arrow.apache.org/docs/format/CDataInterface/PyCapsuleInterface.html).
             A RecordBatchReader or stream object will not be materialized in memory.
+
+            The 'type' field is not required in stac-geoparquet. If not present,
+            a 'type' field will be added where each record is 'Feature'.
         dest: The destination where newline-delimited JSON should be written.
     """
-
     # Coerce to record batch reader to avoid materializing entire stream
     reader = pa.RecordBatchReader.from_stream(table)
 
     for batch in reader:
+        if "type" not in batch.schema.names:
+            type_arr = pa.DictionaryArray.from_arrays(
+                indices=pa.array([0] * len(batch), type=pa.int8()),
+                dictionary=pa.array(["Feature"], type=pa.string()),
+            )
+            batch = batch.add_column(0, "type", type_arr)
+
         clean_batch = StacArrowBatch(batch)
         clean_batch.to_json_batch().to_ndjson(dest)
 

@@ -1,7 +1,3 @@
-[build-system]
-requires = ["hatchling>=1.22.2", "hatch-vcs>=0.3.0"]
-build-backend = "hatchling.build"
-
 [project]
 name = "stac-geoparquet"
 authors = [{ name = "Tom Augspurger", email = "taugspurger@microsoft.com" }]
@@ -27,17 +23,13 @@ dependencies = [
     "types-psutil>=7.0.0.20250601",
 ]
 
-[tool.hatch.version]
-source = "vcs"
-
-[tool.hatch.build.hooks.vcs]
-version-file = "stac_geoparquet/_version.py"
+[project.urls]
+Home = "https://github.com/stac-utils/stac-geoparquet"
 
 [project.optional-dependencies]
 deltalake = [
-    "deltalake",
+    "deltalake<1",
 ]
-
 pgstac = [
     "psycopg[binary]",
     "psycopg-pool",
@@ -56,7 +48,7 @@ dev = [
     "requests",
     "ruff",
     "stac-geoparquet[deltalake]",
-    "stac-geoparquet[pc]",
+    "stac-geoparquet",
     "stac-geoparquet[pgstac]",
     "types-python-dateutil",
     "types-requests",
@@ -75,17 +67,11 @@ docs = [
 [tool.uv]
 default-groups = ["dev", "docs"]
 
-
-[project.urls]
-Home = "https://github.com/stac-utils/stac-geoparquet"
-
-
 [tool.pytest.ini_options]
 minversion = "6.0"
 filterwarnings = ["ignore:.*distutils Version.*:DeprecationWarning"]
 
 [tool.mypy]
-
 python_version = "3.10"
 
 [[tool.mypy.overrides]]
@@ -101,7 +87,6 @@ module = [
     "shapely.*",
     "tqdm.*",
 ]
-
 ignore_missing_imports = true
 
 [[tool.mypy.overrides]]
@@ -110,13 +95,11 @@ disallow_untyped_defs = true
 
 [tool.ruff.lint]
 select = [
-    # Pyflakes
     "F",
-    # Pycodestyle
     "E",
     "W",
-    # isort
     "I",
+    "UP",
 ]
 ignore = [
     "E501", # Line too long
@@ -126,3 +109,13 @@ ignore = [
 "__init__.py" = [
     "F401", # Allow unused imports in __init__.py files
 ]
+
+[build-system]
+requires = ["hatchling>=1.22.2", "hatch-vcs>=0.3.0"]
+build-backend = "hatchling.build"
+
+[tool.hatch.version]
+source = "vcs"
+
+[tool.hatch.build.hooks.vcs]
+version-file = "stac_geoparquet/_version.py"

@@ -1,8 +1,10 @@
+import datetime
 import pathlib
 
 import geopandas
 import pystac
 import pytest
+from pystac import Asset, Item
 
 import stac_geoparquet
 
@@ -146,3 +148,32 @@ def test_to_dict_optional_asset():
     assert result[0].assets["b"].to_dict() == {"href": "b.txt"}
     assert result[1].assets["a"].to_dict() == {"href": "a.txt"}
     assert "b" not in result[1].assets
+
+
+def test_heterogenous_assets() -> None:
+    # https://github.com/stac-utils/stac-geoparquet/issues/82
+    longmont = {"type": "Point", "coordinates": [-105.1019, 40.1672]}
+    bbox = [-105.1019, 40.1672, -105.1019, 40.1672]
+    item_a = Item(
+        id="a",
+        geometry=longmont,
+        bbox=bbox,
+        datetime=datetime.datetime.now(),
+        properties={},
+    )
+    item_a.add_asset("asset", Asset("http://stac-geoparquet.test/asset.tif"))
+    item_b = Item(
+        id="b",
+        geometry=longmont,
+        bbox=bbox,
+        datetime=datetime.datetime.now(),
+        properties={},
+    )
+    record_batch_reader = stac_geoparquet.arrow.parse_stac_items_to_arrow(
+        [item_a, item_b]
+    )
+    data_frame = geopandas.GeoDataFrame.from_arrow(record_batch_reader)
+    batch = stac_geoparquet.arrow.stac_table_to_items(data_frame.to_arrow())
+    for item in batch:
+        # Before the fix, item b has `None` for the asset value, which explodes this conversion
+        Item.from_dict(item)
