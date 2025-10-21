@@ -1,8 +1,4 @@
 repos:
-  - repo: https://github.com/tsvikas/sync-with-uv
-    rev: v0.4.0
-    hooks:
-      - id: sync-with-uv
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v6.0.0
     hooks:
