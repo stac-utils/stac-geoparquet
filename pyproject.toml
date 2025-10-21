@@ -33,7 +33,7 @@ version-file = "stac_geoparquet/_version.py"
 
 [project.optional-dependencies]
 deltalake = [
-    "deltalake",
+    "deltalake<1",
 ]
 
 pgstac = [
@@ -54,7 +54,7 @@ dev = [
     "requests",
     "ruff",
     "stac-geoparquet[deltalake]",
-    "stac-geoparquet[pc]",
+    "stac-geoparquet",
     "stac-geoparquet[pgstac]",
     "types-python-dateutil",
     "types-requests",
