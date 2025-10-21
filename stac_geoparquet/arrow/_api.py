@@ -65,6 +65,7 @@ def parse_stac_items_to_arrow(
     schema: (
         pa.Schema | InferredSchema | Literal["FirstBatch", "FullFile", "ChunksToDisk"]
     ) = "FullFile",
+    tmpdir: str | Path | None = None,
 ) -> pa.RecordBatchReader:
     """
     Parse a collection of STAC Items to an iterable of
@@ -116,7 +117,9 @@ def parse_stac_items_to_arrow(
         return from_batches(batches)
 
     else:
-        with tempfile.TemporaryDirectory() as tmpdir:
+        if tmpdir is None or Path(tmpdir).exists() is False:
+            raise FileNotFoundError("tmpdir must be provided for ChunksToDisk schema")
+        else:
             logger.info(f"Using temporary directory {tmpdir} for chunked schema")
             for cnt, chunk in enumerate(batched_iter(items, chunk_size)):
                 batch = stac_items_to_arrow(chunk)
@@ -133,7 +136,9 @@ def parse_stac_items_to_arrow(
                     output_path=fname,
                 )
                 memlog(f"Batch {cnt}")
-            ds = pa.dataset.dataset(tmpdir, schema=schema, format="parquet")
+            ds = pa.dataset.dataset(
+                tmpdir, schema=schema, format="parquet", batch_size=chunk_size
+            )
             memlog("Created Dataset")
             batches = ds.to_batches()
             memlog("Created Batches")
@@ -148,6 +153,7 @@ def parse_stac_items_to_parquet(
         pa.Schema | InferredSchema | Literal["FirstBatch", "FullFile", "ChunksToDisk"]
     ) = "FirstBatch",
     output_path: str | Path,
+    tmpdir: str | Path | None = None,
     schema_version: SUPPORTED_PARQUET_SCHEMA_VERSIONS = DEFAULT_PARQUET_SCHEMA_VERSION,
     filesystem: pa.fs.FileSystem | None = None,
     **kwargs: Any,
@@ -167,17 +173,37 @@ def parse_stac_items_to_parquet(
 
     logger.info(f"Exporting PgSTAC to {filesystem} {filepath}")
 
-    reader = parse_stac_items_to_arrow(
-        items=items, chunk_size=chunk_size, schema=schema
-    )
-    memlog("Parsed to arrow")
-    to_parquet(
-        reader,
-        output_path=filepath,
-        filesystem=filesystem,
-        schema_version=schema_version,
-        **kwargs,
-    )
+    if schema == "ChunksToDisk" and tmpdir is None:
+        with tempfile.TemporaryDirectory() as td:
+            reader = parse_stac_items_to_arrow(
+                items=items,
+                chunk_size=chunk_size,
+                schema=schema,
+                tmpdir=td,
+            )
+            memlog("Parsed to arrow")
+            to_parquet(
+                reader,
+                output_path=filepath,
+                filesystem=filesystem,
+                schema_version=schema_version,
+                **kwargs,
+            )
+    else:
+        reader = parse_stac_items_to_arrow(
+            items=items,
+            chunk_size=chunk_size,
+            schema=schema,
+            tmpdir=tmpdir,
+        )
+        memlog("Parsed to arrow")
+        to_parquet(
+            reader,
+            output_path=filepath,
+            filesystem=filesystem,
+            schema_version=schema_version,
+            **kwargs,
+        )
     memlog("Written to parquet")
     return str(filepath)
 
