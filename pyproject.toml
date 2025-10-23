@@ -19,6 +19,8 @@ dependencies = [
     "shapely",
     "orjson",
     'typing_extensions; python_version < "3.11"',
+    "psutil>=7.0.0",
+    "types-psutil>=7.0.0.20250601",
 ]
 
 [project.urls]

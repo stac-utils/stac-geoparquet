@@ -20,6 +20,7 @@ nav:
   - schema.md
   - Examples:
       - examples/naip.ipynb
+      - examples/dump_pgstac_to_parquet.ipynb
   - Specification: spec/stac-geoparquet-spec.md
   - API Reference:
       - api/arrow.md
