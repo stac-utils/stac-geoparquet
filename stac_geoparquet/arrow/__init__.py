@@ -6,6 +6,7 @@ from ._api import (
     stac_table_to_ndjson,
 )
 from ._constants import (
+    ACCEPTED_SCHEMA_OPTIONS,
     DEFAULT_JSON_CHUNK_SIZE,
     DEFAULT_PARQUET_SCHEMA_VERSION,
     SUPPORTED_PARQUET_SCHEMA_VERSIONS,
@@ -16,6 +17,7 @@ from ._to_parquet import to_parquet
 __all__ = (
     "DEFAULT_JSON_CHUNK_SIZE",
     "DEFAULT_PARQUET_SCHEMA_VERSION",
+    "ACCEPTED_SCHEMA_OPTIONS",
     "parse_stac_items_to_arrow",
     "parse_stac_ndjson_to_arrow",
     "parse_stac_ndjson_to_delta_lake",
