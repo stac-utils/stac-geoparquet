@@ -7,7 +7,7 @@ import sys
 import tempfile
 from collections.abc import Iterable, Mapping
 from pathlib import Path
-from typing import Any, Literal
+from typing import Any
 
 import psutil
 import pyarrow as pa
@@ -15,6 +15,7 @@ import pystac
 
 from stac_geoparquet.arrow._batch import StacArrowBatch, StacJsonBatch
 from stac_geoparquet.arrow._constants import (
+    ACCEPTED_SCHEMA_OPTIONS,
     DEFAULT_JSON_CHUNK_SIZE,
     DEFAULT_PARQUET_SCHEMA_VERSION,
     SUPPORTED_PARQUET_SCHEMA_VERSIONS,
@@ -62,9 +63,7 @@ def from_batches(batches: Iterable[pa.RecordBatch]) -> pa.RecordBatchReader:
 def parse_stac_items_to_arrow(
     items: Iterable[pystac.Item | dict[str, Any]],
     chunk_size: int = DEFAULT_JSON_CHUNK_SIZE,
-    schema: (
-        pa.Schema | InferredSchema | Literal["FirstBatch", "FullFile", "ChunksToDisk"]
-    ) = "FullFile",
+    schema: ACCEPTED_SCHEMA_OPTIONS = "FullFile",
     tmpdir: str | Path | None = None,
 ) -> pa.RecordBatchReader:
     """
@@ -117,6 +116,7 @@ def parse_stac_items_to_arrow(
         return from_batches(batches)
 
     else:
+        assert schema == "ChunksToDisk"
         if tmpdir is None or Path(tmpdir).exists() is False:
             raise FileNotFoundError("tmpdir must be provided for ChunksToDisk schema")
         else:
@@ -149,9 +149,7 @@ def parse_stac_items_to_parquet(
     items: Iterable[pystac.Item | dict[str, Any]],
     *,
     chunk_size: int = DEFAULT_JSON_CHUNK_SIZE,
-    schema: (
-        pa.Schema | InferredSchema | Literal["FirstBatch", "FullFile", "ChunksToDisk"]
-    ) = "FirstBatch",
+    schema: ACCEPTED_SCHEMA_OPTIONS = "FirstBatch",
     output_path: str | Path,
     tmpdir: str | Path | None = None,
     schema_version: SUPPORTED_PARQUET_SCHEMA_VERSIONS = DEFAULT_PARQUET_SCHEMA_VERSION,

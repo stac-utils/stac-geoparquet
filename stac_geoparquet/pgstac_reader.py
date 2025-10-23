@@ -6,7 +6,7 @@ from collections.abc import Iterator
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any, Callable, Literal, Union
+from typing import Any, Callable, Union
 
 import orjson
 import psycopg
@@ -17,13 +17,13 @@ import shapely.wkb
 from psycopg.types.json import set_json_dumps, set_json_loads
 
 from stac_geoparquet.arrow import (
+    ACCEPTED_SCHEMA_OPTIONS,
     DEFAULT_JSON_CHUNK_SIZE,
     DEFAULT_PARQUET_SCHEMA_VERSION,
     SUPPORTED_PARQUET_SCHEMA_VERSIONS,
     parse_stac_items_to_arrow,
 )
 from stac_geoparquet.arrow._api import parse_stac_items_to_parquet
-from stac_geoparquet.arrow._schema.models import InferredSchema
 
 logger = logging.getLogger(__name__)
 
@@ -189,9 +189,7 @@ def pgstac_to_arrow(
     end_datetime: Union[datetime, None] = None,
     search: Union[dict[str, Any], None] = None,
     chunk_size: int = DEFAULT_JSON_CHUNK_SIZE,
-    schema: Union[
-        pa.Schema, InferredSchema, Literal["FirstBatch", "FullFile", "ChunksToDisk"]
-    ] = "FirstBatch",
+    schema: ACCEPTED_SCHEMA_OPTIONS = "FirstBatch",
     statement_timeout: Union[int, None] = None,
     row_func: Union[Callable, None] = None,
 ) -> pa.RecordBatchReader:
@@ -219,9 +217,7 @@ def pgstac_to_parquet(
     end_datetime: Union[datetime, None] = None,
     search: Union[dict[str, Any], None] = None,
     chunk_size: int = DEFAULT_JSON_CHUNK_SIZE,
-    schema: Union[
-        pa.Schema, InferredSchema, Literal["FirstBatch", "FullFile", "ChunksToDisk"]
-    ] = "FirstBatch",
+    schema: ACCEPTED_SCHEMA_OPTIONS = "FirstBatch",
     statement_timeout: Union[int, None] = None,
     row_func: Union[Callable, None] = None,
     schema_version: SUPPORTED_PARQUET_SCHEMA_VERSIONS = DEFAULT_PARQUET_SCHEMA_VERSION,
@@ -278,6 +274,9 @@ def get_pgstac_partitions(
     db = pgstac_dsn(conninfo, None)
     with psycopg.connect(db) as conn:
         with conn.cursor(row_factory=psycopg.rows.class_row(Partition)) as cur:
+            # note: '.000001 seconds' is the minimum resolution for timestamptz in Postgres, so this
+            # is added since the inclusive upper bound in the dtrange can be used with exclusive <
+            # in the pgstac_to_parquet function
             q = """
                 SELECT
                     collection,
@@ -311,9 +310,7 @@ def sync_pgstac_to_parquet(
     output_path: Union[str, Path],
     updated_after: Union[datetime, None] = None,
     chunk_size: int = DEFAULT_JSON_CHUNK_SIZE,
-    schema: Union[
-        pa.Schema, InferredSchema, Literal["FirstBatch", "FullFile", "ChunksToDisk"]
-    ] = "FirstBatch",
+    schema: ACCEPTED_SCHEMA_OPTIONS = "FirstBatch",
     statement_timeout: Union[int, None] = None,
     row_func: Union[Callable, None] = None,
     schema_version: SUPPORTED_PARQUET_SCHEMA_VERSIONS = DEFAULT_PARQUET_SCHEMA_VERSION,
