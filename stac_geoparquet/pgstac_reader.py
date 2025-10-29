@@ -192,7 +192,7 @@ def pgstac_to_arrow(
     schema: ACCEPTED_SCHEMA_OPTIONS = "FirstBatch",
     statement_timeout: Union[int, None] = None,
     row_func: Union[Callable, None] = None,
-    tmpdir: str | Path | None = None,
+    tmpdir: Union[str, Path, None] = None,
 ) -> pa.RecordBatchReader:
     """
     Convert pgstac items to an arrow record batch reader.
