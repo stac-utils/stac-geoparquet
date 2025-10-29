@@ -207,7 +207,9 @@ def pgstac_to_arrow(
         cursor_itersize=chunk_size,
         row_func=row_func,
     )
-    return parse_stac_items_to_arrow(items, chunk_size=chunk_size, schema=schema, tmpdir=tmpdir)
+    return parse_stac_items_to_arrow(
+        items, chunk_size=chunk_size, schema=schema, tmpdir=tmpdir
+    )
 
 
 def pgstac_to_parquet(
