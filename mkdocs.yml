@@ -17,16 +17,13 @@ extra:
 nav:
   - index.md
   - usage.md
-  - schema.md
   - Examples:
       - examples/naip.ipynb
       - examples/dump_pgstac_to_parquet.ipynb
-  - Specification: spec/stac-geoparquet-spec.md
   - API Reference:
       - api/arrow.md
       - Legacy: api/legacy.md
       - api/pgstac.md
-  - drawbacks.md
   - Release Notes: whatsnew.md
 
 watch:
@@ -109,6 +106,11 @@ plugins:
             - https://pandas.pydata.org/pandas-docs/stable/objects.inv
             - https://pystac.readthedocs.io/en/stable/objects.inv
             - https://shapely.readthedocs.io/en/stable/objects.inv
+  - redirects:
+      redirect_maps:
+        "spec/stac-geoparquet-spec.md": "https://radiantearth.github.io/stac-geoparquet-spec/latest/"
+        "drawbacks.md": "https://radiantearth.github.io/stac-geoparquet-spec/latest/drawbacks/"
+        "schema.md": "https://radiantearth.github.io/stac-geoparquet-spec/latest/schema/"
 
 # https://github.com/developmentseed/titiler/blob/50934c929cca2fa8d3c408d239015f8da429c6a8/docs/mkdocs.yml#L115-L140
 markdown_extensions:

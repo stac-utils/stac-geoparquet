@@ -14,8 +14,7 @@ While STAC Items are commonly distributed as individual JSON files on object sto
 
 For analytic questions like "find the items in the Sentinel-2 collection in June 2024 over New York City with cloud cover of less than 20%" it can be much, much faster to find the relevant data from a GeoParquet source than from JSON, because GeoParquet needs to load only the relevant columns for that query, not the full data.
 
-See the [STAC-GeoParquet specification](./spec/stac-geoparquet-spec.md) for details on the exact schema of the written Parquet files.
-
+See the [STAC-GeoParquet specification](https://radiantearth.github.io/stac-geoparquet-spec/) for details on the exact schema of the written Parquet files.
 
 ## Installation
 
@@ -39,10 +38,4 @@ uv sync
 uv run pre-commit install
 uv run pytest
 scripts/lint
-```
-
-Validate the example collection metadata against the jsonschema:
-
-```shell
-check-jsonschema --schemafile spec/json-schema/metadata.json spec/example-metadata.json
 ```
