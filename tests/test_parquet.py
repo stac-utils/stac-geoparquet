@@ -1,5 +1,6 @@
 import contextlib
 import json
+import sys
 from pathlib import Path
 from typing import Any
 
@@ -59,6 +60,9 @@ def test_round_trip_via_parquet(collection_id: str, tmp_path: Path):
 
 @pytest.mark.parametrize("write_collections", [True, False])
 @pytest.mark.vcr
+@pytest.mark.skipif(
+    sys.version_info < (3, 10), reason="vcr tests require python3.10 or higher"
+)
 def test_metadata(tmp_path: Path, *, write_collections: bool) -> None:
     collection_id = "3dep-lidar-copc"
     path = HERE / "data" / f"{collection_id}-pc.json"
