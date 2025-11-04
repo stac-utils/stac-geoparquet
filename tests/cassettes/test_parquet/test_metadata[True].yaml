@@ -1,0 +1,86 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.32.5
+    method: GET
+    uri: https://radiantearth.github.io/stac-geoparquet-spec/0.7.0/json-schema/metadata.json
+  response:
+    body:
+      string: "{\n  \"$schema\": \"http://json-schema.org/draft-07/schema#\",\n  \"$id\":
+        \"https://stac-utils.github.io/stac-geoparquet/json-schema/metadata.json\",\n
+        \ \"title\": \"STAC GeoParquet Metadata\",\n  \"description\": \"JSON Schema
+        for STAC GeoParquet metadata stored in Parquet file metadata\",\n  \"type\":
+        \"object\",\n  \"properties\": {\n    \"version\": {\n      \"type\": \"string\",\n
+        \     \"const\": \"1.0.0\",\n      \"description\": \"The stac-geoparquet
+        metadata version.\"\n    },\n    \"collections\": {\n      \"type\": \"object\",\n
+        \     \"description\": \"A mapping from Collection ID to Collection object.
+        As usual, the Collection ID used as the key of the mapping must match the
+        ID in the Collection object.\",\n      \"additionalProperties\": {\n        \"type\":
+        \"object\",\n        \"description\": \"This object represents a Collection
+        in a SpatioTemporal Asset Catalog. Note that this object is not validated
+        against the STAC Collection schema. You'll need to validate it separately
+        from stac-geoparquet.\"\n      }\n    },\n    \"collection\": {\n      \"type\":
+        \"object\",\n      \"description\": \"This object represents a Collection
+        in a SpatioTemporal Asset Catalog. Note that this object is not validated
+        against the STAC Collection schema. You'll need to validate it separately
+        from stac-geoparquet.\",\n      \"deprecated\": true\n    }\n  },\n  \"required\":
+        [\n    \"version\"\n  ]\n}\n"
+    headers:
+      Accept-Ranges:
+      - bytes
+      Access-Control-Allow-Origin:
+      - '*'
+      Age:
+      - '0'
+      Cache-Control:
+      - max-age=600
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Length:
+      - '492'
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Sun, 02 Nov 2025 13:34:06 GMT
+      ETag:
+      - W/"69075ca1-525"
+      Last-Modified:
+      - Sun, 02 Nov 2025 13:29:05 GMT
+      Server:
+      - GitHub.com
+      Strict-Transport-Security:
+      - max-age=31556952
+      Vary:
+      - Accept-Encoding
+      Via:
+      - 1.1 varnish
+      X-Cache:
+      - HIT
+      X-Cache-Hits:
+      - '1'
+      X-Fastly-Request-ID:
+      - c7254a526a14a2bc47521cc92b30f76252162520
+      X-GitHub-Request-Id:
+      - 8501:179311:1EF8FF7:24130C5:69075D94
+      X-Served-By:
+      - cache-den-kden1300058-DEN
+      X-Timer:
+      - S1762090446.175150,VS0,VE57
+      expires:
+      - Sun, 02 Nov 2025 13:43:10 GMT
+      x-proxy-cache:
+      - MISS
+    status:
+      code: 200
+      message: OK
+version: 1

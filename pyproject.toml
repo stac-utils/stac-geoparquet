@@ -62,6 +62,7 @@ docs = [
     "mkdocs-material[imaging]>=9.5",
     "mkdocs",
     "mkdocstrings[python]>=0.25.1",
+    "mkdocs-redirects>=1.2.2",
 ]
 
 [tool.uv]

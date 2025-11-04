@@ -1,11 +1,13 @@
 import contextlib
 import json
+import sys
 from pathlib import Path
 from typing import Any
 
 import jsonschema
 import pyarrow.parquet as pq
 import pytest
+import requests
 
 from stac_geoparquet.arrow import parse_stac_ndjson_to_parquet, stac_table_to_items
 
@@ -57,6 +59,10 @@ def test_round_trip_via_parquet(collection_id: str, tmp_path: Path):
 
 
 @pytest.mark.parametrize("write_collections", [True, False])
+@pytest.mark.vcr
+@pytest.mark.skipif(
+    sys.version_info < (3, 10), reason="vcr tests require python3.10 or higher"
+)
 def test_metadata(tmp_path: Path, *, write_collections: bool) -> None:
     collection_id = "3dep-lidar-copc"
     path = HERE / "data" / f"{collection_id}-pc.json"
@@ -98,5 +104,7 @@ def test_metadata(tmp_path: Path, *, write_collections: bool) -> None:
     assert geo["version"] == "1.1.0"
     assert set(geo) == {"version", "columns", "primary_column"}
 
-    schema = json.loads((HERE / "../spec/json-schema/metadata.json").read_text())
+    schema = requests.get(
+        "https://radiantearth.github.io/stac-geoparquet-spec/0.7.0/json-schema/metadata.json"
+    ).json()
     jsonschema.validate(stac_geoparquet_metadata, schema)
