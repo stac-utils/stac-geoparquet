@@ -80,6 +80,8 @@ class PgstacRowFactory:
             item["bbox"] = list(geom.bounds)
 
         item["assets"] = content["assets"]
+        if "links" in content:
+            item["links"] = content["links"]
         if "stac_extensions" in content:
             item["stac_extensions"] = content["stac_extensions"]
         item["properties"] = content["properties"]
