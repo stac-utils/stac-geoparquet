@@ -10,6 +10,7 @@ import pytest
 from stac_geoparquet.arrow import (
     DEFAULT_JSON_CHUNK_SIZE,
     parse_stac_items_to_arrow,
+    parse_stac_items_to_parquet,
     parse_stac_ndjson_to_arrow,
     stac_table_to_items,
     stac_table_to_ndjson,
@@ -152,3 +153,58 @@ def test_to_parquet_two_geometry_columns():
     assert geo_meta["primary_column"] == "geometry"
     assert "geometry" in geo_meta["columns"].keys()
     assert "proj:geometry" in geo_meta["columns"].keys()
+
+
+def test_to_parquet_with_nonlocal_filesystem(tmp_path: Path):
+    """Test to_parquet with filesystem parameter and Path object.
+
+    This test verifies that Path objects are properly converted to strings
+    when using remote/non-local filesystems, which is required for compatibility
+    with PyArrow's ParquetWriter.
+    """
+    collection_id = "naip-pc"
+    with open(HERE / "data" / f"{collection_id}.json") as f:
+        items = json.load(f)
+
+    table = parse_stac_items_to_arrow(items).read_all()
+
+    mock_fs = pa.fs.SubTreeFileSystem(str(tmp_path), pa.fs.LocalFileSystem())
+    output_path = Path("test.parquet")
+
+    to_parquet(table, output_path, filesystem=mock_fs)
+
+    actual_file = tmp_path / "test.parquet"
+    assert actual_file.exists()
+    result_table = pq.read_table(str(actual_file))
+    assert result_table.num_rows == table.num_rows
+
+
+def test_parse_stac_items_to_parquet_with_filesystem(tmp_path: Path):
+    """Test parse_stac_items_to_parquet with filesystem parameter."""
+    collection_id = "naip-pc"
+    with open(HERE / "data" / f"{collection_id}.json") as f:
+        items = json.load(f)
+
+    mock_fs = pa.fs.SubTreeFileSystem(str(tmp_path), pa.fs.LocalFileSystem())
+
+    # Test Path object (tests the str conversion fix)
+    output_path = Path("test_path.parquet")
+    parse_stac_items_to_parquet(items, output_path=output_path, filesystem=mock_fs)
+    actual_file = tmp_path / "test_path.parquet"
+    assert actual_file.exists()
+    result_table = pq.read_table(str(actual_file))
+    assert result_table.num_rows > 0
+
+    # Test nested directory with Path
+    output_nested = Path("output/data/test.parquet")
+    parse_stac_items_to_parquet(items, output_path=output_nested, filesystem=mock_fs)
+    actual_nested = tmp_path / "output" / "data" / "test.parquet"
+    assert actual_nested.exists()
+    assert pq.read_table(str(actual_nested)).num_rows > 0
+
+    # Test String path (backward compatibility)
+    output_string = "test_string.parquet"
+    parse_stac_items_to_parquet(items, output_path=output_string, filesystem=mock_fs)
+    actual_string = tmp_path / "test_string.parquet"
+    assert actual_string.exists()
+    assert pq.read_table(str(actual_string)).num_rows > 0
