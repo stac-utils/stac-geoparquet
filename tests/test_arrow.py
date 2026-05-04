@@ -146,7 +146,19 @@ def test_to_parquet_two_geometry_columns():
     table = parse_stac_items_to_arrow(items).read_all()
     with tempfile.NamedTemporaryFile(suffix=".parquet") as f:
         to_parquet(table, f.name)
-        pq_meta = pq.read_metadata(f.name)
+def test_to_parquet_two_geometry_columns(tmp_path: Path):
+"""
+   When writing STAC Items that have a proj:geometry field, there should be two
+   geometry columns listed in the GeoParquet metadata.
+   """
+collection_id = "3dep-lidar-copc-pc"
+with open(HERE / "data" / f"{collection_id}.json") as f:
+items = json.load(f)
+
+table = parse_stac_items_to_arrow(items).read_all()
+path = tmp_path / "output.parquet"
+      to_parquet(table, path)
+      pq_meta = pq.read_metadata(path)
 
     geo_meta = json.loads(pq_meta.metadata[b"geo"])
     assert geo_meta["primary_column"] == "geometry"
