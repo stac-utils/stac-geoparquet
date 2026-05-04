@@ -269,6 +269,7 @@ def parse_stac_ndjson_to_parquet(
     schema_version: SUPPORTED_PARQUET_SCHEMA_VERSIONS = DEFAULT_PARQUET_SCHEMA_VERSION,
     collections: Mapping[str, Mapping[str, Any]] | None = None,
     collection_metadata: Mapping[str, Any] | None = None,
+    filesystem: pa.fs.FileSystem | None = None,
     **kwargs: Any,
 ) -> None:
     """Convert one or more newline-delimited JSON STAC files to GeoParquet
@@ -297,6 +298,8 @@ def parse_stac_ndjson_to_parquet(
             parquet file metadata, under the key `collection`.
 
             Deprecated in favor of `collections`.
+        filesystem: PyArrow FileSystem to use for writing. If not provided, will be inferred
+            from output_path for local files.
 
     All other keyword args are passed on to
     [`pyarrow.parquet.ParquetWriter`][pyarrow.parquet.ParquetWriter].
@@ -308,6 +311,7 @@ def parse_stac_ndjson_to_parquet(
         record_batch_reader,
         output_path=output_path,
         schema_version=schema_version,
+        filesystem=filesystem,
         **kwargs,
         collections=collections,
         collection_metadata=collection_metadata,

@@ -1,5 +1,6 @@
 from ._api import (
     parse_stac_items_to_arrow,
+    parse_stac_items_to_parquet,
     parse_stac_ndjson_to_arrow,
     parse_stac_ndjson_to_parquet,
     stac_table_to_items,
@@ -19,6 +20,7 @@ __all__ = (
     "DEFAULT_PARQUET_SCHEMA_VERSION",
     "ACCEPTED_SCHEMA_OPTIONS",
     "parse_stac_items_to_arrow",
+    "parse_stac_items_to_parquet",
     "parse_stac_ndjson_to_arrow",
     "parse_stac_ndjson_to_delta_lake",
     "parse_stac_ndjson_to_parquet",

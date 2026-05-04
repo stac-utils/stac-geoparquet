@@ -27,6 +27,7 @@ def to_parquet(
     schema_version: SUPPORTED_PARQUET_SCHEMA_VERSIONS = DEFAULT_PARQUET_SCHEMA_VERSION,
     collections: Mapping[str, Mapping[str, Any]] | None = None,
     collection_metadata: Mapping[str, Any] | None = None,
+    filesystem: pa.fs.FileSystem | None = None,
     **kwargs: Any,
 ) -> None:
     """Write an Arrow table with STAC data to GeoParquet
@@ -53,6 +54,8 @@ def to_parquet(
             parquet file metadata, under the key `collection`.
 
             Deprecated in favor of `collections`.
+        filesystem: PyArrow FileSystem to use for writing. If not provided, will be inferred
+            from output_path for local files.
 
     All other keyword args are passed on to
     [`pyarrow.parquet.ParquetWriter`][pyarrow.parquet.ParquetWriter].
@@ -68,7 +71,10 @@ def to_parquet(
             collection_metadata=collection_metadata,
         )
     )
-    with pq.ParquetWriter(output_path, schema, **kwargs) as writer:
+
+    with pq.ParquetWriter(
+        str(output_path), schema, filesystem=filesystem, **kwargs
+    ) as writer:
         for batch in reader:
             writer.write_batch(batch)
 

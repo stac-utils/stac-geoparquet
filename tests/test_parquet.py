@@ -5,6 +5,7 @@ from pathlib import Path
 from typing import Any
 
 import jsonschema
+import pyarrow as pa
 import pyarrow.parquet as pq
 import pytest
 import requests
@@ -108,3 +109,16 @@ def test_metadata(tmp_path: Path, *, write_collections: bool) -> None:
         "https://radiantearth.github.io/stac-geoparquet-spec/0.7.0/json-schema/metadata.json"
     ).json()
     jsonschema.validate(stac_geoparquet_metadata, schema)
+
+
+def test_parse_stac_ndjson_to_parquet_with_filesystem(tmp_path: Path):
+    collection_id = "naip-pc"
+    input_path = HERE / "data" / f"{collection_id}.json"
+    mock_fs = pa.fs.SubTreeFileSystem(str(tmp_path), pa.fs.LocalFileSystem())
+
+    # Test simple Path object (tests the str conversion fix)
+    output_path = Path("test.parquet")
+    parse_stac_ndjson_to_parquet(input_path, output_path, filesystem=mock_fs)
+    actual_file = tmp_path / "test.parquet"
+    assert actual_file.exists()
+    assert pq.read_table(str(actual_file)).num_rows > 0
