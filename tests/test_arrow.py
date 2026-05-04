@@ -1,6 +1,5 @@
 import itertools
 import json
-import tempfile
 from pathlib import Path
 
 import pyarrow as pa
@@ -134,9 +133,9 @@ def test_from_arrow_deprecated():
     stac_geoparquet.from_arrow.stac_table_to_items
 
 
-def test_to_parquet_two_geometry_columns():
+def test_to_parquet_two_geometry_columns(tmp_path: Path):
     """
-    When writing STAC Items that have a proj:geometry field, there should be two
+     When writing STAC Items that have a proj:geometry field, there should be two
     geometry columns listed in the GeoParquet metadata.
     """
     collection_id = "3dep-lidar-copc-pc"
@@ -144,21 +143,9 @@ def test_to_parquet_two_geometry_columns():
         items = json.load(f)
 
     table = parse_stac_items_to_arrow(items).read_all()
-    with tempfile.NamedTemporaryFile(suffix=".parquet") as f:
-        to_parquet(table, f.name)
-def test_to_parquet_two_geometry_columns(tmp_path: Path):
-"""
-   When writing STAC Items that have a proj:geometry field, there should be two
-   geometry columns listed in the GeoParquet metadata.
-   """
-collection_id = "3dep-lidar-copc-pc"
-with open(HERE / "data" / f"{collection_id}.json") as f:
-items = json.load(f)
-
-table = parse_stac_items_to_arrow(items).read_all()
-path = tmp_path / "output.parquet"
-      to_parquet(table, path)
-      pq_meta = pq.read_metadata(path)
+    path = tmp_path / "output.parquet"
+    to_parquet(table, path)
+    pq_meta = pq.read_metadata(path)
 
     geo_meta = json.loads(pq_meta.metadata[b"geo"])
     assert geo_meta["primary_column"] == "geometry"
