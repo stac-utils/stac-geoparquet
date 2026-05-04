@@ -72,13 +72,8 @@ def to_parquet(
         )
     )
 
-    # Convert Path to string for external filesystems ParquetWriter compatibility
-    path_for_writer: str = (
-        str(output_path) if isinstance(output_path, Path) else output_path
-    )
-
     with pq.ParquetWriter(
-        path_for_writer, schema, filesystem=filesystem, **kwargs
+        str(output_path), schema, filesystem=filesystem, **kwargs
     ) as writer:
         for batch in reader:
             writer.write_batch(batch)

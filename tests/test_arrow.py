@@ -1,6 +1,6 @@
 import itertools
 import json
-from io import BytesIO
+import tempfile
 from pathlib import Path
 
 import pyarrow as pa
@@ -144,10 +144,9 @@ def test_to_parquet_two_geometry_columns():
         items = json.load(f)
 
     table = parse_stac_items_to_arrow(items).read_all()
-    with BytesIO() as bio:
-        to_parquet(table, bio)
-        bio.seek(0)
-        pq_meta = pq.read_metadata(bio)
+    with tempfile.NamedTemporaryFile(suffix=".parquet") as f:
+        to_parquet(table, f.name)
+        pq_meta = pq.read_metadata(f.name)
 
     geo_meta = json.loads(pq_meta.metadata[b"geo"])
     assert geo_meta["primary_column"] == "geometry"
