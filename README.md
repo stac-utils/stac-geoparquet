@@ -39,3 +39,11 @@ uv run pre-commit install
 uv run pytest
 scripts/lint
 ```
+
+## Releasing
+
+To release a new version:
+
+- Update [CHANGELOG.md][./CHANGELOG.md]
+- Open a PR, get approval, and merge
+- Cut a new [Github release](https://github.com/stac-utils/stac-geoparquet/releases), which will trigger a release on [PyPI](https://pypi.org/project/stac-geoparquet/)
