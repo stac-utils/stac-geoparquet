@@ -22,8 +22,6 @@ jobs:
 
       - uses: astral-sh/setup-uv@v5
 
-      - name: Install dependencies
-        run: python -m pip install -e .[pgstac,pc,test,docs]
       - name: Deploy docs
         env:
           GIT_COMMITTER_NAME: CI
@@ -37,5 +35,5 @@ jobs:
 
           # Only push docs if no letters in git tag
           if ! echo $VERSION | grep -q "[A-Za-z]"; then
-            mike deploy $VERSION latest --update-aliases --push
+            uv run mike deploy $VERSION latest --update-aliases --push
           fi
