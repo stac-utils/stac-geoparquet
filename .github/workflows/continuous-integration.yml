@@ -19,8 +19,8 @@ jobs:
           - "3.12"
           - "3.13"
     steps:
-      - uses: actions/checkout@v2
-      - uses: astral-sh/setup-uv@v5
+      - uses: actions/checkout@v6
+      - uses: astral-sh/setup-uv@v7
         with:
           python-version: ${{ matrix.python-version }}
       - name: Sync
