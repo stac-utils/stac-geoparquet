@@ -60,7 +60,7 @@ docs = [
     "mike>=2",
     "mkdocs-jupyter",
     "mkdocs-material[imaging]>=9.5",
-    "mkdocs",
+    "mkdocs<2",
     "mkdocstrings[python]>=0.25.1",
     "mkdocs-redirects>=1.2.2",
 ]
