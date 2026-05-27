@@ -2,6 +2,10 @@
 
 This is a list of changes to `stac-geoparquet`.
 
+## Unreleased
+
+- Drop Python 3.9
+
 ## 0.8.0
 
 - Make `deltalake` an optional dependency (<https://github.com/stac-utils/stac-geoparquet/pull/106>)
