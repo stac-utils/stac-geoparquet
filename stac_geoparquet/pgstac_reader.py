@@ -2,11 +2,11 @@ import functools
 import logging
 import random
 import string
-from collections.abc import Iterator
+from collections.abc import Callable, Iterator
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any, Callable, Union
+from typing import Any
 
 import orjson
 import psycopg
@@ -112,7 +112,7 @@ class PgstacRowFactory:
         return base_item[0]
 
 
-def pgstac_dsn(conninfo: Union[str, None], statement_timeout: Union[int, None]) -> str:
+def pgstac_dsn(conninfo: str | None, statement_timeout: int | None) -> str:
     """
     Get the DSN from the connection info.
     """
@@ -128,14 +128,14 @@ def pgstac_dsn(conninfo: Union[str, None], statement_timeout: Union[int, None]) 
 
 
 def pgstac_to_iter(
-    conninfo: Union[str, None],
-    collection: Union[str, None] = None,
-    start_datetime: Union[datetime, None] = None,
-    end_datetime: Union[datetime, None] = None,
-    search: Union[dict[str, Any], None] = None,
-    statement_timeout: Union[int, None] = None,
+    conninfo: str | None,
+    collection: str | None = None,
+    start_datetime: datetime | None = None,
+    end_datetime: datetime | None = None,
+    search: dict[str, Any] | None = None,
+    statement_timeout: int | None = None,
     cursor_itersize: int = 10000,
-    row_func: Union[Callable, None] = None,
+    row_func: Callable | None = None,
 ) -> Iterator[dict[str, Any]]:
     logger.info("Fetching Data from PGStac Into an Iterator of Items")
     conninfo = pgstac_dsn(conninfo, statement_timeout)
@@ -186,15 +186,15 @@ def pgstac_to_iter(
 
 def pgstac_to_arrow(
     conninfo: str,
-    collection: Union[str, None] = None,
-    start_datetime: Union[datetime, None] = None,
-    end_datetime: Union[datetime, None] = None,
-    search: Union[dict[str, Any], None] = None,
+    collection: str | None = None,
+    start_datetime: datetime | None = None,
+    end_datetime: datetime | None = None,
+    search: dict[str, Any] | None = None,
     chunk_size: int = DEFAULT_JSON_CHUNK_SIZE,
     schema: ACCEPTED_SCHEMA_OPTIONS = "FirstBatch",
-    statement_timeout: Union[int, None] = None,
-    row_func: Union[Callable, None] = None,
-    tmpdir: Union[str, Path, None] = None,
+    statement_timeout: int | None = None,
+    row_func: Callable | None = None,
+    tmpdir: str | Path | None = None,
 ) -> pa.RecordBatchReader:
     """
     Convert pgstac items to an arrow record batch reader.
@@ -216,17 +216,17 @@ def pgstac_to_arrow(
 
 def pgstac_to_parquet(
     conninfo: str,
-    output_path: Union[str, Path],
-    collection: Union[str, None] = None,
-    start_datetime: Union[datetime, None] = None,
-    end_datetime: Union[datetime, None] = None,
-    search: Union[dict[str, Any], None] = None,
+    output_path: str | Path,
+    collection: str | None = None,
+    start_datetime: datetime | None = None,
+    end_datetime: datetime | None = None,
+    search: dict[str, Any] | None = None,
     chunk_size: int = DEFAULT_JSON_CHUNK_SIZE,
     schema: ACCEPTED_SCHEMA_OPTIONS = "FirstBatch",
-    statement_timeout: Union[int, None] = None,
-    row_func: Union[Callable, None] = None,
+    statement_timeout: int | None = None,
+    row_func: Callable | None = None,
     schema_version: SUPPORTED_PARQUET_SCHEMA_VERSIONS = DEFAULT_PARQUET_SCHEMA_VERSION,
-    filesystem: Union[pyarrow.fs.FileSystem, None] = None,
+    filesystem: pyarrow.fs.FileSystem | None = None,
     **kwargs: Any,
 ) -> str:
     """
@@ -274,7 +274,7 @@ class Partition:
 
 
 def get_pgstac_partitions(
-    conninfo: str, updated_after: Union[datetime, None] = None
+    conninfo: str, updated_after: datetime | None = None
 ) -> Iterator[Partition]:
     db = pgstac_dsn(conninfo, None)
     with psycopg.connect(db) as conn:
@@ -312,14 +312,14 @@ def get_pgstac_partitions(
 
 def sync_pgstac_to_parquet(
     conninfo: str,
-    output_path: Union[str, Path],
-    updated_after: Union[datetime, None] = None,
+    output_path: str | Path,
+    updated_after: datetime | None = None,
     chunk_size: int = DEFAULT_JSON_CHUNK_SIZE,
     schema: ACCEPTED_SCHEMA_OPTIONS = "FirstBatch",
-    statement_timeout: Union[int, None] = None,
-    row_func: Union[Callable, None] = None,
+    statement_timeout: int | None = None,
+    row_func: Callable | None = None,
     schema_version: SUPPORTED_PARQUET_SCHEMA_VERSIONS = DEFAULT_PARQUET_SCHEMA_VERSION,
-    filesystem: Union[pyarrow.fs.FileSystem, None] = None,
+    filesystem: pyarrow.fs.FileSystem | None = None,
     **kwargs: Any,
 ) -> str:
     """

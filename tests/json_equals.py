@@ -1,10 +1,10 @@
 import math
 from collections.abc import Sequence
-from typing import Any, Union
+from typing import Any
 
 from ciso8601 import parse_rfc3339
 
-JsonValue = Union[list, tuple, int, float, dict, str, bool, None]
+JsonValue = list | tuple | int | float | dict | str | bool | None
 
 
 def assert_json_value_equal(
@@ -74,8 +74,8 @@ def assert_sequence_equal(
 
 
 def assert_number_equal(
-    result: Union[int, float],
-    expected: Union[int, float],
+    result: int | float,
+    expected: int | float,
     *,
     precision: float,
     key_name: str,
