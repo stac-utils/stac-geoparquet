@@ -4,9 +4,7 @@ from functools import reduce
 from itertools import islice
 from typing import (
     Any,
-    Optional,
     TypeVar,
-    Union,
 )
 
 import pyarrow as pa
@@ -23,7 +21,7 @@ def update_batch_schema(
 
 
 def batched_iter(
-    lst: Iterable[T], n: int, *, limit: Optional[int] = None
+    lst: Iterable[T], n: int, *, limit: int | None = None
 ) -> Iterable[Sequence[T]]:
     """Yield successive n-sized chunks from iterable."""
     if n < 1:
@@ -37,7 +35,7 @@ def batched_iter(
             return
 
 
-def convert_tuples_to_lists(t: Union[list, tuple]) -> list[Any]:
+def convert_tuples_to_lists(t: list | tuple) -> list[Any]:
     """Convert tuples to lists, recursively
 
     For example, converts:

@@ -18,6 +18,13 @@ from stac_geoparquet.utils import assert_equal, fix_empty_multipolygon
 HERE = pathlib.Path(__file__).parent
 
 
+def _arrow_array(values: object) -> pd.arrays.ArrowExtensionArray:
+    array = pa.array(values)
+    if pa.types.is_large_string(array.type):
+        array = array.cast(pa.string())
+    return pd.arrays.ArrowExtensionArray(array)
+
+
 @pytest.mark.vcr
 @pytest.mark.skipif(
     sys.version_info < (3, 10), reason="vcr tests require python3.10 or higher"
@@ -259,7 +266,7 @@ def test_to_geodataframe(dtype_backend):
     else:
         for k, v in EXPECTED_GDF.items():
             if k != "geometry":
-                expected[k] = pd.arrays.ArrowExtensionArray(pa.array(v))
+                expected[k] = _arrow_array(v)
 
     pandas.testing.assert_frame_equal(result, expected)
 
@@ -282,11 +289,11 @@ def test_to_geodataframe_with_self_link():
         [ITEM], add_self_link=True, dtype_backend="pyarrow"
     )
     expected = EXPECTED_GDF.copy()
-    expected["self_link"] = pd.arrays.ArrowExtensionArray(pa.array([ITEM_SELF_HREF]))
+    expected["self_link"] = _arrow_array([ITEM_SELF_HREF])
 
     for k, v in EXPECTED_GDF.items():
         if k != "geometry":
-            expected[k] = pd.arrays.ArrowExtensionArray(pa.array(v))
+            expected[k] = _arrow_array(v)
 
     pandas.testing.assert_frame_equal(result, expected)
 

@@ -96,7 +96,7 @@ plugins:
             extensions:
               - griffe_inherited_docstrings
 
-          import:
+          inventories:
             - https://arrow.apache.org/docs/objects.inv
             - https://delta-io.github.io/delta-rs/objects.inv
             - https://docs.python.org/3/objects.inv
