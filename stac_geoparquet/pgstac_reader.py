@@ -268,8 +268,8 @@ def pgstac_to_parquet(
 class Partition:
     collection: str
     partition: str
-    start: datetime
-    end: datetime
+    start: datetime | None
+    end: datetime | None
     last_updated: datetime
 
 
