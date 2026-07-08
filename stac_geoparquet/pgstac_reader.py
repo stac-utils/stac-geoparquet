@@ -24,6 +24,7 @@ from stac_geoparquet.arrow import (
     parse_stac_items_to_arrow,
 )
 from stac_geoparquet.arrow._api import parse_stac_items_to_parquet
+from stac_geoparquet.arrow._util import resolve_output_path_and_filesystem
 
 logger = logging.getLogger(__name__)
 
@@ -232,10 +233,7 @@ def pgstac_to_parquet(
     """
     Convert pgstac items to a parquet file.
     """
-    if filesystem is None:
-        filesystem, filepath = pyarrow.fs.FileSystem.from_uri(output_path)
-    else:
-        filepath = output_path
+    filesystem, filepath = resolve_output_path_and_filesystem(output_path, filesystem)
 
     filedir = Path(filepath).parent
     filesystem.create_dir(str(filedir), recursive=True)
@@ -257,7 +255,7 @@ def pgstac_to_parquet(
         items,
         chunk_size=chunk_size,
         schema=schema,
-        output_path=output_path,
+        output_path=filepath,
         schema_version=schema_version,
         filesystem=filesystem,
         **kwargs,
@@ -327,10 +325,7 @@ def sync_pgstac_to_parquet(
     items to parquet.
     """
 
-    if filesystem is None:
-        filesystem, filepath = pyarrow.fs.FileSystem.from_uri(output_path)
-    else:
-        filepath = output_path
+    filesystem, filepath = resolve_output_path_and_filesystem(output_path, filesystem)
 
     filedir = Path(filepath)
     filesystem.create_dir(str(filedir), recursive=True)

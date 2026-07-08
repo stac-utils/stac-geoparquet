@@ -2,6 +2,7 @@ import operator
 from collections.abc import Iterable, Sequence
 from functools import reduce
 from itertools import islice
+from pathlib import Path
 from typing import (
     Any,
     TypeVar,
@@ -10,6 +11,19 @@ from typing import (
 import pyarrow as pa
 
 T = TypeVar("T")
+
+
+def resolve_output_path_and_filesystem(
+    output_path: str | Path,
+    filesystem: pa.fs.FileSystem | None,
+) -> tuple[pa.fs.FileSystem, str | Path]:
+    """Resolve an (output_path, filesystem) pair, normalizing scheme-prefixed URIs."""
+    if filesystem is None:
+        return pa.fs.FileSystem.from_uri(output_path)
+    if isinstance(output_path, str) and "://" in output_path:
+        _, filepath = pa.fs.FileSystem.from_uri(output_path)
+        return filesystem, filepath
+    return filesystem, output_path
 
 
 def update_batch_schema(
