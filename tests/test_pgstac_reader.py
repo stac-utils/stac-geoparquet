@@ -1,13 +1,17 @@
 import json
 import pathlib
+from datetime import datetime
 
 import docker
+import pyarrow.fs
 import pypgstac
 import pytest
 from pypgstac.db import PgstacDB
 from pypgstac.load import Loader
 
+from stac_geoparquet import pgstac_reader
 from stac_geoparquet.pgstac_reader import (
+    Partition,
     pgstac_dsn,
     pgstac_to_arrow,
     pgstac_to_iter,
@@ -17,6 +21,48 @@ HERE = pathlib.Path(__file__).parent
 
 DOCKERIMG = "ghcr.io/stac-utils/pgstac:latest"
 NAIPDATA = HERE / "data" / "naip-pc.json"
+
+
+def test_sync_pgstac_to_parquet_with_scheme_prefixed_output_path(tmp_path, monkeypatch):
+    """
+    Regression test for output path mangling in `sync_pgstac_to_parquet`
+
+    When specifying a schema prefixed `output_path` with a `filesystem` the code had
+    previously parsed the `output_path` into a `filepath` using `FileSystem.from_uri`,
+    but still used `output_path` through `Path()`. This caused inputs like
+    `s3://bucket/key` to be mangled into `s3:/bucket/key` (note the single slash after
+    scheme), causing a failure inside of `FileSystem.create_dir`.
+    """
+    partition = Partition(
+        collection="naip",
+        partition="items.parquet",
+        start=None,
+        end=None,
+        last_updated=datetime(2024, 1, 1),
+    )
+    monkeypatch.setattr(
+        pgstac_reader, "get_pgstac_partitions", lambda *a, **k: iter([partition])
+    )
+
+    captured: dict = {}
+
+    def fake_pgstac_to_parquet(
+        conninfo: str, output_path: str | pathlib.Path, **kwargs
+    ) -> str:
+        captured["output_path"] = output_path
+        return str(output_path)
+
+    monkeypatch.setattr(pgstac_reader, "pgstac_to_parquet", fake_pgstac_to_parquet)
+
+    filesystem = pyarrow.fs.LocalFileSystem()
+    output_path = f"file://{tmp_path}/root"
+
+    pgstac_reader.sync_pgstac_to_parquet(
+        "postgres://unused", output_path, filesystem=filesystem
+    )
+
+    assert (tmp_path / "root").exists()
+    assert "naip" in str(captured["output_path"])
 
 
 @pytest.fixture(scope="session")
