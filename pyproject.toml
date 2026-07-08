@@ -28,7 +28,7 @@ Home = "https://github.com/stac-utils/stac-geoparquet"
 
 [project.optional-dependencies]
 deltalake = [
-    "deltalake<1",
+    "deltalake<2",
 ]
 pgstac = [
     "psycopg[binary]",
