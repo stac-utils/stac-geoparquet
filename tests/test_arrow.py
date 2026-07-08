@@ -3,6 +3,7 @@ import json
 from pathlib import Path
 
 import pyarrow as pa
+import pyarrow.dataset
 import pyarrow.parquet as pq
 import pytest
 
@@ -259,3 +260,43 @@ def test_resolve_output_path_and_filesystem(
     assert returned_path == expected_path
     if filesystem is not None:
         assert returned_filesystem is filesystem
+
+
+@pytest.mark.parametrize("colliding_key", ["collection", "geometry"])
+def test_properties_key_colliding_with_top_level_field_is_dropped(
+    tmp_path: Path,
+    caplog: pytest.LogCaptureFixture,
+    colliding_key: str,
+):
+    """Regression test to avoid clobbering top level metadata with properties
+
+    Per STAC GeoParquet specification:
+    > STAC GeoParquet does not support properties that are named such that they
+    > collide with a top-level key.
+    """
+    item = {
+        "type": "Feature",
+        "stac_version": "1.0.0",
+        "id": "item1",
+        "properties": {
+            "datetime": "2020-01-01T00:00:00Z",
+            colliding_key: "bogus-value",
+        },
+        "geometry": {"type": "Point", "coordinates": [0, 0]},
+        "links": [],
+        "assets": {"data": {"href": "https://example.com/a.tif"}},
+        "bbox": [0, 0, 0, 0],
+        "collection": "test",
+    }
+
+    with caplog.at_level("WARNING"):
+        table = parse_stac_items_to_arrow([item]).read_all()
+    assert f"properties.{colliding_key}" in caplog.text
+    assert table.schema.names.count(colliding_key) == 1
+
+    # Real-world failure mode: a duped column breaks pyarrow's Dataset schema unification.
+    output_path = tmp_path / "items.parquet"
+    parse_stac_items_to_parquet([item], output_path=output_path)
+
+    dataset = pyarrow.dataset.dataset(str(output_path), format="parquet")
+    assert dataset.schema.names.count(colliding_key) == 1
