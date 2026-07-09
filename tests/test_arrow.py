@@ -242,7 +242,7 @@ def test_parse_stac_items_to_parquet_with_scheme_prefixed_output_path(
         ("file:///test", "/test", None),
         ("file:///test", "/test", pa.fs.LocalFileSystem()),
         (Path("/test"), "/test", None),
-        (Path("/test"), Path("/test"), pa.fs.LocalFileSystem()),
+        (Path("/test"), "/test", pa.fs.LocalFileSystem()),
         ("s3://bucket/key", "bucket/key", None),
         ("s3://bucket/key", "bucket/key", pa.fs.S3FileSystem(anonymous=True)),
     ],
