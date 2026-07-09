@@ -2,14 +2,26 @@ import operator
 from collections.abc import Iterable, Sequence
 from functools import reduce
 from itertools import islice
-from typing import (
-    Any,
-    TypeVar,
-)
+from pathlib import Path
+from typing import Any, TypeVar
+from urllib.parse import urlsplit
 
 import pyarrow as pa
 
 T = TypeVar("T")
+
+
+def resolve_output_path_and_filesystem(
+    output_path: str | Path,
+    filesystem: pa.fs.FileSystem | None,
+) -> tuple[pa.fs.FileSystem, str]:
+    """Resolve an (output_path, filesystem) pair, normalizing scheme-prefixed URIs."""
+    if filesystem is None:
+        return pa.fs.FileSystem.from_uri(output_path)
+    if isinstance(output_path, str) and "://" in output_path:
+        parsed = urlsplit(output_path)
+        return filesystem, f"{parsed.netloc}{parsed.path}"
+    return filesystem, str(output_path)
 
 
 def update_batch_schema(

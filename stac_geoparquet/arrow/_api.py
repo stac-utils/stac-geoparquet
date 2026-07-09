@@ -23,7 +23,10 @@ from stac_geoparquet.arrow._constants import (
 )
 from stac_geoparquet.arrow._schema.models import InferredSchema
 from stac_geoparquet.arrow._to_parquet import to_parquet
-from stac_geoparquet.arrow._util import batched_iter
+from stac_geoparquet.arrow._util import (
+    batched_iter,
+    resolve_output_path_and_filesystem,
+)
 from stac_geoparquet.arrow.types import ArrowStreamExportable
 from stac_geoparquet.json_reader import read_json_chunked
 
@@ -160,10 +163,7 @@ def parse_stac_items_to_parquet(
     """
     logger.info("Saving STAC Items to Parquet")
 
-    if filesystem is None:
-        filesystem, filepath = pa.fs.FileSystem.from_uri(output_path)
-    else:
-        filepath = output_path
+    filesystem, filepath = resolve_output_path_and_filesystem(output_path, filesystem)
 
     filedir = Path(filepath).parent
     filesystem.create_dir(str(filedir), recursive=True)

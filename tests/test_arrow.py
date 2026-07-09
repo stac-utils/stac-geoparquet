@@ -15,6 +15,7 @@ from stac_geoparquet.arrow import (
     stac_table_to_ndjson,
     to_parquet,
 )
+from stac_geoparquet.arrow._util import resolve_output_path_and_filesystem
 
 from .json_equals import assert_json_value_equal
 
@@ -206,3 +207,55 @@ def test_parse_stac_items_to_parquet_with_filesystem(tmp_path: Path):
     actual_string = tmp_path / "test_string.parquet"
     assert actual_string.exists()
     assert pq.read_table(str(actual_string)).num_rows > 0
+
+
+def test_parse_stac_items_to_parquet_with_scheme_prefixed_output_path(
+    tmp_path: Path,
+):
+    """
+    Regression test for output path mangling in `parse_stac_items_to_parquet`
+
+    When a filesystem and scheme-prefixed `output_path` is explicitly provided, the
+    scheme-prefixed output_path (e.g., "file://folder/item.parquet") must be resolved
+    to a filesystem-relative path before being run through `Path`, since
+    `Path("file://folder/item.parquet")` collapses the double slash after the scheme
+    (e.g., "file:/folder/item.parquet").
+    """
+    collection_id = "naip-pc"
+    with open(HERE / "data" / f"{collection_id}.json") as f:
+        items = json.load(f)
+
+    filesystem = pa.fs.LocalFileSystem()
+    output_path = f"file://{tmp_path}/nested/items.parquet"
+
+    parse_stac_items_to_parquet(items, output_path=output_path, filesystem=filesystem)
+
+    actual_file = tmp_path / "nested" / "items.parquet"
+    assert actual_file.exists()
+    result_table = pq.read_table(str(actual_file))
+    assert result_table.num_rows > 0
+
+
+@pytest.mark.parametrize(
+    ["output_path", "expected_path", "filesystem"],
+    [
+        ("file:///test", "/test", None),
+        ("file:///test", "/test", pa.fs.LocalFileSystem()),
+        (Path("/test"), "/test", None),
+        (Path("/test"), "/test", pa.fs.LocalFileSystem()),
+        ("s3://bucket/key", "bucket/key", None),
+        ("s3://bucket/key", "bucket/key", pa.fs.S3FileSystem(anonymous=True)),
+    ],
+)
+def test_resolve_output_path_and_filesystem(
+    output_path: str | Path,
+    expected_path: str | Path,
+    filesystem: pa.fs.FileSystem | None,
+):
+    """Ensure output_path is parsed correctly with or without filesystem provided"""
+    returned_filesystem, returned_path = resolve_output_path_and_filesystem(
+        output_path, filesystem
+    )
+    assert returned_path == expected_path
+    if filesystem is not None:
+        assert returned_filesystem is filesystem
