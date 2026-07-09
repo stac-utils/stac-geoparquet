@@ -3,10 +3,8 @@ from collections.abc import Iterable, Sequence
 from functools import reduce
 from itertools import islice
 from pathlib import Path
-from typing import (
-    Any,
-    TypeVar,
-)
+from typing import Any, TypeVar
+from urllib.parse import urlsplit
 
 import pyarrow as pa
 
@@ -21,8 +19,8 @@ def resolve_output_path_and_filesystem(
     if filesystem is None:
         return pa.fs.FileSystem.from_uri(output_path)
     if isinstance(output_path, str) and "://" in output_path:
-        _, filepath = pa.fs.FileSystem.from_uri(output_path)
-        return filesystem, filepath
+        parsed = urlsplit(output_path)
+        return filesystem, f"{parsed.netloc}{parsed.path}"
     return filesystem, output_path
 
 

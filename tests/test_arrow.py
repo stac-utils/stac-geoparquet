@@ -15,6 +15,7 @@ from stac_geoparquet.arrow import (
     stac_table_to_ndjson,
     to_parquet,
 )
+from stac_geoparquet.arrow._util import resolve_output_path_and_filesystem
 
 from .json_equals import assert_json_value_equal
 
@@ -233,3 +234,28 @@ def test_parse_stac_items_to_parquet_with_scheme_prefixed_output_path(
     assert actual_file.exists()
     result_table = pq.read_table(str(actual_file))
     assert result_table.num_rows > 0
+
+
+@pytest.mark.parametrize(
+    ["output_path", "expected_path", "filesystem"],
+    [
+        ("file:///test", "/test", None),
+        ("file:///test", "/test", pa.fs.LocalFileSystem()),
+        (Path("/test"), "/test", None),
+        (Path("/test"), Path("/test"), pa.fs.LocalFileSystem()),
+        ("s3://bucket/key", "bucket/key", None),
+        ("s3://bucket/key", "bucket/key", pa.fs.S3FileSystem(anonymous=True)),
+    ],
+)
+def test_resolve_output_path_and_filesystem(
+    output_path: str | Path,
+    expected_path: str | Path,
+    filesystem: pa.fs.FileSystem | None,
+):
+    """Ensure output_path is parsed correctly with or without filesystem provided"""
+    returned_filesystem, returned_path = resolve_output_path_and_filesystem(
+        output_path, filesystem
+    )
+    assert returned_path == expected_path
+    if filesystem is not None:
+        assert returned_filesystem is filesystem
