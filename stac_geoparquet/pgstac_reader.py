@@ -196,6 +196,7 @@ def pgstac_to_arrow(
     statement_timeout: int | None = None,
     row_func: Callable | None = None,
     tmpdir: str | Path | None = None,
+    drop_invalid_properties: bool = True,
 ) -> pa.RecordBatchReader:
     """
     Convert pgstac items to an arrow record batch reader.
@@ -211,7 +212,11 @@ def pgstac_to_arrow(
         row_func=row_func,
     )
     return parse_stac_items_to_arrow(
-        items, chunk_size=chunk_size, schema=schema, tmpdir=tmpdir
+        items,
+        chunk_size=chunk_size,
+        schema=schema,
+        tmpdir=tmpdir,
+        drop_invalid_properties=drop_invalid_properties,
     )
 
 

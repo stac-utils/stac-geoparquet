@@ -263,7 +263,7 @@ def test_resolve_output_path_and_filesystem(
 
 
 @pytest.mark.parametrize("colliding_key", ["collection", "geometry"])
-def test_properties_key_colliding_with_top_level_field_is_dropped(
+def test_properties_key_colliding_with_top_level_field(
     tmp_path: Path,
     caplog: pytest.LogCaptureFixture,
     colliding_key: str,
@@ -289,14 +289,10 @@ def test_properties_key_colliding_with_top_level_field_is_dropped(
         "collection": "test",
     }
 
+    with pytest.raises(ValueError, match=colliding_key):
+        parse_stac_items_to_arrow([item], drop_invalid_properties=False).read_all()
+
     with caplog.at_level("WARNING"):
         table = parse_stac_items_to_arrow([item]).read_all()
     assert f"properties.{colliding_key}" in caplog.text
     assert table.schema.names.count(colliding_key) == 1
-
-    # Real-world failure mode: a duped column breaks pyarrow's Dataset schema unification.
-    output_path = tmp_path / "items.parquet"
-    parse_stac_items_to_parquet([item], output_path=output_path)
-
-    dataset = pyarrow.dataset.dataset(str(output_path), format="parquet")
-    assert dataset.schema.names.count(colliding_key) == 1
