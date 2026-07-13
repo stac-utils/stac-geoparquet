@@ -32,16 +32,13 @@ def bring_properties_to_top_level(
     for field_idx in range(properties_field.type.num_fields):
         inner_prop_field = properties_field.type.field(field_idx)
         if inner_prop_field.name in top_level_names:
-            if not drop_invalid_properties:
-                raise ValueError(
-                    f"Item properties contains a '{inner_prop_field.name}' key, "
-                    "which collides with a top-level field of the same name."
-                )
-            logger.warning(
-                f"Item properties contains a '{inner_prop_field.name}' key, which "
-                "collides with a top-level field of the same name. Dropping "
-                f"properties.{inner_prop_field.name}."
+            error_info = (
+                f"Item properties contains a '{inner_prop_field.name}' key, "
+                "which collides with a top-level field of the same name."
             )
+            if not drop_invalid_properties:
+                raise ValueError(error_info)
+            logger.warning(f"{error_info} Dropping properties.{inner_prop_field.name}.")
             continue
         batch = batch.append_column(
             inner_prop_field,
