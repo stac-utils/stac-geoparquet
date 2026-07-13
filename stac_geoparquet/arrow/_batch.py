@@ -183,7 +183,9 @@ class StacJsonBatch:
     def to_arrow_batch(self, drop_invalid_properties: bool = True) -> StacArrowBatch:
         batch = self.inner
 
-        batch = bring_properties_to_top_level(batch, drop_invalid_properties)
+        batch = bring_properties_to_top_level(
+            batch, drop_invalid_properties=drop_invalid_properties
+        )
         batch = convert_timestamp_columns(batch)
         batch = convert_bbox_to_struct(batch)
         batch = assign_geoarrow_metadata(batch)
