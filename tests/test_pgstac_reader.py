@@ -3,7 +3,9 @@ import pathlib
 from datetime import datetime
 
 import docker
+import psycopg
 import pyarrow.fs
+import pyarrow.parquet
 import pypgstac
 import pytest
 from pypgstac.db import PgstacDB
@@ -21,6 +23,15 @@ HERE = pathlib.Path(__file__).parent
 
 DOCKERIMG = "ghcr.io/stac-utils/pgstac:latest"
 NAIPDATA = HERE / "data" / "naip-pc.json"
+
+
+def test_connect_requires_exactly_one_of_conninfo_or_conn_factory():
+    with pytest.raises(ValueError):
+        with pgstac_reader._connect(None, None, None):
+            pass
+    with pytest.raises(ValueError):
+        with pgstac_reader._connect("postgres://unused", None, lambda: None):
+            pass
 
 
 def test_sync_pgstac_to_parquet_with_scheme_prefixed_output_path(tmp_path, monkeypatch):
@@ -148,3 +159,22 @@ def test_pgstac_reader_arrow(pgstac_postgres):
     assert items.schema.field("id").name == "id"
     assert items.schema.field("id").type == "string"
     assert items.schema.field("geometry").name == "geometry"
+
+
+def test_sync_pgstac_to_parquet_with_conn_factory(pgstac_postgres, tmp_path):
+    """
+    conn_factory should work as a drop-in alternative to conninfo, threaded through
+    sync_pgstac_to_parquet -> get_pgstac_partitions and -> pgstac_to_parquet.
+    """
+    filesystem = pyarrow.fs.LocalFileSystem()
+
+    written = pgstac_reader.sync_pgstac_to_parquet(
+        None,
+        str(tmp_path / "root"),
+        conn_factory=lambda: psycopg.connect(pgstac_postgres),
+        filesystem=filesystem,
+    )
+
+    table = pyarrow.parquet.read_table(written, filesystem=filesystem)
+    assert table.num_rows == 4
+    assert set(table.column("collection").to_pylist()) == {"naip"}
