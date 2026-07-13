@@ -69,6 +69,7 @@ def parse_stac_items_to_arrow(
     chunk_size: int = DEFAULT_JSON_CHUNK_SIZE,
     schema: ACCEPTED_SCHEMA_OPTIONS = "FullFile",
     tmpdir: str | Path | None = None,
+    drop_invalid_properties: bool = True,
 ) -> pa.RecordBatchReader:
     """
     Parse a collection of STAC Items to an iterable of
@@ -90,6 +91,8 @@ def parse_stac_items_to_arrow(
             will use the first batch of items to infer the schema, or "ChunksToDisk"
             which will write each chunk of items to disk as a Parquet file and then read
             them back in to unify the schema. Defaults to "FullFile".
+        drop_invalid_properties: If True (default), an Item property whose name
+            collides with a top-level field. If False, a ValueError is raised instead.
 
     Returns:
         pyarrow RecordBatchReader with a stream of STAC Arrow RecordBatches.
@@ -103,19 +106,24 @@ def parse_stac_items_to_arrow(
         # If schema is provided, then for better memory usage we parse input STAC items
         # to Arrow batches in chunks.
         batches = (
-            stac_items_to_arrow(batch, schema=schema)
+            stac_items_to_arrow(
+                batch, schema=schema, drop_invalid_properties=drop_invalid_properties
+            )
             for batch in batched_iter(items, chunk_size)
         )
         return pa.RecordBatchReader.from_batches(schema, batches)
 
     elif schema == "FullFile":
-        batch = stac_items_to_arrow(items)
+        batch = stac_items_to_arrow(
+            items, drop_invalid_properties=drop_invalid_properties
+        )
         logger.debug(batch.schema, batch)
         return pa.RecordBatchReader.from_batches(batch.schema, [batch])
 
     elif schema == "FirstBatch":
         batches = (
-            stac_items_to_arrow(batch) for batch in batched_iter(items, chunk_size)
+            stac_items_to_arrow(batch, drop_invalid_properties=drop_invalid_properties)
+            for batch in batched_iter(items, chunk_size)
         )
         return from_batches(batches)
 
@@ -126,7 +134,9 @@ def parse_stac_items_to_arrow(
         else:
             logger.info(f"Using temporary directory {tmpdir} for chunked schema")
             for cnt, chunk in enumerate(batched_iter(items, chunk_size)):
-                batch = stac_items_to_arrow(chunk)
+                batch = stac_items_to_arrow(
+                    chunk, drop_invalid_properties=drop_invalid_properties
+                )
                 if not isinstance(schema, pa.Schema):
                     schema = batch.schema
                 elif not schema.equals(batch.schema):
@@ -156,6 +166,7 @@ def parse_stac_items_to_parquet(
     tmpdir: str | Path | None = None,
     schema_version: SUPPORTED_PARQUET_SCHEMA_VERSIONS = DEFAULT_PARQUET_SCHEMA_VERSION,
     filesystem: pa.fs.FileSystem | None = None,
+    drop_invalid_properties: bool = True,
     **kwargs: Any,
 ) -> str:
     """
@@ -177,6 +188,7 @@ def parse_stac_items_to_parquet(
                 chunk_size=chunk_size,
                 schema=schema,
                 tmpdir=td,
+                drop_invalid_properties=drop_invalid_properties,
             )
             memlog("Parsed to arrow")
             to_parquet(
@@ -192,6 +204,7 @@ def parse_stac_items_to_parquet(
             chunk_size=chunk_size,
             schema=schema,
             tmpdir=tmpdir,
+            drop_invalid_properties=drop_invalid_properties,
         )
         memlog("Parsed to arrow")
         to_parquet(
@@ -211,6 +224,7 @@ def parse_stac_ndjson_to_arrow(
     chunk_size: int = DEFAULT_JSON_CHUNK_SIZE,
     schema: pa.Schema | None = None,
     limit: int | None = None,
+    drop_invalid_properties: bool = True,
 ) -> pa.RecordBatchReader:
     """
     Convert one or more newline-delimited JSON STAC files to a generator of Arrow
@@ -229,6 +243,8 @@ def parse_stac_ndjson_to_arrow(
 
     Keyword Args:
         limit: The maximum number of JSON Items to use for schema inference
+        drop_invalid_properties: If True (default), an Item property whose name
+            collides with a top-level field. If False, a ValueError is raised instead.
 
     Returns:
         pyarrow RecordBatchReader with a stream of STAC Arrow RecordBatches.
@@ -240,14 +256,19 @@ def parse_stac_ndjson_to_arrow(
         inferred_schema.update_from_json(path, chunk_size=chunk_size, limit=limit)
         inferred_schema.manual_updates()
         return parse_stac_ndjson_to_arrow(
-            path, chunk_size=chunk_size, schema=inferred_schema
+            path,
+            chunk_size=chunk_size,
+            schema=inferred_schema,
+            drop_invalid_properties=drop_invalid_properties,
         )
 
     if isinstance(schema, InferredSchema):
         schema = schema.inner
 
     batches_iter = (
-        stac_items_to_arrow(batch, schema=schema)
+        stac_items_to_arrow(
+            batch, schema=schema, drop_invalid_properties=drop_invalid_properties
+        )
         for batch in read_json_chunked(path, chunk_size=chunk_size)
     )
     first_batch = next(batches_iter)
@@ -270,6 +291,7 @@ def parse_stac_ndjson_to_parquet(
     collections: Mapping[str, Mapping[str, Any]] | None = None,
     collection_metadata: Mapping[str, Any] | None = None,
     filesystem: pa.fs.FileSystem | None = None,
+    drop_invalid_properties: bool = True,
     **kwargs: Any,
 ) -> None:
     """Convert one or more newline-delimited JSON STAC files to GeoParquet
@@ -300,12 +322,18 @@ def parse_stac_ndjson_to_parquet(
             Deprecated in favor of `collections`.
         filesystem: PyArrow FileSystem to use for writing. If not provided, will be inferred
             from output_path for local files.
+        drop_invalid_properties: If True (default), an Item property whose name
+            collides with a top-level field. If False, a ValueError is raised instead.
 
     All other keyword args are passed on to
     [`pyarrow.parquet.ParquetWriter`][pyarrow.parquet.ParquetWriter].
     """
     record_batch_reader = parse_stac_ndjson_to_arrow(
-        input_path, chunk_size=chunk_size, schema=schema, limit=limit
+        input_path,
+        chunk_size=chunk_size,
+        schema=schema,
+        limit=limit,
+        drop_invalid_properties=drop_invalid_properties,
     )
     to_parquet(
         record_batch_reader,
@@ -378,7 +406,10 @@ def stac_table_to_ndjson(
 
 
 def stac_items_to_arrow(
-    items: Iterable[pystac.Item | dict[str, Any]], *, schema: pa.Schema | None = None
+    items: Iterable[pystac.Item | dict[str, Any]],
+    *,
+    schema: pa.Schema | None = None,
+    drop_invalid_properties: bool = True,
 ) -> pa.RecordBatch:
     """Convert dicts representing STAC Items to Arrow
 
@@ -394,9 +425,11 @@ def stac_items_to_arrow(
     Kwargs:
         schema: An optional schema that describes the format of the data. Note that this
             must represent the geometry column as binary type.
+        drop_invalid_properties: If True (default), an Item property whose name
+            collides with a top-level field. If False, a ValueError is raised instead.
 
     Returns:
         Arrow RecordBatch with items in Arrow
     """
     raw_batch = StacJsonBatch.from_dicts(items, schema=schema)
-    return raw_batch.to_arrow_batch().inner
+    return raw_batch.to_arrow_batch(drop_invalid_properties).inner

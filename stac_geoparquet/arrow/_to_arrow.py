@@ -1,5 +1,7 @@
 """Convert STAC data into Arrow tables"""
 
+import logging
+
 import numpy as np
 import orjson
 import pyarrow as pa
@@ -7,16 +9,37 @@ import pyarrow.compute as pc
 
 from stac_geoparquet.arrow._crs import WGS84_CRS_JSON
 
+logger = logging.getLogger(__name__)
+
 
 def bring_properties_to_top_level(
     batch: pa.RecordBatch,
+    drop_invalid_properties: bool = True,
 ) -> pa.RecordBatch:
-    """Bring all the fields inside of the nested "properties" struct to the top level"""
+    """Bring all the fields inside of the nested "properties" struct to the top level
+
+    A property whose name collides with an existing top-level field is not flattened,
+    since flattening it would produce two top-level columns with the same name. STAC
+    GeoParquet does not support properties that collide with a top-level key.
+
+    If `drop_invalid_properties` is True (the default), the colliding property is
+    dropped and a warning is logged. If False, a ValueError is raised instead.
+    """
     properties_field = batch.schema.field("properties")
     properties_column = batch["properties"]
+    top_level_names = set(batch.schema.names)
 
     for field_idx in range(properties_field.type.num_fields):
         inner_prop_field = properties_field.type.field(field_idx)
+        if inner_prop_field.name in top_level_names:
+            error_info = (
+                f"Item properties contains a '{inner_prop_field.name}' key, "
+                "which collides with a top-level field of the same name."
+            )
+            if not drop_invalid_properties:
+                raise ValueError(error_info)
+            logger.warning(f"{error_info} Dropping properties.{inner_prop_field.name}.")
+            continue
         batch = batch.append_column(
             inner_prop_field,
             pc.struct_field(properties_column, field_idx),  # type: ignore
