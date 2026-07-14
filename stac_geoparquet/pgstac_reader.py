@@ -131,21 +131,17 @@ def pgstac_dsn(conninfo: str | None, statement_timeout: int | None) -> str:
 
 @contextmanager
 def _connect(
-    conninfo: str | None,
+    conninfo: str | Callable[[], psycopg.Connection],
     statement_timeout: int | None,
-    conn_factory: Callable[[], psycopg.Connection] | None,
 ) -> Iterator[psycopg.Connection]:
     """
-    Yield a pgstac connection, via connection string or a caller-supplied `conn_factory`.
+    Yield a pgstac connection, via connection string or a callable connection factory.
 
-    Exactly one of the two must be given. `conn_factory` users are responsible for
-    setting `search_path` (pgstac,public) and `statement_timeout` on the connection
-    themselves.
+    If `conninfo` is a callable, users are responsible for setting `search_path`
+    (pgstac,public) and `statement_timeout` on the connection themselves.
     """
-    if (conninfo is None) is (conn_factory is None):
-        raise ValueError("Exactly one of conninfo or conn_factory must be given")
-    if conn_factory is not None:
-        with conn_factory() as conn:
+    if callable(conninfo):
+        with conninfo() as conn:
             yield conn
         return
     with psycopg.connect(pgstac_dsn(conninfo, statement_timeout)) as conn:
@@ -153,7 +149,7 @@ def _connect(
 
 
 def pgstac_to_iter(
-    conninfo: str | None = None,
+    conninfo: str | Callable[[], psycopg.Connection],
     collection: str | None = None,
     start_datetime: datetime | None = None,
     end_datetime: datetime | None = None,
@@ -161,7 +157,6 @@ def pgstac_to_iter(
     statement_timeout: int | None = None,
     cursor_itersize: int = 10000,
     row_func: Callable | None = None,
-    conn_factory: Callable[[], psycopg.Connection] | None = None,
 ) -> Iterator[dict[str, Any]]:
     logger.info("Fetching Data from PGStac Into an Iterator of Items")
 
@@ -198,7 +193,7 @@ def pgstac_to_iter(
         query = "SELECT * FROM items;"
         args = ()
     curname = "".join(random.choices(string.ascii_lowercase, k=32))
-    with _connect(conninfo, statement_timeout, conn_factory) as conn:
+    with _connect(conninfo, statement_timeout) as conn:
         with conn.cursor(curname, row_factory=PgstacRowFactory) as cur:  # type: ignore
             cur.itersize = cursor_itersize
             cur.execute(query, args)
@@ -210,7 +205,7 @@ def pgstac_to_iter(
 
 
 def pgstac_to_arrow(
-    conninfo: str | None = None,
+    conninfo: str | Callable[[], psycopg.Connection],
     collection: str | None = None,
     start_datetime: datetime | None = None,
     end_datetime: datetime | None = None,
@@ -221,7 +216,6 @@ def pgstac_to_arrow(
     row_func: Callable | None = None,
     tmpdir: str | Path | None = None,
     drop_invalid_properties: bool = True,
-    conn_factory: Callable[[], psycopg.Connection] | None = None,
 ) -> pa.RecordBatchReader:
     """
     Convert pgstac items to an arrow record batch reader.
@@ -235,7 +229,6 @@ def pgstac_to_arrow(
         statement_timeout=statement_timeout,
         cursor_itersize=chunk_size,
         row_func=row_func,
-        conn_factory=conn_factory,
     )
     return parse_stac_items_to_arrow(
         items,
@@ -247,7 +240,7 @@ def pgstac_to_arrow(
 
 
 def pgstac_to_parquet(
-    conninfo: str | None,
+    conninfo: str | Callable[[], psycopg.Connection],
     output_path: str | Path,
     collection: str | None = None,
     start_datetime: datetime | None = None,
@@ -259,7 +252,6 @@ def pgstac_to_parquet(
     row_func: Callable | None = None,
     schema_version: SUPPORTED_PARQUET_SCHEMA_VERSIONS = DEFAULT_PARQUET_SCHEMA_VERSION,
     filesystem: pyarrow.fs.FileSystem | None = None,
-    conn_factory: Callable[[], psycopg.Connection] | None = None,
     **kwargs: Any,
 ) -> str:
     """
@@ -281,7 +273,6 @@ def pgstac_to_parquet(
         statement_timeout=statement_timeout,
         cursor_itersize=chunk_size,
         row_func=row_func,
-        conn_factory=conn_factory,
     )
 
     return parse_stac_items_to_parquet(
@@ -305,11 +296,10 @@ class Partition:
 
 
 def get_pgstac_partitions(
-    conninfo: str | None = None,
+    conninfo: str | Callable[[], psycopg.Connection],
     updated_after: datetime | None = None,
-    conn_factory: Callable[[], psycopg.Connection] | None = None,
 ) -> Iterator[Partition]:
-    with _connect(conninfo, None, conn_factory) as conn:
+    with _connect(conninfo, None) as conn:
         with conn.cursor(row_factory=psycopg.rows.class_row(Partition)) as cur:
             # note: '.000001 seconds' is the minimum resolution for timestamptz in Postgres, so this
             # is added since the inclusive upper bound in the dtrange can be used with exclusive <
@@ -343,7 +333,7 @@ def get_pgstac_partitions(
 
 
 def sync_pgstac_to_parquet(
-    conninfo: str | None,
+    conninfo: str | Callable[[], psycopg.Connection],
     output_path: str | Path,
     updated_after: datetime | None = None,
     chunk_size: int = DEFAULT_JSON_CHUNK_SIZE,
@@ -352,7 +342,6 @@ def sync_pgstac_to_parquet(
     row_func: Callable | None = None,
     schema_version: SUPPORTED_PARQUET_SCHEMA_VERSIONS = DEFAULT_PARQUET_SCHEMA_VERSION,
     filesystem: pyarrow.fs.FileSystem | None = None,
-    conn_factory: Callable[[], psycopg.Connection] | None = None,
     **kwargs: Any,
 ) -> str:
     """
@@ -368,7 +357,7 @@ def sync_pgstac_to_parquet(
     logger.info(
         f"Syncing PgSTAC partitions that have been updated since {updated_after} to {output_path} on filesystem {filesystem}."
     )
-    for p in get_pgstac_partitions(conninfo, updated_after, conn_factory=conn_factory):
+    for p in get_pgstac_partitions(conninfo, updated_after):
         of = filedir / p.collection / p.partition
         logger.debug(of)
 
@@ -384,7 +373,6 @@ def sync_pgstac_to_parquet(
             statement_timeout=statement_timeout,
             schema_version=schema_version,
             filesystem=filesystem,
-            conn_factory=conn_factory,
             **kwargs,
         )
     return str(of)
