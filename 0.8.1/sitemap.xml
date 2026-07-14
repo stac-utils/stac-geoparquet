@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+         <loc>https://stac-utils.github.io/stac-geoparquet/latest/</loc>
+         <lastmod>2026-07-14</lastmod>
+    </url>
+    <url>
+         <loc>https://stac-utils.github.io/stac-geoparquet/latest/usage/</loc>
+         <lastmod>2026-07-14</lastmod>
+    </url>
+    <url>
+         <loc>https://stac-utils.github.io/stac-geoparquet/latest/whatsnew/</loc>
+         <lastmod>2026-07-14</lastmod>
+    </url>
+    <url>
+         <loc>https://stac-utils.github.io/stac-geoparquet/latest/api/arrow/</loc>
+         <lastmod>2026-07-14</lastmod>
+    </url>
+    <url>
+         <loc>https://stac-utils.github.io/stac-geoparquet/latest/api/legacy/</loc>
+         <lastmod>2026-07-14</lastmod>
+    </url>
+    <url>
+         <loc>https://stac-utils.github.io/stac-geoparquet/latest/api/pgstac/</loc>
+         <lastmod>2026-07-14</lastmod>
+    </url>
+    <url>
+         <loc>https://stac-utils.github.io/stac-geoparquet/latest/examples/dump_pgstac_to_parquet/</loc>
+         <lastmod>2026-07-14</lastmod>
+    </url>
+    <url>
+         <loc>https://stac-utils.github.io/stac-geoparquet/latest/examples/naip/</loc>
+         <lastmod>2026-07-14</lastmod>
+    </url>
+</urlset>
