@@ -3,7 +3,9 @@ import pathlib
 from datetime import datetime
 
 import docker
+import psycopg
 import pyarrow.fs
+import pyarrow.parquet
 import pypgstac
 import pytest
 from pypgstac.db import PgstacDB
@@ -148,3 +150,23 @@ def test_pgstac_reader_arrow(pgstac_postgres):
     assert items.schema.field("id").name == "id"
     assert items.schema.field("id").type == "string"
     assert items.schema.field("geometry").name == "geometry"
+
+
+def test_sync_pgstac_to_parquet_with_conn_factory(pgstac_postgres, tmp_path):
+    """
+    conninfo can be provided as a Callable.
+
+    This test exercises the `_connect` function while also threading through the call
+    stack of sync_pgstac_to_parquet -> get_pgstac_partitions -> pgstac_to_parquet.
+    """
+    filesystem = pyarrow.fs.LocalFileSystem()
+
+    written = pgstac_reader.sync_pgstac_to_parquet(
+        lambda: psycopg.connect(pgstac_postgres),
+        str(tmp_path / "root"),
+        filesystem=filesystem,
+    )
+
+    table = pyarrow.parquet.read_table(written, filesystem=filesystem)
+    assert table.num_rows == 4
+    assert set(table.column("collection").to_pylist()) == {"naip"}

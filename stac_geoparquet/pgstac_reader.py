@@ -3,6 +3,7 @@ import logging
 import random
 import string
 from collections.abc import Callable, Iterator
+from contextlib import contextmanager
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
@@ -128,8 +129,32 @@ def pgstac_dsn(conninfo: str | None, statement_timeout: int | None) -> str:
     return psycopg.conninfo.make_conninfo("", **connd)
 
 
+@contextmanager
+def _connect(
+    conninfo: str | Callable[[], psycopg.Connection] | None,
+    statement_timeout: int | None,
+) -> Iterator[psycopg.Connection]:
+    """
+    Yield a pgstac connection
+
+    This supports:
+    - a connection string
+    - a callable connection factory
+    - an environment variable when set to `None`
+
+    If `conninfo` is a callable, users are responsible for setting `search_path`
+    (pgstac,public) and `statement_timeout` on the connection themselves.
+    """
+    if callable(conninfo):
+        with conninfo() as conn:
+            yield conn
+        return
+    with psycopg.connect(pgstac_dsn(conninfo, statement_timeout)) as conn:
+        yield conn
+
+
 def pgstac_to_iter(
-    conninfo: str | None,
+    conninfo: str | Callable[[], psycopg.Connection] | None,
     collection: str | None = None,
     start_datetime: datetime | None = None,
     end_datetime: datetime | None = None,
@@ -139,7 +164,6 @@ def pgstac_to_iter(
     row_func: Callable | None = None,
 ) -> Iterator[dict[str, Any]]:
     logger.info("Fetching Data from PGStac Into an Iterator of Items")
-    conninfo = pgstac_dsn(conninfo, statement_timeout)
 
     if search is not None and (
         collection is not None or start_datetime is not None or end_datetime is not None
@@ -174,7 +198,7 @@ def pgstac_to_iter(
         query = "SELECT * FROM items;"
         args = ()
     curname = "".join(random.choices(string.ascii_lowercase, k=32))
-    with psycopg.connect(conninfo) as conn:
+    with _connect(conninfo, statement_timeout) as conn:
         with conn.cursor(curname, row_factory=PgstacRowFactory) as cur:  # type: ignore
             cur.itersize = cursor_itersize
             cur.execute(query, args)
@@ -186,7 +210,7 @@ def pgstac_to_iter(
 
 
 def pgstac_to_arrow(
-    conninfo: str,
+    conninfo: str | Callable[[], psycopg.Connection] | None,
     collection: str | None = None,
     start_datetime: datetime | None = None,
     end_datetime: datetime | None = None,
@@ -221,7 +245,7 @@ def pgstac_to_arrow(
 
 
 def pgstac_to_parquet(
-    conninfo: str,
+    conninfo: str | Callable[[], psycopg.Connection] | None,
     output_path: str | Path,
     collection: str | None = None,
     start_datetime: datetime | None = None,
@@ -277,10 +301,10 @@ class Partition:
 
 
 def get_pgstac_partitions(
-    conninfo: str, updated_after: datetime | None = None
+    conninfo: str | Callable[[], psycopg.Connection] | None,
+    updated_after: datetime | None = None,
 ) -> Iterator[Partition]:
-    db = pgstac_dsn(conninfo, None)
-    with psycopg.connect(db) as conn:
+    with _connect(conninfo, None) as conn:
         with conn.cursor(row_factory=psycopg.rows.class_row(Partition)) as cur:
             # note: '.000001 seconds' is the minimum resolution for timestamptz in Postgres, so this
             # is added since the inclusive upper bound in the dtrange can be used with exclusive <
@@ -314,7 +338,7 @@ def get_pgstac_partitions(
 
 
 def sync_pgstac_to_parquet(
-    conninfo: str,
+    conninfo: str | Callable[[], psycopg.Connection] | None,
     output_path: str | Path,
     updated_after: datetime | None = None,
     chunk_size: int = DEFAULT_JSON_CHUNK_SIZE,

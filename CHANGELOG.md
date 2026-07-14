@@ -7,6 +7,7 @@ This is a list of changes to `stac-geoparquet`.
 - Drop Python 3.9 (<https://github.com/stac-utils/stac-geoparquet/pull/133>)
 - Fixed resolution of scheme-prefixed `output_path`s (e.g., `s3://bucket/item.parquet`) (<https://github.com/stac-utils/stac-geoparquet/pull/143>)
 - Fixed duplication of STAC Item properties with top-level keys (e.g., "collection") (<https://github.com/stac-utils/stac-geoparquet/pull/144>)
+- Allow users to provide their own PgSTAC connection factory (<https://github.com/stac-utils/stac-geoparquet/pull/145>)
 
 ## 0.8.0
 
