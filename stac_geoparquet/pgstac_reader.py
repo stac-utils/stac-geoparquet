@@ -131,11 +131,16 @@ def pgstac_dsn(conninfo: str | None, statement_timeout: int | None) -> str:
 
 @contextmanager
 def _connect(
-    conninfo: str | Callable[[], psycopg.Connection],
+    conninfo: str | Callable[[], psycopg.Connection] | None,
     statement_timeout: int | None,
 ) -> Iterator[psycopg.Connection]:
     """
-    Yield a pgstac connection, via connection string or a callable connection factory.
+    Yield a pgstac connection
+
+    This supports:
+    - a connection string
+    - a callable connection factory
+    - an environment variable when set to `None`
 
     If `conninfo` is a callable, users are responsible for setting `search_path`
     (pgstac,public) and `statement_timeout` on the connection themselves.
@@ -149,7 +154,7 @@ def _connect(
 
 
 def pgstac_to_iter(
-    conninfo: str | Callable[[], psycopg.Connection],
+    conninfo: str | Callable[[], psycopg.Connection] | None,
     collection: str | None = None,
     start_datetime: datetime | None = None,
     end_datetime: datetime | None = None,
@@ -205,7 +210,7 @@ def pgstac_to_iter(
 
 
 def pgstac_to_arrow(
-    conninfo: str | Callable[[], psycopg.Connection],
+    conninfo: str | Callable[[], psycopg.Connection] | None,
     collection: str | None = None,
     start_datetime: datetime | None = None,
     end_datetime: datetime | None = None,
@@ -240,7 +245,7 @@ def pgstac_to_arrow(
 
 
 def pgstac_to_parquet(
-    conninfo: str | Callable[[], psycopg.Connection],
+    conninfo: str | Callable[[], psycopg.Connection] | None,
     output_path: str | Path,
     collection: str | None = None,
     start_datetime: datetime | None = None,
@@ -296,7 +301,7 @@ class Partition:
 
 
 def get_pgstac_partitions(
-    conninfo: str | Callable[[], psycopg.Connection],
+    conninfo: str | Callable[[], psycopg.Connection] | None,
     updated_after: datetime | None = None,
 ) -> Iterator[Partition]:
     with _connect(conninfo, None) as conn:
@@ -333,7 +338,7 @@ def get_pgstac_partitions(
 
 
 def sync_pgstac_to_parquet(
-    conninfo: str | Callable[[], psycopg.Connection],
+    conninfo: str | Callable[[], psycopg.Connection] | None,
     output_path: str | Path,
     updated_after: datetime | None = None,
     chunk_size: int = DEFAULT_JSON_CHUNK_SIZE,
