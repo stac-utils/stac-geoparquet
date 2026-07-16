@@ -3,7 +3,6 @@ from __future__ import annotations
 import itertools
 import logging
 import os
-import sys
 import tempfile
 from collections.abc import Iterable, Mapping
 from pathlib import Path
@@ -30,7 +29,6 @@ from stac_geoparquet.arrow._util import (
 from stac_geoparquet.arrow.types import ArrowStreamExportable
 from stac_geoparquet.json_reader import read_json_chunked
 
-logging.basicConfig(level=logging.INFO, stream=sys.stdout)
 logger = logging.getLogger(__name__)
 
 PID = psutil.Process(os.getpid())

@@ -4,6 +4,8 @@ This is a list of changes to `stac-geoparquet`.
 
 ## Unreleased
 
+- Don't configure logging level at module level (<https://github.com/stac-utils/stac-geoparquet/pull/152>)
+
 ## 0.8.1
 
 - Drop Python 3.9 (<https://github.com/stac-utils/stac-geoparquet/pull/133>)
