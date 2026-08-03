@@ -296,3 +296,33 @@ def test_properties_key_colliding_with_top_level_field(
         table = parse_stac_items_to_arrow([item]).read_all()
     assert f"properties.{colliding_key}" in caplog.text
     assert table.schema.names.count(colliding_key) == 1
+
+
+def test_all_null_timestamp_column_is_timezone_aware():
+    """Regression test for tz-naive output from an all-null timestamp column
+
+    STAC allows a null `datetime` when `start_datetime`/`end_datetime` are set. When
+    every row is null the column was inferred as null type. Comparisons between TZ-aware
+    and TZ-naive columns fail (e.g., when coalescing datetime and start_datetime).
+    """
+    item = {
+        "type": "Feature",
+        "stac_version": "1.0.0",
+        "id": "test",
+        "collection": "test",
+        "bbox": [0, 0, 0, 0],
+        "geometry": {"type": "Point", "coordinates": [0, 0]},
+        "properties": {
+            "datetime": None,
+            "start_datetime": "2020-01-01T00:00:00Z",
+            "end_datetime": "2020-01-01T00:00:10Z",
+        },
+        "assets": {},
+        "links": [],
+    }
+
+    table = parse_stac_items_to_arrow([item]).read_all()
+
+    assert table.schema.field("datetime").type == pa.timestamp("us", tz="UTC")
+    assert table.schema.field("start_datetime").type == pa.timestamp("us", tz="UTC")
+    assert table.schema.field("end_datetime").type == pa.timestamp("us", tz="UTC")
