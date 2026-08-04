@@ -82,7 +82,7 @@ def convert_timestamp_columns(
         # inferred as null. We cast this to a timestamp column.
         elif pa.types.is_null(column.type):
             batch = batch.set_column(
-                field_index, column_name, column.cast(pa.timestamp("us"))
+                field_index, column_name, column.cast(pa.timestamp("us", tz="UTC"))
             )
 
         elif pa.types.is_string(column.type):
