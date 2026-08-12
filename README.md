@@ -42,8 +42,6 @@ scripts/lint
 
 ## Releasing
 
-To release a new version:
-
-- Update the CHANGELOG
-- Open a PR, get approval, and merge
-- Cut a new [Github release](https://github.com/stac-utils/stac-geoparquet/releases), which will trigger a release on [PyPI](https://pypi.org/project/stac-geoparquet/)
+We use [release-please](https://github.com/googleapis/release-please) to manage releases.
+To create a new release, look for a [release PR](https://github.com/stac-utils/stac-geoparquet/pulls), approve it, and merge it.
+**release-please** will create a tag and a release, which will trigger a new release on PyPI.
