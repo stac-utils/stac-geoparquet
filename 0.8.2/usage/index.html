@@ -10,29 +10,31 @@
       
       
       
-        <link rel="canonical" href="https://stac-utils.github.io/stac-geoparquet/latest/">
+        <link rel="canonical" href="https://stac-utils.github.io/stac-geoparquet/latest/usage/">
       
       
+        <link rel="prev" href="..">
       
-        <link rel="next" href="usage/">
+      
+        <link rel="next" href="../examples/naip/">
       
       
         
       
       
-      <link rel="icon" href="assets/images/favicon.png">
+      <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.7.6">
     
     
       
-        <title>stac-geoparquet</title>
+        <title>Usage - stac-geoparquet</title>
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -51,9 +53,9 @@
       
     
     
-      <link rel="stylesheet" href="assets/_mkdocstrings.css">
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
     
-    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -61,17 +63,17 @@
     
   
 <meta property="og:type" content="website" />
-<meta property="og:title" content="stac-geoparquet" />
+<meta property="og:title" content="Usage - stac-geoparquet" />
 <meta property="og:description" content="Convert STAC items between JSON, GeoParquet, pgstac, and Delta Lake." />
-<meta property="og:image" content="https://stac-utils.github.io/stac-geoparquet/latest/assets/images/social/index.png" />
+<meta property="og:image" content="https://stac-utils.github.io/stac-geoparquet/latest/assets/images/social/usage.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
-<meta property="og:url" content="https://stac-utils.github.io/stac-geoparquet/latest/" />
+<meta property="og:url" content="https://stac-utils.github.io/stac-geoparquet/latest/usage/" />
 <meta property="twitter:card" content="summary_large_image" />
-<meta property="twitter:title" content="stac-geoparquet" />
+<meta property="twitter:title" content="Usage - stac-geoparquet" />
 <meta property="twitter:description" content="Convert STAC items between JSON, GeoParquet, pgstac, and Delta Lake." />
-<meta property="twitter:image" content="https://stac-utils.github.io/stac-geoparquet/latest/assets/images/social/index.png" />
+<meta property="twitter:image" content="https://stac-utils.github.io/stac-geoparquet/latest/assets/images/social/usage.png" />
 </head>
   
   
@@ -91,7 +93,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#stac-geoparquet" class="md-skip">
+        <a href="#usage" class="md-skip">
           Skip to content
         </a>
       
@@ -106,12 +108,12 @@
             <div class="md-banner__inner md-grid md-typeset">
                You're not
 viewing the latest version.
-<a href="../.">
+<a href="../..">
   <strong>Click here to go to latest.</strong>
 </a>
 
             </div>
-            <script>var el=document.querySelector("[data-md-component=outdated]"),base=new URL("."),outdated=__md_get("__outdated",sessionStorage,base);!0===outdated&&el&&(el.hidden=!1)</script>
+            <script>var el=document.querySelector("[data-md-component=outdated]"),base=new URL(".."),outdated=__md_get("__outdated",sessionStorage,base);!0===outdated&&el&&(el.hidden=!1)</script>
           </aside>
         
       </div>
@@ -123,7 +125,7 @@ viewing the latest version.
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="." title="stac-geoparquet" class="md-header__button md-logo" aria-label="stac-geoparquet" data-md-component="logo">
+    <a href=".." title="stac-geoparquet" class="md-header__button md-logo" aria-label="stac-geoparquet" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -143,7 +145,7 @@ viewing the latest version.
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              STAC-GeoParquet
+              Usage
             
           </span>
         </div>
@@ -276,7 +278,7 @@ viewing the latest version.
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="." title="stac-geoparquet" class="md-nav__button md-logo" aria-label="stac-geoparquet" data-md-component="logo">
+    <a href=".." title="stac-geoparquet" class="md-nav__button md-logo" aria-label="stac-geoparquet" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -303,6 +305,33 @@ viewing the latest version.
       
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    STAC-GeoParquet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
     
   
   
@@ -322,7 +351,7 @@ viewing the latest version.
   <span class="md-ellipsis">
     
   
-    STAC-GeoParquet
+    Usage
   
 
     
@@ -333,14 +362,14 @@ viewing the latest version.
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <a href="." class="md-nav__link md-nav__link--active">
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
   <span class="md-ellipsis">
     
   
-    STAC-GeoParquet
+    Usage
   
 
     
@@ -366,10 +395,71 @@ viewing the latest version.
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#purpose" class="md-nav__link">
+  <a href="#dictjson-arrow-conversion" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Purpose
+        dict/JSON - Arrow conversion
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="dict/JSON - Arrow conversion">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#convert-dicts-to-arrow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Convert dicts to Arrow
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#convert-json-to-arrow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Convert JSON to Arrow
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#convert-arrow-to-dicts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Convert Arrow to dicts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#convert-arrow-to-json" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Convert Arrow to JSON
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parquet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parquet
       
     </span>
   </a>
@@ -377,43 +467,10 @@ viewing the latest version.
 </li>
       
         <li class="md-nav__item">
-  <a href="#installation" class="md-nav__link">
+  <a href="#delta-lake" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Installation
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#documentation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Documentation
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#development" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Development
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#releasing" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Releasing
+        Delta Lake
       
     </span>
   </a>
@@ -424,33 +481,6 @@ viewing the latest version.
   
 </nav>
       
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="usage/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Usage
-  
-
-    
-  </span>
-  
-  
-
-      </a>
     </li>
   
 
@@ -515,7 +545,7 @@ viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="examples/naip/" class="md-nav__link">
+      <a href="../examples/naip/" class="md-nav__link">
         
   
   
@@ -543,7 +573,7 @@ viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="examples/dump_pgstac_to_parquet/" class="md-nav__link">
+      <a href="../examples/dump_pgstac_to_parquet/" class="md-nav__link">
         
   
   
@@ -633,7 +663,7 @@ viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="api/arrow/" class="md-nav__link">
+      <a href="../api/arrow/" class="md-nav__link">
         
   
   
@@ -661,7 +691,7 @@ viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="api/legacy/" class="md-nav__link">
+      <a href="../api/legacy/" class="md-nav__link">
         
   
   
@@ -689,7 +719,7 @@ viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="api/pgstac/" class="md-nav__link">
+      <a href="../api/pgstac/" class="md-nav__link">
         
   
   
@@ -724,7 +754,7 @@ viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="whatsnew/" class="md-nav__link">
+      <a href="../whatsnew/" class="md-nav__link">
         
   
   
@@ -771,10 +801,71 @@ viewing the latest version.
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#purpose" class="md-nav__link">
+  <a href="#dictjson-arrow-conversion" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Purpose
+        dict/JSON - Arrow conversion
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="dict/JSON - Arrow conversion">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#convert-dicts-to-arrow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Convert dicts to Arrow
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#convert-json-to-arrow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Convert JSON to Arrow
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#convert-arrow-to-dicts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Convert Arrow to dicts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#convert-arrow-to-json" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Convert Arrow to JSON
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parquet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parquet
       
     </span>
   </a>
@@ -782,43 +873,10 @@ viewing the latest version.
 </li>
       
         <li class="md-nav__item">
-  <a href="#installation" class="md-nav__link">
+  <a href="#delta-lake" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Installation
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#documentation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Documentation
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#development" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Development
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#releasing" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Releasing
+        Delta Lake
       
     </span>
   </a>
@@ -845,38 +903,49 @@ viewing the latest version.
   
 
 
-<h1 id="stac-geoparquet">STAC-GeoParquet<a class="headerlink" href="#stac-geoparquet" title="Permanent link">&para;</a></h1>
-<p>Convert <a href="https://stacspec.org/en">STAC</a> items between JSON, <a href="https://geoparquet.org/">GeoParquet</a>, <a href="https://github.com/stac-utils/pgstac">pgstac</a>, and <a href="https://delta.io/">Delta Lake</a>.</p>
-<h2 id="purpose">Purpose<a class="headerlink" href="#purpose" title="Permanent link">&para;</a></h2>
-<p>The STAC spec defines a JSON-based schema.
-But it can be hard to manage and search through many millions of STAC items in JSON format.
-For one, JSON is very large on disk.
-And you need to parse the entire JSON data into memory to extract just a small piece of information, say the <code>datetime</code> and one <code>asset</code> of an Item.</p>
-<p>GeoParquet can be a good complement to JSON for many bulk-access and analytic use cases.
-While STAC Items are commonly distributed as individual JSON files on object storage or through a <a href="https://github.com/radiantearth/stac-api-spec">STAC API</a>, STAC GeoParquet allows users to access a large number of STAC items in bulk without making repeated HTTP requests.</p>
-<p>For analytic questions like "find the items in the Sentinel-2 collection in June 2024 over New York City with cloud cover of less than 20%" it can be much, much faster to find the relevant data from a GeoParquet source than from JSON, because GeoParquet needs to load only the relevant columns for that query, not the full data.</p>
-<p>See the <a href="https://radiantearth.github.io/stac-geoparquet-spec/">STAC-GeoParquet specification</a> for details on the exact schema of the written Parquet files.</p>
-<h2 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h2>
-<p>Install via <code>pip</code> or <code>conda</code>:</p>
-<ul>
-<li><code>pip install stac-geoparquet</code></li>
-<li><code>conda install conda-forge::stac-geoparquet</code></li>
-</ul>
-<h2 id="documentation">Documentation<a class="headerlink" href="#documentation" title="Permanent link">&para;</a></h2>
-<p><a href="https://stac-utils.github.io/stac-geoparquet/">Documentation website</a></p>
-<h2 id="development">Development<a class="headerlink" href="#development" title="Permanent link">&para;</a></h2>
-<p>Get <a href="https://docs.astral.sh/uv/getting-started/installation/">uv</a>, then:</p>
-<div class="highlight"><pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>git@github.com:stac-utils/stac-geoparquet.git
-<span class="nb">cd</span><span class="w"> </span>stac-geoparquet
-uv<span class="w"> </span>sync
-uv<span class="w"> </span>run<span class="w"> </span>pre-commit<span class="w"> </span>install
-uv<span class="w"> </span>run<span class="w"> </span>pytest
-scripts/lint
+<h1 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">&para;</a></h1>
+<p><a href="https://arrow.apache.org/">Apache Arrow</a> is used as the in-memory interchange format between all formats. While some end-to-end helper functions are provided, the user can go through Arrow objects for maximal flexibility in the conversion process.</p>
+<p>All functionality that goes through Arrow is currently exported via the <code>stac_geoparquet.arrow</code> namespace.</p>
+<h2 id="dictjson-arrow-conversion"><code>dict</code>/JSON - Arrow conversion<a class="headerlink" href="#dictjson-arrow-conversion" title="Permanent link">&para;</a></h2>
+<h3 id="convert-dicts-to-arrow">Convert <code>dict</code>s to Arrow<a class="headerlink" href="#convert-dicts-to-arrow" title="Permanent link">&para;</a></h3>
+<p>Use <a class="autorefs autorefs-internal" title="parse_stac_items_to_arrow" href="../api/arrow/#stac_geoparquet.arrow.parse_stac_items_to_arrow"><code>parse_stac_items_to_arrow</code></a> to convert STAC items either in memory or on disk to a stream of Arrow record batches. This accepts either an iterable of Python <code>dict</code>s or an iterable of <a class="autorefs autorefs-external" href="https://pystac.readthedocs.io/en/stable/api/pystac.html#pystac.Item"><code>pystac.Item</code></a> objects.</p>
+<p>For example:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">pyarrow</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pa</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pystac</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">stac_geoparquet</span>
+
+<span class="n">item</span> <span class="o">=</span> <span class="n">pystac</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span>
+    <span class="s2">&quot;https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-2-l2a/items/S2A_MSIL2A_20230112T104411_R008_T29NPE_20230113T053333&quot;</span>
+<span class="p">)</span>
+<span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">pystac</span><span class="o">.</span><span class="n">Item</span><span class="p">)</span>
+
+<span class="n">record_batch_reader</span> <span class="o">=</span> <span class="n">stac_geoparquet</span><span class="o">.</span><span class="n">arrow</span><span class="o">.</span><span class="n">parse_stac_items_to_arrow</span><span class="p">([</span><span class="n">item</span><span class="p">])</span>
+<span class="n">table</span> <span class="o">=</span> <span class="n">record_batch_reader</span><span class="o">.</span><span class="n">read_all</span><span class="p">()</span>
 </code></pre></div>
-<h2 id="releasing">Releasing<a class="headerlink" href="#releasing" title="Permanent link">&para;</a></h2>
-<p>We use <a href="https://github.com/googleapis/release-please">release-please</a> to manage releases.
-To create a new release, look for a <a href="https://github.com/stac-utils/stac-geoparquet/pulls">release PR</a>, approve it, and merge it.
-<strong>release-please</strong> will create a tag and a release, which will trigger a new release on PyPI.</p>
+<h3 id="convert-json-to-arrow">Convert JSON to Arrow<a class="headerlink" href="#convert-json-to-arrow" title="Permanent link">&para;</a></h3>
+<p><a class="autorefs autorefs-internal" title="parse_stac_ndjson_to_arrow" href="../api/arrow/#stac_geoparquet.arrow.parse_stac_ndjson_to_arrow"><code>parse_stac_ndjson_to_arrow</code></a> is a helper function to take one or more JSON or newline-delimited JSON files on disk, infer the schema from all of them, and convert the data to a stream of Arrow record batches.</p>
+<h3 id="convert-arrow-to-dicts">Convert Arrow to <code>dict</code>s<a class="headerlink" href="#convert-arrow-to-dicts" title="Permanent link">&para;</a></h3>
+<p>Use <a class="autorefs autorefs-internal" title="stac_table_to_items" href="../api/arrow/#stac_geoparquet.arrow.stac_table_to_items"><code>stac_table_to_items</code></a> to convert a table or stream of Arrow record batches of STAC data to a generator of Python <code>dict</code>s. This accepts either a <code>pyarrow.Table</code> or a <code>pyarrow.RecordBatchReader</code>, which allows conversions of larger-than-memory files in a streaming manner.</p>
+<h3 id="convert-arrow-to-json">Convert Arrow to JSON<a class="headerlink" href="#convert-arrow-to-json" title="Permanent link">&para;</a></h3>
+<p>Use <a class="autorefs autorefs-internal" title="stac_table_to_ndjson" href="../api/arrow/#stac_geoparquet.arrow.stac_table_to_ndjson"><code>stac_table_to_ndjson</code></a> to convert a table or stream of Arrow record batches of STAC data to a newline-delimited JSON file. This accepts either a <code>pyarrow.Table</code> or a <code>pyarrow.RecordBatchReader</code>, which allows conversions of larger-than-memory files in a streaming manner.</p>
+<h2 id="parquet">Parquet<a class="headerlink" href="#parquet" title="Permanent link">&para;</a></h2>
+<p>Use <a class="autorefs autorefs-internal" title="to_parquet" href="../api/arrow/#stac_geoparquet.arrow.to_parquet"><code>to_parquet</code></a> to write STAC Arrow data from memory to a path or file-like object. This is a special function to ensure that <a href="https://geoparquet.org/">GeoParquet</a> 1.0 or 1.1 metadata is written to the Parquet file. Additionally, file metadata following the <a href="https://github.com/stac-utils/stac-geoparquet/blob/main/spec/stac-geoparquet-spec.md#parquet-metadata">STAC GeoParquet Specification</a>.</p>
+<p>Use the <code>collection_metadata</code> keyword to include STAC Collection metadata in the Parquet metadata.</p>
+<p><a class="autorefs autorefs-internal" title="parse_stac_ndjson_to_parquet" href="../api/arrow/#stac_geoparquet.arrow.parse_stac_ndjson_to_parquet"><code>parse_stac_ndjson_to_parquet</code></a> is a helper that connects reading (newline-delimited) JSON on disk to writing out to a Parquet file.</p>
+<p>No special API is required for reading a STAC GeoParquet file back into Arrow. You can use <a class="autorefs autorefs-external" href="https://arrow.apache.org/docs/python/generated/pyarrow.parquet.read_table.html#pyarrow.parquet.read_table"><code>pyarrow.parquet.read_table</code></a> or <a class="autorefs autorefs-external" href="https://arrow.apache.org/docs/python/generated/pyarrow.parquet.ParquetFile.html#pyarrow.parquet.ParquetFile"><code>pyarrow.parquet.ParquetFile</code></a> directly to read the STAC GeoParquet data back into Arrow.</p>
+<h2 id="delta-lake">Delta Lake<a class="headerlink" href="#delta-lake" title="Permanent link">&para;</a></h2>
+<p>Use <a class="autorefs autorefs-internal" title="parse_stac_ndjson_to_delta_lake" href="../api/arrow/#stac_geoparquet.arrow.parse_stac_ndjson_to_delta_lake"><code>parse_stac_ndjson_to_delta_lake</code></a> to read (newline-delimited) JSON on disk and write out to a Delta Lake table.</p>
+<p>No special API is required for reading a STAC Delta Lake table back into Arrow. You can use the <a class="autorefs autorefs-external" href="https://delta-io.github.io/delta-rs/api/delta_table/#deltalake.DeltaTable"><code>DeltaTable</code></a> class directly to read the data back into Arrow.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Arrow has a null data type, where every value in the column is always null, but Delta Lake does not. This means that for any column inferred to have a <code>null</code> data type, writing to Delta Lake will error with
+<div class="highlight"><pre><span></span><code>_internal.SchemaMismatchError: Invalid data type for Delta Lake: Null
+</code></pre></div></p>
+<p>This is a problem because if all items in a STAC Collection have a <code>null</code> JSON key, it gets inferred as an Arrow <code>null</code> type. For example, in the <code>3dep-lidar-copc</code> collection in the tests, it has <code>start_datetime</code> and <code>end_datetime</code> fields, and so according to the spec, <code>datetime</code> is always <code>null</code>. This column would need to be casted to a timestamp type before being written to Delta Lake.</p>
+<p>This means we cannot write this collection to Delta Lake <strong>solely with automatic schema inference</strong>.</p>
+<p>In such cases, users may need to manually update the inferred schema to cast any <code>null</code> type to another Delta Lake-compatible type.</p>
+</div>
 
 
 
@@ -942,10 +1011,10 @@ To create a new release, look for a <a href="https://github.com/stac-utils/stac-
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["content.code.annotate", "content.code.copy", "navigation.indexes", "navigation.instant", "navigation.tracking", "search.suggest", "search.share"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.code.annotate", "content.code.copy", "navigation.indexes", "navigation.instant", "navigation.tracking", "search.suggest", "search.share"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
       
     
   </body>
