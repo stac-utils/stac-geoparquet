@@ -7,6 +7,14 @@ This is a list of changes to `stac-geoparquet`.
 - Don't configure logging level at module level (<https://github.com/stac-utils/stac-geoparquet/pull/152>)
 - Write null datetime columns in UTC to support TZ-aware comparisons with other columns (<https://github.com/stac-utils/stac-geoparquet/pull/157>)
 
+## [0.8.2](https://github.com/stac-utils/stac-geoparquet/compare/0.8.1...0.8.2) (2026-08-12)
+
+
+### Bug Fixes
+
+* don't configure global logging at module level ([#152](https://github.com/stac-utils/stac-geoparquet/issues/152)) ([72cd3a6](https://github.com/stac-utils/stac-geoparquet/commit/72cd3a6f1b8b8fc0d33963c5df6a3716bff2cb32))
+* null datetime columns written TZ-aware ([#157](https://github.com/stac-utils/stac-geoparquet/issues/157)) ([7cd5800](https://github.com/stac-utils/stac-geoparquet/commit/7cd58003dfc42a93dd548f0c52754639160fce69))
+
 ## 0.8.1
 
 - Drop Python 3.9 (<https://github.com/stac-utils/stac-geoparquet/pull/133>)
