@@ -2,6 +2,13 @@
 
 This is a list of changes to `stac-geoparquet`.
 
+## [0.8.3](https://github.com/stac-utils/stac-geoparquet/compare/0.8.2...0.8.3) (2026-09-17)
+
+
+### Documentation
+
+* remove duplicate changelog line ([#162](https://github.com/stac-utils/stac-geoparquet/issues/162)) ([a3825a3](https://github.com/stac-utils/stac-geoparquet/commit/a3825a3426b43eb420b9c435ba3b679bb3340eec))
+
 ## [0.8.2](https://github.com/stac-utils/stac-geoparquet/compare/0.8.1...0.8.2) (2026-08-12)
 
 
