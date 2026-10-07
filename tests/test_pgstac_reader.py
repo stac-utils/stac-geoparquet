@@ -137,9 +137,13 @@ def test_pgstac_reader_iter(pgstac_postgres):
     """
     items = list(pgstac_to_iter(pgstac_postgres))
     assert len(items) == 4
+    expected_versions = {
+        item["id"]: item["stac_version"] for item in json.loads(NAIPDATA.read_text())
+    }
     for item in items:
         assert item["collection"] == "naip"
         assert item["geometry"]["type"] == "Polygon"
+        assert item["stac_version"] == expected_versions[item["id"]]
 
 
 def test_pgstac_reader_arrow(pgstac_postgres):
@@ -172,3 +176,31 @@ def test_sync_pgstac_to_parquet_with_conn_factory(pgstac_postgres, tmp_path):
     table = pyarrow.parquet.read_table(written, filesystem=filesystem)
     assert table.num_rows == 4
     assert set(table.column("collection").to_pylist()) == {"naip"}
+
+
+def test_pgstac_reader_keeps_item_stac_version(pgstac_postgres):
+    """
+    pgstac only stores an item's `stac_version` when it differs from its
+    collection's, so the stored value must win over the collection's during
+    hydration.
+    """
+    collection_id = "mixed-stac-version"
+    naip_item = json.loads(NAIPDATA.read_text())[0]
+    items = [
+        {**naip_item, "id": item_id, "collection": collection_id, "stac_version": v}
+        for item_id, v in [("same-as-collection", "1.0.0"), ("newer", "1.1.0")]
+    ]
+
+    with PgstacDB(pgstac_postgres) as db:
+        loader = Loader(db)
+        loader.load_collections([{"id": collection_id, "stac_version": "1.0.0"}])
+        loader.load_items(items, pypgstac.load.Methods.ignore)
+    try:
+        result = pgstac_to_iter(pgstac_postgres, collection=collection_id)
+        assert {item["id"]: item["stac_version"] for item in result} == {
+            "same-as-collection": "1.0.0",
+            "newer": "1.1.0",
+        }
+    finally:
+        with psycopg.connect(pgstac_postgres, autocommit=True) as conn:
+            conn.execute("SELECT delete_collection(%s)", (collection_id,))
