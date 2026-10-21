@@ -6,6 +6,19 @@ This is a list of changes to `stac-geoparquet`.
 
 - Keep each item's own `stac_version` when reading from PgSTAC instead of replacing it with the collection's (<https://github.com/stac-utils/stac-geoparquet/pull/172>)
 
+## [0.8.3](https://github.com/stac-utils/stac-geoparquet/compare/0.8.2...0.8.3) (2026-10-21)
+
+
+### Bug Fixes
+
+* fails when every item has empty assets. ([#177](https://github.com/stac-utils/stac-geoparquet/issues/177)) ([0f09e0d](https://github.com/stac-utils/stac-geoparquet/commit/0f09e0d72190b3b911a68bc13ac6cb2dc40de1e3))
+* keep each item's stac_version when reading from pgstac ([#172](https://github.com/stac-utils/stac-geoparquet/issues/172)) ([8bff18c](https://github.com/stac-utils/stac-geoparquet/commit/8bff18cd2c0562da792280cff62da6adbc8a2a24))
+
+
+### Documentation
+
+* remove duplicate changelog line ([#162](https://github.com/stac-utils/stac-geoparquet/issues/162)) ([a3825a3](https://github.com/stac-utils/stac-geoparquet/commit/a3825a3426b43eb420b9c435ba3b679bb3340eec))
+
 ## [0.8.2](https://github.com/stac-utils/stac-geoparquet/compare/0.8.1...0.8.2) (2026-08-12)
 
 
