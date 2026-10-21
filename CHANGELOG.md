@@ -2,6 +2,10 @@
 
 This is a list of changes to `stac-geoparquet`.
 
+## Unreleased
+
+- Keep each item's own `stac_version` when reading from PgSTAC instead of replacing it with the collection's (<https://github.com/stac-utils/stac-geoparquet/pull/172>)
+
 ## [0.8.2](https://github.com/stac-utils/stac-geoparquet/compare/0.8.1...0.8.2) (2026-08-12)
 
 
