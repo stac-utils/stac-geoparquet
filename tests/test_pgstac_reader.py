@@ -8,6 +8,7 @@ import pyarrow.fs
 import pyarrow.parquet
 import pypgstac
 import pytest
+from packaging.version import Version
 from pypgstac.db import PgstacDB
 from pypgstac.load import Loader
 
@@ -21,7 +22,8 @@ from stac_geoparquet.pgstac_reader import (
 
 HERE = pathlib.Path(__file__).parent
 
-DOCKERIMG = "ghcr.io/stac-utils/pgstac:latest"
+# pypgstac can reject a database migrated by a different pgstac version
+DOCKERIMG = f"ghcr.io/stac-utils/pgstac:v{pypgstac.__version__}"
 NAIPDATA = HERE / "data" / "naip-pc.json"
 
 
@@ -96,7 +98,7 @@ def pgstac_postgres():
     try:
         with PgstacDB(constr, debug=True) as db:
             db.wait()
-            assert db.version >= "0.3.4"
+            assert Version(db.version) >= Version("0.3.4")
             loader = Loader(db)
             naip_collection = {"id": "naip", "title": "NAIP Imagery Test"}
             loader.load_collections([naip_collection])
