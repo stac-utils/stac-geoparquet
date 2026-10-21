@@ -1137,16 +1137,16 @@ viewing the latest version.
 
 <a href="#stac_geoparquet.arrow.parse_stac_items_to_arrow" class="headerlink" title="Permanent link">&para;</a></h3>
 <div class="doc-signature codehilite"><pre><span></span><code><span class="nf">parse_stac_items_to_arrow</span><span class="p">(</span>
-    <span class="n">items</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="collections.abc.Iterable" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable">Iterable</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" title="pystac.Item" href="https://pystac.readthedocs.io/en/stable/api/pystac.html#pystac.Item">Item</a></span> <span class="o">|</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#dict">dict</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span><span class="p">,</span> <span class="n"><a class="autorefs autorefs-external" title="typing.Any" href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a></span><span class="p">]],</span>
-    <span class="n">chunk_size</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></span> <span class="o">=</span> <span class="n"><a class="autorefs autorefs-internal" title="DEFAULT_JSON_CHUNK_SIZE
+    <span class="n">items</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="collections.abc.Iterable" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable">Iterable</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" title="pystac.Item" href="https://pystac.readthedocs.io/en/stable/api/pystac.html#pystac.Item">Item</a></span> <span class="o">|</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/stdtypes.html#dict">dict</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/stdtypes.html#str">str</a></span><span class="p">,</span> <span class="n"><a class="autorefs autorefs-external" title="typing.Any" href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a></span><span class="p">]],</span>
+    <span class="n">chunk_size</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/functions.html#int">int</a></span> <span class="o">=</span> <span class="n"><a class="autorefs autorefs-internal" title="DEFAULT_JSON_CHUNK_SIZE
 
 
   
       module-attribute
    (stac_geoparquet.arrow._constants.DEFAULT_JSON_CHUNK_SIZE)" href="#stac_geoparquet.arrow.DEFAULT_JSON_CHUNK_SIZE">DEFAULT_JSON_CHUNK_SIZE</a></span><span class="p">,</span>
     <span class="n">schema</span><span class="p">:</span> <span class="n"><span title="stac_geoparquet.arrow._constants.ACCEPTED_SCHEMA_OPTIONS">ACCEPTED_SCHEMA_OPTIONS</span></span> <span class="o">=</span> <span class="s2">&quot;FullFile&quot;</span><span class="p">,</span>
-    <span class="n">tmpdir</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span> <span class="o">|</span> <span class="n"><a class="autorefs autorefs-external" title="pathlib.Path" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path">Path</a></span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="n">drop_invalid_properties</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a></span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">tmpdir</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/stdtypes.html#str">str</a></span> <span class="o">|</span> <span class="n"><a class="autorefs autorefs-external" title="pathlib.Path" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path">Path</a></span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">drop_invalid_properties</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/functions.html#bool">bool</a></span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><a class="autorefs autorefs-external" title="pyarrow.RecordBatchReader" href="https://arrow.apache.org/docs/python/generated/pyarrow.RecordBatchReader.html#pyarrow.RecordBatchReader">RecordBatchReader</a></span>
 </code></pre></div>
 
@@ -1163,7 +1163,7 @@ Table, similar to
     <ul>
         <li class="doc-section-item field-body">
             <b><code>items</code></b>
-              (<code><a class="autorefs autorefs-external" title="collections.abc.Iterable" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable">Iterable</a>[<a class="autorefs autorefs-external" title="pystac.Item" href="https://pystac.readthedocs.io/en/stable/api/pystac.html#pystac.Item">Item</a> | <a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#dict">dict</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a>, <a class="autorefs autorefs-external" title="typing.Any" href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a>]]</code>)
+              (<code><a class="autorefs autorefs-external" title="collections.abc.Iterable" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable">Iterable</a>[<a class="autorefs autorefs-external" title="pystac.Item" href="https://pystac.readthedocs.io/en/stable/api/pystac.html#pystac.Item">Item</a> | <a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/stdtypes.html#dict">dict</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/stdtypes.html#str">str</a>, <a class="autorefs autorefs-external" title="typing.Any" href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a>]]</code>)
           –
           <div class="doc-md-description">
             <p>the STAC Items to convert</p>
@@ -1171,7 +1171,7 @@ Table, similar to
         </li>
         <li class="doc-section-item field-body">
             <b><code>chunk_size</code></b>
-              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>, default:
+              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/functions.html#int">int</a></code>, default:
                   <code><a class="autorefs autorefs-internal" title="DEFAULT_JSON_CHUNK_SIZE
 
 
@@ -1204,7 +1204,7 @@ them back in to unify the schema. Defaults to "FullFile".</p>
         </li>
         <li class="doc-section-item field-body">
             <b><code>drop_invalid_properties</code></b>
-              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a></code>, default:
+              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/functions.html#bool">bool</a></code>, default:
                   <code>True</code>
 )
           –
@@ -1241,17 +1241,17 @@ collides with a top-level field. If False, a ValueError is raised instead.</p>
 
 <a href="#stac_geoparquet.arrow.parse_stac_items_to_parquet" class="headerlink" title="Permanent link">&para;</a></h3>
 <div class="doc-signature codehilite"><pre><span></span><code><span class="nf">parse_stac_items_to_parquet</span><span class="p">(</span>
-    <span class="n">items</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="collections.abc.Iterable" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable">Iterable</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" title="pystac.Item" href="https://pystac.readthedocs.io/en/stable/api/pystac.html#pystac.Item">Item</a></span> <span class="o">|</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#dict">dict</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span><span class="p">,</span> <span class="n"><a class="autorefs autorefs-external" title="typing.Any" href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a></span><span class="p">]],</span>
+    <span class="n">items</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="collections.abc.Iterable" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable">Iterable</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" title="pystac.Item" href="https://pystac.readthedocs.io/en/stable/api/pystac.html#pystac.Item">Item</a></span> <span class="o">|</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/stdtypes.html#dict">dict</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/stdtypes.html#str">str</a></span><span class="p">,</span> <span class="n"><a class="autorefs autorefs-external" title="typing.Any" href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a></span><span class="p">]],</span>
     <span class="o">*</span><span class="p">,</span>
-    <span class="n">chunk_size</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></span> <span class="o">=</span> <span class="n"><a class="autorefs autorefs-internal" title="DEFAULT_JSON_CHUNK_SIZE
+    <span class="n">chunk_size</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/functions.html#int">int</a></span> <span class="o">=</span> <span class="n"><a class="autorefs autorefs-internal" title="DEFAULT_JSON_CHUNK_SIZE
 
 
   
       module-attribute
    (stac_geoparquet.arrow._constants.DEFAULT_JSON_CHUNK_SIZE)" href="#stac_geoparquet.arrow.DEFAULT_JSON_CHUNK_SIZE">DEFAULT_JSON_CHUNK_SIZE</a></span><span class="p">,</span>
     <span class="n">schema</span><span class="p">:</span> <span class="n"><span title="stac_geoparquet.arrow._constants.ACCEPTED_SCHEMA_OPTIONS">ACCEPTED_SCHEMA_OPTIONS</span></span> <span class="o">=</span> <span class="s2">&quot;FirstBatch&quot;</span><span class="p">,</span>
-    <span class="n">output_path</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span> <span class="o">|</span> <span class="n"><a class="autorefs autorefs-external" title="pathlib.Path" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path">Path</a></span><span class="p">,</span>
-    <span class="n">tmpdir</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span> <span class="o">|</span> <span class="n"><a class="autorefs autorefs-external" title="pathlib.Path" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path">Path</a></span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">output_path</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/stdtypes.html#str">str</a></span> <span class="o">|</span> <span class="n"><a class="autorefs autorefs-external" title="pathlib.Path" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path">Path</a></span><span class="p">,</span>
+    <span class="n">tmpdir</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/stdtypes.html#str">str</a></span> <span class="o">|</span> <span class="n"><a class="autorefs autorefs-external" title="pathlib.Path" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path">Path</a></span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">schema_version</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-internal" title="SUPPORTED_PARQUET_SCHEMA_VERSIONS
 
 
@@ -1264,9 +1264,9 @@ collides with a top-level field. If False, a ValueError is raised instead.</p>
       module-attribute
    (stac_geoparquet.arrow._constants.DEFAULT_PARQUET_SCHEMA_VERSION)" href="#stac_geoparquet.arrow.DEFAULT_PARQUET_SCHEMA_VERSION">DEFAULT_PARQUET_SCHEMA_VERSION</a></span><span class="p">,</span>
     <span class="n">filesystem</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="pyarrow.fs.FileSystem" href="https://arrow.apache.org/docs/python/generated/pyarrow.fs.FileSystem.html#pyarrow.fs.FileSystem">FileSystem</a></span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="n">drop_invalid_properties</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a></span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">drop_invalid_properties</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/functions.html#bool">bool</a></span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
     <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="typing.Any" href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a></span><span class="p">,</span>
-<span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/stdtypes.html#str">str</a></span>
 </code></pre></div>
 
     <div class="doc doc-contents ">
@@ -1287,17 +1287,17 @@ collides with a top-level field. If False, a ValueError is raised instead.</p>
 
 <a href="#stac_geoparquet.arrow.parse_stac_ndjson_to_arrow" class="headerlink" title="Permanent link">&para;</a></h3>
 <div class="doc-signature codehilite"><pre><span></span><code><span class="nf">parse_stac_ndjson_to_arrow</span><span class="p">(</span>
-    <span class="n">path</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span> <span class="o">|</span> <span class="n"><a class="autorefs autorefs-external" title="pathlib.Path" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path">Path</a></span> <span class="o">|</span> <span class="n"><a class="autorefs autorefs-external" title="collections.abc.Iterable" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable">Iterable</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span> <span class="o">|</span> <span class="n"><a class="autorefs autorefs-external" title="pathlib.Path" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path">Path</a></span><span class="p">],</span>
+    <span class="n">path</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/stdtypes.html#str">str</a></span> <span class="o">|</span> <span class="n"><a class="autorefs autorefs-external" title="pathlib.Path" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path">Path</a></span> <span class="o">|</span> <span class="n"><a class="autorefs autorefs-external" title="collections.abc.Iterable" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable">Iterable</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/stdtypes.html#str">str</a></span> <span class="o">|</span> <span class="n"><a class="autorefs autorefs-external" title="pathlib.Path" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path">Path</a></span><span class="p">],</span>
     <span class="o">*</span><span class="p">,</span>
-    <span class="n">chunk_size</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></span> <span class="o">=</span> <span class="n"><a class="autorefs autorefs-internal" title="DEFAULT_JSON_CHUNK_SIZE
+    <span class="n">chunk_size</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/functions.html#int">int</a></span> <span class="o">=</span> <span class="n"><a class="autorefs autorefs-internal" title="DEFAULT_JSON_CHUNK_SIZE
 
 
   
       module-attribute
    (stac_geoparquet.arrow._constants.DEFAULT_JSON_CHUNK_SIZE)" href="#stac_geoparquet.arrow.DEFAULT_JSON_CHUNK_SIZE">DEFAULT_JSON_CHUNK_SIZE</a></span><span class="p">,</span>
     <span class="n">schema</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="pyarrow.Schema" href="https://arrow.apache.org/docs/python/generated/pyarrow.Schema.html#pyarrow.Schema">Schema</a></span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="n">limit</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="n">drop_invalid_properties</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a></span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">limit</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/functions.html#int">int</a></span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">drop_invalid_properties</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/functions.html#bool">bool</a></span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><a class="autorefs autorefs-external" title="pyarrow.RecordBatchReader" href="https://arrow.apache.org/docs/python/generated/pyarrow.RecordBatchReader.html#pyarrow.RecordBatchReader">RecordBatchReader</a></span>
 </code></pre></div>
 
@@ -1313,7 +1313,7 @@ and can be used to write to one or more Parquet files.</p>
     <ul>
         <li class="doc-section-item field-body">
             <b><code>path</code></b>
-              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a> | <a class="autorefs autorefs-external" title="pathlib.Path" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path">Path</a> | <a class="autorefs autorefs-external" title="collections.abc.Iterable" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable">Iterable</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a> | <a class="autorefs autorefs-external" title="pathlib.Path" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path">Path</a>]</code>)
+              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/stdtypes.html#str">str</a> | <a class="autorefs autorefs-external" title="pathlib.Path" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path">Path</a> | <a class="autorefs autorefs-external" title="collections.abc.Iterable" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable">Iterable</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/stdtypes.html#str">str</a> | <a class="autorefs autorefs-external" title="pathlib.Path" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path">Path</a>]</code>)
           –
           <div class="doc-md-description">
             <p>One or more paths to files with STAC items.</p>
@@ -1321,7 +1321,7 @@ and can be used to write to one or more Parquet files.</p>
         </li>
         <li class="doc-section-item field-body">
             <b><code>chunk_size</code></b>
-              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>, default:
+              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/functions.html#int">int</a></code>, default:
                   <code><a class="autorefs autorefs-internal" title="DEFAULT_JSON_CHUNK_SIZE
 
 
@@ -1354,7 +1354,7 @@ infer a common schema across all data and another to read the data.</p>
     <ul>
         <li class="doc-section-item field-body">
           <b><code>limit</code></b>
-              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a> | None</code>)
+              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/functions.html#int">int</a> | None</code>)
           –
           <div class="doc-md-description">
             <p>The maximum number of JSON Items to use for schema inference</p>
@@ -1362,7 +1362,7 @@ infer a common schema across all data and another to read the data.</p>
         </li>
         <li class="doc-section-item field-body">
           <b><code>drop_invalid_properties</code></b>
-              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a></code>)
+              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/functions.html#bool">bool</a></code>)
           –
           <div class="doc-md-description">
             <p>If True (default), an Item property whose name
@@ -1397,17 +1397,17 @@ collides with a top-level field. If False, a ValueError is raised instead.</p>
 
 <a href="#stac_geoparquet.arrow.parse_stac_ndjson_to_delta_lake" class="headerlink" title="Permanent link">&para;</a></h3>
 <div class="doc-signature codehilite"><pre><span></span><code><span class="nf">parse_stac_ndjson_to_delta_lake</span><span class="p">(</span>
-    <span class="n">input_path</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span> <span class="o">|</span> <span class="n"><a class="autorefs autorefs-external" title="pathlib.Path" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path">Path</a></span> <span class="o">|</span> <span class="n"><a class="autorefs autorefs-external" title="collections.abc.Iterable" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable">Iterable</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span> <span class="o">|</span> <span class="n"><a class="autorefs autorefs-external" title="pathlib.Path" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path">Path</a></span><span class="p">],</span>
-    <span class="n">table_or_uri</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span> <span class="o">|</span> <span class="n"><a class="autorefs autorefs-external" title="pathlib.Path" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path">Path</a></span> <span class="o">|</span> <span class="n"><a class="autorefs autorefs-external" title="deltalake.DeltaTable" href="https://delta-io.github.io/delta-rs/api/delta_table/#deltalake.DeltaTable">DeltaTable</a></span><span class="p">,</span>
+    <span class="n">input_path</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/stdtypes.html#str">str</a></span> <span class="o">|</span> <span class="n"><a class="autorefs autorefs-external" title="pathlib.Path" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path">Path</a></span> <span class="o">|</span> <span class="n"><a class="autorefs autorefs-external" title="collections.abc.Iterable" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable">Iterable</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/stdtypes.html#str">str</a></span> <span class="o">|</span> <span class="n"><a class="autorefs autorefs-external" title="pathlib.Path" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path">Path</a></span><span class="p">],</span>
+    <span class="n">table_or_uri</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/stdtypes.html#str">str</a></span> <span class="o">|</span> <span class="n"><a class="autorefs autorefs-external" title="pathlib.Path" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path">Path</a></span> <span class="o">|</span> <span class="n"><a class="autorefs autorefs-external" title="deltalake.DeltaTable" href="https://delta-io.github.io/delta-rs/latest/api/delta_table/#deltalake.DeltaTable">DeltaTable</a></span><span class="p">,</span>
     <span class="o">*</span><span class="p">,</span>
-    <span class="n">chunk_size</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></span> <span class="o">=</span> <span class="n"><a class="autorefs autorefs-internal" title="DEFAULT_JSON_CHUNK_SIZE
+    <span class="n">chunk_size</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/functions.html#int">int</a></span> <span class="o">=</span> <span class="n"><a class="autorefs autorefs-internal" title="DEFAULT_JSON_CHUNK_SIZE
 
 
   
       module-attribute
    (stac_geoparquet.arrow._constants.DEFAULT_JSON_CHUNK_SIZE)" href="#stac_geoparquet.arrow.DEFAULT_JSON_CHUNK_SIZE">DEFAULT_JSON_CHUNK_SIZE</a></span><span class="p">,</span>
     <span class="n">schema</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="pyarrow.Schema" href="https://arrow.apache.org/docs/python/generated/pyarrow.Schema.html#pyarrow.Schema">Schema</a></span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="n">limit</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">limit</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/functions.html#int">int</a></span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">schema_version</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-internal" title="SUPPORTED_PARQUET_SCHEMA_VERSIONS
 
 
@@ -1432,7 +1432,7 @@ collides with a top-level field. If False, a ValueError is raised instead.</p>
     <ul>
         <li class="doc-section-item field-body">
             <b><code>input_path</code></b>
-              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a> | <a class="autorefs autorefs-external" title="pathlib.Path" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path">Path</a> | <a class="autorefs autorefs-external" title="collections.abc.Iterable" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable">Iterable</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a> | <a class="autorefs autorefs-external" title="pathlib.Path" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path">Path</a>]</code>)
+              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/stdtypes.html#str">str</a> | <a class="autorefs autorefs-external" title="pathlib.Path" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path">Path</a> | <a class="autorefs autorefs-external" title="collections.abc.Iterable" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable">Iterable</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/stdtypes.html#str">str</a> | <a class="autorefs autorefs-external" title="pathlib.Path" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path">Path</a>]</code>)
           –
           <div class="doc-md-description">
             <p>One or more paths to files with STAC items.</p>
@@ -1440,7 +1440,7 @@ collides with a top-level field. If False, a ValueError is raised instead.</p>
         </li>
         <li class="doc-section-item field-body">
             <b><code>table_or_uri</code></b>
-              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a> | <a class="autorefs autorefs-external" title="pathlib.Path" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path">Path</a> | <a class="autorefs autorefs-external" title="deltalake.DeltaTable" href="https://delta-io.github.io/delta-rs/api/delta_table/#deltalake.DeltaTable">DeltaTable</a></code>)
+              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/stdtypes.html#str">str</a> | <a class="autorefs autorefs-external" title="pathlib.Path" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path">Path</a> | <a class="autorefs autorefs-external" title="deltalake.DeltaTable" href="https://delta-io.github.io/delta-rs/latest/api/delta_table/#deltalake.DeltaTable">DeltaTable</a></code>)
           –
           <div class="doc-md-description">
             <p>A path to the output Delta Lake table</p>
@@ -1453,7 +1453,7 @@ collides with a top-level field. If False, a ValueError is raised instead.</p>
     <ul>
         <li class="doc-section-item field-body">
             <b><code>chunk_size</code></b>
-              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>, default:
+              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/functions.html#int">int</a></code>, default:
                   <code><a class="autorefs autorefs-internal" title="DEFAULT_JSON_CHUNK_SIZE
 
 
@@ -1483,7 +1483,7 @@ iteratively convert to GeoParquet.</p>
         </li>
         <li class="doc-section-item field-body">
             <b><code>limit</code></b>
-              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a> | None</code>, default:
+              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/functions.html#int">int</a> | None</code>, default:
                   <code>None</code>
 )
           –
@@ -1528,17 +1528,17 @@ to latest supported version.</p>
 
 <a href="#stac_geoparquet.arrow.parse_stac_ndjson_to_parquet" class="headerlink" title="Permanent link">&para;</a></h3>
 <div class="doc-signature codehilite"><pre><span></span><code><span class="nf">parse_stac_ndjson_to_parquet</span><span class="p">(</span>
-    <span class="n">input_path</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span> <span class="o">|</span> <span class="n"><a class="autorefs autorefs-external" title="pathlib.Path" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path">Path</a></span> <span class="o">|</span> <span class="n"><a class="autorefs autorefs-external" title="collections.abc.Iterable" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable">Iterable</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span> <span class="o">|</span> <span class="n"><a class="autorefs autorefs-external" title="pathlib.Path" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path">Path</a></span><span class="p">],</span>
-    <span class="n">output_path</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span> <span class="o">|</span> <span class="n"><a class="autorefs autorefs-external" title="pathlib.Path" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path">Path</a></span><span class="p">,</span>
+    <span class="n">input_path</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/stdtypes.html#str">str</a></span> <span class="o">|</span> <span class="n"><a class="autorefs autorefs-external" title="pathlib.Path" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path">Path</a></span> <span class="o">|</span> <span class="n"><a class="autorefs autorefs-external" title="collections.abc.Iterable" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable">Iterable</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/stdtypes.html#str">str</a></span> <span class="o">|</span> <span class="n"><a class="autorefs autorefs-external" title="pathlib.Path" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path">Path</a></span><span class="p">],</span>
+    <span class="n">output_path</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/stdtypes.html#str">str</a></span> <span class="o">|</span> <span class="n"><a class="autorefs autorefs-external" title="pathlib.Path" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path">Path</a></span><span class="p">,</span>
     <span class="o">*</span><span class="p">,</span>
-    <span class="n">chunk_size</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></span> <span class="o">=</span> <span class="n"><a class="autorefs autorefs-internal" title="DEFAULT_JSON_CHUNK_SIZE
+    <span class="n">chunk_size</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/functions.html#int">int</a></span> <span class="o">=</span> <span class="n"><a class="autorefs autorefs-internal" title="DEFAULT_JSON_CHUNK_SIZE
 
 
   
       module-attribute
    (stac_geoparquet.arrow._constants.DEFAULT_JSON_CHUNK_SIZE)" href="#stac_geoparquet.arrow.DEFAULT_JSON_CHUNK_SIZE">DEFAULT_JSON_CHUNK_SIZE</a></span><span class="p">,</span>
     <span class="n">schema</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="pyarrow.Schema" href="https://arrow.apache.org/docs/python/generated/pyarrow.Schema.html#pyarrow.Schema">Schema</a></span> <span class="o">|</span> <span class="n"><span title="stac_geoparquet.arrow._schema.models.InferredSchema">InferredSchema</span></span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="n">limit</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">limit</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/functions.html#int">int</a></span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">schema_version</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-internal" title="SUPPORTED_PARQUET_SCHEMA_VERSIONS
 
 
@@ -1550,10 +1550,10 @@ to latest supported version.</p>
   
       module-attribute
    (stac_geoparquet.arrow._constants.DEFAULT_PARQUET_SCHEMA_VERSION)" href="#stac_geoparquet.arrow.DEFAULT_PARQUET_SCHEMA_VERSION">DEFAULT_PARQUET_SCHEMA_VERSION</a></span><span class="p">,</span>
-    <span class="n">collections</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="collections.abc.Mapping" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping">Mapping</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span><span class="p">,</span> <span class="n"><a class="autorefs autorefs-external" title="collections.abc.Mapping" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping">Mapping</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span><span class="p">,</span> <span class="n"><a class="autorefs autorefs-external" title="typing.Any" href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a></span><span class="p">]]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="n">collection_metadata</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="collections.abc.Mapping" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping">Mapping</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span><span class="p">,</span> <span class="n"><a class="autorefs autorefs-external" title="typing.Any" href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a></span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">collections</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="collections.abc.Mapping" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping">Mapping</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/stdtypes.html#str">str</a></span><span class="p">,</span> <span class="n"><a class="autorefs autorefs-external" title="collections.abc.Mapping" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping">Mapping</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/stdtypes.html#str">str</a></span><span class="p">,</span> <span class="n"><a class="autorefs autorefs-external" title="typing.Any" href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a></span><span class="p">]]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">collection_metadata</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="collections.abc.Mapping" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping">Mapping</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/stdtypes.html#str">str</a></span><span class="p">,</span> <span class="n"><a class="autorefs autorefs-external" title="typing.Any" href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a></span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">filesystem</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="pyarrow.fs.FileSystem" href="https://arrow.apache.org/docs/python/generated/pyarrow.fs.FileSystem.html#pyarrow.fs.FileSystem">FileSystem</a></span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="n">drop_invalid_properties</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a></span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">drop_invalid_properties</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/functions.html#bool">bool</a></span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
     <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="typing.Any" href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a></span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
 </code></pre></div>
@@ -1567,7 +1567,7 @@ to latest supported version.</p>
     <ul>
         <li class="doc-section-item field-body">
             <b><code>input_path</code></b>
-              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a> | <a class="autorefs autorefs-external" title="pathlib.Path" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path">Path</a> | <a class="autorefs autorefs-external" title="collections.abc.Iterable" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable">Iterable</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a> | <a class="autorefs autorefs-external" title="pathlib.Path" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path">Path</a>]</code>)
+              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/stdtypes.html#str">str</a> | <a class="autorefs autorefs-external" title="pathlib.Path" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path">Path</a> | <a class="autorefs autorefs-external" title="collections.abc.Iterable" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable">Iterable</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/stdtypes.html#str">str</a> | <a class="autorefs autorefs-external" title="pathlib.Path" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path">Path</a>]</code>)
           –
           <div class="doc-md-description">
             <p>One or more paths to files with STAC items.</p>
@@ -1575,7 +1575,7 @@ to latest supported version.</p>
         </li>
         <li class="doc-section-item field-body">
             <b><code>output_path</code></b>
-              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a> | <a class="autorefs autorefs-external" title="pathlib.Path" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path">Path</a></code>)
+              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/stdtypes.html#str">str</a> | <a class="autorefs autorefs-external" title="pathlib.Path" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path">Path</a></code>)
           –
           <div class="doc-md-description">
             <p>A path to the output Parquet file.</p>
@@ -1588,7 +1588,7 @@ to latest supported version.</p>
     <ul>
         <li class="doc-section-item field-body">
           <b><code>chunk_size</code></b>
-              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>)
+              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/functions.html#int">int</a></code>)
           –
           <div class="doc-md-description">
             <p>The chunk size. Defaults to 65536.</p>
@@ -1608,7 +1608,7 @@ iteratively convert to GeoParquet.</p>
         </li>
         <li class="doc-section-item field-body">
           <b><code>limit</code></b>
-              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a> | None</code>)
+              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/functions.html#int">int</a> | None</code>)
           –
           <div class="doc-md-description">
             <p>The maximum number of JSON records to convert.</p>
@@ -1630,7 +1630,7 @@ to latest supported version.</p>
         </li>
         <li class="doc-section-item field-body">
           <b><code>collections</code></b>
-              (<code><a class="autorefs autorefs-external" title="collections.abc.Mapping" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping">Mapping</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a>, <a class="autorefs autorefs-external" title="collections.abc.Mapping" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping">Mapping</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a>, <a class="autorefs autorefs-external" title="typing.Any" href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a>]] | None</code>)
+              (<code><a class="autorefs autorefs-external" title="collections.abc.Mapping" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping">Mapping</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/stdtypes.html#str">str</a>, <a class="autorefs autorefs-external" title="collections.abc.Mapping" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping">Mapping</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/stdtypes.html#str">str</a>, <a class="autorefs autorefs-external" title="typing.Any" href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a>]] | None</code>)
           –
           <div class="doc-md-description">
             <p>A dictionary mapping collection IDs to
@@ -1641,7 +1641,7 @@ parquet file metadata, under the key <code>collections</code>.</p>
         </li>
         <li class="doc-section-item field-body">
           <b><code>collection_metadata</code></b>
-              (<code><a class="autorefs autorefs-external" title="collections.abc.Mapping" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping">Mapping</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a>, <a class="autorefs autorefs-external" title="typing.Any" href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a>] | None</code>)
+              (<code><a class="autorefs autorefs-external" title="collections.abc.Mapping" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping">Mapping</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/stdtypes.html#str">str</a>, <a class="autorefs autorefs-external" title="typing.Any" href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a>] | None</code>)
           –
           <div class="doc-md-description">
             <p>A dictionary representing a Collection in a SpatioTemporal
@@ -1661,7 +1661,7 @@ from output_path for local files.</p>
         </li>
         <li class="doc-section-item field-body">
           <b><code>drop_invalid_properties</code></b>
-              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a></code>)
+              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/functions.html#bool">bool</a></code>)
           –
           <div class="doc-md-description">
             <p>If True (default), an Item property whose name
@@ -1687,7 +1687,7 @@ collides with a top-level field. If False, a ValueError is raised instead.</p>
 <a href="#stac_geoparquet.arrow.stac_table_to_items" class="headerlink" title="Permanent link">&para;</a></h3>
 <div class="doc-signature codehilite"><pre><span></span><code><span class="nf">stac_table_to_items</span><span class="p">(</span>
     <span class="n">table</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="pyarrow.Table" href="https://arrow.apache.org/docs/python/generated/pyarrow.Table.html#pyarrow.Table">Table</a></span> <span class="o">|</span> <span class="n"><a class="autorefs autorefs-external" title="pyarrow.RecordBatchReader" href="https://arrow.apache.org/docs/python/generated/pyarrow.RecordBatchReader.html#pyarrow.RecordBatchReader">RecordBatchReader</a></span> <span class="o">|</span> <span class="n"><span title="stac_geoparquet.arrow.types.ArrowStreamExportable">ArrowStreamExportable</span></span><span class="p">,</span>
-<span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><a class="autorefs autorefs-external" title="collections.abc.Iterable" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable">Iterable</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#dict">dict</a></span><span class="p">]</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><a class="autorefs autorefs-external" title="collections.abc.Iterable" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable">Iterable</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/stdtypes.html#dict">dict</a></span><span class="p">]</span>
 </code></pre></div>
 
     <div class="doc doc-contents ">
@@ -1715,7 +1715,7 @@ A RecordBatchReader or stream object will not be materialized in memory.</p>
 <p><span class="doc-section-title">Yields:</span></p>
     <ul>
         <li class="doc-section-item field-body">
-              <code><a class="autorefs autorefs-external" title="collections.abc.Iterable" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable">Iterable</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#dict">dict</a>]</code>
+              <code><a class="autorefs autorefs-external" title="collections.abc.Iterable" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable">Iterable</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/stdtypes.html#dict">dict</a>]</code>
           –
           <div class="doc-md-description">
             <p>A STAC <code>dict</code> for each input row.</p>
@@ -1738,7 +1738,7 @@ A RecordBatchReader or stream object will not be materialized in memory.</p>
 <a href="#stac_geoparquet.arrow.stac_table_to_ndjson" class="headerlink" title="Permanent link">&para;</a></h3>
 <div class="doc-signature codehilite"><pre><span></span><code><span class="nf">stac_table_to_ndjson</span><span class="p">(</span>
     <span class="n">table</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="pyarrow.Table" href="https://arrow.apache.org/docs/python/generated/pyarrow.Table.html#pyarrow.Table">Table</a></span> <span class="o">|</span> <span class="n"><a class="autorefs autorefs-external" title="pyarrow.RecordBatchReader" href="https://arrow.apache.org/docs/python/generated/pyarrow.RecordBatchReader.html#pyarrow.RecordBatchReader">RecordBatchReader</a></span> <span class="o">|</span> <span class="n"><span title="stac_geoparquet.arrow.types.ArrowStreamExportable">ArrowStreamExportable</span></span><span class="p">,</span>
-    <span class="n">dest</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span> <span class="o">|</span> <span class="n"><a class="autorefs autorefs-external" title="pathlib.Path" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path">Path</a></span> <span class="o">|</span> <span class="n"><a class="autorefs autorefs-external" title="os.PathLike" href="https://docs.python.org/3/library/os.html#os.PathLike">PathLike</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#bytes">bytes</a></span><span class="p">],</span>
+    <span class="n">dest</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/stdtypes.html#str">str</a></span> <span class="o">|</span> <span class="n"><a class="autorefs autorefs-external" title="pathlib.Path" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path">Path</a></span> <span class="o">|</span> <span class="n"><a class="autorefs autorefs-external" title="os.PathLike" href="https://docs.python.org/3/library/os.html#os.PathLike">PathLike</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/stdtypes.html#bytes">bytes</a></span><span class="p">],</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
 </code></pre></div>
 
@@ -1770,7 +1770,7 @@ a 'type' field will be added where each record is 'Feature'.</p>
         </li>
         <li class="doc-section-item field-body">
             <b><code>dest</code></b>
-              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a> | <a class="autorefs autorefs-external" title="pathlib.Path" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path">Path</a> | <a class="autorefs autorefs-external" title="os.PathLike" href="https://docs.python.org/3/library/os.html#os.PathLike">PathLike</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#bytes">bytes</a>]</code>)
+              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/stdtypes.html#str">str</a> | <a class="autorefs autorefs-external" title="pathlib.Path" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path">Path</a> | <a class="autorefs autorefs-external" title="os.PathLike" href="https://docs.python.org/3/library/os.html#os.PathLike">PathLike</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/stdtypes.html#bytes">bytes</a>]</code>)
           –
           <div class="doc-md-description">
             <p>The destination where newline-delimited JSON should be written.</p>
@@ -1793,7 +1793,7 @@ a 'type' field will be added where each record is 'Feature'.</p>
 <a href="#stac_geoparquet.arrow.to_parquet" class="headerlink" title="Permanent link">&para;</a></h3>
 <div class="doc-signature codehilite"><pre><span></span><code><span class="nf">to_parquet</span><span class="p">(</span>
     <span class="n">table</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="pyarrow.Table" href="https://arrow.apache.org/docs/python/generated/pyarrow.Table.html#pyarrow.Table">Table</a></span> <span class="o">|</span> <span class="n"><a class="autorefs autorefs-external" title="pyarrow.RecordBatchReader" href="https://arrow.apache.org/docs/python/generated/pyarrow.RecordBatchReader.html#pyarrow.RecordBatchReader">RecordBatchReader</a></span> <span class="o">|</span> <span class="n"><span title="stac_geoparquet.arrow.types.ArrowStreamExportable">ArrowStreamExportable</span></span><span class="p">,</span>
-    <span class="n">output_path</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span> <span class="o">|</span> <span class="n"><a class="autorefs autorefs-external" title="pathlib.Path" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path">Path</a></span><span class="p">,</span>
+    <span class="n">output_path</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/stdtypes.html#str">str</a></span> <span class="o">|</span> <span class="n"><a class="autorefs autorefs-external" title="pathlib.Path" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path">Path</a></span><span class="p">,</span>
     <span class="o">*</span><span class="p">,</span>
     <span class="n">schema_version</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-internal" title="SUPPORTED_PARQUET_SCHEMA_VERSIONS
 
@@ -1806,8 +1806,8 @@ a 'type' field will be added where each record is 'Feature'.</p>
   
       module-attribute
    (stac_geoparquet.arrow._constants.DEFAULT_PARQUET_SCHEMA_VERSION)" href="#stac_geoparquet.arrow.DEFAULT_PARQUET_SCHEMA_VERSION">DEFAULT_PARQUET_SCHEMA_VERSION</a></span><span class="p">,</span>
-    <span class="n">collections</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="collections.abc.Mapping" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping">Mapping</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span><span class="p">,</span> <span class="n"><a class="autorefs autorefs-external" title="collections.abc.Mapping" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping">Mapping</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span><span class="p">,</span> <span class="n"><a class="autorefs autorefs-external" title="typing.Any" href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a></span><span class="p">]]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="n">collection_metadata</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="collections.abc.Mapping" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping">Mapping</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span><span class="p">,</span> <span class="n"><a class="autorefs autorefs-external" title="typing.Any" href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a></span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">collections</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="collections.abc.Mapping" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping">Mapping</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/stdtypes.html#str">str</a></span><span class="p">,</span> <span class="n"><a class="autorefs autorefs-external" title="collections.abc.Mapping" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping">Mapping</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/stdtypes.html#str">str</a></span><span class="p">,</span> <span class="n"><a class="autorefs autorefs-external" title="typing.Any" href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a></span><span class="p">]]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">collection_metadata</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="collections.abc.Mapping" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping">Mapping</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/stdtypes.html#str">str</a></span><span class="p">,</span> <span class="n"><a class="autorefs autorefs-external" title="typing.Any" href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a></span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">filesystem</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="pyarrow.fs.FileSystem" href="https://arrow.apache.org/docs/python/generated/pyarrow.fs.FileSystem.html#pyarrow.fs.FileSystem">FileSystem</a></span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="typing.Any" href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a></span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
@@ -1835,7 +1835,7 @@ A RecordBatchReader or stream object will not be materialized in memory.</p>
         </li>
         <li class="doc-section-item field-body">
             <b><code>output_path</code></b>
-              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a> | <a class="autorefs autorefs-external" title="pathlib.Path" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path">Path</a></code>)
+              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/stdtypes.html#str">str</a> | <a class="autorefs autorefs-external" title="pathlib.Path" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path">Path</a></code>)
           –
           <div class="doc-md-description">
             <p>The destination for saving.</p>
@@ -1862,7 +1862,7 @@ to latest supported version.</p>
         </li>
         <li class="doc-section-item field-body">
           <b><code>collections</code></b>
-              (<code><a class="autorefs autorefs-external" title="collections.abc.Mapping" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping">Mapping</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a>, <a class="autorefs autorefs-external" title="collections.abc.Mapping" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping">Mapping</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a>, <a class="autorefs autorefs-external" title="typing.Any" href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a>]] | None</code>)
+              (<code><a class="autorefs autorefs-external" title="collections.abc.Mapping" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping">Mapping</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/stdtypes.html#str">str</a>, <a class="autorefs autorefs-external" title="collections.abc.Mapping" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping">Mapping</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/stdtypes.html#str">str</a>, <a class="autorefs autorefs-external" title="typing.Any" href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a>]] | None</code>)
           –
           <div class="doc-md-description">
             <p>A dictionary mapping collection IDs to
@@ -1873,7 +1873,7 @@ parquet file metadata, under the key <code>collections</code>.</p>
         </li>
         <li class="doc-section-item field-body">
           <b><code>collection_metadata</code></b>
-              (<code><a class="autorefs autorefs-external" title="collections.abc.Mapping" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping">Mapping</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a>, <a class="autorefs autorefs-external" title="typing.Any" href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a>] | None</code>)
+              (<code><a class="autorefs autorefs-external" title="collections.abc.Mapping" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping">Mapping</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/stdtypes.html#str">str</a>, <a class="autorefs autorefs-external" title="typing.Any" href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a>] | None</code>)
           –
           <div class="doc-md-description">
             <p>A dictionary representing a Collection in a SpatioTemporal

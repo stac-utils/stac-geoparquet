@@ -832,10 +832,10 @@ viewing the latest version.
 
 <a href="#stac_geoparquet.to_geodataframe" class="headerlink" title="Permanent link">&para;</a></h2>
 <div class="doc-signature codehilite"><pre><span></span><code><span class="nf">to_geodataframe</span><span class="p">(</span>
-    <span class="n">items</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="collections.abc.Sequence" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence">Sequence</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#dict">dict</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span><span class="p">,</span> <span class="n"><a class="autorefs autorefs-external" title="typing.Any" href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a></span><span class="p">]],</span>
-    <span class="n">add_self_link</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a></span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">items</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="collections.abc.Sequence" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence">Sequence</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/stdtypes.html#dict">dict</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/stdtypes.html#str">str</a></span><span class="p">,</span> <span class="n"><a class="autorefs autorefs-external" title="typing.Any" href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a></span><span class="p">]],</span>
+    <span class="n">add_self_link</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/functions.html#bool">bool</a></span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="n">dtype_backend</span><span class="p">:</span> <span class="n"><span title="stac_geoparquet.stac_geoparquet.DTYPE_BACKEND">DTYPE_BACKEND</span></span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="n">datetime_precision</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span> <span class="o">=</span> <span class="s2">&quot;ns&quot;</span><span class="p">,</span>
+    <span class="n">datetime_precision</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/stdtypes.html#str">str</a></span> <span class="o">=</span> <span class="s2">&quot;ns&quot;</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><a class="autorefs autorefs-external" title="geopandas.GeoDataFrame" href="https://geopandas.org/en/stable/docs/reference/api/geopandas.GeoDataFrame.html#geopandas.GeoDataFrame">GeoDataFrame</a></span>
 </code></pre></div>
 
@@ -851,7 +851,7 @@ DataFrame, similar to
     <ul>
         <li class="doc-section-item field-body">
             <b><code>items</code></b>
-              (<code><a class="autorefs autorefs-external" title="collections.abc.Sequence" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence">Sequence</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#dict">dict</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a>, <a class="autorefs autorefs-external" title="typing.Any" href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a>]]</code>)
+              (<code><a class="autorefs autorefs-external" title="collections.abc.Sequence" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence">Sequence</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/stdtypes.html#dict">dict</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/stdtypes.html#str">str</a>, <a class="autorefs autorefs-external" title="typing.Any" href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a>]]</code>)
           –
           <div class="doc-md-description">
             <p>A sequence of STAC items.</p>
@@ -859,7 +859,7 @@ DataFrame, similar to
         </li>
         <li class="doc-section-item field-body">
             <b><code>add_self_link</code></b>
-              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a></code>, default:
+              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/functions.html#bool">bool</a></code>, default:
                   <code>False</code>
 )
           –
@@ -908,7 +908,7 @@ infer that the struct field <code>asset.title</code> is nullable.</p>
         </li>
         <li class="doc-section-item field-body">
             <b><code>datetime_precision</code></b>
-              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code>, default:
+              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/stdtypes.html#str">str</a></code>, default:
                   <code>&#39;ns&#39;</code>
 )
           –
@@ -991,7 +991,7 @@ row in the in the GeoDataFrame.</p>
 
 
 <a href="#stac_geoparquet.to_dict" class="headerlink" title="Permanent link">&para;</a></h2>
-<div class="doc-signature codehilite"><pre><span></span><code><span class="nf">to_dict</span><span class="p">(</span><span class="n">record</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#dict">dict</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#dict">dict</a></span>
+<div class="doc-signature codehilite"><pre><span></span><code><span class="nf">to_dict</span><span class="p">(</span><span class="n">record</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/stdtypes.html#dict">dict</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/stdtypes.html#dict">dict</a></span>
 </code></pre></div>
 
     <div class="doc doc-contents first">
@@ -1003,7 +1003,7 @@ row in the in the GeoDataFrame.</p>
     <ul>
         <li class="doc-section-item field-body">
             <b><code>record</code></b>
-              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#dict">dict</a></code>)
+              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/stdtypes.html#dict">dict</a></code>)
           –
           <div class="doc-md-description">
             <p>dict</p>
