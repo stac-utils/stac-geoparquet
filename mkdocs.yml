@@ -98,7 +98,7 @@ plugins:
 
           inventories:
             - https://arrow.apache.org/docs/objects.inv
-            - https://delta-io.github.io/delta-rs/objects.inv
+            - https://delta-io.github.io/delta-rs/latest/objects.inv
             - https://docs.python.org/3/objects.inv
             - https://geoarrow.github.io/geoarrow-rs/python/latest/objects.inv
             - https://geopandas.org/en/stable/objects.inv
