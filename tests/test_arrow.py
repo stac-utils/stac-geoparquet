@@ -326,3 +326,21 @@ def test_all_null_timestamp_column_is_timezone_aware():
     assert table.schema.field("datetime").type == pa.timestamp("us", tz="UTC")
     assert table.schema.field("start_datetime").type == pa.timestamp("us", tz="UTC")
     assert table.schema.field("end_datetime").type == pa.timestamp("us", tz="UTC")
+
+
+def test_to_parquet_empty_assets(tmp_path: Path):
+    item = {
+        "type": "Feature",
+        "stac_version": "1.0.0",
+        "id": "a",
+        "geometry": {"type": "Point", "coordinates": [0, 0]},
+        "bbox": [0, 0, 0, 0],
+        "properties": {"datetime": "2024-01-01T00:00:00Z"},
+        "assets": {},
+        "links": [],
+    }
+    path = tmp_path / "out.parquet"
+    to_parquet(parse_stac_items_to_arrow([item]), path)
+
+    items = list(stac_table_to_items(pq.read_table(path)))
+    assert items[0]["assets"] == {}
