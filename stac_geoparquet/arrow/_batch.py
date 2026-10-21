@@ -139,9 +139,10 @@ class StacJsonBatch:
         except KeyError:
             pass
 
-        assets_struct = batch.schema.field("assets").type
-        for asset_idx in range(assets_struct.num_fields):
-            asset_field = assets_struct.field(asset_idx)
+        assets_fields = (
+            batch.schema.field("assets").type if "assets" in batch.schema.names else []
+        )
+        for asset_field in assets_fields:
             if "proj:geometry" in pa.schema(asset_field).names:
                 geometry_paths.append(["assets", asset_field.name, "proj:geometry"])
 
@@ -170,7 +171,7 @@ class StacJsonBatch:
                 )
                 set_by_path(row_dict, geometry_path, geojson_g)
 
-            assets = row_dict.get("assets", {})
+            assets = row_dict.setdefault("assets", {})
             if assets and isinstance(
                 assets, dict
             ):  # the isinstance should never fail but better safe than sorry
