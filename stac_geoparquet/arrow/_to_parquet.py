@@ -63,9 +63,17 @@ def to_parquet(
     # Coerce to record batch reader to avoid materializing entire stream
     reader = pa.RecordBatchReader.from_stream(table)
 
-    schema = reader.schema.with_metadata(
+    # Parquet can't store structs with no fields (e.g. `assets` when every item has
+    # `assets: {}`), so drop them. `assets` is restored as `{}` on read.
+    empty = [
+        f.name
+        for f in reader.schema
+        if pa.types.is_struct(f.type) and f.type.num_fields == 0
+    ]
+    schema = pa.schema(f for f in reader.schema if f.name not in empty)
+    schema = schema.with_metadata(
         create_parquet_metadata(
-            reader.schema,
+            schema,
             schema_version=schema_version,
             collections=collections,
             collection_metadata=collection_metadata,
@@ -76,7 +84,7 @@ def to_parquet(
         str(output_path), schema, filesystem=filesystem, **kwargs
     ) as writer:
         for batch in reader:
-            writer.write_batch(batch)
+            writer.write_batch(batch.drop_columns(empty))
 
 
 def create_parquet_metadata(

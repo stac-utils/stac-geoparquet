@@ -86,6 +86,9 @@ class PgstacRowFactory:
             item["links"] = content["links"]
         if "stac_extensions" in content:
             item["stac_extensions"] = content["stac_extensions"]
+        # pgstac only stores stac_version when it differs from the collection's
+        if "stac_version" in content:
+            item["stac_version"] = content["stac_version"]
         item["properties"] = content["properties"]
 
         base_item = self.get_baseitem(item["collection"])
