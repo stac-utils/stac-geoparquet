@@ -68,5 +68,13 @@ No special API is required for reading a STAC Delta Lake table back into Arrow. 
 
     In such cases, users may need to manually update the inferred schema to cast any `null` type to another Delta Lake-compatible type.
 
+## Settings
+
+These environment variables set defaults. An argument you pass to a function wins over its variable, and a flag is on when it's `1`, `true` or `yes`.
+
+| Variable | Default | Sets | Argument |
+| --- | --- | --- | --- |
+| `STAC_GEOPARQUET_PGSTAC_STREAM` | stream with libpq 17 or later | whether pgstac rows are streamed, or fetched from a server-side cursor | `stream` |
+| `STAC_GEOPARQUET_PGSTAC_CURSOR_ITERSIZE` | 100 when streaming, 1000 otherwise | how many rows are read from the database at a time | `cursor_itersize` |
 
 [spec]: https://github.com/stac-utils/stac-geoparquet/blob/main/spec/stac-geoparquet-spec.md#parquet-metadata

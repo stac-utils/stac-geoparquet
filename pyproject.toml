@@ -31,7 +31,7 @@ deltalake = [
     "deltalake<1",
 ]
 pgstac = [
-    "psycopg[binary]",
+    "psycopg[binary]>=3.2",
     "psycopg-pool",
     "pypgstac",
 ]
