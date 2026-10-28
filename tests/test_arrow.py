@@ -1,5 +1,7 @@
+import gc
 import itertools
 import json
+import weakref
 from pathlib import Path
 
 import pyarrow as pa
@@ -14,6 +16,7 @@ from stac_geoparquet.arrow import (
     DEFAULT_JSON_CHUNK_SIZE,
     _api,
     _batch,
+    _memory,
     parse_stac_items_to_arrow,
     parse_stac_items_to_parquet,
     parse_stac_ndjson_to_arrow,
@@ -533,3 +536,85 @@ def test_parse_stac_items_to_arrow_converts_geometries_once(
     parse_stac_items_to_arrow(items, schema=schema, tmpdir=tmp_path).read_all()
 
     assert sorted(calls) == sorted(item["id"] for item in items)
+
+
+def test_chunk_size_environment_variable(monkeypatch):
+    monkeypatch.setenv("STAC_GEOPARQUET_CHUNK_SIZE", "2")
+
+    reader = parse_stac_items_to_arrow(_read_items("naip-pc"), schema="FirstBatch")
+
+    assert [batch.num_rows for batch in reader] == [2, 2]
+
+
+def test_parse_stac_items_to_arrow_with_little_memory(monkeypatch):
+    base = _read_items("naip-pc")[0]
+    items = [{**base, "id": f"item-{i}"} for i in range(1024)]
+    expected = parse_stac_items_to_arrow(items, schema="FullFile").read_all()
+    # No memory to spare
+    monkeypatch.setattr(_memory, "memory_headroom", lambda: _memory.RESERVED_BYTES)
+
+    reader = parse_stac_items_to_arrow(items, schema="FirstBatch", chunk_size=1000)
+    batches = list(reader)
+
+    assert len(batches) > 1
+    assert pa.Table.from_batches(batches).equals(expected)
+
+
+@pytest.mark.parametrize("schema", ["FirstBatch", "ChunksToDisk", "InferredSchema"])
+def test_parse_stac_items_to_arrow_releases_each_chunk(tmp_path, schema):
+    items = _read_items("naip-pc")
+    prefix = f"{schema}-item"
+    if schema == "InferredSchema":
+        schema = _naip_schema()
+
+    def first_item_alive():
+        gc.collect()
+        return any(
+            isinstance(o, dict) and o.get("id") == f"{prefix}-0"
+            for o in gc.get_objects()
+        )
+
+    def generate():
+        for i, item in enumerate(items):
+            if i == 2:
+                assert not first_item_alive(), "the first chunk is still alive"
+            yield {**item, "id": f"{prefix}-{i}"}
+
+    reader = parse_stac_items_to_arrow(
+        generate(), schema=schema, chunk_size=2, tmpdir=tmp_path
+    )
+    assert reader.read_all().num_rows == 4
+
+
+@pytest.fixture
+def converted_batches(monkeypatch):
+    refs = []
+    to_arrow = _api._wkb_items_to_arrow
+
+    def tracked(*args):
+        batch = to_arrow(*args)
+        refs.append(weakref.ref(batch))
+        return batch
+
+    monkeypatch.setattr(_api, "_wkb_items_to_arrow", tracked)
+    return refs
+
+
+@pytest.mark.parametrize("schema", ["FirstBatch", "InferredSchema"])
+def test_parse_stac_items_to_parquet_releases_written_batches(
+    tmp_path, converted_batches, schema
+):
+    if schema == "InferredSchema":
+        schema = _naip_schema()
+
+    def generate():
+        for i, item in enumerate(_read_items("naip-pc")):
+            if i == 2:
+                alive = [ref() is not None for ref in converted_batches]
+                assert alive == [False, False], "written batches are still alive"
+            yield item
+
+    parse_stac_items_to_parquet(
+        generate(), schema=schema, chunk_size=1, output_path=tmp_path / "out.parquet"
+    )
+    assert pq.read_metadata(tmp_path / "out.parquet").num_rows == 4
