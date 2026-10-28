@@ -9,6 +9,7 @@ from typing import Any
 
 import psutil
 import pyarrow as pa
+import pyarrow.fs
 import pystac
 from pyarrow.dataset import dataset
 
@@ -133,8 +134,8 @@ def parse_stac_items_to_arrow(
             inference. This can also be set to a string value of "FullFile" which
             will scan the entire input in memory to get the schema, "FirstBatch" which
             will use the first batch of items to infer the schema, or "ChunksToDisk"
-            which will write each chunk of items to disk as a Parquet file and then read
-            them back in to unify the schema. Defaults to "FullFile".
+            which will write each chunk of items to disk as an Arrow IPC file and then
+            read them back in to unify the schema. Defaults to "FullFile".
         drop_invalid_properties: If True (default), an Item property whose name
             collides with a top-level field. If False, a ValueError is raised instead.
 
@@ -173,11 +174,16 @@ def parse_stac_items_to_arrow(
         if tmpdir is None or Path(tmpdir).exists() is False:
             raise FileNotFoundError("tmpdir must be provided for ChunksToDisk schema")
         else:
-            logger.info(f"Using temporary directory {tmpdir} for chunked schema")
+            # A new directory that only this user can open, so no one else can put
+            # files or symlinks where the chunks are written
+            chunkdir = tempfile.mkdtemp(dir=tmpdir)
+            logger.info(f"Using temporary directory {chunkdir} for chunked schema")
             batches = _chunks_to_arrow(
                 wkb_items, chunk_size, None, drop_invalid_properties
             )
-            for cnt, batch in enumerate(batches):
+            paths: list[str] = []
+            # Not enumerate(), which would keep the previous batch alive
+            for batch in batches:
                 if not isinstance(schema, pa.Schema):
                     schema = batch.schema
                 elif not schema.equals(batch.schema):
@@ -185,15 +191,23 @@ def parse_stac_items_to_arrow(
                     schema = pa.unify_schemas(
                         [schema, batch.schema], promote_options="permissive"
                     )
-                fname = f"{tmpdir}/{cnt}.parquet"
-                to_parquet(
-                    pa.RecordBatchReader.from_batches(batch.schema, [batch]),
-                    output_path=fname,
-                )
-                memlog(f"Batch {cnt}")
-            ds = dataset(tmpdir, schema=schema, format="parquet")
+                # Uncompressed IPC, so reading the chunks back can map the files
+                # instead of decoding them
+                fname = os.path.join(chunkdir, f"{len(paths)}.arrow")
+                with pa.ipc.new_file(fname, batch.schema) as writer:
+                    writer.write_batch(batch)
+                memlog(f"Batch {len(paths)}")
+                paths.append(fname)
+                del batch
+            if not paths:
+                raise ValueError("No items to convert")
+            # Windows can't delete a file that is still mapped
+            filesystem = pa.fs.LocalFileSystem(use_mmap=os.name != "nt")
+            ds = dataset(paths, schema=schema, format="ipc", filesystem=filesystem)
             memlog("Created Dataset")
-            batches = ds.to_batches(batch_size=chunk_size)
+            # Read ahead one file, not the default four, so at most one extra chunk
+            # is in memory
+            batches = ds.to_batches(batch_size=chunk_size, fragment_readahead=1)
             memlog("Created Batches")
             return pa.RecordBatchReader.from_batches(schema, batches)
 
