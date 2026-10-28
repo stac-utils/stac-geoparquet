@@ -4,7 +4,7 @@ import itertools
 import logging
 import os
 import tempfile
-from collections.abc import Iterable, Mapping
+from collections.abc import Iterable, Iterator, Mapping, Sequence
 from pathlib import Path
 from typing import Any
 
@@ -13,7 +13,11 @@ import pyarrow as pa
 import pystac
 from pyarrow.dataset import dataset
 
-from stac_geoparquet.arrow._batch import StacArrowBatch, StacJsonBatch
+from stac_geoparquet.arrow._batch import (
+    StacArrowBatch,
+    StacJsonBatch,
+    item_geometries_to_wkb,
+)
 from stac_geoparquet.arrow._constants import (
     ACCEPTED_SCHEMA_OPTIONS,
     DEFAULT_JSON_CHUNK_SIZE,
@@ -72,6 +76,29 @@ def from_batches(
     return pa.RecordBatchReader.from_batches(init.schema, checked)
 
 
+def _wkb_items_to_arrow(
+    wkb_items: Sequence[dict[str, Any]],
+    schema: pa.Schema | None,
+    drop_invalid_properties: bool,
+) -> pa.RecordBatch:
+    """
+    Like `stac_items_to_arrow`, for items returned by `item_geometries_to_wkb`.
+    Their geometries are moved into the batch.
+    """
+    raw_batch = StacJsonBatch._from_wkb_dicts(wkb_items, schema=schema)
+    return raw_batch.to_arrow_batch(drop_invalid_properties).inner
+
+
+def _chunks_to_arrow(
+    wkb_items: Iterable[dict[str, Any]],
+    chunk_size: int,
+    schema: pa.Schema | None,
+    drop_invalid_properties: bool,
+) -> Iterator[pa.RecordBatch]:
+    for chunk in batched_iter(wkb_items, chunk_size):
+        yield _wkb_items_to_arrow(chunk, schema, drop_invalid_properties)
+
+
 def parse_stac_items_to_arrow(
     items: Iterable[pystac.Item | dict[str, Any]],
     chunk_size: int = DEFAULT_JSON_CHUNK_SIZE,
@@ -88,7 +115,7 @@ def parse_stac_items_to_arrow(
     [`geopandas.GeoDataFrame.from_features`][geopandas.GeoDataFrame.from_features].
 
     Args:
-        items: the STAC Items to convert
+        items: the STAC Items to convert. Geometries can also be WKB or EWKB bytes.
         chunk_size: The chunk size to use for Arrow record batches. This only takes
             effect if `schema` is not None. When `schema` is None, the input will be
             parsed into a single contiguous record batch. Defaults to 8192.
@@ -107,34 +134,28 @@ def parse_stac_items_to_arrow(
     """
     memlog("parse_stac_items_to_arrow start")
 
+    wkb_items = map(item_geometries_to_wkb, items)
+
     if isinstance(schema, InferredSchema):
         schema = schema.inner
 
     if isinstance(schema, pa.Schema):
         # If schema is provided, then for better memory usage we parse input STAC items
         # to Arrow batches in chunks.
-        batches = (
-            stac_items_to_arrow(
-                batch, schema=schema, drop_invalid_properties=drop_invalid_properties
-            )
-            for batch in batched_iter(items, chunk_size)
+        batches = _chunks_to_arrow(
+            wkb_items, chunk_size, schema, drop_invalid_properties
         )
         return from_batches(
             batches, empty_schema=geoparquet_schema(schema, drop_invalid_properties)
         )
 
     elif schema == "FullFile":
-        batch = stac_items_to_arrow(
-            items, drop_invalid_properties=drop_invalid_properties
-        )
+        batch = _wkb_items_to_arrow(list(wkb_items), None, drop_invalid_properties)
         logger.debug(batch.schema, batch)
         return pa.RecordBatchReader.from_batches(batch.schema, [batch])
 
     elif schema == "FirstBatch":
-        batches = (
-            stac_items_to_arrow(batch, drop_invalid_properties=drop_invalid_properties)
-            for batch in batched_iter(items, chunk_size)
-        )
+        batches = _chunks_to_arrow(wkb_items, chunk_size, None, drop_invalid_properties)
         return from_batches(batches)
 
     else:
@@ -143,10 +164,10 @@ def parse_stac_items_to_arrow(
             raise FileNotFoundError("tmpdir must be provided for ChunksToDisk schema")
         else:
             logger.info(f"Using temporary directory {tmpdir} for chunked schema")
-            for cnt, chunk in enumerate(batched_iter(items, chunk_size)):
-                batch = stac_items_to_arrow(
-                    chunk, drop_invalid_properties=drop_invalid_properties
-                )
+            batches = _chunks_to_arrow(
+                wkb_items, chunk_size, None, drop_invalid_properties
+            )
+            for cnt, batch in enumerate(batches):
                 if not isinstance(schema, pa.Schema):
                     schema = batch.schema
                 elif not schema.equals(batch.schema):

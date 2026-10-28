@@ -10,6 +10,8 @@ import pyarrow.fs
 import pyarrow.parquet
 import pypgstac
 import pytest
+import shapely
+import shapely.geometry
 from packaging.version import Version
 from pypgstac.db import PgstacDB
 from pypgstac.load import Loader
@@ -318,3 +320,123 @@ def test_missing_base_item(pgstac_postgres):
         factory = PgstacRowFactory(conn.cursor())
         with pytest.raises(ValueError, match="not found"):
             factory.get_baseitem("missing")
+
+
+def _assert_naip_geometries(ids, geometries):
+    expected = {
+        item["id"]: shapely.geometry.shape(item["geometry"])
+        for item in json.loads(NAIPDATA.read_text())
+    }
+    assert len(ids) == len(expected)
+    for item_id, wkb in zip(ids, geometries):
+        assert shapely.from_wkb(wkb).equals(expected[item_id])
+
+
+@pytest.fixture(params=["arrow", "parquet"])
+def read_table(request, pgstac_postgres, tmp_path):
+    """Read the NAIP items with pgstac_to_arrow or pgstac_to_parquet."""
+
+    def read(**kwargs):
+        kwargs.setdefault("collection", "naip")
+        if request.param == "arrow":
+            return pgstac_to_arrow(pgstac_postgres, **kwargs).read_all()
+        path = pgstac_reader.pgstac_to_parquet(
+            pgstac_postgres, tmp_path / "items.parquet", **kwargs
+        )
+        return pyarrow.parquet.read_table(path)
+
+    return read
+
+
+@pytest.mark.parametrize(
+    ("kwargs", "geometry_type"),
+    [({}, bytes), ({"geometry": "wkb"}, bytes), ({"geometry": "geojson"}, dict)],
+)
+def test_row_func_geometry_type(read_table, kwargs, geometry_type):
+    seen = []
+
+    def row_func(item):
+        seen.append(type(item["geometry"]))
+        return item
+
+    table = read_table(row_func=row_func, **kwargs)
+
+    assert seen == [geometry_type] * 4
+    _assert_naip_geometries(table["id"].to_pylist(), table["geometry"].to_pylist())
+
+
+@pytest.mark.parametrize("kwargs", [{}, {"row_func": lambda item: item}])
+def test_no_geojson_round_trip(read_table, monkeypatch, kwargs):
+    """Without a GeoJSON row_func, geometries go straight from WKB to Arrow (#175)."""
+
+    def fail(*args, **kwargs):
+        raise AssertionError("geometry was converted to or from GeoJSON")
+
+    monkeypatch.setattr(shapely.geometry.Polygon, "__geo_interface__", property(fail))
+    monkeypatch.setattr(shapely.geometry, "shape", fail)
+
+    table = read_table(**kwargs)
+
+    monkeypatch.undo()
+    _assert_naip_geometries(table["id"].to_pylist(), table["geometry"].to_pylist())
+
+
+def _replace_geometry(item):
+    item["geometry"] = {"type": "Point", "coordinates": [1.0, 2.0]}
+    return item
+
+
+def _set_coordinates(item):
+    item["geometry"]["type"] = "Point"
+    item["geometry"]["coordinates"] = (1.0, 2.0)
+    return item
+
+
+@pytest.mark.parametrize("row_func", [_replace_geometry, _set_coordinates])
+def test_row_func_changes_geometry(read_table, row_func):
+    table = read_table(row_func=row_func, geometry="geojson")
+    geoms = shapely.from_wkb(table["geometry"].to_pylist())
+    assert all(geom.equals(shapely.Point(1, 2)) for geom in geoms)
+
+
+# pgstac returns hex EWKB with an SRID to a text cursor and bytes to a binary one
+@pytest.mark.parametrize("as_hex", [True, False], ids=["hex", "bytes"])
+@pytest.mark.parametrize("wkb_geometry", [False, True])
+def test_row_factory_geometry(monkeypatch, as_hex, wkb_geometry):
+    monkeypatch.setattr(
+        PgstacRowFactory, "get_baseitem", lambda self, c, base_item_id: {}
+    )
+    polygon = shapely.Polygon([(0, 0), (1, 0), (1, 1), (0, 0)])
+    ewkb = shapely.to_wkb(
+        shapely.set_srid(polygon, 4326), hex=as_hex, include_srid=True
+    )
+    content = {"properties": {"datetime": "2024-01-01T00:00:00Z"}, "assets": {}}
+    row = ("a", ewkb, "c", content)
+
+    # the cursor is only used to look up base items
+    factory = PgstacRowFactory(None, wkb_geometry=wkb_geometry)
+    item = factory(row)
+
+    assert item["bbox"] == [0.0, 0.0, 1.0, 1.0]
+    if wkb_geometry:
+        assert item["geometry"] == shapely.to_wkb(polygon, flavor="iso")
+    else:
+        assert item["geometry"] == polygon.__geo_interface__
+
+
+@pytest.mark.parametrize(
+    ("kwargs", "geometry_type"), [({}, dict), ({"geometry": "wkb"}, bytes)]
+)
+def test_pgstac_to_iter_geometry(pgstac_postgres, kwargs, geometry_type):
+    seen = []
+
+    def row_func(item):
+        seen.append(type(item["geometry"]))
+        return item
+
+    items = pgstac_to_iter(
+        pgstac_postgres, collection="naip", row_func=row_func, **kwargs
+    )
+
+    assert [type(item["geometry"]) for item in items] == [geometry_type] * 4
+    assert seen == [geometry_type] * 4

@@ -5,10 +5,15 @@ from pathlib import Path
 import pyarrow as pa
 import pyarrow.dataset
 import pyarrow.parquet as pq
+import pystac
 import pytest
+import shapely
+import shapely.geometry
 
 from stac_geoparquet.arrow import (
     DEFAULT_JSON_CHUNK_SIZE,
+    _api,
+    _batch,
     parse_stac_items_to_arrow,
     parse_stac_items_to_parquet,
     parse_stac_ndjson_to_arrow,
@@ -415,3 +420,116 @@ def test_round_trip_read_write_with_inferred_schema(
     assert len(items_result) == len(items)
     for result, expected in zip(items_result, items):
         assert_json_value_equal(result, expected, precision=0)
+
+
+@pytest.mark.parametrize("include_srid", [False, True], ids=["wkb", "ewkb"])
+def test_wkb_geometry_input_matches_geojson(include_srid: bool):
+    items = _read_items("naip-pc")
+    for item in items:
+        geometry = shapely.set_srid(shapely.geometry.shape(item["geometry"]), 4326)
+        item["geometry"] = shapely.to_wkb(geometry, include_srid=include_srid)
+
+    table = parse_stac_items_to_arrow(items).read_all()
+
+    expected = parse_stac_items_to_arrow(_read_items("naip-pc")).read_all()
+    assert table.equals(expected)
+
+
+def test_geometry_written_as_iso_wkb():
+    point = shapely.Point(0, 0, 1)
+    item = {
+        "type": "Feature",
+        "stac_version": "1.0.0",
+        "id": "a",
+        "geometry": point.__geo_interface__,
+        "bbox": [0, 0, 0, 0],
+        "properties": {"datetime": "2024-01-01T00:00:00Z"},
+        "assets": {},
+        "links": [],
+    }
+    table = parse_stac_items_to_arrow([item]).read_all()
+    assert table["geometry"][0].as_py() == shapely.to_wkb(point, flavor="iso")
+
+
+def test_parse_pystac_items():
+    items = _read_items("naip-pc")
+    pystac_items = [pystac.Item.from_dict(item) for item in items]
+    table = parse_stac_items_to_arrow(pystac_items).read_all()
+    expected = parse_stac_items_to_arrow(items).read_all()
+    # pystac migrates the items' extensions, so only their geometries match
+    assert table["geometry"].equals(expected["geometry"])
+
+
+def test_parse_stac_items_to_arrow_does_not_mutate_input():
+    items = _read_items("3dep-lidar-copc-pc")
+    for item in items:
+        asset = next(iter(item["assets"].values()))
+        asset["proj:geometry"] = item["properties"]["proj:geometry"]
+    original = json.loads(json.dumps(items))
+
+    table = parse_stac_items_to_arrow(items).read_all()
+
+    assert items == original
+    asset_key = next(iter(items[0]["assets"]))
+    asset_type = table.schema.field("assets").type.field(asset_key).type
+    assert asset_type.field("proj:geometry").type == pa.binary()
+
+
+@pytest.mark.parametrize("collection_id", TEST_COLLECTIONS)
+@pytest.mark.parametrize("with_schema", [False, True])
+def test_geometry_column_from_one_buffer(collection_id: str, with_schema: bool):
+    wkb_items = [
+        _batch.item_geometries_to_wkb(item) for item in _read_items(collection_id)
+    ]
+    expected = pa.RecordBatch.from_struct_array(pa.array(wkb_items))
+    schema = expected.schema if with_schema else None
+
+    batch = _batch.StacJsonBatch._from_wkb_dicts(wkb_items, schema=schema).inner
+
+    assert batch.equals(expected)
+    assert all(item["geometry"] is None for item in wkb_items)
+
+
+def test_geometry_column_too_large_for_one_buffer(monkeypatch):
+    monkeypatch.setattr(_batch, "_MAX_BINARY_BYTES", 0)
+    wkb_items = [_batch.item_geometries_to_wkb(item) for item in _read_items("naip-pc")]
+
+    with pytest.raises(ValueError, match="chunk_size"):
+        _batch.StacJsonBatch._from_wkb_dicts(wkb_items, schema=None)
+
+
+def test_geometry_column_keeps_other_schema_types():
+    items = _read_items("naip-pc")
+    wkb_items = [_batch.item_geometries_to_wkb(item) for item in items]
+    schema = pa.RecordBatch.from_struct_array(pa.array(wkb_items)).schema
+    schema = schema.set(
+        schema.get_field_index("geometry"), pa.field("geometry", pa.large_binary())
+    )
+
+    batch = _batch.StacJsonBatch.from_dicts(items, schema=schema).inner
+
+    assert batch.schema.equals(schema)
+
+
+@pytest.mark.parametrize(
+    "schema", ["FirstBatch", "FullFile", "ChunksToDisk", "InferredSchema"]
+)
+def test_parse_stac_items_to_arrow_converts_geometries_once(
+    monkeypatch, tmp_path, schema
+):
+    items = _read_items("naip-pc")
+    if schema == "InferredSchema":
+        schema = _naip_schema()
+    calls = []
+    convert = _batch.item_geometries_to_wkb
+
+    def counting(item):
+        calls.append(item["id"])
+        return convert(item)
+
+    monkeypatch.setattr(_api, "item_geometries_to_wkb", counting)
+    monkeypatch.setattr(_batch, "item_geometries_to_wkb", counting)
+
+    parse_stac_items_to_arrow(items, schema=schema, tmpdir=tmp_path).read_all()
+
+    assert sorted(calls) == sorted(item["id"] for item in items)
