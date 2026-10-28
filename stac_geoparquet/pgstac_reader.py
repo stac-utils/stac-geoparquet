@@ -156,18 +156,16 @@ def _connect(
         yield conn
 
 
-def pgstac_to_iter(
-    conninfo: str | Callable[[], psycopg.Connection] | None,
-    collection: str | None = None,
-    start_datetime: datetime | None = None,
-    end_datetime: datetime | None = None,
-    search: dict[str, Any] | None = None,
-    statement_timeout: int | None = None,
-    cursor_itersize: int = 10000,
-    row_func: Callable | None = None,
-) -> Iterator[dict[str, Any]]:
-    logger.info("Fetching Data from PGStac Into an Iterator of Items")
-
+def _items_query(
+    *,
+    collection: str | None,
+    start_datetime: datetime | None,
+    end_datetime: datetime | None,
+    search: dict[str, Any] | None,
+) -> tuple[str, Any]:
+    """
+    Get the query and arguments that select the requested pgstac items.
+    """
     if search is not None and (
         collection is not None or start_datetime is not None or end_datetime is not None
     ):
@@ -200,16 +198,54 @@ def pgstac_to_iter(
         logger.info("With no filter, fetching all items")
         query = "SELECT * FROM items;"
         args = ()
+    return query, args
+
+
+def _rows(
+    conn: psycopg.Connection,
+    query: str,
+    args: Any,
+    *,
+    cursor_itersize: int,
+    row_factory: Any,
+) -> Iterator[Any]:
     curname = "".join(random.choices(string.ascii_lowercase, k=32))
+    with conn.cursor(curname, row_factory=row_factory) as cur:
+        cur.itersize = cursor_itersize
+        cur.execute(query, args)
+        logger.debug(f"Query: {query}, Args: {args}")
+        yield from cur
+
+
+def pgstac_to_iter(
+    conninfo: str | Callable[[], psycopg.Connection] | None,
+    collection: str | None = None,
+    start_datetime: datetime | None = None,
+    end_datetime: datetime | None = None,
+    search: dict[str, Any] | None = None,
+    statement_timeout: int | None = None,
+    cursor_itersize: int = 10000,
+    row_func: Callable | None = None,
+) -> Iterator[dict[str, Any]]:
+    logger.info("Fetching Data from PGStac Into an Iterator of Items")
+
+    query, args = _items_query(
+        collection=collection,
+        start_datetime=start_datetime,
+        end_datetime=end_datetime,
+        search=search,
+    )
     with _connect(conninfo, statement_timeout) as conn:
-        with conn.cursor(curname, row_factory=PgstacRowFactory) as cur:  # type: ignore
-            cur.itersize = cursor_itersize
-            cur.execute(query, args)
-            logger.debug(f"Query: {query}, Args: {args}")
-            for rec in cur:
-                if row_func is not None:
-                    rec = row_func(rec)
-                yield rec
+        for rec in _rows(
+            conn,
+            query,
+            args,
+            cursor_itersize=cursor_itersize,
+            row_factory=PgstacRowFactory,
+        ):
+            if row_func is not None:
+                rec = row_func(rec)
+            yield rec
 
 
 def pgstac_to_arrow(

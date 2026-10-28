@@ -39,6 +39,37 @@ else:
 logger = logging.getLogger(__name__)
 
 
+def item_geometries_to_wkb(item: pystac.Item | dict[str, Any]) -> dict[str, Any]:
+    """
+    Return a copy of a STAC item with `geometry` and any `proj:geometry` in its
+    properties or assets converted to ISO WKB. `item` is not modified.
+    """
+    if isinstance(item, pystac.Item):
+        item = item.to_dict(transform_hrefs=False)
+
+    wkb_item = deepcopy(item)
+    wkb_item["geometry"] = shapely.to_wkb(
+        shapely.geometry.shape(wkb_item["geometry"]), flavor="iso"
+    )
+
+    # If a proj:geometry key exists in top-level properties, convert that to WKB
+    if "proj:geometry" in wkb_item["properties"]:
+        wkb_item["properties"]["proj:geometry"] = shapely.to_wkb(
+            shapely.geometry.shape(wkb_item["properties"]["proj:geometry"]),
+            flavor="iso",
+        )
+
+    # If a proj:geometry key exists in any asset properties, convert that to WKB
+    for asset_value in wkb_item["assets"].values():
+        if "proj:geometry" in asset_value:
+            asset_value["proj:geometry"] = shapely.to_wkb(
+                shapely.geometry.shape(asset_value["proj:geometry"]),
+                flavor="iso",
+            )
+
+    return wkb_item
+
+
 class StacJsonBatch:
     """
     An Arrow RecordBatch of STAC Items that has been **minimally converted** to Arrow.
@@ -90,32 +121,7 @@ class StacJsonBatch:
         # Otherwise, pyarrow will try to parse coordinates into a native geometry type
         # and if you have multiple geometry types pyarrow will error with
         # `ArrowInvalid: cannot mix list and non-list, non-null values`
-        wkb_items = []
-        for item in items:
-            if isinstance(item, pystac.Item):
-                item = item.to_dict(transform_hrefs=False)
-
-            wkb_item = deepcopy(item)
-            wkb_item["geometry"] = shapely.to_wkb(
-                shapely.geometry.shape(wkb_item["geometry"]), flavor="iso"
-            )
-
-            # If a proj:geometry key exists in top-level properties, convert that to WKB
-            if "proj:geometry" in wkb_item["properties"]:
-                wkb_item["properties"]["proj:geometry"] = shapely.to_wkb(
-                    shapely.geometry.shape(wkb_item["properties"]["proj:geometry"]),
-                    flavor="iso",
-                )
-
-            # If a proj:geometry key exists in any asset properties, convert that to WKB
-            for asset_value in wkb_item["assets"].values():
-                if "proj:geometry" in asset_value:
-                    asset_value["proj:geometry"] = shapely.to_wkb(
-                        shapely.geometry.shape(asset_value["proj:geometry"]),
-                        flavor="iso",
-                    )
-
-            wkb_items.append(wkb_item)
+        wkb_items = [item_geometries_to_wkb(item) for item in items]
         logger.info(f"Items Length: {len(wkb_items)}")
 
         if len(wkb_items) == 0:
