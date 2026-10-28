@@ -11,6 +11,14 @@ from stac_geoparquet.arrow._constants import DEFAULT_JSON_CHUNK_SIZE
 from stac_geoparquet.json_reader import read_json_chunked
 
 
+def geoparquet_schema(
+    json_schema: pa.Schema, drop_invalid_properties: bool
+) -> pa.Schema:
+    """The GeoParquet schema that items with `json_schema` convert to."""
+    batch = StacJsonBatch(pa.RecordBatch.from_pylist([], schema=json_schema))
+    return batch.to_arrow_batch(drop_invalid_properties).inner.schema
+
+
 class InferredSchema:
     """
     A schema representing the original STAC JSON with absolutely minimal modifications.
