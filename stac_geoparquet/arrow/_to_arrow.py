@@ -7,6 +7,7 @@ import orjson
 import pyarrow as pa
 import pyarrow.compute as pc
 
+from stac_geoparquet.arrow._constants import BBOX_3D_METADATA
 from stac_geoparquet.arrow._crs import WGS84_CRS_JSON
 
 logger = logging.getLogger(__name__)
@@ -139,6 +140,23 @@ def convert_bbox_to_struct(batch: pa.RecordBatch) -> pa.RecordBatch:
     """
     bbox_col_idx = batch.schema.get_field_index("bbox")
     bbox_col = batch.column(bbox_col_idx)
+    if batch.schema.field(bbox_col_idx).metadata == BBOX_3D_METADATA:
+        # Some items have 3d bboxes, so give the 2d ones a null z
+        lengths = pc.list_value_length(bbox_col).to_numpy()
+        starts = np.cumsum(lengths) - lengths
+        values = pc.list_flatten(bbox_col).to_numpy()
+        is_2d = lengths == 4
+        arrays = [
+            pa.array(
+                values[starts + np.where(is_2d, index_2d, index_3d)],
+                mask=is_2d if index_3d in (2, 5) else None,
+            )
+            for index_3d, index_2d in enumerate([0, 1, 0, 2, 3, 0])
+        ]
+        names = ["xmin", "ymin", "zmin", "xmax", "ymax", "zmax"]
+        struct_arr = pa.StructArray.from_arrays(arrays, names=names)
+        return batch.set_column(bbox_col_idx, "bbox", struct_arr)
+
     bbox_3d = _is_bbox_3d(bbox_col)
 
     assert (

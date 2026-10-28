@@ -27,6 +27,20 @@ record_batch_reader = stac_geoparquet.arrow.parse_stac_items_to_arrow([item])
 table = record_batch_reader.read_all()
 ```
 
+### Pass a schema
+
+By default, the schema is inferred from the items. To convert items to a schema you already have, for example that of an existing file, pass it as `schema`:
+
+```py
+import pyarrow.parquet as pq
+from stac_geoparquet.arrow import InferredSchema, parse_stac_items_to_arrow
+
+schema = InferredSchema.from_geoparquet(pq.read_schema("items.parquet"))
+reader = parse_stac_items_to_arrow(new_items, schema=schema)
+```
+
+[`InferredSchema.inner`][stac_geoparquet.arrow.InferredSchema] is a `pyarrow.Schema` of the items as STAC JSON, with their properties nested under `properties`. Edit it with pyarrow and wrap the result with `InferredSchema(schema)`, or merge in another with `update_from_schema`. `to_geoparquet` gives the schema the items convert to. Fields that items have and the schema doesn't are dropped.
+
 ### Convert JSON to Arrow
 
 [`parse_stac_ndjson_to_arrow`][stac_geoparquet.arrow.parse_stac_ndjson_to_arrow] is a helper function to take one or more JSON or newline-delimited JSON files on disk, infer the schema from all of them, and convert the data to a stream of Arrow record batches.
