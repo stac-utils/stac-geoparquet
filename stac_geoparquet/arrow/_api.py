@@ -109,7 +109,14 @@ def parse_stac_items_to_arrow(
             )
             for batch in batched_iter(items, chunk_size)
         )
-        return pa.RecordBatchReader.from_batches(schema, batches)
+        first_batch = next(batches, None)
+        if first_batch is None:
+            return pa.RecordBatchReader.from_batches(schema, [])
+        # Need to take this schema from the iterator; the existing `schema` is the
+        # schema of JSON batch
+        return pa.RecordBatchReader.from_batches(
+            first_batch.schema, itertools.chain([first_batch], batches)
+        )
 
     elif schema == "FullFile":
         batch = stac_items_to_arrow(

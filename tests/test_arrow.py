@@ -16,6 +16,7 @@ from stac_geoparquet.arrow import (
     stac_table_to_ndjson,
     to_parquet,
 )
+from stac_geoparquet.arrow._schema.models import InferredSchema
 from stac_geoparquet.arrow._util import resolve_output_path_and_filesystem
 
 from .json_equals import assert_json_value_equal
@@ -53,6 +54,37 @@ def test_round_trip_read_write(collection_id: str, chunk_size: int):
     table = parse_stac_items_to_arrow(items, chunk_size=chunk_size).read_all()
     items_result = list(stac_table_to_items(table))
 
+    for result, expected in zip(items_result, items):
+        assert_json_value_equal(result, expected, precision=0)
+
+
+@pytest.mark.parametrize(
+    "collection_id,chunk_size", itertools.product(TEST_COLLECTIONS, CHUNK_SIZES)
+)
+def test_round_trip_read_write_with_inferred_schema(
+    collection_id: str, chunk_size: int, tmp_path: Path
+):
+    """Regression test for a reader declared with the pre-conversion schema
+
+    With an explicit schema, the returned reader was declared with the JSON-shaped
+    schema (a nested `properties` struct) while its batches have properties moved to
+    the top level, so consuming the reader raised `ArrowInvalid`.
+    """
+    with open(HERE / "data" / f"{collection_id}.json") as f:
+        items = json.load(f)
+
+    schema = InferredSchema()
+    schema.update_from_items(items)
+    schema.manual_updates()
+
+    reader = parse_stac_items_to_arrow(items, chunk_size=chunk_size, schema=schema)
+    assert "properties" not in reader.schema.names
+
+    to_parquet(reader, tmp_path / "items.parquet")
+    table = pq.read_table(tmp_path / "items.parquet")
+    items_result = list(stac_table_to_items(table))
+
+    assert len(items_result) == len(items)
     for result, expected in zip(items_result, items):
         assert_json_value_equal(result, expected, precision=0)
 
