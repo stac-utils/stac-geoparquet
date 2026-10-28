@@ -1,6 +1,7 @@
 import gc
 import itertools
 import json
+import os
 import weakref
 from pathlib import Path
 
@@ -376,7 +377,7 @@ def test_parse_stac_items_to_arrow_with_schema_and_no_items():
     assert reader.read_all().num_rows == 0
 
 
-@pytest.mark.parametrize("schema", ["FirstBatch"])
+@pytest.mark.parametrize("schema", ["FirstBatch", "ChunksToDisk"])
 def test_no_items(schema, tmp_path):
     with pytest.raises(ValueError, match="No items"):
         parse_stac_items_to_arrow([], schema=schema, tmpdir=tmp_path)
@@ -618,3 +619,101 @@ def test_parse_stac_items_to_parquet_releases_written_batches(
         generate(), schema=schema, chunk_size=1, output_path=tmp_path / "out.parquet"
     )
     assert pq.read_metadata(tmp_path / "out.parquet").num_rows == 4
+
+
+@pytest.mark.parametrize(
+    "change",
+    [
+        pytest.param(
+            lambda item: item["properties"].update(extra=1), id="add property"
+        ),
+        pytest.param(lambda item: item["properties"].pop("gsd"), id="remove property"),
+        pytest.param(
+            lambda item: item["assets"].update(extra={"href": "x.tif"}),
+            id="add asset",
+        ),
+        pytest.param(
+            lambda item: item["assets"]["image"].update(extra="x"),
+            id="add asset field",
+        ),
+        pytest.param(
+            lambda item: item["properties"].update({"proj:epsg": 26920.5}),
+            id="int to float",
+        ),
+    ],
+)
+def test_chunks_to_disk_unifies_chunk_schemas(tmp_path, change):
+    items = _read_items("naip-pc")
+    for item in items[2:]:
+        change(item)
+    expected = parse_stac_items_to_arrow(items, schema="FullFile").read_all()
+
+    table = parse_stac_items_to_arrow(
+        items, schema="ChunksToDisk", chunk_size=2, tmpdir=tmp_path
+    ).read_all()
+
+    assert set(table.schema.names) == set(expected.schema.names)
+    for name in expected.schema.names:
+        assert table[name].to_pylist() == expected[name].to_pylist(), name
+
+
+def test_chunks_to_disk_with_empty_assets(tmp_path):
+    items = _read_items("naip-pc")
+    for item in items:
+        item["assets"] = {}
+
+    table = parse_stac_items_to_arrow(
+        items, schema="ChunksToDisk", chunk_size=2, tmpdir=tmp_path
+    ).read_all()
+
+    assert table["assets"].to_pylist() == [{}] * 4
+
+
+def test_chunks_to_disk_keeps_item_order(tmp_path):
+    # More than ten chunks, so the chunk files don't sort in numeric order by name
+    base = _read_items("naip-pc")[0]
+    items = [{**base, "id": f"item-{i}"} for i in range(12)]
+
+    table = parse_stac_items_to_arrow(
+        items, schema="ChunksToDisk", chunk_size=1, tmpdir=tmp_path
+    ).read_all()
+
+    assert table["id"].to_pylist() == [item["id"] for item in items]
+
+
+def test_chunks_to_disk_reads_only_its_own_files(tmp_path):
+    (tmp_path / "unrelated.arrow").write_bytes(b"not arrow")
+
+    table = parse_stac_items_to_arrow(
+        _read_items("naip-pc"), schema="ChunksToDisk", chunk_size=2, tmpdir=tmp_path
+    ).read_all()
+
+    assert table.num_rows == 4
+
+
+def test_chunks_to_disk_releases_each_batch(tmp_path, converted_batches):
+    def generate():
+        for i, item in enumerate(_read_items("naip-pc")):
+            if i == 2:
+                assert converted_batches[0]() is None, "the first batch is still alive"
+            yield item
+
+    reader = parse_stac_items_to_arrow(
+        generate(), schema="ChunksToDisk", chunk_size=2, tmpdir=tmp_path
+    )
+    assert reader.read_all().num_rows == 4
+
+
+@pytest.mark.skipif(os.name == "nt", reason="needs symlinks")
+def test_chunks_to_disk_writes_in_a_private_directory(tmp_path):
+    target = tmp_path / "target"
+    target.write_bytes(b"keep")
+    (tmp_path / "0.arrow").symlink_to(target)
+
+    parse_stac_items_to_arrow(
+        _read_items("naip-pc"), schema="ChunksToDisk", chunk_size=2, tmpdir=tmp_path
+    ).read_all()
+
+    assert target.read_bytes() == b"keep"
+    (chunkdir,) = [path for path in tmp_path.iterdir() if path.is_dir()]
+    assert chunkdir.stat().st_mode & 0o777 == 0o700
