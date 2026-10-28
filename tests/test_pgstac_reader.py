@@ -1,6 +1,7 @@
 import gc
 import json
 import pathlib
+import threading
 import weakref
 from datetime import datetime
 
@@ -10,14 +11,17 @@ import psycopg_pool
 import pyarrow.fs
 import pyarrow.parquet
 import pypgstac
+import pystac
 import pytest
 import shapely
 import shapely.geometry
 from packaging.version import Version
 from pypgstac.db import PgstacDB
+from pypgstac.hydration import DO_NOT_MERGE_MARKER
 from pypgstac.load import Loader
 
 from stac_geoparquet import pgstac_reader
+from stac_geoparquet.arrow import InferredSchema
 from stac_geoparquet.pgstac_reader import (
     Partition,
     PgstacRowFactory,
@@ -532,3 +536,208 @@ def test_stopping_early_leaves_a_pooled_connection_usable(pgstac_postgres):
 
         with pool.connection() as conn:
             assert conn.execute("SELECT 1").fetchone() == (1,)
+
+
+def test_prescan_with_row_func(read_table):
+    def add_extra(item):
+        item["properties"]["extra"] = "x"
+        return item
+
+    table = read_table(schema="PreScan", chunk_size=1, row_func=add_extra)
+
+    assert table["extra"].to_pylist() == ["x"] * 4
+    _assert_naip_geometries(table["id"].to_pylist(), table["geometry"].to_pylist())
+
+
+def test_prescan_with_pystac_items(read_table):
+    table = read_table(schema="PreScan", row_func=pystac.Item.from_dict)
+
+    assert table.num_rows == 4
+
+
+def test_prescan_types_null_properties(read_table):
+    def null_epsg(item):
+        item["properties"]["proj:epsg"] = None
+        return item
+
+    table = read_table(schema="PreScan", row_func=null_epsg)
+
+    assert table.schema.field("proj:epsg").type == "int64"
+
+
+def test_prescan_closes_its_connection(pgstac_postgres):
+    connections = []
+
+    def connect():
+        connections.append(psycopg.connect(pgstac_postgres))
+        return connections[-1]
+
+    table = pgstac_to_arrow(connect, schema="PreScan").read_all()
+
+    assert table.num_rows == 4
+    # One connection to infer the schema, and one to read the items
+    assert [conn.closed for conn in connections] == [True, True]
+
+
+def test_pgstac_schema(pgstac_postgres, tmp_path):
+    def add_extra(item):
+        item["properties"]["extra"] = "x"
+        return item
+
+    schema = pgstac_reader.pgstac_schema(pgstac_postgres, row_func=add_extra)
+
+    assert "extra" in schema.inner.field("properties").type.names
+    path = pgstac_reader.pgstac_to_parquet(
+        pgstac_postgres, tmp_path / "items.parquet", schema=schema, row_func=add_extra
+    )
+    assert pyarrow.parquet.read_schema(path).field("extra").type == "string"
+
+
+def test_pgstac_schema_with_no_items(pgstac_postgres):
+    with pytest.raises(ValueError, match="No items found"):
+        pgstac_reader.pgstac_schema(pgstac_postgres, collection="missing")
+
+
+@pytest.mark.parametrize(
+    ("value", "structure"),
+    [
+        ({"a": 1, "b": [1.0, 2.0]}, (("a", int), ("b", frozenset({float})))),
+        # The marker removes a key when pgstac hydrates the item
+        ({"a": DO_NOT_MERGE_MARKER}, (("a", DO_NOT_MERGE_MARKER),)),
+        # pgstac merges lists of dicts with its base item's only if they're as long
+        ({"a": [{"b": 1}, {"b": 2}]}, (("a", ((("b", int),), (("b", int),))),)),
+    ],
+)
+def test_structure(value, structure):
+    assert pgstac_reader._structure(value) == structure
+
+
+def test_prescan_across_base_items(pgstac_postgres, edited_collection):
+    # The second and third items are stored alike, but hydrate differently
+    schema = pgstac_reader.pgstac_schema(pgstac_postgres, collection=edited_collection)
+    asset_type = schema.inner.field("assets").type.field("data").type
+    assert "roles" in asset_type.names
+    table = pgstac_to_arrow(
+        pgstac_postgres, collection=edited_collection, schema="PreScan", chunk_size=1
+    ).read_all()
+    roles = [asset["data"]["roles"] for asset in table["assets"].to_pylist()]
+    assert dict(zip(table["id"].to_pylist(), roles)) == {
+        "before-edits": None,
+        "second": None,
+        "third": ["data"],
+    }
+
+
+def test_pgstac_schema_with_search(pgstac_postgres):
+    schema = pgstac_reader.pgstac_schema(
+        pgstac_postgres, search={"collections": ["naip"]}
+    )
+
+    assert "gsd" in schema.inner.field("properties").type.names
+
+
+def test_prescan_with_2d_and_3d_bboxes(pgstac_postgres):
+    collection_id = "mixed-bbox"
+    naip_item = json.loads(NAIPDATA.read_text())[0]
+    xmin, ymin, xmax, ymax = naip_item["bbox"]
+    bboxes = {"2d": naip_item["bbox"], "3d": [xmin, ymin, 0.0, xmax, ymax, 10.0]}
+    items = [
+        {**naip_item, "id": item_id, "collection": collection_id, "bbox": bbox}
+        for item_id, bbox in bboxes.items()
+    ]
+    with PgstacDB(pgstac_postgres) as db:
+        Loader(db).load_collections([{"id": collection_id}])
+        Loader(db).load_items(items, pypgstac.load.Methods.ignore)
+    try:
+        # Both in one chunk
+        table = pgstac_to_arrow(
+            pgstac_postgres, collection=collection_id, schema="PreScan"
+        ).read_all()
+
+        zmax = [bbox["zmax"] for bbox in table["bbox"].to_pylist()]
+        assert dict(zip(table["id"].to_pylist(), zmax)) == {"2d": None, "3d": 10.0}
+    finally:
+        with psycopg.connect(pgstac_postgres, autocommit=True) as conn:
+            conn.execute("SELECT delete_collection(%s)", (collection_id,))
+
+
+def test_error_during_schema_scan_is_raised(pgstac_postgres, monkeypatch):
+    def fail(value):
+        raise RuntimeError("scan failed")
+
+    monkeypatch.setattr(pgstac_reader, "_structure", fail)
+    errors = []
+
+    def scan():
+        try:
+            pgstac_reader.pgstac_schema(pgstac_postgres, stream=True)
+        except RuntimeError as e:
+            errors.append(e)
+
+    # A paused stream holds the connection's lock, so the scan hangs unless it
+    # closes the stream
+    thread = threading.Thread(target=scan, daemon=True)
+    thread.start()
+    thread.join(30)
+
+    assert errors
+
+
+@pytest.fixture
+def varied_collection(pgstac_postgres):
+    collection_id = "varied-structure"
+    templates = json.loads((HERE / "data" / "sentinel-2-l2a-pc.json").read_text())
+    items = []
+    for i in range(10):
+        item = json.loads(json.dumps(templates[i % len(templates)]))
+        item["id"] = f"item-{i}"
+        item["collection"] = collection_id
+        # The first item lacks a property that later ones have
+        if i % 3 == 0:
+            item["properties"].pop("eo:cloud_cover")
+        elif i % 3 == 1:
+            item["assets"].pop("AOT")
+        items.append(item)
+    with PgstacDB(pgstac_postgres) as db:
+        Loader(db).load_collections([{"id": collection_id}])
+        Loader(db).load_items(items, pypgstac.load.Methods.ignore)
+    yield collection_id
+    with psycopg.connect(pgstac_postgres, autocommit=True) as conn:
+        conn.execute("SELECT delete_collection(%s)", (collection_id,))
+
+
+@pytest.mark.parametrize(
+    "collection_fixture", ["naip", "edited_collection", "varied_collection"]
+)
+def test_pgstac_schema_matches_every_item(pgstac_postgres, request, collection_fixture):
+    collection_id = collection_fixture
+    if collection_fixture != "naip":
+        collection_id = request.getfixturevalue(collection_fixture)
+    expected = InferredSchema()
+    expected.update_from_items(
+        pgstac_to_iter(pgstac_postgres, collection=collection_id)
+    )
+
+    schema = pgstac_reader.pgstac_schema(pgstac_postgres, collection=collection_id)
+
+    assert schema.to_geoparquet().equals(expected.to_geoparquet())
+
+
+@pytest.mark.parametrize(
+    ("geometry", "points"), [("wkb", set()), ("geojson", {"Polygon"})]
+)
+def test_pgstac_schema_geometry(pgstac_postgres, geometry, points):
+    seen = set()
+
+    def row_func(item):
+        if isinstance(item["geometry"], dict):
+            seen.add(item["geometry"]["type"])
+        else:
+            assert shapely.from_wkb(item["geometry"]).is_empty
+        return item
+
+    pgstac_reader.pgstac_schema(
+        pgstac_postgres, collection="naip", row_func=row_func, geometry=geometry
+    )
+
+    assert seen == points
