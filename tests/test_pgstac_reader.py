@@ -1,5 +1,7 @@
+import gc
 import json
 import pathlib
+import weakref
 from datetime import datetime
 
 import docker
@@ -15,6 +17,7 @@ from pypgstac.load import Loader
 from stac_geoparquet import pgstac_reader
 from stac_geoparquet.pgstac_reader import (
     Partition,
+    PgstacRowFactory,
     pgstac_dsn,
     pgstac_to_arrow,
     pgstac_to_iter,
@@ -204,3 +207,114 @@ def test_pgstac_reader_keeps_item_stac_version(pgstac_postgres):
     finally:
         with psycopg.connect(pgstac_postgres, autocommit=True) as conn:
             conn.execute("SELECT delete_collection(%s)", (collection_id,))
+
+
+@pytest.mark.parametrize(
+    "search",
+    [
+        {"ids": ["pr_m_1806544_ne_20_030_20221212_20230329"]},
+        # psycopg must not read the % in the WHERE clause as a placeholder
+        {
+            "filter-lang": "cql2-json",
+            "filter": {"op": "like", "args": [{"property": "id"}, "%1806544_ne%"]},
+        },
+    ],
+)
+def test_pgstac_to_iter_search(pgstac_postgres, search):
+    items = list(pgstac_to_iter(pgstac_postgres, search=search))
+    assert [item["id"] for item in items] == [
+        "pr_m_1806544_ne_20_030_20221212_20230329"
+    ]
+
+
+def test_pgstac_to_iter_search_limit_and_sortby(pgstac_postgres):
+    search = {
+        "collections": ["naip"],
+        "sortby": [{"field": "id", "direction": "asc"}],
+        "limit": 2,
+    }
+
+    items = list(pgstac_to_iter(pgstac_postgres, search=search))
+
+    ids = sorted(item["id"] for item in json.loads(NAIPDATA.read_text()))
+    assert [item["id"] for item in items] == ids[:2]
+
+
+@pytest.mark.parametrize(
+    "sortby",
+    [
+        None,
+        [{"field": "gsd", "direction": "desc"}],
+        [{"field": "properties.datetime", "direction": "desc"}],
+    ],
+    ids=["default", "after a sortby", "after datetime"],
+)
+def test_pgstac_to_iter_search_breaks_ties(pgstac_postgres, sortby):
+    # The NAIP items share their datetime and collection, so only their ids differ
+    search = {"collections": ["naip"]}
+    if sortby is not None:
+        search["sortby"] = sortby
+
+    items = pgstac_to_iter(pgstac_postgres, search=search)
+
+    ids = sorted(item["id"] for item in json.loads(NAIPDATA.read_text()))
+    assert [item["id"] for item in items] == ids
+
+
+@pytest.mark.parametrize("key", ["fields", "token"])
+def test_pgstac_to_iter_search_unsupported(pgstac_postgres, key):
+    with pytest.raises(ValueError, match=key):
+        list(pgstac_to_iter(pgstac_postgres, search={"collections": ["naip"], key: {}}))
+
+
+def test_row_factory_is_garbage_collected(pgstac_postgres):
+    with psycopg.connect(pgstac_postgres) as conn:
+        factory = PgstacRowFactory(conn.cursor())
+        assert factory.get_baseitem("naip") is factory.get_baseitem("naip")
+        ref = weakref.ref(factory)
+        del factory
+        gc.collect()
+        assert ref() is None
+
+
+# Each item is stored after its collection's item_assets changed, so pgstac 0.10
+# tags it with the base item it was dehydrated against
+EDITED_ASSETS = [
+    ("before-edits", {}),
+    ("second", {"type": "image/tiff"}),
+    ("third", {"type": "image/tiff", "roles": ["data"]}),
+]
+
+
+@pytest.fixture
+def edited_collection(pgstac_postgres):
+    collection_id = "edited-item-assets"
+    naip_item = json.loads(NAIPDATA.read_text())[0]
+    with PgstacDB(pgstac_postgres) as db:
+        for item_id, asset in EDITED_ASSETS:
+            collection = {"id": collection_id, "item_assets": {"data": asset}}
+            Loader(db).load_collections([collection], pypgstac.load.Methods.upsert)
+            item = {
+                **naip_item,
+                "id": item_id,
+                "collection": collection_id,
+                "assets": {"data": {"href": "x.tif", **asset}},
+            }
+            Loader(db).load_items([item], pypgstac.load.Methods.ignore)
+    yield collection_id
+    with psycopg.connect(pgstac_postgres, autocommit=True) as conn:
+        conn.execute("SELECT delete_collection(%s)", (collection_id,))
+
+
+def test_items_hydrate_against_their_base_item(pgstac_postgres, edited_collection):
+    items = pgstac_to_iter(pgstac_postgres, collection=edited_collection)
+    assert {item["id"]: item["assets"]["data"] for item in items} == {
+        item_id: {"href": "x.tif", **asset} for item_id, asset in EDITED_ASSETS
+    }
+
+
+def test_missing_base_item(pgstac_postgres):
+    with psycopg.connect(pgstac_postgres) as conn:
+        factory = PgstacRowFactory(conn.cursor())
+        with pytest.raises(ValueError, match="not found"):
+            factory.get_baseitem("missing")

@@ -1,4 +1,3 @@
-import functools
 import logging
 import random
 import string
@@ -15,7 +14,9 @@ import pyarrow as pa
 import pyarrow.fs
 import pypgstac.hydration
 import shapely.wkb
-from psycopg.types.json import set_json_dumps, set_json_loads
+from psycopg import sql
+from psycopg.rows import tuple_row
+from psycopg.types.json import Jsonb, set_json_dumps, set_json_loads
 
 from stac_geoparquet.arrow import (
     ACCEPTED_SCHEMA_OPTIONS,
@@ -50,6 +51,7 @@ class PgstacRowFactory:
 
     def __init__(self, cursor: psycopg.Cursor[Any]) -> None:
         self.cursor = cursor
+        self._base_items: dict[tuple[str, int | None], dict[str, Any]] = {}
 
     def __call__(
         self,
@@ -91,29 +93,41 @@ class PgstacRowFactory:
             item["stac_version"] = content["stac_version"]
         item["properties"] = content["properties"]
 
-        base_item = self.get_baseitem(item["collection"])
+        # pgstac 0.10 tags an item stored after its collection changed with the
+        # base item it was dehydrated against
+        base_item = self.get_baseitem(
+            item["collection"], content.get("pgstac:base_item")
+        )
         pypgstac.hydration.hydrate(base_item, item)
         logger.debug(item)
         return item
 
-    @functools.lru_cache(maxsize=256)
-    def get_baseitem(self, collection: str) -> dict[str, Any]:
+    def get_baseitem(
+        self, collection: str, base_item_id: int | None = None
+    ) -> dict[str, Any]:
         """
-        Get the base item for the collection.
+        Get the base item for the collection, or the one with `base_item_id`.
         """
+        key = (collection, base_item_id)
+        if key in self._base_items:
+            return self._base_items[key]
         logger.info(f"Getting Base Item for {collection}")
         conninfo = self.cursor.connection.info
         dsn = conninfo.dsn
         password = conninfo.password
         with psycopg.connect(dsn, password=password) as conn:
             with conn.cursor() as cur:
-                cur.execute(
-                    "select collection_base_item(%s);",
-                    (collection,),
-                )
+                if base_item_id is None:
+                    cur.execute("select collection_base_item(%s);", (collection,))
+                else:
+                    cur.execute(
+                        "select collection_base_item(%s, %s);",
+                        (collection, base_item_id),
+                    )
                 base_item = cur.fetchone()
-                if base_item is None:
-                    raise ValueError(f"Collection {collection} not found")
+                if base_item is None or base_item[0] is None:
+                    raise ValueError(f"Base item for {collection} not found")
+        self._base_items[key] = base_item[0]
         return base_item[0]
 
 
@@ -157,12 +171,13 @@ def _connect(
 
 
 def _items_query(
+    conn: psycopg.Connection,
     *,
     collection: str | None,
     start_datetime: datetime | None,
     end_datetime: datetime | None,
     search: dict[str, Any] | None,
-) -> tuple[str, Any]:
+) -> tuple[sql.Composed, Any]:
     """
     Get the query and arguments that select the requested pgstac items.
     """
@@ -173,13 +188,42 @@ def _items_query(
     if start_datetime is not None and end_datetime is None:
         end_datetime = datetime.now(timezone.utc)
 
-    query: str
+    select = sql.SQL("SELECT * FROM items")
+    query: sql.Composed
     args: Any
 
     if search is not None:
         logger.info(f"Using CQL2 Filter {search}")
-        query = "SELECT * FROM search(%s);"
-        args = (search,)
+        unsupported = sorted({"fields", "token"} & search.keys())
+        if unsupported:
+            raise ValueError(f"search does not support {', '.join(unsupported)}")
+        # pgstac's search() returns one page of results as a FeatureCollection, so
+        # use the WHERE and ORDER BY clauses it would build to select from items
+        # Sort by datetime, collection and id after sortby, so a limit always picks
+        # the same items
+        sortby = list(search.get("sortby") or [])
+        fields = {s["field"].removeprefix("properties.") for s in sortby}
+        sortby += [
+            {"field": field, "direction": "asc"}
+            for field in ("datetime", "collection", "id")
+            if field not in fields
+        ]
+        # Not conn.cursor(): the caller's connection can have another row_factory
+        with psycopg.Cursor(conn, row_factory=tuple_row) as cur:
+            cur.execute(
+                "SELECT stac_search_to_where(%(s)s), sort_sqlorderby(%(s)s);",
+                {"s": Jsonb({**search, "sortby": sortby})},
+            )
+            row = cur.fetchone()
+            assert row is not None
+        # pgstac builds these clauses from the search, quoting its values
+        where, order_by = row
+        query = select + sql.SQL(" WHERE ") + sql.SQL(where)
+        query += sql.SQL(" ORDER BY ") + sql.SQL(order_by)
+        if "limit" in search:
+            query += sql.SQL(" LIMIT {}").format(sql.Literal(int(search["limit"])))
+        # The WHERE clause can contain %, so don't treat the query as having parameters
+        args = None
     elif (
         collection is not None
         and start_datetime is not None
@@ -188,22 +232,24 @@ def _items_query(
         logger.info(
             f"Using Collection {collection}, Start {start_datetime}, End {end_datetime}"
         )
-        query = "SELECT * FROM items WHERE collection = %s AND datetime >= %s AND datetime < %s;"
+        query = select + sql.SQL(
+            " WHERE collection = %s AND datetime >= %s AND datetime < %s;"
+        )
         args = (collection, start_datetime, end_datetime)
     elif collection is not None:
         logger.info(f"Using Collection {collection}")
-        query = "SELECT * FROM items WHERE collection = %s;"
+        query = select + sql.SQL(" WHERE collection = %s;")
         args = (collection,)
     else:
         logger.info("With no filter, fetching all items")
-        query = "SELECT * FROM items;"
+        query = select + sql.SQL(";")
         args = ()
     return query, args
 
 
 def _rows(
     conn: psycopg.Connection,
-    query: str,
+    query: sql.Composed,
     args: Any,
     *,
     cursor_itersize: int,
@@ -213,7 +259,7 @@ def _rows(
     with conn.cursor(curname, row_factory=row_factory) as cur:
         cur.itersize = cursor_itersize
         cur.execute(query, args)
-        logger.debug(f"Query: {query}, Args: {args}")
+        logger.debug(f"Query: {query.as_string(conn)}, Args: {args}")
         yield from cur
 
 
@@ -227,15 +273,22 @@ def pgstac_to_iter(
     cursor_itersize: int = 10000,
     row_func: Callable | None = None,
 ) -> Iterator[dict[str, Any]]:
+    """
+    Iterate over pgstac items as STAC item dicts.
+
+    See [`pgstac_to_arrow`][stac_geoparquet.pgstac_reader.pgstac_to_arrow] for
+    `search`.
+    """
     logger.info("Fetching Data from PGStac Into an Iterator of Items")
 
-    query, args = _items_query(
-        collection=collection,
-        start_datetime=start_datetime,
-        end_datetime=end_datetime,
-        search=search,
-    )
     with _connect(conninfo, statement_timeout) as conn:
+        query, args = _items_query(
+            conn,
+            collection=collection,
+            start_datetime=start_datetime,
+            end_datetime=end_datetime,
+            search=search,
+        )
         for rec in _rows(
             conn,
             query,
@@ -263,6 +316,10 @@ def pgstac_to_arrow(
 ) -> pa.RecordBatchReader:
     """
     Convert pgstac items to an arrow record batch reader.
+
+    `search` selects items with a STAC API search body. Its `limit` is the most
+    items to export. They're sorted by its `sortby`, then by datetime, collection
+    and id; `fields` and `token` aren't supported.
     """
     items = pgstac_to_iter(
         conninfo,
@@ -300,6 +357,9 @@ def pgstac_to_parquet(
 ) -> str:
     """
     Convert pgstac items to a parquet file.
+
+    See [`pgstac_to_arrow`][stac_geoparquet.pgstac_reader.pgstac_to_arrow] for
+    `search`.
     """
     filesystem, filepath = resolve_output_path_and_filesystem(output_path, filesystem)
 
