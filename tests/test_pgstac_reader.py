@@ -6,6 +6,7 @@ from datetime import datetime
 
 import docker
 import psycopg
+import psycopg_pool
 import pyarrow.fs
 import pyarrow.parquet
 import pypgstac
@@ -440,3 +441,94 @@ def test_pgstac_to_iter_geometry(pgstac_postgres, kwargs, geometry_type):
 
     assert [type(item["geometry"]) for item in items] == [geometry_type] * 4
     assert seen == [geometry_type] * 4
+
+
+def test_pgstac_to_iter_ignores_connection_row_factory(pgstac_postgres):
+    def connect():
+        return psycopg.connect(pgstac_postgres, row_factory=psycopg.rows.dict_row)
+
+    items = list(pgstac_to_iter(connect))
+    assert len(items) == 4
+    assert all(item["geometry"]["type"] == "Polygon" for item in items)
+
+
+@pytest.fixture
+def reads(monkeypatch):
+    """How each query's rows are read: streamed, or fetched from a server cursor."""
+    calls = []
+    stream = psycopg.Cursor.stream
+    execute = psycopg.ServerCursor.execute
+
+    def spy_stream(self, query, params=None, **kwargs):
+        calls.append(("stream", kwargs["size"]))
+        return stream(self, query, params, **kwargs)
+
+    def spy_execute(self, query, params=None, **kwargs):
+        calls.append(("fetch", self.itersize))
+        return execute(self, query, params, **kwargs)
+
+    monkeypatch.setattr(psycopg.Cursor, "stream", spy_stream)
+    monkeypatch.setattr(psycopg.ServerCursor, "execute", spy_execute)
+    return calls
+
+
+needs_libpq_17 = pytest.mark.skipif(
+    not psycopg.capabilities.has_stream_chunked(),
+    reason="streams by default only with libpq 17",
+)
+
+
+@pytest.mark.parametrize(
+    ("kwargs", "env", "expected"),
+    [
+        pytest.param({}, {}, [("stream", 100)], marks=needs_libpq_17),
+        pytest.param({"cursor_itersize": 3}, {}, [("stream", 3)], marks=needs_libpq_17),
+        ({"stream": False}, {}, [("fetch", 1000)]),
+        pytest.param(
+            {},
+            {"STAC_GEOPARQUET_PGSTAC_CURSOR_ITERSIZE": "7"},
+            [("stream", 7)],
+            marks=needs_libpq_17,
+        ),
+        ({}, {"STAC_GEOPARQUET_PGSTAC_STREAM": "false"}, [("fetch", 1000)]),
+    ],
+)
+def test_cursor_itersize(read_table, reads, monkeypatch, kwargs, env, expected):
+    for name, value in env.items():
+        monkeypatch.setenv(name, value)
+
+    table = read_table(**kwargs)
+
+    assert table.num_rows == 4
+    assert reads == expected
+
+
+def test_before_libpq_17(read_table, reads, monkeypatch):
+    monkeypatch.setattr(psycopg.capabilities, "has_stream_chunked", lambda: False)
+
+    read_table()
+    read_table(stream=True)
+
+    assert reads == [("fetch", 1000), ("stream", 1)]
+
+
+@pytest.mark.parametrize("stream", [True, False])
+def test_client_cursor_factory(pgstac_postgres, stream):
+    def connect():
+        return psycopg.connect(pgstac_postgres, cursor_factory=psycopg.ClientCursor)
+
+    items = list(
+        pgstac_to_iter(connect, search={"collections": ["naip"]}, stream=stream)
+    )
+
+    assert len(items) == 4
+
+
+def test_stopping_early_leaves_a_pooled_connection_usable(pgstac_postgres):
+    with psycopg_pool.ConnectionPool(pgstac_postgres, min_size=1, max_size=1) as pool:
+        items = pgstac_to_iter(pool.connection)
+        next(items)
+        items.close()
+
+        with pool.connection() as conn:
+            assert conn.execute("SELECT 1").fetchone() == (1,)

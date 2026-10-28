@@ -1,4 +1,5 @@
 import operator
+import os
 from collections.abc import Iterable, Sequence
 from functools import reduce
 from itertools import islice
@@ -9,6 +10,15 @@ from urllib.parse import urlsplit
 import pyarrow as pa
 
 T = TypeVar("T")
+
+
+def env_flag(name: str, default: bool) -> bool:
+    """
+    Whether the environment variable `name` is 1, true or yes, in any case, or
+    `default` if it isn't set or is empty.
+    """
+    value = os.environ.get(name)
+    return value.lower() in ("1", "true", "yes") if value else default
 
 
 def resolve_output_path_and_filesystem(
