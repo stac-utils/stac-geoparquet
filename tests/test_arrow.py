@@ -15,6 +15,7 @@ import shapely.geometry
 
 from stac_geoparquet.arrow import (
     DEFAULT_JSON_CHUNK_SIZE,
+    InferredSchema,
     _api,
     _batch,
     _memory,
@@ -25,7 +26,6 @@ from stac_geoparquet.arrow import (
     stac_table_to_ndjson,
     to_parquet,
 )
-from stac_geoparquet.arrow._schema.models import InferredSchema
 from stac_geoparquet.arrow._util import resolve_output_path_and_filesystem
 
 from .json_equals import assert_json_value_equal
@@ -717,3 +717,88 @@ def test_chunks_to_disk_writes_in_a_private_directory(tmp_path):
     assert target.read_bytes() == b"keep"
     (chunkdir,) = [path for path in tmp_path.iterdir() if path.is_dir()]
     assert chunkdir.stat().st_mode & 0o777 == 0o700
+
+
+@pytest.mark.parametrize("collection_id", TEST_COLLECTIONS)
+def test_inferred_schema_to_geoparquet(collection_id: str):
+    items = _read_items(collection_id)
+    schema = InferredSchema()
+    schema.update_from_items(items)
+
+    table = parse_stac_items_to_arrow(items, schema=schema).read_all()
+
+    assert schema.to_geoparquet().equals(table.schema, check_metadata=True)
+
+
+@pytest.mark.parametrize("collection_id", TEST_COLLECTIONS)
+def test_inferred_schema_from_geoparquet(collection_id: str):
+    items = _read_items(collection_id)
+    inferred = InferredSchema()
+    inferred.update_from_items(items)
+    table = parse_stac_items_to_arrow(items, schema=inferred).read_all()
+
+    schema = InferredSchema.from_geoparquet(table.schema)
+
+    assert parse_stac_items_to_arrow(items, schema=schema).read_all().equals(table)
+
+
+def test_inferred_schema_fills_in_null_types():
+    items = _read_items("3dep-lidar-copc-pc")
+    schema = InferredSchema()
+    schema.update_from_items(items)
+    assert pa.types.is_null(schema.inner.field("properties").type["datetime"].type)
+
+    datetime_type = schema.to_geoparquet().field("datetime").type
+
+    assert datetime_type == pa.timestamp("us", tz="UTC")
+
+
+def test_inferred_schema_from_pystac_items():
+    items = _read_items("naip-pc")
+    schema = InferredSchema()
+    schema.update_from_items([pystac.Item.from_dict(item) for item in items])
+
+    assert schema.count == 4
+    assert schema.inner.field("geometry").type == pa.binary()
+
+
+def test_inferred_schema_update_from_schema():
+    items = _read_items("naip-pc")
+    schema = InferredSchema()
+    schema.update_from_items(items[:2])
+    for item in items[2:]:
+        item["properties"]["extra"] = 1
+        xmin, ymin, xmax, ymax = item["bbox"]
+        item["bbox"] = [xmin, ymin, 0.0, xmax, ymax, 10.0]
+    other = InferredSchema()
+    other.update_from_items(items[2:])
+
+    schema.update_from_schema(other.inner)
+
+    assert "extra" in schema.inner.field("properties").type.names
+    assert schema.to_geoparquet().field("bbox").type.num_fields == 6
+
+
+def test_mixed_2d_and_3d_bboxes():
+    items = _read_items("naip-pc")
+    for item in items[1::2]:
+        xmin, ymin, xmax, ymax = item["bbox"]
+        item["bbox"] = [xmin, ymin, 0.0, xmax, ymax, 10.0]
+    # Infer from the 2d items first, so the mark has to survive a merge
+    schema = InferredSchema()
+    schema.update_from_items(items[::2])
+    schema.update_from_items(items[1::2])
+
+    # Each chunk has a 2d and a 3d bbox
+    table = parse_stac_items_to_arrow(items, schema=schema, chunk_size=2).read_all()
+
+    names = ["xmin", "ymin", "zmin", "xmax", "ymax", "zmax"]
+    expected = [
+        dict(zip(names, bbox[:2] + [None] + bbox[2:] + [None]))
+        if len(bbox) == 4
+        else dict(zip(names, bbox))
+        for bbox in (item["bbox"] for item in items)
+    ]
+    assert table["bbox"].to_pylist() == expected
+    bbox = InferredSchema.from_geoparquet(table.schema).inner.field("bbox")
+    assert bbox.equals(schema.inner.field("bbox"), check_metadata=True)

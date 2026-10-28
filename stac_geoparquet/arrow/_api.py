@@ -148,7 +148,7 @@ def parse_stac_items_to_arrow(
     wkb_items = map(item_geometries_to_wkb, items)
 
     if isinstance(schema, InferredSchema):
-        schema = schema.inner
+        schema = schema._resolved()
 
     if isinstance(schema, pa.Schema):
         # If schema is provided, then for better memory usage we parse input STAC items
@@ -310,7 +310,6 @@ def parse_stac_ndjson_to_arrow(
     if schema is None:
         inferred_schema = InferredSchema()
         inferred_schema.update_from_json(path, chunk_size=chunk_size, limit=limit)
-        inferred_schema.manual_updates()
         return parse_stac_ndjson_to_arrow(
             path,
             chunk_size=chunk_size,
@@ -319,7 +318,7 @@ def parse_stac_ndjson_to_arrow(
         )
 
     if isinstance(schema, InferredSchema):
-        schema = schema.inner
+        schema = schema._resolved()
 
     batches_iter = (
         stac_items_to_arrow(
