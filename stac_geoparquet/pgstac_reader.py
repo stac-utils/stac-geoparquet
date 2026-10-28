@@ -15,6 +15,7 @@ import pyarrow as pa
 import pyarrow.fs
 import pypgstac.hydration
 import shapely.wkb
+from psycopg import sql
 from psycopg.types.json import set_json_dumps, set_json_loads
 
 from stac_geoparquet.arrow import (
@@ -127,7 +128,7 @@ def pgstac_dsn(conninfo: str | None, statement_timeout: int | None) -> str:
     options: str = str(connd.get("options", ""))
     options += " -c search_path=pgstac,public"
     if statement_timeout is not None:
-        options += f" -c statement_timeout={statement_timeout}"
+        options += f" -c statement_timeout={int(statement_timeout)}"
     connd["options"] = options
     return psycopg.conninfo.make_conninfo("", **connd)
 
@@ -312,7 +313,8 @@ def get_pgstac_partitions(
             # note: '.000001 seconds' is the minimum resolution for timestamptz in Postgres, so this
             # is added since the inclusive upper bound in the dtrange can be used with exclusive <
             # in the pgstac_to_parquet function
-            q = """
+            select = sql.SQL(
+                """
                 SELECT
                     collection,
                     CASE WHEN lower(partition_dtrange) = '-infinity' OR upper(partition_dtrange) = 'infinity' THEN
@@ -329,12 +331,13 @@ def get_pgstac_partitions(
                     last_updated
                 FROM partitions_view
                 """
+            )
+            where = sql.SQL("")
             args: Any = ()
             if updated_after is not None:
-                q += " WHERE last_updated >= %s"
+                where = sql.SQL(" WHERE last_updated >= %s")
                 args = (updated_after,)
-            q += " ORDER BY last_updated asc"
-            cur.execute(q, args)
+            cur.execute(select + where + sql.SQL(" ORDER BY last_updated asc"), args)
             for row in cur:
                 logger.debug(f"Found PgSTAC Partition: {row}")
                 yield row
@@ -366,6 +369,13 @@ def sync_pgstac_to_parquet(
         f"Syncing PgSTAC partitions that have been updated since {updated_after} to {output_path} on filesystem {filesystem}."
     )
     for p in get_pgstac_partitions(conninfo, updated_after):
+        # The collection id is used as a directory name
+        if (
+            p.collection in ("", ".", "..")
+            or "/" in p.collection
+            or "\\" in p.collection
+        ):
+            raise ValueError(f"Can't sync collection {p.collection!r} to a directory")
         of = filedir / p.collection / p.partition
         logger.debug(of)
 
