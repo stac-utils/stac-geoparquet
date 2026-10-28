@@ -111,6 +111,8 @@ def _is_bbox_3d(bbox_col: pa.Array) -> bool:
 
     if len(offsets_set) > 1:
         raise ValueError("Mixed 2d-3d bounding boxes not yet supported")
+    if not offsets_set:
+        return False
 
     offset = list(offsets_set)[0]
     if offset == 6:

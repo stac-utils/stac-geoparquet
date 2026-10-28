@@ -20,7 +20,7 @@ from stac_geoparquet.arrow._constants import (
     DEFAULT_PARQUET_SCHEMA_VERSION,
     SUPPORTED_PARQUET_SCHEMA_VERSIONS,
 )
-from stac_geoparquet.arrow._schema.models import InferredSchema
+from stac_geoparquet.arrow._schema.models import InferredSchema, geoparquet_schema
 from stac_geoparquet.arrow._to_parquet import to_parquet
 from stac_geoparquet.arrow._util import (
     batched_iter,
@@ -42,9 +42,19 @@ def memlog(msg: str) -> None:
         )
 
 
-def from_batches(batches: Iterable[pa.RecordBatch]) -> pa.RecordBatchReader:
+def from_batches(
+    batches: Iterable[pa.RecordBatch], empty_schema: pa.Schema | None = None
+) -> pa.RecordBatchReader:
+    """
+    Check that the batches share a schema and return them as a reader. With no
+    batches, the reader has `empty_schema`, or a ValueError is raised if it's None.
+    """
     batches = iter(batches)
-    init = next(batches)
+    init = next(batches, None)
+    if init is None:
+        if empty_schema is None:
+            raise ValueError("No items to convert")
+        return pa.RecordBatchReader.from_batches(empty_schema, [])
 
     def check_batches(
         s: pa.Schema, batches: Iterable[pa.RecordBatch]
@@ -109,7 +119,9 @@ def parse_stac_items_to_arrow(
             )
             for batch in batched_iter(items, chunk_size)
         )
-        return pa.RecordBatchReader.from_batches(schema, batches)
+        return from_batches(
+            batches, empty_schema=geoparquet_schema(schema, drop_invalid_properties)
+        )
 
     elif schema == "FullFile":
         batch = stac_items_to_arrow(
@@ -269,12 +281,8 @@ def parse_stac_ndjson_to_arrow(
         )
         for batch in read_json_chunked(path, chunk_size=chunk_size)
     )
-    first_batch = next(batches_iter)
-    # Need to take this schema from the iterator; the existing `schema` is the schema of
-    # JSON batch
-    resolved_schema = first_batch.schema
-    return pa.RecordBatchReader.from_batches(
-        resolved_schema, itertools.chain([first_batch], batches_iter)
+    return from_batches(
+        batches_iter, empty_schema=geoparquet_schema(schema, drop_invalid_properties)
     )
 
 
