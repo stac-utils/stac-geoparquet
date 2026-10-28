@@ -1,13 +1,21 @@
 from __future__ import annotations
 
-from collections.abc import Iterable, Sequence
+from collections.abc import Iterable
 from pathlib import Path
 from typing import Any
 
 import pyarrow as pa
 import pyarrow.compute as pc
+import pystac
 
-from stac_geoparquet.arrow._batch import StacJsonBatch, has_3d_bbox, with_bbox_size
+from stac_geoparquet.arrow._batch import (
+    StacArrowBatch,
+    StacJsonBatch,
+    has_3d_bbox,
+    item_geometries_to_wkb,
+    with_bbox_size,
+)
+from stac_geoparquet.arrow._memory import chunks_within_memory
 from stac_geoparquet.arrow._util import resolve_chunk_size
 from stac_geoparquet.json_reader import read_json_chunked
 
@@ -37,8 +45,8 @@ class InferredSchema:
     count: int
     """The total number of items scanned."""
 
-    def __init__(self) -> None:
-        self.inner = pa.schema([])
+    def __init__(self, inner: pa.Schema | None = None) -> None:
+        self.inner = pa.schema([]) if inner is None else inner
         self.count = 0
 
     def update_from_json(
@@ -63,23 +71,67 @@ class InferredSchema:
         for batch in read_json_chunked(path, chunk_size=chunk_size, limit=limit):
             self.update_from_items(batch)
 
-    def update_from_items(self, items: Sequence[dict[str, Any]]) -> None:
-        """Update this inferred schema from a sequence of STAC Items."""
-        self.count += len(items)
-        batch = StacJsonBatch.from_dicts(items, schema=None).inner
-        current_schema = batch.schema
-        if "bbox" in current_schema.names:
-            # The bbox type says whether bboxes are 2d or 3d: a list of 4 or 6
-            longest = pc.max(pc.list_value_length(batch.column("bbox"))).as_py()
-            current_schema = with_bbox_size(current_schema, 6 if longest == 6 else 4)
+    def update_from_items(
+        self,
+        items: Iterable[pystac.Item | dict[str, Any]],
+    ) -> None:
+        """Update this inferred schema from STAC Items."""
+        wkb_items = map(item_geometries_to_wkb, items)
+        # Small chunks give the same schema in less memory
+        for chunk in chunks_within_memory(wkb_items, 1024):
+            self.count += len(chunk)
+            batch = StacJsonBatch._from_wkb_dicts(chunk, schema=None).inner
+            schema = batch.schema
+            if "bbox" in schema.names:
+                # The bbox type says whether bboxes are 2d or 3d: a list of 4 or 6
+                longest = pc.max(pc.list_value_length(batch.column("bbox"))).as_py()
+                schema = with_bbox_size(schema, 6 if longest == 6 else 4)
+            self.update_from_schema(schema)
+            chunk.clear()
+
+    def update_from_schema(self, schema: pa.Schema) -> None:
+        """Merge a STAC JSON schema into this one."""
         new_schema = pa.unify_schemas(
-            [self.inner, current_schema], promote_options="permissive"
+            [self.inner, schema], promote_options="permissive"
         )
         if "bbox" in new_schema.names:
             # Merging lists of 4 and 6 gives a list of any length
-            size = 6 if has_3d_bbox(self.inner) or has_3d_bbox(current_schema) else 4
+            size = 6 if has_3d_bbox(self.inner) or has_3d_bbox(schema) else 4
             new_schema = with_bbox_size(new_schema, size)
         self.inner = new_schema
+
+    def _resolved(self) -> pa.Schema:
+        """The schema with `manual_updates` applied, which items are converted with."""
+        resolved = InferredSchema(self.inner)
+        resolved.manual_updates()
+        return resolved.inner
+
+    def to_geoparquet(self, drop_invalid_properties: bool = True) -> pa.Schema:
+        """
+        The schema of these items as written to GeoParquet, with their properties
+        as top-level columns.
+        """
+        return geoparquet_schema(self._resolved(), drop_invalid_properties)
+
+    @classmethod
+    def from_geoparquet(cls, schema: pa.Schema) -> InferredSchema:
+        """
+        Make the STAC JSON schema of items from the schema of a GeoParquet file
+        or table, for example to write more items to it.
+        """
+        batch = pa.RecordBatch.from_pylist([], schema=schema)
+        json_schema = StacArrowBatch(batch).to_json_batch().inner.schema
+
+        # Keep the properties in the order of their columns
+        properties_index = json_schema.get_field_index("properties")
+        properties_field = json_schema.field(properties_index)
+        properties = sorted(
+            properties_field.type, key=lambda f: schema.get_field_index(f.name)
+        )
+        json_schema = json_schema.set(
+            properties_index, properties_field.with_type(pa.struct(properties))
+        )
+        return cls(json_schema)
 
     def manual_updates(self) -> None:
         schema = self.inner
