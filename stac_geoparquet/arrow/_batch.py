@@ -3,8 +3,7 @@ from __future__ import annotations
 import logging
 import os
 import sys
-from collections.abc import Iterable
-from copy import deepcopy
+from collections.abc import Iterable, Sequence
 from pathlib import Path
 from typing import Any
 
@@ -14,9 +13,9 @@ import pyarrow as pa
 import pyarrow.compute as pc
 import pystac
 import shapely
-import shapely.geometry
 from numpy.typing import NDArray
 
+from stac_geoparquet._wkb import to_iso_wkb
 from stac_geoparquet.arrow._from_arrow import (
     convert_bbox_to_array,
     convert_timestamp_columns_to_string,
@@ -39,6 +38,10 @@ else:
 logger = logging.getLogger(__name__)
 
 
+# Above this, the geometries don't fit in a binary array's 32-bit offsets
+_MAX_BINARY_BYTES = np.iinfo(np.int32).max
+
+
 def item_geometries_to_wkb(item: pystac.Item | dict[str, Any]) -> dict[str, Any]:
     """
     Return a copy of a STAC item with `geometry` and any `proj:geometry` in its
@@ -47,27 +50,47 @@ def item_geometries_to_wkb(item: pystac.Item | dict[str, Any]) -> dict[str, Any]
     if isinstance(item, pystac.Item):
         item = item.to_dict(transform_hrefs=False)
 
-    wkb_item = deepcopy(item)
-    wkb_item["geometry"] = shapely.to_wkb(
-        shapely.geometry.shape(wkb_item["geometry"]), flavor="iso"
-    )
+    wkb_item = dict(item)
+    wkb_item["geometry"] = to_iso_wkb(wkb_item["geometry"])
 
     # If a proj:geometry key exists in top-level properties, convert that to WKB
     if "proj:geometry" in wkb_item["properties"]:
-        wkb_item["properties"]["proj:geometry"] = shapely.to_wkb(
-            shapely.geometry.shape(wkb_item["properties"]["proj:geometry"]),
-            flavor="iso",
-        )
+        properties = dict(wkb_item["properties"])
+        properties["proj:geometry"] = to_iso_wkb(properties["proj:geometry"])
+        wkb_item["properties"] = properties
 
     # If a proj:geometry key exists in any asset properties, convert that to WKB
-    for asset_value in wkb_item["assets"].values():
-        if "proj:geometry" in asset_value:
-            asset_value["proj:geometry"] = shapely.to_wkb(
-                shapely.geometry.shape(asset_value["proj:geometry"]),
-                flavor="iso",
-            )
+    wkb_item["assets"] = {
+        key: {**asset, "proj:geometry": to_iso_wkb(asset["proj:geometry"])}
+        if "proj:geometry" in asset
+        else asset
+        for key, asset in wkb_item["assets"].items()
+    }
 
     return wkb_item
+
+
+def _pop_geometry_array(wkb_items: Sequence[dict[str, Any]]) -> pa.Array:
+    """Move the geometries out of `wkb_items` into one binary array."""
+    geometries = [item["geometry"] for item in wkb_items]
+    offsets = np.zeros(len(geometries) + 1, dtype=np.int64)
+    np.cumsum([len(geometry) for geometry in geometries], out=offsets[1:])
+    if offsets[-1] > _MAX_BINARY_BYTES:
+        raise ValueError(
+            "A chunk's geometries are over 2 GiB: use a smaller chunk_size"
+        )
+
+    for item in wkb_items:
+        item["geometry"] = None
+    return pa.Array.from_buffers(
+        pa.binary(),
+        len(geometries),
+        [
+            None,
+            pa.py_buffer(offsets.astype(np.int32)),
+            pa.py_buffer(b"".join(geometries)),
+        ],
+    )
 
 
 class StacJsonBatch:
@@ -122,17 +145,42 @@ class StacJsonBatch:
         # and if you have multiple geometry types pyarrow will error with
         # `ArrowInvalid: cannot mix list and non-list, non-null values`
         wkb_items = [item_geometries_to_wkb(item) for item in items]
+        return cls._from_wkb_dicts(wkb_items, schema=schema)
+
+    @classmethod
+    def _from_wkb_dicts(
+        cls,
+        wkb_items: Sequence[dict[str, Any]],
+        *,
+        schema: pa.Schema | None,
+    ) -> Self:
+        """
+        Like `from_dicts`, for items returned by `item_geometries_to_wkb`. Unless
+        `schema` gives the geometry another type, the geometries are moved out of
+        the items, leaving None.
+        """
         logger.info(f"Items Length: {len(wkb_items)}")
 
         if len(wkb_items) == 0:
             raise ValueError("No items provided to StacJsonBatch.from_dicts")
+
+        # Build the geometry column from one buffer: pa.array's growing buffers
+        # can need twice its size. The None left in each item keeps its field.
+        geometry = None
+        if schema is None or schema.field("geometry").type == pa.binary():
+            geometry = _pop_geometry_array(wkb_items)
 
         if schema is not None:
             array = pa.array(wkb_items, type=pa.struct(schema))
         else:
             array = pa.array(wkb_items)
 
-        return cls(pa.RecordBatch.from_struct_array(array))
+        batch = pa.RecordBatch.from_struct_array(array)
+        if geometry is not None:
+            index = batch.schema.get_field_index("geometry")
+            field = batch.schema.field(index).with_type(geometry.type)
+            batch = batch.set_column(index, field, geometry)
+        return cls(batch)
 
     def iter_dicts(self) -> Iterable[dict]:
         batch = self.inner
