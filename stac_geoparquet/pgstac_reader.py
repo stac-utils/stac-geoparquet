@@ -1,10 +1,11 @@
+import atexit
 import functools
 import logging
 import os
 import random
 import string
 from collections.abc import Callable, Generator, Iterator
-from contextlib import closing, contextmanager
+from contextlib import AbstractContextManager, closing, contextmanager
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
@@ -12,6 +13,7 @@ from typing import Any, Literal
 
 import orjson
 import psycopg
+import psycopg_pool
 import pyarrow as pa
 import pyarrow.fs
 import pypgstac.hydration
@@ -71,7 +73,7 @@ class PgstacRowFactory:
     `geometry`, `collection` and `content` columns of pgstac's items table.
 
     If `wkb_geometry` is True, the geometry is ISO WKB bytes instead of GeoJSON.
-    Base items are looked up on a new connection to the cursor's database, as
+    Base items are looked up on a pooled connection to the cursor's database, as
     the cursor's own is busy reading the rows.
     """
 
@@ -133,16 +135,19 @@ class PgstacRowFactory:
         if key in self._base_items:
             return self._base_items[key]
         logger.info(f"Getting Base Item for {collection}")
-        conninfo = self.cursor.connection.info
-        dsn = conninfo.dsn
-        password = conninfo.password
-        with psycopg.connect(dsn, password=password) as conn:
+        info = self.cursor.connection.info
+        _passwords[info.dsn] = info.password
+        with _pool(info.dsn, os.getpid()).connection() as conn:
             with conn.cursor() as cur:
+                # collection_base_item names the tables it reads with their schema,
+                # so this needs no search_path
                 if base_item_id is None:
-                    cur.execute("select collection_base_item(%s);", (collection,))
+                    cur.execute(
+                        "select pgstac.collection_base_item(%s);", (collection,)
+                    )
                 else:
                     cur.execute(
-                        "select collection_base_item(%s, %s);",
+                        "select pgstac.collection_base_item(%s, %s);",
                         (collection, base_item_id),
                     )
                 base_item = cur.fetchone()
@@ -180,15 +185,81 @@ def _connect(
     - a callable connection factory
     - an environment variable when set to `None`
 
-    If `conninfo` is a callable, users are responsible for setting `search_path`
-    (pgstac,public) and `statement_timeout` on the connection themselves.
+    `search_path`, `statement_timeout` and `transaction_read_only` are set with
+    `set_config` for the current transaction, not as startup parameters:
+    PgBouncer rejects `statement_timeout` there. `statement_timeout` defaults to
+    the `STAC_GEOPARQUET_PGSTAC_STATEMENT_TIMEOUT` environment variable.
     """
+    if statement_timeout is None:
+        timeout = os.environ.get("STAC_GEOPARQUET_PGSTAC_STATEMENT_TIMEOUT")
+        statement_timeout = int(timeout) if timeout else None
+    connection: AbstractContextManager[psycopg.Connection]
     if callable(conninfo):
-        with conninfo() as conn:
+        connection = conninfo()
+    else:
+        # BEGIN is sent below in one message with the settings
+        connection = psycopg.connect(conninfo or "", autocommit=True)
+    with connection as conn:
+        settings: list[sql.Composable] = [
+            sql.SQL("set_config('search_path', 'pgstac, public', true)"),
+            # Read-only: a search's SQL comes from templates in pgstac's tables
+            sql.SQL("set_config('transaction_read_only', 'on', true)"),
+        ]
+        if statement_timeout is not None:
+            settings.append(
+                sql.SQL("set_config('statement_timeout', {}, true)").format(
+                    sql.Literal(str(statement_timeout))
+                )
+            )
+        query = sql.SQL("SELECT ") + sql.SQL(", ").join(settings)
+        # Without autocommit, psycopg begins the transaction itself
+        begin = conn.autocommit
+        if begin:
+            query = sql.SQL("BEGIN; ") + query
+        # Not prepared: PgBouncer before 1.24, or with max_prepared_statements = 0,
+        # can run the next transaction on a server connection that lacks it
+        conn.execute(query, prepare=False)
+        try:
             yield conn
-        return
-    with psycopg.connect(pgstac_dsn(conninfo, statement_timeout)) as conn:
-        yield conn
+        finally:
+            # Don't hand a callable's connection back in the transaction begun here
+            if begin and callable(conninfo) and not conn.closed:
+                conn.rollback()
+
+
+# The latest password for each DSN: tokens such as AWS IAM ones change
+_passwords: dict[str, str | None] = {}
+
+
+@functools.cache
+def _pool(dsn: str, pid: int) -> psycopg_pool.ConnectionPool:
+    """
+    A pool of connections to look up base items with, shared by every export to
+    `dsn` from the process `pid`. A forked process can't use its parent's
+    connections.
+
+    `dsn` is a connection's `info.dsn`, which has no password: a new password
+    doesn't make a new pool.
+    """
+    pool = psycopg_pool.ConnectionPool(
+        dsn,
+        min_size=int(os.environ.get("STAC_GEOPARQUET_PGSTAC_POOL_MIN_SIZE") or 0),
+        max_size=int(os.environ.get("STAC_GEOPARQUET_PGSTAC_POOL_MAX_SIZE") or 1),
+        max_idle=float(os.environ.get("STAC_GEOPARQUET_PGSTAC_POOL_MAX_IDLE") or 600),
+        num_workers=1,
+        # Poolers can close idle connections
+        check=psycopg_pool.ConnectionPool.check_connection,
+        kwargs=lambda: {"password": _passwords[dsn], "prepare_threshold": None},
+        open=True,
+    )
+
+    def close() -> None:
+        # Closing a parent's pool in a forked process would end its connections
+        if os.getpid() == pid:
+            pool.close()
+
+    atexit.register(close)
+    return pool
 
 
 def _items_query(
@@ -238,6 +309,7 @@ def _items_query(
             cur.execute(
                 "SELECT stac_search_to_where(%(s)s), sort_sqlorderby(%(s)s);",
                 {"s": Jsonb({**search, "sortby": sortby})},
+                prepare=False,
             )
             row = cur.fetchone()
             assert row is not None
@@ -539,7 +611,8 @@ def pgstac_to_arrow(
     limits each fetch. It defaults to the `STAC_GEOPARQUET_PGSTAC_STREAM`
     environment variable, or to streaming with libpq 17 or later, which streams
     rows in batches; before that, streamed rows arrive one at a time.
-    `statement_timeout` is in milliseconds.
+    `statement_timeout` is in milliseconds, and defaults to the
+    `STAC_GEOPARQUET_PGSTAC_STATEMENT_TIMEOUT` environment variable.
     """
     schema, items = _pgstac_items(
         conninfo,
@@ -661,7 +734,7 @@ def get_pgstac_partitions(
                 q += " WHERE last_updated >= %s"
                 args = (updated_after,)
             q += " ORDER BY last_updated asc"
-            cur.execute(q, args)
+            cur.execute(q, args, prepare=False)
             for row in cur:
                 logger.debug(f"Found PgSTAC Partition: {row}")
                 yield row
