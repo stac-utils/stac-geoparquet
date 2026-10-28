@@ -14,7 +14,6 @@ except ImportError:
     _deltalake_installed = False
 
 from stac_geoparquet.arrow._api import parse_stac_ndjson_to_arrow
-from stac_geoparquet.arrow._constants import DEFAULT_JSON_CHUNK_SIZE
 from stac_geoparquet.arrow._to_parquet import (
     DEFAULT_PARQUET_SCHEMA_VERSION,
     SUPPORTED_PARQUET_SCHEMA_VERSIONS,
@@ -29,7 +28,7 @@ def parse_stac_ndjson_to_delta_lake(
     input_path: str | Path | Iterable[str | Path],
     table_or_uri: str | Path | DeltaTable,
     *,
-    chunk_size: int = DEFAULT_JSON_CHUNK_SIZE,
+    chunk_size: int | None = None,
     schema: pa.Schema | None = None,
     limit: int | None = None,
     schema_version: SUPPORTED_PARQUET_SCHEMA_VERSIONS = DEFAULT_PARQUET_SCHEMA_VERSION,
@@ -43,7 +42,7 @@ def parse_stac_ndjson_to_delta_lake(
 
     Args:
         chunk_size: The chunk size to use for reading JSON into memory. Defaults to
-            65536.
+            the `STAC_GEOPARQUET_CHUNK_SIZE` environment variable, or 65536.
         schema: The schema to represent the input STAC data. Defaults to None, in which
             case the schema will first be inferred via a full pass over the input data.
             In this case, there will be two full passes over the input data: one to

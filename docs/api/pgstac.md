@@ -29,6 +29,8 @@ A `row_func` gets each item as `pgstac_to_iter` would yield it with the same `ge
 
 Memory use grows with `chunk_size`, as a chunk's items are all held as Python dicts while it is converted.
 
+A chunk ends early, with an INFO log message, if it wouldn't fit in the memory the process had left when the export started: the system's available memory, or a container (cgroup) limit if that is lower. This is an estimate, so items with very many distinct assets can still need more. Set [`STAC_GEOPARQUET_MEMORY_CAP`](../usage.md#settings) to `false` to keep every row group at `chunk_size`.
+
 ::: stac_geoparquet.pgstac_reader
     options:
       members:
