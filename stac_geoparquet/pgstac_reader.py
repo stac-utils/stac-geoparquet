@@ -3,8 +3,8 @@ import logging
 import os
 import random
 import string
-from collections.abc import Callable, Iterator
-from contextlib import contextmanager
+from collections.abc import Callable, Generator, Iterator
+from contextlib import closing, contextmanager
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
@@ -19,12 +19,14 @@ import shapely.wkb
 from psycopg import sql
 from psycopg.rows import tuple_row
 from psycopg.types.json import Jsonb, set_json_dumps, set_json_loads
+from pypgstac.hydration import DO_NOT_MERGE_MARKER
 
 from stac_geoparquet._wkb import ewkb_to_iso
 from stac_geoparquet.arrow import (
     ACCEPTED_SCHEMA_OPTIONS,
     DEFAULT_PARQUET_SCHEMA_VERSION,
     SUPPORTED_PARQUET_SCHEMA_VERSIONS,
+    InferredSchema,
     parse_stac_items_to_arrow,
 )
 from stac_geoparquet.arrow._api import parse_stac_items_to_parquet
@@ -49,6 +51,12 @@ logger = logging.getLogger(__name__)
 # server-side cursor waits a round trip for each fetch, so it fetches more.
 STREAM_ITERSIZE = 100
 FETCH_ITERSIZE = 1000
+
+PGSTAC_SCHEMA_OPTIONS = ACCEPTED_SCHEMA_OPTIONS | Literal["PreScan"]
+"""The `schema` options of the pgstac functions, which add "PreScan"."""
+
+# Stands in for each geometry while pgstac_schema infers a schema
+_EMPTY_WKB = shapely.to_wkb(shapely.Point(), flavor="iso")
 
 # The columns of pgstac's items table that PgstacRowFactory reads, in order
 _ITEM_COLUMNS = ("id", "geometry", "collection", "content")
@@ -190,9 +198,11 @@ def _items_query(
     start_datetime: datetime | None,
     end_datetime: datetime | None,
     search: dict[str, Any] | None,
+    columns: tuple[str, ...] = _ITEM_COLUMNS,
 ) -> tuple[sql.Composed, Any]:
     """
-    Get the query and arguments that select the requested pgstac items.
+    Get the query and arguments that select `columns` of the requested pgstac
+    items.
     """
     if search is not None and (
         collection is not None or start_datetime is not None or end_datetime is not None
@@ -202,7 +212,7 @@ def _items_query(
         end_datetime = datetime.now(timezone.utc)
 
     select = sql.SQL("SELECT {} FROM items").format(
-        sql.SQL(", ").join(map(sql.Identifier, _ITEM_COLUMNS))
+        sql.SQL(", ").join(map(sql.Identifier, columns))
     )
     query: sql.Composed
     args: Any
@@ -270,7 +280,7 @@ def _rows(
     stream: bool | None,
     cursor_itersize: int | None,
     row_factory: Any,
-) -> Iterator[Any]:
+) -> Generator[Any, None, None]:
     if stream is None:
         # Before libpq 17, rows stream one at a time, which is slower than fetching
         stream = env_flag(
@@ -341,6 +351,151 @@ def pgstac_to_iter(
             yield rec
 
 
+def _structure(value: Any) -> Any:
+    """
+    A hashable summary of the keys and value types in `value`. Lists of dicts
+    keep their length, and pgstac's do-not-merge marker is kept: hydration
+    depends on both.
+    """
+    # type() and list comprehensions: this runs on every item
+    value_type = type(value)
+    if value_type is dict:
+        return tuple([(key, _structure(v)) for key, v in value.items()])
+    if value_type is list:
+        if value and type(value[0]) is dict:
+            return tuple([_structure(v) for v in value])
+        return frozenset([_structure(v) for v in value])
+    if value_type is str and value == DO_NOT_MERGE_MARKER:
+        return DO_NOT_MERGE_MARKER
+    return value_type
+
+
+def pgstac_schema(
+    conninfo: str | Callable[[], psycopg.Connection] | None,
+    collection: str | None = None,
+    start_datetime: datetime | None = None,
+    end_datetime: datetime | None = None,
+    search: dict[str, Any] | None = None,
+    statement_timeout: int | None = None,
+    cursor_itersize: int | None = None,
+    row_func: Callable | None = None,
+    geometry: GEOMETRY_OPTIONS = "wkb",
+    stream: bool | None = None,
+) -> InferredSchema:
+    """
+    Infer the schema of pgstac items, after `row_func` if one is given.
+
+    The schema only depends on the keys and types of values in the items, so this
+    reads each item's stored content and converts just one item of each
+    structure. A `row_func` is called with that one item of each structure, so if
+    the fields it adds depend on an item's values rather than its structure, use
+    `schema="ChunksToDisk"` or pass a schema instead. With `geometry="wkb"`, the
+    geometries aren't read, and the items a `row_func` gets have an empty one; if
+    what it adds depends on the geometry, pass `geometry="geojson"`. The result's
+    `count` is the number of items converted.
+
+    Pass the result as `schema` to
+    [`pgstac_to_parquet`][stac_geoparquet.pgstac_reader.pgstac_to_parquet] or
+    [`sync_pgstac_to_parquet`][stac_geoparquet.pgstac_reader.sync_pgstac_to_parquet],
+    for example to give several files the same schema. It describes the items as
+    they were when it ran: a field that an item gains later is dropped. See
+    [`pgstac_to_arrow`][stac_geoparquet.pgstac_reader.pgstac_to_arrow] for the
+    other arguments.
+    """
+    # Only a row_func that gets GeoJSON needs the real geometries
+    read_geometry = row_func is not None and geometry == "geojson"
+    columns: tuple[str, ...] = ("collection", "id", "content")
+    if read_geometry:
+        columns += ("geometry",)
+    with _connect(conninfo, statement_timeout) as conn:
+        query, args = _items_query(
+            conn,
+            collection=collection,
+            start_datetime=start_datetime,
+            end_datetime=end_datetime,
+            search=search,
+            columns=columns,
+        )
+        rows = _rows(
+            conn,
+            query,
+            args,
+            stream=stream,
+            cursor_itersize=cursor_itersize,
+            row_factory=tuple_row,
+        )
+        one_per_structure: dict[Any, tuple[Any, ...]] = {}
+        # Closed on an error too: a paused stream holds the connection's lock
+        with closing(rows):
+            for row in rows:
+                collection_id, _, content = row[:3]
+                bbox_size = len(content.get("bbox", ()))
+                base_item_id = content.get("pgstac:base_item")
+                key = (collection_id, base_item_id, bbox_size, _structure(content))
+                one_per_structure.setdefault(key, row)
+        with psycopg.Cursor(conn) as cur:
+            factory = PgstacRowFactory(cur, wkb_geometry=not read_geometry)
+            items = [
+                factory(
+                    (item_id, wkb[0] if wkb else _EMPTY_WKB, collection_id, content)
+                )
+                for collection_id, item_id, content, *wkb in one_per_structure.values()
+            ]
+    if row_func is not None:
+        items = [row_func(item) for item in items]
+    schema = InferredSchema()
+    schema.update_from_items(items)
+    if not schema.count:
+        raise ValueError("No items found to infer a schema from")
+    return schema
+
+
+def _pgstac_items(
+    conninfo: str | Callable[[], psycopg.Connection] | None,
+    collection: str | None,
+    start_datetime: datetime | None,
+    end_datetime: datetime | None,
+    search: dict[str, Any] | None,
+    *,
+    statement_timeout: int | None,
+    cursor_itersize: int | None,
+    row_func: Callable | None,
+    geometry: GEOMETRY_OPTIONS,
+    stream: bool | None,
+    schema: PGSTAC_SCHEMA_OPTIONS,
+) -> tuple[ACCEPTED_SCHEMA_OPTIONS, Iterator[dict[str, Any]]]:
+    """
+    Get the schema and items for pgstac_to_arrow and pgstac_to_parquet.
+    """
+    if schema == "PreScan":
+        schema = pgstac_schema(
+            conninfo,
+            collection,
+            start_datetime,
+            end_datetime,
+            search,
+            statement_timeout=statement_timeout,
+            cursor_itersize=cursor_itersize,
+            row_func=row_func,
+            geometry=geometry,
+            stream=stream,
+        )
+    items = pgstac_to_iter(
+        conninfo,
+        collection,
+        start_datetime,
+        end_datetime,
+        search,
+        statement_timeout=statement_timeout,
+        cursor_itersize=cursor_itersize,
+        row_func=row_func,
+        # Without a row_func nothing sees the items before Arrow, so skip GeoJSON
+        geometry="wkb" if row_func is None else geometry,
+        stream=stream,
+    )
+    return schema, items
+
+
 def pgstac_to_arrow(
     conninfo: str | Callable[[], psycopg.Connection] | None,
     collection: str | None = None,
@@ -348,7 +503,7 @@ def pgstac_to_arrow(
     end_datetime: datetime | None = None,
     search: dict[str, Any] | None = None,
     chunk_size: int | None = None,
-    schema: ACCEPTED_SCHEMA_OPTIONS = "FirstBatch",
+    schema: PGSTAC_SCHEMA_OPTIONS = "FirstBatch",
     statement_timeout: int | None = None,
     row_func: Callable | None = None,
     tmpdir: str | Path | None = None,
@@ -368,6 +523,11 @@ def pgstac_to_arrow(
     is converted in place of the item. Its items' geometries are ISO WKB bytes,
     or GeoJSON with `geometry="geojson"`, which is slower.
 
+    `schema` can also be "PreScan", which reads the items twice: once to infer
+    the schema from all of them with
+    [`pgstac_schema`][stac_geoparquet.pgstac_reader.pgstac_schema], which says how
+    it calls `row_func`, and once to convert them.
+
     `cursor_itersize` is the number of rows read from the database at a time. It
     defaults to the `STAC_GEOPARQUET_PGSTAC_CURSOR_ITERSIZE` environment variable,
     or to 100 rows when streaming and 1000 when fetching from a server-side
@@ -381,7 +541,7 @@ def pgstac_to_arrow(
     rows in batches; before that, streamed rows arrive one at a time.
     `statement_timeout` is in milliseconds.
     """
-    items = pgstac_to_iter(
+    schema, items = _pgstac_items(
         conninfo,
         collection,
         start_datetime,
@@ -390,9 +550,9 @@ def pgstac_to_arrow(
         statement_timeout=statement_timeout,
         cursor_itersize=cursor_itersize,
         row_func=row_func,
-        # Without a row_func nothing sees the items before Arrow, so skip GeoJSON
-        geometry="wkb" if row_func is None else geometry,
+        geometry=geometry,
         stream=stream,
+        schema=schema,
     )
     return parse_stac_items_to_arrow(
         items,
@@ -411,7 +571,7 @@ def pgstac_to_parquet(
     end_datetime: datetime | None = None,
     search: dict[str, Any] | None = None,
     chunk_size: int | None = None,
-    schema: ACCEPTED_SCHEMA_OPTIONS = "FirstBatch",
+    schema: PGSTAC_SCHEMA_OPTIONS = "FirstBatch",
     statement_timeout: int | None = None,
     row_func: Callable | None = None,
     schema_version: SUPPORTED_PARQUET_SCHEMA_VERSIONS = DEFAULT_PARQUET_SCHEMA_VERSION,
@@ -425,8 +585,8 @@ def pgstac_to_parquet(
     Convert pgstac items to a parquet file.
 
     See [`pgstac_to_arrow`][stac_geoparquet.pgstac_reader.pgstac_to_arrow] for
-    `search`, `statement_timeout`, `row_func`, `geometry`, `cursor_itersize`
-    and `stream`. Other keyword arguments are passed on to
+    `search`, `statement_timeout`, `row_func`, `geometry`, `schema="PreScan"`,
+    `cursor_itersize` and `stream`. Other keyword arguments are passed on to
     [`parse_stac_items_to_parquet`][stac_geoparquet.arrow.parse_stac_items_to_parquet].
     """
     filesystem, filepath = resolve_output_path_and_filesystem(output_path, filesystem)
@@ -436,7 +596,7 @@ def pgstac_to_parquet(
 
     logger.debug(f"Exporting PgSTAC items to {filepath}")
 
-    items = pgstac_to_iter(
+    schema, items = _pgstac_items(
         conninfo,
         collection,
         start_datetime,
@@ -445,9 +605,9 @@ def pgstac_to_parquet(
         statement_timeout=statement_timeout,
         cursor_itersize=cursor_itersize,
         row_func=row_func,
-        # Without a row_func nothing sees the items before Arrow, so skip GeoJSON
-        geometry="wkb" if row_func is None else geometry,
+        geometry=geometry,
         stream=stream,
+        schema=schema,
     )
 
     return parse_stac_items_to_parquet(
@@ -512,7 +672,7 @@ def sync_pgstac_to_parquet(
     output_path: str | Path,
     updated_after: datetime | None = None,
     chunk_size: int | None = None,
-    schema: ACCEPTED_SCHEMA_OPTIONS = "FirstBatch",
+    schema: PGSTAC_SCHEMA_OPTIONS = "FirstBatch",
     statement_timeout: int | None = None,
     row_func: Callable | None = None,
     schema_version: SUPPORTED_PARQUET_SCHEMA_VERSIONS = DEFAULT_PARQUET_SCHEMA_VERSION,
