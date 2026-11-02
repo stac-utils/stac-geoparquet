@@ -39,7 +39,7 @@ schema = InferredSchema.from_geoparquet(pq.read_schema("items.parquet"))
 reader = parse_stac_items_to_arrow(new_items, schema=schema)
 ```
 
-[`InferredSchema.inner`][stac_geoparquet.arrow.InferredSchema] is a `pyarrow.Schema` of the items as STAC JSON, with their properties nested under `properties`. Edit it with pyarrow and wrap the result with `InferredSchema(schema)`, or merge in another with `update_from_schema`. `to_geoparquet` gives the schema the items convert to. Fields that items have and the schema doesn't are dropped.
+[`InferredSchema.inner`][stac_geoparquet.arrow.InferredSchema] is a `pyarrow.Schema` of the items as STAC JSON, with their properties nested under `properties`. Edit it with pyarrow and wrap the result with `InferredSchema(schema)`, or merge in another with `update_from_schema`. `to_geoparquet` gives the schema the items convert to. Fields that items have and the schema doesn't are dropped. A `bbox` that is a fixed-size list of 6 values makes the bboxes 3d, and 2d ones get a null z; any other list is read as 2d.
 
 ### Convert JSON to Arrow
 

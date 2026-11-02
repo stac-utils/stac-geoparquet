@@ -11,9 +11,10 @@ import pystac
 from stac_geoparquet.arrow._batch import (
     StacArrowBatch,
     StacJsonBatch,
+    has_3d_bbox,
     item_geometries_to_wkb,
+    with_bbox_size,
 )
-from stac_geoparquet.arrow._constants import BBOX_3D_METADATA
 from stac_geoparquet.arrow._memory import chunks_within_memory
 from stac_geoparquet.arrow._util import resolve_chunk_size
 from stac_geoparquet.json_reader import read_json_chunked
@@ -23,13 +24,11 @@ def geoparquet_schema(
     json_schema: pa.Schema, drop_invalid_properties: bool
 ) -> pa.Schema:
     """The GeoParquet schema that items with `json_schema` convert to."""
+    if "bbox" in json_schema.names and not has_3d_bbox(json_schema):
+        # A bbox list of any length is read as 2d
+        json_schema = with_bbox_size(json_schema, 4)
     batch = StacJsonBatch(pa.RecordBatch.from_pylist([], schema=json_schema))
     return batch.to_arrow_batch(drop_invalid_properties).inner.schema
-
-
-def _with_3d_bbox(schema: pa.Schema) -> pa.Schema:
-    index = schema.get_field_index("bbox")
-    return schema.set(index, schema.field(index).with_metadata(BBOX_3D_METADATA))
 
 
 class InferredSchema:
@@ -37,7 +36,7 @@ class InferredSchema:
     A schema representing the original STAC JSON with absolutely minimal modifications.
 
     The only modifications from the data are converting any geometry fields from
-    GeoJSON to WKB, and marking the bbox field when some items have 3d bboxes.
+    GeoJSON to WKB, and typing the bbox as a fixed-size list of 4 or 6 values.
     """
 
     inner: pa.Schema
@@ -83,11 +82,10 @@ class InferredSchema:
             self.count += len(chunk)
             batch = StacJsonBatch._from_wkb_dicts(chunk, schema=None).inner
             schema = batch.schema
-            # Mark the schema if any item has a 3d bbox, so that items with 2d bboxes
-            # convert to 3d ones with a null z
-            bbox = batch.column("bbox") if "bbox" in schema.names else None
-            if bbox is not None and pc.max(pc.list_value_length(bbox)).as_py() == 6:
-                schema = _with_3d_bbox(schema)
+            if "bbox" in schema.names:
+                # The bbox type says whether bboxes are 2d or 3d: a list of 4 or 6
+                longest = pc.max(pc.list_value_length(batch.column("bbox"))).as_py()
+                schema = with_bbox_size(schema, 6 if longest == 6 else 4)
             self.update_from_schema(schema)
             chunk.clear()
 
@@ -96,9 +94,10 @@ class InferredSchema:
         new_schema = pa.unify_schemas(
             [self.inner, schema], promote_options="permissive"
         )
-        # unify_schemas only keeps the first schema's field metadata
-        if "bbox" in schema.names and schema.field("bbox").metadata == BBOX_3D_METADATA:
-            new_schema = _with_3d_bbox(new_schema)
+        if "bbox" in new_schema.names:
+            # Merging lists of 4 and 6 gives a list of any length
+            size = 6 if has_3d_bbox(self.inner) or has_3d_bbox(schema) else 4
+            new_schema = with_bbox_size(new_schema, size)
         self.inner = new_schema
 
     def _resolved(self) -> pa.Schema:
@@ -122,12 +121,6 @@ class InferredSchema:
         """
         batch = pa.RecordBatch.from_pylist([], schema=schema)
         json_schema = StacArrowBatch(batch).to_json_batch().inner.schema
-
-        bbox_index = json_schema.get_field_index("bbox")
-        bbox = json_schema.field(bbox_index).with_type(pa.list_(pa.float64()))
-        json_schema = json_schema.set(bbox_index, bbox)
-        if schema.field("bbox").type.num_fields == 6:
-            json_schema = _with_3d_bbox(json_schema)
 
         # Keep the properties in the order of their columns
         properties_index = json_schema.get_field_index("properties")
