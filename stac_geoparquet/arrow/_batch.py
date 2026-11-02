@@ -93,6 +93,21 @@ def _pop_geometry_array(wkb_items: Sequence[dict[str, Any]]) -> pa.Array:
     )
 
 
+def has_3d_bbox(schema: pa.Schema) -> bool:
+    """Whether the bbox in `schema` is a fixed-size list of 6 values."""
+    if "bbox" not in schema.names:
+        return False
+    bbox_type = schema.field("bbox").type
+    return pa.types.is_fixed_size_list(bbox_type) and bbox_type.list_size == 6
+
+
+def with_bbox_size(schema: pa.Schema, size: int) -> pa.Schema:
+    """`schema` with its bbox a fixed-size list of `size` values."""
+    index = schema.get_field_index("bbox")
+    field = schema.field(index)
+    return schema.set(index, field.with_type(pa.list_(field.type.value_type, size)))
+
+
 class StacJsonBatch:
     """
     An Arrow RecordBatch of STAC Items that has been **minimally converted** to Arrow.
@@ -169,6 +184,18 @@ class StacJsonBatch:
         geometry = None
         if schema is None or schema.field("geometry").type == pa.binary():
             geometry = _pop_geometry_array(wkb_items)
+
+        if schema is not None and "bbox" in schema.names:
+            # A bbox list of any length is read as 2d, and in a 3d schema 2d bboxes
+            # get a null z
+            if not has_3d_bbox(schema):
+                schema = with_bbox_size(schema, 4)
+            else:
+                for wkb_item in wkb_items:
+                    bbox = wkb_item.get("bbox")
+                    if bbox is not None and len(bbox) == 4:
+                        xmin, ymin, xmax, ymax = bbox
+                        wkb_item["bbox"] = [xmin, ymin, None, xmax, ymax, None]
 
         if schema is not None:
             array = pa.array(wkb_items, type=pa.struct(schema))

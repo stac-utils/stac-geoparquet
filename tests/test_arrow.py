@@ -425,6 +425,68 @@ def test_round_trip_read_write_with_inferred_schema(
         assert_json_value_equal(result, expected, precision=0)
 
 
+def test_inferred_schema_bbox_size():
+    schema = InferredSchema()
+    schema.update_from_items(_read_items("naip-pc"))
+    assert schema.inner.field("bbox").type == pa.list_(pa.float64(), 4)
+
+    schema.update_from_items(_read_items("3dep-lidar-copc-pc"))
+    assert schema.inner.field("bbox").type == pa.list_(pa.float64(), 6)
+
+
+def test_mixed_2d_and_3d_bboxes():
+    items = _read_items("naip-pc")
+    for item in items[1::2]:
+        xmin, ymin, xmax, ymax = item["bbox"]
+        item["bbox"] = [xmin, ymin, 0.0, xmax, ymax, 10.0]
+    # Infer from the 2d items first, so 3d has to survive a merge
+    schema = InferredSchema()
+    schema.update_from_items(items[::2])
+    schema.update_from_items(items[1::2])
+
+    # Each chunk has a 2d and a 3d bbox
+    table = parse_stac_items_to_arrow(items, schema=schema, chunk_size=2).read_all()
+
+    names = ["xmin", "ymin", "zmin", "xmax", "ymax", "zmax"]
+    expected = [
+        dict(zip(names, bbox[:2] + [None] + bbox[2:] + [None]))
+        if len(bbox) == 4
+        else dict(zip(names, bbox))
+        for bbox in (item["bbox"] for item in items)
+    ]
+    assert table["bbox"].to_pylist() == expected
+
+
+@pytest.mark.parametrize(
+    ("bbox_type", "fields"),
+    [
+        (pa.list_(pa.float64()), 4),
+        (pa.list_(pa.float64(), 4), 4),
+        (pa.list_(pa.float64(), 6), 6),
+    ],
+)
+def test_bbox_type_sets_the_bbox_with_no_items(bbox_type, fields):
+    schema = _naip_schema().inner
+    index = schema.get_field_index("bbox")
+    schema = schema.set(index, schema.field(index).with_type(bbox_type))
+
+    reader = parse_stac_items_to_arrow([], schema=schema)
+
+    assert reader.schema.field("bbox").type.num_fields == fields
+
+
+def test_list_bbox_in_a_schema_is_2d():
+    items = _read_items("3dep-lidar-copc-pc")
+    inferred = InferredSchema()
+    inferred.update_from_items(items)
+    schema = inferred.inner
+    index = schema.get_field_index("bbox")
+    schema = schema.set(index, schema.field(index).with_type(pa.list_(pa.float64())))
+
+    with pytest.raises(pa.ArrowInvalid, match="expected 4"):
+        parse_stac_items_to_arrow(items, schema=schema).read_all()
+
+
 @pytest.mark.parametrize("include_srid", [False, True], ids=["wkb", "ewkb"])
 def test_wkb_geometry_input_matches_geojson(include_srid: bool):
     items = _read_items("naip-pc")
@@ -484,8 +546,13 @@ def test_geometry_column_from_one_buffer(collection_id: str, with_schema: bool):
     wkb_items = [
         _batch.item_geometries_to_wkb(item) for item in _read_items(collection_id)
     ]
-    expected = pa.RecordBatch.from_struct_array(pa.array(wkb_items))
-    schema = expected.schema if with_schema else None
+    schema = None
+    if with_schema:
+        inferred = InferredSchema()
+        inferred.update_from_items(_read_items(collection_id))
+        schema = inferred.inner
+    struct_type = None if schema is None else pa.struct(schema)
+    expected = pa.RecordBatch.from_struct_array(pa.array(wkb_items, type=struct_type))
 
     batch = _batch.StacJsonBatch._from_wkb_dicts(wkb_items, schema=schema).inner
 
@@ -505,6 +572,7 @@ def test_geometry_column_keeps_other_schema_types():
     items = _read_items("naip-pc")
     wkb_items = [_batch.item_geometries_to_wkb(item) for item in items]
     schema = pa.RecordBatch.from_struct_array(pa.array(wkb_items)).schema
+    schema = _batch.with_bbox_size(schema, 4)
     schema = schema.set(
         schema.get_field_index("geometry"), pa.field("geometry", pa.large_binary())
     )
