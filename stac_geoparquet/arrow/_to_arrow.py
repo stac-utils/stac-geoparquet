@@ -7,7 +7,6 @@ import orjson
 import pyarrow as pa
 import pyarrow.compute as pc
 
-from stac_geoparquet.arrow._constants import BBOX_3D_METADATA
 from stac_geoparquet.arrow._crs import WGS84_CRS_JSON
 
 logger = logging.getLogger(__name__)
@@ -112,8 +111,6 @@ def _is_bbox_3d(bbox_col: pa.Array) -> bool:
 
     if len(offsets_set) > 1:
         raise ValueError("Mixed 2d-3d bounding boxes not yet supported")
-    if not offsets_set:
-        return False
 
     offset = list(offsets_set)[0]
     if offset == 6:
@@ -140,21 +137,14 @@ def convert_bbox_to_struct(batch: pa.RecordBatch) -> pa.RecordBatch:
     """
     bbox_col_idx = batch.schema.get_field_index("bbox")
     bbox_col = batch.column(bbox_col_idx)
-    if batch.schema.field(bbox_col_idx).metadata == BBOX_3D_METADATA:
-        # Some items have 3d bboxes, so give the 2d ones a null z
-        lengths = pc.list_value_length(bbox_col).to_numpy()
-        starts = np.cumsum(lengths) - lengths
-        values = pc.list_flatten(bbox_col).to_numpy()
-        is_2d = lengths == 4
-        arrays = [
-            pa.array(
-                values[starts + np.where(is_2d, index_2d, index_3d)],
-                mask=is_2d if index_3d in (2, 5) else None,
-            )
-            for index_3d, index_2d in enumerate([0, 1, 0, 2, 3, 0])
-        ]
-        names = ["xmin", "ymin", "zmin", "xmax", "ymax", "zmax"]
-        struct_arr = pa.StructArray.from_arrays(arrays, names=names)
+    if pa.types.is_fixed_size_list(bbox_col.type):
+        # The schema sets 2d or 3d, and 2d bboxes in a 3d schema have a null z
+        names = ["xmin", "ymin", "xmax", "ymax"]
+        if bbox_col.type.list_size == 6:
+            names = ["xmin", "ymin", "zmin", "xmax", "ymax", "zmax"]
+        struct_arr = pa.StructArray.from_arrays(
+            [pc.list_element(bbox_col, i) for i in range(len(names))], names=names
+        )
         return batch.set_column(bbox_col_idx, "bbox", struct_arr)
 
     bbox_3d = _is_bbox_3d(bbox_col)
