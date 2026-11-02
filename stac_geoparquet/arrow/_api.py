@@ -46,19 +46,11 @@ def memlog(msg: str) -> None:
         )
 
 
-def from_batches(
-    batches: Iterable[pa.RecordBatch], empty_schema: pa.Schema | None = None
-) -> pa.RecordBatchReader:
-    """
-    Check that the batches share a schema and return them as a reader. With no
-    batches, the reader has `empty_schema`, or a ValueError is raised if it's None.
-    """
+def from_batches(batches: Iterable[pa.RecordBatch]) -> pa.RecordBatchReader:
     batches = iter(batches)
     init = next(batches, None)
     if init is None:
-        if empty_schema is None:
-            raise ValueError("No items to convert")
-        return pa.RecordBatchReader.from_batches(empty_schema, [])
+        raise ValueError("No items to convert")
 
     def check_batches(
         s: pa.Schema, batches: Iterable[pa.RecordBatch]
@@ -126,6 +118,8 @@ def parse_stac_items_to_arrow(
             will use the first batch of items to infer the schema, or "ChunksToDisk"
             which will write each chunk of items to disk as a Parquet file and then read
             them back in to unify the schema. Defaults to "FullFile".
+            A `pa.Schema`'s bbox type sets whether bboxes are 2d or 3d: a
+            fixed-size list of 6 values is 3d, and any other list is 2d.
         drop_invalid_properties: If True (default), an Item property whose name
             collides with a top-level field. If False, a ValueError is raised instead.
 
@@ -145,8 +139,8 @@ def parse_stac_items_to_arrow(
         batches = _chunks_to_arrow(
             wkb_items, chunk_size, schema, drop_invalid_properties
         )
-        return from_batches(
-            batches, empty_schema=geoparquet_schema(schema, drop_invalid_properties)
+        return pa.RecordBatchReader.from_batches(
+            geoparquet_schema(schema, drop_invalid_properties), batches
         )
 
     elif schema == "FullFile":
@@ -270,7 +264,9 @@ def parse_stac_ndjson_to_arrow(
         schema: The schema to represent the input STAC data. Defaults to None, in which
             case the schema will first be inferred via a full pass over the input data.
             In this case, there will be two full passes over the input data: one to
-            infer a common schema across all data and another to read the data.
+            infer a common schema across all data and another to read the data. The
+            schema's bbox type sets whether bboxes are 2d or 3d: a fixed-size list
+            of 6 values is 3d, and any other list is 2d.
 
     Keyword Args:
         limit: The maximum number of JSON Items to use for schema inference
@@ -302,8 +298,8 @@ def parse_stac_ndjson_to_arrow(
         )
         for batch in read_json_chunked(path, chunk_size=chunk_size)
     )
-    return from_batches(
-        batches_iter, empty_schema=geoparquet_schema(schema, drop_invalid_properties)
+    return pa.RecordBatchReader.from_batches(
+        geoparquet_schema(schema, drop_invalid_properties), batches_iter
     )
 
 
