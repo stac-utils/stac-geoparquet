@@ -111,8 +111,6 @@ def _is_bbox_3d(bbox_col: pa.Array) -> bool:
 
     if len(offsets_set) > 1:
         raise ValueError("Mixed 2d-3d bounding boxes not yet supported")
-    if not offsets_set:
-        return False
 
     offset = list(offsets_set)[0]
     if offset == 6:
@@ -139,6 +137,16 @@ def convert_bbox_to_struct(batch: pa.RecordBatch) -> pa.RecordBatch:
     """
     bbox_col_idx = batch.schema.get_field_index("bbox")
     bbox_col = batch.column(bbox_col_idx)
+    if pa.types.is_fixed_size_list(bbox_col.type):
+        # The schema sets 2d or 3d, and 2d bboxes in a 3d schema have a null z
+        names = ["xmin", "ymin", "xmax", "ymax"]
+        if bbox_col.type.list_size == 6:
+            names = ["xmin", "ymin", "zmin", "xmax", "ymax", "zmax"]
+        struct_arr = pa.StructArray.from_arrays(
+            [pc.list_element(bbox_col, i) for i in range(len(names))], names=names
+        )
+        return batch.set_column(bbox_col_idx, "bbox", struct_arr)
+
     bbox_3d = _is_bbox_3d(bbox_col)
 
     assert (
