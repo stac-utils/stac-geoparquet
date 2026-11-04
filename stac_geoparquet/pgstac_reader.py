@@ -1,3 +1,4 @@
+import functools
 import logging
 import random
 import string
@@ -6,7 +7,7 @@ from contextlib import contextmanager
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any
+from typing import Any, Literal
 
 import orjson
 import psycopg
@@ -18,6 +19,7 @@ from psycopg import sql
 from psycopg.rows import tuple_row
 from psycopg.types.json import Jsonb, set_json_dumps, set_json_loads
 
+from stac_geoparquet._wkb import ewkb_to_iso
 from stac_geoparquet.arrow import (
     ACCEPTED_SCHEMA_OPTIONS,
     DEFAULT_JSON_CHUNK_SIZE,
@@ -43,45 +45,51 @@ set_json_loads(orjson.loads)
 
 logger = logging.getLogger(__name__)
 
+# The columns of pgstac's items table that PgstacRowFactory reads, in order
+_ITEM_COLUMNS = ("id", "geometry", "collection", "content")
+
+GEOMETRY_OPTIONS = Literal["geojson", "wkb"]
+"""How items' geometries are given: as GeoJSON, or as ISO WKB bytes."""
+
 
 class PgstacRowFactory:
     """
-    Custom row factory for psycopg to return a tuple of the columns.
+    Row factory for psycopg that builds a STAC item dict from the `id`,
+    `geometry`, `collection` and `content` columns of pgstac's items table.
+
+    If `wkb_geometry` is True, the geometry is ISO WKB bytes instead of GeoJSON.
+    Base items are looked up on a new connection to the cursor's database, as
+    the cursor's own is busy reading the rows.
     """
 
-    def __init__(self, cursor: psycopg.Cursor[Any]) -> None:
+    def __init__(self, cursor: psycopg.Cursor[Any], wkb_geometry: bool = False) -> None:
         self.cursor = cursor
+        self.wkb_geometry = wkb_geometry
         self._base_items: dict[tuple[str, int | None], dict[str, Any]] = {}
 
     def __call__(
-        self,
-        values: tuple[str, str, str, datetime, datetime, dict[str, Any]],
+        self, values: tuple[str, str | bytes, str, dict[str, Any]]
     ) -> dict[str, Any]:
         """
         Convert the values to a dictionary.
         """
-        columns = [
-            "id",
-            "geometry",
-            "collection",
-            "datetime",
-            "end_datetime",
-            "content",
-        ]
-        item: dict[str, Any] = dict(zip(columns, values))
-        # datetime is in the content too
-        item.pop("datetime")
-        item.pop("end_datetime")
-
-        geom = shapely.wkb.loads(item["geometry"], hex=True)
-
-        item["geometry"] = geom.__geo_interface__
-        content = item.pop("content")
-        assert isinstance(content, dict)
+        item_id, wkb, collection, content = values
+        # A binary cursor returns EWKB bytes, a text cursor hex
+        if isinstance(wkb, str):
+            wkb = bytes.fromhex(wkb)
+        if self.wkb_geometry:
+            geometry = ewkb_to_iso(wkb)
+        else:
+            geometry = shapely.wkb.loads(wkb).__geo_interface__
+        item: dict[str, Any] = {
+            "id": item_id,
+            "geometry": geometry,
+            "collection": collection,
+        }
         if "bbox" in content:
             item["bbox"] = content["bbox"]
         else:
-            item["bbox"] = list(geom.bounds)
+            item["bbox"] = list(shapely.wkb.loads(wkb).bounds)
 
         item["assets"] = content["assets"]
         if "links" in content:
@@ -188,7 +196,9 @@ def _items_query(
     if start_datetime is not None and end_datetime is None:
         end_datetime = datetime.now(timezone.utc)
 
-    select = sql.SQL("SELECT * FROM items")
+    select = sql.SQL("SELECT {} FROM items").format(
+        sql.SQL(", ").join(map(sql.Identifier, _ITEM_COLUMNS))
+    )
     query: sql.Composed
     args: Any
 
@@ -258,7 +268,7 @@ def _rows(
     curname = "".join(random.choices(string.ascii_lowercase, k=32))
     with conn.cursor(curname, row_factory=row_factory) as cur:
         cur.itersize = cursor_itersize
-        cur.execute(query, args)
+        cur.execute(query, args, binary=True)
         logger.debug(f"Query: {query.as_string(conn)}, Args: {args}")
         yield from cur
 
@@ -272,12 +282,15 @@ def pgstac_to_iter(
     statement_timeout: int | None = None,
     cursor_itersize: int = 10000,
     row_func: Callable | None = None,
+    geometry: GEOMETRY_OPTIONS = "geojson",
 ) -> Iterator[dict[str, Any]]:
     """
     Iterate over pgstac items as STAC item dicts.
 
-    See [`pgstac_to_arrow`][stac_geoparquet.pgstac_reader.pgstac_to_arrow] for
-    `search`.
+    Their geometries are GeoJSON, or ISO WKB bytes with `geometry="wkb"`, and
+    `row_func` gets them the same way. See
+    [`pgstac_to_arrow`][stac_geoparquet.pgstac_reader.pgstac_to_arrow] for `search`
+    and `row_func`.
     """
     logger.info("Fetching Data from PGStac Into an Iterator of Items")
 
@@ -289,12 +302,15 @@ def pgstac_to_iter(
             end_datetime=end_datetime,
             search=search,
         )
+        row_factory = functools.partial(
+            PgstacRowFactory, wkb_geometry=geometry == "wkb"
+        )
         for rec in _rows(
             conn,
             query,
             args,
             cursor_itersize=cursor_itersize,
-            row_factory=PgstacRowFactory,
+            row_factory=row_factory,
         ):
             if row_func is not None:
                 rec = row_func(rec)
@@ -313,6 +329,7 @@ def pgstac_to_arrow(
     row_func: Callable | None = None,
     tmpdir: str | Path | None = None,
     drop_invalid_properties: bool = True,
+    geometry: GEOMETRY_OPTIONS = "wkb",
 ) -> pa.RecordBatchReader:
     """
     Convert pgstac items to an arrow record batch reader.
@@ -320,6 +337,10 @@ def pgstac_to_arrow(
     `search` selects items with a STAC API search body. Its `limit` is the most
     items to export. They're sorted by its `sortby`, then by datetime, collection
     and id; `fields` and `token` aren't supported.
+
+    If `row_func` is given, it is called with each item dict, and what it returns
+    is converted in place of the item. Its items' geometries are ISO WKB bytes,
+    or GeoJSON with `geometry="geojson"`, which is slower.
     """
     items = pgstac_to_iter(
         conninfo,
@@ -330,6 +351,8 @@ def pgstac_to_arrow(
         statement_timeout=statement_timeout,
         cursor_itersize=chunk_size,
         row_func=row_func,
+        # Without a row_func nothing sees the items before Arrow, so skip GeoJSON
+        geometry="wkb" if row_func is None else geometry,
     )
     return parse_stac_items_to_arrow(
         items,
@@ -353,13 +376,15 @@ def pgstac_to_parquet(
     row_func: Callable | None = None,
     schema_version: SUPPORTED_PARQUET_SCHEMA_VERSIONS = DEFAULT_PARQUET_SCHEMA_VERSION,
     filesystem: pyarrow.fs.FileSystem | None = None,
+    geometry: GEOMETRY_OPTIONS = "wkb",
     **kwargs: Any,
 ) -> str:
     """
     Convert pgstac items to a parquet file.
 
     See [`pgstac_to_arrow`][stac_geoparquet.pgstac_reader.pgstac_to_arrow] for
-    `search`.
+    `search`, `row_func` and `geometry`. Other keyword arguments are passed on to
+    [`parse_stac_items_to_parquet`][stac_geoparquet.arrow.parse_stac_items_to_parquet].
     """
     filesystem, filepath = resolve_output_path_and_filesystem(output_path, filesystem)
 
@@ -377,6 +402,8 @@ def pgstac_to_parquet(
         statement_timeout=statement_timeout,
         cursor_itersize=chunk_size,
         row_func=row_func,
+        # Without a row_func nothing sees the items before Arrow, so skip GeoJSON
+        geometry="wkb" if row_func is None else geometry,
     )
 
     return parse_stac_items_to_parquet(
@@ -446,6 +473,7 @@ def sync_pgstac_to_parquet(
     row_func: Callable | None = None,
     schema_version: SUPPORTED_PARQUET_SCHEMA_VERSIONS = DEFAULT_PARQUET_SCHEMA_VERSION,
     filesystem: pyarrow.fs.FileSystem | None = None,
+    geometry: GEOMETRY_OPTIONS = "wkb",
     **kwargs: Any,
 ) -> str:
     """
@@ -477,6 +505,7 @@ def sync_pgstac_to_parquet(
             statement_timeout=statement_timeout,
             schema_version=schema_version,
             filesystem=filesystem,
+            geometry=geometry,
             **kwargs,
         )
     return str(of)
