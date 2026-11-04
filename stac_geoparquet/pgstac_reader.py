@@ -1,5 +1,6 @@
 import functools
 import logging
+import os
 import random
 import string
 from collections.abc import Callable, Iterator
@@ -28,7 +29,7 @@ from stac_geoparquet.arrow import (
     parse_stac_items_to_arrow,
 )
 from stac_geoparquet.arrow._api import parse_stac_items_to_parquet
-from stac_geoparquet.arrow._util import resolve_output_path_and_filesystem
+from stac_geoparquet.arrow._util import env_flag, resolve_output_path_and_filesystem
 
 logger = logging.getLogger(__name__)
 
@@ -44,6 +45,11 @@ set_json_dumps(dumps)
 set_json_loads(orjson.loads)
 
 logger = logging.getLogger(__name__)
+
+# How many rows are read at a time by default, which psycopg holds in memory. A
+# server-side cursor waits a round trip for each fetch, so it fetches more.
+STREAM_ITERSIZE = 100
+FETCH_ITERSIZE = 1000
 
 # The columns of pgstac's items table that PgstacRowFactory reads, in order
 _ITEM_COLUMNS = ("id", "geometry", "collection", "content")
@@ -262,15 +268,32 @@ def _rows(
     query: sql.Composed,
     args: Any,
     *,
-    cursor_itersize: int,
+    stream: bool | None,
+    cursor_itersize: int | None,
     row_factory: Any,
 ) -> Iterator[Any]:
-    curname = "".join(random.choices(string.ascii_lowercase, k=32))
-    with conn.cursor(curname, row_factory=row_factory) as cur:
-        cur.itersize = cursor_itersize
-        cur.execute(query, args, binary=True)
-        logger.debug(f"Query: {query.as_string(conn)}, Args: {args}")
-        yield from cur
+    if stream is None:
+        # Before libpq 17, rows stream one at a time, which is slower than fetching
+        stream = env_flag(
+            "STAC_GEOPARQUET_PGSTAC_STREAM", psycopg.capabilities.has_stream_chunked()
+        )
+    if cursor_itersize is None:
+        default = STREAM_ITERSIZE if stream else FETCH_ITERSIZE
+        cursor_itersize = int(
+            os.environ.get("STAC_GEOPARQUET_PGSTAC_CURSOR_ITERSIZE") or default
+        )
+    logger.debug(f"Query: {query.as_string(conn)}, Args: {args}")
+    if stream:
+        size = cursor_itersize if psycopg.capabilities.has_stream_chunked() else 1
+        # Not the connection's cursor_factory: a ClientCursor can't return binary rows
+        with psycopg.Cursor(conn, row_factory=row_factory) as cur:
+            yield from cur.stream(query, args, binary=True, size=size)
+    else:
+        curname = "".join(random.choices(string.ascii_lowercase, k=32))
+        with conn.cursor(curname, row_factory=row_factory) as cur:
+            cur.itersize = cursor_itersize
+            cur.execute(query, args, binary=True)
+            yield from cur
 
 
 def pgstac_to_iter(
@@ -280,17 +303,18 @@ def pgstac_to_iter(
     end_datetime: datetime | None = None,
     search: dict[str, Any] | None = None,
     statement_timeout: int | None = None,
-    cursor_itersize: int = 10000,
+    cursor_itersize: int | None = None,
     row_func: Callable | None = None,
     geometry: GEOMETRY_OPTIONS = "geojson",
+    stream: bool | None = None,
 ) -> Iterator[dict[str, Any]]:
     """
     Iterate over pgstac items as STAC item dicts.
 
     Their geometries are GeoJSON, or ISO WKB bytes with `geometry="wkb"`, and
     `row_func` gets them the same way. See
-    [`pgstac_to_arrow`][stac_geoparquet.pgstac_reader.pgstac_to_arrow] for `search`
-    and `row_func`.
+    [`pgstac_to_arrow`][stac_geoparquet.pgstac_reader.pgstac_to_arrow] for
+    `search`, `statement_timeout`, `cursor_itersize`, `row_func` and `stream`.
     """
     logger.info("Fetching Data from PGStac Into an Iterator of Items")
 
@@ -309,6 +333,7 @@ def pgstac_to_iter(
             conn,
             query,
             args,
+            stream=stream,
             cursor_itersize=cursor_itersize,
             row_factory=row_factory,
         ):
@@ -330,6 +355,8 @@ def pgstac_to_arrow(
     tmpdir: str | Path | None = None,
     drop_invalid_properties: bool = True,
     geometry: GEOMETRY_OPTIONS = "wkb",
+    cursor_itersize: int | None = None,
+    stream: bool | None = None,
 ) -> pa.RecordBatchReader:
     """
     Convert pgstac items to an arrow record batch reader.
@@ -341,6 +368,19 @@ def pgstac_to_arrow(
     If `row_func` is given, it is called with each item dict, and what it returns
     is converted in place of the item. Its items' geometries are ISO WKB bytes,
     or GeoJSON with `geometry="geojson"`, which is slower.
+
+    `cursor_itersize` is the number of rows read from the database at a time. It
+    defaults to the `STAC_GEOPARQUET_PGSTAC_CURSOR_ITERSIZE` environment variable,
+    or to 100 rows when streaming and 1000 when fetching from a server-side
+    cursor, where each fetch waits a round trip to the database.
+
+    If `stream` is True, the rows are streamed from a single query, so
+    `statement_timeout` limits the whole export, including converting and writing
+    the items. If it's False, they're fetched from a server-side cursor, and it
+    limits each fetch. It defaults to the `STAC_GEOPARQUET_PGSTAC_STREAM`
+    environment variable, or to streaming with libpq 17 or later, which streams
+    rows in batches; before that, streamed rows arrive one at a time.
+    `statement_timeout` is in milliseconds.
     """
     items = pgstac_to_iter(
         conninfo,
@@ -349,10 +389,11 @@ def pgstac_to_arrow(
         end_datetime,
         search,
         statement_timeout=statement_timeout,
-        cursor_itersize=chunk_size,
+        cursor_itersize=cursor_itersize,
         row_func=row_func,
         # Without a row_func nothing sees the items before Arrow, so skip GeoJSON
         geometry="wkb" if row_func is None else geometry,
+        stream=stream,
     )
     return parse_stac_items_to_arrow(
         items,
@@ -377,13 +418,16 @@ def pgstac_to_parquet(
     schema_version: SUPPORTED_PARQUET_SCHEMA_VERSIONS = DEFAULT_PARQUET_SCHEMA_VERSION,
     filesystem: pyarrow.fs.FileSystem | None = None,
     geometry: GEOMETRY_OPTIONS = "wkb",
+    cursor_itersize: int | None = None,
+    stream: bool | None = None,
     **kwargs: Any,
 ) -> str:
     """
     Convert pgstac items to a parquet file.
 
     See [`pgstac_to_arrow`][stac_geoparquet.pgstac_reader.pgstac_to_arrow] for
-    `search`, `row_func` and `geometry`. Other keyword arguments are passed on to
+    `search`, `statement_timeout`, `row_func`, `geometry`, `cursor_itersize`
+    and `stream`. Other keyword arguments are passed on to
     [`parse_stac_items_to_parquet`][stac_geoparquet.arrow.parse_stac_items_to_parquet].
     """
     filesystem, filepath = resolve_output_path_and_filesystem(output_path, filesystem)
@@ -400,10 +444,11 @@ def pgstac_to_parquet(
         end_datetime,
         search,
         statement_timeout=statement_timeout,
-        cursor_itersize=chunk_size,
+        cursor_itersize=cursor_itersize,
         row_func=row_func,
         # Without a row_func nothing sees the items before Arrow, so skip GeoJSON
         geometry="wkb" if row_func is None else geometry,
+        stream=stream,
     )
 
     return parse_stac_items_to_parquet(
