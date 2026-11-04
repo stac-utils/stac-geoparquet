@@ -1,8 +1,11 @@
 import gc
 import json
+import multiprocessing
+import os
 import pathlib
 import threading
 import weakref
+from contextlib import contextmanager
 from datetime import datetime
 
 import docker
@@ -16,6 +19,7 @@ import pytest
 import shapely
 import shapely.geometry
 from packaging.version import Version
+from psycopg import sql
 from pypgstac.db import PgstacDB
 from pypgstac.hydration import DO_NOT_MERGE_MARKER
 from pypgstac.load import Loader
@@ -741,3 +745,147 @@ def test_pgstac_schema_geometry(pgstac_postgres, geometry, points):
     )
 
     assert seen == points
+
+
+@pytest.fixture
+def plain_dsn(pgstac_postgres):
+    """The test database's DSN, with a search_path without pgstac in it."""
+    params = psycopg.conninfo.conninfo_to_dict(pgstac_postgres)
+    params["options"] = "-c search_path=public"
+    return psycopg.conninfo.make_conninfo("", **params)
+
+
+def test_settings_are_set_for_the_transaction(plain_dsn, monkeypatch):
+    assert len(list(pgstac_to_iter(plain_dsn))) == 4
+    with pgstac_reader._connect(plain_dsn, statement_timeout=1234) as conn:
+        assert conn.execute("SHOW search_path").fetchone() == ("pgstac, public",)
+        assert conn.execute("SHOW statement_timeout").fetchone() == ("1234ms",)
+        assert conn.execute("SHOW transaction_read_only").fetchone() == ("on",)
+    monkeypatch.setenv("STAC_GEOPARQUET_PGSTAC_STATEMENT_TIMEOUT", "4321")
+    with pgstac_reader._connect(plain_dsn, None) as conn:
+        assert conn.execute("SHOW statement_timeout").fetchone() == ("4321ms",)
+
+
+def test_callable_autocommit_connection_is_handed_back_clean(plain_dsn):
+    with psycopg.connect(plain_dsn, autocommit=True) as conn:
+        before = conn.execute("SHOW statement_timeout").fetchone()
+
+        @contextmanager
+        def borrow():
+            yield conn
+
+        items = list(pgstac_to_iter(borrow, statement_timeout=1234))
+
+        assert len(items) == 4
+        assert conn.info.transaction_status == psycopg.pq.TransactionStatus.IDLE
+        assert conn.execute("SHOW search_path").fetchone() == ("public",)
+        assert conn.execute("SHOW statement_timeout").fetchone() == before
+
+
+def test_settings_end_with_the_export(plain_dsn):
+    with psycopg_pool.ConnectionPool(plain_dsn, min_size=1, max_size=1) as pool:
+        assert len(list(pgstac_to_iter(pool.connection, statement_timeout=1234))) == 4
+        with pool.connection() as conn:
+            assert conn.execute("SHOW search_path").fetchone() == ("public",)
+            assert conn.execute("SHOW statement_timeout").fetchone() != ("1234ms",)
+
+
+def _lookup_pool(conninfo):
+    with psycopg.connect(conninfo) as conn:
+        return pgstac_reader._pool(conn.info.dsn, os.getpid())
+
+
+def test_base_items_come_from_a_shared_pool(pgstac_postgres):
+    stats = _lookup_pool(pgstac_postgres).get_stats
+    before = stats().get("requests_num", 0)
+
+    list(pgstac_to_iter(pgstac_postgres))
+    list(pgstac_to_iter(lambda: psycopg.connect(pgstac_postgres)))
+
+    assert stats()["requests_num"] - before == 2
+
+
+def test_pool_environment_variables(pgstac_postgres, monkeypatch):
+    monkeypatch.setenv("STAC_GEOPARQUET_PGSTAC_POOL_MIN_SIZE", "1")
+    monkeypatch.setenv("STAC_GEOPARQUET_PGSTAC_POOL_MAX_SIZE", "3")
+    monkeypatch.setenv("STAC_GEOPARQUET_PGSTAC_POOL_MAX_IDLE", "5")
+    # Its own connection string, so as not to change the pool other tests share
+    dsn = pgstac_postgres + " application_name=pool-env"
+    pgstac_reader._passwords[dsn] = "pgstac"
+    pool = pgstac_reader._pool(dsn, os.getpid())
+    try:
+        assert (pool.min_size, pool.max_size, pool.max_idle) == (1, 3, 5.0)
+    finally:
+        pool.close()
+
+
+def test_nothing_is_prepared_on_a_callers_connection(plain_dsn):
+    with psycopg_pool.ConnectionPool(plain_dsn, min_size=1, max_size=1) as pool:
+        # psycopg prepares a query run 5 times on a connection
+        for _ in range(6):
+            items = pgstac_to_iter(
+                pool.connection,
+                search={"collections": ["naip"]},
+                statement_timeout=9999,
+            )
+            assert len(list(items)) == 4
+        with pool.connection() as conn:
+            prepared = conn.execute("SELECT count(*) FROM pg_prepared_statements")
+            assert prepared.fetchone() == (0,)
+
+
+def _count_items(conninfo):
+    return len(list(pgstac_to_iter(conninfo)))
+
+
+def _lookup_backend(conninfo):
+    with _lookup_pool(conninfo).connection() as conn:
+        return conn.info.backend_pid
+
+
+@pytest.mark.skipif(not hasattr(os, "fork"), reason="needs fork")
+# fork() warns when the pool's threads are running
+@pytest.mark.filterwarnings("ignore::DeprecationWarning")
+def test_export_in_a_forked_process(pgstac_postgres):
+    parent = _lookup_backend(pgstac_postgres)
+
+    with multiprocessing.get_context("fork").Pool(1) as workers:
+        child = workers.apply(_lookup_backend, (pgstac_postgres,))
+        assert workers.apply(_count_items, (pgstac_postgres,)) == 4
+
+    # It can't share the parent's connection
+    assert child != parent
+    assert _count_items(pgstac_postgres) == 4
+
+
+def test_a_new_password_keeps_the_pool(pgstac_postgres):
+    params = psycopg.conninfo.conninfo_to_dict(pgstac_postgres)
+    with psycopg.connect(pgstac_postgres, autocommit=True) as admin:
+        admin.execute("CREATE ROLE rotating LOGIN IN ROLE pgstac_read")
+        try:
+            pools = []
+            for password in ["first", "second"]:
+                admin.execute(
+                    sql.SQL("ALTER ROLE rotating PASSWORD {}").format(
+                        sql.Literal(password)
+                    )
+                )
+                # As a pooler or the server would drop it when a token expires
+                admin.execute(
+                    "SELECT pg_terminate_backend(pid) FROM pg_stat_activity"
+                    " WHERE usename = 'rotating'"
+                )
+                dsn = psycopg.conninfo.make_conninfo(
+                    "", **{**params, "user": "rotating", "password": password}
+                )
+                assert len(list(pgstac_to_iter(dsn))) == 4
+                pools.append(_lookup_pool(dsn))
+
+            assert pools[0] is pools[1]
+            assert pools[0].get_stats()["connections_num"] == 2
+        finally:
+            admin.execute(
+                "SELECT pg_terminate_backend(pid) FROM pg_stat_activity"
+                " WHERE usename = 'rotating'"
+            )
+            admin.execute("DROP ROLE rotating")

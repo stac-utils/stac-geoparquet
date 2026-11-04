@@ -41,6 +41,14 @@ pgstac_to_parquet(conninfo, "items.parquet", collection="naip", chunk_size=8192)
 
 A chunk ends early, with an INFO log message, if it wouldn't fit in the memory the process had left when the export started: the system's available memory, or a container (cgroup) limit if that is lower. This is an estimate, so items with very many distinct assets can still need more. Set [`STAC_GEOPARQUET_MEMORY_CAP`](../usage.md#settings) to `false` to keep every row group at `chunk_size`.
 
+## Connection poolers
+
+Each export sets `search_path` and `statement_timeout` with `set_config` inside its transaction, on a callable `conninfo`'s connection too, not as startup parameters: PgBouncer rejects `statement_timeout` as one, and RDS Proxy doesn't list `options` among the startup parameters it accepts. Through PgBouncer, pass `statement_timeout` as an argument or set [`STAC_GEOPARQUET_PGSTAC_STATEMENT_TIMEOUT`](../usage.md#settings), not in the connection string. The transaction is read-only, so an export can't change the database.
+
+Exports don't prepare their queries. PgBouncer before 1.24, or with `max_prepared_statements = 0`, can run the next transaction on a server connection that lacks a prepared statement.
+
+Base items are looked up on a second connection while the first reads the items. It comes from a pool shared by every export, from a connection string or a callable `conninfo`, to the same database as the same user. The pool connects with the latest export's password, and a password that changes, such as an AWS IAM token, doesn't need a new pool. The pool closes its connection once it has gone unused for a whole `max_idle` period, so the connection can stay open for up to twice `max_idle` after the last export, and the pool keeps two threads until the process exits. Its `min_size`, `max_size` and `max_idle` can be set with the [pool settings](../usage.md#settings).
+
 ## Schema options
 
 | `schema` | Reads the items | Memory | Schema covers |
