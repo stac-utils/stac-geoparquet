@@ -204,3 +204,26 @@ def test_pgstac_reader_keeps_item_stac_version(pgstac_postgres):
     finally:
         with psycopg.connect(pgstac_postgres, autocommit=True) as conn:
             conn.execute("SELECT delete_collection(%s)", (collection_id,))
+
+
+def test_sync_rejects_a_collection_id_that_is_a_path(pgstac_postgres, tmp_path):
+    collection_id = "../escape"
+    naip_item = json.loads(NAIPDATA.read_text())[0]
+    with PgstacDB(pgstac_postgres) as db:
+        loader = Loader(db)
+        loader.load_collections([{"id": collection_id}])
+        loader.load_items(
+            [{**naip_item, "collection": collection_id}], pypgstac.load.Methods.ignore
+        )
+    try:
+        with pytest.raises(ValueError, match="escape"):
+            pgstac_reader.sync_pgstac_to_parquet(pgstac_postgres, tmp_path / "out")
+        assert not (tmp_path / "escape").exists()
+    finally:
+        with psycopg.connect(pgstac_postgres, autocommit=True) as conn:
+            conn.execute("SELECT delete_collection(%s)", (collection_id,))
+
+
+def test_pgstac_dsn_takes_only_a_timeout():
+    with pytest.raises(ValueError):
+        pgstac_dsn("", statement_timeout="0 -c role=x")
