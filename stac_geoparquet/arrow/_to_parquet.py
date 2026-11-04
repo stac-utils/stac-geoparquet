@@ -85,6 +85,7 @@ def to_parquet(
     ) as writer:
         for batch in reader:
             writer.write_batch(batch.drop_columns(empty))
+            del batch  # free it before reading the next
 
 
 def create_parquet_metadata(
