@@ -5,18 +5,30 @@ from pathlib import Path
 from typing import Any
 
 import pyarrow as pa
+import pyarrow.compute as pc
 
-from stac_geoparquet.arrow._batch import StacJsonBatch
+from stac_geoparquet.arrow._batch import StacJsonBatch, has_3d_bbox, with_bbox_size
 from stac_geoparquet.arrow._constants import DEFAULT_JSON_CHUNK_SIZE
 from stac_geoparquet.json_reader import read_json_chunked
+
+
+def geoparquet_schema(
+    json_schema: pa.Schema, drop_invalid_properties: bool
+) -> pa.Schema:
+    """The GeoParquet schema that items with `json_schema` convert to."""
+    if "bbox" in json_schema.names and not has_3d_bbox(json_schema):
+        # A bbox list of any length is read as 2d
+        json_schema = with_bbox_size(json_schema, 4)
+    batch = StacJsonBatch(pa.RecordBatch.from_pylist([], schema=json_schema))
+    return batch.to_arrow_batch(drop_invalid_properties).inner.schema
 
 
 class InferredSchema:
     """
     A schema representing the original STAC JSON with absolutely minimal modifications.
 
-    The only modification from the data is converting any geometry fields from GeoJSON
-    to WKB.
+    The only modifications from the data are converting any geometry fields from
+    GeoJSON to WKB, and typing the bbox as a fixed-size list of 4 or 6 values.
     """
 
     inner: pa.Schema
@@ -52,10 +64,19 @@ class InferredSchema:
     def update_from_items(self, items: Sequence[dict[str, Any]]) -> None:
         """Update this inferred schema from a sequence of STAC Items."""
         self.count += len(items)
-        current_schema = StacJsonBatch.from_dicts(items, schema=None).inner.schema
+        batch = StacJsonBatch.from_dicts(items, schema=None).inner
+        current_schema = batch.schema
+        if "bbox" in current_schema.names:
+            # The bbox type says whether bboxes are 2d or 3d: a list of 4 or 6
+            longest = pc.max(pc.list_value_length(batch.column("bbox"))).as_py()
+            current_schema = with_bbox_size(current_schema, 6 if longest == 6 else 4)
         new_schema = pa.unify_schemas(
             [self.inner, current_schema], promote_options="permissive"
         )
+        if "bbox" in new_schema.names:
+            # Merging lists of 4 and 6 gives a list of any length
+            size = 6 if has_3d_bbox(self.inner) or has_3d_bbox(current_schema) else 4
+            new_schema = with_bbox_size(new_schema, size)
         self.inner = new_schema
 
     def manual_updates(self) -> None:
