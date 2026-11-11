@@ -197,10 +197,9 @@ def _items_query(
         unsupported = sorted({"fields", "token"} & search.keys())
         if unsupported:
             raise ValueError(f"search does not support {', '.join(unsupported)}")
-        # pgstac's search() returns one page of results as a FeatureCollection, so
-        # use the WHERE and ORDER BY clauses it would build to select from items
-        # Sort by datetime, collection and id after sortby, so a limit always picks
-        # the same items
+        # Select items with the WHERE and ORDER BY that pgstac builds from the search,
+        # sorting by sortby, then ascending by whichever of datetime, collection and
+        # id it doesn't include
         sortby = list(search.get("sortby") or [])
         fields = {s["field"].removeprefix("properties.") for s in sortby}
         sortby += [
