@@ -2,6 +2,15 @@
 
 This is a list of changes to `stac-geoparquet`.
 
+## [0.8.4](https://github.com/stac-utils/stac-geoparquet/compare/0.8.3...0.8.4) (2026-11-11)
+
+
+### Bug Fixes
+
+* declare readers with the converted schema ([#186](https://github.com/stac-utils/stac-geoparquet/issues/186)) ([990a818](https://github.com/stac-utils/stac-geoparquet/commit/990a818814b931670cc1de660f8daed7476a9f84))
+* make search= work, hydrate with pgstac:base_item ([#188](https://github.com/stac-utils/stac-geoparquet/issues/188)) ([46a8261](https://github.com/stac-utils/stac-geoparquet/commit/46a82614a81a0087a48edcb936514c428e7faaa6))
+* reject path-like collection ids and non-integer timeouts ([#185](https://github.com/stac-utils/stac-geoparquet/issues/185)) ([a71341f](https://github.com/stac-utils/stac-geoparquet/commit/a71341f211190e9cf7f28ba27bae400896c26366))
+
 ## [0.8.3](https://github.com/stac-utils/stac-geoparquet/compare/0.8.2...0.8.3) (2026-10-21)
 
 
