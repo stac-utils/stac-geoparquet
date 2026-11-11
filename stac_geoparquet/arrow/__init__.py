@@ -13,12 +13,14 @@ from ._constants import (
     SUPPORTED_PARQUET_SCHEMA_VERSIONS,
 )
 from ._delta_lake import parse_stac_ndjson_to_delta_lake
+from ._schema.models import InferredSchema
 from ._to_parquet import to_parquet
 
 __all__ = (
     "DEFAULT_JSON_CHUNK_SIZE",
     "DEFAULT_PARQUET_SCHEMA_VERSION",
     "ACCEPTED_SCHEMA_OPTIONS",
+    "InferredSchema",
     "parse_stac_items_to_arrow",
     "parse_stac_items_to_parquet",
     "parse_stac_ndjson_to_arrow",
