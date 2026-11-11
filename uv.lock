@@ -3834,7 +3834,7 @@ requires-dist = [
     { name = "packaging" },
     { name = "pandas" },
     { name = "psutil", specifier = ">=7.0.0" },
-    { name = "psycopg", extras = ["binary"], marker = "extra == 'pgstac'" },
+    { name = "psycopg", extras = ["binary"], marker = "extra == 'pgstac'", specifier = ">=3.2" },
     { name = "psycopg-pool", marker = "extra == 'pgstac'" },
     { name = "pyarrow", specifier = ">=16,!=19.0.0" },
     { name = "pypgstac", marker = "extra == 'pgstac'" },
