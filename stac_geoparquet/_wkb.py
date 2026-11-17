@@ -17,6 +17,10 @@ def to_iso_wkb(geometry: dict[str, Any] | bytes) -> bytes:
     return shapely.to_wkb(shapely.geometry.shape(geometry), flavor="iso")
 
 
+# Converting EWKB to ISO WKB with shapely and other tools requires parsing the
+# entire geometry structure. This is a kludgey approach that avoids this by just
+# rewriting the headers and copying the rest of the geometry. If an upstream
+# package that can do this reliably becomes available, it should be preferred.
 def ewkb_to_iso(wkb: bytes) -> bytes:
     """
     Convert PostGIS EWKB to ISO WKB by rewriting its headers. XYM is written as
