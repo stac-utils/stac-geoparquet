@@ -10,8 +10,10 @@ _EWKB_M = 0x40000000
 _EWKB_SRID = 0x20000000
 
 
-def to_iso_wkb(geometry: dict[str, Any] | bytes) -> bytes:
-    """Convert a GeoJSON geometry, or WKB or EWKB bytes, to ISO WKB."""
+def to_iso_wkb(geometry: dict[str, Any] | bytes | None) -> bytes | None:
+    """Convert a GeoJSON geometry, or WKB or EWKB bytes, to ISO WKB. None stays None."""
+    if geometry is None:
+        return None
     if isinstance(geometry, bytes):
         return ewkb_to_iso(geometry)
     return shapely.to_wkb(shapely.geometry.shape(geometry), flavor="iso")

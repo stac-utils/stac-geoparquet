@@ -73,6 +73,8 @@ def item_geometries_to_wkb(item: pystac.Item | dict[str, Any]) -> dict[str, Any]
 def _pop_geometry_array(wkb_items: Sequence[dict[str, Any]]) -> pa.Array:
     """Move the geometries out of `wkb_items` into one binary array."""
     geometries = [item["geometry"] for item in wkb_items]
+    valid = np.array([geometry is not None for geometry in geometries], dtype=bool)
+    geometries = [b"" if geometry is None else geometry for geometry in geometries]
     offsets = np.zeros(len(geometries) + 1, dtype=np.int64)
     np.cumsum([len(geometry) for geometry in geometries], out=offsets[1:])
     if offsets[-1] > _MAX_BINARY_BYTES:
@@ -82,14 +84,19 @@ def _pop_geometry_array(wkb_items: Sequence[dict[str, Any]]) -> pa.Array:
 
     for item in wkb_items:
         item["geometry"] = None
+    null_count = int(len(valid) - valid.sum())
+    validity = (
+        pa.py_buffer(np.packbits(valid, bitorder="little")) if null_count else None
+    )
     return pa.Array.from_buffers(
         pa.binary(),
         len(geometries),
         [
-            None,
+            validity,
             pa.py_buffer(offsets.astype(np.int32)),
             pa.py_buffer(b"".join(geometries)),
         ],
+        null_count=null_count,
     )
 
 
@@ -246,11 +253,19 @@ class StacJsonBatch:
         for row_idx in range(len(struct_batch)):
             row_dict = struct_batch[row_idx].as_py()
             for geometry_path, geometry_column in zip(geometry_paths, geometries):
-                geojson_g = geometry_column[row_idx].__geo_interface__
-                geojson_g["coordinates"] = convert_tuples_to_lists(
-                    geojson_g["coordinates"]
-                )
+                shape = geometry_column[row_idx]
+                if shape is None:
+                    geojson_g = None
+                else:
+                    geojson_g = shape.__geo_interface__
+                    geojson_g["coordinates"] = convert_tuples_to_lists(
+                        geojson_g["coordinates"]
+                    )
                 set_by_path(row_dict, geometry_path, geojson_g)
+
+            # STAC omits bbox, rather than setting it to null, when geometry is null
+            if "bbox" in row_dict and row_dict["bbox"] is None:
+                del row_dict["bbox"]
 
             assets = row_dict.setdefault("assets", {})
             if assets and isinstance(

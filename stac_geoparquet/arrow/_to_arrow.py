@@ -107,8 +107,13 @@ def _is_bbox_3d(bbox_col: pa.Array) -> bool:
     """Infer whether the bounding box column represents 2d or 3d bounding boxes."""
     offsets_set: set[int] = set()
     offsets = bbox_col.offsets.to_numpy()
-    offsets_set.update(np.unique(offsets[1:] - offsets[:-1]))
+    lengths = offsets[1:] - offsets[:-1]
+    valid = np.asarray(bbox_col.is_valid().to_numpy(zero_copy_only=False))
+    offsets_set.update(np.unique(lengths[valid]))
 
+    if not offsets_set:
+        # Every bbox is null, so there is no dimension to infer
+        return False
     if len(offsets_set) > 1:
         raise ValueError("Mixed 2d-3d bounding boxes not yet supported")
 
@@ -119,6 +124,20 @@ def _is_bbox_3d(bbox_col: pa.Array) -> bool:
         return False
     else:
         raise ValueError(f"Unexpected bbox offset: {offset=}")
+
+
+def _with_null_bbox(batch: pa.RecordBatch, bbox_col_idx: int) -> pa.RecordBatch:
+    """Set an all-null 2d bbox struct column, after `geometry` if `bbox` is absent."""
+    names = ["xmin", "ymin", "xmax", "ymax"]
+    struct_arr = pa.StructArray.from_arrays(
+        [pa.nulls(batch.num_rows, pa.float64())] * len(names),
+        names=names,
+        mask=pa.array(np.ones(batch.num_rows, dtype=bool)),
+    )
+    if bbox_col_idx != -1:
+        return batch.set_column(bbox_col_idx, "bbox", struct_arr)
+    geometry_idx = batch.schema.get_field_index("geometry")
+    return batch.add_column(geometry_idx + 1, "bbox", struct_arr)
 
 
 def convert_bbox_to_struct(batch: pa.RecordBatch) -> pa.RecordBatch:
@@ -136,6 +155,11 @@ def convert_bbox_to_struct(batch: pa.RecordBatch) -> pa.RecordBatch:
         New record batch
     """
     bbox_col_idx = batch.schema.get_field_index("bbox")
+    if bbox_col_idx == -1 or pa.types.is_null(batch.schema.field(bbox_col_idx).type):
+        # Items with null geometry have no bbox, so a batch of only those has no bbox
+        # values. GeoParquet still needs the bbox column the covering names, so add
+        # it with every row null.
+        return _with_null_bbox(batch, bbox_col_idx)
     bbox_col = batch.column(bbox_col_idx)
     if pa.types.is_fixed_size_list(bbox_col.type):
         # The schema sets 2d or 3d, and 2d bboxes in a 3d schema have a null z
@@ -143,7 +167,9 @@ def convert_bbox_to_struct(batch: pa.RecordBatch) -> pa.RecordBatch:
         if bbox_col.type.list_size == 6:
             names = ["xmin", "ymin", "zmin", "xmax", "ymax", "zmax"]
         struct_arr = pa.StructArray.from_arrays(
-            [pc.list_element(bbox_col, i) for i in range(len(names))], names=names
+            [pc.list_element(bbox_col, i) for i in range(len(names))],
+            names=names,
+            mask=bbox_col.is_null() if bbox_col.null_count else None,
         )
         return batch.set_column(bbox_col_idx, "bbox", struct_arr)
 
@@ -154,10 +180,15 @@ def convert_bbox_to_struct(batch: pa.RecordBatch) -> pa.RecordBatch:
         or pa.types.is_large_list(bbox_col.type)
         or pa.types.is_fixed_size_list(bbox_col.type)
     )
-    if bbox_3d:
-        coords = bbox_col.flatten().to_numpy().reshape(-1, 6)
-    else:
-        coords = bbox_col.flatten().to_numpy().reshape(-1, 4)
+    width = 6 if bbox_3d else 4
+    # A null bbox (null geometry) contributes no child values, so rebuild the flat
+    # values row by row at a fixed width, using 0.0 for null rows.
+    flat = np.zeros(len(bbox_col) * width, dtype=np.float64)
+    valid = np.asarray(bbox_col.is_valid().to_numpy(zero_copy_only=False))
+    values = bbox_col.drop_null().flatten().to_numpy()
+    flat.reshape(-1, width)[valid] = values.reshape(-1, width)
+    coords = flat.reshape(-1, width)
+    null_mask = pa.array(~valid)
 
     if bbox_3d:
         xmin = coords[:, 0]
@@ -184,6 +215,7 @@ def convert_bbox_to_struct(batch: pa.RecordBatch) -> pa.RecordBatch:
                 "ymax",
                 "zmax",
             ],
+            mask=null_mask,
         )
 
     else:
@@ -205,6 +237,7 @@ def convert_bbox_to_struct(batch: pa.RecordBatch) -> pa.RecordBatch:
                 "xmax",
                 "ymax",
             ],
+            mask=null_mask,
         )
 
     return batch.set_column(bbox_col_idx, "bbox", struct_arr)
