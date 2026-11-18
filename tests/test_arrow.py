@@ -2,6 +2,7 @@ import itertools
 import json
 from pathlib import Path
 
+import geopandas
 import pyarrow as pa
 import pyarrow.dataset
 import pyarrow.parquet as pq
@@ -601,3 +602,117 @@ def test_parse_stac_items_to_arrow_converts_geometries_once(
     parse_stac_items_to_arrow(items, schema=schema, tmpdir=tmp_path).read_all()
 
     assert sorted(calls) == sorted(item["id"] for item in items)
+
+
+POINT = {"type": "Point", "coordinates": [-105.0, 40.0]}
+
+
+def _item(item_id: str, geometry: dict | None, **properties) -> dict:
+    item = {
+        "type": "Feature",
+        "stac_version": "1.1.0",
+        "stac_extensions": [],
+        "id": item_id,
+        "geometry": geometry,
+        "properties": {"datetime": "2024-01-01T00:00:00Z", **properties},
+        "assets": {},
+        "links": [],
+    }
+    if geometry is not None:
+        item["bbox"] = [-105.0, 40.0, -105.0, 40.0]
+    return item
+
+
+@pytest.mark.parametrize("schema", ["FirstBatch", "FullFile", "InferredSchema"])
+def test_null_geometry_round_trip_mixed(schema, tmp_path):
+    items = [_item("0", POINT), _item("1", None)]
+    if schema == "InferredSchema":
+        inferred = InferredSchema()
+        inferred.update_from_items(items)
+        schema = inferred
+
+    table = parse_stac_items_to_arrow(items, schema=schema, tmpdir=tmp_path).read_all()
+
+    assert table["geometry"].null_count == 1
+    assert table["bbox"].to_pylist()[1] is None
+    back = {item["id"]: item for item in stac_table_to_items(table)}
+    assert back["0"]["geometry"] == POINT
+    assert back["0"]["bbox"] == [-105.0, 40.0, -105.0, 40.0]
+    assert back["1"]["geometry"] is None
+    assert "bbox" not in back["1"]
+
+
+@pytest.mark.parametrize("bbox", ["omitted", None])
+def test_null_geometry_round_trip_all_null(tmp_path, bbox):
+    items = [_item("0", None), _item("1", None)]
+    if bbox != "omitted":
+        for item in items:
+            item["bbox"] = bbox
+
+    table = parse_stac_items_to_arrow(items).read_all()
+
+    assert table["geometry"].null_count == 2
+    # The bbox covering in the GeoParquet metadata names this column
+    assert table["bbox"].type.names == ["xmin", "ymin", "xmax", "ymax"]
+    assert table["bbox"].null_count == 2
+    path = tmp_path / "items.parquet"
+    to_parquet(table, path)
+    covering = json.loads(pq.read_metadata(path).metadata[b"geo"])["columns"][
+        "geometry"
+    ]["covering"]["bbox"]
+    assert {column for column, _ in covering.values()} <= set(
+        pq.read_schema(path).names
+    )
+    back = list(stac_table_to_items(pq.read_table(path)))
+    assert [item["geometry"] for item in back] == [None, None]
+    assert all("bbox" not in item for item in back)
+
+
+def test_null_geometry_with_explicit_null_bbox():
+    items = [_item("0", POINT), {**_item("1", None), "bbox": None}]
+
+    back = {
+        item["id"]: item
+        for item in stac_table_to_items(parse_stac_items_to_arrow(items).read_all())
+    }
+
+    assert back["0"]["bbox"] == [-105.0, 40.0, -105.0, 40.0]
+    assert "bbox" not in back["1"]
+
+
+def test_null_geometry_ndjson_omits_bbox(tmp_path):
+    items = [_item("0", POINT), _item("1", None)]
+
+    stac_table_to_ndjson(
+        parse_stac_items_to_arrow(items).read_all(), tmp_path / "items.ndjson"
+    )
+
+    lines = (tmp_path / "items.ndjson").read_text().splitlines()
+    null_item = json.loads(lines[1])
+    assert null_item["geometry"] is None
+    assert "bbox" not in null_item
+
+
+def test_null_geometry_reads_as_none_in_geopandas(tmp_path):
+    items = [_item("0", POINT), _item("1", None)]
+    to_parquet(parse_stac_items_to_arrow(items).read_all(), tmp_path / "items.parquet")
+
+    gdf = geopandas.read_parquet(tmp_path / "items.parquet").set_index("id")
+
+    assert gdf.loc["1", "geometry"] is None
+    assert gdf.loc["0", "geometry"] is not None
+
+
+def test_null_proj_geometry_round_trip():
+    items = [
+        _item("0", POINT, **{"proj:geometry": POINT}),
+        _item("1", POINT, **{"proj:geometry": None}),
+    ]
+
+    back = {
+        item["id"]: item
+        for item in stac_table_to_items(parse_stac_items_to_arrow(items).read_all())
+    }
+
+    assert back["0"]["properties"]["proj:geometry"] == POINT
+    assert back["1"]["properties"]["proj:geometry"] is None
