@@ -74,7 +74,7 @@ These environment variables set defaults. An argument you pass to a function win
 
 | Variable | Default | Sets | Argument |
 | --- | --- | --- | --- |
-| `STAC_GEOPARQUET_PGSTAC_STREAM` | stream with libpq 17 or later | whether pgstac rows are streamed, or fetched from a server-side cursor | `stream` |
+| `STAC_GEOPARQUET_PGSTAC_STREAM` | stream (if libpq 17 or later) | whether pgstac rows are streamed, or fetched from a server-side cursor | `stream` |
 | `STAC_GEOPARQUET_PGSTAC_CURSOR_ITERSIZE` | 100 when streaming, 1000 otherwise | how many rows are read from the database at a time | `cursor_itersize` |
 
 [spec]: https://github.com/stac-utils/stac-geoparquet/blob/main/spec/stac-geoparquet-spec.md#parquet-metadata
