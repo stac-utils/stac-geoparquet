@@ -418,6 +418,17 @@ viewing the latest version.
 </li>
         
           <li class="md-nav__item">
+  <a href="#pass-a-schema" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pass a schema
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#convert-json-to-arrow" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -471,6 +482,17 @@ viewing the latest version.
     <span class="md-ellipsis">
       
         Delta Lake
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Settings
       
     </span>
   </a>
@@ -824,6 +846,17 @@ viewing the latest version.
 </li>
         
           <li class="md-nav__item">
+  <a href="#pass-a-schema" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pass a schema
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#convert-json-to-arrow" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -883,6 +916,17 @@ viewing the latest version.
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Settings
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -923,6 +967,15 @@ viewing the latest version.
 <span class="n">record_batch_reader</span> <span class="o">=</span> <span class="n">stac_geoparquet</span><span class="o">.</span><span class="n">arrow</span><span class="o">.</span><span class="n">parse_stac_items_to_arrow</span><span class="p">([</span><span class="n">item</span><span class="p">])</span>
 <span class="n">table</span> <span class="o">=</span> <span class="n">record_batch_reader</span><span class="o">.</span><span class="n">read_all</span><span class="p">()</span>
 </code></pre></div>
+<h3 id="pass-a-schema">Pass a schema<a class="headerlink" href="#pass-a-schema" title="Permanent link">&para;</a></h3>
+<p>By default, the schema is inferred from the items. To convert items to a schema you already have, for example that of an existing file, pass it as <code>schema</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">pyarrow.parquet</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pq</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">stac_geoparquet.arrow</span><span class="w"> </span><span class="kn">import</span> <span class="n">InferredSchema</span><span class="p">,</span> <span class="n">parse_stac_items_to_arrow</span>
+
+<span class="n">schema</span> <span class="o">=</span> <span class="n">InferredSchema</span><span class="o">.</span><span class="n">from_geoparquet</span><span class="p">(</span><span class="n">pq</span><span class="o">.</span><span class="n">read_schema</span><span class="p">(</span><span class="s2">&quot;items.parquet&quot;</span><span class="p">))</span>
+<span class="n">reader</span> <span class="o">=</span> <span class="n">parse_stac_items_to_arrow</span><span class="p">(</span><span class="n">new_items</span><span class="p">,</span> <span class="n">schema</span><span class="o">=</span><span class="n">schema</span><span class="p">)</span>
+</code></pre></div>
+<p><a class="autorefs autorefs-internal" title="InferredSchema" href="../api/arrow/#stac_geoparquet.arrow.InferredSchema"><code>InferredSchema.inner</code></a> is a <code>pyarrow.Schema</code> of the items as STAC JSON, with their properties nested under <code>properties</code>. Edit it with pyarrow and wrap the result with <code>InferredSchema(schema)</code>, or merge in another with <code>update_from_schema</code>. <code>to_geoparquet</code> gives the schema the items convert to. Fields that items have and the schema doesn't are dropped. A <code>bbox</code> that is a fixed-size list of 6 values makes the bboxes 3d, and 2d ones get a null z; any other list is read as 2d.</p>
 <h3 id="convert-json-to-arrow">Convert JSON to Arrow<a class="headerlink" href="#convert-json-to-arrow" title="Permanent link">&para;</a></h3>
 <p><a class="autorefs autorefs-internal" title="parse_stac_ndjson_to_arrow" href="../api/arrow/#stac_geoparquet.arrow.parse_stac_ndjson_to_arrow"><code>parse_stac_ndjson_to_arrow</code></a> is a helper function to take one or more JSON or newline-delimited JSON files on disk, infer the schema from all of them, and convert the data to a stream of Arrow record batches.</p>
 <h3 id="convert-arrow-to-dicts">Convert Arrow to <code>dict</code>s<a class="headerlink" href="#convert-arrow-to-dicts" title="Permanent link">&para;</a></h3>
@@ -946,6 +999,68 @@ viewing the latest version.
 <p>This means we cannot write this collection to Delta Lake <strong>solely with automatic schema inference</strong>.</p>
 <p>In such cases, users may need to manually update the inferred schema to cast any <code>null</code> type to another Delta Lake-compatible type.</p>
 </div>
+<h2 id="settings">Settings<a class="headerlink" href="#settings" title="Permanent link">&para;</a></h2>
+<p>These environment variables set defaults. An argument you pass to a function wins over its variable, and a flag is on when it's <code>1</code>, <code>true</code> or <code>yes</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Default</th>
+<th>Sets</th>
+<th>Argument</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>STAC_GEOPARQUET_PGSTAC_STREAM</code></td>
+<td>stream (if libpq 17 or later)</td>
+<td>whether pgstac rows are streamed, or fetched from a server-side cursor</td>
+<td><code>stream</code></td>
+</tr>
+<tr>
+<td><code>STAC_GEOPARQUET_PGSTAC_CURSOR_ITERSIZE</code></td>
+<td>100 when streaming, 1000 otherwise</td>
+<td>how many rows are read from the database at a time</td>
+<td><code>cursor_itersize</code></td>
+</tr>
+<tr>
+<td><code>STAC_GEOPARQUET_CHUNK_SIZE</code></td>
+<td>65536</td>
+<td>how many items are converted at a time, and so the size of each record batch and row group</td>
+<td><code>chunk_size</code></td>
+</tr>
+<tr>
+<td><code>STAC_GEOPARQUET_MEMORY_CAP</code></td>
+<td><code>true</code></td>
+<td>whether a chunk ends early when it wouldn't fit in memory</td>
+<td>none</td>
+</tr>
+<tr>
+<td><code>STAC_GEOPARQUET_PGSTAC_STATEMENT_TIMEOUT</code></td>
+<td>no timeout</td>
+<td><code>statement_timeout</code> for pgstac queries, in milliseconds</td>
+<td><code>statement_timeout</code></td>
+</tr>
+<tr>
+<td><code>STAC_GEOPARQUET_PGSTAC_POOL_MIN_SIZE</code></td>
+<td>0</td>
+<td><code>min_size</code> of the pool that base items are read with</td>
+<td>none</td>
+</tr>
+<tr>
+<td><code>STAC_GEOPARQUET_PGSTAC_POOL_MAX_SIZE</code></td>
+<td>1</td>
+<td><code>max_size</code> of that pool</td>
+<td>none</td>
+</tr>
+<tr>
+<td><code>STAC_GEOPARQUET_PGSTAC_POOL_MAX_IDLE</code></td>
+<td>600</td>
+<td><code>max_idle</code> of that pool, in seconds</td>
+<td>none</td>
+</tr>
+</tbody>
+</table>
 
 
 

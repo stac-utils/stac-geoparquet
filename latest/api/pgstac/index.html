@@ -600,6 +600,24 @@ viewing the latest version.
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    pgstac integration
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -616,6 +634,141 @@ viewing the latest version.
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#changing-items-with-row_func" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Changing items with row_func
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#memory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Memory
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#connection-poolers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Connection poolers
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#schema-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Schema options
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stac_geoparquet.pgstac_reader" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <code class="doc-symbol doc-symbol-toc doc-symbol-module"></code>&nbsp;pgstac_reader
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label=" pgstac_reader">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stac_geoparquet.pgstac_reader.pgstac_to_parquet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <code class="doc-symbol doc-symbol-toc doc-symbol-function"></code>&nbsp;pgstac_to_parquet
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stac_geoparquet.pgstac_reader.pgstac_to_arrow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <code class="doc-symbol doc-symbol-toc doc-symbol-function"></code>&nbsp;pgstac_to_arrow
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stac_geoparquet.pgstac_reader.pgstac_to_iter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <code class="doc-symbol doc-symbol-toc doc-symbol-function"></code>&nbsp;pgstac_to_iter
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stac_geoparquet.pgstac_reader.pgstac_schema" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <code class="doc-symbol doc-symbol-toc doc-symbol-function"></code>&nbsp;pgstac_schema
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stac_geoparquet.pgstac_reader.sync_pgstac_to_parquet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <code class="doc-symbol doc-symbol-toc doc-symbol-function"></code>&nbsp;sync_pgstac_to_parquet
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -676,6 +829,130 @@ viewing the latest version.
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#changing-items-with-row_func" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Changing items with row_func
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#memory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Memory
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#connection-poolers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Connection poolers
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#schema-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Schema options
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stac_geoparquet.pgstac_reader" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <code class="doc-symbol doc-symbol-toc doc-symbol-module"></code>&nbsp;pgstac_reader
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label=" pgstac_reader">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stac_geoparquet.pgstac_reader.pgstac_to_parquet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <code class="doc-symbol doc-symbol-toc doc-symbol-function"></code>&nbsp;pgstac_to_parquet
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stac_geoparquet.pgstac_reader.pgstac_to_arrow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <code class="doc-symbol doc-symbol-toc doc-symbol-function"></code>&nbsp;pgstac_to_arrow
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stac_geoparquet.pgstac_reader.pgstac_to_iter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <code class="doc-symbol doc-symbol-toc doc-symbol-function"></code>&nbsp;pgstac_to_iter
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stac_geoparquet.pgstac_reader.pgstac_schema" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <code class="doc-symbol doc-symbol-toc doc-symbol-function"></code>&nbsp;pgstac_schema
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stac_geoparquet.pgstac_reader.sync_pgstac_to_parquet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <code class="doc-symbol doc-symbol-toc doc-symbol-function"></code>&nbsp;sync_pgstac_to_parquet
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -701,6 +978,350 @@ viewing the latest version.
 <li>Partitioning by time</li>
 <li>Injecting dynamic links and assets from a STAC API</li>
 </ul>
+<p><code>pgstac_to_parquet</code> and <code>pgstac_to_arrow</code> convert the items <code>chunk_size</code> at a time, unless <code>schema</code> is <code>"FullFile"</code>. Each chunk becomes a record batch, and a row group in Parquet.</p>
+<h2 id="changing-items-with-row_func">Changing items with <code>row_func</code><a class="headerlink" href="#changing-items-with-row_func" title="Permanent link">&para;</a></h2>
+<p>Pass a function as <code>row_func</code> to change items before they are written, for example to add the links and assets a STAC API would add:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">add_self_link</span><span class="p">(</span><span class="n">item</span><span class="p">):</span>
+    <span class="n">item</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s2">&quot;links&quot;</span><span class="p">,</span> <span class="p">[])</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+        <span class="s2">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;self&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;href&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;https://example.com/collections/</span><span class="si">{</span><span class="n">item</span><span class="p">[</span><span class="s1">&#39;collection&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">/items/</span><span class="si">{</span><span class="n">item</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+    <span class="p">})</span>
+    <span class="k">return</span> <span class="n">item</span>
+
+<span class="n">pgstac_to_parquet</span><span class="p">(</span><span class="n">conninfo</span><span class="p">,</span> <span class="s2">&quot;items.parquet&quot;</span><span class="p">,</span> <span class="n">collection</span><span class="o">=</span><span class="s2">&quot;naip&quot;</span><span class="p">,</span> <span class="n">row_func</span><span class="o">=</span><span class="n">add_self_link</span><span class="p">)</span>
+</code></pre></div>
+<p>A <code>row_func</code> gets each item as <code>pgstac_to_iter</code> would yield it with the same <code>geometry</code>. <code>pgstac_to_iter</code> gives GeoJSON geometries by default, as STAC items have them. <code>pgstac_to_arrow</code>, <code>pgstac_to_parquet</code> and <code>sync_pgstac_to_parquet</code> give ISO WKB bytes by default, as GeoParquet stores them, so a <code>row_func</code> that adds links or assets doesn't convert every geometry to GeoJSON and back. If a <code>row_func</code> reads or changes geometries as GeoJSON, pass <code>geometry="geojson"</code>. For 100,000 NAIP-like items with large footprints, an export with <code>geometry="geojson"</code> took more than four times as long as with <code>"wkb"</code>, with about the same peak memory. Without a <code>row_func</code>, geometries are never converted to GeoJSON.</p>
+<p>With <code>geometry="wkb"</code>, <code>pgstac_schema</code> and <code>schema="PreScan"</code> don't read the geometries, and the items a <code>row_func</code> gets there have an empty geometry. If what a <code>row_func</code> adds depends on the geometry, pass <code>geometry="geojson"</code>, which reads every item's geometry.</p>
+<h2 id="memory">Memory<a class="headerlink" href="#memory" title="Permanent link">&para;</a></h2>
+<p>Memory use grows with <code>chunk_size</code>, as a chunk's items are all held as Python dicts while it is converted.</p>
+<p>With the default <code>chunk_size</code> of 65536, exporting 100,000 NAIP-like items peaked at 2.0 GB, and 100,000 Sentinel-2-like items, with more assets, at 2.8 GB. With <code>chunk_size=8192</code> they peaked at 0.31 GB and 0.39 GB, and took about as long. The files were 414 MB and 3.0 MB at 65536, against 415 MB and 4.0 MB at 8192.</p>
+<p>To use less memory, pass a smaller <code>chunk_size</code>, or set <a href="../../usage/#settings"><code>STAC_GEOPARQUET_CHUNK_SIZE</code></a> to change the default for every call:</p>
+<div class="highlight"><pre><span></span><code><span class="n">pgstac_to_parquet</span><span class="p">(</span><span class="n">conninfo</span><span class="p">,</span> <span class="s2">&quot;items.parquet&quot;</span><span class="p">,</span> <span class="n">collection</span><span class="o">=</span><span class="s2">&quot;naip&quot;</span><span class="p">,</span> <span class="n">chunk_size</span><span class="o">=</span><span class="mi">8192</span><span class="p">)</span>
+</code></pre></div>
+<p>A chunk ends early, with an INFO log message, if it wouldn't fit in the memory the process had left when the export started: the system's available memory, or a container (cgroup) limit if that is lower. This is an estimate, so items with very many distinct assets can still need more. Set <a href="../../usage/#settings"><code>STAC_GEOPARQUET_MEMORY_CAP</code></a> to <code>false</code> to keep every row group at <code>chunk_size</code>.</p>
+<h2 id="connection-poolers">Connection poolers<a class="headerlink" href="#connection-poolers" title="Permanent link">&para;</a></h2>
+<p>Each export sets <code>search_path</code> and <code>statement_timeout</code> with <code>set_config</code> inside its transaction, on a callable <code>conninfo</code>'s connection too, not as startup parameters: PgBouncer rejects <code>statement_timeout</code> as one, and RDS Proxy doesn't list <code>options</code> among the startup parameters it accepts. Through PgBouncer, pass <code>statement_timeout</code> as an argument or set <a href="../../usage/#settings"><code>STAC_GEOPARQUET_PGSTAC_STATEMENT_TIMEOUT</code></a>, not in the connection string. The transaction is read-only, so an export can't change the database.</p>
+<p>Exports don't prepare their queries. PgBouncer before 1.24, or with <code>max_prepared_statements = 0</code>, can run the next transaction on a server connection that lacks a prepared statement.</p>
+<p>Base items are looked up on a second connection while the first reads the items. It comes from a pool shared by every export, from a connection string or a callable <code>conninfo</code>, to the same database as the same user. The pool connects with the latest export's password, and a password that changes, such as an AWS IAM token, doesn't need a new pool. The pool closes its connection once it has gone unused for a whole <code>max_idle</code> period, so the connection can stay open for up to twice <code>max_idle</code> after the last export, and the pool keeps two threads until the process exits. Its <code>min_size</code>, <code>max_size</code> and <code>max_idle</code> can be set with the <a href="../../usage/#settings">pool settings</a>.</p>
+<h2 id="schema-options">Schema options<a class="headerlink" href="#schema-options" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th><code>schema</code></th>
+<th>Reads the items</th>
+<th>Memory</th>
+<th>Schema covers</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>"FirstBatch"</code> (default)</td>
+<td>once</td>
+<td>one chunk</td>
+<td>the first chunk only, which is shorter than <code>chunk_size</code> when memory is short: a later chunk whose schema differs in any way fails</td>
+</tr>
+<tr>
+<td><code>"PreScan"</code></td>
+<td>twice</td>
+<td>one chunk, plus one item of each structure</td>
+<td>every item, except that a <code>row_func</code> only runs with one item of each structure</td>
+</tr>
+<tr>
+<td><code>"ChunksToDisk"</code></td>
+<td>once, then again from a copy on disk</td>
+<td>one chunk</td>
+<td>every item</td>
+</tr>
+<tr>
+<td><code>"FullFile"</code></td>
+<td>once</td>
+<td>every item</td>
+<td>every item</td>
+</tr>
+<tr>
+<td>a <code>pa.Schema</code> or <a class="autorefs autorefs-internal" title="InferredSchema" href="../arrow/#stac_geoparquet.arrow.InferredSchema"><code>InferredSchema</code></a></td>
+<td>once</td>
+<td>one chunk</td>
+<td>what the schema has: fields it lacks are dropped</td>
+</tr>
+</tbody>
+</table>
+<p>For collections whose items don't all have the same fields, use <code>"ChunksToDisk"</code>. It writes each chunk to an uncompressed Arrow file and reads them back with the schema of all of them. The files take about as much space as the items do in Arrow. <code>pgstac_to_arrow</code> needs a <code>tmpdir</code>, writes them in a new directory inside it, and leaves them there; <code>pgstac_to_parquet</code> uses a temporary directory and deletes it unless you pass a <code>tmpdir</code>. If the directory is in memory (tmpfs, as <code>/tmp</code> is on some systems), the files take memory too.</p>
+<p><code>"PreScan"</code> also covers every item without writing files. It calls a <code>row_func</code> with one item of each structure, so if the fields a <code>row_func</code> adds depend on an item's values rather than its structure, use <code>"ChunksToDisk"</code> or pass a schema. It reads each item's stored content twice, which nearly doubled the data sent from the database for Sentinel-2-like items, so on a slow connection <code>"ChunksToDisk"</code> is faster.</p>
+<p>To give several files the same schema, for example the partitions written by <code>sync_pgstac_to_parquet</code>, infer it once with <a class="autorefs autorefs-internal" title="pgstac_schema" href="#stac_geoparquet.pgstac_reader.pgstac_schema"><code>pgstac_schema</code></a> and pass it as <code>schema</code>.</p>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<h2 id="stac_geoparquet.pgstac_reader" class="doc doc-heading">
+            <span class="doc doc-object-name doc-module-name">stac_geoparquet.pgstac_reader</span>
+
+
+<a href="#stac_geoparquet.pgstac_reader" class="headerlink" title="Permanent link">&para;</a></h2>
+
+    <div class="doc doc-contents first">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="stac_geoparquet.pgstac_reader.pgstac_to_parquet" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">pgstac_to_parquet</span>
+
+
+<a href="#stac_geoparquet.pgstac_reader.pgstac_to_parquet" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="doc-signature codehilite"><pre><span></span><code><span class="nf">pgstac_to_parquet</span><span class="p">(</span>
+    <span class="n">conninfo</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/stdtypes.html#str">str</a></span> <span class="o">|</span> <span class="n"><a class="autorefs autorefs-external" title="collections.abc.Callable" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable">Callable</a></span><span class="p">[[],</span> <span class="n"><span title="psycopg.Connection">Connection</span></span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">output_path</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/stdtypes.html#str">str</a></span> <span class="o">|</span> <span class="n"><a class="autorefs autorefs-external" title="pathlib.Path" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path">Path</a></span><span class="p">,</span>
+    <span class="n">collection</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/stdtypes.html#str">str</a></span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">start_datetime</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="datetime.datetime" href="https://docs.python.org/3/library/datetime.html#datetime.datetime">datetime</a></span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">end_datetime</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="datetime.datetime" href="https://docs.python.org/3/library/datetime.html#datetime.datetime">datetime</a></span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">search</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/stdtypes.html#dict">dict</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/stdtypes.html#str">str</a></span><span class="p">,</span> <span class="n"><a class="autorefs autorefs-external" title="typing.Any" href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a></span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">chunk_size</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/functions.html#int">int</a></span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">schema</span><span class="p">:</span> <span class="n"><span title="stac_geoparquet.pgstac_reader.PGSTAC_SCHEMA_OPTIONS">PGSTAC_SCHEMA_OPTIONS</span></span> <span class="o">=</span> <span class="s2">&quot;FirstBatch&quot;</span><span class="p">,</span>
+    <span class="n">statement_timeout</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/functions.html#int">int</a></span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">row_func</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="collections.abc.Callable" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable">Callable</a></span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">schema_version</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-internal" title="SUPPORTED_PARQUET_SCHEMA_VERSIONS
+
+
+  
+      module-attribute
+   (stac_geoparquet.arrow.SUPPORTED_PARQUET_SCHEMA_VERSIONS)" href="../arrow/#stac_geoparquet.arrow.SUPPORTED_PARQUET_SCHEMA_VERSIONS">SUPPORTED_PARQUET_SCHEMA_VERSIONS</a></span> <span class="o">=</span> <span class="n"><a class="autorefs autorefs-internal" title="DEFAULT_PARQUET_SCHEMA_VERSION
+
+
+  
+      module-attribute
+   (stac_geoparquet.arrow.DEFAULT_PARQUET_SCHEMA_VERSION)" href="../arrow/#stac_geoparquet.arrow.DEFAULT_PARQUET_SCHEMA_VERSION">DEFAULT_PARQUET_SCHEMA_VERSION</a></span><span class="p">,</span>
+    <span class="n">filesystem</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="pyarrow.fs.FileSystem" href="https://arrow.apache.org/docs/python/generated/pyarrow.fs.FileSystem.html#pyarrow.fs.FileSystem">FileSystem</a></span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">geometry</span><span class="p">:</span> <span class="n"><span title="stac_geoparquet.pgstac_reader.GEOMETRY_OPTIONS">GEOMETRY_OPTIONS</span></span> <span class="o">=</span> <span class="s2">&quot;wkb&quot;</span><span class="p">,</span>
+    <span class="n">cursor_itersize</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/functions.html#int">int</a></span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">stream</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/functions.html#bool">bool</a></span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="typing.Any" href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a></span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/stdtypes.html#str">str</a></span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>Convert pgstac items to a parquet file.</p>
+<p>See <a class="autorefs autorefs-internal" title="pgstac_to_arrow" href="#stac_geoparquet.pgstac_reader.pgstac_to_arrow"><code>pgstac_to_arrow</code></a> for
+<code>search</code>, <code>statement_timeout</code>, <code>row_func</code>, <code>geometry</code>, <code>schema="PreScan"</code>,
+<code>cursor_itersize</code> and <code>stream</code>. Other keyword arguments are passed on to
+<a class="autorefs autorefs-internal" title="parse_stac_items_to_parquet" href="../arrow/#stac_geoparquet.arrow.parse_stac_items_to_parquet"><code>parse_stac_items_to_parquet</code></a>.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="stac_geoparquet.pgstac_reader.pgstac_to_arrow" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">pgstac_to_arrow</span>
+
+
+<a href="#stac_geoparquet.pgstac_reader.pgstac_to_arrow" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="doc-signature codehilite"><pre><span></span><code><span class="nf">pgstac_to_arrow</span><span class="p">(</span>
+    <span class="n">conninfo</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/stdtypes.html#str">str</a></span> <span class="o">|</span> <span class="n"><a class="autorefs autorefs-external" title="collections.abc.Callable" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable">Callable</a></span><span class="p">[[],</span> <span class="n"><span title="psycopg.Connection">Connection</span></span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">collection</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/stdtypes.html#str">str</a></span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">start_datetime</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="datetime.datetime" href="https://docs.python.org/3/library/datetime.html#datetime.datetime">datetime</a></span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">end_datetime</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="datetime.datetime" href="https://docs.python.org/3/library/datetime.html#datetime.datetime">datetime</a></span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">search</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/stdtypes.html#dict">dict</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/stdtypes.html#str">str</a></span><span class="p">,</span> <span class="n"><a class="autorefs autorefs-external" title="typing.Any" href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a></span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">chunk_size</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/functions.html#int">int</a></span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">schema</span><span class="p">:</span> <span class="n"><span title="stac_geoparquet.pgstac_reader.PGSTAC_SCHEMA_OPTIONS">PGSTAC_SCHEMA_OPTIONS</span></span> <span class="o">=</span> <span class="s2">&quot;FirstBatch&quot;</span><span class="p">,</span>
+    <span class="n">statement_timeout</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/functions.html#int">int</a></span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">row_func</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="collections.abc.Callable" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable">Callable</a></span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">tmpdir</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/stdtypes.html#str">str</a></span> <span class="o">|</span> <span class="n"><a class="autorefs autorefs-external" title="pathlib.Path" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path">Path</a></span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">drop_invalid_properties</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/functions.html#bool">bool</a></span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">geometry</span><span class="p">:</span> <span class="n"><span title="stac_geoparquet.pgstac_reader.GEOMETRY_OPTIONS">GEOMETRY_OPTIONS</span></span> <span class="o">=</span> <span class="s2">&quot;wkb&quot;</span><span class="p">,</span>
+    <span class="n">cursor_itersize</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/functions.html#int">int</a></span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">stream</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/functions.html#bool">bool</a></span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><a class="autorefs autorefs-external" title="pyarrow.RecordBatchReader" href="https://arrow.apache.org/docs/python/generated/pyarrow.RecordBatchReader.html#pyarrow.RecordBatchReader">RecordBatchReader</a></span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>Convert pgstac items to an arrow record batch reader.</p>
+<p><code>search</code> selects items with a STAC API search body. Its <code>limit</code> is the most
+items to export. They're sorted by its <code>sortby</code>, then by datetime, collection
+and id; <code>fields</code> and <code>token</code> aren't supported.</p>
+<p>If <code>row_func</code> is given, it is called with each item dict, and what it returns
+is converted in place of the item. Its items' geometries are ISO WKB bytes,
+or GeoJSON with <code>geometry="geojson"</code>, which is slower.</p>
+<p><code>schema</code> can also be "PreScan", which reads the items twice: once to infer
+the schema from all of them with
+<a class="autorefs autorefs-internal" title="pgstac_schema" href="#stac_geoparquet.pgstac_reader.pgstac_schema"><code>pgstac_schema</code></a>, which says how
+it calls <code>row_func</code>, and once to convert them.</p>
+<p><code>cursor_itersize</code> is the number of rows read from the database at a time. It
+defaults to the <code>STAC_GEOPARQUET_PGSTAC_CURSOR_ITERSIZE</code> environment variable,
+or to 100 rows when streaming and 1000 when fetching from a server-side
+cursor, where each fetch waits a round trip to the database.</p>
+<p>If <code>stream</code> is True, the rows are streamed from a single query, so
+<code>statement_timeout</code> limits the whole export, including converting and writing
+the items. If it's False, they're fetched from a server-side cursor, and it
+limits each fetch. It defaults to the <code>STAC_GEOPARQUET_PGSTAC_STREAM</code>
+environment variable, or to streaming with libpq 17 or later, which streams
+rows in batches; before that, streamed rows arrive one at a time.
+<code>statement_timeout</code> is in milliseconds, and defaults to the
+<code>STAC_GEOPARQUET_PGSTAC_STATEMENT_TIMEOUT</code> environment variable.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="stac_geoparquet.pgstac_reader.pgstac_to_iter" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">pgstac_to_iter</span>
+
+
+<a href="#stac_geoparquet.pgstac_reader.pgstac_to_iter" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="doc-signature codehilite"><pre><span></span><code><span class="nf">pgstac_to_iter</span><span class="p">(</span>
+    <span class="n">conninfo</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/stdtypes.html#str">str</a></span> <span class="o">|</span> <span class="n"><a class="autorefs autorefs-external" title="collections.abc.Callable" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable">Callable</a></span><span class="p">[[],</span> <span class="n"><span title="psycopg.Connection">Connection</span></span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">collection</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/stdtypes.html#str">str</a></span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">start_datetime</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="datetime.datetime" href="https://docs.python.org/3/library/datetime.html#datetime.datetime">datetime</a></span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">end_datetime</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="datetime.datetime" href="https://docs.python.org/3/library/datetime.html#datetime.datetime">datetime</a></span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">search</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/stdtypes.html#dict">dict</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/stdtypes.html#str">str</a></span><span class="p">,</span> <span class="n"><a class="autorefs autorefs-external" title="typing.Any" href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a></span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">statement_timeout</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/functions.html#int">int</a></span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">cursor_itersize</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/functions.html#int">int</a></span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">row_func</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="collections.abc.Callable" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable">Callable</a></span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">geometry</span><span class="p">:</span> <span class="n"><span title="stac_geoparquet.pgstac_reader.GEOMETRY_OPTIONS">GEOMETRY_OPTIONS</span></span> <span class="o">=</span> <span class="s2">&quot;geojson&quot;</span><span class="p">,</span>
+    <span class="n">stream</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/functions.html#bool">bool</a></span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><a class="autorefs autorefs-external" title="collections.abc.Iterator" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterator">Iterator</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/stdtypes.html#dict">dict</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/stdtypes.html#str">str</a></span><span class="p">,</span> <span class="n"><a class="autorefs autorefs-external" title="typing.Any" href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a></span><span class="p">]]</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>Iterate over pgstac items as STAC item dicts.</p>
+<p>Their geometries are GeoJSON, or ISO WKB bytes with <code>geometry="wkb"</code>, and
+<code>row_func</code> gets them the same way. See
+<a class="autorefs autorefs-internal" title="pgstac_to_arrow" href="#stac_geoparquet.pgstac_reader.pgstac_to_arrow"><code>pgstac_to_arrow</code></a> for
+<code>search</code>, <code>statement_timeout</code>, <code>cursor_itersize</code>, <code>row_func</code> and <code>stream</code>.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="stac_geoparquet.pgstac_reader.pgstac_schema" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">pgstac_schema</span>
+
+
+<a href="#stac_geoparquet.pgstac_reader.pgstac_schema" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="doc-signature codehilite"><pre><span></span><code><span class="nf">pgstac_schema</span><span class="p">(</span>
+    <span class="n">conninfo</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/stdtypes.html#str">str</a></span> <span class="o">|</span> <span class="n"><a class="autorefs autorefs-external" title="collections.abc.Callable" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable">Callable</a></span><span class="p">[[],</span> <span class="n"><span title="psycopg.Connection">Connection</span></span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">collection</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/stdtypes.html#str">str</a></span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">start_datetime</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="datetime.datetime" href="https://docs.python.org/3/library/datetime.html#datetime.datetime">datetime</a></span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">end_datetime</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="datetime.datetime" href="https://docs.python.org/3/library/datetime.html#datetime.datetime">datetime</a></span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">search</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/stdtypes.html#dict">dict</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/stdtypes.html#str">str</a></span><span class="p">,</span> <span class="n"><a class="autorefs autorefs-external" title="typing.Any" href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a></span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">statement_timeout</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/functions.html#int">int</a></span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">cursor_itersize</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/functions.html#int">int</a></span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">row_func</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="collections.abc.Callable" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable">Callable</a></span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">geometry</span><span class="p">:</span> <span class="n"><span title="stac_geoparquet.pgstac_reader.GEOMETRY_OPTIONS">GEOMETRY_OPTIONS</span></span> <span class="o">=</span> <span class="s2">&quot;wkb&quot;</span><span class="p">,</span>
+    <span class="n">stream</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/functions.html#bool">bool</a></span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><a class="autorefs autorefs-internal" title="InferredSchema (stac_geoparquet.arrow.InferredSchema)" href="../arrow/#stac_geoparquet.arrow.InferredSchema">InferredSchema</a></span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>Infer the schema of pgstac items, after <code>row_func</code> if one is given.</p>
+<p>The schema only depends on the keys and types of values in the items, so this
+reads each item's stored content and converts just one item of each
+structure. A <code>row_func</code> is called with that one item of each structure, so if
+the fields it adds depend on an item's values rather than its structure, use
+<code>schema="ChunksToDisk"</code> or pass a schema instead. With <code>geometry="wkb"</code>, the
+geometries aren't read, and the items a <code>row_func</code> gets have an empty one; if
+what it adds depends on the geometry, pass <code>geometry="geojson"</code>. The result's
+<code>count</code> is the number of items converted.</p>
+<p>Pass the result as <code>schema</code> to
+<a class="autorefs autorefs-internal" title="pgstac_to_parquet" href="#stac_geoparquet.pgstac_reader.pgstac_to_parquet"><code>pgstac_to_parquet</code></a> or
+<a class="autorefs autorefs-internal" title="sync_pgstac_to_parquet" href="#stac_geoparquet.pgstac_reader.sync_pgstac_to_parquet"><code>sync_pgstac_to_parquet</code></a>,
+for example to give several files the same schema. It describes the items as
+they were when it ran: a field that an item gains later is dropped. See
+<a class="autorefs autorefs-internal" title="pgstac_to_arrow" href="#stac_geoparquet.pgstac_reader.pgstac_to_arrow"><code>pgstac_to_arrow</code></a> for the
+other arguments.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="stac_geoparquet.pgstac_reader.sync_pgstac_to_parquet" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">sync_pgstac_to_parquet</span>
+
+
+<a href="#stac_geoparquet.pgstac_reader.sync_pgstac_to_parquet" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="doc-signature codehilite"><pre><span></span><code><span class="nf">sync_pgstac_to_parquet</span><span class="p">(</span>
+    <span class="n">conninfo</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/stdtypes.html#str">str</a></span> <span class="o">|</span> <span class="n"><a class="autorefs autorefs-external" title="collections.abc.Callable" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable">Callable</a></span><span class="p">[[],</span> <span class="n"><span title="psycopg.Connection">Connection</span></span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">output_path</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/stdtypes.html#str">str</a></span> <span class="o">|</span> <span class="n"><a class="autorefs autorefs-external" title="pathlib.Path" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path">Path</a></span><span class="p">,</span>
+    <span class="n">updated_after</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="datetime.datetime" href="https://docs.python.org/3/library/datetime.html#datetime.datetime">datetime</a></span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">chunk_size</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/functions.html#int">int</a></span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">schema</span><span class="p">:</span> <span class="n"><span title="stac_geoparquet.pgstac_reader.PGSTAC_SCHEMA_OPTIONS">PGSTAC_SCHEMA_OPTIONS</span></span> <span class="o">=</span> <span class="s2">&quot;FirstBatch&quot;</span><span class="p">,</span>
+    <span class="n">statement_timeout</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/functions.html#int">int</a></span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">row_func</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="collections.abc.Callable" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable">Callable</a></span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">schema_version</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-internal" title="SUPPORTED_PARQUET_SCHEMA_VERSIONS
+
+
+  
+      module-attribute
+   (stac_geoparquet.arrow.SUPPORTED_PARQUET_SCHEMA_VERSIONS)" href="../arrow/#stac_geoparquet.arrow.SUPPORTED_PARQUET_SCHEMA_VERSIONS">SUPPORTED_PARQUET_SCHEMA_VERSIONS</a></span> <span class="o">=</span> <span class="n"><a class="autorefs autorefs-internal" title="DEFAULT_PARQUET_SCHEMA_VERSION
+
+
+  
+      module-attribute
+   (stac_geoparquet.arrow.DEFAULT_PARQUET_SCHEMA_VERSION)" href="../arrow/#stac_geoparquet.arrow.DEFAULT_PARQUET_SCHEMA_VERSION">DEFAULT_PARQUET_SCHEMA_VERSION</a></span><span class="p">,</span>
+    <span class="n">filesystem</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="pyarrow.fs.FileSystem" href="https://arrow.apache.org/docs/python/generated/pyarrow.fs.FileSystem.html#pyarrow.fs.FileSystem">FileSystem</a></span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">geometry</span><span class="p">:</span> <span class="n"><span title="stac_geoparquet.pgstac_reader.GEOMETRY_OPTIONS">GEOMETRY_OPTIONS</span></span> <span class="o">=</span> <span class="s2">&quot;wkb&quot;</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="typing.Any" href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a></span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/stdtypes.html#str">str</a></span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>Use the last_updated partition metadata in pgstac to sync only changed
+items to parquet.</p>
+
+
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
 
 
 

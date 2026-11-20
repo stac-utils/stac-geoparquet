@@ -682,6 +682,56 @@ viewing the latest version.
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#090-2026-11-20" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.9.0 (2026-11-20)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="0.9.0 (2026-11-20)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#breaking-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⚠ BREAKING CHANGES
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#features" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Features
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bug-fixes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bug Fixes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#083-2026-10-21" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -694,7 +744,7 @@ viewing the latest version.
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#bug-fixes" class="md-nav__link">
+  <a href="#bug-fixes_1" class="md-nav__link">
     <span class="md-ellipsis">
       
         Bug Fixes
@@ -733,7 +783,7 @@ viewing the latest version.
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#bug-fixes_1" class="md-nav__link">
+  <a href="#bug-fixes_2" class="md-nav__link">
     <span class="md-ellipsis">
       
         Bug Fixes
@@ -816,6 +866,56 @@ viewing the latest version.
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#090-2026-11-20" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.9.0 (2026-11-20)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="0.9.0 (2026-11-20)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#breaking-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⚠ BREAKING CHANGES
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#features" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Features
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bug-fixes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bug Fixes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#083-2026-10-21" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -828,7 +928,7 @@ viewing the latest version.
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#bug-fixes" class="md-nav__link">
+  <a href="#bug-fixes_1" class="md-nav__link">
     <span class="md-ellipsis">
       
         Bug Fixes
@@ -867,7 +967,7 @@ viewing the latest version.
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#bug-fixes_1" class="md-nav__link">
+  <a href="#bug-fixes_2" class="md-nav__link">
     <span class="md-ellipsis">
       
         Bug Fixes
@@ -937,8 +1037,29 @@ viewing the latest version.
 
 <h1 id="release-notes">Release Notes<a class="headerlink" href="#release-notes" title="Permanent link">&para;</a></h1>
 <p>This is a list of changes to <code>stac-geoparquet</code>.</p>
-<h2 id="083-2026-10-21"><a href="https://github.com/stac-utils/stac-geoparquet/compare/0.8.2...0.8.3">0.8.3</a> (2026-10-21)<a class="headerlink" href="#083-2026-10-21" title="Permanent link">&para;</a></h2>
+<h2 id="090-2026-11-20"><a href="https://github.com/stac-utils/stac-geoparquet/compare/0.8.3...0.9.0">0.9.0</a> (2026-11-20)<a class="headerlink" href="#090-2026-11-20" title="Permanent link">&para;</a></h2>
+<h3 id="breaking-changes">⚠ BREAKING CHANGES<a class="headerlink" href="#breaking-changes" title="Permanent link">&para;</a></h3>
+<ul>
+<li>a row_func in pgstac_to_arrow, pgstac_to_parquet, sync_pgstac_to_parquet and pgstac_schema gets WKB geometries by default; pass geometry="geojson" for GeoJSON.</li>
+</ul>
+<h3 id="features">Features<a class="headerlink" href="#features" title="Permanent link">&para;</a></h3>
+<ul>
+<li>add PreScan and pgstac_schema (<a href="https://github.com/stac-utils/stac-geoparquet/issues/194">#194</a>) (<a href="https://github.com/stac-utils/stac-geoparquet/commit/798bbf8111e67f71eb083ed0b5fe142fc025eefd">798bbf8</a>)</li>
+<li>end chunks early when memory is short (<a href="https://github.com/stac-utils/stac-geoparquet/issues/191">#191</a>) (<a href="https://github.com/stac-utils/stac-geoparquet/commit/7ee2b4a32dc3bc86b81735a7f282b984f2757a97">7ee2b4a</a>)</li>
+<li>make InferredSchema public (<a href="https://github.com/stac-utils/stac-geoparquet/issues/193">#193</a>) (<a href="https://github.com/stac-utils/stac-geoparquet/commit/cd131b16c69fe3bdcee8897d4af8bbb6fcd20a87">cd131b1</a>)</li>
+<li>work through connection poolers (<a href="https://github.com/stac-utils/stac-geoparquet/issues/195">#195</a>) (<a href="https://github.com/stac-utils/stac-geoparquet/commit/853e5bd76f84680aa563629aa4eeba5bd55900fd">853e5bd</a>)</li>
+</ul>
 <h3 id="bug-fixes">Bug Fixes<a class="headerlink" href="#bug-fixes" title="Permanent link">&para;</a></h3>
+<ul>
+<li>declare readers with the converted schema (<a href="https://github.com/stac-utils/stac-geoparquet/issues/186">#186</a>) (<a href="https://github.com/stac-utils/stac-geoparquet/commit/990a818814b931670cc1de660f8daed7476a9f84">990a818</a>)</li>
+<li>make search= work, hydrate with pgstac:base_item (<a href="https://github.com/stac-utils/stac-geoparquet/issues/188">#188</a>) (<a href="https://github.com/stac-utils/stac-geoparquet/commit/46a82614a81a0087a48edcb936514c428e7faaa6">46a8261</a>)</li>
+<li>pass WKB through to Arrow (<a href="https://github.com/stac-utils/stac-geoparquet/issues/189">#189</a>) (<a href="https://github.com/stac-utils/stac-geoparquet/commit/318a4d88a896f97c8886996bd37f23243f61741c">318a4d8</a>)</li>
+<li>reject path-like collection ids and non-integer timeouts (<a href="https://github.com/stac-utils/stac-geoparquet/issues/185">#185</a>) (<a href="https://github.com/stac-utils/stac-geoparquet/commit/a71341f211190e9cf7f28ba27bae400896c26366">a71341f</a>)</li>
+<li>stream rows instead of holding whole fetches (<a href="https://github.com/stac-utils/stac-geoparquet/issues/190">#190</a>) (<a href="https://github.com/stac-utils/stac-geoparquet/commit/b6dc0ce987d527d207e36cebe78a021dfea9b5a0">b6dc0ce</a>)</li>
+<li>write ChunksToDisk chunks as Arrow IPC (<a href="https://github.com/stac-utils/stac-geoparquet/issues/192">#192</a>) (<a href="https://github.com/stac-utils/stac-geoparquet/commit/e2ae0b9cc9bee8d6596b34eef95b3de6e7bae286">e2ae0b9</a>)</li>
+</ul>
+<h2 id="083-2026-10-21"><a href="https://github.com/stac-utils/stac-geoparquet/compare/0.8.2...0.8.3">0.8.3</a> (2026-10-21)<a class="headerlink" href="#083-2026-10-21" title="Permanent link">&para;</a></h2>
+<h3 id="bug-fixes_1">Bug Fixes<a class="headerlink" href="#bug-fixes_1" title="Permanent link">&para;</a></h3>
 <ul>
 <li>fails when every item has empty assets. (<a href="https://github.com/stac-utils/stac-geoparquet/issues/177">#177</a>) (<a href="https://github.com/stac-utils/stac-geoparquet/commit/0f09e0d72190b3b911a68bc13ac6cb2dc40de1e3">0f09e0d</a>)</li>
 <li>keep each item's stac_version when reading from pgstac (<a href="https://github.com/stac-utils/stac-geoparquet/issues/172">#172</a>) (<a href="https://github.com/stac-utils/stac-geoparquet/commit/8bff18cd2c0562da792280cff62da6adbc8a2a24">8bff18c</a>)</li>
@@ -948,7 +1069,7 @@ viewing the latest version.
 <li>remove duplicate changelog line (<a href="https://github.com/stac-utils/stac-geoparquet/issues/162">#162</a>) (<a href="https://github.com/stac-utils/stac-geoparquet/commit/a3825a3426b43eb420b9c435ba3b679bb3340eec">a3825a3</a>)</li>
 </ul>
 <h2 id="082-2026-08-12"><a href="https://github.com/stac-utils/stac-geoparquet/compare/0.8.1...0.8.2">0.8.2</a> (2026-08-12)<a class="headerlink" href="#082-2026-08-12" title="Permanent link">&para;</a></h2>
-<h3 id="bug-fixes_1">Bug Fixes<a class="headerlink" href="#bug-fixes_1" title="Permanent link">&para;</a></h3>
+<h3 id="bug-fixes_2">Bug Fixes<a class="headerlink" href="#bug-fixes_2" title="Permanent link">&para;</a></h3>
 <ul>
 <li>don't configure global logging at module level (<a href="https://github.com/stac-utils/stac-geoparquet/issues/152">#152</a>) (<a href="https://github.com/stac-utils/stac-geoparquet/commit/72cd3a6f1b8b8fc0d33963c5df6a3716bff2cb32">72cd3a6</a>)</li>
 <li>null datetime columns written TZ-aware (<a href="https://github.com/stac-utils/stac-geoparquet/issues/157">#157</a>) (<a href="https://github.com/stac-utils/stac-geoparquet/commit/7cd58003dfc42a93dd548f0c52754639160fce69">7cd5800</a>)</li>
