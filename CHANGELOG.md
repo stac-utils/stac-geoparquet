@@ -2,6 +2,30 @@
 
 This is a list of changes to `stac-geoparquet`.
 
+## [0.9.0](https://github.com/stac-utils/stac-geoparquet/compare/0.8.3...0.9.0) (2026-11-20)
+
+
+### ⚠ BREAKING CHANGES
+
+* a row_func in pgstac_to_arrow, pgstac_to_parquet, sync_pgstac_to_parquet and pgstac_schema gets WKB geometries by default; pass geometry="geojson" for GeoJSON.
+
+### Features
+
+* add PreScan and pgstac_schema ([#194](https://github.com/stac-utils/stac-geoparquet/issues/194)) ([798bbf8](https://github.com/stac-utils/stac-geoparquet/commit/798bbf8111e67f71eb083ed0b5fe142fc025eefd))
+* end chunks early when memory is short ([#191](https://github.com/stac-utils/stac-geoparquet/issues/191)) ([7ee2b4a](https://github.com/stac-utils/stac-geoparquet/commit/7ee2b4a32dc3bc86b81735a7f282b984f2757a97))
+* make InferredSchema public ([#193](https://github.com/stac-utils/stac-geoparquet/issues/193)) ([cd131b1](https://github.com/stac-utils/stac-geoparquet/commit/cd131b16c69fe3bdcee8897d4af8bbb6fcd20a87))
+* work through connection poolers ([#195](https://github.com/stac-utils/stac-geoparquet/issues/195)) ([853e5bd](https://github.com/stac-utils/stac-geoparquet/commit/853e5bd76f84680aa563629aa4eeba5bd55900fd))
+
+
+### Bug Fixes
+
+* declare readers with the converted schema ([#186](https://github.com/stac-utils/stac-geoparquet/issues/186)) ([990a818](https://github.com/stac-utils/stac-geoparquet/commit/990a818814b931670cc1de660f8daed7476a9f84))
+* make search= work, hydrate with pgstac:base_item ([#188](https://github.com/stac-utils/stac-geoparquet/issues/188)) ([46a8261](https://github.com/stac-utils/stac-geoparquet/commit/46a82614a81a0087a48edcb936514c428e7faaa6))
+* pass WKB through to Arrow ([#189](https://github.com/stac-utils/stac-geoparquet/issues/189)) ([318a4d8](https://github.com/stac-utils/stac-geoparquet/commit/318a4d88a896f97c8886996bd37f23243f61741c))
+* reject path-like collection ids and non-integer timeouts ([#185](https://github.com/stac-utils/stac-geoparquet/issues/185)) ([a71341f](https://github.com/stac-utils/stac-geoparquet/commit/a71341f211190e9cf7f28ba27bae400896c26366))
+* stream rows instead of holding whole fetches ([#190](https://github.com/stac-utils/stac-geoparquet/issues/190)) ([b6dc0ce](https://github.com/stac-utils/stac-geoparquet/commit/b6dc0ce987d527d207e36cebe78a021dfea9b5a0))
+* write ChunksToDisk chunks as Arrow IPC ([#192](https://github.com/stac-utils/stac-geoparquet/issues/192)) ([e2ae0b9](https://github.com/stac-utils/stac-geoparquet/commit/e2ae0b9cc9bee8d6596b34eef95b3de6e7bae286))
+
 ## [0.8.3](https://github.com/stac-utils/stac-geoparquet/compare/0.8.2...0.8.3) (2026-10-21)
 
 
